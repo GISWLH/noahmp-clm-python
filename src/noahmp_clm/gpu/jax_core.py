@@ -753,27 +753,20 @@ def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax
     f0 = func(x0)
     best = x0
     best_abs = jnp.abs(f0)
-    done = jnp.asarray(False)
-    first_converged = x0
 
     def body(_, carry):
-        old_x0, old_x1, old_f0, old_best, old_best_abs, old_done, old_first = carry
+        old_x0, old_x1, old_f0, old_best, old_best_abs = carry
         f1 = func(old_x1)
         better = jnp.abs(f1) < old_best_abs
         best_new = jnp.where(better, old_x1, old_best)
         best_abs_new = jnp.where(better, jnp.abs(f1), old_best_abs)
-        converged = jnp.abs(f1) < 1.0e-3
-        first_new = jnp.where((~old_done) & converged, old_x1, old_first)
-        done_new = old_done | converged
         denom = f1 - old_f0
         x2_raw = old_x1 - f1 * (old_x1 - old_x0) / jnp.where(jnp.abs(denom) < 1.0e-12, 1.0, denom)
         x2 = jnp.clip(jnp.where(jnp.abs(denom) < 1.0e-12, old_x1, x2_raw), 200.0, 330.0)
-        return old_x1, x2, f1, best_new, best_abs_new, done_new, first_new
+        return old_x1, x2, f1, best_new, best_abs_new
 
-    _, _, _, best, _, done, first_converged = lax.fori_loop(
-        0, 25, body, (x0, x1, f0, best, best_abs, done, first_converged)
-    )
-    return jnp.where(done, first_converged, best)
+    _, _, _, best, _ = lax.fori_loop(0, 25, body, (x0, x1, f0, best, best_abs))
+    return best
 
 
 def step_column_jax(
