@@ -54,13 +54,30 @@ RUNOFF_SCHEMES = {
 }
 
 
-def route_runoff(incoming_m: float, state: ColumnState, option: int) -> tuple[float, float]:
-    """按 ``OptRunoffSurface`` 分发并返回守恒的地表/地下径流。"""
+def route_runoff(
+    incoming_m: float,
+    state: ColumnState,
+    option: int,
+    subsurface_option: int | None = None,
+) -> tuple[float, float]:
+    """按 surface/subsurface 选项分发并返回守恒的径流。
+
+    ``option`` 先决定地表产流；若给出 ``subsurface_option``，它再作用于
+    剩余地下候选径流。这样两个 Noah-MP namelist 开关可以独立配置，同时
+    默认两者相同的路径只计算一次。
+    """
     try:
         surface, subsurface = RUNOFF_SCHEMES[option](incoming_m, state)
     except KeyError as exc:
         raise NotImplementedError(
             f"OptRunoffSurface={option} 尚未实现；阶段 1 支持 1、2、3、4"
         ) from exc
-    return float(max(0.0, surface)), float(max(0.0, subsurface))
+    if subsurface_option is not None and subsurface_option != option:
+        spill_surface, subsurface = route_runoff(
+            subsurface, state, subsurface_option, subsurface_option=None
+        )
+        surface += spill_surface
+    total = max(0.0, float(incoming_m))
+    surface = float(np.clip(surface, 0.0, total))
+    return surface, float(total - surface)
 

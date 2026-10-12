@@ -34,3 +34,10 @@ def test_option_four_bats_and_option_three_are_available() -> None:
     assert np.isclose(sum(route_runoff(0.01, state, 3)), 0.01)
     assert route_runoff(0.01, state, 4)[0] > 0.0
 
+
+def test_surface_and_subsurface_options_can_be_selected_independently() -> None:
+    state = ColumnState(terrain_index=2.0, groundwater_depth=0.5)
+    state.smc[:] = state.soil.smcmax
+    surface, subsurface = route_runoff(0.01, state, 3, subsurface_option=4)
+    assert np.isclose(surface + subsurface, 0.01)
+

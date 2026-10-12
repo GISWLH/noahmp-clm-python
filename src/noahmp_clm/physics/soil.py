@@ -162,7 +162,10 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
     update_soil_phase(state)
 
     runoff_surf, runoff_deep = route_runoff(
-        runoff_surf + runoff_deep, state, state.options.OptRunoffSurface
+        runoff_surf + runoff_deep,
+        state,
+        state.options.OptRunoffSurface,
+        state.options.OptRunoffSubsurface,
     )
 
     return {"runoff_surf_m": runoff_surf, "runoff_deep_m": runoff_deep,
