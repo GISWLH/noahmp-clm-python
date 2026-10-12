@@ -16,6 +16,7 @@ from .physics.canopy import penman_monteith, stomatal_resistance
 from .physics.precip import partition_precipitation
 from .physics.surface_drag import exchange_velocity
 from .physics.stress import soil_water_stress
+from .physics.ground_evap import ground_resistance
 
 CP = E.CP
 LV = E.LV
@@ -88,6 +89,9 @@ def step_column(state: ColumnState, f: Forcing):
         beta = soil_water_stress(
             s, s.options.OptSoilWaterTranspiration, layer=0
         )
+        rs_ground = ground_resistance(
+            s, s.options.OptGroundResistanceEvap, snow_cover=False
+        )
         kt1 = S.thermal_conductivity(s.smc[:1], p)[0]
         dz1 = s.dz[0]
         canw_cap_rate = s.canw * LV * RHO_W / dt          # 截留水允许的最大蒸发功率
@@ -98,7 +102,11 @@ def step_column(state: ColumnState, f: Forcing):
             ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
             h = rho * CP * ce_ts * (ts - f.tair)
             dqs = E.qsat(ts, f.ps) - f.qair
-            le_g = min(beta * rho * LV * ce_ts * dqs, smc0_cap_rate)
+            ra_ts = 1.0 / max(ce_ts, 1.0e-6)
+            le_g = min(
+                beta * rho * LV * max(0.0, dqs) / (ra_ts + rs_ground),
+                smc0_cap_rate,
+            )
             le_c = min(rho * LV * ce_ts * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
                        canw_cap_rate)
             g = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
@@ -109,7 +117,11 @@ def step_column(state: ColumnState, f: Forcing):
         ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
         dqs = E.qsat(ts, f.ps) - f.qair
-        le_g = min(beta * rho * LV * ce * dqs, smc0_cap_rate)
+        ra = 1.0 / max(ce, 1.0e-6)
+        le_g = min(
+            beta * rho * LV * max(0.0, dqs) / (ra + rs_ground),
+            smc0_cap_rate,
+        )
         le_c = min(rho * LV * ce * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
                    canw_cap_rate)
         g_soil = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
