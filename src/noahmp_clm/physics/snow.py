@@ -14,10 +14,113 @@ RHO_W = 1000.0
 RHO_SNOW = 300.0
 C_SNOW = RHO_SNOW * 2100.0  # 雪体积热容量 J/(m3 K)
 K_SNOW = 0.30               # 雪导热系数 W/(m K)
+MAX_SNOW_LAYERS = 3
+SNOW_LAYER_THRESHOLDS = (0.05, 0.15)  # m SWE, SnowLayerDivideMod 风格阈值
 
 
 def snow_depth(swe: float) -> float:
     return swe * RHO_W / RHO_SNOW
+
+
+def divide_snow_layers(swe: float, *, max_layers: int = MAX_SNOW_LAYERS) -> np.ndarray:
+    """按 SnowLayerDivideMod 的 SWE 阈值返回各层 SWE（top -> bottom）。"""
+    total = max(0.0, float(swe))
+    n = 1 if total <= SNOW_LAYER_THRESHOLDS[0] else 2 if total <= SNOW_LAYER_THRESHOLDS[1] else max_layers
+    n = int(np.clip(n, 1, MAX_SNOW_LAYERS))
+    if total <= 0.0:
+        return np.zeros(1, dtype=float)
+    if n == 1:
+        return np.array([total], dtype=float)
+    weights = np.ones(n, dtype=float) / n
+    return total * weights
+
+
+def combine_snow_layers(
+    swe_layers: np.ndarray, temperatures: np.ndarray, densities: np.ndarray,
+    *, max_layers: int = MAX_SNOW_LAYERS,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """合并小层并限制至最多 3 层（SnowLayerCombineMod 风格）。"""
+    swe = np.asarray(swe_layers, dtype=float)
+    temp = np.asarray(temperatures, dtype=float)
+    dens = np.asarray(densities, dtype=float)
+    keep = swe > 1.0e-8
+    if not np.any(keep):
+        return np.zeros(1), np.array([273.15]), np.array([RHO_SNOW])
+    swe, temp, dens = swe[keep], temp[keep], dens[keep]
+    while len(swe) > max_layers:
+        i = len(swe) - 2
+        mass = swe[i] + swe[i + 1]
+        temp[i] = (swe[i] * temp[i] + swe[i + 1] * temp[i + 1]) / mass
+        dens[i] = mass / (swe[i] / dens[i] + swe[i + 1] / dens[i + 1])
+        swe[i] = mass
+        swe = np.delete(swe, i + 1)
+        temp = np.delete(temp, i + 1)
+        dens = np.delete(dens, i + 1)
+    return swe.copy(), temp.copy(), dens.copy()
+
+
+def add_snowfall(state, snowfall_m: float, snow_temperature: float = 273.15) -> None:
+    """把新雪加入顶层并按阈值重分层；状态对象已由驱动复制。"""
+    amount = max(0.0, float(snowfall_m))
+    if amount <= 0.0:
+        return
+    old_swe = np.asarray(state.snow_swe_layers, dtype=float)
+    old_t = np.asarray(state.snow_t_layers, dtype=float)
+    old_d = np.asarray(state.snow_density_layers, dtype=float)
+    if np.sum(old_swe) <= 1.0e-8:
+        new_swe = np.array([amount])
+        new_t = np.array([snow_temperature])
+        new_d = np.array([100.0])
+    else:
+        new_swe = np.concatenate(([amount], old_swe))
+        new_t = np.concatenate(([snow_temperature], old_t))
+        new_d = np.concatenate(([100.0], old_d))
+    target = divide_snow_layers(float(np.sum(new_swe)))
+    mean_t = float(np.average(new_t, weights=new_swe))
+    mean_d = float(np.average(new_d, weights=new_swe))
+    state.snow_swe_layers = target
+    state.snow_t_layers = np.full(len(target), mean_t)
+    state.snow_density_layers = np.full(len(target), mean_d)
+    state.swe = float(np.sum(target))
+    state.snow_t = float(state.snow_t_layers[0])
+
+
+def surface_snow_flux(state, surface_temperature: float) -> float:
+    """按顶层厚度计算雪面向下导热通量 (W/m2)。"""
+    top_swe = max(float(state.snow_swe_layers[0]), 1.0e-8)
+    top_depth = top_swe * RHO_W / max(float(state.snow_density_layers[0]), 50.0)
+    return K_SNOW * (float(surface_temperature) - float(state.snow_t_layers[0])) / max(
+        0.5 * top_depth, 0.01
+    )
+
+
+def _implicit_heat_step(temperatures: np.ndarray, thickness: np.ndarray, dt: float, top_flux: float) -> np.ndarray:
+    """三对角隐式层间导热，底边界零通量。"""
+    n = len(temperatures)
+    cap = C_SNOW * thickness / max(dt, 1.0e-6)
+    conductance = np.zeros(max(0, n - 1))
+    for i in range(n - 1):
+        conductance[i] = K_SNOW / max(0.5 * (thickness[i] + thickness[i + 1]), 1.0e-4)
+    lower = np.zeros(n)
+    diag = cap.copy()
+    upper = np.zeros(n)
+    rhs = cap * temperatures
+    rhs[0] += top_flux
+    for i, g in enumerate(conductance):
+        diag[i] += g
+        diag[i + 1] += g
+        upper[i] = -g
+        lower[i + 1] = -g
+    # Thomas algorithm, written for the fixed small layer count.
+    for i in range(1, n):
+        factor = lower[i] / max(diag[i - 1], 1.0e-12)
+        diag[i] -= factor * upper[i - 1]
+        rhs[i] -= factor * rhs[i - 1]
+    result = np.empty(n, dtype=float)
+    result[-1] = rhs[-1] / max(diag[-1], 1.0e-12)
+    for i in range(n - 2, -1, -1):
+        result[i] = (rhs[i] - upper[i] * result[i + 1]) / max(diag[i], 1.0e-12)
+    return result
 
 
 def albedo_bats(age_days: float, snow_temperature: float, new_snow: bool = False) -> float:
@@ -75,15 +178,26 @@ def age_albedo(state, dt: float, snowfall_m: float, option: int = 1) -> None:
 
 
 def apply_snow_heat(state, dt: float, g_snow: float) -> float:
-    """雪内热传导通量 g_snow（向下为正 W/m2）加热雪体；返回融水 (m)。原地修改。"""
+    """用隐式层间导热加热雪体；雪温超过 0°C 的能量转为融水 (m)。"""
     if state.swe <= 1e-6:
         return 0.0
-    dsnow = max(0.05, snow_depth(state.swe))
-    state.snow_t += g_snow * dt / (C_SNOW * dsnow)
+    swe, temps, density = combine_snow_layers(
+        state.snow_swe_layers, state.snow_t_layers, state.snow_density_layers
+    )
+    thickness = swe * RHO_W / np.maximum(density, 50.0)
+    updated = _implicit_heat_step(temps, thickness, dt, g_snow)
     melt = 0.0
-    if state.snow_t > 273.15:
-        melt = (state.snow_t - 273.15) * C_SNOW * dsnow / (LF * RHO_W)
-        melt = min(melt, state.swe)
-        state.swe -= melt
-        state.snow_t = 273.15
-    return melt
+    for i in range(len(updated)):
+        if updated[i] > 273.15:
+            excess = (updated[i] - 273.15) * C_SNOW * thickness[i]
+            layer_melt = min(swe[i], excess / (LF * RHO_W))
+            swe[i] -= layer_melt
+            melt += layer_melt
+            updated[i] = 273.15
+    swe, updated, density = combine_snow_layers(swe, updated, density)
+    state.snow_swe_layers = swe
+    state.snow_t_layers = updated
+    state.snow_density_layers = density
+    state.swe = float(np.sum(swe))
+    state.snow_t = float(updated[0])
+    return float(melt)

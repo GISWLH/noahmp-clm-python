@@ -44,7 +44,7 @@ def step_column(state: ColumnState, f: Forcing):
     add = min(rain_m, max(0.0, canmax - s.canw))
     s.canw += add
     throughfall = rain_m - add
-    s.swe += snow_m
+    SN.add_snowfall(s, snow_m, f.tair)
 
     # ---- 3. 冠层蒸腾（Penman-Monteith，可利用能量按 tair 估算） ----
     rs = stomatal_resistance(s, f, s.options.OptStomataResistance)
@@ -69,14 +69,14 @@ def step_column(state: ColumnState, f: Forcing):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
             ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
             h = rho * CP * ce_ts * (ts - f.tair)
-            g = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
+            g = SN.surface_snow_flux(s, ts)
             return rnet - h - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
         ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
-        g_snow = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
+        g_snow = SN.surface_snow_flux(s, ts)
         melt = SN.apply_snow_heat(s, dt, g_snow)
         le_g = le_c = 0.0
         ecan_m = esoil_m = 0.0
