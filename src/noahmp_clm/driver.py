@@ -142,7 +142,7 @@ def step_column(state: ColumnState, f: Forcing):
     S.step_soil_heat(s, dt, g_soil)
 
     # ---- 7. 雪反照率老化 ----
-    SN.age_albedo(s, dt, snow_m)
+    SN.age_albedo(s, dt, snow_m, s.options.OptSnowAlbedo)
 
     et_m = wdiag["transp_m"] + wdiag["esoil_m"] + ecan_m
     diag = {
