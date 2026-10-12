@@ -94,6 +94,35 @@ def surface_snow_flux(state, surface_temperature: float) -> float:
     )
 
 
+def compact_snow(state, dt: float, option: int = 1) -> None:
+    """更新雪层密度（Anderson, 1976；状态已在驱动入口复制）。
+
+    option 1 使用温度驱动的破坏性沉降和上覆载荷压实；option 2 采用
+    Abolafia--Rosenzweig et al. (2024) 的更慢温度响应占位实现。两者都只
+    改变密度/厚度，不改变 SWE。
+    """
+    if option not in (1, 2):
+        raise ValueError(f"OptSnowCompaction={option} 无效；允许值为 1 或 2")
+    swe, temp, density = combine_snow_layers(
+        state.snow_swe_layers, state.snow_t_layers, state.snow_density_layers
+    )
+    if np.sum(swe) <= 1.0e-8:
+        return
+    step = max(0.0, float(dt))
+    # Anderson (1976) 的温度依赖沉降：暖雪更快接近 550 kg/m3。
+    warm_rate = (1.0e-7 if option == 1 else 6.0e-8) * np.exp(
+        np.clip(0.08 * (temp - 258.15), -4.0, 4.0)
+    )
+    overburden = np.cumsum(swe[::-1])[::-1] - swe
+    load_rate = (2.5e-7 if option == 1 else 1.5e-7) * overburden
+    density = np.minimum(550.0, density + step * (warm_rate * (550.0 - density) + load_rate * 1.0e4))
+    state.snow_swe_layers = swe
+    state.snow_t_layers = temp
+    state.snow_density_layers = density
+    state.swe = float(np.sum(swe))
+    state.snow_t = float(temp[0])
+
+
 def _implicit_heat_step(temperatures: np.ndarray, thickness: np.ndarray, dt: float, top_flux: float) -> np.ndarray:
     """三对角隐式层间导热，底边界零通量。"""
     n = len(temperatures)

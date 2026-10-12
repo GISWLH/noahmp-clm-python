@@ -45,6 +45,7 @@ def step_column(state: ColumnState, f: Forcing):
     s.canw += add
     throughfall = rain_m - add
     SN.add_snowfall(s, snow_m, f.tair)
+    SN.compact_snow(s, dt, s.options.OptSnowCompaction)
 
     # ---- 3. 冠层蒸腾（Penman-Monteith，可利用能量按 tair 估算） ----
     rs = stomatal_resistance(s, f, s.options.OptStomataResistance)
