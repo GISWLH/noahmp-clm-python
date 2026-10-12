@@ -11,6 +11,7 @@ import numpy as np
 
 from ..column import ColumnState
 from .frozen_soil import apparent_heat_capacity, permeability_factor, update_soil_phase
+from .runoff import route_runoff
 
 
 def heat_capacity(smc: np.ndarray, p) -> np.ndarray:
@@ -159,6 +160,10 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
             runoff_deep += drain
     runoff_deep += enforce_cap(smc, dz, p.smcmax)
     update_soil_phase(state)
+
+    runoff_surf, runoff_deep = route_runoff(
+        runoff_surf + runoff_deep, state, state.options.OptRunoffSurface
+    )
 
     return {"runoff_surf_m": runoff_surf, "runoff_deep_m": runoff_deep,
             "transp_m": transp_taken, "esoil_m": esoil_taken}

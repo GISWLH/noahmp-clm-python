@@ -66,6 +66,8 @@ class ColumnState:
     soil: SoilParams = field(default_factory=SoilParams)
     root_frac: np.ndarray | None = None  # 各层根系权重（归一）
     options: PhysicsOptions = field(default_factory=PhysicsOptions)
+    terrain_index: float = 0.0          # TOPMODEL 地形指数
+    groundwater_depth: float = 2.0      # 地下水位深度 (m)
 
     def __post_init__(self):
         n = len(self.dz)
