@@ -16,21 +16,24 @@ Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
   - CLM5 / CTSM（ESCOMP/CTSM，BSD-3-Clause；Lawrence et al., 2019）
 - 上游许可归上游，本仓库新增代码采用 MIT 许可。
 
-## v0.1 实现了什么
+## 阶段 1 实现了什么
 
 单个时间步（默认 30 分钟）内按 Noah-MP 风格的顺序求解：
 
 1. 降水按气温分配为雨/雪（Jordan 1991 简化）；冠层截留（容量 ∝ LAI）
-2. 积雪：单层 bulk 雪盖，反照率衰减，融化
-3. 冠层：big-leaf，Jarvis 型气孔阻抗（光/温/水汽压差/土壤水胁迫），Penman–Monteith 蒸腾
+2. 积雪：最多 3 层的 bulk 雪盖，BATS/CLASS 反照率，五种雪导热率，压实、融化
+3. 冠层：big-leaf，Jarvis 或 Ball–Berry 气孔阻抗（经验光合曲线），Penman–Monteith 蒸腾
 4. 地表能量平衡：对地表温度 `Ts` 做割线迭代，使 `Rnet − H − LE − G = 0`
 5. 土壤水热：4 层（0.1 / 0.3 / 0.6 / 1.0 m，与 Noah-MP 默认一致）
    - 热传导：Crank–Nicolson 隐式求解（Thomas 算法），步长无条件稳定
    - 水分：入渗（fill-and-spill）+ Campbell/Clapp-Hornberger 型排水 + 根系吸水
 6. 批量驱动 `run_columns`：N 个柱各自独立推进，可直接对照单柱结果
+7. `PhysicsOptions` 对齐 Noah-MP v5.0 `ConfigVarType.F90` 的 `Opt*` 配置；阶段 1
+   已实现降水相态 1–3、MOST/Chen97、Ball–Berry/Jarvis、Noah/CLM/SSiB
+   胁迫、四种地面阻抗、BATS/CLASS 雪反照率、冻土相变、TOPMODEL/BATS/自由排水径流。
 
-v0.1 明确**没有**的东西（见 ROADMAP.md）：冻土过程、多物理选项开关、CLM 的
-landunit/PFT 层级、与 Noah-MP 参考运行的定量对标。
+阶段 1 仍不包含 SNICAR、湿球降水相态（OptRainSnowPartition=5）、完整 Farquhar
+光合、作物/灌溉/湿地/冰川和横向地下水；这些范围在 ROADMAP.md 中列为后续工作。
 
 ## 快速开始
 
@@ -65,7 +68,8 @@ src/noahmp_clm/
         canopy.py    # 气孔阻抗、Penman-Monteith
         energy.py    # 地表能量平衡迭代、湍流通量
         soil.py      # 土壤水热求解器
-        snow.py      # 单层积雪
+        snow.py      # 多层积雪、反照率、压实与导热
+    options.py      # Noah-MP v5.0 Opt* 配置值对象
 examples/run_single_column.py
 tests/test_column.py
 ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 → JAX/CUDA
@@ -80,8 +84,25 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 - **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
 - **雪累积/消融**：冷期 SWE 增长，暖期融化减少
 
-当前本地全量结果：`32 passed`。阶段 1 选项默认值来自 HRLDAS 示例
-`namelist.hrldas.NLDAS`；可用 `python examples/parity_noahmp.py --reference
-<official.csv>` 对比官方单柱的日 ET、感热和表层地温。对标脚本在没有官方 CSV
-时也可直接运行并生成 Python 诊断；官方 Fortran 参考 CSV 需要在带 NCAR/noahmp
-编译器的环境中导出，当前工作站没有 `gfortran`，因此尚未声称有官方偏差数值。
+当前本地验收结果：
+
+- `python -m pytest -q`：**34 passed**；`python -m pytest -q --doctest-modules src tests`：**34 passed**；`python -m compileall -q src examples tests` 通过。
+- 35 个已实现选项组合（降水 3、地表拖曳 2、气孔 2、胁迫 3、地面阻抗 4、雪反照率 2、雪导热 5、压实 2、冻土渗透率 2、径流表层/地下各 4）均通过有限值、入口不变性和能量诊断检查；雪方案冷暖转换的 13 个组合水量误差均小于 `5e-16 m`，最大能量残差小于 `1e-3 W/m²`。
+- `python examples/run_single_column.py` 和 `python examples/parity_noahmp.py --days 5` 均可运行；默认 5 日示例最大能量残差为 `9.538e-4 W/m²`。
+
+### NCAR/noahmp v5.0 对照
+
+工作区用 NCAR/noahmp v5.0 `src/` 的 **135 个 Fortran 模块全部编译通过**（Windows
+conda-forge Flang 19.1.7；SNICAR 输入模块同时链接 netCDF Fortran 模块），并编译运行了
+`AtmosForcingMod` 单柱烟囱测试。Jordan (1991)、BATS 和冰点阈值在
+`Tair−273.15 = −1, 0, 1, 2, 3 K` 上与官方 `FrozenPrecipFrac`/`RainfallRefHeight`
+逐点一致（官方单精度输出的最大舍入差小于 `3e-7`）。这项测试覆盖 `AtmosForcingMod.F90`
+的阶段 1 降水分配入口；其余日尺度 ET/感热/地温需要 HRLDAS 的站点强迫和参数表。
+
+`examples/parity_noahmp.py` 接受官方单柱 CSV（列：`et_mm,h_wm2,tsoil1_k`）并报告日偏差：
+
+```bash
+python examples/parity_noahmp.py --reference official_daily.csv
+```
+
+没有官方 CSV 时脚本仍生成 Python 日诊断，但不会伪造官方偏差数值。

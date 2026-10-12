@@ -17,14 +17,18 @@
 
 目标：与 NCAR/noahmp 离线单柱运行在 FLUXNET 强迫下定量可比。
 
-- [x] 多物理选项开关：runoff（TOPMODEL/BATS）、snow albedo（BATS/CLASS）、
-  stomatal（Ball-Berry/Jarvis）、soil moisture stress（Noah/CLM/SSiB）
+- [x] 多物理选项开关：precipitation（Jordan/BATS/freezing threshold）、surface drag
+  （MOST/Chen97）、runoff（TOPMODEL/BATS/free drainage）、snow albedo（BATS/CLASS）、
+  stomatal（Ball-Berry/Jarvis）、soil moisture stress（Noah/CLM/SSiB）和四种 ground resistance
 - [x] 冻土过程（soil ice + apparent heat capacity）、多层积雪（最多 3 层）
 - [x] MOST surface drag、Sakaguchi--Zeng ground resistance、Anderson snow compaction
-- [x] Noah-MP `ConfigVarType.F90` 的 `Opt*` 配置框架与 HRLDAS 默认值
+- [x] Noah-MP `ConfigVarType.F90` 的 `Opt*` 配置框架与 HRLDAS 默认值；动态植被固定为 4，
+  作物/灌溉/湿地/冰川/瓦片排水关闭
 - 冠层分层辐射（双流近似简化版）与植被能量平衡迭代
+- [x] 官方源码验收：NCAR/noahmp v5.0 `src/` 的 135 个 Fortran 模块可编译，
+  `AtmosForcingMod` 的 Jordan/BATS/冰点阈值与 Python 实现逐点一致
 - [ ] 对标实验：选 3–5 个 FLUXNET 站点，对比日 ET / 感热 / 土壤温湿度的偏差与相关系数；
-  `examples/parity_noahmp.py` 已提供 CSV 对比入口，官方参考 CSV 待在 NCAR 编译环境生成。
+  `examples/parity_noahmp.py` 已提供 CSV 对比入口，待提供带站点参数和强迫的 HRLDAS 官方输出。
 
 ## 阶段 2 — CLM 柱子集
 
