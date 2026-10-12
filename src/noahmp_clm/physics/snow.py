@@ -22,6 +22,33 @@ def snow_depth(swe: float) -> float:
     return swe * RHO_W / RHO_SNOW
 
 
+def snow_thermal_conductivity(
+    density: float, temperature: float = 273.15, option: int = 3
+) -> float:
+    """按 ``OptSnowThermConduct`` 返回雪导热系数 (W m-1 K-1)。
+
+    option 1 为 Stieglitz/Yen (1965)，2 为 Anderson (1976)，3 为常数，
+    4 为 Verseghy (1991)，5 为 Douville/Yen (1981)。温度参数为接口一致性
+    保留，Verseghy 分支用它反映暖湿雪的轻微增益。
+    """
+    rho = float(np.clip(density, 50.0, 917.0))
+    ratio = rho / 1000.0
+    if option == 1:
+        value = 2.2 * ratio**1.88
+    elif option == 2:
+        value = 2.9 * ratio**2.0
+    elif option == 3:
+        value = K_SNOW
+    elif option == 4:
+        value = 0.023 + 0.234 * ratio**2.0
+        value *= 1.0 + 0.05 * np.clip(float(temperature) - 268.15, 0.0, 5.0) / 5.0
+    elif option == 5:
+        value = 2.2 * ratio**1.88 * (1.0 + 0.1 * ratio)
+    else:
+        raise ValueError(f"OptSnowThermConduct={option} 无效；允许值为 1、2、3、4、5")
+    return float(np.clip(value, 0.05, 2.5))
+
+
 def divide_snow_layers(swe: float, *, max_layers: int = MAX_SNOW_LAYERS) -> np.ndarray:
     """按 SnowLayerDivideMod 的 SWE 阈值返回各层 SWE（top -> bottom）。"""
     total = max(0.0, float(swe))
@@ -89,7 +116,11 @@ def surface_snow_flux(state, surface_temperature: float) -> float:
     """按顶层厚度计算雪面向下导热通量 (W/m2)。"""
     top_swe = max(float(state.snow_swe_layers[0]), 1.0e-8)
     top_depth = top_swe * RHO_W / max(float(state.snow_density_layers[0]), 50.0)
-    return K_SNOW * (float(surface_temperature) - float(state.snow_t_layers[0])) / max(
+    conductivity = snow_thermal_conductivity(
+        state.snow_density_layers[0], state.snow_t_layers[0],
+        state.options.OptSnowThermConduct
+    )
+    return conductivity * (float(surface_temperature) - float(state.snow_t_layers[0])) / max(
         0.5 * top_depth, 0.01
     )
 
@@ -123,13 +154,17 @@ def compact_snow(state, dt: float, option: int = 1) -> None:
     state.snow_t = float(temp[0])
 
 
-def _implicit_heat_step(temperatures: np.ndarray, thickness: np.ndarray, dt: float, top_flux: float) -> np.ndarray:
+def _implicit_heat_step(
+    temperatures: np.ndarray, thickness: np.ndarray, dt: float,
+    top_flux: float, conductivity: np.ndarray,
+) -> np.ndarray:
     """三对角隐式层间导热，底边界零通量。"""
     n = len(temperatures)
     cap = C_SNOW * thickness / max(dt, 1.0e-6)
     conductance = np.zeros(max(0, n - 1))
     for i in range(n - 1):
-        conductance[i] = K_SNOW / max(0.5 * (thickness[i] + thickness[i + 1]), 1.0e-4)
+        k_if = 2.0 / (1.0 / conductivity[i] + 1.0 / conductivity[i + 1])
+        conductance[i] = k_if / max(0.5 * (thickness[i] + thickness[i + 1]), 1.0e-4)
     lower = np.zeros(n)
     diag = cap.copy()
     upper = np.zeros(n)
@@ -214,7 +249,11 @@ def apply_snow_heat(state, dt: float, g_snow: float) -> float:
         state.snow_swe_layers, state.snow_t_layers, state.snow_density_layers
     )
     thickness = swe * RHO_W / np.maximum(density, 50.0)
-    updated = _implicit_heat_step(temps, thickness, dt, g_snow)
+    conductivity = np.array([
+        snow_thermal_conductivity(d, t, state.options.OptSnowThermConduct)
+        for d, t in zip(density, temps)
+    ])
+    updated = _implicit_heat_step(temps, thickness, dt, g_snow, conductivity)
     melt = 0.0
     for i in range(len(updated)):
         if updated[i] > 273.15:
