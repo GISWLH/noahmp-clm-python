@@ -17,13 +17,14 @@
 
 目标：与 NCAR/noahmp 离线单柱运行在 FLUXNET 强迫下定量可比。
 
-- 多物理选项开关（Noah-MP 标志性设计）： runoff（TOPMODEL/Schaake）、
-  snow albedo（BATS/CLASS）、stomatal（Ball-Berry/Jarvis）、
-  soil moisture stress（Noah/SMC）
-- 冻土过程（soil ice + 相变潜热）、多层积雪（最多 3 层，Noah-MP 风格）
+- [x] 多物理选项开关：runoff（TOPMODEL/BATS）、snow albedo（BATS/CLASS）、
+  stomatal（Ball-Berry/Jarvis）、soil moisture stress（Noah/CLM/SSiB）
+- [x] 冻土过程（soil ice + apparent heat capacity）、多层积雪（最多 3 层）
+- [x] MOST surface drag、Sakaguchi--Zeng ground resistance、Anderson snow compaction
+- [x] Noah-MP `ConfigVarType.F90` 的 `Opt*` 配置框架与 HRLDAS 默认值
 - 冠层分层辐射（双流近似简化版）与植被能量平衡迭代
-- 对标实验：选 3–5 个 FLUXNET 站点，对比日 ET / 感热 / 土壤温湿度的偏差与相关系数；
-  目标：偏差在 Noah-MP 参数不确定性范围内
+- [ ] 对标实验：选 3–5 个 FLUXNET 站点，对比日 ET / 感热 / 土壤温湿度的偏差与相关系数；
+  `examples/parity_noahmp.py` 已提供 CSV 对比入口，官方参考 CSV 待在 NCAR 编译环境生成。
 
 ## 阶段 2 — CLM 柱子集
 

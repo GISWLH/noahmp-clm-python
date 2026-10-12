@@ -73,10 +73,15 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 ## 验证状态
 
-`pytest` 覆盖三条硬约束（每次提交都应通过）：
+`pytest` 覆盖四条硬约束（每次提交都应通过），并覆盖阶段 1 各物理选项：
 
 - **能量闭合**：每步 `|Rnet − H − LE − G| < 0.5 W/m²`
 - **水平衡**：`降水 = ET + 径流 + Δ蓄水`，误差 `< 1e-9 m`
 - **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
+- **雪累积/消融**：冷期 SWE 增长，暖期融化减少
 
-与 Noah-MP v5.0 离线参考运行的定量对标尚未开始（ROADMAP 阶段 1）。
+当前本地全量结果：`32 passed`。阶段 1 选项默认值来自 HRLDAS 示例
+`namelist.hrldas.NLDAS`；可用 `python examples/parity_noahmp.py --reference
+<official.csv>` 对比官方单柱的日 ET、感热和表层地温。对标脚本在没有官方 CSV
+时也可直接运行并生成 Python 诊断；官方 Fortran 参考 CSV 需要在带 NCAR/noahmp
+编译器的环境中导出，当前工作站没有 `gfortran`，因此尚未声称有官方偏差数值。
