@@ -3,13 +3,14 @@
 热：向后 Euler 隐式求解一维热传导（Thomas 追赶法），步长无条件稳定；
     上边界为地表热通量 G（Neumann），下边界零通量。
 水：入渗 fill-and-spill（超渗→地表径流）+ Campbell/Clapp-Hornberger 型
-    重力排水 + 根系分层吸水。冻土过程是阶段 1 的工作，v0.1 未考虑。
+    重力排水 + 根系分层吸水。冻土相变使用表观热容量进入隐式热方程。
 """
 from __future__ import annotations
 
 import numpy as np
 
 from ..column import ColumnState
+from .frozen_soil import apparent_heat_capacity, permeability_factor, update_soil_phase
 
 
 def heat_capacity(smc: np.ndarray, p) -> np.ndarray:
@@ -30,7 +31,9 @@ def step_soil_heat(state: ColumnState, dt: float, g_flux: float) -> None:
     """隐式更新各层土壤温度。g_flux: 向下为正的地表热通量 (W/m2)。原地修改。"""
     n = len(state.dz)
     dz = state.dz
-    cap = heat_capacity(state.smc, state.soil)          # J/(m3 K)
+    cap = apparent_heat_capacity(
+        state.smc, state.tsoil, state.soil, state.options.OptSoilSupercoolWater
+    )
     kt = thermal_conductivity(state.smc, state.soil)    # W/(m K)
 
     # 界面导热系数（调和平均）与界面间距
@@ -63,6 +66,7 @@ def step_soil_heat(state: ColumnState, dt: float, g_flux: float) -> None:
     b[n - 1] = cap[n - 1] * dz[n - 1] / dt + ku
 
     state.tsoil[:] = _thomas(a, b, c, d)
+    update_soil_phase(state)
 
 
 def _thomas(a: np.ndarray, b: np.ndarray, c: np.ndarray,
@@ -125,6 +129,7 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
     dz = state.dz
 
     runoff_surf = add_water_topdown(smc, dz, p.smcmax, infil_m)
+    update_soil_phase(state)
 
     # 蒸腾按根系权重从各层提取（不低于萎蔫点）
     transp_taken = 0.0
@@ -142,7 +147,9 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
     # Campbell/Clapp-Hornberger 型排水：只排田间持水量以上部分
     runoff_deep = 0.0
     for i in range(n):
-        q = p.satdk * (np.clip(smc[i] / p.smcmax, 0.0, 1.0)) ** (2.0 * p.bexp + 3.0)
+        q = p.satdk * permeability_factor(
+            state, state.options.OptSoilPermeabilityFrozen
+        )[i] * (np.clip(smc[i] / p.smcmax, 0.0, 1.0)) ** (2.0 * p.bexp + 3.0)
         excess = max(0.0, smc[i] - p.smcref) * dz[i]
         drain = min(excess, q * dt)
         smc[i] -= drain / dz[i]
@@ -151,6 +158,7 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
         else:
             runoff_deep += drain
     runoff_deep += enforce_cap(smc, dz, p.smcmax)
+    update_soil_phase(state)
 
     return {"runoff_surf_m": runoff_surf, "runoff_deep_m": runoff_deep,
             "transp_m": transp_taken, "esoil_m": esoil_taken}

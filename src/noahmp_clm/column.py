@@ -47,6 +47,7 @@ class ColumnState:
     dz: np.ndarray = field(default_factory=lambda: np.array([0.1, 0.3, 0.6, 1.0]))
     tsoil: np.ndarray | None = None   # 各层土壤温度 (K)
     smc: np.ndarray | None = None     # 各层体积含水量 (m3/m3)
+    soil_ice: np.ndarray | None = None  # 各层冰含量 (m3/m3)
     ts: float = 285.0                 # 地表（雪面）温度 (K)
     swe: float = 0.0                  # 雪水当量 (m)
     snow_t: float = 273.15            # 雪温 (K)
@@ -72,6 +73,12 @@ class ColumnState:
             self.tsoil = np.full(n, 285.0)
         if self.smc is None:
             self.smc = np.full(n, 0.5 * (self.soil.smcwlt + self.soil.smcref))
+        if self.soil_ice is None:
+            self.soil_ice = np.zeros(n, dtype=float)
+        else:
+            self.soil_ice = np.asarray(self.soil_ice, dtype=float).copy()
+            if len(self.soil_ice) != n:
+                raise ValueError("soil_ice 与 soil 层数必须一致")
         if self.snow_swe_layers is None:
             self.snow_swe_layers = np.array([max(0.0, self.swe)], dtype=float)
         else:
@@ -104,6 +111,7 @@ class ColumnState:
         return dataclasses.replace(
             self,
             dz=self.dz.copy(), tsoil=self.tsoil.copy(), smc=self.smc.copy(),
+            soil_ice=self.soil_ice.copy(),
             root_frac=self.root_frac.copy(),
             snow_swe_layers=self.snow_swe_layers.copy(),
             snow_t_layers=self.snow_t_layers.copy(),
