@@ -93,7 +93,7 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 ### NCAR/noahmp v5.0 对照
 
 工作区用 NCAR/noahmp v5.0 `src/` 的 **135 个 Fortran 模块全部编译通过**（Windows
-conda-forge Flang 19.1.7；SNICAR 输入模块同时链接 netCDF Fortran 模块），并编译运行了
+conda-forge Flang 19.1.7；SNICAR 输入模块使用 netCDF Fortran module），并编译运行了
 `AtmosForcingMod` 单柱烟囱测试。Jordan (1991)、BATS 和冰点阈值在
 `Tair−273.15 = −1, 0, 1, 2, 3 K` 上与官方 `FrozenPrecipFrac`/`RainfallRefHeight`
 逐点一致（官方单精度输出的最大舍入差小于 `3e-7`）。这项测试覆盖 `AtmosForcingMod.F90`
