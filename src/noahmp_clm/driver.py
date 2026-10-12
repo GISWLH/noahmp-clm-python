@@ -13,6 +13,7 @@ from .physics import energy as E
 from .physics import soil as S
 from .physics import snow as SN
 from .physics.canopy import jarvis_rs, penman_monteith
+from .physics.precip import partition_precipitation
 
 CP = E.CP
 LV = E.LV
@@ -31,10 +32,10 @@ def step_column(state: ColumnState, f: Forcing):
     ce = ch * wind_eff                # 交换速度 m/s
     ra = 1.0 / max(ce, 1e-6)
 
-    # ---- 1. 降水分配（Jordan 1991 简化）：雨 / 雪 ----
-    fsnow = float(np.clip((274.15 - f.tair) / 2.0, 0.0, 1.0))
-    snow_m = f.prcp * fsnow * dt
-    rain_m = f.prcp * (1.0 - fsnow) * dt
+    # ---- 1. 降水分配：由 state.options 选择纯函数方案 ----
+    rain_m, snow_m = partition_precipitation(
+        f.prcp, dt, f.tair, s.options.OptRainSnowPartition
+    )
 
     # ---- 2. 冠层截留 ----
     canmax = 0.5e-3 * s.lai
