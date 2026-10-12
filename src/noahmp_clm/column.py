@@ -8,6 +8,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import numpy as np
 
+from .options import PhysicsOptions
+
 
 @dataclass
 class SoilParams:
@@ -59,6 +61,7 @@ class ColumnState:
     rsmin: float = 120.0              # 最小气孔阻抗 (s/m)
     soil: SoilParams = field(default_factory=SoilParams)
     root_frac: np.ndarray | None = None  # 各层根系权重（归一）
+    options: PhysicsOptions = field(default_factory=PhysicsOptions)
 
     def __post_init__(self):
         n = len(self.dz)
