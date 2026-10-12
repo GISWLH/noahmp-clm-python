@@ -43,6 +43,25 @@ python examples/run_single_column.py     # 5 天合成强迫，打印逐日 ET/�
 pytest                                   # 能量闭合、水平衡、批量独立性测试
 ```
 
+## 阶段 3：GPU 迁移
+
+GPU 代码全部位于 `src/noahmp_clm/gpu/`，普通 numpy 版仍是只读正确性基准。
+状态先由 `gpu.pack` 编码为固定长度 `fvec/ivec`，JAX 后端提供
+`step_column_jax` 和 `run_columns_jax`（时间 `lax.scan`、柱轴 `vmap`）；
+`gpu/cuda/` 保存 SoA CUDA kernel 源码和延迟 loader。
+
+```bash
+pip install -e ".[dev,gpu]"
+python -c "from noahmp_clm.gpu.jax_core import run_columns_jax; print('JAX GPU API ready')"
+python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
+```
+
+`.[gpu]` 安装的是 `jax[cpu]`，有 CUDA-enabled Linux/xuanze 环境时请按
+`docs/GPU_ENV.md` 换成对应 CUDA wheel。当前 Windows 实测只有 JAX CPU backend；
+RTX 4070 可被 CuPy 枚举，但批量对照仍缺少 CUDA headers。环境、状态偏移、性能
+数字和未实测项分别记录在 `docs/GPU_ENV.md`、`docs/STATE_SPEC.md`、
+`docs/BENCHMARK.md`、`docs/GPU_SUMMARY.md`。
+
 最小调用示例：
 
 ```python
@@ -70,6 +89,11 @@ src/noahmp_clm/
         soil.py      # 土壤水热求解器
         snow.py      # 多层积雪、反照率、压实与导热
     options.py      # Noah-MP v5.0 Opt* 配置值对象
+    gpu/
+        pack.py      # 定长状态 ABI
+        jax_core.py  # JAX jit/vmap/scan 物理链路
+        cupy_core.py # CuPy 正确性锚点
+        cuda/        # [未实测] SoA CUDA kernel 与 loader
 examples/run_single_column.py
 tests/test_column.py
 ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 → JAX/CUDA
@@ -86,7 +110,7 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 当前本地验收结果：
 
-- `python -m pytest -q`：**34 passed**；`python -m pytest -q --doctest-modules src tests`：**34 passed**；`python -m compileall -q src examples tests` 通过。
+- `python -m pytest -q`：**36 passed, 4 skipped**（基础环境没有 JAX/CuPy，Windows CUDA kernel 标记未实测）；`python -m compileall -q src examples tests benchmarks` 通过。
 - 35 个已实现选项组合（降水 3、地表拖曳 2、气孔 2、胁迫 3、地面阻抗 4、雪反照率 2、雪导热 5、压实 2、冻土渗透率 2、径流表层/地下各 4）均通过有限值、入口不变性和能量诊断检查；雪方案冷暖转换的 13 个组合水量误差均小于 `5e-16 m`，最大能量残差小于 `1e-3 W/m²`。
 - `python examples/run_single_column.py` 和 `python examples/parity_noahmp.py --days 5` 均可运行；默认 5 日示例最大能量残差为 `9.538e-4 W/m²`。
 
