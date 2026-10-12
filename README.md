@@ -94,9 +94,10 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 工作区用 NCAR/noahmp v5.0 `src/` 的 **135 个 Fortran 模块全部编译通过**（Windows
 conda-forge Flang 19.1.7；SNICAR 输入模块使用 netCDF Fortran module），并编译运行了
-`AtmosForcingMod` 单柱烟囱测试。Jordan (1991)、BATS 和冰点阈值在
-`Tair−273.15 = −1, 0, 1, 2, 3 K` 上与官方 `FrozenPrecipFrac`/`RainfallRefHeight`
-逐点一致（官方单精度输出的最大舍入差小于 `3e-7`）。这项测试覆盖 `AtmosForcingMod.F90`
+`AtmosForcingMod` 单柱烟囱测试。以与官方相同的 IEEE single-precision 温度输入，Jordan
+(1991)、BATS 和冰点阈值在 `Tair−273.15 = −1, 0, 1, 2, 3 K` 的 15 个输出上与官方
+`FrozenPrecipFrac`/`RainfallRefHeight` 一致，最大冻结比例差为 `1.22e-6`。恰好冰点的
+双精度/单精度舍入差会改变阈值分支，但不是方程差异。这项测试覆盖 `AtmosForcingMod.F90`
 的阶段 1 降水分配入口；其余日尺度 ET/感热/地温需要 HRLDAS 的站点强迫和参数表。
 
 `examples/parity_noahmp.py` 接受官方单柱 CSV（列：`et_mm,h_wm2,tsoil1_k`）并报告日偏差：
