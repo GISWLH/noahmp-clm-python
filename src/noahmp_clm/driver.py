@@ -14,6 +14,7 @@ from .physics import soil as S
 from .physics import snow as SN
 from .physics.canopy import jarvis_rs, penman_monteith
 from .physics.precip import partition_precipitation
+from .physics.surface_drag import exchange_velocity
 
 CP = E.CP
 LV = E.LV
@@ -28,8 +29,7 @@ def step_column(state: ColumnState, f: Forcing):
     p = s.soil
     rho = E.air_density(f)
     wind_eff = max(f.wind, 0.3)
-    ch = E.bulk_ch(wind_eff, s.z0m)   # 无量纲
-    ce = ch * wind_eff                # 交换速度 m/s
+    ce = exchange_velocity(f, s.z0m, f.tair, s.options.OptSurfaceDrag)
     ra = 1.0 / max(ce, 1e-6)
 
     # ---- 1. 降水分配：由 state.options 选择纯函数方案 ----
@@ -65,12 +65,14 @@ def step_column(state: ColumnState, f: Forcing):
 
         def F(ts):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-            h = rho * CP * ce * (ts - f.tair)
+            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+            h = rho * CP * ce_ts * (ts - f.tair)
             g = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
             return rnet - h - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
         g_snow = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
         melt = SN.apply_snow_heat(s, dt, g_snow)
@@ -91,16 +93,18 @@ def step_column(state: ColumnState, f: Forcing):
 
         def F(ts):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-            h = rho * CP * ce * (ts - f.tair)
+            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+            h = rho * CP * ce_ts * (ts - f.tair)
             dqs = E.qsat(ts, f.ps) - f.qair
-            le_g = min(beta * rho * LV * ce * dqs, smc0_cap_rate)
-            le_c = min(rho * LV * ce * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
+            le_g = min(beta * rho * LV * ce_ts * dqs, smc0_cap_rate)
+            le_c = min(rho * LV * ce_ts * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
                        canw_cap_rate)
             g = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
             return rnet - h - le_g - le_c - tr_le - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
         dqs = E.qsat(ts, f.ps) - f.qair
         le_g = min(beta * rho * LV * ce * dqs, smc0_cap_rate)
