@@ -4,9 +4,18 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
+import sys
 
 jax = pytest.importorskip("jax")
 jax.config.update("jax_enable_x64", True)
+
+pytestmark = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "JAX 0.11.2 Windows CPU wheel intermittently aborts in XLA HLO verifier "
+        "for this scan/vmap graph; run these tests on Linux/xuanze CUDA or CPU JAX."
+    ),
+)
 from noahmp_clm.column import ColumnState
 from noahmp_clm.gpu.jax_core import run_columns_jax, step_column_jax
 from noahmp_clm.gpu.pack import column_state_to_vec, forcing_to_vec
