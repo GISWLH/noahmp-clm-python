@@ -11,6 +11,7 @@ import numpy as np
 
 from ..column import ColumnState, Forcing
 from .energy import sat_vapor_pressure, air_density
+from .stress import soil_water_stress
 
 CP = 1004.0   # 干空气定压比热 J/(kg K)
 LV = 2.5e6    # 蒸发潜热 J/kg
@@ -26,10 +27,9 @@ def jarvis_rs(state: ColumnState, f: Forcing) -> float:
     f_temp = float(np.clip(1.0 - 0.0016 * (298.0 - f.tair) ** 2, 0.05, 1.0))
     f_vpd = float(np.clip(1.0 - vpd / 4000.0, 0.10, 1.0))
 
-    smc_root = float(np.sum(state.smc * state.root_frac))
-    p = state.soil
-    f_smc = float(np.clip((smc_root - p.smcwlt) / max(1e-6, p.smcref - p.smcwlt),
-                          0.02, 1.0))
+    f_smc = max(0.02, soil_water_stress(
+        state, state.options.OptSoilWaterTranspiration
+    ))
 
     rs = state.rsmin / (f_light * f_temp * f_vpd * f_smc)
     return float(np.clip(rs, state.rsmin, 5000.0))
@@ -44,9 +44,9 @@ def empirical_photosynthesis(state: ColumnState, f: Forcing) -> float:
     par = max(0.0, float(f.swdown)) * 2.0  # 简化的 PAR (umol photons m-2 s-1)
     light = 1.0 - np.exp(-par / 450.0)
     temp = float(np.clip(1.0 - 0.0016 * (298.0 - f.tair) ** 2, 0.05, 1.0))
-    p = state.soil
-    root_smc = float(np.sum(state.smc * state.root_frac))
-    water = float(np.clip((root_smc - p.smcwlt) / max(1.0e-9, p.smcref - p.smcwlt), 0.02, 1.0))
+    water = max(0.02, soil_water_stress(
+        state, state.options.OptSoilWaterTranspiration
+    ))
     return float(25.0 * light * temp * water)
 
 

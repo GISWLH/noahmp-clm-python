@@ -15,6 +15,7 @@ from .physics import snow as SN
 from .physics.canopy import penman_monteith, stomatal_resistance
 from .physics.precip import partition_precipitation
 from .physics.surface_drag import exchange_velocity
+from .physics.stress import soil_water_stress
 
 CP = E.CP
 LV = E.LV
@@ -84,8 +85,9 @@ def step_column(state: ColumnState, f: Forcing):
     else:
         # 裸土/植被分支
         albedo, emiss = s.albedo, s.emiss
-        beta = float(np.clip((s.smc[0] - p.smcwlt) / max(1e-9, p.smcref - p.smcwlt),
-                             0.0, 1.0))
+        beta = soil_water_stress(
+            s, s.options.OptSoilWaterTranspiration, layer=0
+        )
         kt1 = S.thermal_conductivity(s.smc[:1], p)[0]
         dz1 = s.dz[0]
         canw_cap_rate = s.canw * LV * RHO_W / dt          # 截留水允许的最大蒸发功率
