@@ -8,10 +8,24 @@
 
 from __future__ import annotations
 
-import cupy as cp
+try:  # CuPy 仅是阶段 E/F 的可选后端。
+    import cupy as cp
+    _CUPY_IMPORT_ERROR = None
+except ImportError as exc:  # pragma: no cover - 依赖缺失环境
+    cp = None
+    _CUPY_IMPORT_ERROR = exc
 
 from ..driver import step_column
 from .pack import forcing_vec_to_forcing, vec_to_column_state, column_state_to_vec
+
+
+def _require_cupy() -> None:
+    """对应普通版: driver.step_column。
+
+    没有 GPU extra 时延迟报告依赖错误。
+    """
+    if _CUPY_IMPORT_ERROR is not None:
+        raise ImportError("CuPy 后端未安装，请先安装 cupy-cuda12x") from _CUPY_IMPORT_ERROR
 
 
 def step_column_cupy(
@@ -22,6 +36,7 @@ def step_column_cupy(
     这是 CuPy 正确性锚点而非性能实现：状态解包和参考物理在 host 上完成，
     再把结果拷回 CuPy。这样不会伪装成 CUDA 加速，也能先锁定 ABI parity。
     """
+    _require_cupy()
     state = vec_to_column_state(cp.asnumpy(fvec), cp.asnumpy(ivec), [0.1, 0.3, 0.6, 1.0])
     forcing = forcing_vec_to_forcing(cp.asnumpy(forcing_vec))
     new_state, diag = step_column(state, forcing)
@@ -54,6 +69,7 @@ def run_columns_cupy(
     维持 ``(N, T, 8)`` 或共享 ``(T, 8)`` 强迫接口；循环只用于建立 E 阶段
     对照基线，CUDA kernel 的 grid-stride 循环将在阶段 F 接管。
     """
+    _require_cupy()
     fvecs = cp.asarray(fvecs)
     ivecs = cp.asarray(ivecs)
     forcing_array = cp.asarray(forcings)

@@ -9,9 +9,16 @@ from __future__ import annotations
 
 from typing import Callable
 
-import jax
-import jax.numpy as jnp
-from jax import lax
+try:  # GPU extra 是可选依赖；普通版 doctest 不应因未安装 JAX 而收集失败。
+    import jax
+    import jax.numpy as jnp
+    from jax import lax
+    _JAX_IMPORT_ERROR = None
+except ImportError as exc:  # pragma: no cover - 依赖缺失环境
+    jax = None
+    jnp = None
+    lax = None
+    _JAX_IMPORT_ERROR = exc
 
 from .pack import (
     FLOAT_SIZE,
@@ -32,10 +39,24 @@ RHO_SNOW = 300.0
 C_SNOW = RHO_SNOW * 2100.0
 GRAVITY = 9.81
 FREEZING_POINT = 273.15
-DZ = jnp.asarray([0.1, 0.3, 0.6, 1.0])
-LAYER_INDEX = jnp.arange(3)
-SOIL_INDEX = jnp.arange(4)
+if jnp is not None:
+    DZ = jnp.asarray([0.1, 0.3, 0.6, 1.0])
+    LAYER_INDEX = jnp.arange(3)
+    SOIL_INDEX = jnp.arange(4)
+else:  # 仅保证可选模块可被 doctest 收集；调用时由 _require_jax 报错。
+    DZ = None
+    LAYER_INDEX = None
+    SOIL_INDEX = None
 OPTION_INDEX = {name: index for index, name in enumerate(OPTION_FIELDS)}
+
+
+def _require_jax() -> None:
+    """对应普通版: driver.step_column。
+
+    在没有安装 ``.[gpu]`` 时给出清晰错误，而不是导入阶段失败。
+    """
+    if _JAX_IMPORT_ERROR is not None:
+        raise ImportError("JAX GPU backend 未安装，请先 pip install -e '.[gpu]'") from _JAX_IMPORT_ERROR
 
 
 def _option(ivec: jax.Array, name: str) -> jax.Array:
@@ -778,6 +799,7 @@ def step_column_jax(
     ``ts, rnet, h, le, g, et_mm, prcp_mm, runoff_mm, melt_mm, swe, canw,
     residual``。
     """
+    _require_jax()
     fvec = jnp.asarray(fvec)
     ivec = jnp.asarray(ivec, dtype=jnp.int32)
     dt, tair, qair, wind, ps, swdown, lwdown, prcp = forcing_vec
@@ -994,7 +1016,11 @@ def _run_one_jax(
     return fnew, inew, diagnostics
 
 
-_BATCH_JIT = jax.jit(jax.vmap(_run_one_jax, in_axes=(0, 0, 0)))
+_BATCH_JIT = (
+    jax.jit(jax.vmap(_run_one_jax, in_axes=(0, 0, 0)))
+    if jax is not None
+    else None
+)
 
 
 def run_columns_jax(
@@ -1006,6 +1032,7 @@ def run_columns_jax(
     也可为每柱独立的 ``(N, T, 8)``。返回最终状态和 ``(N, T, 12)`` 诊断。
     时间轴由 ``lax.scan``，柱轴由 ``vmap`` 实现。
     """
+    _require_jax()
     fvecs = jnp.asarray(fvecs)
     ivecs = jnp.asarray(ivecs, dtype=jnp.int32)
     forcing_array = jnp.asarray(forcings)
