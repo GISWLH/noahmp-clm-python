@@ -25,6 +25,11 @@ C:\Users\hhuwl\venvs\noahmp-gpu\Scripts\python.exe -m pip install "jax[cpu]" cup
 `CpuDevice(id=0)`；CuPy 成功发现 RTX 4070（compute capability 8.9，CUDA runtime 12.09）。
 CuPy 给出 CUDA_PATH 未设置的 warning，但设备枚举和后续 GPU smoke test 成功。
 
+阶段 D 期间尝试了 `pip install "cupy-cuda12x[ctk]"` 以补 CUDA headers；该 extra
+会下载约 553 MB 的 NVIDIA toolkit wheels，当前网络下载未完成，虚拟环境仍保持
+原先的 CuPy 14.2.0 安装。因此批量 CuPy benchmark 的 headers 缺失仍记录为
+`unavailable`，没有把它写成 GPU 实测结果。
+
 ## 路线选择
 
 本机有 NVIDIA GPU，因此按 A→H 推进：
