@@ -47,13 +47,9 @@ class ColumnState:
     dz: np.ndarray = field(default_factory=lambda: np.array([0.1, 0.3, 0.6, 1.0]))
     tsoil: np.ndarray | None = None   # 各层土壤温度 (K)
     smc: np.ndarray | None = None     # 各层体积含水量 (m3/m3)
-    soil_ice: np.ndarray | None = None  # 各层冰含量 (m3/m3)
     ts: float = 285.0                 # 地表（雪面）温度 (K)
     swe: float = 0.0                  # 雪水当量 (m)
     snow_t: float = 273.15            # 雪温 (K)
-    snow_swe_layers: np.ndarray | None = None  # 各层雪水当量 (m), 最多 3 层
-    snow_t_layers: np.ndarray | None = None    # 各层雪温 (K)
-    snow_density_layers: np.ndarray | None = None  # 各层密度 (kg/m3)
     snow_albedo: float = 0.8          # 雪反照率
     snow_age_days: float = 0.0        # 雪龄 (天)，控制反照率衰减
     canw: float = 0.0                 # 冠层截留水 (m)
@@ -68,6 +64,10 @@ class ColumnState:
     options: PhysicsOptions = field(default_factory=PhysicsOptions)
     terrain_index: float = 0.0          # TOPMODEL 地形指数
     groundwater_depth: float = 2.0      # 地下水位深度 (m)
+    soil_ice: np.ndarray | None = None  # 各层冰含量 (m3/m3)
+    snow_swe_layers: np.ndarray | None = None  # 各层雪水当量 (m), 最多 3 层
+    snow_t_layers: np.ndarray | None = None    # 各层雪温 (K)
+    snow_density_layers: np.ndarray | None = None  # 各层密度 (kg/m3)
 
     def __post_init__(self):
         n = len(self.dz)
