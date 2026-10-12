@@ -12,7 +12,7 @@ from .column import ColumnState, Forcing
 from .physics import energy as E
 from .physics import soil as S
 from .physics import snow as SN
-from .physics.canopy import jarvis_rs, penman_monteith
+from .physics.canopy import penman_monteith, stomatal_resistance
 from .physics.precip import partition_precipitation
 from .physics.surface_drag import exchange_velocity
 
@@ -45,7 +45,7 @@ def step_column(state: ColumnState, f: Forcing):
     s.swe += snow_m
 
     # ---- 3. 冠层蒸腾（Penman-Monteith，可利用能量按 tair 估算） ----
-    rs = jarvis_rs(s, f)
+    rs = stomatal_resistance(s, f, s.options.OptStomataResistance)
     rn_canopy = s.fveg * ((1.0 - s.albedo) * f.swdown
                           + s.emiss * (f.lwdown - SIGMA * f.tair ** 4))
     tr_le = penman_monteith(max(0.0, rn_canopy), f, ra, rs)
