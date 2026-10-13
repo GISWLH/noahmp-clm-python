@@ -1,5 +1,51 @@
 # J2 GPU 计时可信性审计
 
+本报告保留不同冻结源码版本的历史证据。最新联合修复版的 **15 个单卡计时门
+已全部通过**，结果见下一节；CUDA 的独立 H4 状态仍单独标记。
+
+## 最新联合修复版：完整 15 组单卡基准
+
+快照 `/home/lhwang/work/noahmp-phase3b/j2-v2-stable-gated-final` 冻结完整 `src`、
+`benchmarks`、`tests`，包括固定四项归约树及 J3 选项实现。获准身份如下：
+
+| 文件 | SHA256 |
+|---|---|
+| `jax_core.py` | `0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270` |
+| `column_kernel.cu` | `7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454` |
+| `loader.py` | `c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a` |
+
+GPU/NumPy 消费门测试实际 **32 passed in 2.25s**，见
+[原始测试日志](gpu-results/j2-v2-stable-tests.log)。五档 × 三后端均完成完整 N
+异质预检、三次全量预热与三次测量，全部逐元素/归约/计数/dtype 门通过。
+下列数值只来自最终 `event=result`，并独立重算每个 median；单位均为秒。
+
+| N | JAX64 完整 | JAX64 计算 | JAX32 完整 | JAX32 计算 | CUDA 完整 | CUDA 计算 |
+|---:|---:|---:|---:|---:|---:|---:|
+| 100 | 4.165433377 | 4.162110329 | 3.402356036 | 3.398603849 | 0.004517250 | 0.001606859 |
+| 1000 | 4.178183101 | 4.174641088 | 3.607140265 | 3.603309594 | 0.004845820 | 0.001711942 |
+| 10000 | 4.223077841 | 4.206592627 | 3.655238256 | 3.638634562 | 0.018328235 | 0.001824506 |
+| 100000 | 21.355447054 | 21.170120716 | 3.807726823 | 3.620372251 | 0.196976259 | 0.007101946 |
+| 300000 | 59.585119948 | 59.018087678 | 4.123693518 | 3.550511807 | 0.612957351 | 0.020489365 |
+
+“完整”包括全输出 device reduction、逐项校验和 host 回读；“计算”是同步
+API wall。新版约 7 ms 的 CUDA N=100000 计算耗时现在有相同输入 JAX32 的
+完整输出门支撑，但公开端到端性能应使用 0.196976259 s。CUDA 结果仍保存为
+`timing_validated_h4_unverified`，不能据此把独立 NumPy H4 或所有物理选项判绿。
+
+原始数据：[JAX64](gpu-results/j2-v2-stable-jax64.jsonl)、
+[JAX32](gpu-results/j2-v2-stable-jax32.jsonl)、[CUDA](gpu-results/j2-v2-stable-cuda.jsonl)、
+[独立汇总](gpu-results/j2-v2-stable-summary.json)、[监督器阶段状态](gpu-results/j2-v2-stable-status.jsonl)。
+对应 `.log` 一并保存。[完整来源](gpu-results/j2-v2-stable-sourcehash.json)及
+[运行后复核](gpu-results/j2-v2-stable-sourcehash-recheck.json)确认全部冻结代码未变化。
+各阶段使用独立子进程；未缩小 N、未降低容差，也未出现 OOM。
+
+服务器存在背景 GPU 工作负载，见一次运行中
+[硬件状态快照](gpu-results/j2-v2-background-gpu-state.json)。该记录不包含其他
+进程路径；后续双卡测试会另存开始/结束状态。测量反映当时环境，不能把
+运行间波动无证据地唯一归因于某个实现改动。新版双卡数据尚待独立窗口验证。
+
+## 原始冻结 CUDA 版本的诊断结论
+
 2026-10-13 EDT：旧 CUDA 的 `N=100000 × 48`、约 0.007 秒计算时间在冻结源码上
 可复现；Nsight 确认实际执行了 **48 次 `step_columns`**，合计 **6.528953 ms**。
 本次没有发现“只有 kernel launch、没有执行”的证据，也没有确认 DCE。

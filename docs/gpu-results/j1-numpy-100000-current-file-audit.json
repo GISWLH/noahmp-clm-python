@@ -1,0 +1,168 @@
+{
+  "audit_utc": "2026-10-13T06:36:35.841042+00:00",
+  "source_hash_scope": "Current on-disk files observed during read-only audit, not runtime-loaded module hashes.",
+  "ordinary_sources": {
+    "src/noahmp_clm/__init__.py": {
+      "raw_sha256": "002b546f5202c27a0afabe560f84a9876201a9818b7d4525b19ab786019a3fed",
+      "LF_sha256": "002b546f5202c27a0afabe560f84a9876201a9818b7d4525b19ab786019a3fed"
+    },
+    "src/noahmp_clm/column.py": {
+      "raw_sha256": "89ab436135fd92a0ccd129a9981a99dfa6679f2f4986d20a62202475db93b427",
+      "LF_sha256": "89ab436135fd92a0ccd129a9981a99dfa6679f2f4986d20a62202475db93b427"
+    },
+    "src/noahmp_clm/driver.py": {
+      "raw_sha256": "0b91d8b4b07028ab3c63a093371024b8dcbf70812e087879eae85055c2264804",
+      "LF_sha256": "0b91d8b4b07028ab3c63a093371024b8dcbf70812e087879eae85055c2264804"
+    },
+    "src/noahmp_clm/io.py": {
+      "raw_sha256": "e045d02280e11683bfc32d3bfbaf546cf14f14e0cf37658b73e95ad31fcb5478",
+      "LF_sha256": "e045d02280e11683bfc32d3bfbaf546cf14f14e0cf37658b73e95ad31fcb5478"
+    },
+    "src/noahmp_clm/options.py": {
+      "raw_sha256": "cb1c772ec88dc64ad7e5dcb5a31d5ffa24f0722c4cc3a53da9775f53972579a3",
+      "LF_sha256": "cb1c772ec88dc64ad7e5dcb5a31d5ffa24f0722c4cc3a53da9775f53972579a3"
+    },
+    "src/noahmp_clm/physics/__init__.py": {
+      "raw_sha256": "aaa41433731346897b7a06511c99b370233759354ab05ba36a1dde3fc1da3429",
+      "LF_sha256": "aaa41433731346897b7a06511c99b370233759354ab05ba36a1dde3fc1da3429"
+    },
+    "src/noahmp_clm/physics/canopy.py": {
+      "raw_sha256": "7dbcef8743c107efc80b8b75e89720ffcc0d7c1df5910165a814463ff7f08ba4",
+      "LF_sha256": "7dbcef8743c107efc80b8b75e89720ffcc0d7c1df5910165a814463ff7f08ba4"
+    },
+    "src/noahmp_clm/physics/energy.py": {
+      "raw_sha256": "4836389dde6d3bf8ca2b50cd6d409570f06b290469a3925f18765374f6ba193e",
+      "LF_sha256": "4836389dde6d3bf8ca2b50cd6d409570f06b290469a3925f18765374f6ba193e"
+    },
+    "src/noahmp_clm/physics/frozen_soil.py": {
+      "raw_sha256": "cb228fdd1061a9b3e74a4ffba943a0b641d869b3e15af4bca348f48df45f0090",
+      "LF_sha256": "cb228fdd1061a9b3e74a4ffba943a0b641d869b3e15af4bca348f48df45f0090"
+    },
+    "src/noahmp_clm/physics/ground_evap.py": {
+      "raw_sha256": "50bec4e37e5f830485946c1380010561275c9a39285519b57bb4a5fd9ea23343",
+      "LF_sha256": "50bec4e37e5f830485946c1380010561275c9a39285519b57bb4a5fd9ea23343"
+    },
+    "src/noahmp_clm/physics/precip.py": {
+      "raw_sha256": "1f24284ff5870ab409fb93deb5a420791c5c5254cc0ae077267a926021665da6",
+      "LF_sha256": "1f24284ff5870ab409fb93deb5a420791c5c5254cc0ae077267a926021665da6"
+    },
+    "src/noahmp_clm/physics/runoff.py": {
+      "raw_sha256": "3a96a3caf13f787f171a97504e54a1193473ff69bfa64ac29d8f85371fe3db4b",
+      "LF_sha256": "3a96a3caf13f787f171a97504e54a1193473ff69bfa64ac29d8f85371fe3db4b"
+    },
+    "src/noahmp_clm/physics/snow.py": {
+      "raw_sha256": "0a0ed4dae6d93997aba59daaea99371e8f0ff7c4d052be79178d3ee2fbdb7406",
+      "LF_sha256": "0a0ed4dae6d93997aba59daaea99371e8f0ff7c4d052be79178d3ee2fbdb7406"
+    },
+    "src/noahmp_clm/physics/soil.py": {
+      "raw_sha256": "5fdf6ba555a7a768e1e46a4b71ebcd848cb9e69e47c3eefd05c4c78679c082d7",
+      "LF_sha256": "5fdf6ba555a7a768e1e46a4b71ebcd848cb9e69e47c3eefd05c4c78679c082d7"
+    },
+    "src/noahmp_clm/physics/stress.py": {
+      "raw_sha256": "ffcc2be7575501bbcf8b45cc6e24b1f48aa87d4bdcc2628ee138030fbfa0f7cd",
+      "LF_sha256": "ffcc2be7575501bbcf8b45cc6e24b1f48aa87d4bdcc2628ee138030fbfa0f7cd"
+    },
+    "src/noahmp_clm/physics/surface_drag.py": {
+      "raw_sha256": "547f6377485d24f1d3b3cf9177656ef8df72702ad9bf61f24f508c7663e7cd05",
+      "LF_sha256": "547f6377485d24f1d3b3cf9177656ef8df72702ad9bf61f24f508c7663e7cd05"
+    }
+  },
+  "scripts": {
+    "bench_gpu.py": "5b7b741bb6f92cc59e395d159b69eb0b89c3ff8665d6b475503eea8434f392e8",
+    "bench_numpy_parallel_repeats.py": "de6376bced4e5de0a143e1bdf38d927cc69da2bb720ea5f667120906af359a41",
+    "run_cpu_batch.py": "41da2fbb41e0b79e10118d92158773f530bd3c89e19f92f76bb7db574aed890e"
+  },
+  "supervisor_current_state": {
+    "supervisor_pid": 2293032,
+    "started_utc": "2026-10-13T04:43:49.951946+00:00",
+    "deadline_utc": "2026-10-13T10:45:00+00:00",
+    "status": "running",
+    "jobs": [
+      {
+        "n": 10000,
+        "cores": [
+          2,
+          4,
+          6
+        ],
+        "pid": 2293033,
+        "pgid": 2293033,
+        "command": [
+          "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+          "-u",
+          "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+          "--sizes",
+          "10000",
+          "--cores",
+          "2",
+          "4",
+          "6",
+          "--steps",
+          "48",
+          "--output",
+          "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.jsonl"
+        ],
+        "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.jsonl",
+        "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.log",
+        "exit_code": 0
+      },
+      {
+        "n": 100000,
+        "cores": [
+          8,
+          10,
+          12
+        ],
+        "pid": 2293034,
+        "pgid": 2293034,
+        "command": [
+          "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+          "-u",
+          "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+          "--sizes",
+          "100000",
+          "--cores",
+          "8",
+          "10",
+          "12",
+          "--steps",
+          "48",
+          "--output",
+          "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.jsonl"
+        ],
+        "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.jsonl",
+        "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.log",
+        "exit_code": null
+      },
+      {
+        "n": 300000,
+        "cores": [
+          14,
+          16,
+          18
+        ],
+        "pid": 2293035,
+        "pgid": 2293035,
+        "command": [
+          "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+          "-u",
+          "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+          "--sizes",
+          "300000",
+          "--cores",
+          "14",
+          "16",
+          "18",
+          "--steps",
+          "48",
+          "--output",
+          "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.jsonl"
+        ],
+        "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.jsonl",
+        "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.log",
+        "exit_code": null
+      }
+    ],
+    "updated_utc": "2026-10-13T06:36:35.170268+00:00"
+  }
+}

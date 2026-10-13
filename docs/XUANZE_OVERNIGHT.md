@@ -5,8 +5,13 @@
 > 旧 GPU 计时现在必须通过新增 checksum 门复核，不再直接用于最终验收加速比。
 
 2026-10-13，工作分支 `gpu/migration`。H1/H2/H3 已通过，H4 严格 parity
-红灯，H6 已实现范围审计通过；全量 Linux pytest 为 **44 passed, 2 failed**。
+红灯，H6 已实现范围审计通过；最新全量Linux pytest为 **134 passed, 2 failed**。
 H4 根因分析见 [GPU_BLOCKERS.md](GPU_BLOCKERS.md)，不得因性能良好而合并 main。
+
+06:50 UTC：N10000和N100000已完成；N100000三次中位数3616.904160872 s，
+原始结果及启动源码hash缺失的限制见`gpu-results/j1-numpy-100000-*`。
+当前只剩N300000运行。新单卡五档三后端15组均通过输出计时门，结果见
+[BENCHMARK.md](BENCHMARK.md)；双卡另由`GPU_J_STAGE.md`指定监督器管理。
 
 ## 正在执行
 

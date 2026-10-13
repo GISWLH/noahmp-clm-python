@@ -1,0 +1,106 @@
+{
+  "audit_utc": "2026-10-13T06:36:34.777668+00:00",
+  "baseline_started_utc": "2026-10-13T04:43:50.039125+00:00",
+  "baseline_supervisor_pid": 2293032,
+  "baseline_driver_pid": 2293034,
+  "latest_commit_before_start": "da658f8c27dae49beed2c90f90e25b49b0bd0946",
+  "current_commit": "e73adb36ce48949b622dfa885d5d9bef65d958e7",
+  "runtime_source_hash_recorded": false,
+  "provenance_limit": "The running job did not record source/commit hashes at launch. These are retrospective file/history comparisons, not measurements of loaded Python modules and not a claim that the runtime was source-hash-locked.",
+  "ordinary_current_vs_prestart_commit": {
+    "src/noahmp_clm/column.py": {
+      "current_LF_sha256": "89ab436135fd92a0ccd129a9981a99dfa6679f2f4986d20a62202475db93b427",
+      "prestart_commit_LF_sha256": "89ab436135fd92a0ccd129a9981a99dfa6679f2f4986d20a62202475db93b427",
+      "equal": true
+    },
+    "src/noahmp_clm/driver.py": {
+      "current_LF_sha256": "0b91d8b4b07028ab3c63a093371024b8dcbf70812e087879eae85055c2264804",
+      "prestart_commit_LF_sha256": "0b91d8b4b07028ab3c63a093371024b8dcbf70812e087879eae85055c2264804",
+      "equal": true
+    },
+    "src/noahmp_clm/io.py": {
+      "current_LF_sha256": "e045d02280e11683bfc32d3bfbaf546cf14f14e0cf37658b73e95ad31fcb5478",
+      "prestart_commit_LF_sha256": "e045d02280e11683bfc32d3bfbaf546cf14f14e0cf37658b73e95ad31fcb5478",
+      "equal": true
+    },
+    "src/noahmp_clm/options.py": {
+      "current_LF_sha256": "cb1c772ec88dc64ad7e5dcb5a31d5ffa24f0722c4cc3a53da9775f53972579a3",
+      "prestart_commit_LF_sha256": "cb1c772ec88dc64ad7e5dcb5a31d5ffa24f0722c4cc3a53da9775f53972579a3",
+      "equal": true
+    },
+    "src/noahmp_clm/__init__.py": {
+      "current_LF_sha256": "002b546f5202c27a0afabe560f84a9876201a9818b7d4525b19ab786019a3fed",
+      "prestart_commit_LF_sha256": "002b546f5202c27a0afabe560f84a9876201a9818b7d4525b19ab786019a3fed",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/canopy.py": {
+      "current_LF_sha256": "7dbcef8743c107efc80b8b75e89720ffcc0d7c1df5910165a814463ff7f08ba4",
+      "prestart_commit_LF_sha256": "7dbcef8743c107efc80b8b75e89720ffcc0d7c1df5910165a814463ff7f08ba4",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/energy.py": {
+      "current_LF_sha256": "4836389dde6d3bf8ca2b50cd6d409570f06b290469a3925f18765374f6ba193e",
+      "prestart_commit_LF_sha256": "4836389dde6d3bf8ca2b50cd6d409570f06b290469a3925f18765374f6ba193e",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/frozen_soil.py": {
+      "current_LF_sha256": "cb228fdd1061a9b3e74a4ffba943a0b641d869b3e15af4bca348f48df45f0090",
+      "prestart_commit_LF_sha256": "cb228fdd1061a9b3e74a4ffba943a0b641d869b3e15af4bca348f48df45f0090",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/ground_evap.py": {
+      "current_LF_sha256": "50bec4e37e5f830485946c1380010561275c9a39285519b57bb4a5fd9ea23343",
+      "prestart_commit_LF_sha256": "50bec4e37e5f830485946c1380010561275c9a39285519b57bb4a5fd9ea23343",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/precip.py": {
+      "current_LF_sha256": "1f24284ff5870ab409fb93deb5a420791c5c5254cc0ae077267a926021665da6",
+      "prestart_commit_LF_sha256": "1f24284ff5870ab409fb93deb5a420791c5c5254cc0ae077267a926021665da6",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/runoff.py": {
+      "current_LF_sha256": "3a96a3caf13f787f171a97504e54a1193473ff69bfa64ac29d8f85371fe3db4b",
+      "prestart_commit_LF_sha256": "3a96a3caf13f787f171a97504e54a1193473ff69bfa64ac29d8f85371fe3db4b",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/snow.py": {
+      "current_LF_sha256": "0a0ed4dae6d93997aba59daaea99371e8f0ff7c4d052be79178d3ee2fbdb7406",
+      "prestart_commit_LF_sha256": "0a0ed4dae6d93997aba59daaea99371e8f0ff7c4d052be79178d3ee2fbdb7406",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/soil.py": {
+      "current_LF_sha256": "5fdf6ba555a7a768e1e46a4b71ebcd848cb9e69e47c3eefd05c4c78679c082d7",
+      "prestart_commit_LF_sha256": "5fdf6ba555a7a768e1e46a4b71ebcd848cb9e69e47c3eefd05c4c78679c082d7",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/stress.py": {
+      "current_LF_sha256": "ffcc2be7575501bbcf8b45cc6e24b1f48aa87d4bdcc2628ee138030fbfa0f7cd",
+      "prestart_commit_LF_sha256": "ffcc2be7575501bbcf8b45cc6e24b1f48aa87d4bdcc2628ee138030fbfa0f7cd",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/surface_drag.py": {
+      "current_LF_sha256": "547f6377485d24f1d3b3cf9177656ef8df72702ad9bf61f24f508c7663e7cd05",
+      "prestart_commit_LF_sha256": "547f6377485d24f1d3b3cf9177656ef8df72702ad9bf61f24f508c7663e7cd05",
+      "equal": true
+    },
+    "src/noahmp_clm/physics/__init__.py": {
+      "current_LF_sha256": "aaa41433731346897b7a06511c99b370233759354ab05ba36a1dde3fc1da3429",
+      "prestart_commit_LF_sha256": "aaa41433731346897b7a06511c99b370233759354ab05ba36a1dde3fc1da3429",
+      "equal": true
+    }
+  },
+  "numpy_runner_ast": {
+    "79b4c16": "e5b7fd5d20bff9d47f1208038f74a0c1b844cae6e276da6cf20e4fd311afb44e",
+    "da658f8c27dae49beed2c90f90e25b49b0bd0946": "e5b7fd5d20bff9d47f1208038f74a0c1b844cae6e276da6cf20e4fd311afb44e",
+    "a3aec95": "4b49c09bc0c3f246ee7d8bfa5cef7038cdcdcdb803f922e03baa71940d70d6f5",
+    "494dd73": "4b49c09bc0c3f246ee7d8bfa5cef7038cdcdcdb803f922e03baa71940d70d6f5",
+    "HEAD": "4b49c09bc0c3f246ee7d8bfa5cef7038cdcdcdb803f922e03baa71940d70d6f5"
+  },
+  "numpy_runner_AST_identical": false,
+  "ordinary_all_equal": true,
+  "remote_ordinary_all_match_prestart_commit": true,
+  "numpy_runner_unchanged_since_first_checksum_runner_commit": true,
+  "checksum_runner_first_recorded_commit": "a3aec95",
+  "checksum_runner_commit_utc": "2026-10-13T04:52:04+00:00",
+  "launch_worktree_limit": "The checksum-returning _numpy_runner appears in commit a3aec95, committed after the04:43 launch. The latest prelaunch commit still contains the older run_columns-returning function. Therefore the launch used uncommitted worktree code; do not assign its runtime a3/HEAD hashes. The measured scalar checksum records establish the checksum contract, while exact loaded-module hashes were not logged."
+}

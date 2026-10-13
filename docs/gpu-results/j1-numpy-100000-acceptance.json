@@ -1,0 +1,75 @@
+{
+  "audited_utc": "2026-10-13T06:47:11.075291+00:00",
+  "raw_log_sha256": "b9717d0ed1b760c7d4ff195df78f35c07c8a833e2d063c887907dff6f9014bf5",
+  "accepted": true,
+  "checks": {
+    "result_measured": true,
+    "summary_completed": true,
+    "three_warmups_three_samples": true,
+    "all_six_measured": true,
+    "all_six_checksums_exact_equal": true,
+    "all_six_full_4800000_column_steps": true,
+    "each_sample_one_cpu": true,
+    "distinct_physical_cores_each_phase": true,
+    "expected_affinity_by_index": true,
+    "all_warmups_complete_before_any_measurement": true,
+    "all_thread_limits_one": true,
+    "columns_not_partitioned": true,
+    "median_recomputed_exact": true,
+    "result_samples_match_individual_events": true,
+    "no_sample_errors": true
+  },
+  "result": {
+    "utc": "2026-10-13T06:44:52.386868+00:00",
+    "event": "result",
+    "status": "measured",
+    "backend": "numpy",
+    "n": 100000,
+    "steps": 48,
+    "seconds": 3616.904160872102,
+    "median_wall_seconds": 3616.904160872102,
+    "samples_seconds": [
+      3543.48038418591,
+      3616.904160872102,
+      3648.6696049645543
+    ],
+    "samples_process_time": [
+      3530.9178841010003,
+      3604.074723609,
+      3635.7193786079997
+    ],
+    "median_process_time": 3604.074723609,
+    "us_per_column_step": 753.5217001816878,
+    "column_steps_per_second": 1327.10179382874,
+    "sample_affinities": [
+      [
+        8
+      ],
+      [
+        10
+      ],
+      [
+        12
+      ]
+    ],
+    "parallel_independent_repeats": true,
+    "single_core_per_sample": true,
+    "warmups": 3,
+    "repeats": 3,
+    "checksum": 28084642.32270749
+  },
+  "sample_cpu_process_time_over_wall": [
+    0.9964547567016386,
+    0.9964529230821509,
+    0.9964506990879816
+  ],
+  "warmup_cpu_process_time_over_wall": [
+    0.9965795254230617,
+    0.9960013874453769,
+    0.996586710715212
+  ],
+  "median_process_over_median_wall": 0.9964529230821509,
+  "provenance_sidecar": "j1-numpy-100000-provenance.json",
+  "source_identity_limit": "No runtime source hash was recorded. Current ordinary source matches prelaunch committed ordinary source; checksum-runner AST is unchanged since a3aec95, committed after launch. See provenance sidecar.",
+  "other_job_handling": "N300000 and its original supervisor/deadline were observed only; no interruption or restart."
+}
