@@ -41,6 +41,7 @@
 - [GPU_BATCH_SHAPE.md](GPU_BATCH_SHAPE.md)、[GPU_EXTENDED_VALIDATION.md](GPU_EXTENDED_VALIDATION.md)：固定四层根系归约消除真实列的跨shape复现，64800域15样本对N1均通过；NumPy64域门和年度第3天稳定性仍失败。
 - [CUDA_OPTION_IMPLEMENTATION.md](CUDA_OPTION_IMPLEMENTATION.md)：CUDA的35值逐字段、1024柱混排和1728组径流双出口探针通过；18个ABI-only字段仅接受默认，未声称全笛卡尔积覆盖。
 - [GPU_OCCUPANCY.md](GPU_OCCUPANCY.md)：256/128/64三配置全部通过严格输出门，计时波动较大，生产保留256。
+- 当前JAX双卡四组全部通过完整输出门；N100000/64800的x32加速为1.04682×/1.08759×、x64为1.62227×/1.74957×，均未达1.9×，详见[BENCHMARK.md](BENCHMARK.md)。手写CUDA双卡未测。
 
 ## 待完成工作
 

@@ -1,7 +1,7 @@
 # J2 GPU 计时可信性审计
 
 本报告保留不同冻结源码版本的历史证据。最新联合修复版的 **15 个单卡计时门
-已全部通过**，结果见下一节；CUDA 的独立 H4 状态仍单独标记。
+与 4 组 JAX 双卡计时门已全部通过**；CUDA 的独立 H4 状态仍单独标记。
 
 ## 最新联合修复版：完整 15 组单卡基准
 
@@ -41,8 +41,75 @@ API wall。新版约 7 ms 的 CUDA N=100000 计算耗时现在有相同输入 JA
 
 服务器存在背景 GPU 工作负载，见一次运行中
 [硬件状态快照](gpu-results/j2-v2-background-gpu-state.json)。该记录不包含其他
-进程路径；后续双卡测试会另存开始/结束状态。测量反映当时环境，不能把
-运行间波动无证据地唯一归因于某个实现改动。新版双卡数据尚待独立窗口验证。
+进程路径。测量反映当时环境，不能把运行间波动无证据地唯一归因于某个实现
+改动。下节双卡结果使用各组独立保存的开始/结束硬件状态。
+
+## 最新联合修复版：四组双卡实测
+
+2026-10-13 06:41–06:51 UTC，使用上节相同冻结快照与三项源码身份，物理
+GPU 0/1 均为 RTX 4090，PCI 身份不同。每组完整 N、48 步，先生成全 N 的
+同精度 JAX 参考，再分别运行单卡全 N 与双卡各 N/2；输入为固定 seed
+20261013 的异质合成柱。两种模式各三次完整预热、三次测量。每次比较全体
+状态及 48 步全部诊断，并核验 dtype、finite、完整列步数和不重叠的分片覆盖。
+
+四组共 72 个 worker 样本（包括预热）的浮点逐值 tolerance ratio、整数差值及
+归约 tolerance ratio **全部为 0**。原始 `rtol=atol=1e-6` 门未改动，源码首尾
+完整复核一致。旧源码下 N=100000/64800 的分片差异在这两档新版 x32 样本中
+未复现；该结论限于本次输入和两种分片形状，不能替代独立物理或 NumPy H4。
+
+| 后端 | N | 单卡完整 s | 双卡完整 s | 完整加速 | 单卡计算 s | 双卡计算 s | 计算加速 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| JAX32 | 100000 | 4.022509310 | 3.842596893 | 1.046821× | 3.832952003 | 3.748371301 | 1.022565× |
+| JAX32 | 64800 | 3.808625352 | 3.501908728 | 1.087586× | 3.685254198 | 3.437922380 | 1.071942× |
+| JAX64 | 100000 | 21.480918773 | 13.241240150 | 1.622274× | 21.289326155 | 13.143063283 | 1.619815× |
+| JAX64 | 64800 | 12.865216299 | 7.353351003 | 1.749572× | 12.742729881 | 7.288948993 | 1.748226× |
+
+数值均为三次测量的中位数，再用单卡/双卡中位数求比。这里“计算”取
+coordinator 进入屏障等待之前至最后一个 worker 同步计算完成，包含屏障等待
+和进程调度；“完整”还包含所有 GPU 的归约、逐值比较、host 回读与结果 IPC。
+参考生成、输入准备及 H2D 均在计时外，两个模式使用相同输入。原始数据也
+分别保存从屏障释放后开始的 worker compute wall，不能把 coordinator wall
+称为纯 GPU kernel 时间。
+
+JAX32 的双卡收益较小；半 N 后各 worker 计算 wall 仍约 3 秒，与此前
+[近 80 万个微小 kernel 的调度观测](GPU_J4_PROFILE.md#jax-x64x32重复-most-迭代放大了精度成本)
+相符，但这不是本次新版的逐 kernel 时间分解。JAX64 的收益更大，符合其
+GPU 热点累计时间较长的既有证据。N=100000 的 JAX64 worker compute 最大值
+为单卡 21.288742841 s、双卡 13.142634736 s，与 coordinator 仅差约
+0.4–0.6 ms，起跑屏障本身不能解释与 2× 的差额；双卡两 worker 的计算中位数
+分别为 12.687671653 s 与 13.142634736 s。本轮未采 JAX FP64 饱和度 counter，
+也未隔离主机 launch、各卡频率和负载的因果贡献，因此不能唯一归因于 FP64
+峰值吞吐，或承诺独立柱工作天然得到 1.9×。
+
+每组起止硬件采样包含利用率、显存、温度、功率和时钟，详见
+[汇总中的八个边界快照](gpu-results/j4-v2-scaling-summary.json)及对应
+`*-gpu-start.json` / `*-gpu-end.json`。这些边界上 GPU 0/1 常驻显存分别为
+1081/959 MiB，先前约 5 GB 的其他作业不在本轮边界记录中。未停止其他进程，
+也未锁定服务器频率；起止快照不能代表运行全程的负载轨迹，结束利用率还
+可能覆盖刚完成的采样窗口。CPU 基线当时仍在运行。
+
+原始数据：[JAX32 N100000](gpu-results/j4-v2-scaling-jax32-100000.jsonl)、
+[JAX32 N64800](gpu-results/j4-v2-scaling-jax32-64800.jsonl)、
+[JAX64 N100000](gpu-results/j4-v2-scaling-jax64-100000.jsonl)、
+[JAX64 N64800](gpu-results/j4-v2-scaling-jax64-64800.jsonl)。对应 `.log` 一并保存。
+[独立汇总](gpu-results/j4-v2-scaling-summary.json)重新核验每组 3+3 次数、72 个
+worker 门、dtype/列步覆盖、最终 `scaling_result`、中位数和加速比；
+[监督器状态](gpu-results/j4-v2-scaling-status.jsonl)与
+[源码复核](gpu-results/j4-v2-scaling-sourcehash-recheck.json)记录四组均正常结束。
+各组实际总耗时约 95、76、260、165 秒，没有触发 20 分钟 deadline。
+
+复现时使用新的 output/work-dir，依次对两个后端、两个 N 执行下例；在两卡
+已分配的窗口内运行，`timeout` 将整组限制在 20 分钟，而非只限制单次样本：
+
+```bash
+env -u LD_LIBRARY_PATH PYTHONPATH=src CUDA_PATH=/usr/local/cuda-12.4 \
+  OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  timeout --signal=TERM --kill-after=15s 1200s \
+  ~/venvs/noahmp-phase3b/bin/python -u benchmarks/bench_gpu_scaling.py \
+  --backend jax64 --sizes 100000 --devices 0 1 --steps 48 \
+  --sample-timeout 1200 --output ../logs/new-scaling-jax64-100000.jsonl \
+  --work-dir profile_output/new-scaling-jax64-100000-reference
+```
 
 ## 原始冻结 CUDA 版本的诊断结论
 
@@ -250,7 +317,7 @@ NaN、Inf 或变化 checksum，另从普通物理返回值注入 NaN 温度和 E
 本地未显式请求的 GPU 测试。该修复在上述 GPU 快照冻结之后完成，故快照的
 旧 NumPy 分支不具备此门；该快照本次只运行 GPU 基准，未产生 NumPy 基线。
 
-## 双卡脚本的验收边界与 JAX32 实测
+## 历史版本：双卡脚本的验收边界与 JAX32 实测
 
 `bench_gpu_scaling.py` 比较单卡完整 N 与双卡各 N/2，使用 `check_gpu_extended.py`
 的八类异质合成柱和对应逐柱强迫。单独进程在非计时区计算完整 N 的 JAX 参考，

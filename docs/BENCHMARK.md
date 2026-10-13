@@ -7,7 +7,7 @@
 ## 当前共同源码的15组计时
 
 物理GPU0，RTX4090，CUDA `7640b062…`、loader `c4afdbed…`、JAX `0e296691…`。
-81个src/bench/tests文件冻结于`j2-v2-stable-gated-final`，各阶段首尾身份复核一致。
+71个src/bench/tests文件冻结于`j2-v2-stable-gated-final`，各阶段首尾身份复核一致。
 每档完整N异质预检和所有列输入敏感性通过，正式3次完整预热、3次完整测量，
 每次完整状态/逐步诊断的点值及device归约门均通过；不以抽样替代完整输出门。
 
@@ -49,7 +49,26 @@ JAX参考与被测实现同源，只证明结果消费/复现，独立物理门�
 完整原始数据：[x64](gpu-results/j2-v2-stable-jax64.jsonl)、
 [x32](gpu-results/j2-v2-stable-jax32.jsonl)、[CUDA](gpu-results/j2-v2-stable-cuda.jsonl)、
 [逐项复算汇总](gpu-results/j2-v2-stable-summary.json)、
-[源码首尾核查](gpu-results/j2-v2-stable-sourcehash-recheck.json)。以下旧源表保留历史。
+[源码首尾核查](gpu-results/j2-v2-stable-sourcehash-recheck.json)。旧源表另节保留历史。
+
+## 当前共同源码的双4090扩展
+
+同一冻结源码另开窗口，单卡完整N对双卡各N/2；每组独立三次预热、三次测量，
+每个worker输出与完整N参考逐值比较。四组全部通过，72个worker样本（含预热）
+浮点状态/逐步诊断逐位一致、整数全等。下面仅在同组内计算加速比，不与上面
+不同运行窗口的单卡时间拼接。计时包含协调、输出门和host回读。
+
+| 精度 | N，48步 | 单卡 s | 双卡 s | 单/双卡 |
+|---|---:|---:|---:|---:|
+| JAX x32 | 100,000 | 4.022509 | 3.842597 | 1.04682× |
+| JAX x32 | 64,800 | 3.808625 | 3.501909 | 1.08759× |
+| JAX x64 | 100,000 | 21.480919 | 13.241240 | 1.62227× |
+| JAX x64 | 64,800 | 12.865216 | 7.353351 | 1.74957× |
+
+**没有一组达到1.9×。** 独立柱允许分片，但不保证短kernel/调度成本随GPU数减半。
+这些是JAX分片测试，不是手写CUDA双卡测试；通过同源参考也不替代64800合成域
+的NumPy独立物理门。归约、完整覆盖、三样本中位数及首尾源码核查见
+[双卡复算](gpu-results/j4-v2-scaling-summary.json)和[计时审计](GPU_TIMING_AUDIT.md)。
 
 ## J1/J2 旧65c5源码的输出校验计时
 
@@ -138,7 +157,7 @@ J1 收回的 N=10000 三次完整样本为 364.049241 / 362.408549 / 377.019978 
 一致，原始记录见 [h5-numpy-10000.jsonl](gpu-results/h5-numpy-10000.jsonl)。
 用旧 JAX x64/x32 耗时算出的比值为 78.914×/116.489×，仅是历史表的算术比，
 待 checksum 计时复核后才能进入新验收结论。
-**N=1e5 的 NumPy 中位数尚未完成，不能宣称 ≥100×，也不以小 N 外推补表。**
+**该历史记录时N=1e5的NumPy中位数尚未完成，未据此宣称≥100×或用小N外推。**
 
 原始三次样本与预热值见 [GPU JSONL](gpu-results/h5-gpu.jsonl)、
 [NumPy 首轮 JSONL](gpu-results/h5-numpy.jsonl)。首轮 NumPy 在 N=10000
