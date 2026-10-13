@@ -125,7 +125,10 @@ __device__ float penman(float rn, const float* u, float ra, float rs) {
 // 对应普通版: ground_evap.ground_resistance。Opt=4的无雪Sakaguchi--Zeng。
 __device__ float ground_resistance(const float* s) {
     float sat = fmaxf(s[39],1.0e-6f), fraction = fminf(1.0f,clip(s[4],0.0f,sat)/sat);
-    float dry = (0.1f*(1.0f/1.718281828459045f))*(expf((1.0f-fraction)*(1.0f-fraction))-1.0f);
+    // DZ is a captured array in the full JAX graph: its multiplication must
+    // round before the constant reciprocal, even though an isolated scalar
+    // probe can fold both constants together.
+    float dry = (DZ[0]*(expf((1.0f-fraction)*(1.0f-fraction))-1.0f))*(1.0f/1.718281828459045f);
     float diff = 2.2e-5f*(sat*sat)*powf(fmaxf(1.0e-6f,1.0f-s[40]/sat),2.0f+3.0f/fmaxf(s[43],1.0e-6f));
     return fmaxf(1.0e-3f,dry/diff);
 }
