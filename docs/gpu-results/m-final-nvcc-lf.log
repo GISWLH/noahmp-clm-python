@@ -1,0 +1,6 @@
+column_kernel.cu(191): warning #177-D: function "<unnamed>::snow_flux" was declared but never referenced
+  __attribute__((device)) float snow_flux(const float* s, float ts, int option=1) {
+                                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+

@@ -3,8 +3,9 @@
 ## M3最终物理源码：N100000单档复测
 
 2026-10-13 EDT，xuanze物理GPU1 / RTX4090，生产物理 `b954d90`（M1已回退）。
-从git归档取得LF源码：JAX `6ec9039c…`、CUDA `e1f7cf0d…`、loader `ee5846de…`；
-这与旧文档Windows CRLF文件的字节hash不同，物理文本一致。Python3.12.2、
+实际git归档字节hash：JAX `6ec9039c…`、CUDA `e1f7cf0d…`、loader `ee5846de…`；
+本机归档受换行配置影响，前两者为CRLF，对应仓库LF的 `af3f9dd5…`/`b514c3b8…`，
+规范化换行后物理文本一致。Python3.12.2、
 NumPy2.5.4、JAX/jaxlib0.11.2、CuPy14.2.0、nvcc12.4.99；GPU0同时有小N年度
 可靠性检查，不声称整机独占。
 
