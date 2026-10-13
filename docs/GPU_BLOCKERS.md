@@ -1,13 +1,13 @@
 # GPU 阶段 3b 阻塞记录
 
-## J2/J4 当前阻塞（2026-10-13 05:40 UTC）
+## J2/J4 当前阻塞（2026-10-13 05:48 UTC）
 
 旧 H4 记录保留在下方作为修前证据，不能当作修后结果。当前生产候选及完整
-因果记录见 [GPU_NUMERICS.md](GPU_NUMERICS.md)：CUDA/JAX32 的首步全部诊断
-逐位一致；1024柱×48步的温度、H、G及最终全部状态逐位一致，原G的26769个
-超差已消除。**residual仍有504元素超出新增rtol=atol=1e-6门，最大绝对差
-3.0517578125e-5 W/m²**；组合回归8 passed/3 failed，原NumPy64 H4仍失败。
-下一步固定col5/step17的输入和Ts拆解潜热，不能因大部分分量相同就关闭门。
+因果记录见 [GPU_NUMERICS.md](GPU_NUMERICS.md)：`f29d7ad` 修正生产图中地面
+干层厚度的DZ乘法边界后，CUDA/JAX32的1024柱×1/48步全部诊断及最终状态
+**逐位一致，同精度1e-6门通过**。原G的26769项及后来residual的504项超差
+均已消除。最后组合5 passed/2 failed（均原NumPy64 H4），H2/薄雪另5 passed。
+原H4仍有H/LE/G/residual超差；residual最大差0.00250709、569项超过候选2e-3。
 
 其他独立缺口：
 
@@ -26,8 +26,9 @@
 - **J1大规模CPU尚在执行。** N10000已完成；N100000/300000监督器与截止时间
   见[XUANZE_OVERNIGHT.md](XUANZE_OVERNIGHT.md)，不得重启或外推。
 
-J3的35值CUDA分发和occupancy调优尚未进入正式实现，只有
-[映射与验收设计](CUDA_OPTION_IMPLEMENTATION.md)。所有红灯继续阻止main合并。
+J3的35值CUDA分发正在基于已通过的默认同精度基线实现，
+[映射与验收设计](CUDA_OPTION_IMPLEMENTATION.md) 不代表选项已经验收。所有
+剩余红灯继续阻止main合并。
 
 ## H4：CUDA float32 严格 parity 未通过（2026-10-13）
 

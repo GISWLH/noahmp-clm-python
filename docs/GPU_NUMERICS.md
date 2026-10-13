@@ -1,8 +1,14 @@
 # J2：CUDA/JAX float32 数值对齐记录
 
-当前 **同精度 48 步门及原 H4 仍为红灯，禁止合并 main**。容差未改：新增同精度门为 `rtol=atol=1e-6`；原 H4 保留 NumPy64 `rtol=1e-4, atol=1e-6` 和 JAX32 `rtol=1e-5, atol=1e-6`。没有删除、skip/xfail 失败用例，也没有剔除残差。
+当前 **CUDA/JAX float32 的 N1024×1/48 同精度门已绿；原 H4 NumPy64 门仍红，禁止合并 main**。容差未改：新增同精度门为 `rtol=atol=1e-6`；原 H4 保留 NumPy64 `rtol=1e-4, atol=1e-6` 和 JAX32 `rtol=1e-5, atol=1e-6`。没有删除、skip/xfail 失败用例，也没有剔除残差。
 
-## 冻结候选的实测结果
+## 最终正式源码复验
+
+最后一处修复保留地面干层厚度的 `DZ[0]` 乘法边界，按生产 HLO 写为 `DZ[0] * (exp(...) - 1)` 后再乘 `1/(e-1)`。正式源码、真实 loader 下，N1024×1/48 的 **12 个诊断、70 个浮点状态及整数状态全部逐位一致**，包括 residual。`tests/test_gpu_float32_parity.py` 两项通过；连同原 H4 与 N1 输入所有权测试的结果为 `2 failed, 5 passed in 27.51s`，两个失败均是原 H4 NumPy64 断言。H2 与薄雪回归再次 `5 passed in 17.84s`。最终 nvcc 成功，输出为空。[正式日志](gpu-results/j2-final-strict.log)、[H2 复验](gpu-results/j2-final-h2.log)、[编译输出](gpu-results/j2-final-nvcc.log)。
+
+此结果限定于正式测试的 N1024、1/48 步、默认选项及当前工具链；并不保证不同 batch shape、其他选项或版本逐位相同。
+
+## 前一冻结候选的实测结果（b3c5ee1）
 
 2026-10-13，xuanze GPU 1，CUDA `sm_89`，JAX GPU/x64 配置开启，输入及手写 kernel 为 float32。`tests/test_gpu_float32_parity.py` 独立报告全部诊断和最终状态，避免被 NumPy 断言或首个分量挡住。
 
@@ -36,11 +42,33 @@ N=1 时 AoS 转置可仍连续，`ascontiguousarray` 因此可能返回调用者
 
 因果对照在独立 Python 进程中使用**修后物理 + 仅恢复旧 loader 两行**，同一回归失败；真实修后 loader 回归 `1 passed in 0.78s`。没有回滚工作树。[旧 loader 因果对照](gpu-results/j2-input-ownership-before.log)、[修后](gpu-results/j2-input-ownership-after.log)。
 
-## 仍需解释的残差
+## 最坏残差的最后一次因果定位
 
-当前剩余同精度失败集中于潜热的少量舍入及残差逐项相减。近零残差对这种差异敏感是数值条件分析，**不是它可以自动获得更宽容差的理由**，也未证明所有剩余差异都是精度地板。
+前一候选的同精度失败集中于潜热的少量舍入及残差逐项相减。在 N1024 中固定第 17 步之后的状态和第 18 步 Ts，增加 eg/ec/tr 输出的仪器 JAX 与生产前 12 诊断仍逐位一致。最坏柱 eg 为 CUDA `15.555862426757812`、JAX `15.555863380432129`，只有 1 ULP；ec=0、tr=`141.05726623535156`、LE 总和及 H/G/T 完全一致，但逐项残差相减扩大了绝对差。
 
-普通版最终裸地诊断采用 `rn-h-(eg+ec+tr)-g`；当前 JAX 最终诊断与求根都采用 `rn-h-eg-ec-tr-g`。这项分组差异属于与 NumPy64 对照时的独立误差来源，不应混入 CUDA/JAX 同精度门。下一轮应固定最坏柱的前一步状态和 Ts，直接分解 eg/ec/tr 与最终残差树；原 H4 及 main 合并门继续保持红灯。
+进一步增加 beta/rho/dq/ra/地面阻力/eg 分子分母输出，生产诊断仍不变。前四者及分子完全一致；地面阻力分别为 `2296.48828125` 和 `2296.488037109375`。原因是独立标量探针将 `.1/(e-1)` 合并，而生产 HLO 中 DZ 是捕获数组参数，只出现 `0.581976712` 倒数常量，必须先计算 `DZ[0]*(exp(...)-1)` 再乘倒数。独立临时候选仅修正该分组，固定点 22 分量全部逐位一致、完整两项同精度门通过，然后才落地正式源码复验。[eg 定位](gpu-results/j2-residual-checkpoint.json)、[阻力定位](gpu-results/j2-residual-ground-checkpoint.json)、[局部候选](gpu-results/j2-ground-candidate-checkpoint.json)、[完整候选门](gpu-results/j2-ground-candidate-strict.log)。
+
+仪器变更仅增加中间输出并固定 Ts；源码和完整 HLO 留在远程 `profile_output/j2-frozen/`。冻结版原生产 N1024×48 HLO 的 SHA256 和源码身份见 [元数据](gpu-results/j2-frozen-metadata.json)。**此例表明独立子图逐位一致不足以证明生产图一致，必须检查实际编译边界。**
+
+近零残差对舍入敏感是数值条件分析，不能据此自动放宽门槛，也不能把所有差异都称为不可避免的精度地板。本轮剩余同精度残差已有可修原因并消除。
+
+普通版最终裸地诊断采用 `rn-h-(eg+ec+tr)-g`；当前 JAX 最终诊断与求根都采用 `rn-h-eg-ec-tr-g`。这项分组差异属于与 NumPy64 对照时的独立误差来源，不应混入 CUDA/JAX 同精度门。原 H4 及 main 合并门继续保持红灯。
+
+## 原 H4 的 NumPy64 缺口量化
+
+独立报告脚本不修改测试、不断言短路，逐字段记录诊断和最终状态。[完整 JSON](gpu-results/j2-final-precision-report.json) 使用与 H4 一致的 float32 已打包初值/强迫，再由普通版以 float64 运算。
+
+| 步数 | 超过原 NumPy64 门的字段 | 失败元素数 | 最大绝对差 |
+|---:|---|---:|---:|
+| 1 | residual | 1024 | 0.000717255325 |
+| 48 | H | 1205 | 0.002887709964 |
+| 48 | LE | 6 | 0.007383211287 |
+| 48 | G | 18096 | 0.003867353119 |
+| 48 | residual | 49145 | 0.002507086880 |
+
+其他诊断均通过原 `rtol=1e-4, atol=1e-6`。额外探索性地用同一容差检查 NumPy64 最终 70 浮点状态，也未超门；原 H4 的状态断言对象仍是 JAX32，没有修改它。
+
+**residual 绝对误差 `2e-3` 仍不足**：48 步有 569 个 CUDA–NumPy64 残差差值超过它。若讨论的是闭合残差自身而不是后端差值，CUDA 的最大 `|residual|` 为 `0.002484321594`，229 项超过 `2e-3`。这两种量不能混淆；本报告没有批准任何新阈值。
 
 ## 重放
 
@@ -52,6 +80,7 @@ python -m pytest tests/test_gpu_cuda_inputs.py -q -s
 CUDA_ARCH=sm_89 bash src/noahmp_clm/gpu/cuda/build.sh
 python benchmarks/probe_gpu_numerics.py --output components.json
 python benchmarks/probe_gpu_trajectory.py --output trajectory
+python benchmarks/report_gpu_precision.py --output precision-report.json
 ```
 
 `probe_gpu_numerics.py` 比较默认 FMA、禁 FMA、禁 FMA+近似除法三组；`probe_gpu_stages.py` 分解真实热方程矩阵；`probe_gpu_most.py` 记录 20 次 MOST 迭代；`probe_gpu_flux_math.py` 与 `probe_gpu_scalar_math.py` 是保留原始表达式的诊断对照，部分字段故意不调用修后函数，不能把其中旧表达式的偏差误认为当前生产回归。

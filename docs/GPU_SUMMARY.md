@@ -1,10 +1,10 @@
 # 阶段 3 GPU 迁移总结
 
-当前状态：H2 GPU float64 parity 保持通过；J2 已消除原 CUDA/JAX32 的 G 超差，1024柱×48步最终状态逐位一致，但 residual 仍有504个元素未过同精度1e-6门。
+当前状态：H2 GPU float64 parity保持通过；J2已使默认CUDA/JAX32的1024柱×1/48步全部诊断及最终状态逐位一致，同精度1e-6门已通过，J3选项移植进行中。
 
 性能数字：NumPy 单核 N=10000×48 为364.04924 s；全量输出归约回读门已实现，五档 JAX 正式复测进行中，旧 CUDA 约7 ms已确认包含48次kernel但未过数值门，不能列为合格加速成绩。
 
-验收缺口：H4及J2同精度残差仍红灯、N=1e5/3e5单核基线未结束；年度测试在第3天暴露普通版共有的薄雪过冷，64800柱x64通过而x32失败，阶段3未完成且禁止合并main。
+验收缺口：原H4对NumPy64仍红灯，修后有569项residual差值超过候选2e-3且H/LE/G也有超差；大规模CPU基线仍运行，年度第3天及64800柱x32未过门，阶段3未完成且禁止合并main。
 
 最新工作入口为 [GPU_J_STAGE.md](GPU_J_STAGE.md)：继续 J1–J5，并提出有推导的
 分档容差方案。未经用户明确确认，不改变原 H4 容差或合并条件。
@@ -27,10 +27,10 @@
 | H1 Linux venv / JAX-CUDA / CuPy | 通过：JAX 0.11.2 CudaDevice、CuPy 14.2.0 实际设备运算 |
 | H2 8 柱 × 48 步 float64 parity | 通过：实际 CUDA 输出；相关回归 7 passed，原容差不变 |
 | H3 完整默认物理 CUDA kernel | 通过编译：nvcc 12.4.99，sm_89，零 warning；NVRTC 实际运行 |
-| H4 N=1024 CUDA parity | 红灯：原 NumPy64 门仍失败；新 CUDA/JAX32 首步逐位一致，48步仅 residual 有504元素超1e-6门，原容差保留 |
+| H4 N=1024 CUDA parity | 红灯：原NumPy64门仍失败；CUDA/JAX32的1/48步全部诊断及最终状态逐位一致，同精度1e-6门通过，原容差保留 |
 | H5 五档 48 步 GPU 基准 | 旧 GPU 五档计时待 checksum 复核；NumPy N=10000 已收回，N=100000/300000 在算；暂不宣称 ≥100× |
 | H6 选项矩阵与 x32/x64 精度 | 已实现物理 35 值通过，55 ABI-only 值无效应、2 固定值通过、11 未实现值如实记录 |
-| H7 全量测试与合并 | 历史全量44 passed/2 failed；J2组合8 passed/3 failed，完整新回归待稳定后运行；保持gpu/migration |
+| H7 全量测试与合并 | 历史全量44 passed/2 failed；最新J2组合5 passed/2 failed（均原H4），H2/薄雪另5 passed；全量新回归待稳定后运行 |
 
 ## J1–J5 新证据
 
