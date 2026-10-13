@@ -1,0 +1,270 @@
+{
+  "audit_utc": "2026-10-13T11:45:18.916849+00:00",
+  "method": "Independent CPU-only recomputation from retained complete NPZ; gate helper functions were not imported. Canopy interventions use b954d90 archived model primitive functions.",
+  "npz_sha256": "efae93ff1898e2d9844763b00ec399cce561c21ad72a71116e825dd09c170015",
+  "all_input_output_finite": true,
+  "criteria_match_report": true,
+  "source_identity": {
+    "src/noahmp_clm/__init__.py": "CRLF_equivalent",
+    "src/noahmp_clm/column.py": "CRLF_equivalent",
+    "src/noahmp_clm/driver.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/__init__.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/cuda/loader.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/cupy_core.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/jax_core.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/pack.py": "CRLF_equivalent",
+    "src/noahmp_clm/io.py": "CRLF_equivalent",
+    "src/noahmp_clm/options.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/__init__.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/canopy.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/energy.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/frozen_soil.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/ground_evap.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/precip.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/runoff.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/snow.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/soil.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/stress.py": "CRLF_equivalent",
+    "src/noahmp_clm/physics/surface_drag.py": "CRLF_equivalent",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "CRLF_equivalent"
+  },
+  "same_precision": {
+    "states": {
+      "elements": 3512320,
+      "failures": 0,
+      "max_abs": 0.0,
+      "matches_saved_count": true
+    },
+    "diagnostics": {
+      "elements": 589824,
+      "failures": 0,
+      "max_abs": 2.9802322387695312e-08,
+      "matches_saved_count": true
+    },
+    "integer_equal": true
+  },
+  "cross_precision": {
+    "cuda": {
+      "checksum_matches": true,
+      "fields": {
+        "tsoil": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.00079345703125,
+          "saved_count_and_denominator_match": true
+        },
+        "smc": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 5.03267999107937e-07,
+          "saved_count_and_denominator_match": true
+        },
+        "soil_ice": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 3.605677991735945e-06,
+          "saved_count_and_denominator_match": true
+        },
+        "swe": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 1.6007106756754652e-07,
+          "saved_count_and_denominator_match": true
+        },
+        "canw": {
+          "elements": 49152,
+          "failed_elements": 153,
+          "fraction_passed": 0.99688720703125,
+          "max_abs": 2.685018164240178e-08,
+          "saved_count_and_denominator_match": true
+        },
+        "h": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.00288770996388088,
+          "saved_count_and_denominator_match": true
+        },
+        "le": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.007383211287461222,
+          "saved_count_and_denominator_match": true
+        },
+        "g": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.0038673531185082766,
+          "saved_count_and_denominator_match": true
+        },
+        "et_mm": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.007389073251275136,
+          "saved_count_and_denominator_match": true
+        }
+      },
+      "residual": {
+        "median": 0.000293731689453125,
+        "p99": 0.001819610595703125,
+        "maximum": 0.0024843215942382812
+      },
+      "all_fields_at_least_995": true,
+      "residual_passed": true
+    },
+    "jax32": {
+      "checksum_matches": true,
+      "fields": {
+        "tsoil": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.00079345703125,
+          "saved_count_and_denominator_match": true
+        },
+        "smc": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 5.03267999107937e-07,
+          "saved_count_and_denominator_match": true
+        },
+        "soil_ice": {
+          "elements": 196608,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 3.605677991735945e-06,
+          "saved_count_and_denominator_match": true
+        },
+        "swe": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 1.6007106756754652e-07,
+          "saved_count_and_denominator_match": true
+        },
+        "canw": {
+          "elements": 49152,
+          "failed_elements": 153,
+          "fraction_passed": 0.99688720703125,
+          "max_abs": 2.685018164240178e-08,
+          "saved_count_and_denominator_match": true
+        },
+        "h": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.00288770996388088,
+          "saved_count_and_denominator_match": true
+        },
+        "le": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.007383211287461222,
+          "saved_count_and_denominator_match": true
+        },
+        "g": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.0038673531185082766,
+          "saved_count_and_denominator_match": true
+        },
+        "et_mm": {
+          "elements": 49152,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "max_abs": 0.007389073251275136,
+          "saved_count_and_denominator_match": true
+        }
+      },
+      "residual": {
+        "median": 0.000293731689453125,
+        "p99": 0.001819610595703125,
+        "maximum": 0.0024843215942382812
+      },
+      "all_fields_at_least_995": true,
+      "residual_passed": true
+    }
+  },
+  "conservation": {
+    "cuda": {
+      "surface_abs_max_W_m2": 2.8371810913085938e-05,
+      "surface_max_bound_ratio": 0.017757196946151486,
+      "water_abs_max_m": 6.827709159748334e-08,
+      "water_max_bound_ratio": 0.012335179149728011,
+      "water_cumulative_max_abs_m": 1.1301662307244432e-06,
+      "passes_preregistered_bounds": true,
+      "whole_column_energy_passed": false
+    },
+    "jax32": {
+      "surface_abs_max_W_m2": 2.8371810913085938e-05,
+      "surface_max_bound_ratio": 0.017757196946151486,
+      "water_abs_max_m": 6.827709159748334e-08,
+      "water_max_bound_ratio": 0.012335179149728011,
+      "water_cumulative_max_abs_m": 1.1301662307244432e-06,
+      "passes_preregistered_bounds": true,
+      "whole_column_energy_passed": false
+    }
+  },
+  "input_checksum_matches": true,
+  "outlier_coords_identical_between_backends": true,
+  "all_outliers_are_canw": true,
+  "canopy_independent_reconstruction": {
+    "count": 153,
+    "unique_config_steps": 23,
+    "clusters": {
+      "canopy_drying_relative_sensitivity": 132,
+      "canopy_exhaustion_roundoff": 21
+    },
+    "all_rainless_snowless": true,
+    "other_inputs_fixed": true,
+    "max_abs_error_m": 1.3933381113724181e-11,
+    "max_storage_m": 1.2253991599209257e-08,
+    "max_terms_m": {
+      "formula_rounding_m": 1.3779922738113394e-13,
+      "temperature_m": 4.516971923955358e-12,
+      "carry_m": 9.554208417149956e-12,
+      "numpy_reconstruction_m": 4.81482486096809e-35
+    },
+    "max_decomposition_closure_error_m": 0.0,
+    "dominant_term_counts": {
+      "carry_m": 140,
+      "temperature_m": 13
+    },
+    "steps_range_1based": [
+      24,
+      48
+    ],
+    "all_rain_initial_configuration": true,
+    "max_abs_error_m_by_initial_group": {
+      "cold_snow": 0.0,
+      "melting_initial": 0.0,
+      "rain": 2.685018164240178e-08,
+      "dry": 0.0
+    }
+  },
+  "canopy_rows_original_before_root_repair": 0,
+  "notes": [
+    "No M2 1024x48 numeric gate is falsely green in the retained NPZ. These results do not constitute the annual/domain/M3/M4 acceptance.",
+    "Canopy explanation has actual counterfactual substitutions of temperature and carry storage, verified against the frozen NumPy canopy update; it is more than a cluster label.",
+    "The original attribution GZIP was empty because numpy bool values were not JSON serializable. Root repaired serialization and reran; all 153 saved rows now match this independent causal decomposition exactly.",
+    "Original ET conversion computed LV/dt in float32; independent float64 unit conversion preserves every pass/fail and changes only sub-nanowatt summary rounding.",
+    "Source provenance matches b954d90 after the recorded CRLF encoding. This audit checks retained data and does not rerun a physical GPU.",
+    "Whole-column energy remains unclosed; only the explicit accepted surface-closure criterion is checked."
+  ],
+  "passed": true,
+  "outlier_index_list_matches_saved": true,
+  "source_all_match_b954d90": true,
+  "original_attribution_current_row_count": 153,
+  "repaired_attribution_rows_independently_match": true
+}
