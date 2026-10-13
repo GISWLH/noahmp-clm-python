@@ -1,0 +1,293 @@
+HloModule jit_reference, is_scheduled=true, entry_computation_layout={(f32[156,70]{1,0}, f32[156,8]{1,0}, f32[156]{0})->f32[156,18]{1,0}}, allow_spmd_sharding_propagation_to_parameters={true,true,true}, allow_spmd_sharding_propagation_to_output={true}, frontend_attributes={fingerprint_before_lhs="ef45966f754c814a46503347e2e1cf1f"}
+
+FileNames
+1 "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/probe_gpu_flux_math.py"
+2 "/home/lhwang/work/noahmp-phase3b/repo/src/noahmp_clm/gpu/jax_core.py"
+
+FunctionNames
+1 "<module>"
+2 "main"
+3 "reference"
+4 "_air_density"
+5 "_sat_vapor_pressure"
+
+FileLocations
+1 {file_name_id=1 function_name_id=1 line=64 end_line=64 column=24 end_column=30}
+2 {file_name_id=1 function_name_id=2 line=48 end_line=48 column=13 end_column=54}
+3 {file_name_id=1 function_name_id=3 line=39 end_line=39 column=11 end_column=122}
+4 {file_name_id=1 function_name_id=3 line=39 end_line=39 column=112 end_column=120}
+5 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=9 end_column=22}
+6 {file_name_id=1 function_name_id=3 line=37 end_line=37 column=8 end_column=48}
+7 {file_name_id=1 function_name_id=3 line=39 end_line=39 column=79 end_column=102}
+8 {file_name_id=1 function_name_id=3 line=35 end_line=35 column=8 end_column=16}
+9 {file_name_id=1 function_name_id=3 line=34 end_line=34 column=60 end_column=95}
+10 {file_name_id=1 function_name_id=3 line=34 end_line=34 column=8 end_column=39}
+11 {file_name_id=2 function_name_id=4 line=98 end_line=98 column=11 end_column=49}
+12 {file_name_id=1 function_name_id=3 line=39 end_line=39 column=31 end_column=36}
+13 {file_name_id=1 function_name_id=3 line=31 end_line=31 column=47 end_column=75}
+14 {file_name_id=1 function_name_id=3 line=31 end_line=31 column=36 end_column=43}
+15 {file_name_id=1 function_name_id=3 line=31 end_line=31 column=7 end_column=32}
+16 {file_name_id=2 function_name_id=5 line=87 end_line=87 column=11 end_column=53}
+17 {file_name_id=1 function_name_id=3 line=33 end_line=33 column=24 end_column=37}
+18 {file_name_id=1 function_name_id=3 line=33 end_line=33 column=56 end_column=79}
+19 {file_name_id=1 function_name_id=3 line=37 end_line=37 column=12 end_column=33}
+20 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=23 end_column=53}
+21 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=56 end_column=85}
+22 {file_name_id=1 function_name_id=3 line=39 end_line=39 column=94 end_column=101}
+23 {file_name_id=1 function_name_id=3 line=35 end_line=35 column=21 end_column=47}
+24 {file_name_id=1 function_name_id=3 line=34 end_line=34 column=44 end_column=54}
+25 {file_name_id=1 function_name_id=3 line=35 end_line=35 column=27 end_column=47}
+26 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=59 end_column=85}
+27 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=62 end_column=85}
+28 {file_name_id=1 function_name_id=3 line=34 end_line=34 column=70 end_column=90}
+29 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=40 end_column=52}
+30 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=43 end_column=48}
+31 {file_name_id=1 function_name_id=3 line=37 end_line=37 column=20 end_column=32}
+32 {file_name_id=1 function_name_id=3 line=37 end_line=37 column=21 end_column=28}
+33 {file_name_id=1 function_name_id=3 line=36 end_line=36 column=37 end_column=78}
+34 {file_name_id=1 function_name_id=3 line=36 end_line=36 column=52 end_column=73}
+35 {file_name_id=1 function_name_id=3 line=36 end_line=36 column=8 end_column=31}
+36 {file_name_id=1 function_name_id=3 line=34 end_line=34 column=85 end_column=89}
+37 {file_name_id=1 function_name_id=3 line=32 end_line=32 column=21 end_column=49}
+38 {file_name_id=1 function_name_id=3 line=32 end_line=32 column=53 end_column=57}
+39 {file_name_id=1 function_name_id=3 line=32 end_line=32 column=64 end_column=78}
+40 {file_name_id=1 function_name_id=3 line=32 end_line=32 column=69 end_column=78}
+41 {file_name_id=2 function_name_id=4 line=98 end_line=98 column=17 end_column=26}
+42 {file_name_id=2 function_name_id=4 line=98 end_line=98 column=30 end_column=47}
+43 {file_name_id=2 function_name_id=4 line=98 end_line=98 column=36 end_column=47}
+44 {file_name_id=1 function_name_id=3 line=31 end_line=31 column=62 end_column=66}
+45 {file_name_id=1 function_name_id=3 line=31 end_line=31 column=67 end_column=74}
+46 {file_name_id=2 function_name_id=5 line=87 end_line=87 column=19 end_column=53}
+47 {file_name_id=2 function_name_id=5 line=87 end_line=87 column=27 end_column=37}
+48 {file_name_id=2 function_name_id=5 line=87 end_line=87 column=41 end_column=51}
+49 {file_name_id=2 function_name_id=5 line=86 end_line=86 column=9 end_column=19}
+50 {file_name_id=1 function_name_id=3 line=33 end_line=33 column=44 end_column=49}
+51 {file_name_id=1 function_name_id=3 line=33 end_line=33 column=7 end_column=14}
+52 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=74 end_column=79}
+53 {file_name_id=1 function_name_id=3 line=38 end_line=38 column=16 end_column=22}
+54 {file_name_id=1 function_name_id=3 line=36 end_line=36 column=20 end_column=25}
+55 {file_name_id=1 function_name_id=3 line=36 end_line=36 column=61 end_column=65}
+56 {file_name_id=1 function_name_id=3 line=32 end_line=32 column=44 end_column=48}
+
+StackFrames
+1 {file_location_id=1 parent_frame_id=1}
+2 {file_location_id=2 parent_frame_id=2}
+3 {file_location_id=3 parent_frame_id=3}
+4 {file_location_id=4 parent_frame_id=3}
+5 {file_location_id=5 parent_frame_id=3}
+6 {file_location_id=6 parent_frame_id=3}
+7 {file_location_id=7 parent_frame_id=3}
+8 {file_location_id=8 parent_frame_id=3}
+9 {file_location_id=9 parent_frame_id=3}
+10 {file_location_id=10 parent_frame_id=3}
+11 {file_location_id=11 parent_frame_id=11}
+12 {file_location_id=12 parent_frame_id=3}
+13 {file_location_id=13 parent_frame_id=3}
+14 {file_location_id=14 parent_frame_id=3}
+15 {file_location_id=15 parent_frame_id=3}
+16 {file_location_id=16 parent_frame_id=16}
+17 {file_location_id=17 parent_frame_id=3}
+18 {file_location_id=18 parent_frame_id=3}
+19 {file_location_id=19 parent_frame_id=3}
+20 {file_location_id=20 parent_frame_id=3}
+21 {file_location_id=21 parent_frame_id=3}
+22 {file_location_id=22 parent_frame_id=3}
+23 {file_location_id=23 parent_frame_id=3}
+24 {file_location_id=24 parent_frame_id=3}
+25 {file_location_id=25 parent_frame_id=3}
+26 {file_location_id=26 parent_frame_id=3}
+27 {file_location_id=27 parent_frame_id=3}
+28 {file_location_id=28 parent_frame_id=3}
+29 {file_location_id=29 parent_frame_id=3}
+30 {file_location_id=30 parent_frame_id=3}
+31 {file_location_id=31 parent_frame_id=3}
+32 {file_location_id=32 parent_frame_id=3}
+33 {file_location_id=33 parent_frame_id=3}
+34 {file_location_id=34 parent_frame_id=3}
+35 {file_location_id=35 parent_frame_id=3}
+36 {file_location_id=36 parent_frame_id=3}
+37 {file_location_id=37 parent_frame_id=3}
+38 {file_location_id=16 parent_frame_id=38}
+39 {file_location_id=38 parent_frame_id=3}
+40 {file_location_id=39 parent_frame_id=3}
+41 {file_location_id=40 parent_frame_id=3}
+42 {file_location_id=41 parent_frame_id=11}
+43 {file_location_id=42 parent_frame_id=11}
+44 {file_location_id=43 parent_frame_id=11}
+45 {file_location_id=44 parent_frame_id=3}
+46 {file_location_id=45 parent_frame_id=3}
+47 {file_location_id=46 parent_frame_id=16}
+48 {file_location_id=47 parent_frame_id=16}
+49 {file_location_id=48 parent_frame_id=16}
+50 {file_location_id=49 parent_frame_id=16}
+51 {file_location_id=50 parent_frame_id=3}
+52 {file_location_id=51 parent_frame_id=3}
+53 {file_location_id=52 parent_frame_id=3}
+54 {file_location_id=53 parent_frame_id=3}
+55 {file_location_id=54 parent_frame_id=3}
+56 {file_location_id=55 parent_frame_id=3}
+57 {file_location_id=46 parent_frame_id=38}
+58 {file_location_id=47 parent_frame_id=38}
+59 {file_location_id=48 parent_frame_id=38}
+60 {file_location_id=49 parent_frame_id=38}
+61 {file_location_id=56 parent_frame_id=3}
+
+
+%fused_concatenate (param_0.48: f32[156], param_1.66: f32[156,70], param_2.34: f32[156,8]) -> f32[156,18] {
+  %param_0.48 = f32[156]{0} parameter(0)
+  %constant_3_1 = f32[] constant(-273.15)
+  %broadcast.58 = f32[156]{0} broadcast(%constant_3_1), dimensions={}
+  %add.25 = f32[156]{0} add(%param_0.48, %broadcast.58), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=50}
+  %constant_41_1 = f32[] constant(17.67)
+  %broadcast.18.1 = f32[156]{0} broadcast(%constant_41_1), dimensions={}
+  %mul.33.1 = f32[156]{0} multiply(%add.25, %broadcast.18.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=48}
+  %constant_13_1 = f32[] constant(-29.6499939)
+  %broadcast.23.1 = f32[156]{0} broadcast(%constant_13_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=49}
+  %add.10.1 = f32[156]{0} add(%param_0.48, %broadcast.23.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=49}
+  %div.22.1 = f32[156]{0} divide(%mul.33.1, %add.10.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=48}
+  %exp.3.1 = f32[156]{0} exponential(%div.22.1), metadata={op_name="jit(reference)/vmap()/exp" stack_frame_id=47}
+  %constant_39_1 = f32[] constant(611.2)
+  %broadcast.16.1 = f32[156]{0} broadcast(%constant_39_1), dimensions={}
+  %mul.34.1 = f32[156]{0} multiply(%exp.3.1, %broadcast.16.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=16}
+  %bitcast.21 = f32[156,1]{1,0} bitcast(%mul.34.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=16}
+  %constant_4_1 = f32[] constant(380.166382)
+  %broadcast.1.1 = f32[156]{0} broadcast(%constant_4_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=14}
+  %mul.35.1 = f32[156]{0} multiply(%exp.3.1, %broadcast.1.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=14}
+  %bitcast.1.1 = f32[156,1]{1,0} bitcast(%mul.35.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=14}
+  %param_2.34 = f32[156,8]{1,0} parameter(2)
+  %slice.14.1 = f32[156,1]{1,0} slice(%param_2.34), slice={[0:156], [4:5]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=45}
+  %bitcast.2.6 = f32[156]{0} bitcast(%slice.14.1), metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=45}
+  %constant_5_1 = f32[] constant(231.0336)
+  %broadcast.2.1 = f32[156]{0} broadcast(%constant_5_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=46}
+  %mul.36.1 = f32[156]{0} multiply(%exp.3.1, %broadcast.2.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=46}
+  %sub.9.3 = f32[156]{0} subtract(%bitcast.2.6, %mul.36.1), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=45}
+  %constant_36_1 = f32[] constant(1)
+  %broadcast.13.1 = f32[156]{0} broadcast(%constant_36_1), dimensions={}
+  %max.10.1 = f32[156]{0} maximum(%sub.9.3, %broadcast.13.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=13}
+  %bitcast.3.1 = f32[156,1]{1,0} bitcast(%max.10.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=13}
+  %div.33.1 = f32[156]{0} divide(%mul.35.1, %max.10.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=12}
+  %bitcast.4.1 = f32[156,1]{1,0} bitcast(%div.33.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=12}
+  %slice.17.1 = f32[156,1]{1,0} slice(%param_2.34), slice={[0:156], [2:3]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=39}
+  %mul.0.1 = f32[156,1]{1,0} multiply(%slice.17.1, %slice.14.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=39}
+  %constant_37_1 = f32[] constant(0.378)
+  %broadcast.24.1 = f32[156,1]{1,0} broadcast(%constant_37_1), dimensions={}
+  %mul.1.1 = f32[156,1]{1,0} multiply(%slice.17.1, %broadcast.24.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=41}
+  %constant_38_1 = f32[] constant(0.622)
+  %broadcast.38.1 = f32[156,1]{1,0} broadcast(%constant_38_1), dimensions={}
+  %add.8.1 = f32[156,1]{1,0} add(%mul.1.1, %broadcast.38.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=40}
+  %div.1.1 = f32[156,1]{1,0} divide(%mul.0.1, %add.8.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=39}
+  %slice.16.4 = f32[156,1]{1,0} slice(%param_2.34), slice={[0:156], [1:2]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=61}
+  %broadcast.22.3 = f32[156,1]{1,0} broadcast(%constant_3_1), dimensions={}
+  %add.4.3 = f32[156,1]{1,0} add(%slice.16.4, %broadcast.22.3), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=60}
+  %broadcast.36.3 = f32[156,1]{1,0} broadcast(%constant_41_1), dimensions={}
+  %mul.4.3 = f32[156,1]{1,0} multiply(%add.4.3, %broadcast.36.3), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=58}
+  %broadcast.42.4 = f32[156,1]{1,0} broadcast(%constant_13_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=59}
+  %add.18.4 = f32[156,1]{1,0} add(%slice.16.4, %broadcast.42.4), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=59}
+  %div.2.3 = f32[156,1]{1,0} divide(%mul.4.3, %add.18.4), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=58}
+  %exp.0.3 = f32[156,1]{1,0} exponential(%div.2.3), metadata={op_name="jit(reference)/vmap()/exp" stack_frame_id=57}
+  %constant_14_1 = f32[] constant(2629776.75)
+  %broadcast.51.1 = f32[156,1]{1,0} broadcast(%constant_14_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=52}
+  %mul.8.1 = f32[156,1]{1,0} multiply(%exp.0.3, %broadcast.51.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=52}
+  %integer_pow.0.2 = f32[156,1]{1,0} multiply(%add.18.4, %add.18.4), metadata={op_name="jit(reference)/vmap()/integer_pow" stack_frame_id=17}
+  %div.3.3 = f32[156,1]{1,0} divide(%mul.8.1, %integer_pow.0.2), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=51}
+  %constant_9_1 = f32[] constant(0.000645659165)
+  %broadcast.27.1 = f32[156,1]{1,0} broadcast(%constant_9_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=18}
+  %multiply.13.1 = f32[156,1]{1,0} multiply(%slice.14.1, %broadcast.27.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=18}
+  %constant_33_1 = f32[] constant(287)
+  %broadcast.29.1 = f32[156,1]{1,0} broadcast(%constant_33_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=42}
+  %mul.2.1 = f32[156,1]{1,0} multiply(%slice.16.4, %broadcast.29.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=42}
+  %constant_32_1 = f32[] constant(0.61)
+  %broadcast.31.1 = f32[156,1]{1,0} broadcast(%constant_32_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=44}
+  %mul.3.1 = f32[156,1]{1,0} multiply(%slice.17.1, %broadcast.31.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=44}
+  %broadcast.37.1 = f32[156,1]{1,0} broadcast(%constant_36_1), dimensions={}
+  %add.19.1 = f32[156,1]{1,0} add(%mul.3.1, %broadcast.37.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=43}
+  %mul.6.1 = f32[156,1]{1,0} multiply(%mul.2.1, %add.19.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=42}
+  %bitcast.5.3 = f32[156]{0} bitcast(%mul.6.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=42}
+  %div.27.3 = f32[156]{0} divide(%bitcast.2.6, %bitcast.5.3), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=11}
+  %bitcast.6.1 = f32[156,1]{1,0} bitcast(%div.27.3), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=11}
+  %constant_31_1 = f32[] constant(123)
+  %broadcast.53.1 = f32[156,1]{1,0} broadcast(%constant_31_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=24}
+  %mul.9.1 = f32[156,1]{1,0} multiply(%div.3.3, %broadcast.53.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=24}
+  %constant_35_1 = f32[] constant(1004)
+  %broadcast.12.1 = f32[156]{0} broadcast(%constant_35_1), dimensions={}
+  %mul.48.1 = f32[156]{0} multiply(%div.27.3, %broadcast.12.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=9}
+  %broadcast.50.1 = f32[156,1]{1,0} broadcast(%constant_39_1), dimensions={}
+  %mul.7.1 = f32[156,1]{1,0} multiply(%exp.0.3, %broadcast.50.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=38}
+  %sub.0.1 = f32[156,1]{1,0} subtract(%mul.7.1, %div.1.1), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=36}
+  %constant_30_1 = f32[] constant(0)
+  %broadcast.55.1 = f32[156,1]{1,0} broadcast(%constant_30_1), dimensions={}
+  %max.7.1 = f32[156,1]{1,0} maximum(%sub.0.1, %broadcast.55.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=28}
+  %bitcast.7.3 = f32[156]{0} bitcast(%max.7.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=28}
+  %mul.49.3 = f32[156]{0} multiply(%mul.48.1, %bitcast.7.3), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=9}
+  %constant_1_1 = f32[] constant(0.01)
+  %broadcast.7.1 = f32[156]{0} broadcast(%constant_1_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=9}
+  %multiply.7.1 = f32[156]{0} multiply(%mul.49.3, %broadcast.7.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=9}
+  %bitcast.8.1 = f32[156,1]{1,0} bitcast(%multiply.7.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=9}
+  %bitcast.9.3 = f32[156]{0} bitcast(%mul.9.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=24}
+  %add.15.3 = f32[156]{0} add(%bitcast.9.3, %multiply.7.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=8}
+  %bitcast.10.1 = f32[156,1]{1,0} bitcast(%add.15.3), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=8}
+  %constant_16_1 = f32[] constant(0.00161414791)
+  %broadcast.45.1 = f32[156,1]{1,0} broadcast(%constant_16_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=25}
+  %mul.5.1 = f32[156,1]{1,0} multiply(%slice.14.1, %broadcast.45.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=25}
+  %add.23.1 = f32[156,1]{1,0} add(%div.3.3, %mul.5.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=23}
+  %bitcast.11.3 = f32[156]{0} bitcast(%add.23.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=23}
+  %div.34.3 = f32[156]{0} divide(%add.15.3, %bitcast.11.3), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=22}
+  %broadcast.11.1 = f32[156]{0} broadcast(%constant_30_1), dimensions={}
+  %max.15.1 = f32[156]{0} maximum(%div.34.3, %broadcast.11.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=7}
+  %bitcast.12.1 = f32[156,1]{1,0} bitcast(%max.15.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=7}
+  %param_1.66 = f32[156,70]{1,0} parameter(1)
+  %slice.24.3 = f32[156,1]{1,0} slice(%param_1.66), slice={[0:156], [39:40]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=55}
+  %constant_27_1 = f32[] constant(1e-06)
+  %broadcast.34.4 = f32[156,1]{1,0} broadcast(%constant_27_1), dimensions={}
+  %max.2.3 = f32[156,1]{1,0} maximum(%slice.24.3, %broadcast.34.4), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=35}
+  %bitcast.13.10 = f32[156]{0} bitcast(%max.2.3), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=35}
+  %slice.25.1 = f32[156,1]{1,0} slice(%param_1.66), slice={[0:156], [4:5]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=56}
+  %max.4.1 = f32[156,1]{1,0} maximum(%broadcast.55.1, %slice.25.1), metadata={op_name="jit(reference)/vmap(jit(clip))/max" stack_frame_id=34}
+  %bitcast.14.3 = f32[156]{0} bitcast(%max.4.1), metadata={op_name="jit(reference)/vmap(jit(clip))/max" stack_frame_id=34}
+  %min.0.3 = f32[156]{0} minimum(%bitcast.13.10, %bitcast.14.3), metadata={op_name="jit(reference)/vmap(jit(clip))/min" stack_frame_id=34}
+  %div.29.3 = f32[156]{0} divide(%min.0.3, %bitcast.13.10), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=34}
+  %min.3.3 = f32[156]{0} minimum(%div.29.3, %broadcast.13.1), metadata={op_name="jit(reference)/vmap()/min" stack_frame_id=33}
+  %sub.13.3 = f32[156]{0} subtract(%broadcast.13.1, %min.3.3), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=32}
+  %integer_pow.4.3 = f32[156]{0} multiply(%sub.13.3, %sub.13.3), metadata={op_name="jit(reference)/vmap()/integer_pow" stack_frame_id=31}
+  %exp.5.1 = f32[156]{0} exponential(%integer_pow.4.3), metadata={op_name="jit(reference)/vmap()/exp" stack_frame_id=19}
+  %constant_11_1 = f32[] constant(-1)
+  %broadcast.9.1 = f32[156]{0} broadcast(%constant_11_1), dimensions={}
+  %add.3.1 = f32[156]{0} add(%exp.5.1, %broadcast.9.1), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=19}
+  %constant_12_1 = f32[] constant(0.0581976734)
+  %broadcast.21.1 = f32[156]{0} broadcast(%constant_12_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=6}
+  %multiply.10.1 = f32[156]{0} multiply(%add.3.1, %broadcast.21.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=6}
+  %bitcast.15.1 = f32[156,1]{1,0} bitcast(%multiply.10.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=6}
+  %integer_pow.5.3 = f32[156]{0} multiply(%bitcast.13.10, %bitcast.13.10), metadata={op_name="jit(reference)/vmap()/integer_pow" stack_frame_id=54}
+  %constant_24_1 = f32[] constant(2.2e-05)
+  %mul.27.1 = f32[156]{0} broadcast(%constant_24_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=5}
+  %mul.52.1 = f32[156]{0} multiply(%integer_pow.5.3, %mul.27.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=5}
+  %slice.26.1 = f32[156,1]{1,0} slice(%param_1.66), slice={[0:156], [40:41]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=30}
+  %bitcast.16.3 = f32[156]{0} bitcast(%slice.26.1), metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=30}
+  %div.31.3 = f32[156]{0} divide(%bitcast.16.3, %bitcast.13.10), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=30}
+  %sub.15.1 = f32[156]{0} subtract(%broadcast.13.1, %div.31.3), metadata={op_name="jit(reference)/vmap()/sub" stack_frame_id=29}
+  %broadcast.10.1 = f32[156]{0} broadcast(%constant_27_1), dimensions={}
+  %max.13.1 = f32[156]{0} maximum(%sub.15.1, %broadcast.10.1), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=20}
+  %constant_23_1 = f32[] constant(3)
+  %broadcast.46.1 = f32[156,1]{1,0} broadcast(%constant_23_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=26}
+  %slice.27.1 = f32[156,1]{1,0} slice(%param_1.66), slice={[0:156], [43:44]}, metadata={op_name="jit(reference)/vmap()/slice" stack_frame_id=53}
+  %max.3.1 = f32[156,1]{1,0} maximum(%slice.27.1, %broadcast.34.4), metadata={op_name="jit(reference)/vmap()/max" stack_frame_id=27}
+  %div.0.1 = f32[156,1]{1,0} divide(%broadcast.46.1, %max.3.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=26}
+  %constant_22_1 = f32[] constant(2)
+  %broadcast.48.1 = f32[156,1]{1,0} broadcast(%constant_22_1), dimensions={}, metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=21}
+  %add.22.1 = f32[156,1]{1,0} add(%div.0.1, %broadcast.48.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=21}
+  %bitcast.17.3 = f32[156]{0} bitcast(%add.22.1), metadata={op_name="jit(reference)/vmap()/add" stack_frame_id=21}
+  %pow.1.3 = f32[156]{0} power(%max.13.1, %bitcast.17.3), metadata={op_name="jit(reference)/vmap()/pow" stack_frame_id=20}
+  %mul.53.1 = f32[156]{0} multiply(%mul.52.1, %pow.1.3), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=5}
+  %bitcast.18.1 = f32[156,1]{1,0} bitcast(%mul.53.1), metadata={op_name="jit(reference)/vmap()/mul" stack_frame_id=5}
+  %div.35.1 = f32[156]{0} divide(%multiply.10.1, %mul.53.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=4}
+  %bitcast.19.1 = f32[156,1]{1,0} bitcast(%div.35.1), metadata={op_name="jit(reference)/vmap()/div" stack_frame_id=4}
+  ROOT %concatenate.1.1 = f32[156,18]{1,0} concatenate(%bitcast.21, %bitcast.1.1, %bitcast.3.1, %bitcast.4.1, %div.1.1, /*index=5*/%mul.8.1, %integer_pow.0.2, %div.3.3, %multiply.13.1, %bitcast.6.1, /*index=10*/%mul.9.1, %bitcast.8.1, %bitcast.10.1, %add.23.1, %bitcast.12.1, /*index=15*/%bitcast.15.1, %bitcast.18.1, %bitcast.19.1), dimensions={1}, metadata={op_name="jit(reference)/vmap()/concatenate" stack_frame_id=3}
+}
+
+ENTRY %main.2 (s.1: f32[156,70], u.1: f32[156,8], t.1: f32[156]) -> f32[156,18] {
+  %s.1 = f32[156,70]{1,0} parameter(0), metadata={op_name="s"}
+  %u.1 = f32[156,8]{1,0} parameter(1), metadata={op_name="u"}
+  %t.1 = f32[156]{0} parameter(2), metadata={op_name="t"}
+  ROOT %loop_concatenate_fusion = f32[156,18]{1,0} fusion(%t.1, %s.1, %u.1), kind=kLoop, calls=%fused_concatenate, metadata={op_name="jit(reference)/vmap()/concatenate" stack_frame_id=3}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+}
+

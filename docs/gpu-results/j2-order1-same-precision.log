@@ -1,0 +1,460 @@
+{"group": "diagnostics", "steps": 1, "field": "ts", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0, 0], "cuda": 268.42071533203125, "jax32": 268.42071533203125}
+{"group": "diagnostics", "steps": 1, "field": "rnet", "failed": 256, "max_abs": 1.52587890625e-05, "max_tolerance_ratio": 1.3351713418960571, "worst_index": [0, 0], "cuda": 5.785584926605225, "jax32": 5.785575866699219}
+{"group": "diagnostics", "steps": 1, "field": "h", "failed": 0, "max_abs": 3.814697265625e-05, "max_tolerance_ratio": 0.31676754355430603, "worst_index": [7, 0], "cuda": 119.4258041381836, "jax32": 119.42576599121094}
+{"group": "diagnostics", "steps": 1, "field": "le", "failed": 0, "max_abs": 1.52587890625e-05, "max_tolerance_ratio": 0.12015648931264877, "worst_index": [2, 0], "cuda": 125.99095916748047, "jax32": 125.99097442626953}
+{"group": "diagnostics", "steps": 1, "field": "g", "failed": 0, "max_abs": 3.814697265625e-05, "max_tolerance_ratio": 0.35965651273727417, "worst_index": [1, 0], "cuda": 105.06497192382812, "jax32": 105.06501007080078}
+{"group": "diagnostics", "steps": 1, "field": "et_mm", "failed": 0, "max_abs": 2.2351741790771484e-08, "max_tolerance_ratio": 0.02049277164041996, "worst_index": [2, 0], "cuda": 0.0907134860754013, "jax32": 0.0907135084271431}
+{"group": "diagnostics", "steps": 1, "field": "prcp_mm", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0, 0], "cuda": 18.0, "jax32": 18.0}
+{"group": "diagnostics", "steps": 1, "field": "runoff_mm", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0, 0], "cuda": 0.0, "jax32": 0.0}
+{"group": "diagnostics", "steps": 1, "field": "melt_mm", "failed": 0, "max_abs": 5.960464477539063e-08, "max_tolerance_ratio": 0.03805641829967499, "worst_index": [1, 0], "cuda": 0.5662179589271545, "jax32": 0.5662178993225098}
+{"group": "diagnostics", "steps": 1, "field": "swe", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0, 0], "cuda": 0.21799999475479126, "jax32": 0.21799999475479126}
+{"group": "diagnostics", "steps": 1, "field": "canw", "failed": 0, "max_abs": 1.1641532182693481e-10, "max_tolerance_ratio": 0.00011624880426097661, "worst_index": [138, 0], "cuda": 0.0014324020594358444, "jax32": 0.0014324019430205226}
+{"group": "diagnostics", "steps": 1, "field": "residual", "failed": 1024, "max_abs": 4.57763671875e-05, "max_tolerance_ratio": 45.77077865600586, "worst_index": [1, 0], "cuda": -7.62939453125e-05, "jax32": -0.0001220703125}
+{"group": "state", "steps": 1, "field": "fvec_0", "failed": 0, "max_abs": 6.103515625e-05, "max_tolerance_ratio": 0.2132873386144638, "worst_index": [11], "cuda": 285.1639404296875, "jax32": 285.16400146484375}
+{"group": "state", "steps": 1, "field": "fvec_1", "failed": 0, "max_abs": 3.0517578125e-05, "max_tolerance_ratio": 0.11344825476408005, "worst_index": [8], "cuda": 268.0, "jax32": 267.9999694824219}
+{"group": "state", "steps": 1, "field": "fvec_2", "failed": 0, "max_abs": 3.0517578125e-05, "max_tolerance_ratio": 0.10670483112335205, "worst_index": [90], "cuda": 285.0, "jax32": 284.9999694824219}
+{"group": "state", "steps": 1, "field": "fvec_3", "failed": 0, "max_abs": 3.0517578125e-05, "max_tolerance_ratio": 0.10670483112335205, "worst_index": [3], "cuda": 285.0, "jax32": 284.9999694824219}
+{"group": "state", "steps": 1, "field": "fvec_4", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.11999999731779099, "jax32": 0.11999999731779099}
+{"group": "state", "steps": 1, "field": "fvec_5", "failed": 0, "max_abs": 2.9802322387695312e-08, "max_tolerance_ratio": 0.021450474858283997, "worst_index": [98], "cuda": 0.3893548846244812, "jax32": 0.3893549144268036}
+{"group": "state", "steps": 1, "field": "fvec_6", "failed": 0, "max_abs": 7.450580596923828e-09, "max_tolerance_ratio": 0.006651273928582668, "worst_index": [150], "cuda": 0.12017347663640976, "jax32": 0.12017348408699036}
+{"group": "state", "steps": 1, "field": "fvec_7", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.11999999731779099, "jax32": 0.11999999731779099}
+{"group": "state", "steps": 1, "field": "fvec_8", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.04885280877351761, "jax32": 0.04885280877351761}
+{"group": "state", "steps": 1, "field": "fvec_9", "failed": 0, "max_abs": 1.4901161193847656e-07, "max_tolerance_ratio": 0.13634546101093292, "worst_index": [8], "cuda": 0.09289734065532684, "jax32": 0.09289748966693878}
+{"group": "state", "steps": 1, "field": "fvec_10", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.04885280877351761, "jax32": 0.04885280877351761}
+{"group": "state", "steps": 1, "field": "fvec_11", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.04885280877351761, "jax32": 0.04885280877351761}
+{"group": "state", "steps": 1, "field": "fvec_12", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.58685702085495, "jax32": 0.58685702085495}
+{"group": "state", "steps": 1, "field": "fvec_13", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.32207396626472473, "jax32": 0.32207396626472473}
+{"group": "state", "steps": 1, "field": "fvec_14", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.08349453657865524, "jax32": 0.08349453657865524}
+{"group": "state", "steps": 1, "field": "fvec_15", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.007574453949928284, "jax32": 0.007574453949928284}
+{"group": "state", "steps": 1, "field": "fvec_16", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.07266666740179062, "jax32": 0.07266666740179062}
+{"group": "state", "steps": 1, "field": "fvec_17", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.07266666740179062, "jax32": 0.07266666740179062}
+{"group": "state", "steps": 1, "field": "fvec_18", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.07266666740179062, "jax32": 0.07266666740179062}
+{"group": "state", "steps": 1, "field": "fvec_19", "failed": 0, "max_abs": 3.0517578125e-05, "max_tolerance_ratio": 0.11344508826732635, "worst_index": [0], "cuda": 268.00750732421875, "jax32": 268.0074768066406}
+{"group": "state", "steps": 1, "field": "fvec_20", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 268.0000915527344, "jax32": 268.0000915527344}
+{"group": "state", "steps": 1, "field": "fvec_21", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 268.0, "jax32": 268.0}
+{"group": "state", "steps": 1, "field": "fvec_22", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 283.9419250488281, "jax32": 283.9419250488281}
+{"group": "state", "steps": 1, "field": "fvec_23", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 283.7457275390625, "jax32": 283.7457275390625}
+{"group": "state", "steps": 1, "field": "fvec_24", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 283.5495300292969, "jax32": 283.5495300292969}
+{"group": "state", "steps": 1, "field": "fvec_25", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 268.42071533203125, "jax32": 268.42071533203125}
+{"group": "state", "steps": 1, "field": "fvec_26", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.21799999475479126, "jax32": 0.21799999475479126}
+{"group": "state", "steps": 1, "field": "fvec_27", "failed": 0, "max_abs": 3.0517578125e-05, "max_tolerance_ratio": 0.11344508826732635, "worst_index": [0], "cuda": 268.00750732421875, "jax32": 268.0074768066406}
+{"group": "state", "steps": 1, "field": "fvec_28", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.8500000238418579, "jax32": 0.8500000238418579}
+{"group": "state", "steps": 1, "field": "fvec_29", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_30", "failed": 0, "max_abs": 1.1641532182693481e-10, "max_tolerance_ratio": 0.00011624880426097661, "worst_index": [138], "cuda": 0.0014324020594358444, "jax32": 0.0014324019430205226}
+{"group": "state", "steps": 1, "field": "fvec_31", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 1.0, "jax32": 1.0}
+{"group": "state", "steps": 1, "field": "fvec_32", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.800000011920929, "jax32": 0.800000011920929}
+{"group": "state", "steps": 1, "field": "fvec_33", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.05000000074505806, "jax32": 0.05000000074505806}
+{"group": "state", "steps": 1, "field": "fvec_34", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.20000000298023224, "jax32": 0.20000000298023224}
+{"group": "state", "steps": 1, "field": "fvec_35", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.9700000286102295, "jax32": 0.9700000286102295}
+{"group": "state", "steps": 1, "field": "fvec_36", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 120.0, "jax32": 120.0}
+{"group": "state", "steps": 1, "field": "fvec_37", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_38", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 2.0, "jax32": 2.0}
+{"group": "state", "steps": 1, "field": "fvec_39", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.4000000059604645, "jax32": 0.4000000059604645}
+{"group": "state", "steps": 1, "field": "fvec_40", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.05999999865889549, "jax32": 0.05999999865889549}
+{"group": "state", "steps": 1, "field": "fvec_41", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.18000000715255737, "jax32": 0.18000000715255737}
+{"group": "state", "steps": 1, "field": "fvec_42", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 4.999999873689376e-05, "jax32": 4.999999873689376e-05}
+{"group": "state", "steps": 1, "field": "fvec_43", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 4.0, "jax32": 4.0}
+{"group": "state", "steps": 1, "field": "fvec_44", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.8999999761581421, "jax32": 0.8999999761581421}
+{"group": "state", "steps": 1, "field": "fvec_45", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_46", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_47", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_48", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_49", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_50", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_51", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_52", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_53", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_54", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_55", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_56", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_57", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_58", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_59", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_60", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_61", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_62", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_63", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_64", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_65", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_66", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_67", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_68", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 1, "field": "fvec_69", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+F{"group": "diagnostics", "steps": 48, "field": "ts", "failed": 0, "max_abs": 0.00018310546875, "max_tolerance_ratio": 0.6381464004516602, "worst_index": [130, 20], "cuda": 285.9335021972656, "jax32": 285.9333190917969}
+{"group": "diagnostics", "steps": 48, "field": "rnet", "failed": 16218, "max_abs": 0.00098419189453125, "max_tolerance_ratio": 34.97297668457031, "worst_index": [0, 15], "cuda": 2.3539562225341797, "jax32": 2.3540735244750977}
+{"group": "diagnostics", "steps": 48, "field": "h", "failed": 15357, "max_abs": 0.002643585205078125, "max_tolerance_ratio": 687.1270751953125, "worst_index": [154, 42], "cuda": 0.3455539047718048, "jax32": 0.3446299731731415}
+{"group": "diagnostics", "steps": 48, "field": "le", "failed": 4141, "max_abs": 0.0077667236328125, "max_tolerance_ratio": 108.01515197753906, "worst_index": [130, 20], "cuda": 70.89624786376953, "jax32": 70.90401458740234}
+{"group": "diagnostics", "steps": 48, "field": "g", "failed": 29756, "max_abs": 0.00421142578125, "max_tolerance_ratio": 975.234375, "worst_index": [150, 31], "cuda": -0.7340870499610901, "jax32": -0.7323975563049316}
+{"group": "diagnostics", "steps": 48, "field": "et_mm", "failed": 2640, "max_abs": 5.591660737991333e-06, "max_tolerance_ratio": 5.320066928863525, "worst_index": [130, 20], "cuda": 0.05104530230164528, "jax32": 0.05105089396238327}
+{"group": "diagnostics", "steps": 48, "field": "prcp_mm", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0, 0], "cuda": 18.0, "jax32": 18.0}
+{"group": "diagnostics", "steps": 48, "field": "runoff_mm", "failed": 768, "max_abs": 9.918212890625e-05, "max_tolerance_ratio": 2.907562494277954, "worst_index": [18, 11], "cuda": 7.199970722198486, "jax32": 7.199946880340576}
+{"group": "diagnostics", "steps": 48, "field": "melt_mm", "failed": 256, "max_abs": 1.7434358596801758e-06, "max_tolerance_ratio": 1.4947772026062012, "worst_index": [1, 15], "cuda": 0.16635341942310333, "jax32": 0.16635167598724365}
+{"group": "diagnostics", "steps": 48, "field": "swe", "failed": 0, "max_abs": 2.086162567138672e-07, "max_tolerance_ratio": 0.14732785522937775, "worst_index": [0, 11], "cuda": 0.4159999489784241, "jax32": 0.4160001575946808}
+{"group": "diagnostics", "steps": 48, "field": "canw", "failed": 0, "max_abs": 2.270098775625229e-08, "max_tolerance_ratio": 0.022694556042551994, "worst_index": [154, 39], "cuda": 0.00028339101118035614, "jax32": 0.0002834137121681124}
+{"group": "diagnostics", "steps": 48, "field": "residual", "failed": 47584, "max_abs": 0.0036678314208984375, "max_tolerance_ratio": 3660.341796875, "worst_index": [6, 4], "cuda": 0.0016217231750488281, "jax32": -0.0020461082458496094}
+{"group": "state", "steps": 48, "field": "fvec_0", "failed": 0, "max_abs": 0.000213623046875, "max_tolerance_ratio": 0.7941370010375977, "worst_index": [8], "cuda": 268.0000305175781, "jax32": 268.000244140625}
+{"group": "state", "steps": 48, "field": "fvec_1", "failed": 85, "max_abs": 0.00067138671875, "max_tolerance_ratio": 2.495853900909424, "worst_index": [4], "cuda": 268.0001220703125, "jax32": 268.00079345703125}
+{"group": "state", "steps": 48, "field": "fvec_2", "failed": 13, "max_abs": 0.0003662109375, "max_tolerance_ratio": 1.2804821729660034, "worst_index": [146], "cuda": 284.9941711425781, "jax32": 284.9945373535156}
+{"group": "state", "steps": 48, "field": "fvec_3", "failed": 6, "max_abs": 0.00030517578125, "max_tolerance_ratio": 1.0670475959777832, "worst_index": [146], "cuda": 284.9998474121094, "jax32": 285.0001525878906}
+{"group": "state", "steps": 48, "field": "fvec_4", "failed": 0, "max_abs": 5.960464477539063e-08, "max_tolerance_ratio": 0.046860940754413605, "worst_index": [106], "cuda": 0.27194732427597046, "jax32": 0.2719472646713257}
+{"group": "state", "steps": 48, "field": "fvec_5", "failed": 0, "max_abs": 2.9802322387695312e-08, "max_tolerance_ratio": 0.022504575550556183, "worst_index": [10], "cuda": 0.32427850365638733, "jax32": 0.32427847385406494}
+{"group": "state", "steps": 48, "field": "fvec_6", "failed": 0, "max_abs": 2.9802322387695312e-08, "max_tolerance_ratio": 0.0239047072827816, "worst_index": [114], "cuda": 0.2467135637998581, "jax32": 0.2467135339975357}
+{"group": "state", "steps": 48, "field": "fvec_7", "failed": 0, "max_abs": 2.9802322387695312e-08, "max_tolerance_ratio": 0.023568933829665184, "worst_index": [54], "cuda": 0.26447486877441406, "jax32": 0.2644748389720917}
+{"group": "state", "steps": 48, "field": "fvec_8", "failed": 0, "max_abs": 1.0579824447631836e-06, "max_tolerance_ratio": 0.9680539965629578, "worst_index": [8], "cuda": 0.09289717674255371, "jax32": 0.09289611876010895}
+{"group": "state", "steps": 48, "field": "fvec_9", "failed": 85, "max_abs": 3.0249357223510742e-06, "max_tolerance_ratio": 2.822258472442627, "worst_index": [4], "cuda": 0.07181686162948608, "jax32": 0.07181383669376373}
+{"group": "state", "steps": 48, "field": "fvec_10", "failed": 0, "max_abs": 8.344650268554688e-07, "max_tolerance_ratio": 0.7785508036613464, "worst_index": [4], "cuda": 0.0718175619840622, "jax32": 0.07181839644908905}
+{"group": "state", "steps": 48, "field": "fvec_11", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.04885280877351761, "jax32": 0.04885280877351761}
+{"group": "state", "steps": 48, "field": "fvec_12", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.58685702085495, "jax32": 0.58685702085495}
+{"group": "state", "steps": 48, "field": "fvec_13", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.32207396626472473, "jax32": 0.32207396626472473}
+{"group": "state", "steps": 48, "field": "fvec_14", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.08349453657865524, "jax32": 0.08349453657865524}
+{"group": "state", "steps": 48, "field": "fvec_15", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.007574453949928284, "jax32": 0.007574453949928284}
+{"group": "state", "steps": 48, "field": "fvec_16", "failed": 0, "max_abs": 7.450580596923828e-08, "max_tolerance_ratio": 0.06543249636888504, "worst_index": [0], "cuda": 0.13866664469242096, "jax32": 0.13866671919822693}
+{"group": "state", "steps": 48, "field": "fvec_17", "failed": 0, "max_abs": 7.450580596923828e-08, "max_tolerance_ratio": 0.06543249636888504, "worst_index": [0], "cuda": 0.13866664469242096, "jax32": 0.13866671919822693}
+{"group": "state", "steps": 48, "field": "fvec_18", "failed": 0, "max_abs": 7.450580596923828e-08, "max_tolerance_ratio": 0.06543249636888504, "worst_index": [0], "cuda": 0.13866664469242096, "jax32": 0.13866671919822693}
+{"group": "state", "steps": 48, "field": "fvec_19", "failed": 0, "max_abs": 0.00018310546875, "max_tolerance_ratio": 0.6806262731552124, "worst_index": [0], "cuda": 268.025146484375, "jax32": 268.02496337890625}
+{"group": "state", "steps": 48, "field": "fvec_20", "failed": 0, "max_abs": 0.000152587890625, "max_tolerance_ratio": 0.5672338604927063, "worst_index": [0], "cuda": 268.00335693359375, "jax32": 268.0035095214844}
+{"group": "state", "steps": 48, "field": "fvec_21", "failed": 0, "max_abs": 0.000152587890625, "max_tolerance_ratio": 0.5672348141670227, "worst_index": [0], "cuda": 268.003173828125, "jax32": 268.0030212402344}
+{"group": "state", "steps": 48, "field": "fvec_22", "failed": 0, "max_abs": 0.0001220703125, "max_tolerance_ratio": 0.5289799571037292, "worst_index": [0], "cuda": 229.76536560058594, "jax32": 229.76548767089844}
+{"group": "state", "steps": 48, "field": "fvec_23", "failed": 0, "max_abs": 0.0001220703125, "max_tolerance_ratio": 0.5626139044761658, "worst_index": [0], "cuda": 215.96983337402344, "jax32": 215.96995544433594}
+{"group": "state", "steps": 48, "field": "fvec_24", "failed": 0, "max_abs": 7.62939453125e-05, "max_tolerance_ratio": 0.37550634145736694, "worst_index": [0], "cuda": 202.17611694335938, "jax32": 202.1761932373047}
+{"group": "state", "steps": 48, "field": "fvec_25", "failed": 0, "max_abs": 0.0001220703125, "max_tolerance_ratio": 0.4252389967441559, "worst_index": [74], "cuda": 286.0627136230469, "jax32": 286.0628356933594}
+{"group": "state", "steps": 48, "field": "fvec_26", "failed": 0, "max_abs": 2.086162567138672e-07, "max_tolerance_ratio": 0.14732785522937775, "worst_index": [0], "cuda": 0.4159999489784241, "jax32": 0.4160001575946808}
+{"group": "state", "steps": 48, "field": "fvec_27", "failed": 0, "max_abs": 0.00018310546875, "max_tolerance_ratio": 0.6806262731552124, "worst_index": [0], "cuda": 268.025146484375, "jax32": 268.02496337890625}
+{"group": "state", "steps": 48, "field": "fvec_28", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.7836402654647827, "jax32": 0.7836402654647827}
+{"group": "state", "steps": 48, "field": "fvec_29", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.7499998211860657, "jax32": 0.7499998211860657}
+{"group": "state", "steps": 48, "field": "fvec_30", "failed": 0, "max_abs": 1.4479155652225018e-08, "max_tolerance_ratio": 0.014476834796369076, "worst_index": [50], "cuda": 0.00016030934057198465, "jax32": 0.00016029486141633242}
+{"group": "state", "steps": 48, "field": "fvec_31", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 1.0, "jax32": 1.0}
+{"group": "state", "steps": 48, "field": "fvec_32", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.800000011920929, "jax32": 0.800000011920929}
+{"group": "state", "steps": 48, "field": "fvec_33", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.05000000074505806, "jax32": 0.05000000074505806}
+{"group": "state", "steps": 48, "field": "fvec_34", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.20000000298023224, "jax32": 0.20000000298023224}
+{"group": "state", "steps": 48, "field": "fvec_35", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.9700000286102295, "jax32": 0.9700000286102295}
+{"group": "state", "steps": 48, "field": "fvec_36", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 120.0, "jax32": 120.0}
+{"group": "state", "steps": 48, "field": "fvec_37", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_38", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 2.0, "jax32": 2.0}
+{"group": "state", "steps": 48, "field": "fvec_39", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.4000000059604645, "jax32": 0.4000000059604645}
+{"group": "state", "steps": 48, "field": "fvec_40", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.05999999865889549, "jax32": 0.05999999865889549}
+{"group": "state", "steps": 48, "field": "fvec_41", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.18000000715255737, "jax32": 0.18000000715255737}
+{"group": "state", "steps": 48, "field": "fvec_42", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 4.999999873689376e-05, "jax32": 4.999999873689376e-05}
+{"group": "state", "steps": 48, "field": "fvec_43", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 4.0, "jax32": 4.0}
+{"group": "state", "steps": 48, "field": "fvec_44", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.8999999761581421, "jax32": 0.8999999761581421}
+{"group": "state", "steps": 48, "field": "fvec_45", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_46", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_47", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_48", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_49", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_50", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_51", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_52", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_53", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_54", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_55", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_56", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_57", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_58", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_59", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_60", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_61", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_62", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_63", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_64", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_65", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_66", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_67", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_68", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+{"group": "state", "steps": 48, "field": "fvec_69", "failed": 0, "max_abs": 0.0, "max_tolerance_ratio": 0.0, "worst_index": [0], "cuda": 0.0, "jax32": 0.0}
+F
+=================================== FAILURES ===================================
+___________________ test_cuda_jax_float32_same_precision[1] ____________________
+
+steps = 1
+
+    @pytest.mark.skipif(shutil.which("nvcc") is None, reason="GPU toolchain required")
+    @pytest.mark.parametrize("steps", [1, 48])
+    def test_cuda_jax_float32_same_precision(steps):
+        """Keep every diagnostic, including closure residual, in the strict gate."""
+        jax.config.update("jax_enable_x64", True)
+        assert jax.default_backend() == "gpu"
+        states, integers, forcing = [], [], []
+        for index in range(1024):
+            kind = index % 4
+            state = ColumnState(
+                soil=default_soil_params(("sand", "loam", "clay")[index % 3]),
+                lai=1.0 + index % 13 / 4,
+                tsoil=np.full(4, 268.0 if kind == 0 else 285.0),
+                swe=0.2 if kind == 0 else (0.008 if kind == 1 else 0.0),
+                snow_t=268.0 if kind == 0 else 273.15,
+                canw=0.0004 if kind == 2 else 0.0,
+            )
+            f, i = column_state_to_vec(state)
+            states.append(f)
+            integers.append(i)
+            tair, sw, lw, rain = ((268., 100., 280., 1e-5), (295., 500., 350., 0.),
+                                (285., 200., 330., 2e-5), (280., 300., 320., 0.))[kind]
+            forcing.append([forcing_to_vec(Forcing(1800., tair, .004, 2., 1e5, sw, lw,
+                                                 rain if step < 12 else 0.))
+                            for step in range(steps)])
+        f = np.asarray(states, np.float32)
+        i = np.asarray(integers, np.int32)
+        u = np.asarray(forcing, np.float32)
+        cuda_result = tuple(cp.asnumpy(value) for value in loader.run_columns_cuda(f, i, u))
+        jax_result = tuple(np.asarray(value) for value in run_columns_jax(f, i, u))
+        assert cuda_result[0].dtype == jax_result[0].dtype == np.float32
+        assert cuda_result[2].dtype == jax_result[2].dtype == np.float32
+        failures = _report(cuda_result[2], jax_result[2], steps=steps,
+                           group="diagnostics", names=DIAGNOSTICS)
+        failures += _report(cuda_result[0], jax_result[0], steps=steps,
+                            group="state", names=[f"fvec_{index}" for index in range(70)])
+        # Print both complete reports before any failure so NumPy or the first
+        # diagnostic cannot hide later component or final-state discrepancies.
+        np.testing.assert_array_equal(cuda_result[1], jax_result[1])
+>       assert not failures, json.dumps(failures, indent=2)
+E       AssertionError: [
+E           {
+E             "group": "diagnostics",
+E             "steps": 1,
+E             "field": "rnet",
+E             "failed": 256,
+E             "max_abs": 1.52587890625e-05,
+E             "max_tolerance_ratio": 1.3351713418960571,
+E             "worst_index": [
+E               0,
+E               0
+E             ],
+E             "cuda": 5.785584926605225,
+E             "jax32": 5.785575866699219
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 1,
+E             "field": "residual",
+E             "failed": 1024,
+E             "max_abs": 4.57763671875e-05,
+E             "max_tolerance_ratio": 45.77077865600586,
+E             "worst_index": [
+E               1,
+E               0
+E             ],
+E             "cuda": -7.62939453125e-05,
+E             "jax32": -0.0001220703125
+E           }
+E         ]
+E       assert not [{'group': 'diagnostics', 'steps': 1, 'field': 'rnet', 'failed': 256, ...}, {'group': 'diagnostics', 'steps': 1, 'field': 'residual', 'failed': 1024, ...}]
+
+tests/test_gpu_float32_parity.py:82: AssertionError
+___________________ test_cuda_jax_float32_same_precision[48] ___________________
+
+steps = 48
+
+    @pytest.mark.skipif(shutil.which("nvcc") is None, reason="GPU toolchain required")
+    @pytest.mark.parametrize("steps", [1, 48])
+    def test_cuda_jax_float32_same_precision(steps):
+        """Keep every diagnostic, including closure residual, in the strict gate."""
+        jax.config.update("jax_enable_x64", True)
+        assert jax.default_backend() == "gpu"
+        states, integers, forcing = [], [], []
+        for index in range(1024):
+            kind = index % 4
+            state = ColumnState(
+                soil=default_soil_params(("sand", "loam", "clay")[index % 3]),
+                lai=1.0 + index % 13 / 4,
+                tsoil=np.full(4, 268.0 if kind == 0 else 285.0),
+                swe=0.2 if kind == 0 else (0.008 if kind == 1 else 0.0),
+                snow_t=268.0 if kind == 0 else 273.15,
+                canw=0.0004 if kind == 2 else 0.0,
+            )
+            f, i = column_state_to_vec(state)
+            states.append(f)
+            integers.append(i)
+            tair, sw, lw, rain = ((268., 100., 280., 1e-5), (295., 500., 350., 0.),
+                                (285., 200., 330., 2e-5), (280., 300., 320., 0.))[kind]
+            forcing.append([forcing_to_vec(Forcing(1800., tair, .004, 2., 1e5, sw, lw,
+                                                 rain if step < 12 else 0.))
+                            for step in range(steps)])
+        f = np.asarray(states, np.float32)
+        i = np.asarray(integers, np.int32)
+        u = np.asarray(forcing, np.float32)
+        cuda_result = tuple(cp.asnumpy(value) for value in loader.run_columns_cuda(f, i, u))
+        jax_result = tuple(np.asarray(value) for value in run_columns_jax(f, i, u))
+        assert cuda_result[0].dtype == jax_result[0].dtype == np.float32
+        assert cuda_result[2].dtype == jax_result[2].dtype == np.float32
+        failures = _report(cuda_result[2], jax_result[2], steps=steps,
+                           group="diagnostics", names=DIAGNOSTICS)
+        failures += _report(cuda_result[0], jax_result[0], steps=steps,
+                            group="state", names=[f"fvec_{index}" for index in range(70)])
+        # Print both complete reports before any failure so NumPy or the first
+        # diagnostic cannot hide later component or final-state discrepancies.
+        np.testing.assert_array_equal(cuda_result[1], jax_result[1])
+>       assert not failures, json.dumps(failures, indent=2)
+E       AssertionError: [
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "rnet",
+E             "failed": 16218,
+E             "max_abs": 0.00098419189453125,
+E             "max_tolerance_ratio": 34.97297668457031,
+E             "worst_index": [
+E               0,
+E               15
+E             ],
+E             "cuda": 2.3539562225341797,
+E             "jax32": 2.3540735244750977
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "h",
+E             "failed": 15357,
+E             "max_abs": 0.002643585205078125,
+E             "max_tolerance_ratio": 687.1270751953125,
+E             "worst_index": [
+E               154,
+E               42
+E             ],
+E             "cuda": 0.3455539047718048,
+E             "jax32": 0.3446299731731415
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "le",
+E             "failed": 4141,
+E             "max_abs": 0.0077667236328125,
+E             "max_tolerance_ratio": 108.01515197753906,
+E             "worst_index": [
+E               130,
+E               20
+E             ],
+E             "cuda": 70.89624786376953,
+E             "jax32": 70.90401458740234
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "g",
+E             "failed": 29756,
+E             "max_abs": 0.00421142578125,
+E             "max_tolerance_ratio": 975.234375,
+E             "worst_index": [
+E               150,
+E               31
+E             ],
+E             "cuda": -0.7340870499610901,
+E             "jax32": -0.7323975563049316
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "et_mm",
+E             "failed": 2640,
+E             "max_abs": 5.591660737991333e-06,
+E             "max_tolerance_ratio": 5.320066928863525,
+E             "worst_index": [
+E               130,
+E               20
+E             ],
+E             "cuda": 0.05104530230164528,
+E             "jax32": 0.05105089396238327
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "runoff_mm",
+E             "failed": 768,
+E             "max_abs": 9.918212890625e-05,
+E             "max_tolerance_ratio": 2.907562494277954,
+E             "worst_index": [
+E               18,
+E               11
+E             ],
+E             "cuda": 7.199970722198486,
+E             "jax32": 7.199946880340576
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "melt_mm",
+E             "failed": 256,
+E             "max_abs": 1.7434358596801758e-06,
+E             "max_tolerance_ratio": 1.4947772026062012,
+E             "worst_index": [
+E               1,
+E               15
+E             ],
+E             "cuda": 0.16635341942310333,
+E             "jax32": 0.16635167598724365
+E           },
+E           {
+E             "group": "diagnostics",
+E             "steps": 48,
+E             "field": "residual",
+E             "failed": 47584,
+E             "max_abs": 0.0036678314208984375,
+E             "max_tolerance_ratio": 3660.341796875,
+E             "worst_index": [
+E               6,
+E               4
+E             ],
+E             "cuda": 0.0016217231750488281,
+E             "jax32": -0.0020461082458496094
+E           },
+E           {
+E             "group": "state",
+E             "steps": 48,
+E             "field": "fvec_1",
+E             "failed": 85,
+E             "max_abs": 0.00067138671875,
+E             "max_tolerance_ratio": 2.495853900909424,
+E             "worst_index": [
+E               4
+E             ],
+E             "cuda": 268.0001220703125,
+E             "jax32": 268.00079345703125
+E           },
+E           {
+E             "group": "state",
+E             "steps": 48,
+E             "field": "fvec_2",
+E             "failed": 13,
+E             "max_abs": 0.0003662109375,
+E             "max_tolerance_ratio": 1.2804821729660034,
+E             "worst_index": [
+E               146
+E             ],
+E             "cuda": 284.9941711425781,
+E             "jax32": 284.9945373535156
+E           },
+E           {
+E             "group": "state",
+E             "steps": 48,
+E             "field": "fvec_3",
+E             "failed": 6,
+E             "max_abs": 0.00030517578125,
+E             "max_tolerance_ratio": 1.0670475959777832,
+E             "worst_index": [
+E               146
+E             ],
+E             "cuda": 284.9998474121094,
+E             "jax32": 285.0001525878906
+E           },
+E           {
+E             "group": "state",
+E             "steps": 48,
+E             "field": "fvec_9",
+E             "failed": 85,
+E             "max_abs": 3.0249357223510742e-06,
+E             "max_tolerance_ratio": 2.822258472442627,
+E             "worst_index": [
+E               4
+E             ],
+E             "cuda": 0.07181686162948608,
+E             "jax32": 0.07181383669376373
+E           }
+E         ]
+E       assert not [{'group': 'diagnostics', 'steps': 48, 'field': 'rnet', 'failed': 16218, ...}, {'group': 'diagnostics', 'steps': 48, '...': 'et_mm', 'failed': 2640, ...}, {'group': 'diagnostics', 'steps': 48, 'field': 'runoff_mm', 'failed': 768, ...}, ...]
+
+tests/test_gpu_float32_parity.py:82: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gpu_float32_parity.py::test_cuda_jax_float32_same_precision[1]
+FAILED tests/test_gpu_float32_parity.py::test_cuda_jax_float32_same_precision[48]
+2 failed in 19.05s

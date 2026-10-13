@@ -18,14 +18,18 @@ __device__ __forceinline__ float safe_den(float x) {
     return fabsf(x) < 1.0e-12f ? copysignf(1.0e-12f, x + 1.0e-20f) : x;
 }
 // 对应普通版: energy.sat_vapor_pressure。
-__device__ __forceinline__ float esat(float t) {
+__device__ __forceinline__ float vapor_exp(float t) {
     float tc = t - TF;
-    return 611.2f * expf(17.67f * tc / (tc + 243.5f));
+    return expf(17.67f * tc / (t + (243.5f-TF)));
+}
+__device__ __forceinline__ float esat(float t) {
+    return 611.2f * vapor_exp(t);
 }
 // 对应普通版: energy.qsat。
 __device__ __forceinline__ float qsat(float t, float ps) {
-    float es = esat(t);
-    return 0.622f * es / fmaxf(1.0f, ps - 0.378f * es);
+    // XLA folds consecutive scalar constants before multiplying exp().
+    float exponent = vapor_exp(t);
+    return (0.622f*611.2f)*exponent / fmaxf(1.0f, ps-(0.378f*611.2f)*exponent);
 }
 // 对应普通版: energy.air_density。
 __device__ __forceinline__ float air_density(const float* u) {
@@ -55,8 +59,10 @@ __device__ float exchange(const float* u, float z0, float ts) {
             float us = 0.4f * wind / dm;
             float cn = fmaxf(1.0e-6f, 0.16f * wind / (dm*dh));
             float h = rho * CP * cn * (ts-u[1]);
+            // Python precomputes KARMAN*GRAVITY before conversion to f32;
+            // match that constant and the ustar**3 multiplication tree.
             float on = fabsf(h) < 1.0e-8f ? 1.0e30f
-                : clip(-rho*CP*u[1]*us*us*us/(0.4f*9.81f*h), -1.0e6f, 1.0e6f);
+                : clip((-rho*CP*u[1])*(us*(us*us))/(3.924f*h), -1.0e6f, 1.0e6f);
             bool next_finite = fabsf(on) < 1.0e29f;
             done = (finite && next_finite && fabsf(on-ob)/fmaxf(1.0f,fabsf(ob)) < 1.0e-4f)
                 || (!finite && !next_finite);
@@ -69,20 +75,24 @@ __device__ float exchange(const float* u, float z0, float ts) {
 __device__ float liquid(float smc, float t, const float* s) {
     float total = fmaxf(0.0f, smc);
     if (t >= TF) return total;
-    float clausius = LF/461.5f * fmaxf(0.0f,TF-t)/(TF*TF);
-    float potential = s[39] * powf(fmaxf(clausius,1.0e-8f)/5.0e-5f, -1.0f/fmaxf(s[43],1.0e-6f));
+    // Match XLA's constant-folded coefficient and reciprocal scale. Keeping
+    // the two constant divisions inside the float32 expression introduces
+    // extra rounding that is amplified by apparent-capacity differencing.
+    constexpr float phase_coefficient=(LF/461.5f)/(TF*TF);
+    float clausius = phase_coefficient*fmaxf(0.0f,TF-t);
+    float potential = s[39] * powf(fmaxf(clausius,1.0e-8f)*20000.0f, -1.0f/fmaxf(s[43],1.0e-6f));
     return fminf(total, potential);
 }
 // 对应普通版: frozen_soil.apparent_heat_capacity。
 __device__ float capacity(float smc, float t, const float* s) {
-    float derivative = (liquid(smc,t+0.02f,s)-liquid(smc,t-0.02f,s))/0.04f;
+    float derivative = (liquid(smc,t+0.02f,s)-liquid(smc,t-0.02f,s))*25.0f;
     return smc*4.18e6f+(1.0f-s[39])*2.0e6f+RW*LF*fmaxf(0.0f,derivative);
 }
 // 对应普通版: soil.thermal_conductivity。
 __device__ float soil_k(float smc, const float* s) {
     float sr = clip(smc/s[39],0.0f,1.0f);
     float ke = sr > 0.1f ? clip(log10f(fmaxf(sr,1.0e-6f))+1.0f,0.0f,1.0f) : 0.0f;
-    return 0.2f+(0.6f+1.6f*s[44]-0.2f)*ke;
+    return 0.2f+((0.6f-0.2f)+1.6f*s[44])*ke;
 }
 // 对应普通版: stress.soil_water_stress。默认Noah水胁迫。
 __device__ float beta(float smc, const float* s) {
@@ -90,30 +100,33 @@ __device__ float beta(float smc, const float* s) {
 }
 // 对应普通版: canopy.ball_berry_rs。默认经验光响应Ball--Berry。
 __device__ float stomata(const float* s, const float* u) {
-    float water = 0.0f;
-    for (int k=0;k<4;++k) water += s[12+k]*beta(s[4+k],s);
+    float weights[4];
+    for (int k=0;k<4;++k) weights[k]=s[12+k]*beta(s[4+k],s);
+    // XLA's four-element reduction pairs lanes 0/2 and 1/3.
+    float water=(weights[0]+weights[2])+(weights[1]+weights[3]);
     water = fmaxf(0.02f,clip(water,0.0f,1.0f));
     float temp = clip(1.0f-0.0016f*(298.0f-u[1])*(298.0f-u[1]),0.05f,1.0f);
     float a = 25.0f*(1.0f-expf(-fmaxf(0.0f,u[5])*2.0f/450.0f))*temp*water;
-    float ea = u[2]*u[4]/(0.622f+0.378f*u[2]);
-    float rh = clip(ea/fmaxf(esat(u[1]),1.0f),0.05f,1.0f);
+    // XLA combines (q*ps / humidity_denominator) / es into one divide.
+    float rh = clip((u[2]*u[4])/((0.622f+0.378f*u[2])*fmaxf(esat(u[1]),1.0f)),0.05f,1.0f);
     float gs = (0.01f+9.0f*a*rh/400.0f)*8.314462618f*u[1]/fmaxf(u[4],1.0f);
     return clip(1.0f/fmaxf(gs,1.0e-6f),s[36],5000.0f);
 }
 // 对应普通版: canopy.penman_monteith。
 __device__ float penman(float rn, const float* u, float ra, float rs) {
-    float es = esat(u[1]), tc = u[1]-TF;
+    float exponent=vapor_exp(u[1]), es=611.2f*exponent;
+    float vapor_denominator=u[1]+(243.5f-TF);
     float ea = u[2]*u[4]/(0.622f+0.378f*u[2]);
-    float slope = es*17.67f*243.5f/((tc+243.5f)*(tc+243.5f));
-    float gamma = CP*u[4]/(0.622f*LV);
+    float slope = (611.2f*17.67f*243.5f)*exponent/(vapor_denominator*vapor_denominator);
+    float gamma = (CP/(0.622f*LV))*u[4];
     float numerator = slope*rn+air_density(u)*CP*fmaxf(0.0f,es-ea)/fmaxf(ra,1.0f);
     return fmaxf(0.0f,numerator/(slope+gamma*(1.0f+rs/fmaxf(ra,1.0f))));
 }
 // 对应普通版: ground_evap.ground_resistance。Opt=4的无雪Sakaguchi--Zeng。
 __device__ float ground_resistance(const float* s) {
     float sat = fmaxf(s[39],1.0e-6f), fraction = fminf(1.0f,clip(s[4],0.0f,sat)/sat);
-    float dry = DZ[0]*(expf((1.0f-fraction)*(1.0f-fraction))-1.0f)/1.718281828459045f;
-    float diff = 2.2e-5f*sat*sat*powf(fmaxf(1.0e-6f,1.0f-s[40]/sat),2.0f+3.0f/fmaxf(s[43],1.0e-6f));
+    float dry = (0.1f*(1.0f/1.718281828459045f))*(expf((1.0f-fraction)*(1.0f-fraction))-1.0f);
+    float diff = 2.2e-5f*(sat*sat)*powf(fmaxf(1.0e-6f,1.0f-s[40]/sat),2.0f+3.0f/fmaxf(s[43],1.0e-6f));
     return fmaxf(1.0e-3f,dry/diff);
 }
 // 对应普通版: soil._thomas。固定4x4追赶法。
@@ -136,10 +149,12 @@ __device__ float snow_flux(const float* s, float ts) {
 // 对应普通版: snow.add_snowfall/compact_snow。三层mask；默认压实Opt=2。
 __device__ void snowfall(float* s, int* count, float amount, const float* u) {
     if (amount > 0.0f) {
-        float total=amount, weighted_t=amount*u[1], weighted_d=amount*100.0f;
+        // Match _add_snowfall: reduce the old layers before adding new snow.
+        float total=0.0f, weighted_t=0.0f, weighted_d=0.0f;
         for (int k=0;k<*count;++k) {
             total+=s[16+k]; weighted_t+=s[16+k]*s[19+k]; weighted_d+=s[16+k]*s[22+k];
         }
+        total+=amount; weighted_t+=amount*u[1]; weighted_d+=amount*100.0f;
         *count = total <= 0.05f ? 1 : (total <= 0.15f ? 2 : 3);
         for (int k=0;k<3;++k) {
             s[16+k]=k<*count ? total/(*count) : 0.0f;
@@ -194,17 +209,20 @@ __device__ Energy energy(float ts, const float* s, const float* u, bool snow, fl
     Energy e;
     float emiss=snow ? 0.99f : s[35], albedo=snow ? s[28] : s[34];
     float t2=ts*ts, ce=exchange(u,s[33],ts), rho=air_density(u);
-    e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*t2*t2);
+    // jax_core uses SIGMA * ts**4: square twice before scaling, so the
+    // float32 rounding tree does not depend on left-associated products.
+    e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*(t2*t2));
     e.h=rho*CP*ce*(ts-u[1]); e.ecan=0.0f; e.esoil=0.0f; e.le=0.0f;
-    if (snow) e.g=snow_flux(s,ts);
+    if (snow) { e.g=snow_flux(s,ts); e.residual=e.rn-e.h-e.g; }
     else {
         float dq=qsat(ts,u[4])-u[2], ra=1.0f/fmaxf(ce,1.0e-6f);
         float eg=fminf(beta(s[4],s)*rho*LV*fmaxf(0.0f,dq)/(ra+ground_resistance(s)),s[4]*DZ[0]*LV*RW/u[0]);
         float ec=fminf(rho*LV*ce*dq*fminf(1.0f,s[30]/fmaxf(1.0e-9f,0.2f*0.5e-3f*s[31])),s[30]*LV*RW/u[0]);
         e.esoil=eg/LV*u[0]/RW; e.ecan=ec/LV*u[0]/RW;
         e.le=eg+ec+transp; e.g=soil_k(s[4],s)*(ts-s[0])/(0.5f*DZ[0]);
+        // Match the reference/JAX root function's ordered subtractions.
+        e.residual=e.rn-e.h-eg-ec-transp-e.g;
     }
-    e.residual=e.rn-e.h-e.le-e.g;
     return e;
 }
 // 对应普通版: energy.secant_solve。固定25次割线，失败时扫描/二分回退。
@@ -288,7 +306,7 @@ __device__ void step(float* s, int* count, const float* u, float* diag) {
     float add=fminf(rain,fmaxf(0.0f,canmax-s[30])); s[30]+=add;
     float through=rain-add;
     snowfall(s,count,snow,u);
-    float t2=u[1]*u[1], rncan=s[32]*((1.0f-s[34])*u[5]+s[35]*(u[6]-SIGMA*t2*t2));
+    float t2=u[1]*u[1], rncan=s[32]*((1.0f-s[34])*u[5]+s[35]*(u[6]-SIGMA*(t2*t2)));
     float tr=penman(fmaxf(0.0f,rncan),u,1.0f/fmaxf(exchange(u,s[33],u[1]),1.0e-6f),stomata(s,u));
     tr*=1.0f-fminf(1.0f,s[26]/0.02f);
     float available=0.0f;

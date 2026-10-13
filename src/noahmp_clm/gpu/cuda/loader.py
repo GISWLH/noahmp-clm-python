@@ -35,7 +35,9 @@ def load_column_kernel() -> cp.RawKernel:
     _require_cupy()
     module = cp.RawModule(
         code=KERNEL_SOURCE,
-        options=("--std=c++14",),
+        # J2 probes match XLA GPU's separate multiply/add and approximate
+        # divide lowering; keep the same arithmetic in NVRTC and nvcc builds.
+        options=("--std=c++14", "--fmad=false", "--prec-div=false"),
         name_expressions=("step_columns",),
     )
     return module.get_function("step_columns")
@@ -113,7 +115,9 @@ def run_columns_cuda(fvecs, ivecs, forcings):
         u = cp.broadcast_to(u, (n, *u.shape))
     if u.ndim != 3 or u.shape[0] != n or u.shape[2] != 8:
         raise ValueError("强迫形状必须是(T,8)或(N,T,8)")
-    state, options = cp.ascontiguousarray(f.T), cp.ascontiguousarray(i.T)
+    # Own both ping-pong buffers even for N=1, where a transpose can already
+    # be contiguous and ascontiguousarray would alias the caller's input.
+    state, options = f.T.copy(order="C"), i.T.copy(order="C")
     _check_options(options)
     forcing_soa = cp.ascontiguousarray(u.transpose(1, 2, 0))
     state_out, options_out = cp.empty_like(state), cp.empty_like(options)
