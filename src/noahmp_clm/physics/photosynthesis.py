@@ -62,6 +62,11 @@ def farquhar_rates(ci_ppm, absorbed_par, leaf_temperature, parameters=None, *, n
     if np.any((ci < 0) | (par < 0) | (temperature < 200) | (temperature > 350)
               | (nitrogen < 0) | (nitrogen > 1)):
         raise ValueError("Unphysical photosynthesis input")
+    return _rates_at_ci(ci, _biochemical_coefficients(par, temperature, nitrogen, p))
+
+
+def _biochemical_coefficients(par, temperature, nitrogen, p):
+    """Coefficients fixed during the ci root solve; inputs validated by caller."""
     growth_c = np.clip(p.growth_temperature - 273.15, 11.0, 35.0)
     vc_factor = _peaked(temperature, 72000., 200000., 668.39 - 1.07 * growth_c)
     vcmax = p.vcmax25 * nitrogen * vc_factor
@@ -77,10 +82,15 @@ def farquhar_rates(ci_ppm, absorbed_par, leaf_temperature, parameters=None, *, n
     denominator = total + np.sqrt(disc)
     electron_transport = np.divide(2.0 * light * jmax, denominator,
         out=np.zeros_like(denominator), where=denominator > 0.0)
+    return vcmax, kc*(1.+p.oxygen_ppm/ko), gamma, 3.*tpu, rd, electron_transport
+
+
+def _rates_at_ci(ci, coefficients):
+    vcmax, michaelis, gamma, tpu, rd, electron_transport = coefficients
     carbon = np.maximum(ci - gamma, 0.0)
-    rubisco = vcmax * carbon / (ci + kc * (1.0 + p.oxygen_ppm / ko))
+    rubisco = vcmax * carbon / (ci + michaelis)
     rubp = electron_transport * carbon / (4.0 * ci + 8.0 * gamma)
-    product = 3.0 * tpu + np.zeros_like(ci)
+    product = tpu + np.zeros_like(ci)
     gross = np.minimum(np.minimum(rubisco, rubp), product)
     return {"gross": gross, "net": gross-rd, "rubisco": rubisco,
             "rubp": rubp, "tpu": product, "respiration": rd, "electron_transport": electron_transport}
@@ -101,6 +111,10 @@ def ball_berry_conductance(net_assimilation, surface_co2_ppm, relative_humidity,
         raise ValueError("Nonfinite gas-exchange input")
     if np.any((cs <= 0) | (gb <= 0) | (rh < 0) | (stress < 0) | (stress > 1)):
         raise ValueError("Unphysical gas-exchange input")
+    return _ball_berry(a,cs,rh,gb,stress,p)
+
+
+def _ball_berry(a,cs,rh,gb,stress,p):
     x = p.ball_berry_slope * np.maximum(a, 0.0) * stress / cs
     b = gb - p.minimum_conductance - x
     c = gb * (p.minimum_conductance + x * np.minimum(rh, 1.0))
@@ -119,19 +133,24 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
     Return the actual diffusion residual, not a convergence flag alone.
     """
     p = parameters or LeafParameters()
-    par, temp, ca, rh, gb = np.broadcast_arrays(np.asarray(absorbed_par, float),
+    par, temp, ca, rh, gb, nitrogen, stress = np.broadcast_arrays(np.asarray(absorbed_par, float),
         np.asarray(leaf_temperature, float), np.asarray(co2_ppm, float),
-        np.asarray(relative_humidity, float), np.asarray(boundary_conductance, float))
-    if np.any(ca <= 0) or np.any(gb <= 0):
-        raise ValueError("CO2 and boundary conductance must be positive")
-    rd = farquhar_rates(ca, par, temp, p, nitrogen_factor=nitrogen_factor)["respiration"]
+        np.asarray(relative_humidity, float), np.asarray(boundary_conductance, float),
+        np.asarray(nitrogen_factor,float),np.asarray(water_stress,float))
+    if not all(np.all(np.isfinite(x)) for x in (par,temp,ca,rh,gb,nitrogen,stress)):
+        raise ValueError("Nonfinite leaf input")
+    if np.any((par<0)|(temp<200)|(temp>350)|(ca<=0)|(rh<0)|(gb<=0)
+              |(nitrogen<0)|(nitrogen>1)|(stress<0)|(stress>1)):
+        raise ValueError("Unphysical leaf input")
+    coefficients = _biochemical_coefficients(par,temp,nitrogen,p)
+    rd = coefficients[4]
     lo = np.zeros_like(ca)
     hi = ca + rd * (1.4 / gb + 1.6 / p.minimum_conductance) + 1.0
 
     def evaluate(ci):
-        rates = farquhar_rates(ci, par, temp, p, nitrogen_factor=nitrogen_factor)
+        rates = _rates_at_ci(ci,coefficients)
         cs = np.maximum(ca - 1.4 * rates["net"] / gb, 1e-9)
-        gs = ball_berry_conductance(rates["net"], cs, rh, gb, p, water_stress=water_stress)
+        gs = _ball_berry(rates["net"],cs,rh,gb,stress,p)
         residual = rates["net"] - (ca-ci) / (1.4/gb + 1.6/gs)
         return rates, cs, gs, residual
 

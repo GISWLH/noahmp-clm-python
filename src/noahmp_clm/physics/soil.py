@@ -125,7 +125,7 @@ def enforce_cap(smc: np.ndarray, dz: np.ndarray, smcmax: float) -> float:
 
 
 def step_soil_water(state: ColumnState, dt: float, infil_m: float,
-                    transp_m: float, esoil_m: float) -> dict:
+                    transp_m: float, esoil_m: float, *, root_uptake_m=None) -> dict:
     """土壤水分更新（m 为单位的水量）。返回分量诊断。
 
     顺序：入渗 → 蒸腾/土壤蒸发提取 → 重力排水。处处保证质量守恒。
@@ -140,14 +140,29 @@ def step_soil_water(state: ColumnState, dt: float, infil_m: float,
 
     # 蒸腾按根系权重从各层提取（不低于萎蔫点）
     transp_taken = 0.0
-    for i in range(n):
-        avail = max(0.0, smc[i] - p.smcwlt) * dz[i]
-        want = transp_m * state.root_frac[i]
-        take = min(want, avail)
-        smc[i] -= take / dz[i]
-        transp_taken += take
+    if root_uptake_m is None:
+        for i in range(n):
+            avail = max(0.0, smc[i] - p.smcwlt) * dz[i]
+            want = transp_m * state.root_frac[i]
+            take = min(want, avail)
+            smc[i] -= take / dz[i]
+            transp_taken += take
+    else:
+        # The multilayer energy solver has already shared the same liquid
+        # reservoir between roots and evaporation. Never silently reduce this
+        # request afterwards: that would decouple latent heat from water loss.
+        requested = np.asarray(root_uptake_m,float)
+        available = np.maximum(smc-state.soil_ice-p.smcwlt,0.)*dz
+        if (requested.shape != (n,) or not np.all(np.isfinite(requested))
+                or np.any(requested<0.) or np.any(requested>available+1e-12)
+                or abs(requested.sum()-transp_m)>1e-12):
+            raise ValueError("Root withdrawal disagrees with the energy/water supply budget")
+        smc -= requested/dz
+        transp_taken = float(requested.sum())
     # 土壤蒸发只从表层提取（可至 0）
-    avail0 = smc[0] * dz[0]
+    avail0 = (smc[0] if root_uptake_m is None else max(0.,smc[0]-state.soil_ice[0]))*dz[0]
+    if root_uptake_m is not None and esoil_m > avail0+1e-12:
+        raise ValueError("Ground evaporation exceeds the energy/water supply budget")
     esoil_taken = min(esoil_m, avail0)
     smc[0] -= esoil_taken / dz[0]
 
