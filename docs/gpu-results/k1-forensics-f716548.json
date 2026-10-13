@@ -1,0 +1,818 @@
+{
+  "utc": "2026-10-13T08:11:43.244938+00:00",
+  "device": "NVIDIA GeForce RTX 4090",
+  "N": 1024,
+  "steps": 48,
+  "unique_inputs": 156,
+  "replay_bitwise_equal": true,
+  "strict_tolerance": {
+    "rtol": 0.0001,
+    "atol": 1e-06
+  },
+  "residual_002_count": 569,
+  "max_abs_residual_difference": 0.0025070868802805624,
+  "residual_002_regime": {
+    "rain": 569
+  },
+  "residual_002_soil": {
+    "clay": 151,
+    "sand": 207,
+    "loam": 211
+  },
+  "residual_002_unique_column_steps": 88,
+  "histogram": {
+    "edges_W_m2": [
+      "0",
+      "0.00025",
+      "0.0005",
+      "0.001",
+      "0.0015",
+      "0.002",
+      "0.00225",
+      "0.0025",
+      "0.003",
+      "inf"
+    ],
+    "counts": [
+      25508,
+      11508,
+      8762,
+      1885,
+      920,
+      234,
+      328,
+      7,
+      0
+    ]
+  },
+  "clusters": [
+    {
+      "diagnostic": "ts",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 1.5849551971314213e-05
+    },
+    {
+      "diagnostic": "ts",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.00015617044209648157
+    },
+    {
+      "diagnostic": "ts",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.00020772868879248563
+    },
+    {
+      "diagnostic": "ts",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 5.209203027334297e-05
+    },
+    {
+      "diagnostic": "rnet",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.00010431044748138163
+    },
+    {
+      "diagnostic": "rnet",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0008651082509913977
+    },
+    {
+      "diagnostic": "rnet",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0010714897072148233
+    },
+    {
+      "diagnostic": "rnet",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0002963199834198349
+    },
+    {
+      "diagnostic": "h",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0002116543978019081
+    },
+    {
+      "diagnostic": "h",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 426,
+      "max_abs": 0.001329719972900989
+    },
+    {
+      "diagnostic": "h",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 779,
+      "max_abs": 0.00288770996388088
+    },
+    {
+      "diagnostic": "h",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0024396052272948054
+    },
+    {
+      "diagnostic": "le",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "le",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0001936228388501604
+    },
+    {
+      "diagnostic": "le",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 6,
+      "max_abs": 0.007383211287461222
+    },
+    {
+      "diagnostic": "le",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 8.664597297070031e-05
+    },
+    {
+      "diagnostic": "g",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 10240,
+      "max_abs": 8.943669543648447e-05
+    },
+    {
+      "diagnostic": "g",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0017938975180129546
+    },
+    {
+      "diagnostic": "g",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 5208,
+      "max_abs": 0.0038673531185082766
+    },
+    {
+      "diagnostic": "g",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 2648,
+      "max_abs": 0.001598399450536192
+    },
+    {
+      "diagnostic": "et_mm",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "et_mm",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 1.486272550449419e-07
+    },
+    {
+      "diagnostic": "et_mm",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 5.320132740918582e-06
+    },
+    {
+      "diagnostic": "et_mm",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 6.218548564626558e-08
+    },
+    {
+      "diagnostic": "prcp_mm",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 4.547182470560074e-07
+    },
+    {
+      "diagnostic": "prcp_mm",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "prcp_mm",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 9.094364941120148e-07
+    },
+    {
+      "diagnostic": "prcp_mm",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "runoff_mm",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "runoff_mm",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "runoff_mm",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.00018672354937621094
+    },
+    {
+      "diagnostic": "runoff_mm",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "melt_mm",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "melt_mm",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 2.2321936603564296e-06
+    },
+    {
+      "diagnostic": "melt_mm",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "melt_mm",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "swe",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 1.6007106756754652e-07
+    },
+    {
+      "diagnostic": "swe",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 3.909576956444283e-09
+    },
+    {
+      "diagnostic": "swe",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "swe",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "canw",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "canw",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "canw",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 2.685018164240178e-08
+    },
+    {
+      "diagnostic": "canw",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 0,
+      "max_abs": 0.0
+    },
+    {
+      "diagnostic": "residual",
+      "regime": "cold_snow",
+      "population": 12288,
+      "strict_failed": 12288,
+      "max_abs": 0.0002836064837309915
+    },
+    {
+      "diagnostic": "residual",
+      "regime": "melting",
+      "population": 12288,
+      "strict_failed": 12288,
+      "max_abs": 0.0009919432686302798
+    },
+    {
+      "diagnostic": "residual",
+      "regime": "rain",
+      "population": 12288,
+      "strict_failed": 12281,
+      "max_abs": 0.0025070868802805624
+    },
+    {
+      "diagnostic": "residual",
+      "regime": "dry",
+      "population": 12288,
+      "strict_failed": 12288,
+      "max_abs": 0.0007765026418979915
+    }
+  ],
+  "flags": [
+    {
+      "flag": "snow_present",
+      "population": 16384,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 10240,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 16384
+      }
+    },
+    {
+      "flag": "snow_onset_or_loss",
+      "population": 256,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 256
+      }
+    },
+    {
+      "flag": "melting",
+      "population": 4096,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 4096
+      }
+    },
+    {
+      "flag": "frozen_soil",
+      "population": 12032,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 10240,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 12032
+      }
+    },
+    {
+      "flag": "temperature_crosses_freezing",
+      "population": 0,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 0
+      }
+    },
+    {
+      "flag": "soil_ice_changes",
+      "population": 256,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 256
+      }
+    },
+    {
+      "flag": "near_wilting",
+      "population": 0,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 0
+      }
+    },
+    {
+      "flag": "wilting_crossing",
+      "population": 0,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 0
+      }
+    },
+    {
+      "flag": "near_zero_h",
+      "population": 4181,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 0,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 4181
+      }
+    },
+    {
+      "flag": "near_zero_le",
+      "population": 16384,
+      "residual_002_count": 0,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 0,
+        "le": 0,
+        "g": 10240,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 16384
+      }
+    },
+    {
+      "flag": "near_zero_g",
+      "population": 4641,
+      "residual_002_count": 7,
+      "strict_by_diagnostic": {
+        "ts": 0,
+        "rnet": 0,
+        "h": 6,
+        "le": 0,
+        "g": 2849,
+        "et_mm": 0,
+        "prcp_mm": 0,
+        "runoff_mm": 0,
+        "melt_mm": 0,
+        "swe": 0,
+        "canw": 0,
+        "residual": 4641
+      }
+    }
+  ],
+  "steps_histogram": [
+    {
+      "step_1based": 1,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 2,
+      "residual_002_count": 14
+    },
+    {
+      "step_1based": 3,
+      "residual_002_count": 27
+    },
+    {
+      "step_1based": 4,
+      "residual_002_count": 13
+    },
+    {
+      "step_1based": 5,
+      "residual_002_count": 14
+    },
+    {
+      "step_1based": 6,
+      "residual_002_count": 12
+    },
+    {
+      "step_1based": 7,
+      "residual_002_count": 13
+    },
+    {
+      "step_1based": 8,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 9,
+      "residual_002_count": 6
+    },
+    {
+      "step_1based": 10,
+      "residual_002_count": 46
+    },
+    {
+      "step_1based": 11,
+      "residual_002_count": 7
+    },
+    {
+      "step_1based": 12,
+      "residual_002_count": 45
+    },
+    {
+      "step_1based": 13,
+      "residual_002_count": 60
+    },
+    {
+      "step_1based": 14,
+      "residual_002_count": 50
+    },
+    {
+      "step_1based": 15,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 16,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 17,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 18,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 19,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 20,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 21,
+      "residual_002_count": 50
+    },
+    {
+      "step_1based": 22,
+      "residual_002_count": 38
+    },
+    {
+      "step_1based": 23,
+      "residual_002_count": 6
+    },
+    {
+      "step_1based": 24,
+      "residual_002_count": 52
+    },
+    {
+      "step_1based": 25,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 26,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 27,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 28,
+      "residual_002_count": 25
+    },
+    {
+      "step_1based": 29,
+      "residual_002_count": 31
+    },
+    {
+      "step_1based": 30,
+      "residual_002_count": 47
+    },
+    {
+      "step_1based": 31,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 32,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 33,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 34,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 35,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 36,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 37,
+      "residual_002_count": 6
+    },
+    {
+      "step_1based": 38,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 39,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 40,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 41,
+      "residual_002_count": 7
+    },
+    {
+      "step_1based": 42,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 43,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 44,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 45,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 46,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 47,
+      "residual_002_count": 0
+    },
+    {
+      "step_1based": 48,
+      "residual_002_count": 0
+    }
+  ],
+  "source_sha256": {
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "421631170b9ef081871336d2feacbeeef590ba9b63e709c1828c713b3a40cb5c",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/jax_core.py": "c78ddf49a75eb214afe3e79c766239e7ab521d12b4a9914610e023a2c69c4f6e",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "cb62a942c1a0e769835adafc25b5be49bc66db46496e80f1603fc0cba028a9cd",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "4096aa72eb998aa58f4048d0bdbe877d9b380b4f5066754a347311dcd971f8ab",
+    "benchmarks/forensic_gpu_residual.py": "60f93572008dd8a9d16b61284f22ab5d90c29f2173fe326209f2cfbd74e2730c"
+  },
+  "input_sha256": "b67476b7d4e1ad305669bc0b6612066f8a50b6773bb966910ec5212dbd80ff5b"
+}

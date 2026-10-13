@@ -1,0 +1,215 @@
+{
+  "source_sha256": "7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454",
+  "device": "NVIDIA GeForce RTX 4090",
+  "precision": "float64 F and secant; float32 bulk and unchanged ABI",
+  "variants": {
+    "baseline": {
+      "generated_source_sha256": "7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454",
+      "residual_002_count": 569,
+      "residual_abs_max": 0.0024843215942382812,
+      "state_failed": 0,
+      "integer_equal": true,
+      "diagnostics": {
+        "ts": {
+          "max_abs": 0.00020772868879248563,
+          "strict_failed": 0
+        },
+        "rnet": {
+          "max_abs": 0.0010714897072148233,
+          "strict_failed": 0
+        },
+        "h": {
+          "max_abs": 0.00288770996388088,
+          "strict_failed": 1205
+        },
+        "le": {
+          "max_abs": 0.007383211287461222,
+          "strict_failed": 6
+        },
+        "g": {
+          "max_abs": 0.0038673531185082766,
+          "strict_failed": 18096
+        },
+        "et_mm": {
+          "max_abs": 5.320132740918582e-06,
+          "strict_failed": 0
+        },
+        "prcp_mm": {
+          "max_abs": 9.094364941120148e-07,
+          "strict_failed": 0
+        },
+        "runoff_mm": {
+          "max_abs": 0.00018672354937621094,
+          "strict_failed": 0
+        },
+        "melt_mm": {
+          "max_abs": 2.2321936603564296e-06,
+          "strict_failed": 0
+        },
+        "swe": {
+          "max_abs": 1.6007106756754652e-07,
+          "strict_failed": 0
+        },
+        "canw": {
+          "max_abs": 2.685018164240178e-08,
+          "strict_failed": 0
+        },
+        "residual": {
+          "max_abs": 0.0025070868802805624,
+          "strict_failed": 49145
+        }
+      }
+    },
+    "double_root_rounded_before_F": {
+      "generated_source_sha256": "56f007bf138271cf693e857c7b4365e380e431d1c8fcbe40481089b899aea0e9",
+      "residual_002_count": 7,
+      "residual_abs_max": 0.002105712890625,
+      "state_failed": 0,
+      "integer_equal": true,
+      "diagnostics": {
+        "ts": {
+          "max_abs": 0.00019712212491640457,
+          "strict_failed": 0
+        },
+        "rnet": {
+          "max_abs": 0.0010331578222633198,
+          "strict_failed": 0
+        },
+        "h": {
+          "max_abs": 0.0028033462920760144,
+          "strict_failed": 1190
+        },
+        "le": {
+          "max_abs": 0.004553942194860383,
+          "strict_failed": 0
+        },
+        "g": {
+          "max_abs": 0.0024387718627520982,
+          "strict_failed": 18028
+        },
+        "et_mm": {
+          "max_abs": 3.278510351686914e-06,
+          "strict_failed": 0
+        },
+        "prcp_mm": {
+          "max_abs": 9.094364941120148e-07,
+          "strict_failed": 0
+        },
+        "runoff_mm": {
+          "max_abs": 0.00018672354937621094,
+          "strict_failed": 0
+        },
+        "melt_mm": {
+          "max_abs": 2.2321936603564296e-06,
+          "strict_failed": 0
+        },
+        "swe": {
+          "max_abs": 1.6007106756754652e-07,
+          "strict_failed": 0
+        },
+        "canw": {
+          "max_abs": 2.9027933184867967e-08,
+          "strict_failed": 0
+        },
+        "residual": {
+          "max_abs": 0.0021085614862723645,
+          "strict_failed": 49145
+        }
+      }
+    },
+    "mixed": {
+      "generated_source_sha256": "20462030caec3311471f324ae55f165133808f98a9389f2d913daf62e76e6137",
+      "residual_002_count": 0,
+      "residual_abs_max": 0.000990535132586956,
+      "state_failed": 0,
+      "integer_equal": true,
+      "diagnostics": {
+        "ts": {
+          "max_abs": 0.00016662980982573572,
+          "strict_failed": 0
+        },
+        "rnet": {
+          "max_abs": 0.0008430779716945835,
+          "strict_failed": 0
+        },
+        "h": {
+          "max_abs": 0.0022678788400725125,
+          "strict_failed": 1192
+        },
+        "le": {
+          "max_abs": 0.004682405623398722,
+          "strict_failed": 0
+        },
+        "g": {
+          "max_abs": 0.002306552014665897,
+          "strict_failed": 18103
+        },
+        "et_mm": {
+          "max_abs": 3.3792564954199245e-06,
+          "strict_failed": 0
+        },
+        "prcp_mm": {
+          "max_abs": 9.094364941120148e-07,
+          "strict_failed": 0
+        },
+        "runoff_mm": {
+          "max_abs": 0.00018672354937621094,
+          "strict_failed": 0
+        },
+        "melt_mm": {
+          "max_abs": 1.3142827037793126e-06,
+          "strict_failed": 0
+        },
+        "swe": {
+          "max_abs": 1.6007106756754652e-07,
+          "strict_failed": 0
+        },
+        "canw": {
+          "max_abs": 1.5133980911616763e-08,
+          "strict_failed": 0
+        },
+        "residual": {
+          "max_abs": 7.883364742156118e-05,
+          "strict_failed": 137
+        }
+      }
+    }
+  },
+  "timing": {
+    "baseline": {
+      "n": 100000,
+      "steps": 48,
+      "warmups": [
+        1.8056284487247467,
+        1.5517155081033707,
+        1.5019193664193153
+      ],
+      "samples": [
+        1.4925668835639954,
+        1.3503108695149422,
+        1.1866972669959068
+      ],
+      "median": 1.3503108695149422,
+      "includes_host_input_output": true,
+      "full_output_bitwise_equal": true
+    },
+    "mixed": {
+      "n": 100000,
+      "steps": 48,
+      "warmups": [
+        2.2438563108444214,
+        1.1493137180805206,
+        1.2690919041633606
+      ],
+      "samples": [
+        1.6370621621608734,
+        1.8795353844761848,
+        1.6703621670603752
+      ],
+      "median": 1.6703621670603752,
+      "includes_host_input_output": true,
+      "full_output_bitwise_equal": true
+    }
+  },
+  "overhead_fraction": 0.23702045563804264
+}
