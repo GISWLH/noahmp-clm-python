@@ -1,4 +1,20 @@
-# K6：真实 FLUXNET2015 数据就绪与 Phase 4 计划
+# FLUXNET：M4 有界检验与 Phase 4 计划
+
+本轮 M4 使用 NAS `processed/site_csv/` 的 CN-Cng、CN-HaM、CN-Qia、CN-Cha
+四站各 30 天，不校准、不调参。完整输入来源、QC、逐步轨迹、JAX64 parity、
+M2 分档和 LE/H 观测指标集中在 [REAL_DATA_CHECKS.md](REAL_DATA_CHECKS.md)，
+可复现入口为 [examples/fluxnet_multisite.py](../examples/fluxnet_multisite.py)。
+CN-HaM 的 LE 无 QC=0 样本，明确报告 n=0；其余三站可计算 LE/H 指标。
+ERA5 路径可达但缺下行辐射/总降水，且实际为日均文件，模型对照记“未测”。
+
+Wang 已预先定义 [M2 收尾验收标准](GPU_CLOSEOUT_CRITERIA.md)，它是本轮合并判断的
+口径；以下 K6 数据及原严格门结论保留为历史，不能把旧源码的单站结果冒称为 M4 复测。
+M4 实际结果为：JAX64 parity 与同精度门通过，但 x32/CUDA canw 合格率
+99.114583% 低于 99.5%（CN-Cha 单站 97.083333%），所以 **M4 未通过**。
+全部 51 项已归因于近空冠层的干燥/耗尽相对敏感性，仍不改变硬门或删除站点。
+完整物理验证仍属于下方 Phase 4 独立工作。
+
+## K6 历史单站记录
 
 本任务只建立真实强迫读取、30 天连续运行、后端 parity 和观测指标报告。
 **未率定、未完成物理验证；不替代 K1–K3，不改变原 H4 容差或合并条件。**
@@ -152,4 +168,5 @@ env -u LD_LIBRARY_PATH PYTHONPATH=src CUDA_VISIBLE_DEVICES=1 \
    记录结构误差，不能通过参数拟合掩盖 K1–K3 数值错误。本轮没有执行校准。
 5. **GPU 角色。** 用通过 parity/可靠性验收的 GPU 加速多站、多年和参数集合，
    每次重要图/精度变更保留 NumPy64 子集对照及源码/输入 hash。GPU 加速不是观测
-   验证证据；K1–K3 与全量测试未全绿前继续留在 `gpu/migration`。
+   验证证据。本轮收尾按 Wang 预注册的 M2 门评估；原 H4/K1/K3 红灯及已知限制
+   保留，未来 Phase 4 不用调参掩盖后端数值差异。

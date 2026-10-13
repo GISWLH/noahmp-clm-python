@@ -1,0 +1,7 @@
+{
+  "automated_checks_passed": false,
+  "acceptance_status": "failed_numeric_gate",
+  "report_sha256": "fb01979d9d518653a90a70e6ddb2b367136a822f4eba73bfde2bde0ec3595dc1",
+  "analysis_script_sha256": "5aabb822b265753a898c70938ccd122e3a32a967745479119f602d5ce244e8d3",
+  "note": "Preserves original completed-run report. After observing failed canw M2 values, CLI exit handling was corrected to enforce the existing numerical gates. This sidecar applies that same function to the saved report; no physics or tolerance changed and no output recomputed."
+}
