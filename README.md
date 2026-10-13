@@ -8,6 +8,10 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 瞬时通量 r >0.85、近零绝对容差、收支守恒独立硬要求。旧 H4/K3/M4 门已退役，
 下述 v0.2.0 数字是保留的历史记录，不是本阶段合并条件。
 
+开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
+[单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
+组件；后两者尚未接入柱驱动，单叶实测曲线也仍有未达标项。
+
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
 四站真实数据同量化输入 canw 通过率99.2014%，仍未达到原99.5%门；
@@ -28,7 +32,8 @@ Wang明确接受这项已量化差异，见[验收记录](docs/GPU_ACCEPTANCE.md
 - 方程与算法流程参考：
   - Noah-MP v5.0（NCAR/noahmp，现代 Fortran 重构版；He et al., 2023, GMD）
   - CLM5 / CTSM（ESCOMP/CTSM，BSD-3-Clause；Lawrence et al., 2019）
-- 上游许可归上游，本仓库新增代码采用 MIT 许可。
+- 上游许可归上游，本仓库新增代码采用 MIT 许可；Leafweb实验数据采用其
+  单独的CC-BY-4.0许可和[来源说明](docs/CLM_PHOTOSYNTHESIS.md)。
 
 ## 阶段 1 实现了什么
 

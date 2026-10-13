@@ -9,7 +9,7 @@ authors = [{ name = "GISWLH" }]
 dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]
-dev = ["pytest>=7"]
+dev = ["pytest>=7", "scipy>=1.10"]
 gpu = ["jax[cpu]"]
 
 [build-system]
@@ -18,6 +18,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"noahmp_clm.gpu.cuda" = ["*.cu"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

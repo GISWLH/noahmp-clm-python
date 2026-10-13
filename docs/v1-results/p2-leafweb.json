@@ -1,0 +1,522 @@
+{
+  "doi": "https://doi.org/10.25581/ornlsfa.027/1887896",
+  "data_url": "https://data.ess-dive.lbl.gov/catalog/d1/mn/v2/object/ess-dive-44175486264e001-20250917T161101540122",
+  "sha256": "936cff54c647e84bb4fc59e380c6d234888f8e47722635b00d24e55068c83cd5",
+  "license": "CC-BY-4.0",
+  "incident_par_absorptance_assumption": 0.84,
+  "scope": "Exploratory biochemical cross-curve evaluation at measured ci; not a stomatal test or blind holdout",
+  "near_zero_definition": "abs(observed net assimilation) <= 1 micromol/m2/s",
+  "near_zero_absolute_tolerance": 0.5,
+  "light_curve_acceptance": "NRMSE (RMSE/mean observed net rate) <= 10%; report bias and r separately",
+  "files": [
+    {
+      "file": "Dichanthelium_clandestinum1.csv",
+      "calibration_n": 13,
+      "validation_n": 13,
+      "parameters": {
+        "vcmax25": 158.65803058191463,
+        "jmax25": 78.11329797702902,
+        "tpu25": 10.0,
+        "respiration25": 0.21900146616241395,
+        "quantum_yield_psii": 0.7647562018819504,
+        "curvature": 0.7,
+        "ball_berry_slope": 9.0,
+        "minimum_conductance": 0.01,
+        "growth_temperature": 298.15,
+        "oxygen_ppm": 210000.0
+      },
+      "calibration_rmse": 1.211760355234799,
+      "calibration_jacobian_rank": 1,
+      "identifiability_note": "A rank below 3 means some fitted capacities are not independently constrained",
+      "status": "fail",
+      "mean_bias": -0.34343764608553684,
+      "relative_mean_bias": -0.047093181169028636,
+      "rmse": 1.4991762416044916,
+      "normalized_rmse": 0.20557146007400667,
+      "r": 0.956252424052045,
+      "near_zero_max_abs": 0.16862733000478825,
+      "pointwise_relative_failures": 10,
+      "near_zero_failures": 0,
+      "light_rows": [
+        {
+          "ci_ppm": 172.1363,
+          "incident_par": 1999.7,
+          "leaf_c": 24.58,
+          "observed_net": 10.84432,
+          "predicted_net": 9.11898332763082
+        },
+        {
+          "ci_ppm": 169.7239,
+          "incident_par": 1798.9,
+          "leaf_c": 24.58,
+          "observed_net": 10.79137,
+          "predicted_net": 8.991570865714117
+        },
+        {
+          "ci_ppm": 166.9191,
+          "incident_par": 1500.8,
+          "leaf_c": 24.57,
+          "observed_net": 10.79449,
+          "predicted_net": 8.805542222940424
+        },
+        {
+          "ci_ppm": 175.7664,
+          "incident_par": 1200.1,
+          "leaf_c": 24.56,
+          "observed_net": 10.67313,
+          "predicted_net": 8.979900012158613
+        },
+        {
+          "ci_ppm": 178.1278,
+          "incident_par": 1001.8,
+          "leaf_c": 24.58,
+          "observed_net": 10.57171,
+          "predicted_net": 8.92737792320702
+        },
+        {
+          "ci_ppm": 179.7671,
+          "incident_par": 799.6,
+          "leaf_c": 24.68,
+          "observed_net": 10.4701,
+          "predicted_net": 8.786475328808816
+        },
+        {
+          "ci_ppm": 201.1348,
+          "incident_par": 501.5,
+          "leaf_c": 24.7,
+          "observed_net": 9.550011,
+          "predicted_net": 8.705522146477342
+        },
+        {
+          "ci_ppm": 240.9053,
+          "incident_par": 299.4,
+          "leaf_c": 24.75,
+          "observed_net": 7.5286,
+          "predicted_net": 8.174231789612671
+        },
+        {
+          "ci_ppm": 277.778,
+          "incident_par": 199.6,
+          "leaf_c": 24.81,
+          "observed_net": 5.540279,
+          "predicted_net": 7.107386066482143
+        },
+        {
+          "ci_ppm": 296.9205,
+          "incident_par": 150.2,
+          "leaf_c": 24.76,
+          "observed_net": 4.31547,
+          "predicted_net": 6.049097549212327
+        },
+        {
+          "ci_ppm": 318.5026,
+          "incident_par": 100.1,
+          "leaf_c": 24.8,
+          "observed_net": 2.878577,
+          "predicted_net": 4.502800954746884
+        },
+        {
+          "ci_ppm": 351.8853,
+          "incident_par": 49.4,
+          "leaf_c": 24.79,
+          "observed_net": 1.23317,
+          "predicted_net": 2.4090220838920544
+        },
+        {
+          "ci_ppm": 408.8429,
+          "incident_par": 0.001,
+          "leaf_c": 24.77,
+          "observed_net": -0.3857947,
+          "predicted_net": -0.21716736999521175
+        }
+      ]
+    },
+    {
+      "file": "Dichanthelium_clandestinum2.csv",
+      "calibration_n": 14,
+      "validation_n": 13,
+      "parameters": {
+        "vcmax25": 105.97567294217926,
+        "jmax25": 73.43091066598625,
+        "tpu25": 10.0,
+        "respiration25": 0.30549617131529555,
+        "quantum_yield_psii": 0.761101243339254,
+        "curvature": 0.7,
+        "ball_berry_slope": 9.0,
+        "minimum_conductance": 0.01,
+        "growth_temperature": 298.15,
+        "oxygen_ppm": 210000.0
+      },
+      "calibration_rmse": 0.731062195505879,
+      "calibration_jacobian_rank": 1,
+      "identifiability_note": "A rank below 3 means some fitted capacities are not independently constrained",
+      "status": "fail",
+      "mean_bias": 0.38009650839086867,
+      "relative_mean_bias": 0.05039398810854839,
+      "rmse": 1.037112576992676,
+      "normalized_rmse": 0.13750254926953828,
+      "r": 0.9814448354311852,
+      "near_zero_max_abs": 0.1084855162469428,
+      "pointwise_relative_failures": 5,
+      "near_zero_failures": 0,
+      "light_rows": [
+        {
+          "ci_ppm": 281.9025,
+          "incident_par": 1998.5,
+          "leaf_c": 25.22,
+          "observed_net": 11.59418,
+          "predicted_net": 11.304297783262284
+        },
+        {
+          "ci_ppm": 281.4681,
+          "incident_par": 1800.1,
+          "leaf_c": 25.23,
+          "observed_net": 11.54556,
+          "predicted_net": 11.250120116537012
+        },
+        {
+          "ci_ppm": 278.7698,
+          "incident_par": 1500.8,
+          "leaf_c": 25.16,
+          "observed_net": 11.42345,
+          "predicted_net": 11.073290873342788
+        },
+        {
+          "ci_ppm": 272.3012,
+          "incident_par": 1201.4,
+          "leaf_c": 24.98,
+          "observed_net": 11.20465,
+          "predicted_net": 10.739641970680868
+        },
+        {
+          "ci_ppm": 264.7051,
+          "incident_par": 999.2,
+          "leaf_c": 24.82,
+          "observed_net": 11.05507,
+          "predicted_net": 10.395265589279825
+        },
+        {
+          "ci_ppm": 261.7977,
+          "incident_par": 799.6,
+          "leaf_c": 24.7,
+          "observed_net": 10.79804,
+          "predicted_net": 10.07446466831925
+        },
+        {
+          "ci_ppm": 277.6035,
+          "incident_par": 500.3,
+          "leaf_c": 24.62,
+          "observed_net": 9.704406,
+          "predicted_net": 9.583630979954254
+        },
+        {
+          "ci_ppm": 307.0815,
+          "incident_par": 300.7,
+          "leaf_c": 24.6,
+          "observed_net": 7.464087,
+          "predicted_net": 8.620999227276837
+        },
+        {
+          "ci_ppm": 327.9037,
+          "incident_par": 199.6,
+          "leaf_c": 24.51,
+          "observed_net": 5.386739,
+          "predicted_net": 7.258925051103978
+        },
+        {
+          "ci_ppm": 333.4795,
+          "incident_par": 150.2,
+          "leaf_c": 24.42,
+          "observed_net": 4.266251,
+          "predicted_net": 6.088201424067675
+        },
+        {
+          "ci_ppm": 346.1794,
+          "incident_par": 100.1,
+          "leaf_c": 24.37,
+          "observed_net": 2.77117,
+          "predicted_net": 4.496162172518675
+        },
+        {
+          "ci_ppm": 367.0936,
+          "incident_par": 49.4,
+          "leaf_c": 24.44,
+          "observed_net": 1.187578,
+          "predicted_net": 2.348950236490908
+        },
+        {
+          "ci_ppm": 400.8121,
+          "incident_par": 1.0,
+          "leaf_c": 24.45,
+          "observed_net": -0.3487189,
+          "predicted_net": -0.2402333837530572
+        }
+      ]
+    },
+    {
+      "file": "Dichanthelium_clandestinum3.csv",
+      "calibration_n": 14,
+      "validation_n": 13,
+      "parameters": {
+        "vcmax25": 142.51957820142812,
+        "jmax25": 94.45204239892993,
+        "tpu25": 10.0,
+        "respiration25": 0.28672847650754935,
+        "quantum_yield_psii": 0.7868217054263567,
+        "curvature": 0.7,
+        "ball_berry_slope": 9.0,
+        "minimum_conductance": 0.01,
+        "growth_temperature": 298.15,
+        "oxygen_ppm": 210000.0
+      },
+      "calibration_rmse": 1.2354763827350859,
+      "calibration_jacobian_rank": 1,
+      "identifiability_note": "A rank below 3 means some fitted capacities are not independently constrained",
+      "status": "fail",
+      "mean_bias": -0.9538197370841506,
+      "relative_mean_bias": -0.11361734347303808,
+      "rmse": 2.894674989457485,
+      "normalized_rmse": 0.3448086359854683,
+      "r": 0.8273557347336884,
+      "near_zero_max_abs": 0.18448120639954035,
+      "pointwise_relative_failures": 11,
+      "near_zero_failures": 0,
+      "light_rows": [
+        {
+          "ci_ppm": 146.9134,
+          "incident_par": 1999.7,
+          "leaf_c": 25.16,
+          "observed_net": 13.07166,
+          "predicted_net": 9.843450571679035
+        },
+        {
+          "ci_ppm": 116.0017,
+          "incident_par": 1800.1,
+          "leaf_c": 24.71,
+          "observed_net": 12.91079,
+          "predicted_net": 7.851713189742642
+        },
+        {
+          "ci_ppm": 108.3259,
+          "incident_par": 1500.8,
+          "leaf_c": 24.37,
+          "observed_net": 12.73009,
+          "predicted_net": 7.209674359946458
+        },
+        {
+          "ci_ppm": 131.6667,
+          "incident_par": 1200.1,
+          "leaf_c": 24.01,
+          "observed_net": 12.48903,
+          "predicted_net": 8.530371438257546
+        },
+        {
+          "ci_ppm": 164.3028,
+          "incident_par": 1000.5,
+          "leaf_c": 23.81,
+          "observed_net": 12.41325,
+          "predicted_net": 9.877927871395132
+        },
+        {
+          "ci_ppm": 188.475,
+          "incident_par": 800.9,
+          "leaf_c": 23.67,
+          "observed_net": 12.02569,
+          "predicted_net": 10.440200717408624
+        },
+        {
+          "ci_ppm": 242.2011,
+          "incident_par": 500.3,
+          "leaf_c": 23.57,
+          "observed_net": 10.71139,
+          "predicted_net": 10.846225158867153
+        },
+        {
+          "ci_ppm": 296.1894,
+          "incident_par": 299.4,
+          "leaf_c": 23.61,
+          "observed_net": 8.074358,
+          "predicted_net": 9.892636680149025
+        },
+        {
+          "ci_ppm": 325.6866,
+          "incident_par": 199.6,
+          "leaf_c": 23.68,
+          "observed_net": 5.871433,
+          "predicted_net": 8.202700114165864
+        },
+        {
+          "ci_ppm": 341.2237,
+          "incident_par": 150.2,
+          "leaf_c": 23.77,
+          "observed_net": 4.671233,
+          "predicted_net": 6.821985903306735
+        },
+        {
+          "ci_ppm": 359.1828,
+          "incident_par": 100.1,
+          "leaf_c": 23.89,
+          "observed_net": 3.136959,
+          "predicted_net": 4.954540525150228
+        },
+        {
+          "ci_ppm": 376.1379,
+          "incident_par": 49.4,
+          "leaf_c": 24.0,
+          "observed_net": 1.490788,
+          "predicted_net": 2.541106681438059
+        },
+        {
+          "ci_ppm": 393.3603,
+          "incident_par": 0.001,
+          "leaf_c": 24.07,
+          "observed_net": -0.4614263,
+          "predicted_net": -0.27694509360045966
+        }
+      ]
+    },
+    {
+      "file": "Dichanthelium_clandestinum4.csv",
+      "calibration_n": 13,
+      "validation_n": 13,
+      "parameters": {
+        "vcmax25": 239.97056893483668,
+        "jmax25": 103.96513440650313,
+        "tpu25": 10.0,
+        "respiration25": 0.2949193675925558,
+        "quantum_yield_psii": 0.7512820512820513,
+        "curvature": 0.7,
+        "ball_berry_slope": 9.0,
+        "minimum_conductance": 0.01,
+        "growth_temperature": 298.15,
+        "oxygen_ppm": 210000.0
+      },
+      "calibration_rmse": 0.8716899758671874,
+      "calibration_jacobian_rank": 1,
+      "identifiability_note": "A rank below 3 means some fitted capacities are not independently constrained",
+      "status": "pass",
+      "mean_bias": 0.31748114620167706,
+      "relative_mean_bias": 0.03211171779922595,
+      "rmse": 0.7466823911451906,
+      "normalized_rmse": 0.0755233956944148,
+      "r": 0.9953404972750092,
+      "near_zero_max_abs": 0.019027131268828434,
+      "pointwise_relative_failures": 5,
+      "near_zero_failures": 0,
+      "light_rows": [
+        {
+          "ci_ppm": 237.1805,
+          "incident_par": 1999.7,
+          "leaf_c": 28.58,
+          "observed_net": 15.84482,
+          "predicted_net": 15.88511035432608
+        },
+        {
+          "ci_ppm": 235.2579,
+          "incident_par": 1798.9,
+          "leaf_c": 28.5,
+          "observed_net": 15.63838,
+          "predicted_net": 15.655555636801937
+        },
+        {
+          "ci_ppm": 236.2664,
+          "incident_par": 1499.5,
+          "leaf_c": 28.25,
+          "observed_net": 15.51762,
+          "predicted_net": 15.365547565463542
+        },
+        {
+          "ci_ppm": 235.3402,
+          "incident_par": 1200.1,
+          "leaf_c": 28.06,
+          "observed_net": 15.21358,
+          "predicted_net": 14.882227241289039
+        },
+        {
+          "ci_ppm": 235.3979,
+          "incident_par": 1000.5,
+          "leaf_c": 27.84,
+          "observed_net": 14.87398,
+          "predicted_net": 14.430082801012507
+        },
+        {
+          "ci_ppm": 235.2637,
+          "incident_par": 799.6,
+          "leaf_c": 27.64,
+          "observed_net": 14.25573,
+          "predicted_net": 13.772711116162952
+        },
+        {
+          "ci_ppm": 243.534,
+          "incident_par": 500.3,
+          "leaf_c": 27.27,
+          "observed_net": 12.29474,
+          "predicted_net": 12.172855873930539
+        },
+        {
+          "ci_ppm": 272.9698,
+          "incident_par": 299.4,
+          "leaf_c": 27.02,
+          "observed_net": 9.007041,
+          "predicted_net": 9.992046063534774
+        },
+        {
+          "ci_ppm": 297.0366,
+          "incident_par": 199.6,
+          "leaf_c": 26.91,
+          "observed_net": 6.380694,
+          "predicted_net": 7.832182634065361
+        },
+        {
+          "ci_ppm": 306.0856,
+          "incident_par": 150.2,
+          "leaf_c": 26.85,
+          "observed_net": 4.957007,
+          "predicted_net": 6.287477495768714
+        },
+        {
+          "ci_ppm": 320.5812,
+          "incident_par": 100.1,
+          "leaf_c": 26.73,
+          "observed_net": 3.287279,
+          "predicted_net": 4.439632726272292
+        },
+        {
+          "ci_ppm": 349.1678,
+          "incident_par": 49.4,
+          "leaf_c": 26.55,
+          "observed_net": 1.545867,
+          "predicted_net": 2.247590523262892
+        },
+        {
+          "ci_ppm": 400.2326,
+          "incident_par": 0.001,
+          "leaf_c": 26.38,
+          "observed_net": -0.2887369,
+          "predicted_net": -0.30776403126882845
+        }
+      ]
+    },
+    {
+      "file": "Dichanthelium_clandestinum5.csv",
+      "calibration_n": 14,
+      "validation_n": 0,
+      "parameters": {
+        "vcmax25": 64.7244834205757,
+        "jmax25": 80.74928158241505,
+        "tpu25": 10.0,
+        "respiration25": 0.48907909293619084,
+        "quantum_yield_psii": 0.6828414207103553,
+        "curvature": 0.7,
+        "ball_berry_slope": 9.0,
+        "minimum_conductance": 0.01,
+        "growth_temperature": 298.15,
+        "oxygen_ppm": 210000.0
+      },
+      "calibration_rmse": 0.9862047145497502,
+      "calibration_jacobian_rank": 2,
+      "identifiability_note": "A rank below 3 means some fitted capacities are not independently constrained",
+      "status": "unmeasured"
+    }
+  ]
+}
