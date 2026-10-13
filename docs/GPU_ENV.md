@@ -49,3 +49,20 @@ CuPy 给出 CUDA_PATH 未设置的 warning；进一步的 device arithmetic 和 
 
 若后续切换到带 CUDA-enabled JAX 的 Linux/xuanze 服务器，只需重新安装对应
 `jax[cuda12]` wheel，GPU 代码接口不变。
+
+## xuanze 侦察
+
+记录时间：2026-10-12 23:26 EDT（服务器显示 2026-10-13 11:26 CST）。
+通过 `ssh -o BatchMode=yes -o ConnectTimeout=15 xuanze-neiwang` 公钥连接成功；
+用户 `lhwang`，主机报告 `localhost.localdomain`，系统 CentOS Stream 9。
+
+| 命令 | 实际结果 |
+|---|---|
+| `nvidia-smi` | 两张 NVIDIA GeForce RTX 4090，各 24564 MiB；Driver 570.153.02，驱动支持 CUDA 12.8；侦察时各有约 959 MiB 已被其他进程使用，利用率 0%。 |
+| `nvcc --version` | CUDA compilation tools release 12.4，V12.4.99，build cuda_12.4.r12.4/compiler.33961263_0。 |
+| `command -v nvcc` | `/usr/local/cuda-12.4/bin/nvcc`。 |
+| `python3 --version` | Python 3.12.2。 |
+| `nvidia-smi --query-gpu=index,name,compute_cap,memory.free,utilization.gpu --format=csv` | GPU 0/1 均为 compute capability 8.9，剩余 23133 MiB，利用率 0%。 |
+
+访问、GPU、nvcc 门槛通过。Linux 将新建独立 venv；保留已有 GPU 进程。
+四份必读文档已读完；补充参考 `docs/AGENT_PROMPT_GPU.md` 在本分支中不存在。
