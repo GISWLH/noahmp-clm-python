@@ -25,7 +25,7 @@ Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 3. 冠层：big-leaf，Jarvis 或 Ball–Berry 气孔阻抗（经验光合曲线），Penman–Monteith 蒸腾
 4. 地表能量平衡：对地表温度 `Ts` 做割线迭代，使 `Rnet − H − LE − G = 0`
 5. 土壤水热：4 层（0.1 / 0.3 / 0.6 / 1.0 m，与 Noah-MP 默认一致）
-   - 热传导：Crank–Nicolson 隐式求解（Thomas 算法），步长无条件稳定
+   - 热传导：冻结系数的后向 Euler 隐式求解（Thomas 算法）；整柱边界耦合不保证任意步长下稳定
    - 水分：入渗（fill-and-spill）+ Campbell/Clapp-Hornberger 型排水 + 根系吸水
 6. 批量驱动 `run_columns`：N 个柱各自独立推进，可直接对照单柱结果
 7. `PhysicsOptions` 对齐 Noah-MP v5.0 `ConfigVarType.F90` 的 `Opt*` 配置；阶段 1
@@ -63,7 +63,8 @@ NOAHMP_REQUIRE_GPU=1 python -m pytest tests/test_gpu_parity.py -q
 python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
 ```
 
-2026-10-13 xuanze RTX4090实测，`N=100000 × 48`（三次预热、三次测量中位数）：
+2026-10-13 xuanze RTX4090旧`65c5c3bc…`版JAX实测，`N=100000 × 48`
+（三次预热、三次测量中位数；当前固定归约版本正在独立复测）：
 JAX x64 **21.7326 s**，JAX x32 **3.48206 s**，包括完整输出的GPU归约、逐值校验
 及host回读；五档x64/x32均通过该计时门。大规模NumPy单核对照仍在运行，
 尚不报告N=100000加速倍数。`.[gpu]` 本身仍只安装CPU JAX，
@@ -72,8 +73,9 @@ Linux CUDA 安装与库路径说明见 [GPU_ENV.md](docs/GPU_ENV.md)。
 N=10000的NumPy单核基线为364.04924 s，新JAX x64/x32为4.09757/3.33147 s，
 对应88.845×/109.276×。checksum验证结果消费和复现，不替代独立物理parity。
 
-JAX float64混合门通过；手写CUDA默认N1024×1/48与JAX32全部诊断和最终状态
-逐位一致，但对NumPy64的原H4仍失败。年度薄雪稳定性与64800柱x32域也存在
+JAX float64混合门通过；手写CUDA的12字段35值分发联合55项通过，默认
+N1024×1/48与JAX32全部诊断和最终状态逐位一致，但对NumPy64的原H4仍失败。
+年度薄雪稳定性与64800柱x32域也存在
 缺口，阶段3尚未完成，main不合并。范围、原始计时和失败证据见
 [GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
 [BENCHMARK.md](docs/BENCHMARK.md)、[GPU_BLOCKERS.md](docs/GPU_BLOCKERS.md)。
@@ -109,7 +111,7 @@ src/noahmp_clm/
         pack.py      # 定长状态 ABI
         jax_core.py  # JAX jit/vmap/scan 物理链路
         cupy_core.py # CuPy 正确性锚点
-        cuda/        # 默认物理 SoA CUDA kernel；已实测，严格 parity 未通过
+        cuda/        # 35值分发 SoA CUDA kernel；同精度门通过，原NumPy64 H4仍失败
 examples/run_single_column.py
 tests/test_column.py
 ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 → JAX/CUDA
@@ -121,14 +123,14 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 - **能量闭合**：每步 `|Rnet − H − LE − G| < 0.5 W/m²`
 - **水平衡**：`降水 = ET + 径流 + Δ蓄水`，误差 `< 1e-9 m`
-- **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
+- **格点独立**：普通版测试范围内，批量跑 N 个柱与逐个单柱跑的结果逐位一致；GPU各shape另设数值回归
 - **雪累积/消融**：冷期 SWE 增长，暖期融化减少
 
 当前 Linux GPU 验收结果：
 
-- 全量 `python -m pytest -q -s`：**44 passed, 2 failed**；两项失败分别为 CUDA N=1024 的 1 步与 48 步严格 parity，保留原容差，未隐藏失败。
+- 最新冻结版全量 `python -m pytest -q -s`：**134 passed, 2 failed, 0 skipped**；两项失败分别为 CUDA N=1024 的 1 步与 48 步原NumPy64 H4，保留原容差，未隐藏失败。
 - JAX-CUDA 的 H2 混合门和相关回归 **7 passed**；H6 已实现物理 35 个选项取值通过，18 个占位字段的 55 个值仅验证无效应，另有 2 个单值字段及 11 个未实现值明确记录。
-- 一日 JAX x32/x64 最大累计偏差：ET **9.64719e-6 mm**、感热 **2.15644e-5 MJ/m²**。详细范围见 [GPU.md](docs/GPU.md)。
+- 当前共同源码8场景一日 JAX x32/x64 最大累计偏差：ET **9.64719e-6 mm**、感热 **2.15644e-5 MJ/m²**；相对差均小于1e-4，不能外推年度或原H4。详细范围见 [GPU.md](docs/GPU.md)。
 
 阶段 3a 的 Windows 历史验收：
 

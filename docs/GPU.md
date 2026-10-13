@@ -3,8 +3,9 @@
 ## 当前状态
 
 xuanze Linux 的 JAX-CUDA float64 已通过 8 柱 × 48 步普通版 parity，
-默认物理 CUDA kernel 已经 nvcc/NVRTC 编译执行。手写 kernel 的严格 float32
-parity 仍未通过；GPU 五档性能已实测，NumPy 大规模单核对照正在补测。
+CUDA kernel 已实现12个物理选项字段的35值分发，nvcc/NVRTC已编译执行；
+CUDA/JAX同为float32的严格1e-6门通过，CUDA32/NumPy64的原H4门仍未通过。
+当前共同源码的GPU五档性能和NumPy大规模单核对照正在补测。
 这些结果对照本仓库普通版，不代表完整 Noah-MP 官方站点验收。
 
 ## 设计决策
@@ -20,7 +21,8 @@ CUDA loader 把这些字段转为 `field[column]` 的 SoA 内存布局，让一�
 展开，避免动态 `scan` 与 Python 列表。
 
 方案分发使用 `lax.switch`。已验收范围为降水 1--3、土壤水胁迫 1--3、地面阻抗 1--4、
-表面拖曳 1--2、气孔 1--2、雪反照率 1--2、雪导热 1--5、冻土和径流 1--4
+表面拖曳 1--2、气孔 1--2、雪反照率 1--2、雪导热 1--5、冻土未冻水和渗透率
+各1--2、地表和地下径流各1--4
 均有对应纯函数；SNICAR、VIC 和新安江选项沿用阶段 1 的占位范围。
 
 ## 精度和运行方式
@@ -231,3 +233,29 @@ J2 N1024×1/48全部逐位一致，H2及薄雪回归共同7项通过。
 64800列审计的15个样本对N1全部通过原1e-6门。原NumPy64诊断仍0/15通过，
 有效状态13/15通过，因此此修复没有使原H4或整个J4域验收变绿，也不覆盖
 未重跑的完整双卡分片及五档基准。详见[因果证据、源身份和范围](GPU_BATCH_SHAPE.md)。
+
+## J5 当前共同源码的全量回归与一日精度
+
+2026-10-13 06:16:27–06:24:08 UTC，物理GPU1，冻结目录
+`/home/lhwang/work/noahmp-phase3b/j3-root-audit-final`；kernel `7640b062…`、
+loader `c4afdbed…`、JAX `0e296691…`。全src、bench/tests共73个文件的运行前后
+hash完全相同，版本/环境/各阶段退出码见
+[metadata](gpu-results/j5-final-metadata.json)。
+
+- 全量`pytest -q -s`：**134 passed、2 failed、0 skipped**，153.97秒。仅原H4
+  NumPy64对照的1/48步参数失败，[日志](gpu-results/j5-final-pytest.log)未隐藏失败。
+- H6：**92 passed、11 unsupported_expected、0数值失败**；包括35个已实现
+  物理值、55个ABI-only值无效应、2个单值。各字段不是完整笛卡尔积。
+- 8场景×48步的x32/x64日累计：ET最大绝对差**9.6471935e-6 mm**，最大相对差
+  **4.5115158e-5**；感热最大绝对差**2.1564438e-5 MJ/m²**，最大相对差
+  **1.0369021e-5**。绝对最大均在drought_loam，感热相对最大在three_layer_snow_loam。
+  [完整H6报告](gpu-results/j5-final-options.json)保留逐场景数值。
+
+结论：这些一日场景中x32累计ET/感热相对差均小于1e-4，但不能外推年度稳定性
+或使近零逐步残差的原H4门通过。
+
+[当前H4逐字段报告](gpu-results/j5-final-precision-report.json)确认CUDA/JAX32
+全部状态及诊断差值仍为零；对NumPy64的48步H/LE/G/residual仍超门，最大残差
+差0.002507086880 W/m²，569项差值超过候选0.002。CUDA自身绝对残差超过0.002
+的有229项，两者不是同一指标。本组探索性NumPy最终状态通过原1e-4/1e-6门，
+不能覆盖64800域中另两列ice状态失败。报告工具exit0表示完成收证，不表示H4通过。

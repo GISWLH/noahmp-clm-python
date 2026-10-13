@@ -71,6 +71,12 @@ block实验已完成且全部通过严格输出门，详见[GPU_OCCUPANCY.md](GP
 波动较大，保留生产256。GPU1现转全量pytest、H6及剩余H4精度报告，日志前缀
 `j5-final-`，其后释放供双卡复测。旧大规模双卡失败不能提前转绿。
 
+06:24 UTC更新：GPU1全量134passed/2原H4failed/0skipped；H6为92passed、11
+预期未实现、无数值失败；新日累计精度及H4报告见GPU.md，569项残差差>2e-3未变。
+73个源文件首尾hash一致，证据`logs/j5-final-*`已取回。GPU1已释放，另有非本任务
+约5GB进程，勿停止。GPU0正式基准完成后先交root一次新版ncu，再跑双卡；
+双卡开始/结束需记录GPU硬件负载，不能当作空闲独占整机成绩。
+
 05:48 UTC更新：`f29d7ad`单行修复后，J2默认N1024×1/48全部诊断/状态逐位一致，
 H2/薄雪另5 passed。J3代理正式接手kernel/loader的35值分发；root准备有限block
 size实验，双卡仍需排队。原H4 NumPy64 residual差最大0.00250709，569项超过

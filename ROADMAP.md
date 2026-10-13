@@ -10,7 +10,7 @@
 纯 Python + numpy，可读优先：
 
 - 4 层土壤水热（Noah-MP 默认分层）、单层 bulk 积雪、big-leaf 冠层
-- 表面能量平衡割线迭代；土壤热传导 Crank–Nicolson；土壤水 fill-and-spill + Campbell 排水
+- 表面能量平衡割线迭代；土壤热传导采用冻结系数的后向 Euler；土壤水 fill-and-spill + Campbell 排水
 - 合成强迫示例 + 三条硬约束测试（能量闭合 / 水平衡 / 批量独立性）
 
 ## 阶段 1 — Noah-MP v5.0 对标
@@ -46,13 +46,13 @@
 - [x] 完整默认物理 SoA CUDA kernel、256-thread grid-stride loader；xuanze nvcc 零 warning 编译并实际执行
 - [x] JAX `vmap(scan)` 批量入口及 Linux GPU float64 8 柱 × 48 步混合门
 - [x] GPU 已实现选项 35 个取值抽查和一日 float32/float64 累积精度实测
-- [ ] CUDA N=1024 严格 float32 parity（当前 residual、近零 H/G 超差）
+- [ ] CUDA32/NumPy64 N=1024 原H4 parity（同精度CUDA/JAX32已通过，NumPy64的residual、近零H/G等仍超差）
 - [ ] CuPy 直译版作为对照；之后手写 CUDA kernel：一个 thread block 处理一批柱，
   土壤三对角求解用 batch Thomas
 - [ ] 性能目标：在 A100 上相对单核 Python 基线 ≥100×（N=10⁵ 柱量级）
 
-阶段 3 总体未完成：H2 和 H3 已通过，H4 为红灯；五档 GPU 计时已完成，
-H5 大规模单核基线补测中。只有 H2+H4+H5 全绿才可合并 main；
+阶段 3 总体未完成：H2 和 H3 已通过，J3的35值CUDA分发联合55项通过，H4仍红；
+新共同源码五档GPU与H5大规模单核基线正在补测。只有H2+H4+H5全绿才可合并main；
 当前状态与阻塞原因见 `docs/GPU_SUMMARY.md`。
 
 ## 不做的事
