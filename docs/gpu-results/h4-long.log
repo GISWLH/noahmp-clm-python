@@ -1,0 +1,14 @@
+1024 columns x 48 steps; unique reference inputs 156 CUDA GPU 1
+ts numpy max_abs 0.00011617595441748563 failed 0 JAX32 max_abs 0.00018310546875 failed 0 worst (np.int64(106), np.int64(24)) actual/reference 285.41766 285.41777975017317
+rnet numpy max_abs 0.0005832084572148233 failed 0 JAX32 max_abs 0.001007080078125 failed 1792 worst (np.int64(0), np.int64(5)) actual/reference 1.9088215 1.9088976895208472
+h numpy max_abs 0.001565770482814699 failed 520 JAX32 max_abs 0.002643585205078125 failed 8326 worst (np.int64(142), np.int64(44)) actual/reference 0.23801401 0.23836021731792115
+le numpy max_abs 0.002864403587111042 failed 0 JAX32 max_abs 0.0077667236328125 failed 2970 worst (np.int64(106), np.int64(25)) actual/reference 67.74791 67.74504514231133
+g numpy max_abs 0.0019102748869139763 failed 13195 JAX32 max_abs 0.00421142578125 failed 26769 worst (np.int64(62), np.int64(42)) actual/reference -0.028029297 -0.02891624545980472
+et_mm numpy max_abs 2.0612145306617147e-06 failed 0 JAX32 max_abs 5.599111318588257e-06 failed 319 worst (np.int64(106), np.int64(25)) actual/reference 0.048778493 0.04877643174282293
+prcp_mm numpy max_abs 9.094364941120148e-07 failed 0 JAX32 max_abs 0.0 failed 0 worst (np.int64(2), np.int64(0)) actual/reference 36.0 35.999999090563506
+runoff_mm numpy max_abs 0.00018672354937621094 failed 0 JAX32 max_abs 9.918212890625e-05 failed 0 worst (np.int64(26), np.int64(9)) actual/reference 10.065011 10.065165368667195
+melt_mm numpy max_abs 1.4721739615142226e-06 failed 0 JAX32 max_abs 1.7434358596801758e-06 failed 0 worst (np.int64(1), np.int64(15)) actual/reference 0.16635342 0.166353908180904
+swe numpy max_abs 6.993650453201994e-08 failed 0 JAX32 max_abs 2.086162567138672e-07 failed 0 worst (np.int64(1), np.int64(4)) actual/reference 0.0054754326 0.0054754358021745775
+canw numpy max_abs 1.28803430231696e-08 failed 0 JAX32 max_abs 2.270098775625229e-08 failed 0 worst (np.int64(142), np.int64(40)) actual/reference 0.0003514285 0.0003514156104875622
+residual numpy max_abs 0.0025567659114038577 failed 49146 JAX32 max_abs 0.003670215606689453 failed 47876 worst (np.int64(134), np.int64(3)) actual/reference -0.0025529861 3.7797663843264218e-06
+CUDA closure maximum 0.0025529861450195312

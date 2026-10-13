@@ -1,0 +1,81 @@
+.CUDA parity N=1024, JAX devices: {CudaDevice(id=0)}
+ts CUDA-numpy max_abs 1.5319817237013922e-05 CUDA-JAX32 max_abs 0.0
+rnet CUDA-numpy max_abs 5.8053980154681994e-05 CUDA-JAX32 max_abs 3.0517578e-05
+h CUDA-numpy max_abs 0.00037827585950367393 CUDA-JAX32 max_abs 3.8146973e-05
+le CUDA-numpy max_abs 0.00047638138057948254 CUDA-JAX32 max_abs 2.2888184e-05
+g CUDA-numpy max_abs 0.0003013152870749991 CUDA-JAX32 max_abs 3.8146973e-05
+et_mm CUDA-numpy max_abs 3.497886245096282e-07 CUDA-JAX32 max_abs 2.2351742e-08
+prcp_mm CUDA-numpy max_abs 9.094364941120148e-07 CUDA-JAX32 max_abs 0.0
+runoff_mm CUDA-numpy max_abs 0.0 CUDA-JAX32 max_abs 0.0
+melt_mm CUDA-numpy max_abs 1.127193639538504e-07 CUDA-JAX32 max_abs 5.9604645e-08
+swe CUDA-numpy max_abs 7.770722731947899e-09 CUDA-JAX32 max_abs 0.0
+canw CUDA-numpy max_abs 5.146808292055827e-10 CUDA-JAX32 max_abs 1.1641532e-10
+residual CUDA-numpy max_abs 0.0007611243439882287 CUDA-JAX32 max_abs 4.5776367e-05
+F
+=================================== FAILURES ===================================
+______________________ test_cuda_kernel_compiles_and_runs ______________________
+
+    @pytest.mark.skipif(shutil.which("nvcc") is None, reason="nvcc 不可用；需要CUDA环境")
+    def test_cuda_kernel_compiles_and_runs() -> None:  # pragma: no cover - CUDA-only
+        jax = pytest.importorskip("jax")
+        from noahmp_clm.gpu.jax_core import run_columns_jax
+        states, forcings = [], []
+        for index in range(1024):
+            soil = default_soil_params(["sand", "loam", "clay"][index % 3])
+            kind = index % 4
+            cold = kind == 0
+            state = ColumnState(
+                soil=soil, lai=1.0 + (index % 13) / 4,
+                tsoil=np.full(4, 268.0 if cold else 285.0),
+                swe=0.2 if cold else (0.008 if kind == 1 else 0.0),
+                snow_t=268.0 if cold else 273.15,
+                canw=0.0004 if kind == 2 else 0.0,
+            )
+            tair, sw, lw, prcp = [(268.,100.,280.,1e-5), (295.,500.,350.,0.),
+                                   (285.,200.,330.,2e-5), (280.,300.,320.,0.)][kind]
+            states.append(state)
+            forcings.append(Forcing(1800.,tair,0.004,2.,1e5,sw,lw,prcp))
+        packed = [column_state_to_vec(s) for s in states]
+        f = np.asarray([x[0] for x in packed], dtype=np.float32)
+        i = np.asarray([x[1] for x in packed], dtype=np.int32)
+        u = np.asarray([forcing_to_vec(x) for x in forcings], dtype=np.float32)[:,None,:]
+        final_f, final_i, diag = loader.run_columns_cuda(f,i,u)
+        actual = cp.asnumpy(diag[:,0,:])
+        keys = ["ts","rnet","h","le","g","et_mm","prcp_mm","runoff_mm","melt_mm","swe","canw","residual"]
+        reference = []
+        for index in range(1024):
+            state = vec_to_column_state(f[index],i[index],states[index].dz)
+            _, d = step_column(state,forcing_vec_to_forcing(u[index,0]))
+            reference.append([d[k] for k in keys])
+        expected = np.asarray(reference)
+        jax_result = run_columns_jax(f,i,u)
+        jax_diag = np.asarray(jax_result[2][:,0,:])
+        print("CUDA parity N=1024, JAX devices:", jax_result[2].devices(), flush=True)
+        for index, key in enumerate(keys):
+            print(key, "CUDA-numpy max_abs", np.max(abs(actual[:,index]-expected[:,index])),
+                  "CUDA-JAX32 max_abs", np.max(abs(actual[:,index]-jax_diag[:,index])), flush=True)
+>       np.testing.assert_allclose(actual,expected,rtol=1e-4,atol=1e-6)
+E       AssertionError: 
+E       Not equal to tolerance rtol=0.0001, atol=1e-06
+E       
+E       Mismatched elements: 1024 / 12288 (8.33%)
+E       First 5 mismatches are at indices:
+E        [0, 11]: -0.0001431107521057129 (ACTUAL), -0.00016431515154946563 (DESIRED)
+E        [1, 11]: -7.62939453125e-05 (ACTUAL), -2.4865817707109272e-05 (DESIRED)
+E        [2, 11]: 0.0002684593200683594 (ACTUAL), 2.9586679595183796e-07 (DESIRED)
+E        [3, 11]: -0.0007343292236328125 (ACTUAL), -3.99686562140289e-05 (DESIRED)
+E        [4, 11]: -0.0001431107521057129 (ACTUAL), -0.00016431515154946563 (DESIRED)
+E       Max absolute difference among violations: 0.00076112
+E       Max relative difference among violations: 906.36548927
+E        ACTUAL: array([[ 2.684207e+02,  5.785566e+00,  5.107432e+00, ...,  2.180000e-01,
+E                0.000000e+00, -1.431108e-04],
+E              [ 2.792680e+02,  1.050463e+02, -1.861034e-02, ...,  7.433782e-03,...
+E        DESIRED: array([[ 2.684207e+02,  5.785566e+00,  5.107451e+00, ...,  2.180000e-01,
+E                0.000000e+00, -1.643152e-04],
+E              [ 2.792680e+02,  1.050463e+02, -1.861035e-02, ...,  7.433783e-03,...
+
+tests/test_gpu_cuda.py:62: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gpu_cuda.py::test_cuda_kernel_compiles_and_runs - Assertion...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 1 passed in 11.50s

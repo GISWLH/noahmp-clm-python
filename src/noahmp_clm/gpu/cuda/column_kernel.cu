@@ -1,6 +1,8 @@
 // Default PhysicsOptions; float32 SoA ABI from STATE_SPEC.md.
 // Corresponding reference: driver.step_column. CUDA parity is a separate gate.
+#ifndef __CUDACC_RTC__
 #include <math.h>
+#endif
 
 namespace {
 constexpr float TF = 273.15f, SIGMA = 5.670374419e-8f;
