@@ -125,6 +125,58 @@ def surface_snow_flux(state, surface_temperature: float) -> float:
     )
 
 
+def snow_surface_response(state, dt: float) -> tuple[float, float, float]:
+    """Eliminate the snow heat system to couple its new top temperature to G.
+
+    The zero-flux top temperature is ``reference`` and its response to G is
+    ``1 / admittance``.  Conductivities are frozen at the beginning of the
+    step, exactly as in ``apply_snow_heat``.  This makes the top boundary
+    implicit as well as the internal interfaces, including a one-layer pack.
+    """
+    swe = np.asarray(state.snow_swe_layers)
+    temp = np.asarray(state.snow_t_layers)
+    density = np.asarray(state.snow_density_layers)
+    depth = swe * RHO_W / np.maximum(density, 50.0)
+    cap = C_SNOW * depth / max(dt, 1.0e-6)
+    conductivity = np.array([
+        snow_thermal_conductivity(d, t, state.options.OptSnowThermConduct)
+        for d, t in zip(density, temp)
+    ])
+    conduct = np.array([
+        (2.0 / (1.0 / conductivity[j] + 1.0 / conductivity[j + 1]))
+        / max(0.5 * (depth[j] + depth[j + 1]), 1.0e-4)
+        for j in range(len(swe) - 1)
+    ])
+    diagonal = cap.copy()
+    diagonal[:-1] += conduct
+    diagonal[1:] += conduct
+    # Solve increments about the old top temperature.  Uniform snow then has
+    # an exactly zero RHS, avoiding spurious Kelvin-scale cancellation.
+    rhs = cap * (temp - temp[0])
+    for j in range(len(swe) - 2, -1, -1):
+        factor = conduct[j] / max(diagonal[j + 1], 1.0e-12)
+        diagonal[j] -= factor * conduct[j]
+        rhs[j] += factor * rhs[j + 1]
+    admittance = max(float(diagonal[0]), 1.0e-12)
+    reference = float(temp[0]) + float(rhs[0]) / admittance
+    surface_k = conductivity[0] / max(0.5 * depth[0], 0.01)
+    effective_k = surface_k / (1.0 + surface_k / admittance)
+    return reference, float(effective_k), float(surface_k)
+
+
+def coupled_snow_flux(surface_temperature: float, response: tuple[float, float, float]) -> float:
+    """Flux consistent with the implicit top temperature and its melt cap.
+
+    Below melting, G = K/(1+K/B) * (Ts-reference).  If that solution would
+    heat the top above melting, fix its physical temperature at 273.15 K and
+    let the existing heat/latent-energy update consume the same G.
+    """
+    reference, effective_k, surface_k = response
+    sensible_flux = effective_k * (surface_temperature - reference)
+    melt_flux = surface_k * (surface_temperature - 273.15)
+    return float(max(sensible_flux, melt_flux))
+
+
 def compact_snow(state, dt: float, option: int = 1) -> None:
     """更新雪层密度（Anderson, 1976；状态已在驱动入口复制）。
 

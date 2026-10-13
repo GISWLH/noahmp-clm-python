@@ -421,6 +421,34 @@ def _snow_surface_flux(
     )
 
 
+def _snow_surface_response(swe, temperature, density, count, dt, option):
+    """Schur elimination of the new snow top temperature (ordinary snow.py)."""
+    mask = LAYER_INDEX < count
+    depth = jnp.where(mask, swe * RHO_W / jnp.maximum(density, 50.0), 1.0e-4)
+    cap = jnp.where(mask, C_SNOW * depth / jnp.maximum(dt, 1.0e-6), 1.0e12)
+    conductivity = _snow_conductivity(density, temperature, option)
+    g01 = jnp.where(count > 1,
+        (2.0 / (1.0 / conductivity[0] + 1.0 / conductivity[1]))
+        / jnp.maximum(0.5 * (depth[0] + depth[1]), 1.0e-4), 0.0)
+    g12 = jnp.where(count > 2,
+        (2.0 / (1.0 / conductivity[1] + 1.0 / conductivity[2]))
+        / jnp.maximum(0.5 * (depth[1] + depth[2]), 1.0e-4), 0.0)
+    factor1 = g12 / jnp.maximum(cap[2] + g12, 1.0e-12)
+    diagonal1 = (cap[1] + g01 + g12) - factor1 * g12
+    rhs1 = cap[1] * (temperature[1] - temperature[0]) + factor1 * (cap[2] * (temperature[2] - temperature[0]))
+    factor0 = g01 / jnp.maximum(diagonal1, 1.0e-12)
+    admittance = jnp.maximum((cap[0] + g01) - factor0 * g01, 1.0e-12)
+    reference = temperature[0] + (factor0 * rhs1) / admittance
+    surface_k = conductivity[0] / jnp.maximum(0.5 * depth[0], 0.01)
+    effective_k = surface_k / (1.0 + surface_k / admittance)
+    return reference, effective_k, surface_k
+
+
+def _coupled_snow_flux(ts, response):
+    reference, effective_k, surface_k = response
+    return jnp.maximum(effective_k * (ts - reference), surface_k * (ts - FREEZING_POINT))
+
+
 def _thomas3(
     lower: jax.Array, diagonal: jax.Array, upper: jax.Array, rhs: jax.Array
 ) -> jax.Array:
@@ -933,23 +961,21 @@ def step_column_jax(
     def snow_energy(_):
         snow_albedo = snow_albedo_old
         snow_emiss = jnp.asarray(0.99, dtype=fvec.dtype)
+        response = _snow_surface_response(snow_swe_layers, snow_t_layers,
+            snow_density_layers, snow_count, dt, option_snow_k)
 
         def residual(ts):
             rnet_local = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * ts**4)
             ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
             h_local = rho * CP * ce_local * (ts - tair)
-            g_local = _snow_surface_flux(
-                snow_swe_layers, snow_t_layers, snow_density_layers, option_snow_k, ts
-            )
+            g_local = _coupled_snow_flux(ts, response)
             return rnet_local - h_local - g_local
 
         ts = _secant_solve(residual, tair, tair + 1.0)
         rnet = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * ts**4)
         ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
         h = rho * CP * ce * (ts - tair)
-        g_snow = _snow_surface_flux(
-            snow_swe_layers, snow_t_layers, snow_density_layers, option_snow_k, ts
-        )
+        g_snow = _coupled_snow_flux(ts, response)
         new_layers = _snow_heat(
             snow_swe_layers, snow_t_layers, snow_density_layers, snow_count,
             dt, g_snow, option_snow_k,
@@ -1043,7 +1069,7 @@ def step_column_jax(
     et_m = transp_taken + esoil_taken + ecan_m
     runoff_m = runoff_surface + runoff_deep
     diag = jnp.stack((
-        ts, rnet, h, le_total, jnp.where(snow_surface & (swe <= 1.0e-4), 0.0, g_flux), et_m * 1000.0,
+        ts, rnet, h, le_total, g_flux, et_m * 1000.0,
         prcp * dt * 1000.0, runoff_m * 1000.0, melt * 1000.0,
         swe, canw, residual,
     ))

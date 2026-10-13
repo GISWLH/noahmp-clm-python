@@ -61,23 +61,24 @@ def step_column(state: ColumnState, f: Forcing):
     tr_m = tr_le / LV * dt / RHO_W
 
     # ---- 4. 地表能量平衡：割线迭代求 Ts ----
-    if s.swe > 1e-4:
+    snow_surface = s.swe > 1e-4
+    if snow_surface:
         # 雪面分支（v0.1：忽略升华，雪下土壤取绝热）
         albedo, emiss = s.snow_albedo, 0.99
-        dsnow = max(0.05, SN.snow_depth(s.swe))
+        snow_response = SN.snow_surface_response(s, dt)
 
         def F(ts):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
             ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
             h = rho * CP * ce_ts * (ts - f.tair)
-            g = SN.surface_snow_flux(s, ts)
+            g = SN.coupled_snow_flux(ts, snow_response)
             return rnet - h - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
         ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
-        g_snow = SN.surface_snow_flux(s, ts)
+        g_snow = SN.coupled_snow_flux(ts, snow_response)
         melt = SN.apply_snow_heat(s, dt, g_snow)
         le_g = le_c = 0.0
         ecan_m = esoil_m = 0.0
@@ -148,7 +149,7 @@ def step_column(state: ColumnState, f: Forcing):
     et_m = wdiag["transp_m"] + wdiag["esoil_m"] + ecan_m
     diag = {
         "ts": ts, "rnet": rnet, "h": h, "le": le_total,
-        "g": g_snow if s.swe > 1e-4 else g_soil,
+        "g": g_snow if snow_surface else g_soil,
         "et_mm": et_m * 1000.0, "prcp_mm": f.prcp * dt * 1000.0,
         "runoff_mm": runoff_m * 1000.0, "melt_mm": melt * 1000.0,
         "swe": s.swe, "canw": s.canw,

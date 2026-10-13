@@ -1,0 +1,57 @@
+...................................F.........................            [100%]
+=================================== FAILURES ===================================
+___ test_cuda_implemented_option_eight_scenarios_24_steps[OptSurfaceDrag-2] ____
+
+gpu = (<module 'cupy' from '/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/cupy/__init__.py'>, <module 'jax' from '/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/__init__.py'>)
+name = 'OptSurfaceDrag', value = 2
+
+    @pytest.mark.parametrize("name,value", VALUES)
+    def test_cuda_implemented_option_eight_scenarios_24_steps(gpu, name, value):
+        options = replace(PhysicsOptions(), **{name: value})
+>       _run_compare(gpu, _scenarios.scenarios(24, options))
+
+tests/test_gpu_cuda_options.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_gpu_cuda_options.py:116: in _run_compare
+    _strict_report(actual, expected, [name for name, _, _ in cases])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = (array([[2.68000000e+02, 2.68000000e+02, 2.68000000e+02, 2.68000000e+02,
+        1.19999550e-01, 1.19999915e-01, 1.199...09103e+02, ...,
+          0.00000000e+00,  0.00000000e+00,  3.05175781e-04]]],
+      shape=(8, 24, 12), dtype=float32))
+expected = (array([[2.68000000e+02, 2.68000000e+02, 2.68000000e+02, 2.68000000e+02,
+        1.19999550e-01, 1.19999915e-01, 1.199...09103e+02, ...,
+          0.00000000e+00,  0.00000000e+00,  3.05175781e-04]]],
+      shape=(8, 24, 12), dtype=float32))
+labels = ['freezing_sand', 'melting_loam', 'heavy_rain_clay', 'drought_sand', 'three_layer_snow_loam', 'melting_clay', ...]
+
+    def _strict_report(actual, expected, labels):
+        failures = []
+        for group, a, b in zip(("state", "integer", "diagnostics"), actual, expected):
+            assert a.shape == b.shape
+            if group == "integer":
+                np.testing.assert_array_equal(a, b)
+                continue
+            assert a.dtype == b.dtype == np.float32
+            a64, b64 = a.astype(np.float64), b.astype(np.float64)
+            ratio = np.abs(a64 - b64) / (1e-6 + 1e-6 * np.abs(b64))
+            bad = ~np.isfinite(ratio) | (ratio > 1)
+            if np.any(bad):
+                first = tuple(np.argwhere(bad)[0])
+                index = np.unravel_index(np.argmax(np.where(np.isfinite(ratio), ratio, np.inf)), a.shape)
+                failures.append({"group": group, "count": int(np.sum(bad)),
+                                 "first": [int(v) for v in first], "first_case": labels[first[0]],
+                                 "worst": [int(v) for v in index], "max_ratio": float(ratio[index]),
+                                 "cuda": float(a[index]), "jax32": float(b[index])})
+        print(json.dumps({"cases": len(labels), "failures": failures}), flush=True)
+>       assert not failures, json.dumps(failures)
+E       AssertionError: [{"group": "diagnostics", "count": 2, "first": [4, 3, 4], "first_case": "three_layer_snow_loam", "worst": [4, 3, 11], "max_ratio": 26.62368577769559, "cuda": -0.00014950335025787354, "jax32": -0.0001761317253112793}]
+E       assert not [{'group': 'diagnostics', 'count': 2, 'first': [4, 3, 4], 'first_case': 'three_layer_snow_loam', ...}]
+
+tests/test_gpu_cuda_options.py:104: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"cases": 8, "failures": [{"group": "diagnostics", "count": 2, "first": [4, 3, 4], "first_case": "three_layer_snow_loam", "worst": [4, 3, 11], "max_ratio": 26.62368577769559, "cuda": -0.00014950335025787354, "jax32": -0.0001761317253112793}]}
+=========================== short test summary info ============================
+FAILED tests/test_gpu_cuda_options.py::test_cuda_implemented_option_eight_scenarios_24_steps[OptSurfaceDrag-2]
+1 failed, 60 passed in 179.09s (0:02:59)

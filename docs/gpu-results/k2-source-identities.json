@@ -1,0 +1,89 @@
+{
+  "baseline": {
+    "snapshot": "/home/lhwang/work/noahmp-phase3b/k2-baseline",
+    "commit": "f716548",
+    "source_hashes": {
+      "src/noahmp_clm/driver.py": "421631170b9ef081871336d2feacbeeef590ba9b63e709c1828c713b3a40cb5c",
+      "benchmarks/probe_annual_failure.py": "7f1d9d1bd220742ddc18a554daeca5aaa3f98df3f7cf83ded58e9a102ab13eea",
+      "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+      "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+      "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+      "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+      "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+      "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+      "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+      "src/noahmp_clm/physics/snow.py": "cb62a942c1a0e769835adafc25b5be49bc66db46496e80f1603fc0cba028a9cd",
+      "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+      "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+      "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb"
+    }
+  },
+  "candidate": {
+    "snapshot": "/home/lhwang/work/noahmp-phase3b/k2-candidate",
+    "source_hashes": {
+      "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+      "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+      "src/noahmp_clm/driver.py": "4d5008604fe12a513b6ab2510a0985ce2c4ef36ceafb9f3af165688872eebd09",
+      "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+      "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+      "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+      "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+      "src/noahmp_clm/gpu/jax_core.py": "a9c0a69d3b803d2e2fc8548d538f776ac439604df38c3ffde5da54c547a498ec",
+      "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+      "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+      "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+      "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+      "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+      "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+      "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+      "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+      "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+      "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+      "src/noahmp_clm/physics/snow.py": "834718f736efe01693e25b9deec40b1d2cb97c8fac70deff884c3fe415348aa9",
+      "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+      "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+      "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+      "src/noahmp_clm/gpu/cuda/column_kernel.cu": "bd2b34a1e8e5e5558117b3e7a2308113ab39549e2b71c8585b3b48fc03cbf270",
+      "benchmarks/check_gpu_extended.py": "b55f21e9923bf2f4aa88fadd3ad8eb8e7898089fc1dee15753e81236ff9c9ff1"
+    },
+    "status": "superseded_by_increment_form; incomplete JAX annual runs terminated"
+  },
+  "final": {
+    "snapshot": "/home/lhwang/work/noahmp-phase3b/k2-final",
+    "source_hashes": {
+      "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+      "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+      "src/noahmp_clm/driver.py": "4d5008604fe12a513b6ab2510a0985ce2c4ef36ceafb9f3af165688872eebd09",
+      "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+      "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+      "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+      "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+      "src/noahmp_clm/gpu/jax_core.py": "af3f9dd5c84970b58b771687fbe85b82ede196af2f1b0791bb08902669de20f0",
+      "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+      "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+      "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+      "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+      "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+      "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+      "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+      "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+      "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+      "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+      "src/noahmp_clm/physics/snow.py": "e56b13921e5f138f216e8ead446e8ae66a2df4bc26d1c692c6e74dd31a7a49b2",
+      "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+      "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+      "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+      "src/noahmp_clm/gpu/cuda/column_kernel.cu": "b514c3b883bbb5c1e2ce25e95b48fcb556bd1fbdc3091919a303164a098f459f",
+      "benchmarks/check_gpu_extended.py": "b55f21e9923bf2f4aa88fadd3ad8eb8e7898089fc1dee15753e81236ff9c9ff1",
+      "benchmarks/check_annual_numpy.py": "bfaa71694a76776ff4e728bc02a4079b0211f046367841ee5b6d685774d40891"
+    }
+  },
+  "evidence_sha256": {
+    "k2-original-replay.json": "e14f7a4a240cd5cb8bc78e5b7aa74d05d332c0c1229d445c14d2ce6904ac41ac",
+    "k2-candidate-parity-failure.log": "aaadd2566335cb7f96782d9c8057c8d713294e101abab922836511d70704be04",
+    "k2-snow-response-roundoff.jsonl": "8aab46b7d80a1b9cd25a9ee3cd24a6c46609874d8eedfa03a56b2d10e0182827",
+    "k2-candidate-repaired-replay.json": "0d1e69a293da427df09305214824a611cb2dad3617fd462b5607dac403795382",
+    "k2-final-repaired-replay.json": "092ab23625995627c03611811cfff921435d63e3e7b04fdf5e5919a3c750cdc5",
+    "k2-final-snow-options-pytest.log": "cd3bfbc07d816d8bc2cac66a58558bf91da77aa43c646ba58a55c2d2471f796a"
+  }
+}

@@ -252,10 +252,37 @@ __device__ float snow_heat(float* s, int* count, float dt, float top_flux, int o
     return melt;
 }
 
+struct SnowBoundary { float reference,effective_k,surface_k; };
+// Implicit top boundary: eliminate the same snow heat matrix used below.
+__device__ SnowBoundary snow_response(const float* s, float dt, int option) {
+    int count=s[18]>1.0e-8f ? 3 : (s[17]>1.0e-8f ? 2 : 1);
+    float depth[3],cap[3],k[3],g[2];
+    for(int j=0;j<3;++j) {
+        depth[j]=j<count ? s[16+j]*RW/fmaxf(s[22+j],50.0f) : 1.0e-4f;
+        cap[j]=j<count ? 630000.0f*depth[j]/fmaxf(dt,1.0e-6f) : 1.0e12f;
+        k[j]=snow_k(s[22+j],s[19+j],option);
+    }
+    for(int j=0;j<2;++j) g[j]=j+1<count
+        ? (2.0f/(1.0f/k[j]+1.0f/k[j+1]))/fmaxf(0.5f*(depth[j]+depth[j+1]),1.0e-4f) : 0.0f;
+    float factor1=g[1]/fmaxf(cap[2]+g[1],1.0e-12f);
+    float diagonal1=(cap[1]+g[0]+g[1])-factor1*g[1];
+    float rhs1=cap[1]*(s[20]-s[19])+factor1*(cap[2]*(s[21]-s[19]));
+    float factor0=g[0]/fmaxf(diagonal1,1.0e-12f);
+    float admittance=fmaxf((cap[0]+g[0])-factor0*g[0],1.0e-12f);
+    SnowBoundary b;
+    b.reference=s[19]+(factor0*rhs1)/admittance;
+    b.surface_k=k[0]/fmaxf(0.5f*depth[0],0.01f);
+    b.effective_k=b.surface_k/(1.0f+b.surface_k/admittance);
+    return b;
+}
+__device__ float coupled_snow_flux(float ts, SnowBoundary b) {
+    return fmaxf(b.effective_k*(ts-b.reference),b.surface_k*(ts-TF));
+}
 struct Energy { float rn,h,le,g,ecan,esoil,residual; };
 // 对应普通版: driver.step_column。LE包含土壤蒸发、截留蒸发和PM蒸腾。
 __device__ Energy energy(float ts, const float* s, const float* u, bool snow, float transp,
-                         int drag=1, int ground=4, int water=1, int conductivity=1) {
+                         int drag=1, int ground=4, int water=1, int conductivity=1,
+                         SnowBoundary boundary={0.0f,0.0f,0.0f}) {
     Energy e;
     float emiss=snow ? 0.99f : s[35], albedo=snow ? s[28] : s[34];
     float t2=ts*ts, ce=exchange(u,s[33],ts,drag), rho=air_density(u);
@@ -263,7 +290,10 @@ __device__ Energy energy(float ts, const float* s, const float* u, bool snow, fl
     // float32 rounding tree does not depend on left-associated products.
     e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*(t2*t2));
     e.h=rho*CP*ce*(ts-u[1]); e.ecan=0.0f; e.esoil=0.0f; e.le=0.0f;
-    if (snow) { e.g=snow_flux(s,ts,conductivity); e.residual=e.rn-e.h-e.g; }
+    if (snow) {
+        if(boundary.surface_k==0.0f) boundary=snow_response(s,u[0],conductivity);
+        e.g=coupled_snow_flux(ts,boundary); e.residual=e.rn-e.h-e.g;
+    }
     else {
         float dq=qsat(ts,u[4])-u[2], ra=1.0f/fmaxf(ce,1.0e-6f);
         float eg=fminf(beta(s[4],s,water)*rho*LV*fmaxf(0.0f,dq)/(ra+ground_resistance(s,ground)),s[4]*DZ[0]*LV*RW/u[0]);
@@ -278,11 +308,12 @@ __device__ Energy energy(float ts, const float* s, const float* u, bool snow, fl
 // 对应普通版: energy.secant_solve。固定25次割线，失败时扫描/二分回退。
 __device__ float surface_temperature(const float* s, const float* u, bool snow, float transp,
                                     int drag=1, int ground=4, int water=1, int conductivity=1) {
-    float x0=u[1], x1=u[1]+1.0f, f0=energy(x0,s,u,snow,transp,drag,ground,water,conductivity).residual;
+    SnowBoundary boundary=snow ? snow_response(s,u[0],conductivity) : SnowBoundary{0.0f,0.0f,0.0f};
+    float x0=u[1], x1=u[1]+1.0f, f0=energy(x0,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
     float best=x0, best_abs=fabsf(f0); bool stopped=false, converged=false;
     for (int it=0;it<25;++it) {
         if (!stopped) {
-            float f1=energy(x1,s,u,snow,transp,drag,ground,water,conductivity).residual;
+            float f1=energy(x1,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
             if (fabsf(f1)<best_abs) { best=x1; best_abs=fabsf(f1); }
             if (fabsf(f1)<1.0e-3f) { stopped=true; converged=true; }
             else if (fabsf(f1-f0)<1.0e-12f) stopped=true;
@@ -290,19 +321,19 @@ __device__ float surface_temperature(const float* s, const float* u, bool snow, 
         }
     }
     if (converged) return x1;
-    float previous=energy(200.0f,s,u,snow,transp,drag,ground,water,conductivity).residual;
+    float previous=energy(200.0f,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
     int bracket=-1;
     for (int j=0;j<130;++j) {
-        float next=energy(201.0f+j,s,u,snow,transp,drag,ground,water,conductivity).residual;
+        float next=energy(201.0f+j,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
         if (bracket<0 && isfinite(previous) && isfinite(next) && previous*next<=0.0f) bracket=j;
         previous=next;
     }
     if (bracket<0) return best;
-    float lo=200.0f+bracket, hi=lo+1.0f, flo=energy(lo,s,u,snow,transp,drag,ground,water,conductivity).residual, result=lo;
+    float lo=200.0f+bracket, hi=lo+1.0f, flo=energy(lo,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual, result=lo;
     bool done=false;
     for (int j=0;j<40;++j) {
         if (!done) {
-            float mid=0.5f*(lo+hi), fm=energy(mid,s,u,snow,transp,drag,ground,water,conductivity).residual;
+            float mid=0.5f*(lo+hi), fm=energy(mid,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
             if (fabsf(fm)<1.0e-3f) { result=mid; done=true; }
             else if (flo*fm<=0.0f) hi=mid;
             else { lo=mid; flo=fm; }
@@ -453,7 +484,7 @@ __device__ void step_selected(float* s, int* count, const float* u, float* diag,
     s[25]=ts; s[26]=s[16]+s[17]+s[18]; s[27]=s[26]>1.0e-8f ? s[19] : TF;
     snow_albedo(s,snow,u[0],albedo);
     diag[0]=ts; diag[1]=e.rn; diag[2]=e.h; diag[3]=e.le;
-    diag[4]=is_snow && s[26]<=1.0e-4f ? 0.0f : e.g;
+    diag[4]=e.g;
     diag[5]=(et+e.ecan)*1000.0f; diag[6]=u[7]*u[0]*1000.0f;
     diag[7]=runoff*1000.0f; diag[8]=melt*1000.0f; diag[9]=s[26]; diag[10]=s[30]; diag[11]=e.residual;
 }

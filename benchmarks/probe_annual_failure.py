@@ -68,7 +68,8 @@ def main():
                 rn = (1.-s.snow_albedo)*f.swdown + .99*(f.lwdown-energy.SIGMA*temperature**4)
                 ce = surface_drag.exchange_velocity(f, s.z0m, temperature, s.options.OptSurfaceDrag)
                 h = energy.air_density(f)*energy.CP*ce*(temperature-f.tair)
-                g = snow.surface_snow_flux(s, temperature)
+                g = (snow.coupled_snow_flux(temperature, cells["snow_response"])
+                     if "snow_response" in cells else snow.surface_snow_flux(s, temperature))
                 components.append({"temperature": temperature, "rnet": rn, "h": h,
                                    "g": g, "ce": ce, "F": float(func(temperature))})
             capture.update(root=float(root), initial_guesses=[x0,x1], root_residual=float(func(root)),

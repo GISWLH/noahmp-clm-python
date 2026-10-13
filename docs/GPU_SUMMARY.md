@@ -1,14 +1,22 @@
 # 阶段 3 GPU 迁移总结
 
-K1仍红：569项已全量复现并取证，全部来自无雪暖湿降雨配置；double割线+F原型将较大反例降为0，但原门仍有137项residual及H/G超差，尚未采纳生产或改变容差。
+K1仍红（569项取证完成，mixed割线+F仍未过原门且设备成本增加59.47%），K2已绿（基线薄雪耦合源头修复，NumPy/JAX64/JAX32/CUDA均连续365天通过既定可靠性门），K3仍红（修后全64800柱对照仍有5565柱有效状态超差）。
 
-K2/K3仍待最终验收：K2基线薄雪边界bug已源头修复且NumPy365天通过，GPU年度/回归运行中；K3已完成64800柱全量NumPy64取证，存在5565柱有效状态超差，不能由旧15柱样本代替。
+真实数据CN-Cng的30天1440步smoke已完成，JAX64对NumPy64通过、JAX32/CUDA32逐步诊断仍红，NumPy对观测LE/H的r为0.86934/0.89737、bias为0.452/6.491、RMSE为47.682/35.385 W/m²，未校准且不宣称物理已验证。
 
-真实数据smoke进行中：已找到NAS上CN-Cng FLUXNET2015真实30天连续强迫，正在同源NumPy/GPU与LE/H观测对照；N300000基线未完成且监督器保持原样，所有红灯关闭和全量pytest全绿前禁止合并main。
+全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项），N300000基线截至10:31 UTC仍未完成且监督器未重启，继续留在gpu/migration，未修改容差或STATE_SPEC、未合并main。
 
 当前任务为K1–K7；J1–J5已执行，双卡、profiling与计时审计均冻结，不重复。
 首先交付[569项聚类](GPU_RESIDUAL_FORENSICS.md)。未经Wang明确确认，不改变
 原H4容差或合并条件；2e-3提案已证伪，不再作为待批准方案。
+
+## K阶段交付
+
+- [GPU_RESIDUAL_FORENSICS.md](GPU_RESIDUAL_FORENSICS.md)：569条完整上下文、全部轨迹、诊断×状态聚类和三变体真实GPU对照；独立审计重算全部计数、生成源码hash和成本，结果一致。
+- [GPU_ANNUAL_FIX.md](GPU_ANNUAL_FIX.md)：原失败单柱/强迫切片、隐式雪顶边推导、普通版与两GPU实现、四后端全年日志；完整融尽的既有剩余能量未路由，表面残差通过不等于整体热守恒已验证。
+- [GPU_DOMAIN_FIX.md](GPU_DOMAIN_FIX.md)：修前/修后全64800柱的NumPy64对照、真实聚类图、温度/水量/冰量分解与最小trace；K2消除2.35 K雪面尾部，但冻土AHC敏感性及厚雪下均温土壤漂移仍待修。
+- [FLUXNET_PLAN.md](FLUXNET_PLAN.md)与[smoke脚本](../examples/fluxnet_smoke.py)：真实CSV映射、来源hash、QC筛选、后端parity及观测指标、独立Phase4计划。
+- [全量pytest](gpu-results/k-final-pytest.log)：实际GPU强制开启；生产源码与[冻结测试快照](gpu-results/k-final-pytest-metadata.json)一致。旧J阶段性能只属于旧源码，未重做双卡、profiling或JAX计时审计。
 
 ## 已交付
 
@@ -20,7 +28,7 @@ K2/K3仍待最终验收：K2基线薄雪边界bug已源头修复且NumPy365天�
 - `gpu/cuda/column_kernel.cu`、`build.sh`、`loader.py`：1 thread/column、SoA、grid-stride、完整 LE/雪/冻土/水热物理及12字段35值分发；nvcc零warning，同精度门通过，原NumPy64 H4失败证据保留。
 - `benchmarks/check_gpu_options.py`：32 字段范围审计、24 步选项抽查、一日 JAX x32/x64 累积精度；占位和未实现选项明确区分。
 
-## 阶段 3b 验收进度
+## J阶段冻结时的验收进度（K修后状态见顶部及下方K交付）
 
 | 阶段 | 状态 |
 |---|---|
@@ -37,7 +45,7 @@ K2/K3仍待最终验收：K2基线薄雪边界bug已源头修复且NumPy365天�
 
 - [GPU_NUMERICS.md](GPU_NUMERICS.md)：运算树、常量折叠、FMA/除法 lowering、MOST与归约的因果探针；N=1输入所有权修复前失败、修后通过，nvcc零warning。
 - [GPU_TIMING_AUDIT.md](GPU_TIMING_AUDIT.md)：完整状态/每步诊断的device归约、host读回、JAX逐值门和异质全N敏感性；11项GPU验收仪器测试通过，失败不计measured。
-- [GPU_TOLERANCE_PROPOSAL.md](GPU_TOLERANCE_PROPOSAL.md)：7488个普通版求根的局部量化探针；候选residual绝对2e-3尚未经用户确认，也尚不能覆盖所有已知场景。
+- [GPU_TOLERANCE_PROPOSAL.md](GPU_TOLERANCE_PROPOSAL.md)：7488个普通版求根的局部量化历史推导；2e-3候选已证伪并撤回，K1未提出新的容差申请。
 - [GPU_J4_PROFILE.md](GPU_J4_PROFILE.md)：当前CUDA被采首步4347 FLOP/柱步、2.825 TFLOP/s，三次预热及被采运行全部输出逐位对齐JAX32；不能外推48步，另含JAX精度热点证据。
 - [GPU_BATCH_SHAPE.md](GPU_BATCH_SHAPE.md)、[GPU_EXTENDED_VALIDATION.md](GPU_EXTENDED_VALIDATION.md)：固定四层根系归约消除真实列的跨shape复现，64800域15样本对N1均通过；NumPy64域门和年度第3天稳定性仍失败。
 - [CUDA_OPTION_IMPLEMENTATION.md](CUDA_OPTION_IMPLEMENTATION.md)：CUDA的35值逐字段、1024柱混排和1728组径流双出口探针通过；18个ABI-only字段仅接受默认，未声称全笛卡尔积覆盖。
@@ -46,6 +54,7 @@ K2/K3仍待最终验收：K2基线薄雪边界bug已源头修复且NumPy365天�
 
 ## 待完成工作
 
-1. 按 [GPU_BLOCKERS.md](GPU_BLOCKERS.md) 修复 float32 数值条件问题，重新通过原严格 H4；不能隐藏 residual 或放宽容差。
-2. 补齐大规模 NumPy 单核三次预热/三次计时，更新 [BENCHMARK.md](BENCHMARK.md) 的完整实测比值。
-3. H2+H4+H5 全绿且全量 pytest 通过后，才勾选阶段 3 并合并 main。
+1. K1原混合割线原型仍不满足完整精度/成本条件；K3需单独修复土热轨迹及相变热容敏感性，不能把它们都归为相变残差或调阈值解决。
+2. N300000仅继续收原监督器结果；完成前写未完成，不重启、不外推，不以K2新物理冒充在途基线来源。
+3. 合并门为K1（混合修复通过，或Wang明确确认且实际通过的分档）+K2+K3全绿+全量pytest全绿；当前留在gpu/migration，main不受影响。
+4. 完整FLUXNET Phase 4是下一个独立任务；本轮仅真实数据30天smoke与计划，不宣称物理已验证。
