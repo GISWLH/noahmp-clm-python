@@ -31,8 +31,12 @@
 - M5：README、总结、已知限制、测试原始记录、分支合并和版本标签组成收尾交付。
   发布版本元数据为0.2.0；物理实现和数值阈值未作发布前改动。
 
-原H4两项失败继续保留，不转换为skip或xfail。已完成全量GPU测试为
-147 passed / 2 failed / 0 skipped；最终版本核验记录随[总结](GPU_SUMMARY.md)链接。
+原H4两项失败继续保留，不转换为skip或xfail。发布候选`a751f6d`于2026-10-13
+08:35:30 EDT完成全量GPU复测：**147 passed / 2 failed / 0 skipped，150.50秒**，
+pytest原始退出码1。两项均为原H4 1/48步，包版本与项目版本均0.2.0，运行前后
+源码hash一致。保留[完整日志](gpu-results/m-release-v020-pytest.log)与
+[版本/源码核验](gpu-results/m-release-v020-metadata.json)。其后仅归档证据与合并，
+不再修改物理、测试或阈值。
 既有整柱融尽热量路由缺口222784.419 J/m²按Wang此前授权列为已知限制。
 数值验收不代表完整物理验证；FLUXNET校准与完整验证仍为
 [Phase 4后续计划](FLUXNET_PLAN.md)，不属于本次GPU移植收尾发布。

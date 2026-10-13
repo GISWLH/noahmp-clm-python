@@ -4,7 +4,7 @@
 
 EHPC串行/4进程/两节点MPI、xuanze核心门与N100000校验计时、HF ZeroGPU JAX1024×48均完成；四站各30天JAX64通过且观测r/bias/RMSE已报告，ERA5因缺下行辐射和总降水记未测，均不宣称物理已验证。
 
-全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项）；M4同量化输入canw通过率99.201389%，仍低于原99.5%门，Wang已明确接受该差异并验收v0.2.0收尾版，授权合并main及发布标签，见[验收记录](GPU_ACCEPTANCE.md)。
+v0.2.0收尾版已按Wang明确验收合并main并打标签；发布候选全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项），M4同输入canw的99.201389%仍低于原99.5%门，该差异作为[明确验收例外](GPU_ACCEPTANCE.md)保留。
 
 本轮按Wang的M0–M5收尾，先提交[固定M2准则](GPU_CLOSEOUT_CRITERIA.md)再运行；
 原H4不再单独决定合并；M4数值失败保留，发布依据为Wang后续明确授权的验收例外。
@@ -13,6 +13,7 @@ Wang明确接受表面能量闭合、
 
 ## M阶段收尾交付
 
+- [发布候选全量pytest](gpu-results/m-release-v020-pytest.log)及[版本/源码元数据](gpu-results/m-release-v020-metadata.json)：候选`a751f6d`实际GPU复测150.50秒，147通过/2原H4失败、0跳过，版本0.2.0、运行前后源码hash一致；其后仅归档证据与合并，不再修改物理或阈值。
 - [GPU_DELTA_ATTEMPT](GPU_DELTA_ATTEMPT.md)：一次ΔT实现、新增同精度回归、完整候选patch和逐字节回退；64800域复验与四后端365天全部完成通过，1460份每日dump hash核验一致。
 - [GPU_CLOSEOUT_RESULTS](GPU_CLOSEOUT_RESULTS.md)：1024×48逐步全状态/诊断、153项近空canw精确归因及独立复算；各字段≥99.5%、residual中位 .000293732/p99 .00181961 W/m²，表面/水量门通过。
 - [REAL_DATA_CHECKS](REAL_DATA_CHECKS.md)：4站完整30天、实际QC及LE/H指标；同输入canw46/5760超差，CN-Cha39/1440；全量归因仍不更改硬门。初表51项含输入量化差异，另保留为端到端结果。

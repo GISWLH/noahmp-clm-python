@@ -137,6 +137,11 @@ CPU参考5.230822秒，GPU含JIT/整批与逐步回放/全部读回17.183159秒�
 
 ## xuanze
 
+发布前补充：版本0.2.0候选`a751f6d`在隔离目录重新执行GPU强制启用的全量pytest，
+147 passed / 2 failed / 0 skipped，150.50秒；仅原H4两项，源码首尾一致。
+[发布复测日志](gpu-results/m-release-v020-pytest.log)及
+[元数据](gpu-results/m-release-v020-metadata.json)保留该次记录，下面原实测不覆盖。
+
 最终 `b954d90` 生产源在物理 GPU1 / RTX4090 上重测；Python3.12.2、NumPy2.5.4、
 JAX0.11.2、CuPy14.2.0、nvcc12.4.99。GPU0同时有年度作业，属于共享机器测量。
 实际源码hash前缀为 JAX `6ec9039c`、CUDA `e1f7cf0d`、loader `ee5846de`。
