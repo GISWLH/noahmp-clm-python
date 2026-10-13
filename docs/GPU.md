@@ -2,25 +2,24 @@
 
 ## 当前状态
 
-阶段 A 的状态规约和阶段 B 的 JAX 默认链路已经写入 `src/noahmp_clm/gpu/`。
-本机 Windows 的 JAX 0.11.2 是 CPU wheel；JAX API 使用 `jit`、`vmap`、
-`lax.scan`、`lax.switch` 和固定次数 `lax.fori_loop`，迁移到 xuanze 的
-CUDA-enabled JAX 时不需要改变物理接口。阶段 C 的 48 步官方/普通版 parity、
-阶段 D 性能表、CuPy 对照和 CUDA kernel 仍待完成。
+xuanze Linux 的 JAX-CUDA float64 已通过 8 柱 × 48 步普通版 parity，
+默认物理 CUDA kernel 已经 nvcc/NVRTC 编译执行。手写 kernel 的严格 float32
+parity 仍未通过；GPU 五档性能已实测，NumPy 大规模单核对照正在补测。
+这些结果对照本仓库普通版，不代表完整 Noah-MP 官方站点验收。
 
 ## 设计决策
 
 `ColumnState` 不进入 JAX trace。`pack.py` 将四层土壤、三层固定雪槽、标量
 状态和 32 个 `Opt*` 配置拆成 `fvec/ivec`；雪的有效层数是 `ivec[32]` 的 mask。
-阶段 F 会把这些字段转为 `field[column]` 的 SoA 内存布局，让一个 CUDA warp 读取
+CUDA loader 把这些字段转为 `field[column]` 的 SoA 内存布局，让一个 CUDA warp 读取
 相邻柱时访问连续地址。单柱函数没有全局缓存、文件 I/O 或柱间通信。
 
 普通版的割线求解器有“收敛即返回”和失败后的网格回退。JAX 版以固定 25 次
-割线循环替代早停，并在每次更新把 Ts 限制在 `[200, 330] K`；MOST 以固定 20
-次循环替代相对变化早停。四层土壤热方程和三层雪热方程采用固定维度 Thomas
+割线循环内冻结已收敛的状态，并在每次更新把 Ts 限制在 `[200, 330] K`；MOST
+同样在固定 20 次循环中保留普通版早停语义。四层土壤热方程和三层雪热方程采用固定维度 Thomas
 展开，避免动态 `scan` 与 Python 列表。
 
-方案分发使用 `lax.switch`。目前降水 1--3/5、土壤水胁迫 1--3、地面阻抗 1--4、
+方案分发使用 `lax.switch`。已验收范围为降水 1--3、土壤水胁迫 1--3、地面阻抗 1--4、
 表面拖曳 1--2、气孔 1--2、雪反照率 1--2、雪导热 1--5、冻土和径流 1--4
 均有对应纯函数；SNICAR、VIC 和新安江选项沿用阶段 1 的占位范围。
 
@@ -37,13 +36,12 @@ C:\Users\hhuwl\venvs\noahmp-gpu\Scripts\python.exe -m pytest -q tests/test_gpu_j
 ```
 
 `jax_enable_x64=True` 的配置由测试显式设置。Windows CPU wheel 在同一进程为
-不同形状重复编译时曾触发 XLA HLO verifier 的内部中止；批量 JIT 函数因此在
-模块级缓存，测试固定形状，并关闭该 wheel 的持久编译缓存。这是运行时限制，
-不是物理分支或容差放宽。CUDA-enabled Linux wheel 需要重新做一次 C 阶段 parity
-验证，不能把当前 CPU 编译结果当作 GPU 实测。
+不同形状重复编译时曾触发 XLA HLO verifier 的内部中止；批量 JIT 函数在
+模块级缓存。原始混合图在 Linux CUDA 未复现该中止，随后完成数值修复和 GPU
+parity；尚未单独证明 Windows wheel 中止的内部根因，不能据此断言其必为 wheel 缺陷。
 
-float32 与 float64 的日累计偏差、CuPy 和手写 CUDA 的偏差将在阶段 C/E/F 实测后
-补入本文件；当前没有伪造这些数字。
+一日 float32/float64 累积偏差见下文 H6；手写 CUDA 的严格失败和数值条件分析
+见 [GPU_BLOCKERS.md](GPU_BLOCKERS.md)。
 
 ## 阶段 3b / H2：Linux GPU 根因与修复
 
@@ -93,3 +91,115 @@ nvcc 12.4.99、`-O3 -std=c++14 -arch=sm_89` 成功构建共享库（约 1.3 MiB�
 编译采用标准数学函数；性能优化不能先于 H4 容差验证。
 
 H3 只确认完整默认物理源码可编译；CUDA 数值 parity 由 H4 独立验收。
+
+## H6：Linux GPU 选项矩阵与一日精度实测
+
+2026-10-13 EDT，xuanze 物理 GPU 1（RTX 4090，进程内为 `CudaDevice(id=0)`）
+完成 `benchmarks/check_gpu_options.py`，退出码 0。审计显式要求 CUDA 后端，
+并检查所有结果确实位于 GPU、浮点 dtype 与请求一致且无非有限值。
+八种独立场景覆盖冻结、已有三层雪、两种土壤消融、暴雨、两种土壤干旱和
+274.2 K 雨雪转换；每个配置运行 **24 步**，每次只改变一个选项。
+
+全部 32 个 `PhysicsOptions` 字段、103 个配置接受值均已清点：
+
+| 分类 | 字段数 | 取值数 | 本次结论 |
+|---|---:|---:|---|
+| 已实现物理选择器 | 12 | 35 | JAX float64 与普通版 parity 全部通过 |
+| 已声明但尚未实现的物理取值 | 上述 12 字段中的 4 个 | 11 | 普通版均明确抛出 `NotImplementedError`；不执行 GPU，不计为物理通过 |
+| ABI 保留、未消费的选择器 | 18 | 55 | parity 通过，且普通版/JAX 的浮点状态和诊断均与默认配置逐元素完全相同；只证明无效应及 ABI 保留 |
+| 只有一个合法取值的字段 | 2 | 2 | 默认值 parity 与无效应检查通过；无法提供两个合法值 |
+
+日志的 `92 passed` 是 **35 个物理取值 + 55 个无效应取值 + 2 个固定取值**，
+另有 `11 unsupported_expected`，不能把它写成“92 种物理方案通过”。
+已实现的 12 个物理字段均实际检查不少于两个值；“每个 Opt 均有至少两种物理
+方案”的字面目标无法满足：18 个字段仍是占位配置，`OptDynamicVeg` 仅允许 4，
+`OptPedotransfer` 仅允许 1。未实现取值也没有获得实现支持；JAX 的 `lax.switch`
+会夹紧分支索引，不能凭它返回结果就声称支持这些值。以下表格以普通版的
+实际分发为准，也更正了早期设计段中把降水取值 5 列为可对照支持的表述。
+
+| 字段 | 类别 | 本次 GPU 检查值 | 已声明但未实现的物理值 |
+|---|---|---|---|
+| `OptDynamicVeg` | 单值固定 | 4 | — |
+| `OptRainSnowPartition` | 物理 | 1, 2, 3 | 4, 5 |
+| `OptSoilWaterTranspiration` | 物理 | 1, 2, 3 | — |
+| `OptGroundResistanceEvap` | 物理 | 1, 2, 3, 4 | — |
+| `OptSurfaceDrag` | 物理 | 1, 2 | — |
+| `OptStomataResistance` | 物理 | 1, 2 | — |
+| `OptSnowAlbedo` | 物理 | 1, 2 | 3 |
+| `OptCanopyRadiationTransfer` | ABI 保留/无效应 | 1, 2, 3 | — |
+| `OptSnowSoilTempTime` | ABI 保留/无效应 | 1, 2, 3 | — |
+| `OptSnowThermConduct` | 物理 | 1, 2, 3, 4, 5 | — |
+| `OptSoilTemperatureBottom` | ABI 保留/无效应 | 1, 2 | — |
+| `OptSoilSupercoolWater` | 物理 | 1, 2 | — |
+| `OptRunoffSurface` | 物理 | 1, 2, 3, 4 | 5, 6, 7, 8 |
+| `OptRunoffSubsurface` | 物理 | 1, 2, 3, 4 | 5, 6, 7, 8 |
+| `OptSoilPermeabilityFrozen` | 物理 | 1, 2 | — |
+| `OptDynVicInfiltration` | ABI 保留/无效应 | 1, 2, 3 | — |
+| `OptTileDrainage` | ABI 保留/无效应 | 0, 1, 2 | — |
+| `OptIrrigation` | ABI 保留/无效应 | 0, 1, 2, 3 | — |
+| `OptIrrigationMethod` | ABI 保留/无效应 | 0, 1, 2, 3 | — |
+| `OptCropModel` | ABI 保留/无效应 | 0, 1 | — |
+| `OptSoilProperty` | ABI 保留/无效应 | 1, 2, 3, 4 | — |
+| `OptPedotransfer` | 单值固定 | 1 | — |
+| `OptGlacierTreatment` | ABI 保留/无效应 | 1, 2 | — |
+| `OptSnowCompaction` | 物理 | 1, 2 | — |
+| `OptSnowCoverGround` | ABI 保留/无效应 | 1, 2 | — |
+| `OptWetlandModel` | ABI 保留/无效应 | 0, 1, 2 | — |
+| `OptSnicarSnowShape` | ABI 保留/无效应 | 1, 2, 3, 4 | — |
+| `OptSnicarRTSolver` | ABI 保留/无效应 | 1, 2 | — |
+| `OptSnicarBandNum` | ABI 保留/无效应 | 1, 2 | — |
+| `OptSnicarSolarSpec` | ABI 保留/无效应 | 1, 2, 3, 4, 5, 6 | — |
+| `OptSnicarSnwOptic` | ABI 保留/无效应 | 1, 2, 3 | — |
+| `OptSnicarDustOptic` | ABI 保留/无效应 | 1, 2, 3 | — |
+
+ABI 保留字段的“—”仅表示没有另行分发并抛错的值，不代表对应物理已实现。
+径流两字段确实进入普通版方案分发，但柱诊断只输出地表与地下径流之和；本次
+parity 不能单独验证未公开的两个分量。矩阵是逐字段抽查，不是全部选项组合的
+笛卡尔积；混合配置由 H2 的独立 8 柱 × 48 步门覆盖。
+
+本次使用 H2 原有容差：诊断 `ts` 至 `prcp_mm`、`canw`、`residual` 和土壤/标量
+最终状态 `rtol=atol=1e-6`；`runoff_mm/melt_mm/swe` 与有效雪层
+`rtol=atol=1e-4`；整数最终状态完全一致，能量残差绝对值小于 0.5 W/m²。
+全部比较中最大的 `abs(error)/(atol + rtol*abs(reference))` 为
+**6.74660e-6**（小于 1 才通过），没有修改 ABI 或放宽容差。
+
+一日精度另外使用默认选项运行相同八场景 **48 × 1800 s = 86400 s**，两次
+模型计算分别为 JAX float32 与 float64；ET 直接累加每步 `et_mm`，感热按
+`sum(h*dt)/1e6` 积分为 MJ/m²。两组归约均使用 float64，避免混入额外的低精度
+求和误差。以下偏差均为 **float32 − float64**：
+
+| 场景 | ET 偏差 (mm/day) | 感热偏差 (MJ/m²/day) |
+|---|---:|---:|
+| 冻结砂土 | +5.93480e-11 | +4.39688e-7 |
+| 壤土消融 | +1.19739e-6 | −7.08634e-6 |
+| 黏土暴雨 | −1.59418e-6 | −3.90757e-6 |
+| 砂土干旱 | −1.05071e-6 | −1.51299e-5 |
+| 壤土三层雪 | 0 | −3.34893e-6 |
+| 黏土消融 | +1.33341e-6 | −8.33898e-6 |
+| 砂土雨雪转换 | +1.70575e-6 | −3.47928e-6 |
+| 壤土干旱 | +9.64719e-6 | +2.15644e-5 |
+
+结论：这些默认选项的一日场景中，最大 ET 绝对偏差为 **9.64719e-6 mm/day**，
+最大相对偏差 **4.51152e-5（0.00451152%）**；最大感热绝对偏差为
+**2.15644e-5 MJ/m²/day**，最大相对偏差 **1.03690e-5（0.00103690%）**。
+绝对最大值均出现在壤土干旱场景；感热相对最大值出现在三层雪场景。零 ET 的
+相对偏差记为 `null`。这支持本组一日场景累积量的 float32 精度较好，不等同于
+长期误差保证，也不能代替手写 CUDA 的严格 H4 parity 门。
+
+复现命令如下；审计拒绝覆盖旧输出，重跑时须选择新的日志文件名。
+
+```bash
+cd ~/work/noahmp-phase3b/repo
+unset LD_LIBRARY_PATH
+export CUDA_VISIBLE_DEVICES=1 XLA_PYTHON_CLIENT_PREALLOCATE=false
+export JAX_ENABLE_X64=true JAX_PLATFORMS=cuda CUDA_PATH=/usr/local/cuda-12.4
+export PYTHONPATH=src
+~/venvs/noahmp-phase3b/bin/python -u benchmarks/check_gpu_options.py \
+  --output ../logs/h6-options.jsonl --summary ../logs/h6-options.json \
+  > ../logs/h6-options.log 2>&1
+```
+
+原始证据：[完整运行日志](gpu-results/h6-options.log)、
+[逐项 JSONL](gpu-results/h6-options.jsonl)、[汇总及逐场景误差 JSON](gpu-results/h6-options.json)。
+任何实际 parity 失败、无效应检查失败、设备/dtype/有限性错误都会记录并返回非零
+退出码；进程级中止会留下未完成日志，不能据此报告完成。

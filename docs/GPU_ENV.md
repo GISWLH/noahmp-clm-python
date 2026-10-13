@@ -47,8 +47,8 @@ CuPy 给出 CUDA_PATH 未设置的 warning；进一步的 device arithmetic 和 
 - F：CUDA kernel 源码和 loader 照写；由于本机没有 `nvcc`，编译/运行标记为 **[未实测]**，不伪造结果。
 - G/H：文档、全量测试和推送收尾。
 
-若后续切换到带 CUDA-enabled JAX 的 Linux/xuanze 服务器，只需重新安装对应
-`jax[cuda12]` wheel，GPU 代码接口不变。
+以上为阶段 3a 的历史路线；阶段 3b 已在 Linux/xuanze 新建环境并实际执行，
+下面记录对应的 `jax[cuda12]` 安装和验证，GPU 状态接口保持不变。
 
 ## xuanze 侦察
 
