@@ -1,10 +1,10 @@
 # 阶段 3 GPU 迁移总结
 
-当前状态：xuanze 访问、H1 环境、H2 GPU float64 parity 和 H3 完整默认 CUDA kernel 编译已通过；H6 已实现物理选项的 35 个取值通过 GPU 抽查。
+当前状态：H2 GPU float64 parity 保持通过；J2 已消除原 CUDA/JAX32 的 G 超差，1024柱×48步最终状态逐位一致，但 residual 仍有504个元素未过同精度1e-6门。
 
-性能数字：已收回 NumPy 单核 `N=10000 × 48` 中位数 364.04924 s；旧 GPU 计时（包括 CUDA 0.00728780 s）进入 J2 checksum/同步审计，暂不作为最终验收证据。
+性能数字：NumPy 单核 N=10000×48 为364.04924 s；全量输出归约回读门已实现，五档 JAX 正式复测进行中，旧 CUDA 约7 ms已确认包含48次kernel但未过数值门，不能列为合格加速成绩。
 
-验收缺口：H4 float32 严格 parity 为红灯；H5 大规模单核基线尚在补测，不能报告 N=1e5 的完整加速比，阶段 3 未完成且禁止合并 main。
+验收缺口：H4及J2同精度残差仍红灯、N=1e5/3e5单核基线未结束；年度测试在第3天暴露普通版共有的薄雪过冷，64800柱x64通过而x32失败，阶段3未完成且禁止合并main。
 
 最新工作入口为 [GPU_J_STAGE.md](GPU_J_STAGE.md)：继续 J1–J5，并提出有推导的
 分档容差方案。未经用户明确确认，不改变原 H4 容差或合并条件。
@@ -27,10 +27,19 @@
 | H1 Linux venv / JAX-CUDA / CuPy | 通过：JAX 0.11.2 CudaDevice、CuPy 14.2.0 实际设备运算 |
 | H2 8 柱 × 48 步 float64 parity | 通过：实际 CUDA 输出；相关回归 7 passed，原容差不变 |
 | H3 完整默认物理 CUDA kernel | 通过编译：nvcc 12.4.99，sm_89，零 warning；NVRTC 实际运行 |
-| H4 N=1024 CUDA parity | 红灯：首步 residual 超差，48 步近零 H/G 等也超差；原容差保留 |
+| H4 N=1024 CUDA parity | 红灯：原 NumPy64 门仍失败；新 CUDA/JAX32 首步逐位一致，48步仅 residual 有504元素超1e-6门，原容差保留 |
 | H5 五档 48 步 GPU 基准 | 旧 GPU 五档计时待 checksum 复核；NumPy N=10000 已收回，N=100000/300000 在算；暂不宣称 ≥100× |
 | H6 选项矩阵与 x32/x64 精度 | 已实现物理 35 值通过，55 ABI-only 值无效应、2 固定值通过、11 未实现值如实记录 |
-| H7 全量测试与合并 | 44 passed, 2 failed（H4 的 1/48 步）；保持 gpu/migration，不合并 main |
+| H7 全量测试与合并 | 历史全量44 passed/2 failed；J2组合8 passed/3 failed，完整新回归待稳定后运行；保持gpu/migration |
+
+## J1–J5 新证据
+
+- [GPU_NUMERICS.md](GPU_NUMERICS.md)：运算树、常量折叠、FMA/除法 lowering、MOST与归约的因果探针；N=1输入所有权修复前失败、修后通过，nvcc零warning。
+- [GPU_TIMING_AUDIT.md](GPU_TIMING_AUDIT.md)：完整状态/每步诊断的device归约、host读回、JAX逐值门和异质全N敏感性；11项GPU验收仪器测试通过，失败不计measured。
+- [GPU_TOLERANCE_PROPOSAL.md](GPU_TOLERANCE_PROPOSAL.md)：7488个普通版求根的局部量化探针；候选residual绝对2e-3尚未经用户确认，也尚不能覆盖所有已知场景。
+- [GPU_J4_PROFILE.md](GPU_J4_PROFILE.md)：真实ncu计数给出首步6460 FLOP/柱步、4.88 TFLOP/s，及寄存器/带宽、JAX精度热点证据；不是H4合格性能成绩。
+- [GPU_EXTENDED_VALIDATION.md](GPU_EXTENDED_VALIDATION.md)：年度第3天失败根因与64800柱合成域审计；x32还存在不同batch shape的同精度差异。
+- [CUDA_OPTION_IMPLEMENTATION.md](CUDA_OPTION_IMPLEMENTATION.md)：12字段35值的实际物理映射；J3尚未实现，不能把JAX选项通过记成CUDA支持。
 
 ## 待完成工作
 

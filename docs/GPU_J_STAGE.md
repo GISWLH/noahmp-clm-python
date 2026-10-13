@@ -37,6 +37,22 @@ J2 数值子任务占物理 GPU1，修改 `jax_core.py` / `column_kernel.cu`；
 每阶段都记录源码哈希、原始日志和实际设备。新结果有意义时推送分支；单一
 诊断方向卡住约 30 分钟要记录并换方向，不用无关压力负载占用整夜。
 
+## 05:40 UTC 接续检查点
+
+- 已推送J2数值修复：`b3c5ee1`；默认48步只剩residual的504个同精度超差，
+  不动阈值。N1调用者输入别名bug已通过修前/修后对照修复。
+- 已推送全量checksum计时门：`f9fbd02`；最终GPU仪器11项通过。运行快照
+  `/home/lhwang/work/noahmp-phase3b/j2-final-gated-20261013T052813Z`，监督PID
+  `2407614`，进度 `/home/lhwang/work/noahmp-phase3b/logs/j2-final-20261013T052813Z-status.jsonl`。
+  GPU0按JAX64五档→JAX32五档顺序跑；CUDA预检失败不出正式时间。运行快照
+  不随工作树修改，结果用记录的source hash解释。不要重复启动。
+- J4年度/域脚本及结果已推送`debeff6`，年度和x32域仍红灯。root采样完成，
+  GPU0留给正式基准，GPU1仅做有限时长residual诊断；双卡测试待两卡可用后排队。
+- roofline与JAX热点见`GPU_J4_PROFILE.md`；ncu已成功收counter，x64新nsys导入
+  `Wrong event order`已重试一次仍失败，保留日志，不继续消耗时间重复导入。
+- 新发现CPU标准bench入口未检查NaN checksum，正在修仪器；在途夜间CPU脚本
+  是独立实现，已检查其finite及六次checksum相等，不受这个入口缺陷影响。
+
 ## 后续 heartbeat
 
 `xuanze-gpu` 每 30 分钟接续本聊天。先读取本文件和最新日志，避免重复正在

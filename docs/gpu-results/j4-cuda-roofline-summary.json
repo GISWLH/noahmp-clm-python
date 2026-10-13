@@ -1,0 +1,16 @@
+{
+  "status": "diagnostic_only_h4_unvalidated",
+  "kernel": "step_columns",
+  "sample": "first step of one captured 48-step call after three warmups",
+  "n_columns": 100000,
+  "fp32_add_mul_fma_flops": 646000000.0,
+  "flops_per_column": 6460.0,
+  "dram_bytes": 87616639.99999999,
+  "duration_seconds": 0.000132448,
+  "arithmetic_intensity_flops_per_dram_byte": 7.373028684962128,
+  "teraflops_per_second": 4.87738584199082,
+  "dram_gigabytes_per_second": 661.5172747040348,
+  "counts_exclude": "transcendental and integer operations; not extrapolated to all 48 steps",
+  "clock_and_cache_control": "none",
+  "raw_csv": "j4-original-cuda-flops.csv"
+}
