@@ -43,9 +43,13 @@ N=300000分别60.166400/3.310363 s。包含完整校验后，N=100000的x64/x32
 [全源码清单](gpu-results/j2-final-gated-sourcehash.json)、
 [监督阶段记录](gpu-results/j2-final-status.jsonl)。
 
-修后CUDA默认版本`f29d7ad`正在以相同全量门复测五档；任何失败只记录rejected。
-即使该checksum门通过，独立NumPy64 H4仍未通过，不能将CUDA作为完整物理
-验收的加速结果。J3选项扩展后的kernel须另记录源码身份，不能复用旧版本成绩。
+修后CUDA默认版本`f29d7ad`的五档**全部在异质完整N预检被拒绝**，没有接受任何
+计时：N100/1000/10000仅residual超门，最大容差倍数30.5115；N100000/300000
+还涉及rnet/H/G，residual最大倍数1646.3164。全部最终状态仍在门内、所有列均
+响应扰动，但这不能抵销逐步诊断失败。N1024固定四种气温的逐位一致结果不能
+外推到这些输入及shape。原始[CUDA五档](gpu-results/j2-cuda-f29d7ad-final.jsonl)、
+[源码前后复核](gpu-results/j2-cuda-f29d7ad-sourcehash-recheck.json)已保存。
+独立NumPy64 H4同样仍未通过；J3选项扩展后的kernel须另验证并标识源码。
 
 ## xuanze 旧方法历史记录（不作当前GPU验收依据）
 

@@ -141,6 +141,55 @@ CUDA `measured`。该组合 smoke 退出码为 1，是预期 CUDA 验收红灯�
 与 11 项门测试全通过分开报告。两个阶段的运行前后源码哈希均未变化。
 正式 JAX64/JAX32 五档完整基准另行记录，不能从此 smoke 推算大 N 吞吐。
 
+### 最终五档 JAX 基准
+
+同一冻结快照与 GPU 0 已完成 JAX64/JAX32 的全部五档；每档完整 N 异质敏感性
+预检及三次预热、三次测量均通过。下表只取最终 `event=result` 的中位数，
+并复核逐次有效列步、逐元素门及中位数重算。端到端包括归约与 host 回读；
+compute 是同步 API 调用耗时，不能等同纯 kernel 时长。
+
+| N | JAX64 端到端 s | JAX64 compute s | JAX32 端到端 s | JAX32 compute s |
+|---:|---:|---:|---:|---:|
+| 100 | 4.157730043 | 4.154170349 | 3.228039250 | 3.224391975 |
+| 1000 | 4.066922523 | 4.063364059 | 3.446796618 | 3.442471378 |
+| 10000 | 4.097570240 | 4.081260100 | 3.331466101 | 3.314959794 |
+| 100000 | 21.732564241 | 21.547112219 | 3.482058212 | 3.295100853 |
+| 300000 | 60.734212235 | 60.166399531 | 3.883731045 | 3.310362689 |
+
+原始数据：[JAX64](gpu-results/j2-final-jax64.jsonl)、
+[JAX32](gpu-results/j2-final-jax32.jsonl)、[独立汇总](gpu-results/j2-final-jax-summary.json)、
+[完整运行日志](gpu-results/j2-final-run.log)、[阶段状态及进程 PID](gpu-results/j2-final-status.jsonl)。
+这次 JSONL 内嵌的来源仍是原五文件清单；外层启动器同时记录和逐阶段检查
+全部 `src` Python 文件、CUDA 源码以及基准脚本，包括 `column.py`、`pack.py`、
+`io.py` 和普通版物理模块。[完整运行后复核](gpu-results/j2-final-sourcehash-recheck.json)
+确认全部文件与启动 sidecar 一致。运行中没有缩小 N，也没有出现 OOM。
+
+这些结果验收的是同 N、同输入、同精度的消费与复现；同源 JAX 参考不能替代
+独立 NumPy 物理 parity，也不能证明改变 batch shape 后仍保持同样数值。
+CPU 加速比需结合已完成的同负载普通版最终基线，不能用小 N 的每柱时间外推。
+
+### f29d7ad CUDA 修复后的五档预检
+
+在单独快照 `/home/lhwang/work/noahmp-phase3b/j2-cuda-f29d7ad-gated-final` 中，
+kernel 与 loader 均精确取自提交 `f29d7ad4427c0a88710fd87835b43f9150604ac7`，
+其余物理源码保持同一薄雪修复版 JAX。kernel SHA256 为
+`3da106c2ffdc0eb42ab95a91227ba1492861d081e5c1552389fd536625356395`；
+loader 为 `5a87015be97d1b8d548c10ade35cd33e149debec0456e7983a4bc34ab3ac7f75`。
+
+五档全部在完整 N 异质预检被拒绝，因此没有开始正式三次预热/三次测量，
+也没有产生任何可接受 CUDA `seconds`。各档均确认全部 N 列响应扰动：
+
+| N | 最终状态最大容差比 | 超差诊断及最大容差比 |
+|---:|---:|---|
+| 100 / 1000 / 10000 | 0（逐项完全相同） | residual 30.5115 |
+| 100000 / 300000 | 0.106659（通过） | rnet 2.76807、H 63.8939、G 25.8117、residual 1646.316 |
+
+完整命令退出码 1。[原始 JSONL](gpu-results/j2-cuda-f29d7ad-final.jsonl)、
+[日志](gpu-results/j2-cuda-f29d7ad-final.log)、[进程/阶段状态](gpu-results/j2-cuda-f29d7ad-final-status.jsonl)
+与[全部源码前后复核](gpu-results/j2-cuda-f29d7ad-sourcehash-recheck.json)保留了失败证据，
+源码未变化。单一 N=1024 的同构输入测试通过不能外推到这些异质完整规模，
+本次也不以 checksum 或局部 parity 替代独立 H4。
+
 ### NumPy 计时返回值的独立修复
 
 独立审阅通过故障注入确认原 `_timed` 会丢弃 NumPy runner 返回的 checksum，

@@ -61,6 +61,15 @@ size实验，双卡仍需排队。原H4 NumPy64 residual差最大0.00250709，56
 2e-3，且H/LE/G也超原门；候选容差不能直接解决，未申请/获得放宽授权。数值
 代理随后限时诊断JAX32不同batch shape的J4差异，不修改生产JAX。
 
+05:59 UTC更新：JAX十组计时全过，已推送`3a30dbd`；小规模NumPy100/1000也
+补齐六次checksum。f29 CUDA五档全被异质preflight拒绝，未生成可接受计时。
+J3第一版nvcc零warning、52pass/2fail：默认同精度和16组runoff二出口通过，
+RainSnow3及混排仍有residual小差；正在验证气孔温度平方的分组。数值代理已
+将JAX N64800/N1差异缩至根系beta归约，准备独立tmp固定四项树的验证。
+GPU双卡N100 smoke通过（0.996×，小规模无加速）；N100000/64800正式x32
+进程PID2467048，日志前缀`/home/lhwang/work/noahmp-phase3b/logs/j4-scaling-jax32-final`。
+两卡暂用于该作业，完成后交回短数值验证，再排x64双卡；不要同时占卡profiling。
+
 `xuanze-gpu` 每 30 分钟接续本聊天。先读取本文件和最新日志，避免重复正在
 运行的任务；优先收回 CPU 结果和推进当前未完成阶段。只有状态有意义改变、
 完成、失败或需要用户确认时通知。全部工作完成或明确记录无法继续的缺口后，
