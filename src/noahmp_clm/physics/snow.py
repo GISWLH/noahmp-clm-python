@@ -293,10 +293,16 @@ def age_albedo(state, dt: float, snowfall_m: float, option: int = 1) -> None:
     )
 
 
-def apply_snow_heat(state, dt: float, g_snow: float) -> float:
-    """用隐式层间导热加热雪体；雪温超过 0°C 的能量转为融水 (m)。"""
+def apply_snow_heat(state, dt: float, g_snow: float) -> tuple[float, float]:
+    """Return melt (m) and heat reaching the soil (J/m²).
+
+    After implicit conduction, project each layer onto its ice enthalpy.
+    Energy beyond complete melting warms/melts lower layers; any remainder
+    leaves the bottom of the pack. Meltwater leaves at the freezing point.
+    The caller must apply the returned heat to the soil, including melt-out.
+    """
     if state.swe <= 1e-6:
-        return 0.0
+        return 0.0, float(dt * g_snow)
     swe, temps, density = combine_snow_layers(
         state.snow_swe_layers, state.snow_t_layers, state.snow_density_layers
     )
@@ -307,17 +313,24 @@ def apply_snow_heat(state, dt: float, g_snow: float) -> float:
     ])
     updated = _implicit_heat_step(temps, thickness, dt, g_snow, conductivity)
     melt = 0.0
+    remaining_heat = 0.0
     for i in range(len(updated)):
-        if updated[i] > 273.15:
-            excess = (updated[i] - 273.15) * C_SNOW * thickness[i]
+        capacity = C_SNOW * thickness[i]
+        carry = remaining_heat
+        excess = (updated[i] - 273.15) * capacity + remaining_heat
+        remaining_heat = 0.0
+        if excess > 0.0:
             layer_melt = min(swe[i], excess / (LF * RHO_W))
             swe[i] -= layer_melt
             melt += layer_melt
             updated[i] = 273.15
+            remaining_heat = max(0.0, excess - layer_melt * (LF * RHO_W))
+        elif carry > 0.0:
+            updated[i] = 273.15 + excess / capacity
     swe, updated, density = combine_snow_layers(swe, updated, density)
     state.snow_swe_layers = swe
     state.snow_t_layers = updated
     state.snow_density_layers = density
     state.swe = float(np.sum(swe))
     state.snow_t = float(updated[0])
-    return float(melt)
+    return float(melt), float(remaining_heat)

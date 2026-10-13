@@ -1,4 +1,4 @@
-"""H4：N=1024真实CUDA默认物理，与numpy及JAX float32对照。"""
+"""v1 scientific aggregate bias gate; retired H4 evidence remains in docs/."""
 
 from __future__ import annotations
 
@@ -11,6 +11,7 @@ cp = pytest.importorskip("cupy")
 from noahmp_clm.gpu.cuda import loader
 from noahmp_clm.column import ColumnState, Forcing, default_soil_params
 from noahmp_clm.driver import run_column
+from noahmp_clm.validation import compare_series
 from noahmp_clm.gpu.pack import column_state_to_vec, forcing_to_vec, vec_to_column_state, forcing_vec_to_forcing
 
 
@@ -65,9 +66,20 @@ def test_cuda_kernel_compiles_and_runs(steps: int) -> None:  # pragma: no cover 
     for index, key in enumerate(keys):
         print(key, "CUDA-numpy max_abs", np.max(abs(actual[:,:,index]-expected[:,:,index])),
               "CUDA-JAX32 max_abs", np.max(abs(actual[:,:,index]-jax_diag[:,:,index])), flush=True)
-    np.testing.assert_allclose(actual,expected,rtol=1e-4,atol=1e-6)
-    np.testing.assert_allclose(actual,jax_diag,rtol=1e-5,atol=1e-6)
-    np.testing.assert_allclose(cp.asnumpy(final_f),np.asarray(jax_result[0]),rtol=1e-5,atol=1e-6)
+    # Wang retired the old pointwise 1e-4 H4 on 2026-10-13. This test now
+    # measures integrated physical bias, including an absolute near-zero rule.
+    # Exact CUDA32/JAX32 checks remain a separate mandatory 1e-6 gate.
+    for column in range(1024):
+        for key, variable, scale in (("h", "h_wm2", 1.), ("le", "le_wm2", 1.),
+                ("g", "g_wm2", 1.), ("et_mm", "et_mm_day", 48.),
+                ("runoff_mm", "runoff_mm_day", 48.), ("swe", "swe_m", 1.),
+                ("canw", "canw_m", 1.)):
+            index = keys.index(key)
+            metric = compare_series(actual[column,:,index] * scale,
+                expected[column,:,index] * scale, variable)
+            assert metric["bias_pass"], (column, key, metric)
+    np.testing.assert_allclose(actual,jax_diag,rtol=1e-6,atol=1e-6)
+    np.testing.assert_allclose(cp.asnumpy(final_f),np.asarray(jax_result[0]),rtol=1e-6,atol=1e-6)
     np.testing.assert_array_equal(cp.asnumpy(final_i),np.asarray(jax_result[1]))
     assert np.all(np.isfinite(actual))
     assert np.max(abs(actual[:,:,11])) < 0.5

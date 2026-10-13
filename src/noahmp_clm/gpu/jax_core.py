@@ -224,6 +224,12 @@ def _snow_fraction(
                             lambda _: jordan, lambda _: wetbulb], None)
 
 
+def _smooth_water_cap(total, potential):
+    width = jnp.maximum(0.04 * total, 1.0e-12)
+    rounding = jnp.maximum(width - jnp.abs(total - potential), 0.0)
+    return jnp.maximum(0.0, jnp.minimum(total, potential) - rounding * rounding / (4.0 * width))
+
+
 def _unfrozen_water(
     smc: jax.Array,
     temperature: jax.Array,
@@ -241,14 +247,14 @@ def _unfrozen_water(
     potential = smcmax * (
         jnp.maximum(clausius, 1.0e-8) / 5.0e-5
     ) ** (-1.0 / jnp.maximum(bexp, 1.0e-6))
-    niu = jnp.where(temperature >= FREEZING_POINT, total, jnp.minimum(total, potential))
+    niu = jnp.where(temperature >= FREEZING_POINT, total, _smooth_water_cap(total, potential))
 
     def koren_body(_, liquid):
         inner = smcmax * (
             jnp.maximum(LF / 461.5 * jnp.maximum(0.0, FREEZING_POINT - temperature)
                         / FREEZING_POINT**2, 1.0e-8) / 5.0e-5
         ) ** (-1.0 / jnp.maximum(bexp, 1.0e-6))
-        inner = jnp.where(temperature >= FREEZING_POINT, liquid, jnp.minimum(liquid, inner))
+        inner = jnp.where(temperature >= FREEZING_POINT, liquid, _smooth_water_cap(liquid, inner))
         return 0.5 * (liquid + jnp.minimum(smc, inner))
 
     koren = lax.fori_loop(0, 3, koren_body, niu)
@@ -503,10 +509,20 @@ def _snow_heat(
     upper = jnp.array([-g01, -g12, 0.0], dtype=cap.dtype)
     rhs = cap * snow_t_layers + jnp.array([top_flux, 0.0, 0.0], dtype=cap.dtype)
     updated = _thomas3(lower, diagonal, upper, rhs)
-    excess = jnp.maximum(updated - FREEZING_POINT, 0.0) * C_SNOW * safe_thickness
-    melt = jnp.minimum(swe_layers, excess / (LF * RHO_W)) * mask
+    melt = jnp.zeros_like(swe_layers)
+    cooled = updated
+    remaining_heat = jnp.asarray(0.0, dtype=updated.dtype)
+    for layer in range(3):
+        capacity = C_SNOW * safe_thickness[layer]
+        excess = (updated[layer] - FREEZING_POINT) * capacity + remaining_heat
+        amount = jnp.minimum(swe_layers[layer], jnp.maximum(excess, 0.0) / (LF * RHO_W))
+        melt = melt.at[layer].set(jnp.where(mask[layer], amount, 0.0))
+        temperature = jnp.where(remaining_heat > 0.0,
+            FREEZING_POINT + jnp.minimum(excess, 0.0) / capacity,
+            jnp.minimum(updated[layer], FREEZING_POINT))
+        cooled = cooled.at[layer].set(jnp.where(mask[layer], temperature, FREEZING_POINT))
+        remaining_heat = jnp.where(mask[layer], jnp.maximum(0.0, excess - amount * (LF * RHO_W)), remaining_heat)
     remaining = jnp.maximum(swe_layers - melt, 0.0)
-    cooled = jnp.minimum(updated, FREEZING_POINT)
     active = remaining > 1.0e-8
     # 固定长度 gather 把融空的顶层前移；有效层数不改变数组形状。
     count = jnp.maximum(1, jnp.sum(active.astype(jnp.int32))).astype(jnp.int32)
@@ -515,7 +531,7 @@ def _snow_heat(
     sorted_swe = jnp.where(valid, remaining[indices], 0.0)
     sorted_t = jnp.where(valid, cooled[indices], FREEZING_POINT)
     sorted_d = jnp.where(valid, snow_density_layers[indices], 300.0)
-    return sorted_swe, sorted_t, sorted_d, count, jnp.sum(melt)
+    return sorted_swe, sorted_t, sorted_d, count, jnp.sum(melt), remaining_heat
 
 
 def _snow_albedo(
@@ -616,6 +632,8 @@ def _soil_heat(
     rhs = cap * dz / dt * tsoil
     rhs = rhs.at[0].add(g_flux)
     new_tsoil = _thomas4(lower, diagonal, upper, rhs)
+    equilibrium = (g_flux == 0.0) & jnp.all(tsoil == tsoil[0])
+    new_tsoil = jnp.where(equilibrium, tsoil, new_tsoil)
     new_ice, _ = _phase_and_capacity(new_tsoil * 0.0 + smc, new_tsoil, smcmax, bexp, supercool_option)
     return new_tsoil, new_ice
 
@@ -984,7 +1002,7 @@ def step_column_jax(
             ts, rnet, h, jnp.asarray(0.0, dtype=fvec.dtype), g_snow,
             jnp.asarray(0.0, dtype=fvec.dtype), jnp.asarray(0.0, dtype=fvec.dtype),
             new_layers[0], new_layers[1], new_layers[2], new_layers[3], new_layers[4],
-            jnp.asarray(0.0, dtype=fvec.dtype), rnet - h - g_snow,
+            jnp.asarray(0.0, dtype=fvec.dtype), rnet - h - g_snow, new_layers[5] / dt,
         )
 
     def bare_energy(_):
@@ -1039,7 +1057,7 @@ def step_column_jax(
             le_g / LV * dt / RHO_W, snow_swe_layers, snow_t_layers,
             snow_density_layers, snow_count, jnp.asarray(0.0, dtype=fvec.dtype),
             jnp.maximum(0.0, canw_intercepted - ecan),
-            rnet - h - le_g - le_c - tr_le - g_soil,
+            rnet - h - le_g - le_c - tr_le - g_soil, g_soil,
         )
 
     snow_surface = swe > 1.0e-4
@@ -1047,7 +1065,7 @@ def step_column_jax(
     (
         ts, rnet, h, le_total, g_flux, ecan_m, esoil_potential,
         snow_swe_layers, snow_t_layers, snow_density_layers, snow_count,
-        melt, canw_after_energy, residual,
+        melt, canw_after_energy, residual, soil_flux,
     ) = energy
     smc, soil_ice, runoff_surface, runoff_deep, transp_taken, esoil_taken = _soil_water(
         smc, soil_ice, root_frac, throughfall + melt, tr_m, esoil_potential,
@@ -1057,7 +1075,7 @@ def step_column_jax(
         terrain_index, groundwater_depth, option_supercool, tsoil,
     )
     tsoil, soil_ice = _soil_heat(
-        tsoil, smc, soil_ice, dt, jnp.where(snow_surface, 0.0, g_flux),
+        tsoil, smc, soil_ice, dt, soil_flux,
         smcmax, bexp, quartz, option_supercool
     )
     swe = jnp.sum(snow_swe_layers)

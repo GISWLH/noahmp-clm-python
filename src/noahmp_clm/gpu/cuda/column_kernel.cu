@@ -77,6 +77,11 @@ __device__ float exchange(const float* u, float z0, float ts, int option=1) {
     return ce;
 }
 // 对应普通版: frozen_soil._niu_yang_liquid。Niu & Yang (2006)。
+__device__ float smooth_water_cap(float total, float potential) {
+    float width=fmaxf(0.04f*total,1.0e-12f);
+    float rounding=fmaxf(width-fabsf(total-potential),0.0f);
+    return fmaxf(0.0f,fminf(total,potential)-rounding*rounding/(4.0f*width));
+}
 __device__ float liquid(float smc, float t, const float* s, int option=1) {
     float total = fmaxf(0.0f, smc);
     if (t >= TF) return total;
@@ -86,10 +91,10 @@ __device__ float liquid(float smc, float t, const float* s, int option=1) {
     constexpr float phase_coefficient=(LF/461.5f)/(TF*TF);
     float clausius = phase_coefficient*fmaxf(0.0f,TF-t);
     float potential = s[39] * powf(fmaxf(clausius,1.0e-8f)*20000.0f, -1.0f/fmaxf(s[43],1.0e-6f));
-    float result=fminf(total,potential);
+    float result=smooth_water_cap(total,potential);
     // 对应普通版: frozen_soil.unfrozen_water_content。Koren's three updates.
     if (option==2) {
-        for (int it=0;it<3;++it) result=0.5f*(result+fminf(smc,fminf(result,potential)));
+        for (int it=0;it<3;++it) result=0.5f*(result+fminf(smc,smooth_water_cap(result,potential)));
         result=fminf(smc,result);
     }
     return result;
@@ -224,7 +229,7 @@ __device__ void snowfall(float* s, int* count, float amount, const float* u, int
     s[26]=total; s[27]=total>1.0e-8f ? s[19] : TF;
 }
 // 对应普通版: snow.apply_snow_heat/_implicit_heat_step。固定三层隐式系统。
-__device__ float snow_heat(float* s, int* count, float dt, float top_flux, int option=1) {
+__device__ float snow_heat(float* s, int* count, float dt, float top_flux, float* soil_energy, int option=1) {
     float depth[3], cap[3], conduct[2], k[3], t[3];
     for (int j=0;j<3;++j) {
         depth[j]=j<*count ? s[16+j]*RW/fmaxf(s[22+j],50.0f) : 1.0e-4f;
@@ -239,16 +244,21 @@ __device__ float snow_heat(float* s, int* count, float dt, float top_flux, int o
     float c1=-conduct[1]/safe_den(b1), d1=(cap[1]*s[20]+conduct[0]*d0)/safe_den(b1);
     float b2=cap[2]+conduct[1]+conduct[1]*c1;
     t[2]=(cap[2]*s[21]+conduct[1]*d1)/safe_den(b2); t[1]=d1-c1*t[2]; t[0]=d0-c0*t[1];
-    float melt=0.0f; int kept=0;
+    float melt=0.0f, remaining_heat=0.0f; int kept=0;
     for (int j=0;j<*count;++j) {
-        float amount=fminf(s[16+j],fmaxf(t[j]-TF,0.0f)*630000.0f*depth[j]/(LF*RW));
+        float capacity=630000.0f*depth[j];
+        float excess=(t[j]-TF)*capacity+remaining_heat;
+        float amount=fminf(s[16+j],fmaxf(excess,0.0f)/(LF*RW));
+        float temperature=remaining_heat>0.0f ? TF+fminf(excess,0.0f)/capacity : fminf(t[j],TF);
+        remaining_heat=fmaxf(0.0f,excess-amount*(LF*RW));
         melt+=amount; float left=fmaxf(0.0f,s[16+j]-amount);
         if (left>1.0e-8f) {
-            s[16+kept]=left; s[19+kept]=fminf(t[j],TF); s[22+kept]=s[22+j]; ++kept;
+            s[16+kept]=left; s[19+kept]=temperature; s[22+kept]=s[22+j]; ++kept;
         }
     }
     for (int j=kept;j<3;++j) { s[16+j]=0.0f; s[19+j]=TF; s[22+j]=300.0f; }
     *count=kept>0 ? kept : 1;
+    *soil_energy=remaining_heat;
     return melt;
 }
 
@@ -416,6 +426,10 @@ __device__ float soil_water(float* s, const float* u, float incoming, float tran
 }
 // 对应普通版: soil.step_soil_heat/frozen_soil.update_soil_phase。底部零通量。
 __device__ void soil_heat(float* s, float dt, float flux, int supercool=1) {
+    if (flux==0.0f && s[0]==s[1] && s[0]==s[2] && s[0]==s[3]) {
+        for (int j=0;j<4;++j) s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s,supercool));
+        return;
+    }
     float cap[4], k[4], conduct[3], a[4], b[4], c[4], rhs[4], out[4];
     for (int j=0;j<4;++j) { cap[j]=capacity(s[4+j],s[j],s,supercool); k[j]=soil_k(s[4+j],s); }
     for (int j=0;j<3;++j) conduct[j]=(2.0f/(1.0f/k[j]+1.0f/k[j+1]))/(0.5f*(DZ[j]+DZ[j+1]));
@@ -477,10 +491,11 @@ __device__ void step_selected(float* s, int* count, const float* u, float* diag,
     bool is_snow=s[26]>1.0e-4f;
     float ts=surface_temperature(s,u,is_snow,tr,drag,ground,water,conductivity);
     Energy e=energy(ts,s,u,is_snow,tr,drag,ground,water,conductivity); float melt=0.0f;
-    if (is_snow) melt=snow_heat(s,count,u[0],e.g,conductivity);
+    float soil_energy=0.0f;
+    if (is_snow) melt=snow_heat(s,count,u[0],e.g,&soil_energy,conductivity);
     else s[30]=fmaxf(0.0f,s[30]-e.ecan);
     float et, runoff=soil_water(s,u,through+melt,tr_m,e.esoil,&et,permeability,supercool,surface,subsurface);
-    soil_heat(s,u[0],is_snow ? 0.0f : e.g,supercool);
+    soil_heat(s,u[0],is_snow ? soil_energy/u[0] : e.g,supercool);
     s[25]=ts; s[26]=s[16]+s[17]+s[18]; s[27]=s[26]>1.0e-8f ? s[19] : TF;
     snow_albedo(s,snow,u[0],albedo);
     diag[0]=ts; diag[1]=e.rn; diag[2]=e.h; diag[3]=e.le;

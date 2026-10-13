@@ -17,6 +17,19 @@ RHO_WATER = 1000.0
 GAS_CONSTANT_WATER = 461.5  # J/(kg K)
 
 
+def _smooth_water_cap(total, potential):
+    """C1 regularization of min(total, potential), local to saturation.
+
+    A compact quadratic rounds the corner over ±4% of total water. Maximum
+    liquid-water change is 1% of total; outside that band the old curve is
+    unchanged. Unlike a hard min, its derivative joins continuously, preventing
+    AHC's 0.02 K sampling window from crossing a derivative discontinuity.
+    """
+    width = np.maximum(0.04 * total, 1.0e-12)
+    rounding = np.maximum(width - np.abs(total - potential), 0.0)
+    return np.maximum(0.0, np.minimum(total, potential) - rounding * rounding / (4.0 * width))
+
+
 def _niu_yang_liquid(smc: np.ndarray, temperature: np.ndarray, p: SoilParams) -> np.ndarray:
     temp = np.asarray(temperature, dtype=float)
     total = np.maximum(0.0, np.asarray(smc, dtype=float))
@@ -27,7 +40,7 @@ def _niu_yang_liquid(smc: np.ndarray, temperature: np.ndarray, p: SoilParams) ->
     potential = p.smcmax * (
         np.maximum(clausius, 1.0e-8) / 5.0e-5
     ) ** (-1.0 / max(p.bexp, 1.0e-6))
-    return np.where(temp >= FREEZING_POINT, total, np.minimum(total, potential))
+    return np.where(temp >= FREEZING_POINT, total, _smooth_water_cap(total, potential))
 
 
 def unfrozen_water_content(

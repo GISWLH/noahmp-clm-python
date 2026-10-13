@@ -1,0 +1,206 @@
+{
+  "columns": 64800,
+  "steps": 48,
+  "finite": true,
+  "integer_equal": true,
+  "source_hashes": {
+    "src/noahmp_clm/__init__.py": "fc1ce6f975d69ddcdf373d1ae5cc9f440ece2ea5b37f557be01ea17a5a42471e",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "0a7dbd098c4138e782efa89e6f2f706bd5e8991a383d41b4a77078ca204fe0a0",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/jax_core.py": "175defb55b5620a2f58cc5693490427e336d49ea033d05442995ed94005e8c60",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "b14d3a3ea04e8fded6d7c8b0a9947c2d2ad6a6c2946f035eae0ccc98804bfede",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "8e0deb92e23e2e54bc0b2ad0d3e55500baea4676549204e58113b1333f5bd156",
+    "src/noahmp_clm/physics/soil.py": "ff7ba542bb1c47b1222c82cf1daad587352a492b9cf4d40ece6f1ce367c8d49d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/validation.py": "2366e21c80f512d46c62771ce388879276ad1adc1d4e8f0747da8aeb67fb492f",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "b7d4ebbbe513eb22304ad2d64f65167aee79416deac172ca2a326e949e373c9c",
+    "benchmarks/check_gpu_extended.py": "b55f21e9923bf2f4aa88fadd3ad8eb8e7898089fc1dee15753e81236ff9c9ff1"
+  },
+  "comparisons": {
+    "h": {
+      "variable": "h_wm2",
+      "samples": 64800,
+      "max_absolute_bias": 0.03310804793545685,
+      "max_relative_bias_nonnearzero": 0.00017210570842733357,
+      "near_zero_samples": 0,
+      "absolute_tolerance": 1.0,
+      "failures": 0,
+      "rmse": 0.0015547302474794764,
+      "max_instantaneous_absolute_difference": 0.26711121569303486,
+      "r_min": 0.9999998669531199,
+      "r_defined_columns": 64800,
+      "r_undefined_columns": 0,
+      "r_failures": 0
+    },
+    "le": {
+      "variable": "le_wm2",
+      "samples": 64800,
+      "max_absolute_bias": 0.025935582414185254,
+      "max_relative_bias_nonnearzero": 1.3025558367307266e-06,
+      "near_zero_samples": 56700,
+      "absolute_tolerance": 1.0,
+      "failures": 0,
+      "rmse": 0.00013315740491188645,
+      "max_instantaneous_absolute_difference": 0.06401395960539646,
+      "r_min": 0.9939418670199817,
+      "r_defined_columns": 37322,
+      "r_undefined_columns": 27478,
+      "r_failures": 0
+    },
+    "g": {
+      "variable": "g_wm2",
+      "samples": 64800,
+      "max_absolute_bias": 0.03806264283082328,
+      "max_relative_bias_nonnearzero": 0.0005657827367263973,
+      "near_zero_samples": 37475,
+      "absolute_tolerance": 1.0,
+      "failures": 0,
+      "rmse": 0.0017927078515999127,
+      "max_instantaneous_absolute_difference": 0.3056032309621344,
+      "r_min": 0.9999998607932965,
+      "r_defined_columns": 64800,
+      "r_undefined_columns": 0,
+      "r_failures": 0
+    },
+    "et_mm": {
+      "variable": "et_mm_day",
+      "samples": 64800,
+      "max_absolute_bias": 9.101950635488371e-06,
+      "max_relative_bias_nonnearzero": 1.372513729483039e-06,
+      "near_zero_samples": 56700,
+      "absolute_tolerance": 0.05,
+      "failures": 0,
+      "rmse": 3.1299747650675203e-07,
+      "max_instantaneous_absolute_difference": 6.419562684537996e-06
+    },
+    "runoff_mm": {
+      "variable": "runoff_mm_day",
+      "samples": 64800,
+      "max_absolute_bias": 0.0,
+      "max_relative_bias_nonnearzero": null,
+      "near_zero_samples": 64800,
+      "absolute_tolerance": 0.05,
+      "failures": 0,
+      "rmse": 0.0,
+      "max_instantaneous_absolute_difference": 0.0
+    },
+    "swe": {
+      "variable": "swe_m",
+      "samples": 64800,
+      "max_absolute_bias": 9.750656569489091e-09,
+      "max_relative_bias_nonnearzero": 1.4292037464639905e-06,
+      "near_zero_samples": 24300,
+      "absolute_tolerance": 0.0001,
+      "failures": 0,
+      "rmse": 3.002359673196925e-09,
+      "max_instantaneous_absolute_difference": 2.2265760636283605e-08
+    },
+    "canw": {
+      "variable": "canw_m",
+      "samples": 64800,
+      "max_absolute_bias": 0.0,
+      "max_relative_bias_nonnearzero": null,
+      "near_zero_samples": 64800,
+      "absolute_tolerance": 1e-07,
+      "failures": 0,
+      "rmse": 0.0,
+      "max_instantaneous_absolute_difference": 0.0
+    },
+    "final_tsoil_c": {
+      "variable": "tsoil_c",
+      "samples": 259200,
+      "max_absolute_bias": 0.007221403133996773,
+      "max_relative_bias_nonnearzero": 0.0002760602505125752,
+      "near_zero_samples": 8100,
+      "absolute_tolerance": 0.5,
+      "failures": 0,
+      "rmse": 0.00030882555397314436
+    },
+    "final_smc": {
+      "variable": "smc",
+      "samples": 259200,
+      "max_absolute_bias": 4.0800277539831953e-07,
+      "max_relative_bias_nonnearzero": 1.2568166107733547e-06,
+      "near_zero_samples": 0,
+      "absolute_tolerance": 0.002,
+      "failures": 0,
+      "rmse": 5.816197751272846e-08
+    },
+    "final_soil_ice": {
+      "variable": "smc",
+      "samples": 259200,
+      "max_absolute_bias": 0.00013146971388541817,
+      "max_relative_bias_nonnearzero": 0.005684652133623485,
+      "near_zero_samples": 188771,
+      "absolute_tolerance": 0.002,
+      "failures": 0,
+      "rmse": 1.392468944193259e-06
+    }
+  },
+  "historical_threshold_descriptive_only": {
+    "seasonal_freeze_sand": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0014222377084820437,
+      "max_ice_difference_m3m3": 4.913359320624089e-06
+    },
+    "seasonal_melt_loam": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.00103759765625,
+      "max_ice_difference_m3m3": 0.0
+    },
+    "warm_wet_clay": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0011005023338270803,
+      "max_ice_difference_m3m3": 0.0
+    },
+    "dry_sand": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0023495022109614183,
+      "max_ice_difference_m3m3": 0.0
+    },
+    "cold_snow_loam": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0,
+      "max_ice_difference_m3m3": 1.4498144018659787e-08
+    },
+    "seasonal_melt_clay": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0009765625,
+      "max_ice_difference_m3m3": 0.0
+    },
+    "transition_sand": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 5618,
+      "max_temperature_difference_K": 0.007221403133996773,
+      "max_ice_difference_m3m3": 0.00013146971388541817
+    },
+    "seasonal_loam": {
+      "columns": 8100,
+      "retired_threshold_state_bad_columns": 0,
+      "max_temperature_difference_K": 0.0022715961252970374,
+      "max_ice_difference_m3m3": 0.0
+    }
+  },
+  "passed": true,
+  "scope": "synthetic backend comparison; not independent observed physics validation"
+}

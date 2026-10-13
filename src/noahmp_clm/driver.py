@@ -79,10 +79,10 @@ def step_column(state: ColumnState, f: Forcing):
         ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
         g_snow = SN.coupled_snow_flux(ts, snow_response)
-        melt = SN.apply_snow_heat(s, dt, g_snow)
+        melt, snow_excess_heat = SN.apply_snow_heat(s, dt, g_snow)
         le_g = le_c = 0.0
         ecan_m = esoil_m = 0.0
-        g_soil = 0.0
+        g_soil = snow_excess_heat / dt
         le_total = 0.0
         residual = rnet - h - g_snow
     else:
@@ -131,6 +131,7 @@ def step_column(state: ColumnState, f: Forcing):
         ecan_m = le_c / LV * dt / RHO_W
         s.canw = max(0.0, s.canw - ecan_m)
         melt = 0.0
+        snow_excess_heat = 0.0
         le_total = le_g + le_c + tr_le
         residual = rnet - h - le_total - g_soil
 
@@ -155,6 +156,8 @@ def step_column(state: ColumnState, f: Forcing):
         "swe": s.swe, "canw": s.canw,
         "smc": s.smc.copy(), "tsoil": s.tsoil.copy(),
         "residual": residual,
+        "snow_excess_heat_jm2": snow_excess_heat,
+        "soil_heat_flux": g_soil,
     }
     return s, diag
 

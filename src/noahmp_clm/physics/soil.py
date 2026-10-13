@@ -30,6 +30,12 @@ def thermal_conductivity(smc: np.ndarray, p) -> np.ndarray:
 
 def step_soil_heat(state: ColumnState, dt: float, g_flux: float) -> None:
     """隐式更新各层土壤温度。g_flux: 向下为正的地表热通量 (W/m2)。原地修改。"""
+    # Exact equilibrium of the Neumann problem, independent of layer capacity
+    # and conductivity. Preserve this invariant without changing the general
+    # Thomas solve (the broader M1 delta-temperature rewrite was rejected).
+    if g_flux == 0.0 and np.all(state.tsoil == state.tsoil[0]):
+        update_soil_phase(state)
+        return
     n = len(state.dz)
     dz = state.dz
     cap = apparent_heat_capacity(

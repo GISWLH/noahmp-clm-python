@@ -21,8 +21,9 @@ def test_implicit_snow_boundary_closes_heat_and_flux(layers):
     surface = 260.
     response = snow.snow_surface_response(state,1800.)
     flux = snow.coupled_snow_flux(surface,response)
-    melt = snow.apply_snow_heat(state,1800.,flux)
+    melt, soil_heat = snow.apply_snow_heat(state,1800.,flux)
     assert melt == 0.
+    assert soil_heat == 0.
     assert state.snow_t_layers.min() >= surface
     assert state.snow_t_layers.max() <= old.max()
     np.testing.assert_allclose(np.sum(snow.C_SNOW*depth*(state.snow_t_layers-old)),

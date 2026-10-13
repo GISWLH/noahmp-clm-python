@@ -31,7 +31,7 @@ def test_multilayer_heat_couples_layers_and_melts_at_zero() -> None:
         snow_density_layers=np.full(3, 300.0),
     )
     before = state.snow_t_layers.copy()
-    melt = apply_snow_heat(state, 1800.0, 200.0)
+    melt, _ = apply_snow_heat(state, 1800.0, 200.0)
     assert np.all(np.isfinite(state.snow_t_layers))
     assert state.snow_t_layers[1] > before[1]
     assert melt >= 0.0

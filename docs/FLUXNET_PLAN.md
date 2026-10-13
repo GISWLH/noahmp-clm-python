@@ -1,5 +1,20 @@
 # FLUXNET：M4 有界检验与 Phase 4 计划
 
+## v1.0 当前任务
+
+本文件下方 M4/K6 数字作为历史保存。当前完整单柱开发和多站多年验收使用
+[V1_ACCEPTANCE.md](V1_ACCEPTANCE.md)，旧 H4/K3/M4 门不再作为合并条件。
+必须补充站点元数据、测高映射、spinup、独立站点/年份留出、校准及 GPP/NEE。
+ERA5 旧缺变量结论需从 xuanze `surface/` 的实际文件头重新核验；缺少 ssrd、
+strd 或 tp 时区域对照继续标“未测”，不以净辐射或降雨率静默替代。
+
+**2026-10-13 v1重新核验已完成：** 26个变量目录、26,276个NetCDF文件头全部读取，
+错误0；变量清单里没有 `ssrd`、`strd`、`tp`，存在的是净辐射 `ssr/str`、
+平均净辐射通量和 `crr/lsrr` 降雨率。因此 **1区域×1年模拟未测**，未虚构缺失
+强迫。核验入口 `examples/era5_header_inventory.py --all`，
+[逐目录摘要](v1-results/era5-inventory-summary.json)与
+[全部文件头档案](v1-results/era5-all-headers.json.gz)保留文件路径、单位、时间和聚合历史。
+
 本轮 M4 使用 NAS `processed/site_csv/` 的 CN-Cng、CN-HaM、CN-Qia、CN-Cha
 四站各 30 天，不校准、不调参。完整输入来源、QC、逐步轨迹、JAX64 parity、
 M2 分档和 LE/H 观测指标集中在 [REAL_DATA_CHECKS.md](REAL_DATA_CHECKS.md)，

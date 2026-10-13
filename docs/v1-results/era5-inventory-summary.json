@@ -1,0 +1,330 @@
+{
+  "utc": "2026-10-13T14:46:57.888907+00:00",
+  "root": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface",
+  "scope": "all_headers",
+  "variables": [
+    "avg_iews",
+    "avg_inss",
+    "avg_snlwrf",
+    "avg_snswrf",
+    "avg_tnlwrf",
+    "avg_tnswrf",
+    "blh",
+    "crr",
+    "d2m",
+    "lsrr",
+    "msl",
+    "ro",
+    "siconc",
+    "slhf",
+    "sp",
+    "sshf",
+    "ssr",
+    "sst",
+    "stl",
+    "str",
+    "swvl",
+    "t2m",
+    "tcc",
+    "tciw",
+    "u10",
+    "v10"
+  ],
+  "errors": [],
+  "model_run": false,
+  "required_missing_in_inspected_files": [
+    "ssrd",
+    "strd",
+    "tp"
+  ],
+  "status": "not_tested",
+  "archive_sha256": "e9cfcf3ec08e958ba1036874861bc0d0f188183b1446afd00c4b09f03ca6a6dd",
+  "directories": {
+    "10m_u_component_of_wind": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/10m_u_component_of_wind/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/10m_u_component_of_wind/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "10m_v_component_of_wind": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/10m_v_component_of_wind/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/10m_v_component_of_wind/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "2m_dewpoint_temperature": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/2m_dewpoint_temperature/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/2m_dewpoint_temperature/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "2m_temperature": {
+      "files": 1030,
+      "headers_read": 1030,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/2m_temperature/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/2m_temperature/ERA5_202510.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "boundary_layer_height": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/boundary_layer_height/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/boundary_layer_height/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "convective_rain_rate": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/convective_rain_rate/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/convective_rain_rate/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "large_scale_rain_rate": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/large_scale_rain_rate/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/large_scale_rain_rate/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_eastward_turbulent_surface_stress": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_eastward_turbulent_surface_stress/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_eastward_turbulent_surface_stress/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_northward_turbulent_surface_stress": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_northward_turbulent_surface_stress/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_northward_turbulent_surface_stress/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_sea_level_pressure": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_sea_level_pressure/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_sea_level_pressure/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_surface_net_long_wave_radiation_flux": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_surface_net_long_wave_radiation_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_surface_net_long_wave_radiation_flux/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_surface_net_short_wave_radiation_flux": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_surface_net_short_wave_radiation_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_surface_net_short_wave_radiation_flux/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_top_net_long_wave_radiation_flux": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_top_net_long_wave_radiation_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_top_net_long_wave_radiation_flux/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "mean_top_net_short_wave_radiation_flux": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_top_net_short_wave_radiation_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/mean_top_net_short_wave_radiation_flux/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "runoff": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/runoff/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/runoff/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "sea_ice_cover": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/sea_ice_cover/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/sea_ice_cover/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "sea_surface_temperature": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/sea_surface_temperature/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/sea_surface_temperature/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "soil_temperature_layer": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/soil_temperature_layer/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/soil_temperature_layer/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "surface_latent_heat_flux": {
+      "files": 1032,
+      "headers_read": 1032,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_latent_heat_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_latent_heat_flux/ERA5_202512.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "surface_net_solar_radiation": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_net_solar_radiation/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_net_solar_radiation/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "surface_net_thermal_radiation": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_net_thermal_radiation/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_net_thermal_radiation/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "surface_pressure": {
+      "files": 1030,
+      "headers_read": 1030,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_pressure/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_pressure/ERA5_202510.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "surface_sensible_heat_flux": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_sensible_heat_flux/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/surface_sensible_heat_flux/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "total_cloud_cover": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/total_cloud_cover/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/total_cloud_cover/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "total_column_cloud_ice_water": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/total_column_cloud_ice_water/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/total_column_cloud_ice_water/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    },
+    "volumetric_soil_water_layer": {
+      "files": 1008,
+      "headers_read": 1008,
+      "first": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/volumetric_soil_water_layer/ERA5_194001.nc",
+      "last": "/data/lhwang/ERA5_raw/ERA5_1940_2023/surface/volumetric_soil_water_layer/ERA5_202312.nc",
+      "sample_times": [
+        "1940-01-01 00:00:00",
+        "1940-01-02 00:00:00",
+        "1940-01-31 00:00:00"
+      ]
+    }
+  }
+}
