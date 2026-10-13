@@ -66,3 +66,55 @@ CuPy 给出 CUDA_PATH 未设置的 warning；进一步的 device arithmetic 和 
 
 访问、GPU、nvcc 门槛通过。Linux 将新建独立 venv；保留已有 GPU 进程。
 四份必读文档已读完；补充参考 `docs/AGENT_PROMPT_GPU.md` 在本分支中不存在。
+
+### H1 Linux 安装命令
+
+仓库路径 `/home/lhwang/work/noahmp-phase3b/repo`；新建虚拟环境
+`/home/lhwang/venvs/noahmp-phase3b`（Python 3.12.2），没有复用 Windows venv。
+系统已提供 Toolkit 12.4，无需安装系统包。采用
+[JAX 官方的 CUDA 12 pip 安装路径](https://docs.jax.dev/en/latest/installation.html)：
+
+```bash
+git clone --branch gpu/migration --single-branch \
+  https://github.com/GISWLH/noahmp-clm-python.git ~/work/noahmp-phase3b/repo
+python3 -m venv ~/venvs/noahmp-phase3b
+source ~/venvs/noahmp-phase3b/bin/activate
+python -m pip install --upgrade pip
+python -m pip install 'jax[cuda12]' cupy-cuda12x
+cd ~/work/noahmp-phase3b/repo
+python -m pip install -e '.[dev]'
+export CUDA_VISIBLE_DEVICES=1
+export XLA_PYTHON_CLIENT_PREALLOCATE=false
+export JAX_ENABLE_X64=true
+export CUDA_PATH=/usr/local/cuda-12.4
+export PYTHONPATH=src
+```
+
+服务器 CPU 为双路 Intel Xeon Gold 5218R @ 2.10 GHz（40 物理核、80 逻辑 CPU）；
+GPU 实测固定用物理设备 1（RTX 4090，sm_89）。现有任务仍保留。
+
+### H1 验证输出
+
+以下为 xuanze 上新 venv 的实际输出；`CUDA_VISIBLE_DEVICES=1` 后的逻辑设备 0
+对应物理 GPU 1。安装和验证成功，退出码均为 0。
+
+```text
+Python: 3.12.2
+jax 0.11.2
+jaxlib 0.11.2
+jax-cuda12-plugin 0.11.2
+jax-cuda12-pjrt 0.11.2
+cupy-cuda12x 14.2.0
+numpy 2.5.4
+pytest 9.1.1
+noahmp-clm 0.1.0
+jax.devices(): [CudaDevice(id=0)]
+JAX x64 GPU arithmetic: [1. 3. 5. 7. 9.] float64
+CuPy device count: 1
+CuPy runtime: 12090
+CuPy arithmetic: [1. 3. 5. 7. 9.]
+```
+
+JAX CUDA 12 extra 自带的 runtime 为 CUDA 12.9；系统 nvcc 保持 12.4.99。
+验证脚本显式执行 `jax.config.update('jax_enable_x64', True)` 并断言 GPU backend。
+原始环境日志保存在服务器 `~/work/noahmp-phase3b/logs/h1-env.log`。
