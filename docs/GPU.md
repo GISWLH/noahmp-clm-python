@@ -79,3 +79,17 @@ python -m pytest tests/test_gpu_parity.py tests/test_gpu_jax.py tests/test_gpu_p
 
 最终结果：**7 passed**，输出设备 `CudaDevice(id=0)`；原始失败、GPU 编译探针、
 库加载诊断和最终通过日志见 `docs/gpu-results/h2-*.log`。
+
+## H3：默认物理 CUDA kernel 编译
+
+2026-10-13 EDT，`bash src/noahmp_clm/gpu/cuda/build.sh` 在 xuanze 以
+nvcc 12.4.99、`-O3 -std=c++14 -arch=sm_89` 成功构建共享库（约 1.3 MiB），
+编译输出为空、退出码 0、零 warning。可用 `CUDA_ARCH` 覆盖本机算力。
+
+源码保持 1 thread/column、grid-stride、float32 SoA、`__restrict__` ABI。
+补入默认 MOST/Ball--Berry/PM 蒸腾与根区限制、地面和截留蒸发、三层雪mask、
+默认 BATS、雪隐式导热与融化、Niu--Yang未冻水/相变热容、土壤入渗/排水、
+25次割线及回退、固定Thomas4。所有物理函数注明普通版入口。
+编译采用标准数学函数；性能优化不能先于 H4 容差验证。
+
+H3 只确认完整默认物理源码可编译；CUDA 数值 parity 由 H4 独立验收。

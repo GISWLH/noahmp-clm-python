@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# [未实测] 需要带 nvcc 的 Linux/CUDA Toolkit 主机；本机 nvcc 不可用。
+# xuanze RTX4090 = sm_89；可用 CUDA_ARCH 覆盖。
 set -eu
-nvcc -O3 --use_fast_math -std=c++14 -arch=sm_89 \
+cd "$(dirname "$0")"
+nvcc -O3 -std=c++14 -arch="${CUDA_ARCH:-sm_89}" \
   --compiler-options=-fPIC -shared column_kernel.cu -o column_kernel.so

@@ -22,7 +22,7 @@
 | 访问门槛 | 通过：2026-10-12 EDT，SSH + GPU + nvcc |
 | H1 Linux venv / JAX-CUDA / CuPy | 通过：JAX 0.11.2 CudaDevice、CuPy 14.2.0 实际设备运算 |
 | H2 8 柱 × 48 步 float64 parity | 通过：实际 CUDA 输出；相关回归 7 passed，原容差不变 |
-| H3 完整默认物理 CUDA kernel | 开始补全 |
+| H3 完整默认物理 CUDA kernel | 通过编译：nvcc 12.4.99，sm_89，零 warning；H4待测 |
 | H4 N=1024 CUDA parity | 未运行 |
 | H5 五档 48 步 GPU 基准 | 未运行 |
 | H6 选项矩阵与 x32/x64 精度 | 未运行 |
