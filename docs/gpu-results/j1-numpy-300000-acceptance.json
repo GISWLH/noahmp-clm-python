@@ -1,0 +1,38 @@
+{
+  "n": 300000,
+  "steps": 48,
+  "warmups": 3,
+  "measured_repeats": 3,
+  "all_six_checksums_equal": true,
+  "checksum": 84253926.96750298,
+  "full_column_steps_per_sample": 14400000,
+  "each_sample_single_cpu": true,
+  "samples_seconds_by_index": [
+    10272.657722875476,
+    10245.367191456258,
+    10341.608899004757
+  ],
+  "median_seconds": 10272.657722875476,
+  "gpu_frozen_J_comparison": {
+    "jax64": {
+      "seconds": 59.5851199477911,
+      "cpu_over_gpu": 172.40307197294308,
+      "status": "measured",
+      "source": "j2-v2-stable-jax64.jsonl"
+    },
+    "jax32": {
+      "seconds": 4.123693518340588,
+      "cpu_over_gpu": 2491.1302639700752,
+      "status": "measured",
+      "source": "j2-v2-stable-jax32.jsonl"
+    },
+    "cuda": {
+      "seconds": 0.6129573509097099,
+      "cpu_over_gpu": 16759.17208208612,
+      "status": "timing_validated_h4_unverified",
+      "source": "j2-v2-stable-cuda.jsonl"
+    }
+  },
+  "cpu_startup_source_hash_available": false,
+  "provenance_limit": "Same original ongoing supervisor; no startup source hash. Do not claim K2 source performance or H4 acceptance. No extrapolation/restart."
+}
