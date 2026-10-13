@@ -12,11 +12,7 @@ from .column import ColumnState, Forcing
 from .physics import energy as E
 from .physics import soil as S
 from .physics import snow as SN
-from .physics.canopy import penman_monteith, stomatal_resistance
-from .physics.precip import partition_precipitation
-from .physics.surface_drag import exchange_velocity
-from .physics.stress import soil_water_stress
-from .physics.ground_evap import ground_resistance
+from .physics.canopy import jarvis_rs, penman_monteith
 
 CP = E.CP
 LV = E.LV
@@ -31,24 +27,24 @@ def step_column(state: ColumnState, f: Forcing):
     p = s.soil
     rho = E.air_density(f)
     wind_eff = max(f.wind, 0.3)
-    ce = exchange_velocity(f, s.z0m, f.tair, s.options.OptSurfaceDrag)
+    ch = E.bulk_ch(wind_eff, s.z0m)   # 无量纲
+    ce = ch * wind_eff                # 交换速度 m/s
     ra = 1.0 / max(ce, 1e-6)
 
-    # ---- 1. 降水分配：由 state.options 选择纯函数方案 ----
-    rain_m, snow_m = partition_precipitation(
-        f.prcp, dt, f.tair, s.options.OptRainSnowPartition
-    )
+    # ---- 1. 降水分配（Jordan 1991 简化）：雨 / 雪 ----
+    fsnow = float(np.clip((274.15 - f.tair) / 2.0, 0.0, 1.0))
+    snow_m = f.prcp * fsnow * dt
+    rain_m = f.prcp * (1.0 - fsnow) * dt
 
     # ---- 2. 冠层截留 ----
     canmax = 0.5e-3 * s.lai
     add = min(rain_m, max(0.0, canmax - s.canw))
     s.canw += add
     throughfall = rain_m - add
-    SN.add_snowfall(s, snow_m, f.tair)
-    SN.compact_snow(s, dt, s.options.OptSnowCompaction)
+    s.swe += snow_m
 
     # ---- 3. 冠层蒸腾（Penman-Monteith，可利用能量按 tair 估算） ----
-    rs = stomatal_resistance(s, f, s.options.OptStomataResistance)
+    rs = jarvis_rs(s, f)
     rn_canopy = s.fveg * ((1.0 - s.albedo) * f.swdown
                           + s.emiss * (f.lwdown - SIGMA * f.tair ** 4))
     tr_le = penman_monteith(max(0.0, rn_canopy), f, ra, rs)
@@ -61,24 +57,21 @@ def step_column(state: ColumnState, f: Forcing):
     tr_m = tr_le / LV * dt / RHO_W
 
     # ---- 4. 地表能量平衡：割线迭代求 Ts ----
-    snow_surface = s.swe > 1e-4
-    if snow_surface:
+    if s.swe > 1e-4:
         # 雪面分支（v0.1：忽略升华，雪下土壤取绝热）
         albedo, emiss = s.snow_albedo, 0.99
-        snow_response = SN.snow_surface_response(s, dt)
+        dsnow = max(0.05, SN.snow_depth(s.swe))
 
         def F(ts):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
-            h = rho * CP * ce_ts * (ts - f.tair)
-            g = SN.coupled_snow_flux(ts, snow_response)
+            h = rho * CP * ce * (ts - f.tair)
+            g = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
             return rnet - h - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
-        g_snow = SN.coupled_snow_flux(ts, snow_response)
+        g_snow = SN.K_SNOW * (ts - s.snow_t) / (0.5 * dsnow)
         melt = SN.apply_snow_heat(s, dt, g_snow)
         le_g = le_c = 0.0
         ecan_m = esoil_m = 0.0
@@ -88,12 +81,8 @@ def step_column(state: ColumnState, f: Forcing):
     else:
         # 裸土/植被分支
         albedo, emiss = s.albedo, s.emiss
-        beta = soil_water_stress(
-            s, s.options.OptSoilWaterTranspiration, layer=0
-        )
-        rs_ground = ground_resistance(
-            s, s.options.OptGroundResistanceEvap, snow_cover=False
-        )
+        beta = float(np.clip((s.smc[0] - p.smcwlt) / max(1e-9, p.smcref - p.smcwlt),
+                             0.0, 1.0))
         kt1 = S.thermal_conductivity(s.smc[:1], p)[0]
         dz1 = s.dz[0]
         canw_cap_rate = s.canw * LV * RHO_W / dt          # 截留水允许的最大蒸发功率
@@ -101,29 +90,19 @@ def step_column(state: ColumnState, f: Forcing):
 
         def F(ts):
             rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
-            h = rho * CP * ce_ts * (ts - f.tair)
+            h = rho * CP * ce * (ts - f.tair)
             dqs = E.qsat(ts, f.ps) - f.qair
-            ra_ts = 1.0 / max(ce_ts, 1.0e-6)
-            le_g = min(
-                beta * rho * LV * max(0.0, dqs) / (ra_ts + rs_ground),
-                smc0_cap_rate,
-            )
-            le_c = min(rho * LV * ce_ts * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
+            le_g = min(beta * rho * LV * ce * dqs, smc0_cap_rate)
+            le_c = min(rho * LV * ce * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
                        canw_cap_rate)
             g = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
             return rnet - h - le_g - le_c - tr_le - g
 
         ts = E.secant_solve(F, f.tair, f.tair + 1.0)
         rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
-        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
         h = rho * CP * ce * (ts - f.tair)
         dqs = E.qsat(ts, f.ps) - f.qair
-        ra = 1.0 / max(ce, 1.0e-6)
-        le_g = min(
-            beta * rho * LV * max(0.0, dqs) / (ra + rs_ground),
-            smc0_cap_rate,
-        )
+        le_g = min(beta * rho * LV * ce * dqs, smc0_cap_rate)
         le_c = min(rho * LV * ce * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
                    canw_cap_rate)
         g_soil = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
@@ -144,12 +123,12 @@ def step_column(state: ColumnState, f: Forcing):
     S.step_soil_heat(s, dt, g_soil)
 
     # ---- 7. 雪反照率老化 ----
-    SN.age_albedo(s, dt, snow_m, s.options.OptSnowAlbedo)
+    SN.age_albedo(s, dt, snow_m)
 
     et_m = wdiag["transp_m"] + wdiag["esoil_m"] + ecan_m
     diag = {
         "ts": ts, "rnet": rnet, "h": h, "le": le_total,
-        "g": g_snow if snow_surface else g_soil,
+        "g": g_snow if s.swe > 1e-4 else g_soil,
         "et_mm": et_m * 1000.0, "prcp_mm": f.prcp * dt * 1000.0,
         "runoff_mm": runoff_m * 1000.0, "melt_mm": melt * 1000.0,
         "swe": s.swe, "canw": s.canw,
