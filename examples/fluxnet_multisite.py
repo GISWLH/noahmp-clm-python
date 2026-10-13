@@ -157,11 +157,15 @@ def main():
     f0, i0 = np.repeat(f[None], len(entries), axis=0), np.repeat(i[None], len(entries), axis=0)
     arrays = {"forcing": u, "initial_states": f0, "initial_integers": i0}
     results = {}
-    for backend in ["numpy64", *args.backends]:
+    backend_order = ["numpy64"]
+    if any(backend in args.backends for backend in ("jax32", "cuda")):
+        backend_order.append("numpy64_matched32")
+    for backend in [*backend_order, *args.backends]:
         print(json.dumps({"started": backend, "sites": len(entries), "steps": u.shape[1]}), flush=True)
         started = time.perf_counter()
-        if backend == "numpy64":
-            result, device, traced = numpy_trace(f0, i0, u), "CPU", True
+        if backend.startswith("numpy64"):
+            dtype = np.float32 if backend == "numpy64_matched32" else np.float64
+            result, device, traced = numpy_trace(f0.astype(dtype), i0, u.astype(dtype)), "CPU", True
         else:
             dtype = np.float64 if backend == "jax64" else np.float32
             fi, ui = f0.astype(dtype), u.astype(dtype)
@@ -191,17 +195,22 @@ def main():
     reference = results["numpy64"]
     labels = [e["site"] for e in entries]
     report["m2"] = {}
+    report["end_to_end_cross_precision"] = {}
     for backend, (states, integers, diagnostics) in results.items():
         report["backends"][backend]["conservation"] = conservation(states, diagnostics)
         if backend in ("jax32", "cuda"):
-            summary, rows = compare_cross(states, diagnostics, reference[0], reference[2], u,
+            matched = results["numpy64_matched32"]
+            summary, rows = compare_cross(states, diagnostics, matched[0], matched[2], u.astype(np.float32),
                                           labels=labels)
+            summary["reference"] = "NumPy64 physics starting from identical float32-quantized state and forcing"
+            report["end_to_end_cross_precision"][backend] = compare_cross(
+                states, diagnostics, reference[0], reference[2], u, labels=labels)[0]
             summary["per_site"] = {}
             for col, site in enumerate(labels):
                 summary["per_site"][site] = compare_cross(
-                    states[col:col+1], diagnostics[col:col+1], reference[0][col:col+1],
-                    reference[2][col:col+1], u[col:col+1], labels=[site])[0]
-            summary["integers_equal"] = bool(np.array_equal(integers, reference[1]))
+                    states[col:col+1], diagnostics[col:col+1], matched[0][col:col+1],
+                    matched[2][col:col+1], u[col:col+1].astype(np.float32), labels=[site])[0]
+            summary["integers_equal"] = bool(np.array_equal(integers, matched[1]))
             outliers_path = args.output.with_name(args.output.stem + "-" + backend + "-outliers.jsonl.gz")
             with gzip.open(outliers_path, "wt", encoding="utf-8") as stream:
                 for row in rows:

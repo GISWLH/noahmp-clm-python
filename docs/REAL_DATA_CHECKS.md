@@ -1,7 +1,7 @@
 # M4 真实数据收尾检查
 
-**M4 未通过：四站 canw 的 M2 合格率为 99.114583%，低于预注册的 99.5%；
-CN-Cha 单站为 97.083333%。已经全部归因也不将此硬门改成通过。**
+**M4 未通过：四站 canw 的同量化输入 M2 合格率为 99.201389%，低于预注册的 99.5%；
+CN-Cha 单站为 97.291667%。已经全部归因也不将此硬门改成通过。**
 JAX64 parity、CUDA/JAX32 同精度、其余八类状态/通量、residual 和表面/水平衡通过；
 ERA5 因必需 forcing 不完整为“未测”。本轮不支持合并或发布 tag。
 
@@ -55,7 +55,61 @@ JAX64 相对上表最大变化仅 r=1.05e-15、bias=2.05e-13 W/m²；JAX32/CUDA
 最大变化分别为 r=4.37e-6、bias=0.001001 W/m²、RMSE=0.000636 W/m²。
 这些小幅后端差异不等于观测误差小，也不取消 canw 的未通过结论。
 
-## 四后端实际数值门
+## 正式 M2：同量化输入复算
+
+只读终审发现，原运行保留的 NumPy64 使用原始 double 强迫，包含额外输入量化差，
+与预注册“相同量化输入”门不是同一口径。原 51 项及其所有文件保留为端到端检查，
+没有删项或改标准。本次使用原有 GPU 全轨迹，只将初态和 forcing 转为与 GPU
+完全相同的 float32 值，再用未改动的 NumPy64 物理重跑参考；无需重复 GPU。
+原始 double 的 NumPy/JAX64 和观测指标全部保留，不被新参考替换。
+
+[同输入副报告](gpu-results/m4-fluxnet-matched-input.json)确认 GPU 运行与复算生产
+源码相同（允许 LF/CRLF 字节差），保留原报告/input/output/source hash；
+[复算脚本](../benchmarks/audit_fluxnet_matched_inputs.py)按同一冻结 criteria 判门。
+canw 仍未通过：**46/5760 超差，99.201389% 合格**；其余八个状态/通量字段
+全部 100% 合格。CUDA/JAX32 的 canw 状态逐位一致，二者失败坐标相同。
+
+| 站点 canw | 同输入超差 / 1440 | 合格率 | 同输入 M2 |
+|---|---:|---:|---|
+| CN-Cng | 2 | 99.861111% | 通过 |
+| CN-HaM | 1 | 99.930556% | 通过 |
+| CN-Qia | 4 | 99.722222% | 通过 |
+| CN-Cha | 39 | **97.291667%** | **未通过** |
+
+同输入全部 canw 元素最大绝对差 **9.406406491e-8 m**，其中 46 个超差项的
+最大绝对差为 **2.650765660e-8 m**，超差两端最大存水 2.346753306e-5 m。
+不能把全体最大误差与失败项最大误差混用。各字段完整最大误差和 signed mean
+保存在副报告，土温最大差 0.007717330 K、H/LE/G 最大差分别
+0.023749172/0.043341347/0.020918205 W/m²，ET 等价功率最大差 0.043296971 W/m²。
+
+全部 46 项已重新精确分解：**42 项干燥相对敏感性 + 4 项耗尽舍入**，
+见[归因汇总](gpu-results/m4-canopy-matched-attribution.json)和
+[46 行完整证据](gpu-results/m4-canopy-matched-attribution.jsonl.gz)。
+本步评价、温度路径、前态路径的最大绝对贡献分别为
+1.615889012e-10、2.089922761e-8、5.887764859e-9 m；同输入强迫量化项为 0，
+参考公式重构误差和总差重组误差均为 0。归因没有使 99.5% 硬门改绿。
+
+GPU 输出未改变，故 residual 自身中位数/p99、表面闭合、水量闭合和同精度结果
+与原报告相同，仍全部通过。副报告的 `automated_checks_passed=false`、
+`acceptance_status=failed_numeric_gate`；脚本应退出 2。
+新 runner 会同时保存原始 double 基线与 `numpy64_matched32`，前者用于观测及
+JAX64 parity，后者用于 x32/CUDA 正式 M2；原始输入差仍单列端到端结果。
+
+同输入完整 NPZ 保存在 `outputs/m4/m4-fluxnet-matched-input.npz`，SHA256 为
+`8de6a8489077fcbfeb5f6546fd8c77ac7fb9f84f21519ac7b48bdbeb772f90e2`。
+复现 CPU 副报告：
+
+```bash
+PYTHONPATH=src python benchmarks/audit_fluxnet_matched_inputs.py \
+  --report docs/gpu-results/m4-fluxnet.json \
+  --trajectories outputs/m4/m4-fluxnet.npz \
+  --output docs/gpu-results/m4-fluxnet-matched-input.json \
+  --arrays outputs/m4/m4-fluxnet-matched-input.npz
+```
+
+## 原始 double 输入的端到端对照（保留）
+
+以下 51 项统计含输入量化影响，作为原始端到端结果保留；正式同输入 M2 为上节 46 项。
 
 最终生产源码 `b954d90`，xuanze 物理 GPU1（RTX 4090），四站 × 1440 步连续运行，
 无每日重置。NumPy64、JAX64、JAX32、CUDA32 全部有限；源码首尾 hash 完全一致。
@@ -68,7 +122,7 @@ NumPy64 使用原始 double 输入，x32/CUDA 使用其 float32 量化输入，�
   1.52587890625e-5，全部通过同精度 `rtol=1e-6, atol=1e-6`；整数一致。
 - x32/CUDA 对 NumPy64 的表中计数相同。每字段单独计算，不跨字段稀释失败。
 
-| M2 字段 | 元素数 | 超差数 | 合格率 | 最大绝对差 |
+| 端到端字段（同样阈值） | 元素数 | 超差数 | 合格率 | 最大绝对差 |
 |---|---:|---:|---:|---:|
 | tsoil | 23040 | 0 | 100% | 0.007717405 K |
 | smc | 23040 | 0 | 100% | 5.659788e-6 m³/m³ |
@@ -80,7 +134,7 @@ NumPy64 使用原始 double 输入，x32/CUDA 使用其 float32 量化输入，�
 | G | 5760 | 0 | 100% | 0.020847 W/m² |
 | ET（等价潜热功率） | 5760 | 0 | 100% | 0.043158 W/m² |
 
-| 站点 canw | 超差数 / 1440 | 合格率 | 全时段最大绝对差 m | 单站 M2 |
+| 站点 canw | 超差数 / 1440 | 合格率 | 全时段最大绝对差 m | 端到端结果 |
 |---|---:|---:|---:|---|
 | CN-Cng | 3 | 99.791667% | 1.671037e-8 | 通过 |
 | CN-HaM | 2 | 99.861111% | 4.994498e-8 | 通过 |
@@ -95,7 +149,7 @@ residual 自身绝对值的四站中位数为 **0.0003242493 W/m²**，p99 为
 累积绝对最大 1.221141e-6 m。整柱融尽热量缺口沿用 Wang 已接受的已知限制，
 不称为整柱焓守恒验证。
 
-## 51 项 canw 超差的完整归因
+## 原端到端 51 项 canw 超差的完整归因
 
 [归因仪器](../benchmarks/attribute_fluxnet_canopy.py) 对每条失败重新评价普通版
 double 冠层截留/蒸发公式，分别置换前态、地表温度与 float32 量化 forcing。

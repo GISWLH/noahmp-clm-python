@@ -44,19 +44,22 @@ def main():
     parser.add_argument("--trajectories", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--reference-prefix", default="numpy64",
+                        choices=("numpy64", "numpy64_matched32"))
     args = parser.parse_args()
     a = np.load(args.trajectories)
     report = json.loads(args.report.read_text(encoding="utf-8"))
     labels = [entry["site"] for entry in report["inputs"]]
+    prefix = args.reference_prefix
     summary, rows = compare_cross(a["cuda_states"], a["cuda_diagnostics"],
-                                  a["numpy64_states"], a["numpy64_diagnostics"],
+                                  a[prefix+"_states"], a[prefix+"_diagnostics"],
                                   a["forcing"], labels=labels)
     evidence = []
     for row in rows:
         assert row["field"] == "canw", "do not misattribute another field to canopy drying"
         c, t = row["column"], row["step_1based"]-1
-        gp, np_ = a["cuda_states"][c, t], a["numpy64_states"][c, t]
-        gt, nt = a["cuda_diagnostics"][c, t, 0], a["numpy64_diagnostics"][c, t, 0]
+        gp, np_ = a["cuda_states"][c, t], a[prefix+"_states"][c, t]
+        gt, nt = a["cuda_diagnostics"][c, t, 0], a[prefix+"_diagnostics"][c, t, 0]
         u64 = a["forcing"][c, t]
         u32 = u64.astype(np.float32)
         option = a["initial_integers"][c]
@@ -79,6 +82,7 @@ def main():
     names = ("float32_evaluation_roundoff_m", "temperature_path_m", "forcing_quantization_m",
              "previous_state_path_m", "reference_reconstruction_m", "reconstruction_error_m")
     result = {"source_sha256": source_hashes(),
+              "reference_prefix": prefix,
               "instrument_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               "trajectories_sha256": hashlib.sha256(args.trajectories.read_bytes()).hexdigest(),
               "outliers": len(evidence), "by_site": dict(Counter(r["group"] for r in evidence)),
