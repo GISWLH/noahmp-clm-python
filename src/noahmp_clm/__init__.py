@@ -14,4 +14,4 @@ __all__ = [
     "run_column", "run_columns", "step_column", "synthetic_forcing",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

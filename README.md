@@ -3,8 +3,9 @@
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
-CUDA 后端均可运行；本轮收尾仍留在 `gpu/migration`，未合并 main、未发布 `v0.2.0`。
-原因是四站真实数据按同量化输入对照的 canw 通过率99.2014%，未达到事先固定的99.5%门。
+CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
+四站真实数据同量化输入 canw 通过率99.2014%，仍未达到原99.5%门；
+Wang明确接受这项已量化差异，见[验收记录](docs/GPU_ACCEPTANCE.md)。
 原H4/K3红灯完整保留，见[收尾数字](docs/GPU_CLOSEOUT_RESULTS.md)和
 [真实数据结果](docs/REAL_DATA_CHECKS.md)。冻土敏感应用建议用 float64 / JAX-x64。
 

@@ -4,10 +4,11 @@
 
 EHPC串行/4进程/两节点MPI、xuanze核心门与N100000校验计时、HF ZeroGPU JAX1024×48均完成；四站各30天JAX64通过且观测r/bias/RMSE已报告，ERA5因缺下行辐射和总降水记未测，均不宣称物理已验证。
 
-最终全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项）；M4同量化输入canw通过率99.201389%，低于预定99.5%门，因此不合并main、不打v0.2.0，全部进度与限制提交到gpu/migration。
+全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项）；M4同量化输入canw通过率99.201389%，仍低于原99.5%门，Wang已明确接受该差异并验收v0.2.0收尾版，授权合并main及发布标签，见[验收记录](GPU_ACCEPTANCE.md)。
 
 本轮按Wang的M0–M5收尾，先提交[固定M2准则](GPU_CLOSEOUT_CRITERIA.md)再运行；
-原H4不再单独决定合并，但新门未过不能发布。Wang明确接受表面能量闭合、
+原H4不再单独决定合并；M4数值失败保留，发布依据为Wang后续明确授权的验收例外。
+Wang明确接受表面能量闭合、
 整柱融尽后的222784.419 J/m²热量路由缺口作为公开限制。双卡/profiling保持冻结。
 
 ## M阶段收尾交付
