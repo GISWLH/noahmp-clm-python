@@ -3,9 +3,54 @@
 2026-10-13 xuanze 物理 GPU0，RTX 4090，N=100000、48 步。旧 CUDA 的约7 ms
 已经由 Nsight Systems 证明包含48次真实 kernel 执行；本轮进一步取得实际指令、
 访存和 occupancy。**证据不支持“660 TFLOPS，因此必然 DCE”的推断。**
-这些是未通过 H4 的旧 kernel 诊断，不是正确物理实现的性能验收成绩。
+下方历史节保留旧kernel诊断；最新共同源码的计数在第一节。所有计数均不替代H4。
 
-## 固定样本的实际算术强度
+## J3共同源码的最新首步计数（06:37 UTC）
+
+冻结`/home/lhwang/work/noahmp-phase3b/j3-profile-final`，CUDA源码`7640b062…`、
+JAX源码`0e296691…`；物理GPU0，PCI `0000:5E:00.0`。当前
+[profile_cuda_kernel.py](../benchmarks/profile_cuda_kernel.py)先生成同N的JAX32
+参考，三次完整48步预热均执行全输出归约/逐值门，捕获后再校验一次；四次全部
+通过且各字段差值为零。实际导入包路径限定在冻结src，已加载CUDA文本与磁盘
+规范化hash相同，完整源文件首尾hash一致。探针使用同质默认输入；全N异质
+预检由另外的五档正式基准和block实验覆盖，不能说本探针也执行了该预检。
+
+ncu仅采捕获调用的**第一个step_columns**，不是48步累计。以下来自同一次
+counter报告：
+
+| 指标 | 实测 |
+|---|---:|
+| FP32 FADD / FMUL / FFMA线程指令 | 95,400,000 / 114,500,000 / 112,400,000 |
+| FADD + FMUL + 2×FFMA | 434,700,000 FLOP |
+| 每柱步上述浮点操作 | 4,347 FLOP |
+| DRAM读 / 写 | 44.702976 / 64.177280 MB |
+| 被采kernel时间 | 153.888 µs |
+| 算术强度，实际DRAM层级 | 3.992459 FLOP/B |
+| 上述浮点操作吞吐 | 2.824782 TFLOP/s |
+| DRAM字节 / kernel时间 | 707.529216 GB/s |
+| 寄存器 / 寄存器限制的同驻block数 | 96/thread / 2个block每SM |
+| 实际occupancy | 28.77% |
+
+FLOP不包含SFU或整数指令，不能把一次首步工作量乘48当作完整轨迹指令数，
+也不能把旧版6460 FLOP/柱步移到新版。当前首步的带宽活动显著，寄存器限制
+同驻；这仍不足以证明整48步唯一受带宽限制。三档block完整计时已做一轮，
+波动不足以支持切换配置，生产保留256，见[配置实验](GPU_OCCUPANCY.md)。
+
+原始[counter CSV](gpu-results/j4-new-cuda-ncu.csv)、
+[输出门与执行源码](gpu-results/j4-new-cuda-ncu.json)、
+[单位及公式汇总](gpu-results/j4-new-cuda-ncu-summary.json)、
+[执行日志](gpu-results/j4-new-cuda-ncu.log)均保留。CSV单位为nsecond/byte/inst，
+汇总用`FADD+FMUL+2*FFMA`、`FLOP/(read+write)`及`FLOP/time`直接计算。
+完整ncu-rep留在冻结目录profile_output中。
+
+继续使用`--clock-control none --cache-control none`，ncu相应警告保留。仅使用
+已配置凭据为这一命令申请sudo，不改驱动策略。采样前两卡利用率均为0%，
+先前约5GB的其他作业已结束；两卡仍有常驻显存，不能声称长期独占整机。
+[开始](gpu-results/j4-new-cuda-gpu-before.csv)/
+[结束](gpu-results/j4-new-cuda-gpu-after.csv)硬件状态保留。CPU基线同时运行。
+这次同精度门通过，但原NumPy64 H4仍红；profile仍标记diagnostic_only。
+
+## 旧kernel固定样本的实际算术强度
 
 使用旧 CUDA 源码快照
 `/home/lhwang/work/noahmp-phase3b/timing-audit-original-20261013T050056Z`，

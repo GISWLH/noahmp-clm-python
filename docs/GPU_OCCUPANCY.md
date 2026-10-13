@@ -27,8 +27,9 @@ grid保持`min(ceil(N/block),4096)`，不修改生产源码。每种配置均执
 
 当前内核CuPy属性为96 registers/thread、304 local bytes/thread、零静态共享
 内存，最大640 threads/block。local字节数本身不能证明全部来自register spill；
-本实验没有对新版另采实际occupancy counter，旧版94寄存器/ncu数据见
-[硬件计数器记录](GPU_J4_PROFILE.md)，不能代替新版数值。
+本block实验没有采实际occupancy counter；随后在GPU0对同版256配置另做一次
+采样，实际occupancy为28.77%、寄存器限制两个block每SM，见
+[硬件计数器记录](GPU_J4_PROFILE.md)。它不是本GPU1三配置各自的counter测量。
 
 本轮样本波动明显：256配置的同步计算为24.787/7.147/12.466 ms，128为
 23.527/24.772/7.638 ms，64为6.984/10.842/24.771 ms；完整校验墙钟跨样本

@@ -1,0 +1,85 @@
+{
+  "csv_sha256": "23ee2a24ef28795de7ca5de6c41f173c65b79a9f1f4f762a34af5babe738c304",
+  "sourcehash": {
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "421631170b9ef081871336d2feacbeeef590ba9b63e709c1828c713b3a40cb5c",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/loader.py": "c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/jax_core.py": "0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "cb62a942c1a0e769835adafc25b5be49bc66db46496e80f1603fc0cba028a9cd",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454",
+    "benchmarks/profile_cuda_kernel.py": "5c843a2f885dd312c30d55a862409204c22da377e900e208174267d3731d7ca0",
+    "benchmarks/bench_gpu.py": "6a6e0043b48b3d65633dbb0fd6498b32644587e81a57f7acc69497ba4765afbb",
+    "benchmarks/gpu_checksum.py": "2131570dfcd58ec2a8ea75390023106a50927c086074ce252165c052b89a96e7",
+    "benchmarks/profile_gpu.py": "afee0fddf742925e528034c0fff335a110dfe6d2238852b2ed48fed10aed37f5"
+  },
+  "loaded_cuda_sha256_normalized": "7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454",
+  "device_pci_bus_id": "0000:5E:00.0",
+  "columns": 100000,
+  "captured_step_count": 1,
+  "trajectory_step_count": 48,
+  "all_four_complete_output_gates_passed": true,
+  "h4_passed": false,
+  "metrics": {
+    "gpu__time_duration.sum": {
+      "value": 153888.0,
+      "unit": "nsecond"
+    },
+    "dram__bytes_read.sum": {
+      "value": 44702976.0,
+      "unit": "byte"
+    },
+    "dram__bytes_write.sum": {
+      "value": 64177280.0,
+      "unit": "byte"
+    },
+    "smsp__sass_thread_inst_executed_op_fadd_pred_on.sum": {
+      "value": 95400000.0,
+      "unit": "inst"
+    },
+    "smsp__sass_thread_inst_executed_op_fmul_pred_on.sum": {
+      "value": 114500000.0,
+      "unit": "inst"
+    },
+    "smsp__sass_thread_inst_executed_op_ffma_pred_on.sum": {
+      "value": 112400000.0,
+      "unit": "inst"
+    },
+    "launch__registers_per_thread": {
+      "value": 96.0,
+      "unit": "register/thread"
+    },
+    "launch__occupancy_limit_registers": {
+      "value": 2.0,
+      "unit": "block"
+    },
+    "sm__warps_active.avg.pct_of_peak_sustained_active": {
+      "value": 28.77,
+      "unit": "%"
+    }
+  },
+  "kernel_duration_seconds": 0.000153888,
+  "counted_fp32_flops": 434700000.0,
+  "flops_per_column_step": 4347.0,
+  "dram_bytes": 108880256.0,
+  "arithmetic_intensity_flops_per_dram_byte": 3.9924593858412676,
+  "counted_tflops_per_second": 2.8247816593886466,
+  "dram_gigabytes_per_second": 707.5292160532335,
+  "limits": "Only the selected first step; FADD+FMUL+2*FFMA excludes SFU/integer; no extrapolation to 48 steps"
+}
