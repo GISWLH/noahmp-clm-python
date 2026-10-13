@@ -26,6 +26,10 @@ C:\Users\hhuwl\venvs\noahmp-gpu\Scripts\python.exe -m pip install "jax[cpu]" cup
 CuPy 给出 CUDA_PATH 未设置的 warning；进一步的 device arithmetic 和 RawKernel 编译均因
 缺少 CUDA Toolkit headers 失败，因此本机没有可报告的 GPU kernel smoke test。
 
+作为独立的驱动/硬件检查，基础环境中的 `torch 2.6.0+cu124` 报告
+`cuda_available=True`，并在 RTX 4070 上完成了 `float32` 张量运算（`arange * 2 + 1`）。
+该结果只证明 CUDA 驱动和硬件可用，不代表 Noah-MP CUDA kernel 已执行。
+
 阶段 D 期间尝试了 `pip install "cupy-cuda12x[ctk]"` 以补 CUDA headers；该 extra
 会下载约 553 MB 的 NVIDIA toolkit wheels，当前网络下载未完成，虚拟环境仍保持
 原先的 CuPy 14.2.0 安装。因此批量 CuPy benchmark 的 headers 缺失仍记录为
