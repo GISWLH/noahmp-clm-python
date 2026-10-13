@@ -1,0 +1,2158 @@
+[
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "ts",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 268.42132568359375,
+    "jax32": 268.42132568359375
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "rnet",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.7829179763793945,
+    "jax32": 5.7829179763793945
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "h",
+    "failed": 0,
+    "max_abs": 1.9073486328125e-06,
+    "max_tolerance_ratio": 0.5633006691932678,
+    "worst_index": [
+      10,
+      0
+    ],
+    "cuda": -2.3860204219818115,
+    "jax32": -2.3860223293304443
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "le",
+    "failed": 0,
+    "max_abs": 4.57763671875e-05,
+    "max_tolerance_ratio": 0.35765790939331055,
+    "worst_index": [
+      6,
+      0
+    ],
+    "cuda": 126.98921203613281,
+    "jax32": 126.9892578125
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "g",
+    "failed": 0,
+    "max_abs": 5.245208740234375e-06,
+    "max_tolerance_ratio": 0.7928756475448608,
+    "worst_index": [
+      10,
+      0
+    ],
+    "cuda": -5.615419387817383,
+    "jax32": -5.615424633026123
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "et_mm",
+    "failed": 0,
+    "max_abs": 2.2351741790771484e-08,
+    "max_tolerance_ratio": 0.020479274913668633,
+    "worst_index": [
+      6,
+      0
+    ],
+    "cuda": 0.09143223613500595,
+    "jax32": 0.09143225848674774
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "prcp_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "jax32": 18.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "runoff_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "melt_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "swe",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "jax32": 0.21799999475479126
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "canw",
+    "failed": 0,
+    "max_abs": 1.1641532182693481e-10,
+    "max_tolerance_ratio": 0.00011629221990006045,
+    "worst_index": [
+      122,
+      0
+    ],
+    "cuda": 0.00105851620901376,
+    "jax32": 0.0010585160925984383
+  },
+  {
+    "group": "diagnostics",
+    "steps": 1,
+    "field": "residual",
+    "failed": 256,
+    "max_abs": 3.3855438232421875e-05,
+    "max_tolerance_ratio": 33.82447052001953,
+    "worst_index": [
+      6,
+      0
+    ],
+    "cuda": 0.0009493827819824219,
+    "jax32": 0.00091552734375
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_0",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_1",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_2",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_3",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_4",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_5",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_6",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_7",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_8",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_9",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_10",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_11",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_12",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "jax32": 0.58685702085495
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_13",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "jax32": 0.32207396626472473
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_14",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "jax32": 0.08349453657865524
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_15",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "jax32": 0.007574453949928284
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_16",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "jax32": 0.07266666740179062
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_17",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "jax32": 0.07266666740179062
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_18",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "jax32": 0.07266666740179062
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_19",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.00738525390625,
+    "jax32": 268.00738525390625
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_20",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.00006103515625,
+    "jax32": 268.00006103515625
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_21",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_22",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.9419250488281,
+    "jax32": 283.9419250488281
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_23",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.7457275390625,
+    "jax32": 283.7457275390625
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_24",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.5495300292969,
+    "jax32": 283.5495300292969
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_25",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.42132568359375,
+    "jax32": 268.42132568359375
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_26",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "jax32": 0.21799999475479126
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_27",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.00738525390625,
+    "jax32": 268.00738525390625
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_28",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8500000238418579,
+    "jax32": 0.8500000238418579
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_29",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_30",
+    "failed": 0,
+    "max_abs": 1.1641532182693481e-10,
+    "max_tolerance_ratio": 0.00011629221990006045,
+    "worst_index": [
+      122
+    ],
+    "cuda": 0.00105851620901376,
+    "jax32": 0.0010585160925984383
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_31",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "jax32": 1.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_32",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "jax32": 0.800000011920929
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_33",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "jax32": 0.05000000074505806
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_34",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "jax32": 0.20000000298023224
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_35",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "jax32": 0.9700000286102295
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_36",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "jax32": 120.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_37",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_38",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "jax32": 2.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_39",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "jax32": 0.4000000059604645
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_40",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "jax32": 0.05999999865889549
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_41",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "jax32": 0.18000000715255737
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_42",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "jax32": 4.999999873689376e-05
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_43",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "jax32": 4.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_44",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "jax32": 0.8999999761581421
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_45",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_46",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_47",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_48",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_49",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_50",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_51",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_52",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_53",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_54",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_55",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_56",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_57",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_58",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_59",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_60",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_61",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_62",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_63",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_64",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_65",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_66",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_67",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_68",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 1,
+    "field": "fvec_69",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "ts",
+    "failed": 0,
+    "max_abs": 3.0517578125e-05,
+    "max_tolerance_ratio": 0.1070786565542221,
+    "worst_index": [
+      2,
+      9
+    ],
+    "cuda": 284.00152587890625,
+    "jax32": 284.0014953613281
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "rnet",
+    "failed": 6,
+    "max_abs": 0.00011444091796875,
+    "max_tolerance_ratio": 1.0281940698623657,
+    "worst_index": [
+      118,
+      23
+    ],
+    "cuda": 110.30294799804688,
+    "jax32": 110.3028335571289
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "h",
+    "failed": 697,
+    "max_abs": 0.000354766845703125,
+    "max_tolerance_ratio": 39.107357025146484,
+    "worst_index": [
+      118,
+      21
+    ],
+    "cuda": -1.173492431640625,
+    "jax32": -1.1734074354171753
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "le",
+    "failed": 66,
+    "max_abs": 0.0006103515625,
+    "max_tolerance_ratio": 7.067976951599121,
+    "worst_index": [
+      118,
+      22
+    ],
+    "cuda": 85.3551025390625,
+    "jax32": 85.3544921875
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "g",
+    "failed": 3477,
+    "max_abs": 0.0005507469177246094,
+    "max_tolerance_ratio": 130.281494140625,
+    "worst_index": [
+      118,
+      13
+    ],
+    "cuda": -3.2268099784851074,
+    "jax32": -3.227360725402832
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "et_mm",
+    "failed": 0,
+    "max_abs": 4.3585896492004395e-07,
+    "max_tolerance_ratio": 0.4106239676475525,
+    "worst_index": [
+      118,
+      22
+    ],
+    "cuda": 0.061455678194761276,
+    "jax32": 0.061455242335796356
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "prcp_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "jax32": 18.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "runoff_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "melt_mm",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "swe",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "jax32": 0.21799999475479126
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "canw",
+    "failed": 0,
+    "max_abs": 9.458744898438454e-10,
+    "max_tolerance_ratio": 0.0009458045824430883,
+    "worst_index": [
+      118,
+      20
+    ],
+    "cuda": 7.394968997687101e-05,
+    "jax32": 7.394874410238117e-05
+  },
+  {
+    "group": "diagnostics",
+    "steps": 48,
+    "field": "residual",
+    "failed": 10909,
+    "max_abs": 0.0006532669067382812,
+    "max_tolerance_ratio": 653.0252685546875,
+    "worst_index": [
+      26,
+      39
+    ],
+    "cuda": -0.00028324127197265625,
+    "jax32": 0.000370025634765625
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_0",
+    "failed": 0,
+    "max_abs": 3.0517578125e-05,
+    "max_tolerance_ratio": 0.10591428726911545,
+    "worst_index": [
+      118
+    ],
+    "cuda": 287.1346435546875,
+    "jax32": 287.1346740722656
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_1",
+    "failed": 0,
+    "max_abs": 3.0517578125e-05,
+    "max_tolerance_ratio": 0.10655688494443893,
+    "worst_index": [
+      118
+    ],
+    "cuda": 285.39703369140625,
+    "jax32": 285.3970642089844
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_2",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_3",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "jax32": 268.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_4",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_5",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_6",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_7",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "jax32": 0.11999999731779099
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_8",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_9",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_10",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_11",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "jax32": 0.04885280877351761
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_12",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "jax32": 0.58685702085495
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_13",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "jax32": 0.32207396626472473
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_14",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "jax32": 0.08349453657865524
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_15",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "jax32": 0.007574453949928284
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_16",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "jax32": 0.13866671919822693
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_17",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "jax32": 0.13866671919822693
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_18",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "jax32": 0.13866671919822693
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_19",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "jax32": 268.02496337890625
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_20",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0030822753906,
+    "jax32": 268.0030822753906
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_21",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0029296875,
+    "jax32": 268.0029296875
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_22",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 229.7654571533203,
+    "jax32": 229.7654571533203
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_23",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 215.9698944091797,
+    "jax32": 215.9698944091797
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_24",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 202.17617797851562,
+    "jax32": 202.17617797851562
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_25",
+    "failed": 0,
+    "max_abs": 3.0517578125e-05,
+    "max_tolerance_ratio": 0.10603590309619904,
+    "worst_index": [
+      10
+    ],
+    "cuda": 286.8041687011719,
+    "jax32": 286.80419921875
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_26",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4160001575946808,
+    "jax32": 0.4160001575946808
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_27",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "jax32": 268.02496337890625
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_28",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7836402654647827,
+    "jax32": 0.7836402654647827
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_29",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7499998211860657,
+    "jax32": 0.7499998211860657
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_30",
+    "failed": 0,
+    "max_abs": 1.8917489796876907e-10,
+    "max_tolerance_ratio": 0.00018914457177743316,
+    "worst_index": [
+      50
+    ],
+    "cuda": 0.00016030673577915877,
+    "jax32": 0.0001603065466042608
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_31",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "jax32": 1.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_32",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "jax32": 0.800000011920929
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_33",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "jax32": 0.05000000074505806
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_34",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "jax32": 0.20000000298023224
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_35",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "jax32": 0.9700000286102295
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_36",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "jax32": 120.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_37",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_38",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "jax32": 2.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_39",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "jax32": 0.4000000059604645
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_40",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "jax32": 0.05999999865889549
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_41",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "jax32": 0.18000000715255737
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_42",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "jax32": 4.999999873689376e-05
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_43",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "jax32": 4.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_44",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "jax32": 0.8999999761581421
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_45",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_46",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_47",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_48",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_49",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_50",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_51",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_52",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_53",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_54",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_55",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_56",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_57",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_58",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_59",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_60",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_61",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_62",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_63",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_64",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_65",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_66",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_67",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_68",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  },
+  {
+    "group": "state",
+    "steps": 48,
+    "field": "fvec_69",
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_tolerance_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "jax32": 0.0
+  }
+]
