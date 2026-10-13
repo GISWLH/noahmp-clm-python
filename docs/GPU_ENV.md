@@ -84,6 +84,7 @@ python -m pip install 'jax[cuda12]' cupy-cuda12x
 cd ~/work/noahmp-phase3b/repo
 python -m pip install -e '.[dev]'
 export CUDA_VISIBLE_DEVICES=1
+unset LD_LIBRARY_PATH
 export XLA_PYTHON_CLIENT_PREALLOCATE=false
 export JAX_ENABLE_X64=true
 export CUDA_PATH=/usr/local/cuda-12.4
@@ -118,3 +119,15 @@ CuPy arithmetic: [1. 3. 5. 7. 9.]
 JAX CUDA 12 extra 自带的 runtime 为 CUDA 12.9；系统 nvcc 保持 12.4.99。
 验证脚本显式执行 `jax.config.update('jax_enable_x64', True)` 并断言 GPU backend。
 原始环境日志保存在服务器 `~/work/noahmp-phase3b/logs/h1-env.log`。
+
+### CUDA 库搜索路径修正
+
+服务器登录环境预设 `LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64/:`。
+不清除时，JAX 单独初始化 CUDA 会因 cuSPARSE 无法加载而退回 CPU；`ldd`
+显示 pip cuSPARSE 12.5.10.65 错误解析到系统 12.4 的 `libnvJitLink.so.12`。
+原 H1 探针先导入 CuPy，恰好掩盖了这个加载顺序问题。
+
+后续所有 JAX GPU 验证均 `unset LD_LIBRARY_PATH`，设 `JAX_PLATFORMS=cuda`
+禁止 CPU 回退，并在 parity 中设 `NOAHMP_REQUIRE_GPU=1` 断言输出设备。
+这仅改变当前 shell 环境，不修改服务器全局配置。最终测试实际输出
+`parity devices: {CudaDevice(id=0)}`。

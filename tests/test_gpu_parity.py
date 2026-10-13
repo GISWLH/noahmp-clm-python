@@ -8,6 +8,7 @@ verifier 会在混合选项的 scan/vmap 图中进程级中止，因此该平台
 from __future__ import annotations
 
 from dataclasses import replace
+import os
 import sys
 
 import numpy as np
@@ -22,7 +23,7 @@ pytestmark = pytest.mark.skipif(
 
 from noahmp_clm.column import ColumnState, Forcing, default_soil_params
 from noahmp_clm.driver import run_column
-from noahmp_clm.gpu.jax_core import _run_one_jax
+from noahmp_clm.gpu.jax_core import _run_one_jax, run_columns_jax
 from noahmp_clm.gpu.pack import column_state_to_vec, forcing_to_vec, vec_to_column_state
 from noahmp_clm.options import PhysicsOptions
 
@@ -76,3 +77,60 @@ def test_jax_float64_parity_8_columns_48_steps() -> None:
         assert float(np.max(np.abs(actual[:, 11]))) < 0.5
         restored = vec_to_column_state(final_f, final_i, state.dz)
         assert np.all(np.isfinite(restored.tsoil))
+
+
+def _mixed_gate_cases() -> tuple[list[ColumnState], list[list[Forcing]]]:
+    """八个独立柱：暴雨、冻结积雪、已有三层雪、消融和近萎蔫点干旱。"""
+    states, forcings = _cases()
+    states, forcings = states[:8], forcings[:8]
+    states[0] = replace(states[0], tsoil=np.full(4, 268.0))
+    states[4] = replace(
+        states[4], tsoil=np.full(4, 268.0), swe=0.2, snow_t=268.0,
+        snow_swe_layers=np.full(3, 0.2 / 3), snow_t_layers=np.full(3, 268.0),
+        snow_density_layers=np.full(3, 300.0),
+    )
+    for index in (1, 5):
+        states[index] = replace(
+            states[index], swe=0.008, snow_t=273.15,
+            snow_swe_layers=np.array([0.008]), snow_t_layers=np.array([273.15]),
+            snow_density_layers=np.array([300.0]),
+        )
+    for index in (3, 7):
+        states[index] = replace(states[index], smc=np.full(4, states[index].soil.smcwlt + 0.001))
+    return states, forcings
+
+
+def test_jax_mixed_batch_8_columns_48_steps() -> None:
+    """同时验证 jit(vmap(scan)) 和最终状态，禁止用逐柱 JIT 代替批量门。"""
+    states, forcings = _mixed_gate_cases()
+    packed = [column_state_to_vec(state) for state in states]
+    fvecs = np.asarray([item[0] for item in packed])
+    ivecs = np.asarray([item[1] for item in packed])
+    forcing_vecs = np.asarray([[forcing_to_vec(item) for item in fs] for fs in forcings])
+    final_f, final_i, diagnostics = run_columns_jax(fvecs, ivecs, forcing_vecs)
+    if os.environ.get("NOAHMP_REQUIRE_GPU") == "1":
+        print("parity devices:", diagnostics.devices(), flush=True)
+        assert all(device.platform == "gpu" for device in diagnostics.devices())
+    keys = ["ts", "rnet", "h", "le", "g", "et_mm", "prcp_mm", "runoff_mm", "melt_mm", "swe", "canw", "residual"]
+    assert diagnostics.shape == (8, 48, 12)
+    melted = False
+    for index, (state, fs) in enumerate(zip(states, forcings)):
+        reference, final = run_column(state, fs)
+        expected = np.asarray([[item[key] for key in keys] for item in reference])
+        actual = np.asarray(diagnostics[index])
+        np.testing.assert_allclose(actual[:, :7], expected[:, :7], rtol=1e-6, atol=1e-6)
+        np.testing.assert_allclose(actual[:, 7:10], expected[:, 7:10], rtol=1e-4, atol=1e-4)
+        np.testing.assert_allclose(actual[:, 10:], expected[:, 10:], rtol=1e-6, atol=1e-6)
+        assert np.max(np.abs(actual[:, 11])) < 0.5
+        expected_f, expected_i = column_state_to_vec(final)
+        np.testing.assert_array_equal(np.asarray(final_i[index]), expected_i)
+        np.testing.assert_allclose(np.asarray(final_f[index])[:16], expected_f[:16], rtol=1e-6, atol=1e-6)
+        np.testing.assert_allclose(np.asarray(final_f[index])[25:45], expected_f[25:45], rtol=1e-6, atol=1e-6)
+        count = int(expected_i[32])
+        for offset in (16, 19, 22):
+            np.testing.assert_allclose(
+                np.asarray(final_f[index])[offset:offset + count], expected_f[offset:offset + count],
+                rtol=1e-4, atol=1e-4,
+            )
+        melted |= bool(np.any(expected[:, 8] > 0))
+    assert melted, "门槛必须实际覆盖消融"

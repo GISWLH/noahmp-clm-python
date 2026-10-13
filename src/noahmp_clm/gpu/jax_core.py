@@ -40,7 +40,7 @@ C_SNOW = RHO_SNOW * 2100.0
 GRAVITY = 9.81
 FREEZING_POINT = 273.15
 if jnp is not None:
-    DZ = jnp.asarray([0.1, 0.3, 0.6, 1.0])
+    DZ = (0.1, 0.3, 0.6, 1.0)
     LAYER_INDEX = jnp.arange(3)
     SOIL_INDEX = jnp.arange(4)
 else:  # 仅保证可选模块可被 doctest 收集；调用时由 _require_jax 报错。
@@ -137,8 +137,8 @@ def _most_exchange_velocity(
 ) -> jax.Array:
     """对应普通版: surface_drag.most_exchange_velocity。
 
-    用固定 20 次 ``lax.fori_loop`` 更新 Obukhov 长度；普通版的相对变化早停
-    在 JAX 中改为固定次数，最后一次状态即为收敛近似。
+    固定 20 次 ``lax.fori_loop``；达到普通版相对变化阈值后冻结状态，
+    保持早停的数值语义而不改变编译期循环上限。
     """
     wind = jnp.maximum(wind, 0.3)
     z0m_safe = jnp.clip(z0m, 1.0e-5, 5.0)
@@ -149,7 +149,7 @@ def _most_exchange_velocity(
     ce0 = _bulk_ch(wind, z0m_safe) * wind
 
     def body(_, carry):
-        ce, obukhov = carry
+        ce, obukhov, done = carry
         finite = jnp.abs(obukhov) < 1.0e29
         zeta = jnp.where(finite, 10.0 / obukhov, 0.0)
         den_m = jnp.maximum(1.0, neutral_m - _psi_m(zeta))
@@ -165,9 +165,16 @@ def _most_exchange_velocity(
             1.0e30,
             jnp.clip(obukhov_new, -1.0e6, 1.0e6),
         )
-        return ce_new, obukhov_new
+        finite_new = jnp.abs(obukhov_new) < 1.0e29
+        converged = (finite & finite_new & (
+            jnp.abs(obukhov_new - obukhov) / jnp.maximum(1.0, jnp.abs(obukhov)) < 1.0e-4
+        )) | (~finite & ~finite_new)
+        return (jnp.where(done, ce, ce_new),
+                jnp.where(done, obukhov, obukhov_new), done | converged)
 
-    ce, _ = lax.fori_loop(0, 20, body, (ce0, jnp.asarray(1.0e30, dtype=ce0.dtype)))
+    ce, _, _ = lax.fori_loop(
+        0, 20, body, (ce0, jnp.asarray(1.0e30, dtype=ce0.dtype), jnp.asarray(False))
+    )
     return ce
 
 
@@ -361,7 +368,7 @@ def _add_snowfall(
     divided = jnp.where(new_mask, new_total / new_count, 0.0)
     divided_t = jnp.where(new_mask, mean_t, FREEZING_POINT)
     divided_d = jnp.where(new_mask, mean_d, 300.0)
-    has_snow = snowfall > 1.0e-6
+    has_snow = snowfall > 0.0
     return lax.cond(
         has_snow,
         lambda _: (divided, divided_t, divided_d, new_count, new_total),
@@ -393,7 +400,7 @@ def _compact_snow(
         snow_density_layers + jnp.maximum(0.0, dt) * (rate * (550.0 - snow_density_layers)
                                                        + load_rate * overburden * 1.0e4),
     )
-    return jnp.where(mask, updated, snow_density_layers)
+    return jnp.where(mask & (jnp.sum(swe_layers) > 1.0e-8), updated, snow_density_layers)
 
 
 def _snow_surface_flux(
@@ -468,12 +475,13 @@ def _snow_heat(
     remaining = jnp.maximum(swe_layers - melt, 0.0)
     cooled = jnp.minimum(updated, FREEZING_POINT)
     active = remaining > 1.0e-8
-    # 三层 ABI 中保留层槽位；普通版的 combine 会把空槽前移，GPU 版用 mask
-    # 表示同一语义，避免动态 gather/sort 阻碍 vmap 编译。
+    # 固定长度 gather 把融空的顶层前移；有效层数不改变数组形状。
     count = jnp.maximum(1, jnp.sum(active.astype(jnp.int32))).astype(jnp.int32)
-    sorted_swe = jnp.where(active, remaining, 0.0)
-    sorted_t = jnp.where(active, cooled, FREEZING_POINT)
-    sorted_d = jnp.where(active, snow_density_layers, 300.0)
+    indices = jnp.nonzero(active, size=3, fill_value=0)[0]
+    valid = LAYER_INDEX < jnp.sum(active.astype(jnp.int32))
+    sorted_swe = jnp.where(valid, remaining[indices], 0.0)
+    sorted_t = jnp.where(valid, cooled[indices], FREEZING_POINT)
+    sorted_d = jnp.where(valid, snow_density_layers[indices], 300.0)
     return sorted_swe, sorted_t, sorted_d, count, jnp.sum(melt)
 
 
@@ -554,24 +562,25 @@ def _soil_heat(
 
     四层隐式土壤热传导使用固定 Thomas 展开，底边界保持普通版零通量。
     """
+    dz = jnp.asarray(DZ, dtype=tsoil.dtype)
     del soil_ice
     _, cap = _phase_and_capacity(smc, tsoil, smcmax, bexp, supercool_option)
     kt = _soil_conductivity(smc, smcmax, quartz)
     k01 = 2.0 / (1.0 / kt[0] + 1.0 / kt[1])
     k12 = 2.0 / (1.0 / kt[1] + 1.0 / kt[2])
     k23 = 2.0 / (1.0 / kt[2] + 1.0 / kt[3])
-    g01 = k01 / (0.5 * (DZ[0] + DZ[1]))
-    g12 = k12 / (0.5 * (DZ[1] + DZ[2]))
-    g23 = k23 / (0.5 * (DZ[2] + DZ[3]))
+    g01 = k01 / (0.5 * (dz[0] + dz[1]))
+    g12 = k12 / (0.5 * (dz[1] + dz[2]))
+    g23 = k23 / (0.5 * (dz[2] + dz[3]))
     lower = jnp.array([0.0, -g01, -g12, -g23], dtype=tsoil.dtype)
     diagonal = jnp.array([
-        cap[0] * DZ[0] / dt + g01,
-        cap[1] * DZ[1] / dt + g01 + g12,
-        cap[2] * DZ[2] / dt + g12 + g23,
-        cap[3] * DZ[3] / dt + g23,
+        cap[0] * dz[0] / dt + g01,
+        cap[1] * dz[1] / dt + g01 + g12,
+        cap[2] * dz[2] / dt + g12 + g23,
+        cap[3] * dz[3] / dt + g23,
     ])
     upper = jnp.array([-g01, -g12, -g23, 0.0], dtype=tsoil.dtype)
-    rhs = cap * DZ / dt * tsoil
+    rhs = cap * dz / dt * tsoil
     rhs = rhs.at[0].add(g_flux)
     new_tsoil = _thomas4(lower, diagonal, upper, rhs)
     new_ice, _ = _phase_and_capacity(new_tsoil * 0.0 + smc, new_tsoil, smcmax, bexp, supercool_option)
@@ -589,7 +598,8 @@ def _runoff_scheme(
     equilibrium: bool,
 ) -> tuple[jax.Array, jax.Array]:
     """对应普通版: runoff.route_runoff/topmodel_runoff/bats_runoff。"""
-    deficit0 = jnp.sum(jnp.maximum(0.0, smcref - smc) * DZ)
+    dz = jnp.asarray(DZ, dtype=smc.dtype)
+    deficit0 = jnp.sum(jnp.maximum(0.0, smcref - smc) * dz)
     terrain_factor = jnp.exp(-terrain_index)
     deficit = jnp.where(
         equilibrium,
@@ -659,26 +669,27 @@ def _soil_water(
 
     Fill-and-spill、根系吸水、Campbell 排水和径流路由都按四层固定展开。
     """
+    dz = jnp.asarray(DZ, dtype=smc.dtype)
     del soil_ice
     work = smc
     remaining = jnp.maximum(0.0, infil_m)
     for index in range(4):
-        room = jnp.maximum(0.0, (smcmax - work[index]) * DZ[index])
+        room = jnp.maximum(0.0, (smcmax - work[index]) * dz[index])
         add = jnp.minimum(remaining, room)
-        work = work.at[index].add(add / DZ[index])
+        work = work.at[index].add(add / dz[index])
         remaining = remaining - add
     runoff_surface = jnp.maximum(0.0, remaining)
     phase_ice, _ = _phase_and_capacity(work, tsoil, smcmax, bexp, supercool_option)
 
     transp_taken = jnp.asarray(0.0, dtype=smc.dtype)
     for index in range(4):
-        available = jnp.maximum(0.0, work[index] - smcwlt) * DZ[index]
+        available = jnp.maximum(0.0, work[index] - smcwlt) * dz[index]
         take = jnp.minimum(transp_m * root_frac[index], available)
-        work = work.at[index].add(-take / DZ[index])
+        work = work.at[index].add(-take / dz[index])
         transp_taken = transp_taken + take
-    available0 = work[0] * DZ[0]
+    available0 = work[0] * dz[0]
     esoil_taken = jnp.minimum(esoil_m, jnp.maximum(0.0, available0))
-    work = work.at[0].add(-esoil_taken / DZ[0])
+    work = work.at[0].add(-esoil_taken / dz[0])
 
     permeability_linear = jnp.ones_like(work)
     permeability_nonlinear = jnp.exp(-7.0 * phase_ice / jnp.maximum(smcmax, 1.0e-6))
@@ -687,18 +698,18 @@ def _soil_water(
     runoff_deep = jnp.asarray(0.0, dtype=smc.dtype)
     for index in range(4):
         q = satdk * permeability[index] * jnp.clip(work[index] / smcmax, 0.0, 1.0) ** (2.0 * bexp + 3.0)
-        excess = jnp.maximum(0.0, work[index] - smcref) * DZ[index]
+        excess = jnp.maximum(0.0, work[index] - smcref) * dz[index]
         drain = jnp.minimum(excess, q * dt)
-        work = work.at[index].add(-drain / DZ[index])
+        work = work.at[index].add(-drain / dz[index])
         if index < 3:
-            work = work.at[index + 1].add(drain / DZ[index + 1])
+            work = work.at[index + 1].add(drain / dz[index + 1])
         else:
             runoff_deep = runoff_deep + drain
     for index in range(4):
-        excess = jnp.maximum(0.0, work[index] - smcmax) * DZ[index]
-        work = work.at[index].add(-excess / DZ[index])
+        excess = jnp.maximum(0.0, work[index] - smcmax) * dz[index]
+        work = work.at[index].add(-excess / dz[index])
         if index < 3:
-            work = work.at[index + 1].add(excess / DZ[index + 1])
+            work = work.at[index + 1].add(excess / dz[index + 1])
         else:
             runoff_deep = runoff_deep + excess
     runoff_surface, runoff_deep2 = _route_runoff(
@@ -769,14 +780,14 @@ def _penman_monteith(
 def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax.Array) -> jax.Array:
     """对应普通版: energy.secant_solve。
 
-    固定 25 次割线更新，Ts 每次钳制到 [200, 330] K；不含 Python 端早停。
+    固定 25 次割线更新；收敛后冻结，并保留普通版 131 点扫描/40 次二分回退。
     """
     f0 = func(x0)
     best = x0
     best_abs = jnp.abs(f0)
 
     def body(_, carry):
-        old_x0, old_x1, old_f0, old_best, old_best_abs = carry
+        old_x0, old_x1, old_f0, old_best, old_best_abs, stopped, converged = carry
         f1 = func(old_x1)
         better = jnp.abs(f1) < old_best_abs
         best_new = jnp.where(better, old_x1, old_best)
@@ -784,10 +795,52 @@ def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax
         denom = f1 - old_f0
         x2_raw = old_x1 - f1 * (old_x1 - old_x0) / jnp.where(jnp.abs(denom) < 1.0e-12, 1.0, denom)
         x2 = jnp.clip(jnp.where(jnp.abs(denom) < 1.0e-12, old_x1, x2_raw), 200.0, 330.0)
-        return old_x1, x2, f1, best_new, best_abs_new
+        hit = jnp.abs(f1) < 1.0e-3
+        freeze = stopped | hit | (jnp.abs(denom) < 1.0e-12)
+        return (jnp.where(freeze, old_x0, old_x1),
+                jnp.where(freeze, old_x1, x2), jnp.where(freeze, old_f0, f1),
+                jnp.where(stopped, old_best, best_new),
+                jnp.where(stopped, old_best_abs, best_abs_new), freeze,
+                converged | (~stopped & hit))
 
-    _, _, _, best, _ = lax.fori_loop(0, 25, body, (x0, x1, f0, best, best_abs))
-    return best
+    _, answer, _, best, _, _, converged = lax.fori_loop(
+        0, 25, body, (x0, x1, f0, best, best_abs, jnp.asarray(False), jnp.asarray(False))
+    )
+
+    def fallback(_):
+        def scan(index, carry):
+            previous, bracket = carry
+            value = func(jnp.asarray(201.0, dtype=x0.dtype) + index)
+            crossing = jnp.isfinite(previous) & jnp.isfinite(value) & (previous * value <= 0.0)
+            return value, jnp.where((bracket < 0) & crossing, index, bracket)
+
+        _, bracket = lax.fori_loop(
+            0, 130, scan, (func(jnp.asarray(200.0, dtype=x0.dtype)), jnp.asarray(-1, jnp.int32))
+        )
+
+        def bisect(_):
+            left = jnp.asarray(200.0, dtype=x0.dtype) + bracket
+            right = left + 1.0
+
+            def iteration(_, carry):
+                lo, hi, flo, result, done = carry
+                mid = 0.5 * (lo + hi)
+                fm = func(mid)
+                hit = jnp.abs(fm) < 1.0e-3
+                go_left = flo * fm <= 0.0
+                return (jnp.where(done | go_left, lo, mid),
+                        jnp.where(done | ~go_left, hi, mid),
+                        jnp.where(done | go_left, flo, fm),
+                        jnp.where(~done & hit, mid, result), done | hit)
+
+            lo, hi, _, result, done = lax.fori_loop(
+                0, 40, iteration, (left, right, func(left), left, jnp.asarray(False))
+            )
+            return jnp.where(done, result, 0.5 * (lo + hi))
+
+        return lax.cond(bracket >= 0, bisect, lambda _: best, None)
+
+    return lax.cond(converged, lambda _: answer, fallback, None)
 
 
 def step_column_jax(
@@ -801,6 +854,7 @@ def step_column_jax(
     """
     _require_jax()
     fvec = jnp.asarray(fvec)
+    dz = jnp.asarray(DZ, dtype=fvec.dtype)
     ivec = jnp.asarray(ivec, dtype=jnp.int32)
     dt, tair, qair, wind, ps, swdown, lwdown, prcp = forcing_vec
     tsoil = fvec[0:4]
@@ -858,7 +912,7 @@ def step_column_jax(
     )
     snow_cover = jnp.minimum(1.0, swe / 0.02)
     tr_le_initial = tr_le_initial * (1.0 - snow_cover)
-    avail_root = jnp.sum(jnp.maximum(0.0, smc - smcwlt) * DZ)
+    avail_root = jnp.sum(jnp.maximum(0.0, smc - smcwlt) * dz)
     tr_m_potential = tr_le_initial / LV * dt / RHO_W
     tr_le = tr_le_initial * jnp.where(
         tr_m_potential > avail_root,
@@ -909,18 +963,18 @@ def step_column_jax(
         )
         del beta_root
         ground_res = _ground_resistance(
-            smc[0], DZ[0], smcmax, smcwlt, bexp,
+            smc[0], dz[0], smcmax, smcwlt, bexp,
             _option(ivec, "OptGroundResistanceEvap"),
         )
         kt1 = _soil_conductivity(smc[0:1], smcmax, quartz)[0]
         canw_cap_rate = canw_intercepted * LV * RHO_W / jnp.maximum(dt, 1.0e-6)
-        smc0_cap_rate = smc[0] * DZ[0] * LV * RHO_W / jnp.maximum(dt, 1.0e-6)
+        smc0_cap_rate = smc[0] * dz[0] * LV * RHO_W / jnp.maximum(dt, 1.0e-6)
 
         def residual(ts):
             rnet_local = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * ts**4)
             ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
             h_local = rho * CP * ce_local * (ts - tair)
-            dqs = _qsat(ts, ps) - qair * ps / (0.622 + 0.378 * qair)
+            dqs = _qsat(ts, ps) - qair
             ra_local = 1.0 / jnp.maximum(ce_local, 1.0e-6)
             le_g_local = jnp.minimum(
                 beta_surface * rho * LV * jnp.maximum(0.0, dqs) / (ra_local + ground_res),
@@ -930,14 +984,14 @@ def step_column_jax(
                 rho * LV * ce_local * dqs * jnp.minimum(1.0, canw_intercepted / jnp.maximum(1.0e-9, 0.2 * canmax)),
                 canw_cap_rate,
             )
-            g_local = kt1 * (ts - tsoil[0]) / (0.5 * DZ[0])
+            g_local = kt1 * (ts - tsoil[0]) / (0.5 * dz[0])
             return rnet_local - h_local - le_g_local - le_c_local - tr_le - g_local
 
         ts = _secant_solve(residual, tair, tair + 1.0)
         rnet = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * ts**4)
         ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
         h = rho * CP * ce * (ts - tair)
-        dqs = _qsat(ts, ps) - qair * ps / (0.622 + 0.378 * qair)
+        dqs = _qsat(ts, ps) - qair
         ra = 1.0 / jnp.maximum(ce, 1.0e-6)
         le_g = jnp.minimum(
             beta_surface * rho * LV * jnp.maximum(0.0, dqs) / (ra + ground_res),
@@ -947,7 +1001,7 @@ def step_column_jax(
             rho * LV * ce * dqs * jnp.minimum(1.0, canw_intercepted / jnp.maximum(1.0e-9, 0.2 * canmax)),
             canw_cap_rate,
         )
-        g_soil = kt1 * (ts - tsoil[0]) / (0.5 * DZ[0])
+        g_soil = kt1 * (ts - tsoil[0]) / (0.5 * dz[0])
         ecan = le_c / LV * dt / RHO_W
         return (
             ts, rnet, h, le_g + le_c + tr_le, g_soil, ecan,
@@ -957,7 +1011,8 @@ def step_column_jax(
             rnet - h - le_g - le_c - tr_le - g_soil,
         )
 
-    energy = lax.cond(swe > 1.0e-4, snow_energy, bare_energy, None)
+    snow_surface = swe > 1.0e-4
+    energy = lax.cond(snow_surface, snow_energy, bare_energy, None)
     (
         ts, rnet, h, le_total, g_flux, ecan_m, esoil_potential,
         snow_swe_layers, snow_t_layers, snow_density_layers, snow_count,
@@ -971,18 +1026,19 @@ def step_column_jax(
         terrain_index, groundwater_depth, option_supercool, tsoil,
     )
     tsoil, soil_ice = _soil_heat(
-        tsoil, smc, soil_ice, dt, g_flux, smcmax, bexp, quartz, option_supercool
+        tsoil, smc, soil_ice, dt, jnp.where(snow_surface, 0.0, g_flux),
+        smcmax, bexp, quartz, option_supercool
     )
     swe = jnp.sum(snow_swe_layers)
     snow_t = jnp.where(swe > 1.0e-8, snow_t_layers[0], FREEZING_POINT)
     snow_albedo, snow_age = _snow_albedo(
         swe, snow_t, snow_age_old, dt, snow_m, _option(ivec, "OptSnowAlbedo")
     )
-    canw = jnp.where(swe > 1.0e-4, canw_intercepted, canw_after_energy)
+    canw = jnp.where(snow_surface, canw_intercepted, canw_after_energy)
     et_m = transp_taken + esoil_taken + ecan_m
     runoff_m = runoff_surface + runoff_deep
     diag = jnp.stack((
-        ts, rnet, h, le_total, g_flux, et_m * 1000.0,
+        ts, rnet, h, le_total, jnp.where(snow_surface & (swe <= 1.0e-4), 0.0, g_flux), et_m * 1000.0,
         prcp * dt * 1000.0, runoff_m * 1000.0, melt * 1000.0,
         swe, canw, residual,
     ))

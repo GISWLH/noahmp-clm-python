@@ -51,3 +51,14 @@ def test_jax_batch_matches_individual_step_calls() -> None:
     assert batch_diag.shape == (2, 4, 12)
     assert np.all(np.isfinite(np.asarray(batch_f)))
     assert np.all(np.isfinite(np.asarray(batch_diag)))
+
+
+def test_jax_float32_scan_preserves_dtype_with_x64_enabled() -> None:
+    """防止固定层厚的 float64 常量使 switch/scan 分支产生 dtype 冲突。"""
+    fvecs, ivecs, forcings = _inputs(n=2, steps=4)
+    final_f, final_i, diagnostics = run_columns_jax(
+        fvecs.astype(np.float32), ivecs, forcings.astype(np.float32)
+    )
+    assert final_f.dtype == diagnostics.dtype == np.dtype("float32")
+    assert final_i.dtype == np.dtype("int32")
+    assert np.all(np.isfinite(np.asarray(diagnostics)))

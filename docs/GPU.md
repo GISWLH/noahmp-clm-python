@@ -44,3 +44,38 @@ C:\Users\hhuwl\venvs\noahmp-gpu\Scripts\python.exe -m pytest -q tests/test_gpu_j
 
 float32 与 float64 的日累计偏差、CuPy 和手写 CUDA 的偏差将在阶段 C/E/F 实测后
 补入本文件；当前没有伪造这些数字。
+
+## 阶段 3b / H2：Linux GPU 根因与修复
+
+2026-10-12/13 EDT，在 xuanze RTX 4090、JAX/jaxlib 0.11.2 下复测。
+原始代码的 8 柱混合 `jit(vmap(scan))` 在 CUDA 上成功编译，Windows 的 HLO
+进程中止不复现；但原始图的最大能量残差为 2158.487487 W/m²，因此原实现
+不能通过物理 parity。不能用“不复现 HLO”代替数值验收。
+
+定位到并修复的普通版差异：
+
+- 裸地 `dqs` 错把比湿减去水汽压（Pa），暴雨案例使 LE 约为 −1909 W/m²。
+  修为 `qsat - qair`，与 `driver.step_column` 相同。
+- MOST 20 次和割线 25 次循环以前继续迭代，改变了普通版早停后的数值；
+  改为固定上限内冻结收敛状态，并补齐普通版 131 点扫描、40 次二分回退。
+- 雪下土壤现在保持普通版零表面热通量；融空层以固定长度 gather 前移，
+  雪面/裸地过渡的冠层水和 G 诊断保持普通版语义。
+- 新雪加入阈值与普通版保持一致（大于零），零 SWE 不再压实空雪层。
+- 层厚常量按输入 dtype 构造；修复 x64 启用时 float32 `lax.switch` 分支的
+  float64/float32 类型不一致，ABI 偏移、长度和普通版代码均未改变。
+
+保留原测试，另加真正同时运行 8 柱 × 48 步的批量门，覆盖暴雨、冻结、三层雪、
+消融、近萎蔫点干旱和混合选项；断言实际消融发生，比较诊断量、最终土壤状态
+和有效雪层。沿用原容差（普通诊断 1e-6，雪/径流段 1e-4），没有放宽。
+
+```bash
+source ~/venvs/noahmp-phase3b/bin/activate
+cd ~/work/noahmp-phase3b/repo
+unset LD_LIBRARY_PATH
+CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true \
+XLA_PYTHON_CLIENT_PREALLOCATE=false NOAHMP_REQUIRE_GPU=1 PYTHONPATH=src \
+python -m pytest tests/test_gpu_parity.py tests/test_gpu_jax.py tests/test_gpu_pack.py -x -q -s
+```
+
+最终结果：**7 passed**，输出设备 `CudaDevice(id=0)`；原始失败、GPU 编译探针、
+库加载诊断和最终通过日志见 `docs/gpu-results/h2-*.log`。

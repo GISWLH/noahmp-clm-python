@@ -1,10 +1,10 @@
 # 阶段 3 GPU 迁移总结
 
-当前状态：阶段 3b 的 xuanze 访问与 H1 环境通过；新 Linux venv 中 JAX-CUDA x64 和 CuPy 均实际执行 GPU 运算，H2 parity 尚未复测。
+当前状态：阶段 3b 的 xuanze 访问、H1 环境和 H2 GPU float64 parity 通过；8 柱 × 48 步混合批量门、最终状态和 float32 dtype 回归均通过。
 
 性能数字：本机 `N=100 × 48` 实测 numpy 单核 490.08 µs/柱步（2,040 柱步/s），JAX CPU x64 13.63 µs/柱步（73,351 柱步/s）；没有可报告的 GPU kernel 数字。
 
-验收缺口：Windows 混合选项 HLO 中止的 Linux 结论待测；H2、H4、H5 均未通过，CUDA kernel 仍是简化骨架，main 不满足合并条件。
+验收缺口：原始混合图的 Windows HLO 中止在 Linux CUDA 不复现，已修复另外的物理及 dtype 差异；H4、H5 尚未通过，CUDA kernel 仍待补全，main 不满足合并条件。
 
 ## 已交付
 
@@ -21,8 +21,8 @@
 |---|---|
 | 访问门槛 | 通过：2026-10-12 EDT，SSH + GPU + nvcc |
 | H1 Linux venv / JAX-CUDA / CuPy | 通过：JAX 0.11.2 CudaDevice、CuPy 14.2.0 实际设备运算 |
-| H2 8 柱 × 48 步 float64 parity | 未运行 |
-| H3 完整默认物理 CUDA kernel | 未开始，等待 H2 |
+| H2 8 柱 × 48 步 float64 parity | 通过：实际 CUDA 输出；相关回归 7 passed，原容差不变 |
+| H3 完整默认物理 CUDA kernel | 开始补全 |
 | H4 N=1024 CUDA parity | 未运行 |
 | H5 五档 48 步 GPU 基准 | 未运行 |
 | H6 选项矩阵与 x32/x64 精度 | 未运行 |
