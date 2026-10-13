@@ -1,5 +1,9 @@
 # xuanze 夜间计算接续记录
 
+> 2026-10-13 J1–J5 更新：执行优先级以 [GPU_J_STAGE.md](GPU_J_STAGE.md) 为准。
+> 本文保存 CPU 监督任务的位置；CPU 作业完成不代表后续 J 阶段完成，也不自动结束 heartbeat。
+> 旧 GPU 计时现在必须通过新增 checksum 门复核，不再直接用于最终验收加速比。
+
 2026-10-13，工作分支 `gpu/migration`。H1/H2/H3 已通过，H4 严格 parity
 红灯，H6 已实现范围审计通过；全量 Linux pytest 为 **44 passed, 2 failed**。
 H4 根因分析见 [GPU_BLOCKERS.md](GPU_BLOCKERS.md)，不得因性能良好而合并 main。
@@ -35,17 +39,17 @@ scp xuanze-neiwang:work/noahmp-phase3b/logs/h5-overnight/state.json docs/gpu-res
 ```
 
 只有 JSONL 中 `event=result, status=measured` 且三次 measured 样本完整、affinity
-单核、checksum 一致时，才能把 `seconds` 填入表。GPU 对照取
-`docs/gpu-results/h5-gpu.jsonl`；比值为同 N 的 NumPy 中位数除以 GPU 中位数。
-手写 CUDA 永远保留 `measured_unvalidated`，直到原 H4 实际全绿。
+单核、checksum 一致时，才能把 `seconds` 填入表。GPU 对照必须取新 checksum 门
+通过的 JSONL；旧 `h5-gpu.jsonl` 只作历史记录。比值须使用相同 N 和计时边界。
+手写 CUDA 即使 checksum 通过，也须独立通过 H4 才能作为最终性能验收结果。
 
 新增有效结果时更新 `docs/BENCHMARK.md`、`docs/GPU_SUMMARY.md` 顶部三句话和
 README GPU 段，保留 Windows 历史数据并注明版本语义差异。每 1–2 小时有新证据
 就 commit + push `gpu/migration`，无变化时安静等待。网络 push 失败可重试，不
-用 force push。当前已完成一次 profiling，不需要再次跑耗时优化。
+用 force push。J4 后续 profiling 的范围和预算以最新工作入口为准。
 
 全部样本完成或截止后，写清所有实际结果/缺口、H5 是否有完整基线及 N=1e5
-是否达到 100×，push 最终文档，再删除本次 heartbeat。若没有生产代码改动，
+是否达到 100×，push 文档；J1–J5 完成或明确记录无法继续的缺口后才结束 heartbeat。若没有生产代码改动，
 不必重复已保存的全量 pytest。**H4 未通过时，ROADMAP 阶段 3 不得勾选完成，
 不得 checkout/merge/push main。**
 

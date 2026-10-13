@@ -68,6 +68,9 @@ JAX x64 **22.0033 s**，JAX x32 **3.14413 s**。五档 GPU 计时已完成，大
 NumPy 单核对照正在补测，尚不报告完整加速倍数。`.[gpu]` 本身仍只安装 CPU JAX，
 Linux CUDA 安装与库路径说明见 [GPU_ENV.md](docs/GPU_ENV.md)。
 
+上述为原计时记录：最新 J2 正增加全量 device checksum 与 JAX 对照门，在复核
+通过前不作为最终性能验收结论。NumPy N=10000 完整基线已收回，为 364.04924 s。
+
 JAX float64 混合选项门通过；手写 CUDA 虽已编译执行，但严格 float32 parity
 仍失败，其 **0.00728780 s** 计时标为“实测但精度未过门”。不能据此宣布阶段 3
 完成。范围、原始计时和失败证据见 [GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
