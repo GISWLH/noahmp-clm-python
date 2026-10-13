@@ -14,6 +14,9 @@
 - 原始日志：`v1-results/p2-canopy-gpu-windows-crash.log.gz`、
   `p2-canopy-gpu-windows-intermediate.log.gz`、`p2-canopy-gpu-pytest.log.gz`。
   具体原生库/解释器原因未确认；后续需隔离环境复验，未修改共享conda安装。
+- 随后的整柱GPU开发中，本地一次目标pytest甚至在导入 `_pytest.nodes`
+  定义 `Node.teardown` 时发生 `SystemError: error return without exception set`，
+  尚未执行模型测试。继续使用Linux环境；不把新的解释器异常归因于物理代码。
 - 本轮GPU显存争用的初始化失败、饱和比湿运算重排和湿度迭代问题均已在
   各自30分钟内定位并继续推进；原始失败数字与最终数字见
   [冠层联立报告](CLM_CANOPY_ENERGY.md)，不作为新发布例外。

@@ -11,7 +11,8 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入
-NumPy，完整新柱步的GPU同步、冬季连接与观测评价待完成，默认驱动仍是v0.2路径。
+NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳定度连接与
+观测评价待完成，默认驱动仍是v0.2路径。
 单叶实测仍有未达标曲线。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
