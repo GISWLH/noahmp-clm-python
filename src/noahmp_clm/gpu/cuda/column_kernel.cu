@@ -1,4 +1,4 @@
-// Default PhysicsOptions; float32 SoA ABI from STATE_SPEC.md.
+// 12 implemented PhysicsOptions selectors; float32 SoA ABI from STATE_SPEC.md.
 // Corresponding reference: driver.step_column. CUDA parity is a separate gate.
 #ifndef __CUDACC_RTC__
 #include <math.h>
@@ -44,7 +44,12 @@ __device__ void stability(float zeta, float* pm, float* ph) {
     *ph = 2.0f * logf((1.0f + x*x) / 2.0f);
 }
 // 对应普通版: surface_drag.most_exchange_velocity。固定20次，收敛后冻结。
-__device__ float exchange(const float* u, float z0, float ts) {
+__device__ float exchange(const float* u, float z0, float ts, int option=1) {
+    // 对应普通版: surface_drag.exchange_velocity。Chen/bulk option 2.
+    if (option==2) {
+        float rough=clip(z0,1.0e-5f,5.0f);
+        return (0.16f/(logf(10.0f/rough)*logf(10.0f/(rough/10.0f))))*fmaxf(u[3],0.3f);
+    }
     float wind = fmaxf(u[3], 0.3f), rho = air_density(u);
     z0 = clip(z0, 1.0e-5f, 5.0f);
     float lm = logf(10.0f / z0), lh = logf(10.0f / fmaxf(z0/10.0f, 1.0e-6f));
@@ -72,7 +77,7 @@ __device__ float exchange(const float* u, float z0, float ts) {
     return ce;
 }
 // 对应普通版: frozen_soil._niu_yang_liquid。Niu & Yang (2006)。
-__device__ float liquid(float smc, float t, const float* s) {
+__device__ float liquid(float smc, float t, const float* s, int option=1) {
     float total = fmaxf(0.0f, smc);
     if (t >= TF) return total;
     // Match XLA's constant-folded coefficient and reciprocal scale. Keeping
@@ -81,11 +86,17 @@ __device__ float liquid(float smc, float t, const float* s) {
     constexpr float phase_coefficient=(LF/461.5f)/(TF*TF);
     float clausius = phase_coefficient*fmaxf(0.0f,TF-t);
     float potential = s[39] * powf(fmaxf(clausius,1.0e-8f)*20000.0f, -1.0f/fmaxf(s[43],1.0e-6f));
-    return fminf(total, potential);
+    float result=fminf(total,potential);
+    // 对应普通版: frozen_soil.unfrozen_water_content。Koren's three updates.
+    if (option==2) {
+        for (int it=0;it<3;++it) result=0.5f*(result+fminf(smc,fminf(result,potential)));
+        result=fminf(smc,result);
+    }
+    return result;
 }
 // 对应普通版: frozen_soil.apparent_heat_capacity。
-__device__ float capacity(float smc, float t, const float* s) {
-    float derivative = (liquid(smc,t+0.02f,s)-liquid(smc,t-0.02f,s))*25.0f;
+__device__ float capacity(float smc, float t, const float* s, int option=1) {
+    float derivative = (liquid(smc,t+0.02f,s,option)-liquid(smc,t-0.02f,s,option))*25.0f;
     return smc*4.18e6f+(1.0f-s[39])*2.0e6f+RW*LF*fmaxf(0.0f,derivative);
 }
 // 对应普通版: soil.thermal_conductivity。
@@ -94,18 +105,37 @@ __device__ float soil_k(float smc, const float* s) {
     float ke = sr > 0.1f ? clip(log10f(fmaxf(sr,1.0e-6f))+1.0f,0.0f,1.0f) : 0.0f;
     return 0.2f+((0.6f-0.2f)+1.6f*s[44])*ke;
 }
-// 对应普通版: stress.soil_water_stress。默认Noah水胁迫。
-__device__ float beta(float smc, const float* s) {
-    return clip((smc-s[40])/fmaxf(1.0e-9f,s[41]-s[40]),0.0f,1.0f);
+// 对应普通版: stress.soil_water_stress。Noah/CLM/SSiB water stress.
+__device__ float beta(float smc, const float* s, int option=1) {
+    switch (option) {
+        case 2: case 3: {
+            float sat=fmaxf(s[39],1.0e-9f);
+            float psi=-0.1f*powf(clip(smc/sat,1.0e-4f,1.0f),-s[43]);
+            float ref=-0.1f*powf(clip(s[41]/sat,1.0e-4f,1.0f),-s[43]);
+            float matric=clip((-1500.0f-psi)/(-1500.0f-ref),0.0f,1.0f);
+            return option==3 ? matric*matric : matric;
+        }
+        default: return clip((smc-s[40])/fmaxf(1.0e-9f,s[41]-s[40]),0.0f,1.0f);
+    }
 }
 // 对应普通版: canopy.ball_berry_rs。默认经验光响应Ball--Berry。
-__device__ float stomata(const float* s, const float* u) {
+__device__ float stomata(const float* s, const float* u, int water_option=1, int option=1) {
     float weights[4];
-    for (int k=0;k<4;++k) weights[k]=s[12+k]*beta(s[4+k],s);
-    // XLA's four-element reduction pairs lanes 0/2 and 1/3.
+    for (int k=0;k<4;++k) weights[k]=s[12+k]*beta(s[4+k],s,water_option);
+    // Match jax_core's explicit four-term cross-pair sum.
     float water=(weights[0]+weights[2])+(weights[1]+weights[3]);
     water = fmaxf(0.02f,clip(water,0.0f,1.0f));
-    float temp = clip(1.0f-0.0016f*(298.0f-u[1])*(298.0f-u[1]),0.05f,1.0f);
+    // Match the production JAX HLO: square the temperature delta before scaling.
+    // Left-associated coefficient multiplication changes stomatal LE near 274.2 K.
+    float temperature_delta = 298.0f-u[1];
+    float temp = clip(1.0f-0.0016f*(temperature_delta*temperature_delta),0.05f,1.0f);
+    // 对应普通版: canopy.jarvis_rs。Light, temperature, VPD and root stress.
+    if (option==2) {
+        float ea=u[2]*u[4]/(0.622f+0.378f*u[2]);
+        float vpd=fmaxf(0.0f,esat(u[1])-ea);
+        float light=clip(u[5]/500.0f,0.02f,1.0f), fvpd=clip(1.0f-vpd/4000.0f,0.10f,1.0f);
+        return clip(s[36]/(light*temp*fvpd*water),s[36],5000.0f);
+    }
     float a = 25.0f*(1.0f-expf(-fmaxf(0.0f,u[5])*2.0f/450.0f))*temp*water;
     // XLA combines (q*ps / humidity_denominator) / es into one divide.
     float rh = clip((u[2]*u[4])/((0.622f+0.378f*u[2])*fmaxf(esat(u[1]),1.0f)),0.05f,1.0f);
@@ -123,8 +153,13 @@ __device__ float penman(float rn, const float* u, float ra, float rs) {
     return fmaxf(0.0f,numerator/(slope+gamma*(1.0f+rs/fmaxf(ra,1.0f))));
 }
 // 对应普通版: ground_evap.ground_resistance。Opt=4的无雪Sakaguchi--Zeng。
-__device__ float ground_resistance(const float* s) {
+__device__ float ground_resistance(const float* s, int option=4) {
     float sat = fmaxf(s[39],1.0e-6f), fraction = fminf(1.0f,clip(s[4],0.0f,sat)/sat);
+    switch (option) {
+        case 2: return expf(8.25f-4.225f*fmaxf(0.0f,s[4]/sat));
+        case 3: return expf(8.25f-6.0f*fmaxf(0.0f,s[4]/sat));
+        default: break; // 1 and 4 share the no-snow Sakaguchi--Zeng branch.
+    }
     // DZ is a captured array in the full JAX graph: its multiplication must
     // round before the constant reciprocal, even though an isolated scalar
     // probe can fold both constants together.
@@ -140,17 +175,25 @@ __device__ void thomas4(const float a[4], const float b[4], const float c[4], co
     float b3=b[3]-a[3]*cp2, dp3=(d[3]-a[3]*dp2)/safe_den(b3);
     out[3]=dp3; out[2]=dp2-cp2*out[3]; out[1]=dp1-cp1*out[2]; out[0]=dp0-cp0*out[1];
 }
-// 对应普通版: snow.snow_thermal_conductivity。默认Stieglitz/Yen。
-__device__ float snow_k(float density) {
-    return clip(2.2f*powf(clip(density,50.0f,917.0f)/1000.0f,1.88f),0.05f,2.5f);
+// 对应普通版: snow.snow_thermal_conductivity。Five implemented schemes.
+__device__ float snow_k(float density, float temperature=TF, int option=1) {
+    if (option==1) return clip(2.2f*powf(clip(density,50.0f,917.0f)/1000.0f,1.88f),0.05f,2.5f);
+    float ratio=clip(density,50.0f,917.0f)/1000.0f, result;
+    switch (option) {
+        case 2: result=2.9f*(ratio*ratio); break;
+        case 3: result=0.30f; break;
+        case 4: result=(0.023f+0.234f*(ratio*ratio))*(1.0f+0.05f*clip(temperature-268.15f,0.0f,5.0f)/5.0f); break;
+        default: result=(2.2f*powf(ratio,1.88f))*(1.0f+0.1f*ratio); break;
+    }
+    return clip(result,0.05f,2.5f);
 }
 // 对应普通版: snow.surface_snow_flux。
-__device__ float snow_flux(const float* s, float ts) {
+__device__ float snow_flux(const float* s, float ts, int option=1) {
     float depth = fmaxf(s[16],1.0e-8f)*RW/fmaxf(s[22],50.0f);
-    return snow_k(s[22])*(ts-s[19])/fmaxf(0.5f*depth,0.01f);
+    return snow_k(s[22],s[19],option)*(ts-s[19])/fmaxf(0.5f*depth,0.01f);
 }
 // 对应普通版: snow.add_snowfall/compact_snow。三层mask；默认压实Opt=2。
-__device__ void snowfall(float* s, int* count, float amount, const float* u) {
+__device__ void snowfall(float* s, int* count, float amount, const float* u, int option=2) {
     if (amount > 0.0f) {
         // Match _add_snowfall: reduce the old layers before adding new snow.
         float total=0.0f, weighted_t=0.0f, weighted_d=0.0f;
@@ -172,18 +215,21 @@ __device__ void snowfall(float* s, int* count, float amount, const float* u) {
             float over=0.0f;
             for (int j=k+1;j<*count;++j) over+=s[16+j];
             float warm=6.0e-8f*expf(clip(0.08f*(s[19+k]-258.15f),-4.0f,4.0f));
-            s[22+k]=fminf(550.0f,s[22+k]+fmaxf(0.0f,u[0])*(warm*(550.0f-s[22+k])+1.5e-7f*over*1.0e4f));
+            if (option==1) {
+                warm=1.0e-7f*expf(clip(0.08f*(s[19+k]-258.15f),-4.0f,4.0f));
+                s[22+k]=fminf(550.0f,s[22+k]+fmaxf(0.0f,u[0])*(warm*(550.0f-s[22+k])+2.5e-7f*over*1.0e4f));
+            } else s[22+k]=fminf(550.0f,s[22+k]+fmaxf(0.0f,u[0])*(warm*(550.0f-s[22+k])+1.5e-7f*over*1.0e4f));
         }
     }
     s[26]=total; s[27]=total>1.0e-8f ? s[19] : TF;
 }
 // 对应普通版: snow.apply_snow_heat/_implicit_heat_step。固定三层隐式系统。
-__device__ float snow_heat(float* s, int* count, float dt, float top_flux) {
+__device__ float snow_heat(float* s, int* count, float dt, float top_flux, int option=1) {
     float depth[3], cap[3], conduct[2], k[3], t[3];
     for (int j=0;j<3;++j) {
         depth[j]=j<*count ? s[16+j]*RW/fmaxf(s[22+j],50.0f) : 1.0e-4f;
         cap[j]=j<*count ? 630000.0f*depth[j]/fmaxf(dt,1.0e-6f) : 1.0e12f;
-        k[j]=snow_k(s[22+j]);
+        k[j]=snow_k(s[22+j],s[19+j],option);
     }
     for (int j=0;j<2;++j) conduct[j]=j+1<*count
         ? (2.0f/(1.0f/k[j]+1.0f/k[j+1]))/fmaxf(0.5f*(depth[j]+depth[j+1]),1.0e-4f) : 0.0f;
@@ -208,18 +254,19 @@ __device__ float snow_heat(float* s, int* count, float dt, float top_flux) {
 
 struct Energy { float rn,h,le,g,ecan,esoil,residual; };
 // 对应普通版: driver.step_column。LE包含土壤蒸发、截留蒸发和PM蒸腾。
-__device__ Energy energy(float ts, const float* s, const float* u, bool snow, float transp) {
+__device__ Energy energy(float ts, const float* s, const float* u, bool snow, float transp,
+                         int drag=1, int ground=4, int water=1, int conductivity=1) {
     Energy e;
     float emiss=snow ? 0.99f : s[35], albedo=snow ? s[28] : s[34];
-    float t2=ts*ts, ce=exchange(u,s[33],ts), rho=air_density(u);
+    float t2=ts*ts, ce=exchange(u,s[33],ts,drag), rho=air_density(u);
     // jax_core uses SIGMA * ts**4: square twice before scaling, so the
     // float32 rounding tree does not depend on left-associated products.
     e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*(t2*t2));
     e.h=rho*CP*ce*(ts-u[1]); e.ecan=0.0f; e.esoil=0.0f; e.le=0.0f;
-    if (snow) { e.g=snow_flux(s,ts); e.residual=e.rn-e.h-e.g; }
+    if (snow) { e.g=snow_flux(s,ts,conductivity); e.residual=e.rn-e.h-e.g; }
     else {
         float dq=qsat(ts,u[4])-u[2], ra=1.0f/fmaxf(ce,1.0e-6f);
-        float eg=fminf(beta(s[4],s)*rho*LV*fmaxf(0.0f,dq)/(ra+ground_resistance(s)),s[4]*DZ[0]*LV*RW/u[0]);
+        float eg=fminf(beta(s[4],s,water)*rho*LV*fmaxf(0.0f,dq)/(ra+ground_resistance(s,ground)),s[4]*DZ[0]*LV*RW/u[0]);
         float ec=fminf(rho*LV*ce*dq*fminf(1.0f,s[30]/fmaxf(1.0e-9f,0.2f*0.5e-3f*s[31])),s[30]*LV*RW/u[0]);
         e.esoil=eg/LV*u[0]/RW; e.ecan=ec/LV*u[0]/RW;
         e.le=eg+ec+transp; e.g=soil_k(s[4],s)*(ts-s[0])/(0.5f*DZ[0]);
@@ -229,12 +276,13 @@ __device__ Energy energy(float ts, const float* s, const float* u, bool snow, fl
     return e;
 }
 // 对应普通版: energy.secant_solve。固定25次割线，失败时扫描/二分回退。
-__device__ float surface_temperature(const float* s, const float* u, bool snow, float transp) {
-    float x0=u[1], x1=u[1]+1.0f, f0=energy(x0,s,u,snow,transp).residual;
+__device__ float surface_temperature(const float* s, const float* u, bool snow, float transp,
+                                    int drag=1, int ground=4, int water=1, int conductivity=1) {
+    float x0=u[1], x1=u[1]+1.0f, f0=energy(x0,s,u,snow,transp,drag,ground,water,conductivity).residual;
     float best=x0, best_abs=fabsf(f0); bool stopped=false, converged=false;
     for (int it=0;it<25;++it) {
         if (!stopped) {
-            float f1=energy(x1,s,u,snow,transp).residual;
+            float f1=energy(x1,s,u,snow,transp,drag,ground,water,conductivity).residual;
             if (fabsf(f1)<best_abs) { best=x1; best_abs=fabsf(f1); }
             if (fabsf(f1)<1.0e-3f) { stopped=true; converged=true; }
             else if (fabsf(f1-f0)<1.0e-12f) stopped=true;
@@ -242,19 +290,19 @@ __device__ float surface_temperature(const float* s, const float* u, bool snow, 
         }
     }
     if (converged) return x1;
-    float previous=energy(200.0f,s,u,snow,transp).residual;
+    float previous=energy(200.0f,s,u,snow,transp,drag,ground,water,conductivity).residual;
     int bracket=-1;
     for (int j=0;j<130;++j) {
-        float next=energy(201.0f+j,s,u,snow,transp).residual;
+        float next=energy(201.0f+j,s,u,snow,transp,drag,ground,water,conductivity).residual;
         if (bracket<0 && isfinite(previous) && isfinite(next) && previous*next<=0.0f) bracket=j;
         previous=next;
     }
     if (bracket<0) return best;
-    float lo=200.0f+bracket, hi=lo+1.0f, flo=energy(lo,s,u,snow,transp).residual, result=lo;
+    float lo=200.0f+bracket, hi=lo+1.0f, flo=energy(lo,s,u,snow,transp,drag,ground,water,conductivity).residual, result=lo;
     bool done=false;
     for (int j=0;j<40;++j) {
         if (!done) {
-            float mid=0.5f*(lo+hi), fm=energy(mid,s,u,snow,transp).residual;
+            float mid=0.5f*(lo+hi), fm=energy(mid,s,u,snow,transp,drag,ground,water,conductivity).residual;
             if (fabsf(fm)<1.0e-3f) { result=mid; done=true; }
             else if (flo*fm<=0.0f) hi=mid;
             else { lo=mid; flo=fm; }
@@ -262,14 +310,58 @@ __device__ float surface_temperature(const float* s, const float* u, bool snow, 
     }
     return done ? result : 0.5f*(lo+hi);
 }
+struct Runoff { float surface, subsurface; };
+// 对应普通版: runoff.topmodel_runoff/bats_runoff。Independent outlet components.
+__device__ Runoff runoff_scheme(float incoming, const float* s, int option) {
+    incoming=fmaxf(0.0f,incoming);
+    float surface=0.0f;
+    switch (option) {
+        case 1: case 2: {
+            float deficits[4];
+            for(int k=0;k<4;++k) deficits[k]=fmaxf(0.0f,s[41]-s[4+k])*DZ[k];
+            float deficit=(deficits[0]+deficits[2])+(deficits[1]+deficits[3]);
+            float terrain=expf(-s[37]);
+            if(option==2) deficit=fmaxf(deficit,fmaxf(0.0f,s[38])*s[39]*terrain);
+            deficit=fmaxf(0.0f,deficit*terrain);
+            float wetness=clip(expf(s[37])*expf(-fmaxf(0.0f,s[38])/2.0f),0.0f,1.0f);
+            surface=fmaxf(0.0f,incoming-deficit)*wetness;
+            break;
+        }
+        case 4: {
+            float wet[4];
+            for(int k=0;k<4;++k) wet[k]=clip(s[4+k]/fmaxf(s[39],1.0e-6f),0.0f,1.0f);
+            float mean=((wet[0]+wet[2])+(wet[1]+wet[3]))*0.25f;
+            surface=incoming*clip(mean*(mean*mean),0.0f,1.0f);
+            break;
+        }
+        default: break; // 3: original free drainage.
+    }
+    surface=clip(surface,0.0f,incoming);
+    return {surface,incoming-surface};
+}
+// 对应普通版: runoff.route_runoff。The second selector sees the first remainder.
+__device__ Runoff route_runoff(float incoming, const float* s, int surface_option, int subsurface_option) {
+    Runoff first=runoff_scheme(incoming,s,surface_option);
+    if(surface_option==subsurface_option) return first;
+    Runoff second=runoff_scheme(first.subsurface,s,subsurface_option);
+    return {first.surface+second.surface,second.subsurface};
+}
 // 对应普通版: soil.step_soil_water。入渗、根系水量限制、蒸发、Campbell排水。
-__device__ float soil_water(float* s, const float* u, float incoming, float transp, float esoil, float* et) {
+__device__ float soil_water(float* s, const float* u, float incoming, float transp, float esoil, float* et,
+                            int permeability=1, int supercool=1, int surface_runoff=3, int subsurface_runoff=3) {
     float remaining=fmaxf(0.0f,incoming), runoff=0.0f; *et=0.0f;
     for (int k=0;k<4;++k) {
         float add=fminf(remaining,fmaxf(0.0f,(s[39]-s[4+k])*DZ[k]));
         s[4+k]+=add/DZ[k]; remaining-=add;
     }
     runoff+=fmaxf(0.0f,remaining);
+    // Corresponding reference: frozen_soil.permeability_factor. Snapshot phase
+    // after infiltration and before evaporation/extraction, as in both references.
+    float frozen_factor[4];
+    if(permeability==2) for(int k=0;k<4;++k) {
+        float ice=fmaxf(0.0f,s[4+k]-liquid(s[4+k],s[k],s,supercool));
+        frozen_factor[k]=expf(-7.0f*ice/fmaxf(s[39],1.0e-6f));
+    }
     for (int k=0;k<4;++k) {
         float take=fminf(transp*s[12+k],fmaxf(0.0f,s[4+k]-s[40])*DZ[k]);
         s[4+k]-=take/DZ[k]; *et+=take;
@@ -277,6 +369,7 @@ __device__ float soil_water(float* s, const float* u, float incoming, float tran
     float evap=fminf(esoil,fmaxf(0.0f,s[4]*DZ[0])); s[4]-=evap/DZ[0]; *et+=evap;
     for (int k=0;k<4;++k) {
         float q=s[42]*powf(clip(s[4+k]/s[39],0.0f,1.0f),2.0f*s[43]+3.0f);
+        if(permeability==2) q=(s[42]*frozen_factor[k])*powf(clip(s[4+k]/s[39],0.0f,1.0f),2.0f*s[43]+3.0f);
         float drain=fminf(fmaxf(0.0f,s[4+k]-s[41])*DZ[k],q*u[0]);
         s[4+k]-=drain/DZ[k];
         if (k<3) s[5+k]+=drain/DZ[k+1]; else runoff+=drain;
@@ -285,12 +378,15 @@ __device__ float soil_water(float* s, const float* u, float incoming, float tran
         float excess=fmaxf(0.0f,s[4+k]-s[39])*DZ[k]; s[4+k]-=excess/DZ[k];
         if (k<3) s[5+k]+=excess/DZ[k+1]; else runoff+=excess;
     }
-    return runoff;
+    // Preserve the default sum's arithmetic; the default scheme is (0, runoff).
+    if(surface_runoff==3 && subsurface_runoff==3) return runoff;
+    Runoff routed=route_runoff(runoff,s,surface_runoff,subsurface_runoff);
+    return routed.surface+routed.subsurface;
 }
 // 对应普通版: soil.step_soil_heat/frozen_soil.update_soil_phase。底部零通量。
-__device__ void soil_heat(float* s, float dt, float flux) {
+__device__ void soil_heat(float* s, float dt, float flux, int supercool=1) {
     float cap[4], k[4], conduct[3], a[4], b[4], c[4], rhs[4], out[4];
-    for (int j=0;j<4;++j) { cap[j]=capacity(s[4+j],s[j],s); k[j]=soil_k(s[4+j],s); }
+    for (int j=0;j<4;++j) { cap[j]=capacity(s[4+j],s[j],s,supercool); k[j]=soil_k(s[4+j],s); }
     for (int j=0;j<3;++j) conduct[j]=(2.0f/(1.0f/k[j]+1.0f/k[j+1]))/(0.5f*(DZ[j]+DZ[j+1]));
     for (int j=0;j<4;++j) {
         float up=j>0 ? conduct[j-1] : 0.0f, down=j<3 ? conduct[j] : 0.0f;
@@ -298,19 +394,49 @@ __device__ void soil_heat(float* s, float dt, float flux) {
         rhs[j]=cap[j]*DZ[j]/dt*s[j]+(j==0 ? flux : 0.0f);
     }
     thomas4(a,b,c,rhs,out);
-    for (int j=0;j<4;++j) { s[j]=out[j]; s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s)); }
+    for (int j=0;j<4;++j) { s[j]=out[j]; s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s,supercool)); }
 }
-// 对应普通版: driver.step_column。默认选项组合全链路。
-__device__ void step(float* s, int* count, const float* u, float* diag) {
-    float total=fmaxf(0.0f,u[7])*fmaxf(0.0f,u[0]), delta=u[1]-TF;
-    float fraction=delta>2.5f ? 0.0f : (delta<=0.5f ? 1.0f
-        : (delta<=2.0f ? clip(1.0f-(-54.632f+0.2f*u[1]),0.0f,1.0f) : 0.6f));
+// 对应普通版: precip.partition_precipitation。Jordan, BATS, freezing threshold.
+__device__ float snow_fraction(float tair, int option=1) {
+    switch(option) {
+        case 2: return tair<(273.15f+2.2f) ? 1.0f : 0.0f;
+        case 3: return tair<TF ? 1.0f : 0.0f;
+        default: {
+            float delta=tair-TF;
+            return delta>2.5f ? 0.0f : (delta<=0.5f ? 1.0f
+                : (delta<=2.0f ? clip(1.0f-(-54.632f+0.2f*tair),0.0f,1.0f) : 0.6f));
+        }
+    }
+}
+// 对应普通版: snow.update_snow_albedo。BATS/CLASS share the snow-age update.
+__device__ void snow_albedo(float* s, float snow, float dt, int option=1) {
+    if (s[26]<=1.0e-6f) { s[28]=0.8f; s[29]=0.0f; }
+    else {
+        s[29]=snow>1.0e-6f ? 0.0f : fmaxf(0.0f,s[29])+fmaxf(0.0f,dt)/86400.0f;
+        if(option==2) {
+            float fresh=s[27]<271.15f ? 0.84f : 0.70f;
+            float rate=s[27]<268.15f ? 0.02f : 0.06f;
+            float floor=s[27]<271.15f ? 0.65f : 0.50f;
+            s[28]=clip(fresh-rate*sqrtf(s[29]),floor,fresh);
+        } else s[28]=clip(0.55f+0.30f*expf(-s[29]/3.0f),0.50f,0.90f);
+    }
+}
+// 对应普通版: driver.step_column。Default specialization shares the exact
+// expressions with runtime option dispatch; no second copy of the physics.
+template<bool Defaults>
+__device__ void step_selected(float* s, int* count, const float* u, float* diag, const int* opts) {
+    const int phase=Defaults ? 1 : opts[1], water=Defaults ? 1 : opts[2];
+    const int ground=Defaults ? 4 : opts[3], drag=Defaults ? 1 : opts[4], stomatal=Defaults ? 1 : opts[5];
+    const int albedo=Defaults ? 1 : opts[6], conductivity=Defaults ? 1 : opts[9], supercool=Defaults ? 1 : opts[11];
+    const int surface=Defaults ? 3 : opts[12], subsurface=Defaults ? 3 : opts[13];
+    const int permeability=Defaults ? 1 : opts[14], compaction=Defaults ? 2 : opts[23];
+    float total=fmaxf(0.0f,u[7])*fmaxf(0.0f,u[0]), fraction=snow_fraction(u[1],phase);
     float snow=total*fraction, rain=total-snow, canmax=0.5e-3f*s[31];
     float add=fminf(rain,fmaxf(0.0f,canmax-s[30])); s[30]+=add;
     float through=rain-add;
-    snowfall(s,count,snow,u);
+    snowfall(s,count,snow,u,compaction);
     float t2=u[1]*u[1], rncan=s[32]*((1.0f-s[34])*u[5]+s[35]*(u[6]-SIGMA*(t2*t2)));
-    float tr=penman(fmaxf(0.0f,rncan),u,1.0f/fmaxf(exchange(u,s[33],u[1]),1.0e-6f),stomata(s,u));
+    float tr=penman(fmaxf(0.0f,rncan),u,1.0f/fmaxf(exchange(u,s[33],u[1],drag),1.0e-6f),stomata(s,u,water,stomatal));
     tr*=1.0f-fminf(1.0f,s[26]/0.02f);
     float available=0.0f;
     for (int k=0;k<4;++k) available+=fmaxf(0.0f,s[4+k]-s[40])*DZ[k];
@@ -318,20 +444,22 @@ __device__ void step(float* s, int* count, const float* u, float* diag) {
     if (tr_m>available) tr*=available/fmaxf(tr_m,1.0e-12f);
     tr_m=tr/LV*u[0]/RW;
     bool is_snow=s[26]>1.0e-4f;
-    float ts=surface_temperature(s,u,is_snow,tr);
-    Energy e=energy(ts,s,u,is_snow,tr); float melt=0.0f;
-    if (is_snow) melt=snow_heat(s,count,u[0],e.g);
+    float ts=surface_temperature(s,u,is_snow,tr,drag,ground,water,conductivity);
+    Energy e=energy(ts,s,u,is_snow,tr,drag,ground,water,conductivity); float melt=0.0f;
+    if (is_snow) melt=snow_heat(s,count,u[0],e.g,conductivity);
     else s[30]=fmaxf(0.0f,s[30]-e.ecan);
-    float et, runoff=soil_water(s,u,through+melt,tr_m,e.esoil,&et);
-    soil_heat(s,u[0],is_snow ? 0.0f : e.g);
+    float et, runoff=soil_water(s,u,through+melt,tr_m,e.esoil,&et,permeability,supercool,surface,subsurface);
+    soil_heat(s,u[0],is_snow ? 0.0f : e.g,supercool);
     s[25]=ts; s[26]=s[16]+s[17]+s[18]; s[27]=s[26]>1.0e-8f ? s[19] : TF;
-    if (s[26]<=1.0e-6f) { s[28]=0.8f; s[29]=0.0f; }
-    else { s[29]=snow>1.0e-6f ? 0.0f : fmaxf(0.0f,s[29])+fmaxf(0.0f,u[0])/86400.0f;
-        s[28]=clip(0.55f+0.30f*expf(-s[29]/3.0f),0.50f,0.90f); }
+    snow_albedo(s,snow,u[0],albedo);
     diag[0]=ts; diag[1]=e.rn; diag[2]=e.h; diag[3]=e.le;
     diag[4]=is_snow && s[26]<=1.0e-4f ? 0.0f : e.g;
     diag[5]=(et+e.ecan)*1000.0f; diag[6]=u[7]*u[0]*1000.0f;
     diag[7]=runoff*1000.0f; diag[8]=melt*1000.0f; diag[9]=s[26]; diag[10]=s[30]; diag[11]=e.residual;
+}
+// 对应普通版: driver.step_column。Keep the default probe entry point and tree.
+__device__ void step(float* s, int* count, const float* u, float* diag) {
+    step_selected<true>(s,count,u,diag,nullptr);
 }
 } // namespace
 
@@ -346,8 +474,14 @@ extern "C" __global__ void step_columns(
         float s[70], u[8], d[12];
         for (int j=0;j<70;++j) s[j]=state_soa[j*n_columns+column];
         for (int j=0;j<8;++j) u[j]=forcing_soa[j*n_columns+column];
+        int opts[32];
+        for(int j=0;j<32;++j) opts[j]=options_soa[j*n_columns+column];
         int count=options_soa[32*n_columns+column];
-        step(s,&count,u,d);
+        bool defaults=opts[1]==1 && opts[2]==1 && opts[3]==4 && opts[4]==1 && opts[5]==1
+            && opts[6]==1 && opts[9]==1 && opts[11]==1 && opts[12]==3 && opts[13]==3
+            && opts[14]==1 && opts[23]==2;
+        if(defaults) step(s,&count,u,d);
+        else step_selected<false>(s,&count,u,d,opts);
         for (int j=0;j<70;++j) state_out_soa[j*n_columns+column]=s[j];
         for (int j=0;j<33;++j) options_out_soa[j*n_columns+column]=j==32 ? count : options_soa[j*n_columns+column];
         for (int j=0;j<12;++j) diag_soa[j*n_columns+column]=d[j];

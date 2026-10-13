@@ -1,4 +1,4 @@
-"""默认选项 float32 CUDA SoA loader；数值验收见 GPU.md。"""
+"""12个物理字段/35值的 float32 CUDA SoA loader；数值验收见 GPU.md。"""
 
 from __future__ import annotations
 
@@ -18,6 +18,28 @@ except ImportError as exc:  # pragma: no cover - 依赖缺失环境
 
 
 KERNEL_SOURCE = Path(__file__).with_name("column_kernel.cu").read_text(encoding="utf-8")
+
+# Only implemented physics is advertised. Other ABI selectors retain their
+# default values; accepting them would not implement their named physics.
+PHYSICS_OPTION_VALUES = {
+    "OptRainSnowPartition": (1, 2, 3),
+    "OptSoilWaterTranspiration": (1, 2, 3),
+    "OptGroundResistanceEvap": (1, 2, 3, 4),
+    "OptSurfaceDrag": (1, 2),
+    "OptStomataResistance": (1, 2),
+    "OptSnowAlbedo": (1, 2),
+    "OptSnowThermConduct": (1, 2, 3, 4, 5),
+    "OptSoilSupercoolWater": (1, 2),
+    "OptRunoffSurface": (1, 2, 3, 4),
+    "OptRunoffSubsurface": (1, 2, 3, 4),
+    "OptSoilPermeabilityFrozen": (1, 2),
+    "OptSnowCompaction": (1, 2),
+}
+_DEFAULTS = PhysicsOptions()
+_OPTION_RANGES = tuple(PHYSICS_OPTION_VALUES.get(name, (getattr(_DEFAULTS, name),))
+                       for name in OPTION_FIELDS)
+_OPTION_MIN = np.asarray([values[0] for values in _OPTION_RANGES], dtype=np.int32)
+_OPTION_MAX = np.asarray([values[-1] for values in _OPTION_RANGES], dtype=np.int32)
 
 
 def _require_cupy() -> None:
@@ -76,11 +98,18 @@ def launch_columns(
 
 
 def _check_options(options_soa) -> None:
-    """对应普通版: options.PhysicsOptions。手写kernel只支持默认组合。"""
-    defaults = PhysicsOptions()
-    expected = cp.asarray([getattr(defaults, name) for name in OPTION_FIELDS], dtype=cp.int32)
-    if not bool(cp.all(options_soa[:32] == expected[:, None])):
-        raise ValueError("手写 CUDA kernel 仅支持默认 PhysicsOptions；其他选项请用 JAX")
+    """对应普通版: options.PhysicsOptions。Validate every column before launch."""
+    # All advertised ranges are contiguous. One device reduction checks all
+    # selectors/columns, avoiding a host synchronization for each option field.
+    low, high = cp.asarray(_OPTION_MIN), cp.asarray(_OPTION_MAX)
+    valid = (options_soa[:32] >= low[:, None]) & (options_soa[:32] <= high[:, None])
+    if not bool(cp.all(valid)):
+        field, column = np.argwhere(~cp.asnumpy(valid))[0]
+        name = OPTION_FIELDS[field]
+        value = int(options_soa[field, column].item())
+        scope = "已实现物理值" if name in PHYSICS_OPTION_VALUES else "默认 PhysicsOptions ABI保留值"
+        raise ValueError(f"CUDA {name}={value} (column={column}) 尚不支持；"
+                         f"{scope}为 {_OPTION_RANGES[field]}")
     if not bool(cp.all((options_soa[32] >= 1) & (options_soa[32] <= 3))):
         raise ValueError("雪层数必须为 1--3")
 

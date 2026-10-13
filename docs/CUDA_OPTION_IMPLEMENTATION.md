@@ -1,8 +1,80 @@
 # CUDA 选项移植与扩展验收清单
 
-本清单审阅基线为 `a3aec95`，日期 2026-10-13。它是 J3/J4 的源码对照和执行计划，
-不是 CUDA 选项、年度稳定性或大陆域验证已经通过的声明。J2 的严格数值门和
-checksum 门应先完成；本文不改变 H4 容差、状态 ABI 或合并条件。
+本清单最初审阅基线为 `a3aec95`，日期 2026-10-13；下文新增 J3 的实测记录。
+选项移植以 `f29d7ad` 的 J2 默认运算树修复为基础，保持状态 ABI 和所有验收阈值。
+这些结果不替代 H4 的 NumPy64 门，不证明年度稳定性或真实大陆域验证通过。
+
+## J3 实现与实测记录（2026-10-13）
+
+CUDA 已透传下表 12 个字段，实现 35 个值的 device 分发。默认专用路径与运行期
+选项路径通过模板共享同一套物理函数；没有复制两套物理。仍为 float32、
+1 thread/column、SoA、grid-stride、`__restrict__`，保留
+`--fmad=false --prec-div=false`，输入缓冲区所有权规则不变。
+loader 对 18 个 ABI-only 字段和 2 个 singleton 只接受其默认值；未实现物理值
+明确报出字段、值和柱号。它们没有因放宽 loader 而被虚假标记为支持。
+
+测试入口为 `tests/test_gpu_cuda_options.py`。逐字段 35 值分别运行 H6 的 8 情景、
+24 步，并比较完整最终浮点/整数状态和全部 12 项逐步诊断；另有 1024 柱、48 步
+混排。CUDA 与实际 JAX-CUDA float32 的门保持 `rtol=atol=1e-6`。径流探针直接
+调用生产 device 函数，对 27 组土壤/湿度/地形、16 组 surface/subsurface 选项配对、
+4 个入流水量，共 1728 个输入，分别检查两个出口与 JAX32、量化输入后的普通版64
+对齐和总量守恒。只比较总径流不足以检验这两个选项，此项没有省略。
+
+首轮为 **52 passed / 2 failed**，原始日志保留于
+[j3-options-first.log](gpu-results/j3-options-first.log)。失败为 RainSnow=3 和混排，
+首先出现在雨雪过渡砂土情景的残差，原有默认 J2 的 1/48 步门均通过。
+定位采用未修改的生产 24 步完整 HLO，以及仅追加中间诊断的临时 JAX 副本。
+追加诊断前后全部原状态和 12 项诊断逐位不变；CUDA 探针使用实际 prestate 和
+生产求出的 Ts。不能用孤立标量子图的常量折叠来代替这个证据。
+
+根因为气孔温度因子的运算树：JAX 执行
+`1 - 0.0016 * ((298 - tair) * (298 - tair))`，旧 CUDA 左结合先乘 `0.0016`。
+在 tair=274.2 K 时，两者因子分别为 0.09369701147079468 和
+0.09369695186614990；Ts、rnet、H、G 相同，但气孔阻抗和蒸腾改变，最终 LE
+相差 7.62939453125e-6 W/m²。修复为先平方后乘系数后，该点的 rs、tr、LE、
+residual 逐位一致。证据见
+[完整生产 HLO 摘录](gpu-results/j3-temperature-hlo-excerpt.txt)、
+[修复前分量](gpu-results/j3-transition-before.json) 和
+[修复后分量](gpu-results/j3-transition-after.json)。这与 J4 的四项根系归约树问题
+是两条独立原因，不属于 float32 对 float64 的误差预算。
+
+修复后，在原 `f29d7ad` JAX 基线上 **54 passed in 91.02 s**，包括默认 J2、
+输入 ownership 和上述选项测试，见
+[开发阶段完整日志](gpu-results/j3-options-temp-square.log)。nvcc sm_89 编译 exit 0、
+无 warning。该轮 raw JAX hash 含 git archive 导出的 CRLF；LF 规范化后与
+`f29d7ad` 完全相同，见 [源码身份记录](gpu-results/j3-reference-identity.json)。
+它是后续 JAX 显式根系归约修复之前的结果，不能冒充联合版本的最终验收。
+
+最终联合版本 **55 passed in 105.04 s**，包括上述 54 项和真实 J4 输入的
+64800/N1 批量形状回归，见 [最终日志](gpu-results/j3-options-final.log) 和
+[最终源码哈希](gpu-results/j3-options-final-sourcehash.txt)。最终 nvcc sm_89 编译
+exit 0，stdout/stderr 日志为空（无 warning）。默认 CUDA 内核源码已改变，
+先前默认内核的性能数字也必须重跑 checksum/逐值门后才能使用；本节不提供新性能数字。
+H4 的 NumPy64 近零残差门仍保持红灯，容差提案未应用。35 值逐字段抽查和混排
+通过也不能外推为所有选项笛卡尔积或所有薄雪边界均通过。
+
+最终联合源码中的 JAX 根系四项归约来自 `c6bb8c6`。本轮三个生产文件的 raw/LF
+SHA256 相同：CUDA `7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454`；
+loader `c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a`；
+JAX `0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270`。
+复现需要 Linux NVIDIA GPU、CuPy/JAX CUDA，使用新日志路径保存每次运行：
+
+```bash
+unset LD_LIBRARY_PATH
+export CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true
+export XLA_PYTHON_CLIENT_PREALLOCATE=false OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1 NOAHMP_REQUIRE_GPU=1 PYTHONPATH=src
+bash src/noahmp_clm/gpu/cuda/build.sh
+python -m pytest tests/test_gpu_float32_parity.py tests/test_gpu_cuda_inputs.py \
+  tests/test_gpu_cuda_options.py tests/test_gpu_batch_shape.py -q --tb=short
+```
+
+定点分量与生产 HLO 的独立复现入口为
+`python benchmarks/probe_cuda_option_residual.py --output <新路径>.json`。
+它同时保存输入/逐步诊断 NPZ 和完整生产 HLO；只有追加诊断前后全部原状态与
+原诊断逐位一致时，才接受仪器化分量。实测完整 HLO/NPZ 另保留在 xuanze
+`/home/lhwang/work/noahmp-phase3b/logs/j3-transition-before.*` 和
+`j3-transition-after.*`，仓库保存提要、哈希和完整可复现脚本。
 
 ## 选项范围：12 个物理字段、35 个已实现值
 
@@ -28,8 +100,8 @@ checksum 门应先完成；本文不改变 H4 容差、状态 ABI 或合并条�
 | 14 | `OptSoilPermeabilityFrozen=1` | 1 倍率全为 1；2 `exp(-7*ice/smcmax)` | `frozen_soil.permeability_factor` → `_soil_water` | `soil_water` 的 Campbell 排水前缓存**入渗后、蒸散前**冰量；不能使用热更新后的冰量或每层扣水后重算的冰量 |
 | 23 | `OptSnowCompaction=2` | 1 Anderson；2 较慢温度响应占位方案 | `snow.compact_snow` → `_compact_snow` | `snowfall` 后密度更新分发；warm/load 系数分别 1e-7/2.5e-7 和 6e-8/1.5e-7；不改变 SWE |
 
-计数：`3+3+4+2+2+2+5+2+4+4+2+2 = 35`。当前 CUDA loader 只接受整套默认配置，
-不能仅放宽 `_check_options` 就声称上表已经支持。
+计数：`3+3+4+2+2+2+5+2+4+4+2+2 = 35`。上表的支持范围由生产 device 分发、
+整柱严格对照和径流局部分量探针共同验证；不能仅凭 `_check_options` 接受值来认定。
 
 ## 18 个 ABI-only 字段和 2 个单值字段
 
