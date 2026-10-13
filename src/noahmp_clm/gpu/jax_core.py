@@ -295,8 +295,10 @@ def _soil_stress(
     psi_ref = -0.1 * jnp.clip(smcref / jnp.maximum(smcmax, 1.0e-9), 1.0e-4, 1.0) ** (-bexp)
     matric = jnp.clip((-1500.0 - psi) / (-1500.0 - psi_ref), 0.0, 1.0)
     ssib = matric**2
-    root = jnp.sum(root_frac * _switch(option, [lambda _: noah, lambda _: matric,
-                                                  lambda _: ssib], None))
+    # Fix the four-layer addition order to avoid batch-shape-dependent rounding.
+    weighted = root_frac * _switch(option, [lambda _: noah, lambda _: matric,
+                                          lambda _: ssib], None)
+    root = (weighted[0] + weighted[2]) + (weighted[1] + weighted[3])
     layer0 = _switch(option, [lambda _: noah[0], lambda _: matric[0], lambda _: ssib[0]], None)
     return jnp.clip(root, 0.0, 1.0), jnp.clip(layer0, 0.0, 1.0)
 

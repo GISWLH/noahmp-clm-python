@@ -1,0 +1,17 @@
+n1-fixedts
+3185:   %clamp.6.5 = f32[1,4]{1,0} clamp(%max.179.75, %div.338.7, %min.212.26), metadata={op_name="jit(step_column_jax)/vmap(jit(clip))/min" stack_frame_id=335}
+3186:   %integer_pow.21.1 = f32[1,4]{1,0} multiply(%clamp.6.5, %clamp.6.5), metadata={op_name="jit(step_column_jax)/vmap()/integer_pow" stack_frame_id=325}
+3187:   %select_n.178.5 = f32[1,4]{1,0} select(%broadcast.59.7, %clamp.6.5, %integer_pow.21.1), metadata={op_name="jit(step_column_jax)/vmap()/select_n" stack_frame_id=324}
+3188:   %select_n.179.3 = f32[1,4]{1,0} select(%broadcast.57.5, %clamp.4.3, %select_n.178.5), metadata={op_name="jit(step_column_jax)/vmap()/select_n" stack_frame_id=324}
+3189:   %mul.473.3 = f32[1,4]{1,0} multiply(%slice.104.3, %select_n.179.3), metadata={op_name="jit(step_column_jax)/vmap()/mul" stack_frame_id=321}
+3190:   %bitcast.229.1 = f32[4]{0} bitcast(%mul.473.3)
+3191:   %reduce.79.1 = f32[] reduce(%bitcast.229.1, %constant_625_7), dimensions={0}, to_apply=%region_2.7.clone.4, metadata={op_name="jit(step_column_jax)/vmap()/reduce_sum" stack_frame_id=320}
+3192:   %max.266.3.clone.1 = f32[1,4]{1,0} maximum(%sub.220.7, %max.179.75), metadata={op_name="jit(step_column_jax)/vmap()/max" stack_frame_id=350}
+n64800-fixedts
+3328:   %clamp.56.5.clone.1 = f32[64800,4]{1,0} clamp(%max.179.31, %div.366.7.clone.1, %min.212.48.clone.1), metadata={op_name="jit(step_column_jax)/vmap(jit(clip))/min" stack_frame_id=429}
+3329:   %integer_pow.21.8.clone.1 = f32[64800,4]{1,0} multiply(%clamp.56.5.clone.1, %clamp.56.5.clone.1), metadata={op_name="jit(step_column_jax)/vmap()/integer_pow" stack_frame_id=428}
+3330:   %select_n.186.7.clone.1 = f32[64800,4]{1,0} select(%broadcast.69.3.clone.1, %clamp.56.5.clone.1, %integer_pow.21.8.clone.1), metadata={op_name="jit(step_column_jax)/vmap()/select_n" stack_frame_id=427}
+3331:   %select_n.187.5.clone.1 = f32[64800,4]{1,0} select(%broadcast.67.3.clone.1, %clamp.53.3.clone.1, %select_n.186.7.clone.1), metadata={op_name="jit(step_column_jax)/vmap()/select_n" stack_frame_id=427}
+3332:   %mul.545.3.clone.1 = f32[64800,4]{1,0} multiply(%slice.107.1.clone.1, %select_n.187.5.clone.1), metadata={op_name="jit(step_column_jax)/vmap()/mul" stack_frame_id=425}
+3333:   %reduce_sum.117.1.clone.1 = f32[64800]{0} reduce(%mul.545.3.clone.1, %constant_599_20), dimensions={1}, to_apply=%region_2.7.clone.4, metadata={op_name="jit(step_column_jax)/vmap()/reduce_sum" stack_frame_id=424}
+3334:   %max.284.3.clone.1 = f32[64800,4]{1,0} maximum(%sub.230.7.clone.1, %max.179.31), metadata={op_name="jit(step_column_jax)/vmap()/max" stack_frame_id=238}
