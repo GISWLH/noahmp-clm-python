@@ -1,36 +1,89 @@
 # GPU 性能基准
 
-基准脚本是 `benchmarks/bench_gpu.py`，每个后端先预热 3 次，再对 measured
-runs 取中位数；指标为每柱每步微秒和柱·步/秒。计划规模为 100、1,000、10,000、
-100,000、300,000 柱，每柱 48 步。
+## xuanze Linux 实测（2026-10-13）
 
-## 当前机器
+双路 Xeon Gold 5218R、40 物理核；物理 GPU 1 为 RTX 4090 24 GB，sm_89。
+Python 3.12.2、NumPy 2.5.4、JAX/jaxlib 0.11.2、CuPy 14.2.0，安装细节见
+[GPU_ENV.md](GPU_ENV.md)。保留其他用户进程；本任务的 GPU 基准、选项检查和
+profiling 依次执行。基准使用默认柱、共享合成强迫，每柱 48 个半小时时间步。
 
-- CPU：Windows 11 主机（具体型号由脚本运行时的 `platform.processor()` 输出）
-- GPU：NVIDIA GeForce RTX 4070，12 GB
-- JAX：Windows CPU wheel（没有 CUDA backend）
-- CuPy：14.2.0，CUDA runtime 12.09，可见 RTX 4070
-- CUDA C 编译器：`nvcc` 不可用
+每项先完成 **3 次完整预热，再做 3 次完整测量，取中位数**。JAX 使用
+`block_until_ready`，CUDA 同步当前 stream；初次编译落在预热中。初始主机到
+设备传输在计时外，返回诊断留在设备上；计时包括批量驱动内部缓冲区分配和
+CUDA AoS/SoA 转换。NumPy 每一柱均真实执行普通版，没有按小 N 外推或缓存物理结果。
 
-## 实测记录
+下表为总耗时（秒）。**手写 CUDA 的严格 H4 parity 失败，其计时状态为
+`measured_unvalidated`，不得作为合格物理实现的加速结果。**
 
-2026-10-12 在本机以 `N=100`、48 步、预热 3 次、measured 1 次运行的实际结果：
+| 柱数 N | NumPy 单核 | JAX-CUDA x64 | JAX-CUDA x32 | 手写 CUDA x32，精度未过门 |
+|---:|---:|---:|---:|---:|
+| 100 | 3.332289 | 4.211391 | 2.947675 | 0.001921855 |
+| 1,000 | 32.824343 | 4.316150 | 3.090554 | 0.001940340 |
+| 10,000 | 补测中 | 4.613225 | 3.125188 | 0.001966745 |
+| 100,000 | 补测中 | 22.003309 | 3.144129 | 0.007287800 |
+| 300,000 | 补测中 | 61.388568 | 3.245655 | 0.020225205 |
 
-| 后端 | 总耗时 (s) | µs/(柱·步) | 柱·步/s | 状态 |
-|---|---:|---:|---:|---|
-| numpy 单核 | 2.3524 | 490.08 | 2,040 | measured |
-| JAX CPU x64 | 0.0654 | 13.63 | 73,351 | measured |
-| CuPy | — | — | — | unavailable：缺少 CUDA headers |
+| N | JAX x64 µs/(柱·步) | JAX x32 µs/(柱·步) | CUDA µs/(柱·步)，精度未过门 |
+|---:|---:|---:|---:|
+| 100 | 877.373183 | 614.098976 | 0.400386440 |
+| 1,000 | 89.919789 | 64.386537 | 0.040423746 |
+| 10,000 | 9.610885 | 6.510807 | 0.004097385 |
+| 100,000 | 4.584023 | 0.655027 | 0.001518292 |
+| 300,000 | 4.263095 | 0.225393 | 0.001404528 |
 
-JAX CPU 在这个小规模上约为 numpy 的 36×；这不是 GPU 加速数字。完整五档规模
-尚未在本机整夜跑完，不能填入估算值。运行下面命令会把每个后端实际结果打印到
-终端，初始化或硬件失败会明确显示 `unavailable`：
+NumPy N=100/1000 分别为 694.226944/683.840483 µs/(柱·步)。
+**N=1e5 的 NumPy 中位数尚未完成，不能宣称 ≥100×，也不以小 N 外推补表。**
 
-```powershell
-$env:PYTHONPATH="src"
-python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
+原始三次样本与预热值见 [GPU JSONL](gpu-results/h5-gpu.jsonl)、
+[NumPy 首轮 JSONL](gpu-results/h5-numpy.jsonl)。首轮 NumPy 在 N=10000
+完成首个预热 331.5124 s 后中止，切换为以下完整重复并发方案；该预热不计入中位数。
+
+## 完整 NumPy 单核重复的夜间执行
+
+`benchmarks/bench_numpy_parallel_repeats.py` 让三个独立完整重复并发，各自绑定
+一个不同的物理核并限制数值库为单线程；**没有把一个 N 柱样本分散到多个核**。
+三次预热全部结束后才开始三次计时。每个样本保留 wall time、process time、
+CPU affinity、完整柱步数与 checksum。并发会影响整机频率和共享资源，因此
+明确记录该调度条件，不宣称它是完全空闲主机上的孤立单核成绩。
+
+N=100 小验证成功，六个完整重复的 checksum 一致；详细数据见
+[并发重复验证](gpu-results/h5-numpy-parallel-smoke.jsonl)。大规模任务使用
+CPU 2/4/6（N=10000）、8/10/12（N=100000）、14/16/18（N=300000）；
+这些 CPU ID 对应不同物理核。后台监督器保存所有部分结果，最迟在
+2026-10-13 06:45 EDT 停止自己启动的进程组，供天亮前收尾。
+
+```bash
+cd ~/work/noahmp-phase3b/repo
+PYTHONPATH=src ~/venvs/noahmp-phase3b/bin/python benchmarks/run_cpu_batch.py \
+  --deadline 2026-10-13T10:45:00+00:00 \
+  --job 10000:2,4,6 --job 100000:8,10,12 --job 300000:14,16,18 \
+  --output-dir ../logs/h5-overnight
 ```
 
-阶段 D 的加速目标（GPU 相对单核 numpy 在 `N=100000` 达到 100×）需要在
-CUDA-enabled JAX 或手写 kernel 可用的 Linux/xuanze 环境复测；当前 Windows
-JAX wheel 不提供该数字。
+输出目录必须不存在；新一轮使用新目录和未来的截止时间。后台状态和接续步骤
+见 [XUANZE_OVERNIGHT.md](XUANZE_OVERNIGHT.md)。运行中的任务不是已完成基准。
+
+## GPU 复现命令与一次 profiling
+
+```bash
+source ~/venvs/noahmp-phase3b/bin/activate
+cd ~/work/noahmp-phase3b/repo
+unset LD_LIBRARY_PATH
+export CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true
+export CUDA_PATH=/usr/local/cuda-12.4 XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONPATH=src
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48 \
+  --backends jax64 jax32 cuda --output ../logs/h5-gpu-new.jsonl
+```
+
+JAX x64 的 N=1e5 单轮 Nsight Systems 采样显示 806114 次 GPU kernel 调用，
+其中一个重复 loop kernel 占 GPU kernel 总时间的 94.7%；固定迭代与批量条件
+分支的展开是待 HLO 进一步确认的来源。此次只做一轮定位，没有为追求分数
+延长调优；完整统计与插桩变更见 [GPU_PROFILE.md](GPU_PROFILE.md)。
+
+## Windows 阶段 3a 历史数据
+
+2026-10-12 RTX 4070 主机没有 nvcc，JAX 是 CPU wheel。N=100、48 步，
+预热 3 次、仅测量 1 次：NumPy 2.3524 s（490.08 µs/柱步），JAX CPU x64
+0.0654 s（13.63 µs/柱步），约 36×。这是原阶段 3a 代码的历史 CPU 数字，
+不是 GPU 成绩，也不与已修复普通版语义的阶段 3b 直接比较。

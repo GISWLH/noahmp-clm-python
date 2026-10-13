@@ -1,0 +1,121 @@
+{"event": "environment", "cpu": "x86_64", "python": "3.12.2", "numpy": "2.5.4", "cuda_visible_devices": "1", "warmups": 3, "repeats": 3}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "start"}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "warmup", "index": 0, "seconds": 9.060032896697521}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "warmup", "index": 1, "seconds": 4.211634427309036}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "warmup", "index": 2, "seconds": 4.2113447561860085}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "measured_run", "index": 0, "seconds": 4.210814543068409}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "measured_run", "index": 1, "seconds": 4.2117330357432365}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "measured_run", "index": 2, "seconds": 4.211391277611256}
+{"backend": "jax64", "n": 100, "steps": 48, "event": "result", "status": "measured", "seconds": 4.211391277611256, "samples_seconds": [4.210814543068409, 4.2117330357432365, 4.211391277611256], "us_per_column_step": 877.3731828356782, "column_steps_per_second": 1139.7658596858303}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "start"}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "warmup", "index": 0, "seconds": 8.393660366535187}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "warmup", "index": 1, "seconds": 2.9635213166475296}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "warmup", "index": 2, "seconds": 2.9631294161081314}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "measured_run", "index": 0, "seconds": 2.947675086557865}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "measured_run", "index": 1, "seconds": 2.9493589252233505}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "measured_run", "index": 2, "seconds": 2.9395738542079926}
+{"backend": "jax32", "n": 100, "steps": 48, "event": "result", "status": "measured", "seconds": 2.947675086557865, "samples_seconds": [2.947675086557865, 2.9493589252233505, 2.9395738542079926], "us_per_column_step": 614.0989763662219, "column_steps_per_second": 1628.4019978623828}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "warmup", "index": 0, "seconds": 1.004485622048378}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.002130746841430664}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.0019364804029464722}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.0019218549132347107}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.0019185468554496765}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.001958400011062622}
+{"backend": "cuda", "n": 100, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.0019218549132347107, "samples_seconds": [0.0019218549132347107, 0.0019185468554496765, 0.001958400011062622], "us_per_column_step": 0.4003864402572314, "column_steps_per_second": 2497587.079516335}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "start"}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "warmup", "index": 0, "seconds": 9.17347601801157}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "warmup", "index": 1, "seconds": 4.332783296704292}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "warmup", "index": 2, "seconds": 4.343733966350555}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 4.265827588737011}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 4.316149868071079}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 4.343920707702637}
+{"backend": "jax64", "n": 1000, "steps": 48, "event": "result", "status": "measured", "seconds": 4.316149868071079, "samples_seconds": [4.265827588737011, 4.316149868071079, 4.343920707702637], "us_per_column_step": 89.91978891814749, "column_steps_per_second": 11121.02254722021}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "start"}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "warmup", "index": 0, "seconds": 8.375564463436604}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "warmup", "index": 1, "seconds": 3.0872656479477882}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "warmup", "index": 2, "seconds": 3.0789232552051544}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 3.0905537977814674}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 3.091764971613884}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 3.074750877916813}
+{"backend": "jax32", "n": 1000, "steps": 48, "event": "result", "status": "measured", "seconds": 3.0905537977814674, "samples_seconds": [3.0905537977814674, 3.091764971613884, 3.074750877916813], "us_per_column_step": 64.38653745378056, "column_steps_per_second": 15531.197041273466}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "warmup", "index": 0, "seconds": 0.025968462228775024}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.0020019859075546265}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.0019540339708328247}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.001950278878211975}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.0019403398036956787}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.0019402801990509033}
+{"backend": "cuda", "n": 1000, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.0019403398036956787, "samples_seconds": [0.001950278878211975, 0.0019403398036956787, 0.0019402801990509033], "us_per_column_step": 0.04042374591032664, "column_steps_per_second": 24737935.030027494}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "start"}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "warmup", "index": 0, "seconds": 9.183905497193336}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "warmup", "index": 1, "seconds": 4.367365874350071}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "warmup", "index": 2, "seconds": 4.624476328492165}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 4.625241905450821}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 4.51933941245079}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 4.613224729895592}
+{"backend": "jax64", "n": 10000, "steps": 48, "event": "result", "status": "measured", "seconds": 4.613224729895592, "samples_seconds": [4.625241905450821, 4.51933941245079, 4.613224729895592], "us_per_column_step": 9.61088485394915, "column_steps_per_second": 104048.69220643053}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "start"}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "warmup", "index": 0, "seconds": 7.980633534491062}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "warmup", "index": 1, "seconds": 3.1132249981164932}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "warmup", "index": 2, "seconds": 3.1193909347057343}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 3.130375772714615}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 3.1184802129864693}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 3.1251875907182693}
+{"backend": "jax32", "n": 10000, "steps": 48, "event": "result", "status": "measured", "seconds": 3.1251875907182693, "samples_seconds": [3.130375772714615, 3.1184802129864693, 3.1251875907182693], "us_per_column_step": 6.510807480663061, "column_steps_per_second": 153590.7800944776}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "warmup", "index": 0, "seconds": 0.010106511414051056}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.0020363032817840576}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.0019785910844802856}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.001969859004020691}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.0019667446613311768}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.0019662827253341675}
+{"backend": "cuda", "n": 10000, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.0019667446613311768, "samples_seconds": [0.001969859004020691, 0.0019667446613311768, 0.0019662827253341675], "us_per_column_step": 0.004097384711106618, "column_steps_per_second": 244058117.67914778}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "start"}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "warmup", "index": 0, "seconds": 26.74810218811035}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "warmup", "index": 1, "seconds": 22.003408208489418}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "warmup", "index": 2, "seconds": 22.003256112337112}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 22.003508612513542}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 22.003097042441368}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 22.00330851227045}
+{"backend": "jax64", "n": 100000, "steps": 48, "event": "result", "status": "measured", "seconds": 22.00330851227045, "samples_seconds": [22.003508612513542, 22.003097042441368, 22.00330851227045], "us_per_column_step": 4.5840226067230105, "column_steps_per_second": 218149.0114235872}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "start"}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "warmup", "index": 0, "seconds": 8.009377405047417}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "warmup", "index": 1, "seconds": 3.1399587988853455}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "warmup", "index": 2, "seconds": 3.147963397204876}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 3.143272750079632}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 3.144129239022732}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 3.147389777004719}
+{"backend": "jax32", "n": 100000, "steps": 48, "event": "result", "status": "measured", "seconds": 3.144129239022732, "samples_seconds": [3.143272750079632, 3.144129239022732, 3.147389777004719], "us_per_column_step": 0.6550269247964025, "column_steps_per_second": 1526654.8017256286}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 0, "seconds": 0.008956275880336761}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.007352307438850403}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.0072885602712631226}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.007291749119758606}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.007287800312042236}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.0072855353355407715}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.007287800312042236, "samples_seconds": [0.007291749119758606, 0.007287800312042236, 0.0072855353355407715], "us_per_column_step": 0.0015182917316754658, "column_steps_per_second": 658634950.8051919}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "start"}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "warmup", "index": 0, "seconds": 66.74787150323391}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "warmup", "index": 1, "seconds": 62.616640992462635}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "warmup", "index": 2, "seconds": 63.12640231102705}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 61.384723253548145}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 61.388568349182606}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 61.388907454907894}
+{"backend": "jax64", "n": 300000, "steps": 48, "event": "result", "status": "measured", "seconds": 61.388568349182606, "samples_seconds": [61.384723253548145, 61.388568349182606, 61.388907454907894], "us_per_column_step": 4.263095024248792, "column_steps_per_second": 234571.36055188256}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "start"}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "warmup", "index": 0, "seconds": 8.2177217528224}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "warmup", "index": 1, "seconds": 3.2482591792941093}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "warmup", "index": 2, "seconds": 3.251630462706089}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 3.2456546276807785}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 3.247020408511162}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 3.2452797517180443}
+{"backend": "jax32", "n": 300000, "steps": 48, "event": "result", "status": "measured", "seconds": 3.2456546276807785, "samples_seconds": [3.2456546276807785, 3.247020408511162, 3.2452797517180443], "us_per_column_step": 0.22539268247783184, "column_steps_per_second": 4436701.267346394}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "warmup", "index": 0, "seconds": 0.020710818469524384}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.02026253193616867}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.020236261188983917}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.02022504061460495}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.020246364176273346}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.020225204527378082}
+{"backend": "cuda", "n": 300000, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.020225204527378082, "samples_seconds": [0.02022504061460495, 0.020246364176273346, 0.020225204527378082], "us_per_column_step": 0.0014045280921790334, "column_steps_per_second": 711982911.2485499}

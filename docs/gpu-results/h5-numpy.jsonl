@@ -1,0 +1,19 @@
+{"event": "environment", "cpu": "x86_64", "python": "3.12.2", "numpy": "2.5.4", "cuda_visible_devices": null, "warmups": 3, "repeats": 3}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "start"}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "warmup", "index": 0, "seconds": 3.296804629266262}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "warmup", "index": 1, "seconds": 3.291959561407566}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "warmup", "index": 2, "seconds": 3.3325407058000565}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "measured_run", "index": 0, "seconds": 3.3446028232574463}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "measured_run", "index": 1, "seconds": 3.1501876413822174}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "measured_run", "index": 2, "seconds": 3.332289330661297}
+{"backend": "numpy", "n": 100, "steps": 48, "event": "result", "status": "measured", "seconds": 3.332289330661297, "samples_seconds": [3.3446028232574463, 3.1501876413822174, 3.332289330661297], "us_per_column_step": 694.2269438877702, "column_steps_per_second": 1440.451150455004}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "start"}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "warmup", "index": 0, "seconds": 33.602719984948635}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "warmup", "index": 1, "seconds": 33.07194131612778}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "warmup", "index": 2, "seconds": 33.038889206945896}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 32.67243158072233}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 32.82434320449829}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 33.05045296251774}
+{"backend": "numpy", "n": 1000, "steps": 48, "event": "result", "status": "measured", "seconds": 32.82434320449829, "samples_seconds": [32.67243158072233, 32.82434320449829, 33.05045296251774], "us_per_column_step": 683.8404834270477, "column_steps_per_second": 1462.3293359125619}
+{"backend": "numpy", "n": 10000, "steps": 48, "event": "start"}
+{"backend": "numpy", "n": 10000, "steps": 48, "event": "warmup", "index": 0, "seconds": 331.5124023705721}

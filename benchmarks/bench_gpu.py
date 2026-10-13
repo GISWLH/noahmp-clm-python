@@ -1,113 +1,133 @@
-"""阶段 D：numpy/JAX/CuPy 单柱批量基准。
-
-默认规模与阶段 3 计划一致；用 ``--sizes`` 可先做小规模 smoke。脚本只记录
-实际完成的后端，JAX/CuPy 初始化失败会输出 ``unavailable`` 而不会伪造吞吐。
-"""
-
+"""实际同步的numpy单核/JAX-CUDA x64/x32/手写CUDA基准，逐项输出JSON。"""
 from __future__ import annotations
 
 import argparse
+import json
+import os
 import platform
 import statistics
 import time
-from typing import Callable
 
 import numpy as np
 
-from noahmp_clm.column import ColumnState, Forcing
-from noahmp_clm.driver import run_columns
+from noahmp_clm.column import ColumnState
+from noahmp_clm.driver import run_column
 from noahmp_clm.gpu.pack import column_state_to_vec, forcing_to_vec
 from noahmp_clm.io import synthetic_forcing
-
 
 DEFAULT_SIZES = (100, 1000, 10000, 100000, 300000)
 
 
-def _timed(function: Callable[[], object], repeats: int) -> float:
-    """预热三次后返回 measured runs 的中位秒数。"""
-    for _ in range(3):
-        function()
-    values = []
-    for _ in range(max(1, repeats)):
-        start = time.perf_counter()
-        function()
-        values.append(time.perf_counter() - start)
-    return statistics.median(values)
+def _numpy_runner(n, forcings):
+    """每柱都真实调用普通版；及时释放诊断，避免大N保留数千万Python字典。"""
+    seed = ColumnState()
 
-
-def _numpy_runner(n: int, forcings: list[Forcing]) -> Callable[[], object]:
-    states = [ColumnState() for _ in range(n)]
-    forcing_lists = [forcings for _ in range(n)]
-    return lambda: run_columns(states, forcing_lists)
-
-
-def _jax_runner(n: int, forcings: list[Forcing]) -> Callable[[], object]:
-    import jax
-    from noahmp_clm.gpu.jax_core import run_columns_jax
-
-    states = [ColumnState() for _ in range(n)]
-    packed = [column_state_to_vec(state) for state in states]
-    fvecs = np.asarray([item[0] for item in packed])
-    ivecs = np.asarray([item[1] for item in packed])
-    forcing_vecs = np.asarray([forcing_to_vec(item) for item in forcings])
-
-    def run() -> object:
-        result = run_columns_jax(fvecs, ivecs, forcing_vecs)
-        return jax.tree_util.tree_map(lambda value: value.block_until_ready(), result)
+    def run():
+        checksum = 0.0
+        for _ in range(n):
+            diagnostics, final = run_column(seed, forcings)
+            checksum += final.ts + diagnostics[-1]["et_mm"]
+        return checksum
 
     return run
 
 
-def _cupy_runner(n: int, forcings: list[Forcing]) -> Callable[[], object]:
+def _gpu_runner(backend, n, forcings):
+    dtype = np.float64 if backend == "jax64" else np.float32
+    f, i = column_state_to_vec(ColumnState())
+    f = np.tile(f.astype(dtype), (n, 1))
+    i = np.tile(i, (n, 1))
+    u = np.asarray([forcing_to_vec(x) for x in forcings], dtype=dtype)
+    if backend.startswith("jax"):
+        import jax
+        jax.config.update("jax_enable_x64", True)
+        from noahmp_clm.gpu.jax_core import run_columns_jax
+        if jax.default_backend() != "gpu":
+            raise RuntimeError("本基准要求JAX-CUDA；禁止静默使用CPU")
+        f, i, u = jax.device_put((f, i, u))
+
+        def run():
+            result = run_columns_jax(f, i, u)
+            jax.block_until_ready(result)
+            return result
+
+        return run
     import cupy as cp
-    from noahmp_clm.gpu.cupy_core import run_columns_cupy
+    from noahmp_clm.gpu.cuda.loader import run_columns_cuda
+    f, i, u = cp.asarray(f), cp.asarray(i), cp.asarray(u)
 
-    states = [ColumnState() for _ in range(n)]
-    packed = [column_state_to_vec(state) for state in states]
-    fvecs = cp.asarray([item[0] for item in packed])
-    ivecs = cp.asarray([item[1] for item in packed])
-    forcing_vecs = cp.asarray([forcing_to_vec(item) for item in forcings])
-
-    def run() -> object:
-        result = run_columns_cupy(fvecs, ivecs, forcing_vecs)
-        cp.cuda.Stream.null.synchronize()
+    def run():
+        result = run_columns_cuda(f, i, u)
+        cp.cuda.get_current_stream().synchronize()
         return result
 
     return run
 
 
-def _measure(name: str, factory: Callable[[], Callable[[], object]], n: int, steps: int, repeats: int) -> dict:
-    try:
-        forcings = synthetic_forcing(n_days=steps / 48.0, dt=1800.0)
-        elapsed = _timed(factory()(n, forcings), repeats)
-    except Exception as exc:  # pragma: no cover - hardware-dependent path
-        return {"backend": name, "status": "unavailable", "error": f"{type(exc).__name__}: {exc}"}
-    cells = n * steps
-    return {
-        "backend": name,
-        "status": "measured",
-        "seconds": elapsed,
-        "us_per_column_step": elapsed / cells * 1.0e6,
-        "column_steps_per_second": cells / elapsed,
-    }
+def _timed(function, repeats, progress):
+    for index in range(3):
+        start = time.perf_counter()
+        result = function()
+        del result
+        progress("warmup", index, time.perf_counter() - start)
+    values = []
+    for index in range(repeats):
+        start = time.perf_counter()
+        result = function()
+        del result
+        elapsed = time.perf_counter() - start
+        values.append(elapsed)
+        progress("measured_run", index, elapsed)
+    return statistics.median(values), values
 
 
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--sizes", nargs="+", type=int, default=list(DEFAULT_SIZES))
     parser.add_argument("--steps", type=int, default=48)
     parser.add_argument("--repeats", type=int, default=3)
+    parser.add_argument("--backends", nargs="+", choices=("numpy", "jax64", "jax32", "cuda"),
+                        default=["numpy", "jax64", "jax32", "cuda"])
+    parser.add_argument("--output", help="持续追加的JSONL原始结果")
+    parser.add_argument("--cuda-parity-passed", action="store_true",
+                        help="仅在H4已通过时使用；否则CUDA标为measured_unvalidated")
     args = parser.parse_args()
+    if args.steps <= 0 or args.repeats <= 0 or any(n <= 0 for n in args.sizes):
+        parser.error("sizes/steps/repeats必须为正")
 
-    print(f"CPU: {platform.processor() or platform.machine()}")
-    print(f"Python: {platform.python_version()}")
+    def emit(row):
+        line = json.dumps(row, ensure_ascii=False)
+        print(line, flush=True)
+        if args.output:
+            with open(args.output, "a", encoding="utf-8") as output:
+                output.write(line + "\n")
+
+    emit({"event": "environment", "cpu": platform.processor() or platform.machine(),
+          "python": platform.python_version(), "numpy": np.__version__,
+          "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+          "warmups": 3, "repeats": args.repeats})
+    forcings = synthetic_forcing(n_days=args.steps / 48., dt=1800.)
+    if len(forcings) != args.steps:
+        raise ValueError("合成强迫步数与请求不一致")
     for n in args.sizes:
-        results = [
-            _measure("numpy", lambda: _numpy_runner, n, args.steps, args.repeats),
-            _measure("jax", lambda: _jax_runner, n, args.steps, args.repeats),
-            _measure("cupy", lambda: _cupy_runner, n, args.steps, args.repeats),
-        ]
-        print({"n": n, "steps": args.steps, "results": results})
+        for backend in args.backends:
+            base = {"backend": backend, "n": n, "steps": args.steps}
+            emit({**base, "event": "start"})
+            try:
+                runner = _numpy_runner(n, forcings) if backend == "numpy" else _gpu_runner(backend, n, forcings)
+                elapsed, samples = _timed(
+                    runner, args.repeats,
+                    lambda phase, index, seconds: emit({**base, "event": phase, "index": index, "seconds": seconds}),
+                )
+                emit({**base, "event": "result", "status": "measured_unvalidated"
+                      if backend == "cuda" and not args.cuda_parity_passed else "measured",
+                      "seconds": elapsed, "samples_seconds": samples,
+                      "us_per_column_step": elapsed / (n * args.steps) * 1e6,
+                      "column_steps_per_second": n * args.steps / elapsed})
+                del runner
+            except Exception as exc:
+                emit({**base, "event": "result", "status": "unavailable",
+                      "error": f"{type(exc).__name__}: {exc}"})
 
 
 if __name__ == "__main__":

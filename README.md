@@ -51,16 +51,27 @@ GPU 代码全部位于 `src/noahmp_clm/gpu/`，普通 numpy 版仍是只读正�
 `gpu/cuda/` 保存 SoA CUDA kernel 源码和延迟 loader。
 
 ```bash
-pip install -e ".[dev,gpu]"
-python -c "from noahmp_clm.gpu.jax_core import run_columns_jax; print('JAX GPU API ready')"
+python3 -m venv ~/venvs/noahmp-phase3b
+source ~/venvs/noahmp-phase3b/bin/activate
+pip install 'jax[cuda12]' cupy-cuda12x
+pip install -e '.[dev]'
+unset LD_LIBRARY_PATH  # xuanze 登录环境的系统 CUDA 库会干扰 pip CUDA 库
+export CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true
+export XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONPATH=src
+python -c "import jax; print(jax.devices())"
+NOAHMP_REQUIRE_GPU=1 python -m pytest tests/test_gpu_parity.py -q
 python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
 ```
 
-`.[gpu]` 安装的是 `jax[cpu]`，有 CUDA-enabled Linux/xuanze 环境时请按
-`docs/GPU_ENV.md` 换成对应 CUDA wheel。当前 Windows 实测只有 JAX CPU backend；
-RTX 4070 可被 CuPy 枚举，但批量对照仍缺少 CUDA headers。环境、状态偏移、性能
-数字和未实测项分别记录在 `docs/GPU_ENV.md`、`docs/STATE_SPEC.md`、
-`docs/BENCHMARK.md`、`docs/GPU_SUMMARY.md`。
+2026-10-13 xuanze RTX 4090 实测，`N=100000 × 48`（三次预热、三次测量取中位数）：
+JAX x64 **22.0033 s**，JAX x32 **3.14413 s**。五档 GPU 计时已完成，大规模
+NumPy 单核对照正在补测，尚不报告完整加速倍数。`.[gpu]` 本身仍只安装 CPU JAX，
+Linux CUDA 安装与库路径说明见 [GPU_ENV.md](docs/GPU_ENV.md)。
+
+JAX float64 混合选项门通过；手写 CUDA 虽已编译执行，但严格 float32 parity
+仍失败，其 **0.00728780 s** 计时标为“实测但精度未过门”。不能据此宣布阶段 3
+完成。范围、原始计时和失败证据见 [GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
+[BENCHMARK.md](docs/BENCHMARK.md)、[GPU_BLOCKERS.md](docs/GPU_BLOCKERS.md)。
 
 最小调用示例：
 
@@ -93,7 +104,7 @@ src/noahmp_clm/
         pack.py      # 定长状态 ABI
         jax_core.py  # JAX jit/vmap/scan 物理链路
         cupy_core.py # CuPy 正确性锚点
-        cuda/        # [未实测] SoA CUDA kernel 与 loader
+        cuda/        # 默认物理 SoA CUDA kernel；已实测，严格 parity 未通过
 examples/run_single_column.py
 tests/test_column.py
 ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 → JAX/CUDA
@@ -108,7 +119,13 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 - **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
 - **雪累积/消融**：冷期 SWE 增长，暖期融化减少
 
-当前本地验收结果：
+当前 Linux GPU 验收结果：
+
+- 全量 `python -m pytest -q -s`：**44 passed, 2 failed**；两项失败分别为 CUDA N=1024 的 1 步与 48 步严格 parity，保留原容差，未隐藏失败。
+- JAX-CUDA 的 H2 混合门和相关回归 **7 passed**；H6 已实现物理 35 个选项取值通过，18 个占位字段的 55 个值仅验证无效应，另有 2 个单值字段及 11 个未实现值明确记录。
+- 一日 JAX x32/x64 最大累计偏差：ET **9.64719e-6 mm**、感热 **2.15644e-5 MJ/m²**。详细范围见 [GPU.md](docs/GPU.md)。
+
+阶段 3a 的 Windows 历史验收：
 
 - `python -m pytest -q`：**36 passed, 4 skipped**（基础环境没有 JAX/CuPy，Windows CUDA kernel 标记未实测）；`python -m compileall -q src examples tests benchmarks` 通过。
 - 35 个已实现选项组合（降水 3、地表拖曳 2、气孔 2、胁迫 3、地面阻抗 4、雪反照率 2、雪导热 5、压实 2、冻土渗透率 2、径流表层/地下各 4）均通过有限值、入口不变性和能量诊断检查；雪方案冷暖转换的 13 个组合水量误差均小于 `5e-16 m`，最大能量残差小于 `1e-3 W/m²`。

@@ -43,14 +43,16 @@
 - [x] JAX 定长单柱核心：`jit`、`vmap`、`lax.scan`、`lax.switch`、固定迭代 Thomas/割线
 - [x] CuPy host-reference 正确性锚点（CUDA headers 缺失时明确 unavailable）
 - [x] 性能基准脚本和本机 N=100 实测记录
-- [x] SoA CUDA kernel 源码、256-thread grid-stride loader（[未实测]，本机无 nvcc）
-- [ ] 把 `run_columns` 的 Python 循环换成 `jax.vmap(step_column)`：要求物理函数
-  纯函数化（状态进、状态出，无原地修改）——阶段 0 已按此约束编写
+- [x] 完整默认物理 SoA CUDA kernel、256-thread grid-stride loader；xuanze nvcc 零 warning 编译并实际执行
+- [x] JAX `vmap(scan)` 批量入口及 Linux GPU float64 8 柱 × 48 步混合门
+- [x] GPU 已实现选项 35 个取值抽查和一日 float32/float64 累积精度实测
+- [ ] CUDA N=1024 严格 float32 parity（当前 residual、近零 H/G 超差）
 - [ ] CuPy 直译版作为对照；之后手写 CUDA kernel：一个 thread block 处理一批柱，
   土壤三对角求解用 batch Thomas
 - [ ] 性能目标：在 A100 上相对单核 Python 基线 ≥100×（N=10⁵ 柱量级）
 
-阶段 3 的 Linux/xuanze parity、CUDA 编译运行和五档大规模性能仍未验收；
+阶段 3 总体未完成：H2 和 H3 已通过，H4 为红灯；五档 GPU 计时已完成，
+H5 大规模单核基线补测中。只有 H2+H4+H5 全绿才可合并 main；
 当前状态与阻塞原因见 `docs/GPU_SUMMARY.md`。
 
 ## 不做的事
