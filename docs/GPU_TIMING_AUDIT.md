@@ -141,6 +141,20 @@ CUDA `measured`。该组合 smoke 退出码为 1，是预期 CUDA 验收红灯�
 与 11 项门测试全通过分开报告。两个阶段的运行前后源码哈希均未变化。
 正式 JAX64/JAX32 五档完整基准另行记录，不能从此 smoke 推算大 N 吞吐。
 
+### NumPy 计时返回值的独立修复
+
+独立审阅通过故障注入确认原 `_timed` 会丢弃 NumPy runner 返回的 checksum，
+从而把 NaN 温度或 ET 产生的错误结果仍标为 `measured`。工作分支已补上
+每次预热和测量的有限标量检查，以及全部重复之间的精确一致性检查，并在
+每个 sample 的 JSON 保留 checksum。失败非零退出且不生成最终 `measured`。
+`_numpy_runner` 函数本身完全不变，GPU 计时路径也未变。
+
+新增 `tests/test_numpy_benchmark_checksum.py` 在全部六个重复位置分别注入
+NaN、Inf 或变化 checksum，另从普通物理返回值注入 NaN 温度和 ET 验证 CLI；
+与现有 checksum CPU 测试合跑结果为 **31 passed, 1 skipped**。跳过项仅为
+本地未显式请求的 GPU 测试。该修复在上述 GPU 快照冻结之后完成，故快照的
+旧 NumPy 分支不具备此门；该快照本次只运行 GPU 基准，未产生 NumPy 基线。
+
 ## 双卡脚本的验收边界（尚待实测）
 
 `bench_gpu_scaling.py` 比较单卡完整 N 与双卡各 N/2，使用 `check_gpu_extended.py`
@@ -183,6 +197,7 @@ env -u LD_LIBRARY_PATH PYTHONPATH=src CUDA_PATH=/usr/local/cuda-12.4 \
 | `benchmarks/audit_gpu_timing.py` | 新增 | 冻结源码的诊断探针及 CUDA profiler 区间 | 20 |
 | `benchmarks/bench_gpu_scaling.py` | 新增 | 两张独立 GPU 分片、完整参考逐项门、同步多进程计时 | 28 |
 | `tests/test_gpu_benchmark_checksum.py` | 新增 | 有效执行与损坏输出的回归测试 | 26 |
+| `tests/test_numpy_benchmark_checksum.py` | 新增 | NumPy 非有限/非一致 checksum 及 CLI 故障注入 | 19 |
 | `docs/GPU_TIMING_AUDIT.md` | 新增 | 实测证据、边界及限制 | 1 |
 
 kernel、JAX 物理和 loader 没有由本计时任务修改。

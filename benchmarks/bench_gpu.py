@@ -67,19 +67,26 @@ def _gpu_runner(backend, n, forcings):
 
 
 def _timed(function, repeats, progress):
-    for index in range(3):
-        start = time.perf_counter()
-        result = function()
-        del result
-        progress("warmup", index, time.perf_counter() - start)
+    """Consume the NumPy scalar checksum and require deterministic repeats."""
     values = []
-    for index in range(repeats):
-        start = time.perf_counter()
-        result = function()
-        del result
-        elapsed = time.perf_counter() - start
-        values.append(elapsed)
-        progress("measured_run", index, elapsed)
+    expected_checksum = None
+    for phase, count in (("warmup", 3), ("measured_run", repeats)):
+        for index in range(count):
+            start = time.perf_counter()
+            result = np.asarray(function())
+            if result.ndim != 0:
+                raise ValueError("NumPy benchmark must return a scalar checksum")
+            checksum = float(result)
+            if not np.isfinite(checksum):
+                raise ValueError(f"NumPy {phase} {index}: nonfinite checksum {checksum}")
+            if expected_checksum is None:
+                expected_checksum = checksum
+            elif checksum != expected_checksum:
+                raise ValueError(f"NumPy {phase} {index}: checksum changed from {expected_checksum} to {checksum}")
+            elapsed = time.perf_counter() - start
+            progress(phase, index, elapsed, checksum)
+            if phase == "measured_run":
+                values.append(elapsed)
     return statistics.median(values), values
 
 
@@ -258,9 +265,13 @@ def main():
                     runner = _numpy_runner(n, forcings)
                     elapsed, samples = _timed(
                         runner, args.repeats,
-                        lambda phase, index, seconds: emit({**base, "event": phase, "index": index, "seconds": seconds}),
+                        lambda phase, index, seconds, checksum: emit({
+                            **base, "event": phase, "index": index, "seconds": seconds,
+                            "checksum": checksum, "status": "validated",
+                        }),
                     )
-                    details = {"samples_seconds": samples}
+                    details = {"samples_seconds": samples, "checksum_gate_passed": True,
+                               "checksum_gate": "finite scalar; exact equality across all warmups and measured repeats"}
                     del runner
                 else:
                     elapsed, samples = _audited_gpu_timed(
