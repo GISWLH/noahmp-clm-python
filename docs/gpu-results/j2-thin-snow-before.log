@@ -1,0 +1,102 @@
+thin-snow 1.0 melt 0.0 0.0 temperature [270.93177585 270.92368958] [270.86673797 270.85942612]
+Fthin-snow 10.0 melt 3.4080521311807205e-05 3.40868263472929e-05 temperature [273.15 273.15] [273.15 273.15]
+Fthin-snow 100.0 melt 0.0005048633355846686 0.0005191167664670498 temperature [273.15 273.15] [273.15 273.15]
+F
+=================================== FAILURES ===================================
+___________ test_thin_active_snow_layer_heat_matches_reference[1.0] ____________
+
+top_flux = 1.0
+
+    @pytest.mark.parametrize("top_flux", [1.0, 10.0, 100.0])
+    def test_thin_active_snow_layer_heat_matches_reference(top_flux):
+        """A valid thin top layer must retain its actual mass/thermal capacity."""
+        jax.config.update("jax_enable_x64", True)
+        state = ColumnState(swe=.001001,
+                            snow_swe_layers=np.array([1e-6, .001]),
+                            snow_t_layers=np.array([273.15, 270.]),
+                            snow_density_layers=np.array([300., 300.]))
+        f, i = column_state_to_vec(state)
+        reference = state.copy()
+        expected_melt = snow.apply_snow_heat(reference, 1800., top_flux)
+        actual = jax.jit(jax_core._snow_heat)(
+            jnp.asarray(f[16:19]), jnp.asarray(f[19:22]), jnp.asarray(f[22:25]),
+            jnp.int32(i[32]), jnp.float64(1800.), jnp.float64(top_flux), jnp.int32(1))
+        swe, temperature, density, count, melt = map(np.asarray, actual)
+        active_count = len(reference.snow_swe_layers)
+        print("thin-snow", top_flux, "melt", float(melt), expected_melt,
+              "temperature", temperature[:active_count], reference.snow_t_layers, flush=True)
+        assert int(count) == active_count
+        np.testing.assert_allclose(swe[:active_count], reference.snow_swe_layers, rtol=1e-8, atol=1e-12)
+>       np.testing.assert_allclose(temperature[:active_count], reference.snow_t_layers, rtol=1e-8, atol=1e-9)
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-08, atol=1e-09
+E       
+E       Mismatched elements: 2 / 2 (100%)
+E       Mismatch at indices:
+E        [0]: 270.93177585035164 (ACTUAL), 270.8667379734099 (DESIRED)
+E        [1]: 270.9236895816333 (ACTUAL), 270.8594261191675 (DESIRED)
+E       Max absolute difference among violations: 0.06503788
+E       Max relative difference among violations: 0.00024011
+E        ACTUAL: array([270.931776, 270.92369 ])
+E        DESIRED: array([270.866738, 270.859426])
+
+tests/test_gpu_numerical_components.py:36: AssertionError
+___________ test_thin_active_snow_layer_heat_matches_reference[10.0] ___________
+
+top_flux = 10.0
+
+    @pytest.mark.parametrize("top_flux", [1.0, 10.0, 100.0])
+    def test_thin_active_snow_layer_heat_matches_reference(top_flux):
+        """A valid thin top layer must retain its actual mass/thermal capacity."""
+        jax.config.update("jax_enable_x64", True)
+        state = ColumnState(swe=.001001,
+                            snow_swe_layers=np.array([1e-6, .001]),
+                            snow_t_layers=np.array([273.15, 270.]),
+                            snow_density_layers=np.array([300., 300.]))
+        f, i = column_state_to_vec(state)
+        reference = state.copy()
+        expected_melt = snow.apply_snow_heat(reference, 1800., top_flux)
+        actual = jax.jit(jax_core._snow_heat)(
+            jnp.asarray(f[16:19]), jnp.asarray(f[19:22]), jnp.asarray(f[22:25]),
+            jnp.int32(i[32]), jnp.float64(1800.), jnp.float64(top_flux), jnp.int32(1))
+        swe, temperature, density, count, melt = map(np.asarray, actual)
+        active_count = len(reference.snow_swe_layers)
+        print("thin-snow", top_flux, "melt", float(melt), expected_melt,
+              "temperature", temperature[:active_count], reference.snow_t_layers, flush=True)
+>       assert int(count) == active_count
+E       assert 1 == 2
+E        +  where 1 = int(array(1, dtype=int32))
+
+tests/test_gpu_numerical_components.py:34: AssertionError
+__________ test_thin_active_snow_layer_heat_matches_reference[100.0] ___________
+
+top_flux = 100.0
+
+    @pytest.mark.parametrize("top_flux", [1.0, 10.0, 100.0])
+    def test_thin_active_snow_layer_heat_matches_reference(top_flux):
+        """A valid thin top layer must retain its actual mass/thermal capacity."""
+        jax.config.update("jax_enable_x64", True)
+        state = ColumnState(swe=.001001,
+                            snow_swe_layers=np.array([1e-6, .001]),
+                            snow_t_layers=np.array([273.15, 270.]),
+                            snow_density_layers=np.array([300., 300.]))
+        f, i = column_state_to_vec(state)
+        reference = state.copy()
+        expected_melt = snow.apply_snow_heat(reference, 1800., top_flux)
+        actual = jax.jit(jax_core._snow_heat)(
+            jnp.asarray(f[16:19]), jnp.asarray(f[19:22]), jnp.asarray(f[22:25]),
+            jnp.int32(i[32]), jnp.float64(1800.), jnp.float64(top_flux), jnp.int32(1))
+        swe, temperature, density, count, melt = map(np.asarray, actual)
+        active_count = len(reference.snow_swe_layers)
+        print("thin-snow", top_flux, "melt", float(melt), expected_melt,
+              "temperature", temperature[:active_count], reference.snow_t_layers, flush=True)
+>       assert int(count) == active_count
+E       assert 1 == 2
+E        +  where 1 = int(array(1, dtype=int32))
+
+tests/test_gpu_numerical_components.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gpu_numerical_components.py::test_thin_active_snow_layer_heat_matches_reference[1.0]
+FAILED tests/test_gpu_numerical_components.py::test_thin_active_snow_layer_heat_matches_reference[10.0]
+FAILED tests/test_gpu_numerical_components.py::test_thin_active_snow_layer_heat_matches_reference[100.0]
+3 failed in 2.81s

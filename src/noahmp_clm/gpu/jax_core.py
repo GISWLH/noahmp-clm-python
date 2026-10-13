@@ -455,7 +455,10 @@ def _snow_heat(
     """
     mask = LAYER_INDEX < snow_count
     thickness = swe_layers * RHO_W / jnp.maximum(snow_density_layers, 50.0)
-    safe_thickness = jnp.where(mask, jnp.maximum(thickness, 1.0e-4), 1.0e-4)
+    # The reference protects inter-layer conductance denominators, but its
+    # active-layer heat capacity and melt energy use the actual thickness.
+    # Inflating a thin active layer here creates artificial thermal mass.
+    safe_thickness = jnp.where(mask, thickness, 1.0e-4)
     conductivity = _snow_conductivity(snow_density_layers, snow_t_layers, option)
     k01 = 2.0 / (1.0 / conductivity[0] + 1.0 / conductivity[1])
     k12 = 2.0 / (1.0 / conductivity[1] + 1.0 / conductivity[2])

@@ -203,3 +203,18 @@ export PYTHONPATH=src
 [逐项 JSONL](gpu-results/h6-options.jsonl)、[汇总及逐场景误差 JSON](gpu-results/h6-options.json)。
 任何实际 parity 失败、无效应检查失败、设备/dtype/有限性错误都会记录并返回非零
 退出码；进程级中止会留下未完成日志，不能据此报告完成。
+
+## J2：有效薄雪层的热容量修复
+
+J4 边界准备暴露了 H6 八场景没有覆盖的有效薄雪层：顶部 SWE=1e-6 m、第二层
+SWE=0.001 m 时，JAX `_snow_heat` 把顶部实际 3.33e-6 m 厚度抬到 1e-4 m，
+给热容量和融雪能量引入额外质量。普通版与 CUDA 使用实际有效层厚度。
+现在仅对无效占位层保留厚度占位，层间导热的分母保护不变。
+
+修复前，1 W/m² 顶通量的雪温偏差约 0.065 K；100 W/m² 下融雪为
+0.000504863 m，而普通版为 0.000519117 m。修复后对应融雪分别为
+0.0005191167664670495 / 0.0005191167664670498 m。
+三个 1/10/100 W/m² 回归和原 H2 parity 在实际 CUDA 上 **5 passed**，未改容差。
+证据：[修复前](gpu-results/j2-thin-snow-before.log)、
+[修复后与 H2](gpu-results/j2-thin-snow-after-h2.log)。这是独立语义修复，
+不代表 CUDA32/JAX32 的全部 J2 数值差异已经解决，H4 继续红灯。
