@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N noahmp-serial-pool
+#PBS -q workq
+#PBS -l select=1:ncpus=4:mem=2gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+set -eu
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+PYTHON=${NOAHMP_PYTHON:-/home/zhangyq/venvs/noahmp-closeout/bin/python}
+OUT=${NOAHMP_OUTPUT:-outputs/ehpc}
+mkdir -p "$OUT"
+hostname
+uname -a
+lscpu
+free -b
+"$PYTHON" benchmarks/ehpc/smoke.py --mode serial --output "$OUT/serial"
+"$PYTHON" benchmarks/ehpc/smoke.py --mode pool --workers 4 --output "$OUT/pool" --reference "$OUT/serial.npz"

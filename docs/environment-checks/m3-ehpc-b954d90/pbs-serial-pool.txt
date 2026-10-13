@@ -1,0 +1,55 @@
+Job Id: 1.manager
+    Job_Name = noahmp-serial-pool
+    Job_Owner = zhangyq@manager_00260924.aliyun.com
+    resources_used.cpupercent = 128
+    resources_used.cput = 00:00:09
+    resources_used.mem = 0kb
+    resources_used.ncpus = 4
+    resources_used.vmem = 0kb
+    resources_used.walltime = 00:00:07
+    job_state = F
+    queue = workq
+    server = manager
+    Checkpoint = u
+    ctime = Tue Oct 13 19:38:18 2026
+    Error_Path = manager_00260924.aliyun.com:/home/zhangyq/work/noahmp-closeout
+	-m3-20261013/repo/noahmp-serial-pool.e1
+    exec_host = compute002/0*4
+    exec_vnode = (compute002:ncpus=4:mem=2097152kb)
+    Hold_Types = n
+    Join_Path = oe
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Tue Oct 13 19:38:25 2026
+    Output_Path = manager_00260924.aliyun.com:/home/zhangyq/work/noahmp-closeou
+	t-m3-20261013/repo/noahmp-serial-pool.o1
+    Priority = 0
+    qtime = Tue Oct 13 19:38:18 2026
+    Rerunable = True
+    Resource_List.mem = 2gb
+    Resource_List.ncpus = 4
+    Resource_List.nodect = 1
+    Resource_List.place = free
+    Resource_List.select = 1:ncpus=4:mem=2gb
+    Resource_List.walltime = 00:10:00
+    stime = Tue Oct 13 19:38:18 2026
+    session_id = 38871
+    jobdir = /home/zhangyq
+    substate = 92
+    Variable_List = PBS_O_HOME=/home/zhangyq,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=zhangyq,
+	PBS_O_PATH=/usr/local/bin:/usr/bin:/usr/local/pbs/bin,
+	PBS_O_MAIL=/var/mail/zhangyq,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/zhangyq/work/noahmp-closeout-m3-20261013/repo,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=workq,
+	PBS_O_HOST=manager_00260924.aliyun.com
+    comment = Job run at Tue Oct 13 at 19:38 on (compute002:ncpus=4:mem=2097152
+	kb) and finished
+    etime = Tue Oct 13 19:38:18 2026
+    run_count = 1
+    Stageout_status = 1
+    Exit_status = 0
+    Submit_arguments = benchmarks/ehpc/serial_pool.pbs
+    history_timestamp = 1791891505
+    project = _pbs_project_default
+

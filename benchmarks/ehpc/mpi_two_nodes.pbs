@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N noahmp-mpi
+#PBS -q workq
+#PBS -l select=2:ncpus=1:mpiprocs=1:mem=1gb
+#PBS -l place=scatter
+#PBS -l walltime=00:10:00
+#PBS -j oe
+set -eu
+cd "$PBS_O_WORKDIR"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+export PATH=/opt/openmpi/3.0.0/bin:$PATH
+export LD_LIBRARY_PATH=/opt/openmpi/3.0.0/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+PYTHON=${NOAHMP_PYTHON:-/home/zhangyq/venvs/noahmp-closeout/bin/python}
+OUT=${NOAHMP_OUTPUT:-outputs/ehpc}
+cat "$PBS_NODEFILE"
+mpirun -np 2 "$PYTHON" benchmarks/ehpc/smoke.py --mode mpi --ranks 2 --output "$OUT/mpi"
+"$PYTHON" benchmarks/ehpc/smoke.py --mode gather --ranks 2 --output "$OUT/mpi" --reference "$OUT/serial.npz"
