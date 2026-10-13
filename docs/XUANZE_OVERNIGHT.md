@@ -13,6 +13,11 @@ H4 根因分析见 [GPU_BLOCKERS.md](GPU_BLOCKERS.md)，不得因性能良好而
 当前只剩N300000运行。新单卡五档三后端15组均通过输出计时门，结果见
 [BENCHMARK.md](BENCHMARK.md)；双卡另由`GPU_J_STAGE.md`指定监督器管理。
 
+07:55 UTC更新：N300000三次完整预热均已结束且checksum精确一致；原作业
+于07:43:08 UTC提交三次正式测量，尚无正式样本或最终result。进度证据见
+`gpu-results/j1-numpy-300000-warmups.jsonl`及同前缀监督器快照。
+继续原监督器和10:45 UTC截止时间，不重启、不提前填写中位数。
+
 ## 正在执行
 
 - SSH：remote-ssh 技能中的 `xuanze-neiwang`，公钥已验证。

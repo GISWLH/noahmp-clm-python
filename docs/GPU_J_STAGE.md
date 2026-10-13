@@ -14,6 +14,9 @@
   追认源码锁定，详见`j1-numpy-100000-provenance.json`。
 - CPU监督器2293032只剩N300000（子PID/PGID2293035）运行，deadline为
   10:45 UTC；不要重启或用100000外推。只接受三预热+三正式后的result。
+  07:55 UTC已收回三次完整预热：checksum精确相同，每次1440万柱步；
+  正式三样本于07:43:08 UTC提交，尚无正式结果。证据前缀
+  `docs/gpu-results/j1-numpy-300000-warmups`；不能当成已完成基准。
 - 新版ncu已完成并推送`b17d78c`，被采首步4347 FLOP/柱步、2.825 TFLOP/s，
   全输出门逐位通过。无需再重复profiling或占卡调优。
 - 双卡监督器2611548已正常结束，冻结目录`j2-v2-stable-gated-final`源码
