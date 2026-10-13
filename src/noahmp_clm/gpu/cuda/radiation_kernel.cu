@@ -1,10 +1,6 @@
 // Ten-layer two-stream component, independent of the NumPy and JAX code.
 // NVRTC device math is built in; no system includes are needed.
-extern "C" __global__ void run_shortwave(const float* leaf, const float* inputs,
-                                         float* output, int n) {
-    for (int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x) {
-        const float* lai=leaf+10*row;
-        const float* u=inputs+6*row;
+__device__ void shortwave_device(const float* lai, const float* u, float* out) {
         float beam0=u[0], diffuse0=u[1], ag=u[2], mu=u[3], refl=u[4], tran=u[5];
         float k=.5f/mu, omega=refl+tran, back=.625f*refl+.375f*tran;
         // Explicit .5/k == mu avoids a second, separately rounded reciprocal.
@@ -53,11 +49,15 @@ extern "C" __global__ void run_shortwave(const float* leaf, const float* inputs,
         }
         float ground=(1.f-ag)*(beam[10]+down[10]);
         float residual=beam0+diffuse0-up[0]-total-ground;
-        float* out=output+46*row;
         for(int j=0;j<10;++j)out[j]=absorbed[j];
         for(int j=0;j<11;++j) {out[10+j]=beam[j];out[21+j]=down[j];out[32+j]=up[j];}
         out[43]=up[0];out[44]=ground;out[45]=residual;
-    }
+}
+
+extern "C" __global__ void run_shortwave(const float* leaf, const float* inputs,
+                                         float* output, int n) {
+    for (int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
+        shortwave_device(leaf+10*row,inputs+6*row,output+46*row);
 }
 
 extern "C" __global__ void run_longwave(const float* leaf, const float* temperature,

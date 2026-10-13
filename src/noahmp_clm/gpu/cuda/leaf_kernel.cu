@@ -32,9 +32,7 @@ __device__ void evaluate(float ci, const LeafEnvironment& e, const float* p, flo
     v[6]=net-(e.ca-ci)/(1.4f/e.gb+1.6f/gs);
 }
 
-extern "C" __global__ void run_leaves(const float* u, const float* p, float* output, int n) {
-    for (int row=blockIdx.x*blockDim.x+threadIdx.x; row<n; row+=blockDim.x*gridDim.x) {
-        const float* v=u+7*row;
+__device__ void leaf_gas_exchange_device(const float* v, const float* p, float* out) {
         float par=v[0], t=v[1], nitrogen=v[5];
         float growth=fminf(fmaxf(p[8]-273.15f, 11.f), 35.f);
         LeafEnvironment e;
@@ -61,11 +59,14 @@ extern "C" __global__ void run_leaves(const float* u, const float* p, float* out
         }
         float ci=.5f*(lo+hi);
         evaluate(ci, e, p, rates);
-        float* out=output+12*row;
         out[0]=rates[0]; out[1]=rates[1]; out[2]=rates[2]; out[3]=rates[3];
         out[4]=e.product; out[5]=e.rd; out[6]=e.transport; out[7]=ci;
         out[8]=rates[4]; out[9]=rates[5];
         out[10]=(e.gb*fminf(e.rh, 1.f)+rates[5])/(e.gb+rates[5]);
         out[11]=rates[6];
-    }
+}
+
+extern "C" __global__ void run_leaves(const float* u, const float* p, float* output, int n) {
+    for (int row=blockIdx.x*blockDim.x+threadIdx.x; row<n; row+=blockDim.x*gridDim.x)
+        leaf_gas_exchange_device(u+7*row,p,output+12*row);
 }

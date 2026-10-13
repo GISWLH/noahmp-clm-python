@@ -209,8 +209,11 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         qnew, water = _humidity(saturation,gas["gs_mol"]/molar_density,area,fv,
                                wet_fraction,rho,e,limits,soil_supply)
         wet, transp, ground_under, ground_bare, kleaf, kunder, kbare, vapor_residual, root_uptake = water
-        tair_can = (hatm*e.air_temperature+hcan@temperature)/hden if hden > 0 else e.air_temperature
-        sensible = hcan*(temperature-tair_can)
+        # Diagnostic air mixing in differences avoids cancellation of weighted
+        # absolute Kelvin temperatures. The state/output remains Kelvin.
+        air_offset = hcan@(temperature-e.air_temperature)/hden if hden > 0 else 0.
+        tair_can = e.air_temperature+air_offset
+        sensible = hcan*((temperature-e.air_temperature)-air_offset)
         sensible[-1] += hbare*(temperature[-1]-e.air_temperature)
         evaporation = np.r_[wet+transp,ground_under+ground_bare]
         net_radiation = shortwave+lw@np.r_[SIGMA*temperature**4,lwdown]
@@ -221,8 +224,14 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         # air space; testing energy alone could accept one lagged stomatal step.
         q_error = abs(qnew-qcan)
         qcan = qnew
-        if np.max(np.abs(residual)) <= tolerance and q_error <= 1e-10:
+        energy_balanced = np.max(np.abs(residual)) <= tolerance
+        if energy_balanced and q_error <= 1e-10:
             break
+        if energy_balanced:
+            # Finish the lagged humidity/stomatal fixed point at this balanced
+            # temperature before taking another Newton step. In float32 an
+            # unnecessary sub-ulp step can otherwise create a two-state cycle.
+            continue
         kcan = np.r_[kleaf,kunder]
         kden = kcan.sum()+rho*fv*e.atmosphere_velocity
         ejac = np.diag(kcan*dq)
@@ -246,7 +255,7 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     leaf_respiration = np.where(active,gas["respiration"],0.)
     outgoing_sw = fv*sw["reflected"]+(1.-fv)*(swdown-bare_sw)
     outgoing_lw = lwdown-(net_radiation-shortwave).sum()
-    atmosphere_h = hatm*(tair_can-e.air_temperature)+hbare*(temperature[-1]-e.air_temperature)
+    atmosphere_h = hatm*air_offset+hbare*(temperature[-1]-e.air_temperature)
     atmosphere_e = rho*fv*e.atmosphere_velocity*(qcan-e.specific_humidity)+ground_bare
     return {"leaf_temperature":temperature[:-1],"ground_temperature":temperature[-1],
         "canopy_temperature":tair_can,"canopy_humidity":qcan,"gas_exchange":gas,

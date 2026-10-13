@@ -1,5 +1,23 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1 P2：Windows参考环境访问异常，已绕行Linux（2026-10-13）
+
+- 16:46 UTC和17:30 UTC两次完整pytest进程出现Windows access violation，
+  退出码−1073741819；间隔超过30分钟。后一次禁用了第三方pytest插件，
+  仍在NumPy `zeros_like` / SciPy有限差分参考求根路径复现；不能认定为插件问题。
+- 当前本地环境：Anaconda Python3.13.12、NumPy2.4.4、SciPy1.18.0。
+  同一阶段曾完成181 passed / 74 skipped的中间复验，说明异常具有间歇性，
+  不能用那次成功掩盖最终进程崩溃。最终新增26项CPU目标测试通过。
+- 绕行：冻结快照`p2-energy-gpu-e`在xuanze完整Linux GPU环境完成
+  **264 passed / 0 skipped**；110个独立NumPy方程核对、1008个NumPy柱步、
+  302个三后端冠层工况另有完整结果。继续物理开发，不阻塞在本地解释器诊断。
+- 原始日志：`v1-results/p2-canopy-gpu-windows-crash.log.gz`、
+  `p2-canopy-gpu-windows-intermediate.log.gz`、`p2-canopy-gpu-pytest.log.gz`。
+  具体原生库/解释器原因未确认；后续需隔离环境复验，未修改共享conda安装。
+- 本轮GPU显存争用的初始化失败、饱和比湿运算重排和湿度迭代问题均已在
+  各自30分钟内定位并继续推进；原始失败数字与最终数字见
+  [冠层联立报告](CLM_CANOPY_ENERGY.md)，不作为新发布例外。
+
 ## M阶段收尾（2026-10-13）
 
 Wang已以[M2固定收尾门](GPU_CLOSEOUT_CRITERIA.md)替代旧合并条件；下文K/J的

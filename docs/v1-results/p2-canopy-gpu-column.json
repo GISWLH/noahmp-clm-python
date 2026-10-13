@@ -1,0 +1,112 @@
+{
+  "scope": "synthetic snow-free coupling/conservation only; not CTSM/HRLDAS/FLUXNET validation",
+  "seconds": 52.601620614528656,
+  "cases": {
+    "vegetated": {
+      "steps": 336,
+      "days": 7,
+      "final_water_residual_m": -5.412337245047638e-16,
+      "maximum_step_water_residual_m": 1.915344781649314e-16,
+      "maximum_latent_water_residual_wm2": 8.526512829121202e-14,
+      "maximum_surface_energy_residual_wm2": 0.00018106449050247359,
+      "cumulative_surface_energy_residual_jm2": 8.638503110001514,
+      "total_et_mm": 19.130969816134574,
+      "total_runoff_mm": 4.758271162473145,
+      "total_precipitation_mm": 14.4,
+      "gpp_gcm2": 84.98834994371971,
+      "max_iterations": 16,
+      "final_soil_temperature_k": [
+        295.4897916932431,
+        296.7427570372649,
+        293.9037219366025,
+        292.2990761435314
+      ],
+      "final_soil_moisture": [
+        0.2093243230765271,
+        0.27302678577096584,
+        0.2794794539202464,
+        0.27998261863030155
+      ]
+    },
+    "drying": {
+      "steps": 336,
+      "days": 7,
+      "final_water_residual_m": 3.651592916931179e-16,
+      "maximum_step_water_residual_m": 8.647698171698054e-17,
+      "maximum_latent_water_residual_wm2": 5.684341886080802e-14,
+      "maximum_surface_energy_residual_wm2": 0.00044059122564732434,
+      "cumulative_surface_energy_residual_jm2": 38.282472864858086,
+      "total_et_mm": 8.248286853500272,
+      "total_runoff_mm": 0.0,
+      "total_precipitation_mm": 14.4,
+      "gpp_gcm2": 24.862951223273974,
+      "max_iterations": 20,
+      "final_soil_temperature_k": [
+        296.31841580041134,
+        297.8101276866289,
+        294.1940522683257,
+        292.31848652030817
+      ],
+      "final_soil_moisture": [
+        0.2043024581129798,
+        0.12,
+        0.1389631712109873,
+        0.13994356460860974
+      ]
+    },
+    "bare": {
+      "steps": 336,
+      "days": 7,
+      "final_water_residual_m": 3.0617869350990645e-16,
+      "maximum_step_water_residual_m": 1.8741112177769748e-16,
+      "maximum_latent_water_residual_wm2": 7.105427357601002e-15,
+      "maximum_surface_energy_residual_wm2": 4.9724092136216314e-05,
+      "cumulative_surface_energy_residual_jm2": 5.291853999979423,
+      "total_et_mm": 1.624418352102273,
+      "total_runoff_mm": 6.75786719871528,
+      "total_precipitation_mm": 14.4,
+      "gpp_gcm2": 0.0,
+      "max_iterations": 13,
+      "final_soil_temperature_k": [
+        294.1294191472694,
+        296.68827593380405,
+        293.9326422405101,
+        292.3153499858905
+      ],
+      "final_soil_moisture": [
+        0.2720350135054476,
+        0.28,
+        0.2872171259911565,
+        0.2824839375039441
+      ]
+    }
+  },
+  "fields": [
+    "h",
+    "le",
+    "g",
+    "rnet",
+    "gpp_umol_m2s",
+    "et_mm",
+    "runoff_mm",
+    "prcp_mm",
+    "water_residual_m",
+    "latent_water_residual_wm2",
+    "residual",
+    "canw",
+    "ts",
+    "canopy_temperature",
+    "canopy_humidity",
+    "canopy_iterations"
+  ],
+  "source_sha256": {
+    "src/noahmp_clm/clm_driver.py": "b47682560cf44a69949d49d1e30eeee08389be91e17e8e84ead7ac7e1e90efc2",
+    "src/noahmp_clm/physics/canopy_energy.py": "5630bce8beacf9d8df1a3b6ee19615e4b7988ca756960d64b75ff6315a6ef228",
+    "src/noahmp_clm/physics/soil_uptake.py": "c9690f055b35debbe13e142b8105f553b84ed76e06bbc40f639c4f66cc8fdf41",
+    "src/noahmp_clm/physics/soil.py": "cf0a2d2f8fc5ec5b81de40c11185bc918483f1f3e122dbf3c41414be395db6ac",
+    "src/noahmp_clm/physics/photosynthesis.py": "fcdc24145faefca68581c3ddcbcc273e65e9672b68898dc28fd1a5dfbaa249f2",
+    "src/noahmp_clm/physics/canopy_radiation.py": "9e5e891ca5ce7d35bbe587caaca66aba408a78235a96dc0e55cfa335dd2ac361",
+    "benchmarks/check_clm_coupling.py": "b05edc942e141d792cd78f152697a4c931c4fc5a13fb276fd43930257a489a6c"
+  },
+  "series_sha256": "3a80666c5bf871166d9ab42ed19fe1cd69d0eaba5c8fb7a40114d26669f815c5"
+}

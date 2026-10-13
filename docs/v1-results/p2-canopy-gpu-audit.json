@@ -1,0 +1,301 @@
+{
+  "scope": "coupled canopy component, not complete column GPU stepping or observational validation",
+  "cases": 302,
+  "jax_devices": [
+    "cuda:0"
+  ],
+  "cuda_pci_bus_id": "0000:5E:00.0",
+  "numpy_reference": "same float32 inputs and leaf parameters promoted to float64",
+  "jax_unconverged": [],
+  "cuda_unconverged": [],
+  "cuda_vs_jax32": {
+    "leaf_temperature": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "ground_temperature": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "canopy_temperature": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "canopy_humidity": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gpp": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "leaf_respiration": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "leaf_sensible": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "ground_sensible": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "h": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "le": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "ground_heat": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "rnet": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "wet_evaporation": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "transpiration": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "ground_evaporation": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "root_uptake": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "layer_residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "iterations": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "converged": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "canopy_water_residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "canopy_humidity_change": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "air_heat_residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "air_water_residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "outgoing_shortwave": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "outgoing_longwave": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.gross": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.net": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.rubisco": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.rubp": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.tpu": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.respiration": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.electron_transport": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.ci_ppm": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.cs_ppm": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.gs_mol": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.surface_relative_humidity": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    },
+    "gas_exchange.diffusion_residual": {
+      "failed": 0,
+      "max_abs": 0.0,
+      "nonfinite": 0
+    }
+  },
+  "jax32_vs_numpy64": {
+    "gpp": {
+      "max_abs": 0.0010466941209088532,
+      "failed": 0,
+      "nearzero_count": 8,
+      "nearzero_max_abs": 9.09515826505447e-06,
+      "max_relative_nonzero": 0.0004933944092681441
+    },
+    "leaf_respiration": {
+      "max_abs": 0.00022656073751892158,
+      "failed": 0,
+      "nearzero_count": 11,
+      "nearzero_max_abs": 1.8341064275131935e-05,
+      "max_relative_nonzero": 0.0001684925696906939
+    },
+    "h": {
+      "max_abs": 0.027040771548385578,
+      "failed": 0,
+      "nearzero_count": 15,
+      "nearzero_max_abs": 0.0048606683383596305,
+      "max_relative_nonzero": 0.0003587794502526155
+    },
+    "le": {
+      "max_abs": 0.05384727042434179,
+      "failed": 0,
+      "nearzero_count": 11,
+      "nearzero_max_abs": 0.0010670836696463626,
+      "max_relative_nonzero": 0.0003889826275292277
+    },
+    "ground_heat": {
+      "max_abs": 0.043241504354625704,
+      "failed": 0,
+      "nearzero_count": 23,
+      "nearzero_max_abs": 0.003223133074357065,
+      "max_relative_nonzero": 0.00020561439473239636
+    },
+    "rnet": {
+      "max_abs": 0.03853956837838268,
+      "failed": 0,
+      "nearzero_count": 13,
+      "nearzero_max_abs": 0.002398153350721799,
+      "max_relative_nonzero": 0.00011406496393818564
+    },
+    "outgoing_shortwave": {
+      "max_abs": 0.043305569078881945,
+      "failed": 0,
+      "nearzero_count": 22,
+      "nearzero_max_abs": 0.0004713920855543563,
+      "max_relative_nonzero": 0.00027955401699516856
+    },
+    "outgoing_longwave": {
+      "max_abs": 0.00904538207078076,
+      "failed": 0,
+      "nearzero_count": 0,
+      "nearzero_max_abs": null,
+      "max_relative_nonzero": 1.6844063402452786e-05
+    },
+    "canopy_humidity": {
+      "max_abs": 1.9058454246434486e-06,
+      "failed": 0,
+      "nearzero_count": 0,
+      "nearzero_max_abs": null,
+      "max_relative_nonzero": 9.289560891094769e-05
+    },
+    "leaf_temperature": {
+      "max_abs": 0.04235403594282161,
+      "failed": 0
+    },
+    "ground_temperature": {
+      "max_abs": 0.002077980770650356,
+      "failed": 0
+    },
+    "canopy_temperature": {
+      "max_abs": 0.004153015747419886,
+      "failed": 0
+    }
+  },
+  "budgets": {
+    "layer_residual": 0.0049896240234375,
+    "residual": 0.033535003662109375,
+    "air_heat_residual": 0.000396728515625,
+    "air_water_residual": 2.6193447411060333e-10,
+    "canopy_water_residual": 2.6193447411060333e-10
+  },
+  "maximum_iterations": 23,
+  "source_sha256": {
+    "src/noahmp_clm/gpu/canopy_energy.py": "ed197df963efb45f7487fe653fa9650b726be4284d403a07517e65df679bdb8b",
+    "src/noahmp_clm/gpu/cuda/canopy_energy.py": "5036f2f27ca4ff1819e041fc66356132af5953f22cd7ff8587faebea6c7ed1dc",
+    "src/noahmp_clm/gpu/cuda/canopy_energy_kernel.cu": "12f4fa0e3d9f30ad7122762024881075825cf351fe53a78e050971bc004cc5a9",
+    "src/noahmp_clm/gpu/cuda/leaf_kernel.cu": "9e46aa399c97ffd7cd73cbe571cd402de678fb7716fe125deb585c7271046ea5",
+    "src/noahmp_clm/gpu/cuda/radiation_kernel.cu": "8cffd4d5d2da731b262106e8682811ecb1f6036a02b61ab9ad1aa3cb1999b71e",
+    "src/noahmp_clm/physics/canopy_energy.py": "5630bce8beacf9d8df1a3b6ee19615e4b7988ca756960d64b75ff6315a6ef228",
+    "src/noahmp_clm/physics/soil_uptake.py": "c9690f055b35debbe13e142b8105f553b84ed76e06bbc40f639c4f66cc8fdf41",
+    "src/noahmp_clm/gpu/photosynthesis.py": "824bd62a4cc183f97445e54eb6a166305733062235e10566ce3dc18d6283ba48",
+    "src/noahmp_clm/gpu/canopy_radiation.py": "52afdecb76e6de2dd0ce8316c5d46d7c26d3ecfdf7a2db39deb157dd01ab6ace",
+    "benchmarks/check_canopy_energy_gpu.py": "098de4c1cfbf26a14e3d9b854a00994a95dee47a51c7e86c2b863a42209b3760",
+    "tests/test_gpu_canopy_energy.py": "31efe43e81d6ca026ebd74c1d8cf21f8fcc07d325ade8400265a53a11bc54b76"
+  }
+}
