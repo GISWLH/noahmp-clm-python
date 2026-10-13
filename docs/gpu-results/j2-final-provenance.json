@@ -1,0 +1,87 @@
+{
+  "record_created_utc": "2026-10-13T05:50:48.273156+00:00",
+  "evidence_commit": "f29d7ad4427c0a88710fd87835b43f9150604ac7",
+  "source_provenance": "Retrospective identity reconstructed from f29d7ad Git blobs after J3 began editing the worktree. Loader/build/JAX hashes equal the contemporaneously saved j2-frozen-metadata.json. CUDA hash identifies the final source committed immediately after the successful final tests; it was not measured at test launch. No current J3 worktree source is used.",
+  "sources": {
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "3da106c2ffdc0eb42ab95a91227ba1492861d081e5c1552389fd536625356395",
+    "src/noahmp_clm/gpu/cuda/loader.py": "5a87015be97d1b8d548c10ade35cd33e149debec0456e7983a4bc34ab3ac7f75",
+    "src/noahmp_clm/gpu/cuda/build.sh": "0426e4cea3e3f15524f4f9ae0ae44cf02b5024eb7b29876b9dd4ad017257eedb",
+    "src/noahmp_clm/gpu/jax_core.py": "65c5c3bc23e2c378014e8e6cc79c584387e6e1f0da8e7a512f7ca2a10277e8a8"
+  },
+  "environment": {
+    "host": "xuanze",
+    "python": "3.12.2",
+    "jax": "0.11.2",
+    "cupy": "14.2.0",
+    "physical_gpu": 1,
+    "CUDA_VISIBLE_DEVICES": "1",
+    "JAX_PLATFORMS": "cuda",
+    "JAX_ENABLE_X64": "true",
+    "XLA_PYTHON_CLIENT_PREALLOCATE": "false",
+    "LD_LIBRARY_PATH": "unset",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "cuda_rawmodule_options": [
+      "--std=c++14",
+      "--fmad=false",
+      "--prec-div=false"
+    ],
+    "environment_provenance": "Same remote venv and explicit command environment as J2 frozen metadata, not queried from an active J3 process."
+  },
+  "shapes": {
+    "columns": 1024,
+    "steps": [
+      1,
+      48
+    ],
+    "float_state": 70,
+    "integer_state": 33,
+    "forcing_fields": 8,
+    "diagnostic_fields": 12,
+    "cuda_jax_dtype": "float32",
+    "numpy_reference_arithmetic": "float64 from the same float32-packed initial inputs"
+  },
+  "tolerances": {
+    "original_H4_numpy": {
+      "rtol": 0.0001,
+      "atol": 1e-06
+    },
+    "original_H4_jax32": {
+      "rtol": 1e-05,
+      "atol": 1e-06
+    },
+    "new_sameprecision": {
+      "rtol": 1e-06,
+      "atol": 1e-06
+    }
+  },
+  "artifacts": {
+    "j2-final-strict.log": {
+      "sha256": "0efe456545612270df1043df68367166da2e02b3d48bab3b86ea96f3231a4a5d",
+      "remote_mtime_utc": "2026-10-13T05:42:56.251224797Z",
+      "time_provenance": "Remote filesystem mtime read after completion; not a recorded start timestamp."
+    },
+    "j2-final-h2.log": {
+      "sha256": "d0fd75fbb00d8436d112ebc7b9847fcdbf3ae50fbc96c5d2dcde45f833004f33",
+      "remote_mtime_utc": "2026-10-13T05:43:55.449326285Z",
+      "time_provenance": "Remote filesystem mtime read after completion; not a recorded start timestamp."
+    },
+    "j2-final-nvcc.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote_mtime_utc": "2026-10-13T05:42:57.904255555Z",
+      "time_provenance": "Remote filesystem mtime read after completion; not a recorded start timestamp."
+    },
+    "j2-final-precision-report.json": {
+      "sha256": "71d09936045258ccf83e58540842de59e62615d7edbee8617301c4f7da2fdb52",
+      "remote_mtime_utc": "2026-10-13T05:44:17.751741263Z",
+      "time_provenance": "Remote filesystem mtime read after completion; not a recorded start timestamp."
+    }
+  },
+  "hlo": "f63699eb77b18390f0e574fe8e3e4ee4e71fe755e719cdfe0d5c8fb7bb24893a",
+  "result": "Sameprecision all fields bitwise equal for N1024 x 1/48; original H4 NumPy64 remains failed. No tolerance changed.",
+  "report_script": {
+    "path": "benchmarks/report_gpu_precision.py",
+    "sha256": "8a5e5eb6e6d0a62a949eb2bd3db649e1b88a33ffade6e9c4897be7bbb7f549de",
+    "provenance": "Unchanged local script copied to remote for final run; retrospective hash."
+  }
+}

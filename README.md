@@ -63,17 +63,19 @@ NOAHMP_REQUIRE_GPU=1 python -m pytest tests/test_gpu_parity.py -q
 python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
 ```
 
-2026-10-13 xuanze RTX 4090 实测，`N=100000 × 48`（三次预热、三次测量取中位数）：
-JAX x64 **22.0033 s**，JAX x32 **3.14413 s**。五档 GPU 计时已完成，大规模
-NumPy 单核对照正在补测，尚不报告完整加速倍数。`.[gpu]` 本身仍只安装 CPU JAX，
+2026-10-13 xuanze RTX4090实测，`N=100000 × 48`（三次预热、三次测量中位数）：
+JAX x64 **21.7326 s**，JAX x32 **3.48206 s**，包括完整输出的GPU归约、逐值校验
+及host回读；五档x64/x32均通过该计时门。大规模NumPy单核对照仍在运行，
+尚不报告N=100000加速倍数。`.[gpu]` 本身仍只安装CPU JAX，
 Linux CUDA 安装与库路径说明见 [GPU_ENV.md](docs/GPU_ENV.md)。
 
-上述为原计时记录：最新 J2 正增加全量 device checksum 与 JAX 对照门，在复核
-通过前不作为最终性能验收结论。NumPy N=10000 完整基线已收回，为 364.04924 s。
+N=10000的NumPy单核基线为364.04924 s，新JAX x64/x32为4.09757/3.33147 s，
+对应88.845×/109.276×。checksum验证结果消费和复现，不替代独立物理parity。
 
-JAX float64 混合选项门通过；手写 CUDA 虽已编译执行，但严格 float32 parity
-仍失败，其 **0.00728780 s** 计时标为“实测但精度未过门”。不能据此宣布阶段 3
-完成。范围、原始计时和失败证据见 [GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
+JAX float64混合门通过；手写CUDA默认N1024×1/48与JAX32全部诊断和最终状态
+逐位一致，但对NumPy64的原H4仍失败。年度薄雪稳定性与64800柱x32域也存在
+缺口，阶段3尚未完成，main不合并。范围、原始计时和失败证据见
+[GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
 [BENCHMARK.md](docs/BENCHMARK.md)、[GPU_BLOCKERS.md](docs/GPU_BLOCKERS.md)。
 
 最小调用示例：
