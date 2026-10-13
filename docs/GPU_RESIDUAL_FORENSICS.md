@@ -1,5 +1,10 @@
 # K1 residual 569 项全量取证
 
+M阶段补充：下文是未改变阈值的K1历史取证，137项属于未采纳的mixed原型。
+最终生产物理仍为b954d90；Wang已授权[M2固定收尾门](GPU_CLOSEOUT_CRITERIA.md)，
+其1024×48实测见[GPU_CLOSEOUT_RESULTS](GPU_CLOSEOUT_RESULTS.md)。原H4红灯保留，
+不再单独作为合并条件；本轮不发布的实际原因是M4同输入canw低于99.5%。
+
 2026-10-13 08:11 UTC，冻结 `f716548` 源码，xuanze 物理 GPU1 / RTX 4090。
 **569 项全部复现，全部来自无雪的降雨配置；不能解释为雪起融或冻融聚集。**
 原 H4 仍红灯，所有诊断继续使用 `rtol=1e-4, atol=1e-6`；这里的 `.002`

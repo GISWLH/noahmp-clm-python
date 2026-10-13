@@ -2,10 +2,17 @@
 
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
+**状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
+CUDA 后端均可运行；本轮收尾仍留在 `gpu/migration`，未合并 main、未发布 `v0.2.0`。
+原因是四站真实数据按同量化输入对照的 canw 通过率99.2014%，未达到事先固定的99.5%门。
+原H4/K3红灯完整保留，见[收尾数字](docs/GPU_CLOSEOUT_RESULTS.md)和
+[真实数据结果](docs/REAL_DATA_CHECKS.md)。冻土敏感应用建议用 float64 / JAX-x64。
+
+计算资源、SSH 入口及 CPU/GPU 测试方法见 [environment.md](environment.md)，包含 EHPC、xuanze 和 Hugging Face ZeroGPU 的核验记录。
+
 核心设计只有一条：**格点完全独立**。每一个 1D 陆面柱（土壤—积雪—冠层）的状态全部封装在
 `ColumnState` 里，任意两个柱之间没有任何水平耦合。批量驱动只是把 N 个独立的柱放在一起跑，
-这个"柱"维度就是将来 `jax.vmap` / CUDA kernel 要向量化的轴——现在用普通 Python 循环，
-以后整段替换，不需要改物理代码。
+这个“柱”维度分别由普通 Python 循环、`jax.vmap` 和 CUDA kernel 并行执行。
 
 ## 这是"普通版本"，不是翻译版本
 
@@ -45,7 +52,7 @@ pytest                                   # 能量闭合、水平衡、批量独�
 
 ## 阶段 3：GPU 迁移
 
-GPU 代码全部位于 `src/noahmp_clm/gpu/`，普通 numpy 版仍是只读正确性基准。
+GPU 代码全部位于 `src/noahmp_clm/gpu/`，普通 NumPy64 版是独立数值对照基准。
 状态先由 `gpu.pack` 编码为固定长度 `fvec/ivec`，JAX 后端提供
 `step_column_jax` 和 `run_columns_jax`（时间 `lax.scan`、柱轴 `vmap`）；
 `gpu/cuda/` 保存 SoA CUDA kernel 源码和延迟 loader。
@@ -57,29 +64,54 @@ pip install 'jax[cuda12]' cupy-cuda12x
 pip install -e '.[dev]'
 unset LD_LIBRARY_PATH  # xuanze 登录环境的系统 CUDA 库会干扰 pip CUDA 库
 export CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true
+export CUDA_PATH=/usr/local/cuda-12.4
+export PATH="$CUDA_PATH/bin:$PATH"
 export XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONPATH=src
 python -c "import jax; print(jax.devices())"
 NOAHMP_REQUIRE_GPU=1 python -m pytest tests/test_gpu_parity.py -q
 python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
 ```
 
-2026-10-13 xuanze RTX4090当前共同源码实测，`N=100000 × 48`
-（三次预热、三次测量中位数）：NumPy单核 **3616.904 s**，JAX x64 **21.3554 s**，
-JAX x32 **3.80773 s**，CUDA **0.196976 s**；相对该普通Python/NumPy基线分别
-**169.37× / 949.89× / 18,362.13×**。GPU时间包括完整输出的归约、逐值校验
-及host回读，五档三后端共15组均通过计时门。N=300000的CPU基线仍在运行；
-CPU启动时未记录源码hash，事后来源核查的限制见基准文档。`.[gpu]` 本身仍只安装CPU JAX，
-Linux CUDA 安装与库路径说明见 [GPU_ENV.md](docs/GPU_ENV.md)。
+历史性能表属于 **K2修复前** 的冻结源（JAX `0e296691…`、CUDA `7640b062…`），
+不能标为当前物理源码性能。`N=100000 × 48` 三预热/三正式的中位秒数如下：
 
-CUDA单独同步计算区间为0.00710195 s，不能与上述含校验时间混用。
-checksum验证结果消费和复现，不替代独立物理parity。
+| NumPy单核 | JAX x64 | JAX x32 | CUDA x32 |
+|---:|---:|---:|---:|
+| 3616.904161 | 21.355447 | 3.807727 | 0.196976 |
 
-JAX float64混合门通过；手写CUDA的12字段35值分发联合55项通过，默认
-N1024×1/48与JAX32全部诊断和最终状态逐位一致，但对NumPy64的原H4仍失败。
-年度薄雪稳定性与64800柱x32域也存在
-缺口，阶段3尚未完成，main不合并。范围、原始计时和失败证据见
+GPU计时包含同步计算、完整输出归约、逐值校验和host回读；CPU仅逐柱消费标量
+checksum。N300000单核基线已收齐，中位10272.657723秒；CPU启动时未记录加载源码hash，
+来源限制保留。本轮最终 `b954d90` 物理源码的N100000复测单列于
+[BENCHMARK.md](docs/BENCHMARK.md)，不拿旧CPU基线拼出新源码加速比。
+`.[gpu]` 只安装CPU JAX，Linux CUDA安装见[GPU_ENV.md](docs/GPU_ENV.md)。
+
+本轮 `b954d90` 最终物理源码、同样三预热/三正式、同样完整输出校验口径：
+N100000×48的中位数为 **JAX x64 22.042122 s / JAX x32 3.227870 s /
+CUDA 0.203611 s**。所有计时样本输出门通过；原H4与M4失败仍单独报告。
+
+JAX64混合门、CUDA/JAX32同精度门通过，原NumPy64 H4仍失败；M2合成门各字段
+通过率≥99.5%，residual中位 .000293732、p99 .00181961 W/m²。K2四后端365天
+可靠性已通过；K3原域门仍有5565/64800柱状态超差（8.58796%），全部归因于
+已记录的冻土/厚雪下温度轨迹误差。融尽后仍有222784.419 J/m²热量路由缺口，
+表面闭合不等于整柱焓守恒。范围、原始计时和失败证据见
 [GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
 [BENCHMARK.md](docs/BENCHMARK.md)、[GPU_BLOCKERS.md](docs/GPU_BLOCKERS.md)。
+
+各环境运行方式：
+
+```bash
+# EHPC：共享home中，先串行/多进程，再跨两节点MPI
+qsub benchmarks/ehpc/serial_pool.pbs
+qsub benchmarks/ehpc/mpi_two_nodes.pbs
+
+# xuanze：使用上述CUDA环境；输出目录必须是新的
+python benchmarks/check_closeout.py --directory outputs/m2-recheck
+python benchmarks/bench_gpu.py --sizes 100000 --steps 48 --backends jax64 jax32 cuda
+```
+
+EHPC脚本与环境变量说明见[EHPC README](benchmarks/ehpc/README.md)；
+HF ZeroGPU演示和客户端调用见[Space说明](examples/hf_zerogpu/README.md)。
+各环境的实测/未测边界、硬件、软件、耗时与checksum见[ENV_TESTS](docs/ENV_TESTS.md)。
 
 最小调用示例：
 
@@ -129,7 +161,7 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 当前 Linux GPU 验收结果：
 
-- 最新冻结版全量 `python -m pytest -q -s`：**134 passed, 2 failed, 0 skipped**；两项失败分别为 CUDA N=1024 的 1 步与 48 步原NumPy64 H4，保留原容差，未隐藏失败。
+- K2生产源全量 `python -m pytest -q -s`：**147 passed, 2 failed, 0 skipped**；两项失败分别为 CUDA N=1024 的 1 步与 48 步原NumPy64 H4，保留原容差，未隐藏失败。本轮最终复验日志见[GPU_SUMMARY](docs/GPU_SUMMARY.md)。
 - JAX-CUDA 的 H2 混合门和相关回归 **7 passed**；H6 已实现物理 35 个选项取值通过，18 个占位字段的 55 个值仅验证无效应，另有 2 个单值字段及 11 个未实现值明确记录。
 - 当前共同源码8场景一日 JAX x32/x64 最大累计偏差：ET **9.64719e-6 mm**、感热 **2.15644e-5 MJ/m²**；相对差均小于1e-4，不能外推年度或原H4。详细范围见 [GPU.md](docs/GPU.md)。
 

@@ -1,14 +1,27 @@
 # 阶段 3 GPU 迁移总结
 
-K1仍红（569项取证完成，mixed割线+F仍未过原门且设备成本增加59.47%），K2已绿（基线薄雪耦合源头修复，NumPy/JAX64/JAX32/CUDA均连续365天通过既定可靠性门），K3仍红（修后全64800柱对照仍有5565柱有效状态超差）。
+可用，带[已知限制](KNOWN_LIMITATIONS.md)：M1增量候选因同精度回归已逐字节回退，生产物理保持b954d90，M2合成1024×48门通过，原K1/H4与K3红灯保留（域状态超差5565/64800=8.58796%且全部已归因）。
 
-真实数据CN-Cng的30天1440步smoke已完成，JAX64对NumPy64通过、JAX32/CUDA32逐步诊断仍红，NumPy对观测LE/H的r为0.86934/0.89737、bias为0.452/6.491、RMSE为47.682/35.385 W/m²，未校准且不宣称物理已验证。
+EHPC串行/4进程/两节点MPI、xuanze核心门与N100000校验计时、HF ZeroGPU JAX1024×48均完成；四站各30天JAX64通过且观测r/bias/RMSE已报告，ERA5因缺下行辐射和总降水记未测，均不宣称物理已验证。
 
-全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项），原监督器的N300000基线已完成且三次正式中位数为10272.657723秒，继续留在gpu/migration，未修改容差或STATE_SPEC、未合并main。
+最终全量pytest为147 passed / 2 failed / 0 skipped（仍为原H4两项）；M4同量化输入canw通过率99.201389%，低于预定99.5%门，因此不合并main、不打v0.2.0，全部进度与限制提交到gpu/migration。
 
-当前任务为K1–K7；J1–J5已执行，双卡、profiling与计时审计均冻结，不重复。
-首先交付[569项聚类](GPU_RESIDUAL_FORENSICS.md)。未经Wang明确确认，不改变
-原H4容差或合并条件；2e-3提案已证伪，不再作为待批准方案。
+本轮按Wang的M0–M5收尾，先提交[固定M2准则](GPU_CLOSEOUT_CRITERIA.md)再运行；
+原H4不再单独决定合并，但新门未过不能发布。Wang明确接受表面能量闭合、
+整柱融尽后的222784.419 J/m²热量路由缺口作为公开限制。双卡/profiling保持冻结。
+
+## M阶段收尾交付
+
+- [GPU_DELTA_ATTEMPT](GPU_DELTA_ATTEMPT.md)：一次ΔT实现、新增同精度回归、完整候选patch和逐字节回退；64800域复验与四后端365天全部完成通过，1460份每日dump hash核验一致。
+- [GPU_CLOSEOUT_RESULTS](GPU_CLOSEOUT_RESULTS.md)：1024×48逐步全状态/诊断、153项近空canw精确归因及独立复算；各字段≥99.5%、residual中位 .000293732/p99 .00181961 W/m²，表面/水量门通过。
+- [REAL_DATA_CHECKS](REAL_DATA_CHECKS.md)：4站完整30天、实际QC及LE/H指标；同输入canw46/5760超差，CN-Cha39/1440；全量归因仍不更改硬门。初表51项含输入量化差异，另保留为端到端结果。
+- [ENV_TESTS](ENV_TESTS.md)：EHPC两作业全输出逐位一致；HF实际Blackwell MIG2g.48gb与xuanze完整float32轨迹checksum一致；用户授权删除4个最旧ZeroGPU Space后完成独立演示。
+- [BENCHMARK](BENCHMARK.md)：最终物理N100000×48含校验中位JAX64 22.042122s、JAX32 3.227870s、CUDA .203611s；旧五档及N300000 CPU来源限制继续保留。
+- [最终pytest日志](gpu-results/m-final-pytest.log)及[源码/环境元数据](gpu-results/m-final-pytest-metadata.json)：GPU强制启用、147通过/2原H4失败，运行前后源码hash一致；[H6](gpu-results/m-final-options.json)为92通过、11预期未实现。
+- Windows git归档换行曾使build.sh失败，已添加`.gitattributes`固定shell/PBS为LF；[原失败](gpu-results/m-final-nvcc-crlf.log)和[原参数重编译成功](gpu-results/m-final-nvcc-lf-metadata.json)均保留，仍有1条既有未使用snow_flux警告。
+
+下方为K/J阶段历史交付，旧“全量原H4全绿才合并”等规则已由本轮Wang的M2指令取代；
+它们的原始数字和失败证据不删除。
 
 ## K阶段交付
 
@@ -52,7 +65,7 @@ K1仍红（569项取证完成，mixed割线+F仍未过原门且设备成本增�
 - [GPU_OCCUPANCY.md](GPU_OCCUPANCY.md)：256/128/64三配置全部通过严格输出门，计时波动较大，生产保留256。
 - 当前JAX双卡四组全部通过完整输出门；N100000/64800的x32加速为1.04682×/1.08759×、x64为1.62227×/1.74957×，均未达1.9×，详见[BENCHMARK.md](BENCHMARK.md)。手写CUDA双卡未测。
 
-## 待完成工作
+## K阶段历史后续清单（本轮处置见顶部）
 
 1. K1原混合割线原型仍不满足完整精度/成本条件；K3需单独修复土热轨迹及相变热容敏感性，不能把它们都归为相变残差或调阈值解决。
 2. N300000原监督器已完成并补表，六次checksum一致；保持CPU启动hash缺失的来源限制，不以这份旧物理基线冒充K2新源码性能。
