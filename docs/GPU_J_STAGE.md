@@ -55,6 +55,22 @@ J2 数值子任务占物理 GPU1，修改 `jax_core.py` / `column_kernel.cu`；
 
 ## 后续 heartbeat
 
+06:13 UTC更新：`c6bb8c6`已推送JAX四层根胁迫显式交叉归约。真实col2跨batch
+回归从失败变为逐位一致；64800域15个N1样本均通过1e-6门，原NumPy64域门仍红。
+最终JAX源码SHA256为`0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270`。
+J3温度胁迫先平方修复在旧JAX基线上54passed；GPU0正在对新JAX联合版本做最终矩阵。
+随后冻结源码，GPU0重新跑五档三后端checksum基准；GPU1做有限block配置实验及
+完整pytest/H6，最后两卡一起重跑x32/x64分片门。旧x32双卡100000和64800均失败，
+没有可接受的大规模双卡加速数；旧源JAX计时不自动代表新归约版本。
+CPU监督器2293032仍运行，N100000正在三次正式测量，N300000仍预热；不要重启。
+
+06:15 UTC更新：J3联合55项通过、nvcc零warning，已推送`3c190db`。GPU0新基准
+监督PID2510183，冻结目录`/home/lhwang/work/noahmp-phase3b/j2-v2-stable-gated-final`，
+进度`logs/j2-v2-stable-status.jsonl`，按JAX64/JAX32/CUDA五档执行。GPU1的三档
+block实验已完成且全部通过严格输出门，详见[GPU_OCCUPANCY.md](GPU_OCCUPANCY.md)；
+波动较大，保留生产256。GPU1现转全量pytest、H6及剩余H4精度报告，日志前缀
+`j5-final-`，其后释放供双卡复测。旧大规模双卡失败不能提前转绿。
+
 05:48 UTC更新：`f29d7ad`单行修复后，J2默认N1024×1/48全部诊断/状态逐位一致，
 H2/薄雪另5 passed。J3代理正式接手kernel/loader的35值分发；root准备有限block
 size实验，双卡仍需排队。原H4 NumPy64 residual差最大0.00250709，569项超过
