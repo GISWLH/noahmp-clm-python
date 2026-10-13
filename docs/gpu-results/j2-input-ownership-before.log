@@ -1,0 +1,52 @@
+CAUSAL CONTROL: current corrected physics; only owned-copy line restored to old ascontiguousarray behavior.
+F
+=================================== FAILURES ===================================
+____________ test_single_column_cuda_does_not_mutate_device_inputs _____________
+
+    def test_single_column_cuda_does_not_mutate_device_inputs():
+        """The second step formerly wrote into the caller's contiguous SoA view."""
+        try:
+            devices = cp.cuda.runtime.getDeviceCount()
+        except cp.cuda.runtime.CUDARuntimeError:
+            if os.environ.get("NOAHMP_REQUIRE_GPU") == "1":
+                raise
+            pytest.skip("CUDA device unavailable")
+        if devices == 0:
+            if os.environ.get("NOAHMP_REQUIRE_GPU") == "1":
+                pytest.fail("Actual CUDA device required")
+            pytest.skip("CUDA device unavailable")
+        state = ColumnState(tsoil=np.full(4, 268.0))
+        f0, i0 = column_state_to_vec(state)
+        u0 = np.array([forcing_to_vec(Forcing(1800., 268., .002, 2., 1e5,
+                                             100., 260., 2e-5))] * 3, dtype=np.float32)
+        inputs = (cp.asarray(f0[None], dtype=cp.float32),
+                  cp.asarray(i0[None], dtype=cp.int32), cp.asarray(u0))
+        before = tuple(cp.asnumpy(value) for value in inputs)
+        # N=1 is special: the transposed (70,1)/(33,1) views are C contiguous.
+        assert inputs[0].T.flags.c_contiguous and inputs[1].T.flags.c_contiguous
+        first = tuple(cp.asnumpy(value) for value in run_columns_cuda(*inputs))
+        for value, original in zip(inputs, before):
+>           np.testing.assert_array_equal(cp.asnumpy(value), original)
+E           AssertionError: 
+E           Arrays are not equal
+E           
+E           Mismatched elements: 17 / 70 (24.3%)
+E           First 5 mismatches are at indices:
+E            [0, 0]: 268.0000305175781 (ACTUAL), 268.0 (DESIRED)
+E            [0, 1]: 268.00006103515625 (ACTUAL), 268.0 (DESIRED)
+E            [0, 2]: 267.99993896484375 (ACTUAL), 268.0 (DESIRED)
+E            [0, 8]: 0.07181727886199951 (ACTUAL), 0.0 (DESIRED)
+E            [0, 9]: 0.07181714475154877 (ACTUAL), 0.0 (DESIRED)
+E           Max absolute difference among violations: 199.83972
+E           Max relative difference among violations: 0.6661324
+E            ACTUAL: array([[2.680000e+02, 2.680001e+02, 2.679999e+02, 2.680000e+02,
+E                   2.000000e-01, 2.000000e-01, 2.000000e-01, 2.000000e-01,
+E                   7.181728e-02, 7.181714e-02, 7.181770e-02, 7.181743e-02,...
+E            DESIRED: array([[2.680000e+02, 2.680000e+02, 2.680000e+02, 2.680000e+02,
+E                   2.000000e-01, 2.000000e-01, 2.000000e-01, 2.000000e-01,
+E                   0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00,...
+
+tests/test_gpu_cuda_inputs.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gpu_cuda_inputs.py::test_single_column_cuda_does_not_mutate_device_inputs
+1 failed in 0.33s

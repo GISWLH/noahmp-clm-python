@@ -1,0 +1,74 @@
+{
+  "source_sha256": {
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "4d5008604fe12a513b6ab2510a0985ce2c4ef36ceafb9f3af165688872eebd09",
+    "src/noahmp_clm/gpu/__init__.py": "f985bf137dfbf7411f2fcbd2df2dd953ca79815fae6b242d07d8f7df573d7a65",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "227d981dc8092b63fcae41b4e24f03add771e279c88d4500c21d22f3de972584",
+    "src/noahmp_clm/gpu/cuda/loader.py": "c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a",
+    "src/noahmp_clm/gpu/cupy_core.py": "da0ff919b86e773c113675b245b4a4b322c18d62b9186f397b39eb2b7abf931b",
+    "src/noahmp_clm/gpu/jax_core.py": "af3f9dd5c84970b58b771687fbe85b82ede196af2f1b0791bb08902669de20f0",
+    "src/noahmp_clm/gpu/pack.py": "624e4a8c83131f0e10fe96c22714d1e5b7a8786ce4cf3acf8893e57e2a892e37",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "e56b13921e5f138f216e8ead446e8ae66a2df4bc26d1c692c6e74dd31a7a49b2",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "b514c3b883bbb5c1e2ce25e95b48fcb556bd1fbdc3091919a303164a098f459f",
+    "benchmarks/check_closeout.py": "3c3e68a0c69e14f57ef27f4e2b3a64f0cc101d83d91afbca0d677d755eec6ab4",
+    "benchmarks/closeout_criteria.json": "7e6f111df600eae4fa979906e20f9585bcc49170b9ef9db1b84184b2440d6675"
+  },
+  "instrument_sha256": "4ccb21a183ef3e53e5bbd85f507aef28b3a46c49e3cdaaa5ef2ef7b90b97e4c1",
+  "trajectories_sha256": "223c0d0123c38b74bdb2c91265646e028fb1a09fca28eae3c7b8b49ac13317bd",
+  "outliers": 51,
+  "by_site": {
+    "CN-Cng": 3,
+    "CN-HaM": 2,
+    "CN-Qia": 4,
+    "CN-Cha": 42
+  },
+  "by_cause": {
+    "canopy_drying_relative_sensitivity": 42,
+    "canopy_exhaustion_roundoff": 9
+  },
+  "max_abs_outlier_error_m": 2.6531006390255723e-08,
+  "max_canw_in_outliers_m": 2.346755641158114e-05,
+  "term_max_abs_m": {
+    "float32_evaluation_roundoff_m": 1.6158890122231623e-10,
+    "temperature_path_m": 2.1025866928396295e-08,
+    "forcing_quantization_m": 1.9659289593378787e-10,
+    "previous_state_path_m": 5.903261003974375e-09,
+    "reference_reconstruction_m": 1.6940658945086007e-21,
+    "reconstruction_error_m": 0.0
+  },
+  "numeric_thresholds_passed": false,
+  "canw": {
+    "elements": 5760,
+    "failed_elements": 51,
+    "fraction_passed": 0.9911458333333333,
+    "finite": true,
+    "max_abs": 9.424830467734575e-08,
+    "mean_signed_error": -2.7170035823801554e-09,
+    "p99_abs_error": 4.2277147711713795e-08,
+    "comparison_unit": "m",
+    "passed": false,
+    "failure_groups": {
+      "CN-Cng": 3,
+      "CN-HaM": 2,
+      "CN-Qia": 4,
+      "CN-Cha": 42
+    }
+  },
+  "attribution_changes_acceptance": false,
+  "interpretation": "All failed values reconstruct as canopy drying/exhaustion, including one rainy step; pure relative sensitivity near zero. Explaining the errors does not override the preregistered 99.5% gate.",
+  "all_reference_reconstructed": true,
+  "all_differences_reconstructed": true
+}

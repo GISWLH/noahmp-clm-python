@@ -1,0 +1,40 @@
+F
+=================================== FAILURES ===================================
+__________________ test_jax_float64_parity_8_columns_48_steps __________________
+
+    def test_jax_float64_parity_8_columns_48_steps() -> None:
+        states, forcings = _cases()
+        keys = ["ts", "rnet", "h", "le", "g", "et_mm", "prcp_mm", "runoff_mm", "melt_mm", "swe", "canw", "residual"]
+        for state, forcing in zip(states, forcings):
+            fvec, ivec = column_state_to_vec(state)
+            forcing_vec = np.asarray([forcing_to_vec(item) for item in forcing])
+            final_f, final_i, jax_diag = jax.jit(_run_one_jax)(fvec, ivec, forcing_vec)
+            numpy_diag, numpy_state = run_column(state, forcing)
+            expected = np.asarray([[item[key] for key in keys] for item in numpy_diag])
+            actual = np.asarray(jax_diag)
+            # 雪/冻土字段的离散层 mask 与固定三层布局允许 1e-4；其余字段是阶段 C 的 1e-6 门槛。
+>           np.testing.assert_allclose(actual[:, :7], expected[:, :7], rtol=1e-6, atol=1e-6)
+E           AssertionError: 
+E           Not equal to tolerance rtol=1e-06, atol=1e-06
+E           
+E           Mismatched elements: 140 / 336 (41.7%)
+E           First 5 mismatches are at indices:
+E            [0, 1]: 5.680892515877205 (ACTUAL), 5.680862313131833 (DESIRED)
+E            [0, 2]: 5.433507731902975 (ACTUAL), 5.433652553379131 (DESIRED)
+E            [0, 4]: 0.24738478397387756 (ACTUAL), 0.24738865089927317 (DESIRED)
+E            [1, 1]: 1.8942004235786107 (ACTUAL), 1.8941414966977224 (DESIRED)
+E            [1, 2]: 1.8488231620379858 (ACTUAL), 1.848986400420456 (DESIRED)
+E           Max absolute difference among violations: 0.00020299
+E           Max relative difference among violations: 9.0814923e-05
+E            ACTUAL: array([[2.684448e+02, 5.680893e+00, 5.433508e+00, 0.000000e+00,
+E                   2.473848e-01, 7.594048e-05, 1.800000e+01],
+E                  [2.681651e+02, 1.894200e+00, 1.848823e+00, 0.000000e+00,...
+E            DESIRED: array([[2.684448e+02, 5.680862e+00, 5.433653e+00, 0.000000e+00,
+E                   2.473887e-01, 7.594048e-05, 1.800000e+01],
+E                  [2.681651e+02, 1.894141e+00, 1.848986e+00, 0.000000e+00,...
+
+tests/test_gpu_parity.py:73: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gpu_parity.py::test_jax_float64_parity_8_columns_48_steps
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 2.96s

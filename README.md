@@ -2,10 +2,18 @@
 
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
+**状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
+CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
+四站真实数据同量化输入 canw 通过率99.2014%，仍未达到原99.5%门；
+Wang明确接受这项已量化差异，见[验收记录](docs/GPU_ACCEPTANCE.md)。
+原H4/K3红灯完整保留，见[收尾数字](docs/GPU_CLOSEOUT_RESULTS.md)和
+[真实数据结果](docs/REAL_DATA_CHECKS.md)。冻土敏感应用建议用 float64 / JAX-x64。
+
+计算资源、SSH 入口及 CPU/GPU 测试方法见 [environment.md](environment.md)，包含 EHPC、xuanze 和 Hugging Face ZeroGPU 的核验记录。
+
 核心设计只有一条：**格点完全独立**。每一个 1D 陆面柱（土壤—积雪—冠层）的状态全部封装在
 `ColumnState` 里，任意两个柱之间没有任何水平耦合。批量驱动只是把 N 个独立的柱放在一起跑，
-这个"柱"维度就是将来 `jax.vmap` / CUDA kernel 要向量化的轴——现在用普通 Python 循环，
-以后整段替换，不需要改物理代码。
+这个“柱”维度分别由普通 Python 循环、`jax.vmap` 和 CUDA kernel 并行执行。
 
 ## 这是"普通版本"，不是翻译版本
 
@@ -16,21 +24,24 @@ Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
   - CLM5 / CTSM（ESCOMP/CTSM，BSD-3-Clause；Lawrence et al., 2019）
 - 上游许可归上游，本仓库新增代码采用 MIT 许可。
 
-## v0.1 实现了什么
+## 阶段 1 实现了什么
 
 单个时间步（默认 30 分钟）内按 Noah-MP 风格的顺序求解：
 
 1. 降水按气温分配为雨/雪（Jordan 1991 简化）；冠层截留（容量 ∝ LAI）
-2. 积雪：单层 bulk 雪盖，反照率衰减，融化
-3. 冠层：big-leaf，Jarvis 型气孔阻抗（光/温/水汽压差/土壤水胁迫），Penman–Monteith 蒸腾
+2. 积雪：最多 3 层的 bulk 雪盖，BATS/CLASS 反照率，五种雪导热率，压实、融化
+3. 冠层：big-leaf，Jarvis 或 Ball–Berry 气孔阻抗（经验光合曲线），Penman–Monteith 蒸腾
 4. 地表能量平衡：对地表温度 `Ts` 做割线迭代，使 `Rnet − H − LE − G = 0`
 5. 土壤水热：4 层（0.1 / 0.3 / 0.6 / 1.0 m，与 Noah-MP 默认一致）
-   - 热传导：Crank–Nicolson 隐式求解（Thomas 算法），步长无条件稳定
+   - 热传导：冻结系数的后向 Euler 隐式求解（Thomas 算法）；整柱边界耦合不保证任意步长下稳定
    - 水分：入渗（fill-and-spill）+ Campbell/Clapp-Hornberger 型排水 + 根系吸水
 6. 批量驱动 `run_columns`：N 个柱各自独立推进，可直接对照单柱结果
+7. `PhysicsOptions` 对齐 Noah-MP v5.0 `ConfigVarType.F90` 的 `Opt*` 配置；阶段 1
+   已实现降水相态 1–3、MOST/Chen97、Ball–Berry/Jarvis、Noah/CLM/SSiB
+   胁迫、四种地面阻抗、BATS/CLASS 雪反照率、冻土相变、TOPMODEL/BATS/自由排水径流。
 
-v0.1 明确**没有**的东西（见 ROADMAP.md）：冻土过程、多物理选项开关、CLM 的
-landunit/PFT 层级、与 Noah-MP 参考运行的定量对标。
+阶段 1 仍不包含 SNICAR、湿球降水相态（OptRainSnowPartition=5）、完整 Farquhar
+光合、作物/灌溉/湿地/冰川和横向地下水；这些范围在 ROADMAP.md 中列为后续工作。
 
 ## 快速开始
 
@@ -39,6 +50,69 @@ pip install -e ".[dev]"
 python examples/run_single_column.py     # 5 天合成强迫，打印逐日 ET/径流/地温
 pytest                                   # 能量闭合、水平衡、批量独立性测试
 ```
+
+## 阶段 3：GPU 迁移
+
+GPU 代码全部位于 `src/noahmp_clm/gpu/`，普通 NumPy64 版是独立数值对照基准。
+状态先由 `gpu.pack` 编码为固定长度 `fvec/ivec`，JAX 后端提供
+`step_column_jax` 和 `run_columns_jax`（时间 `lax.scan`、柱轴 `vmap`）；
+`gpu/cuda/` 保存 SoA CUDA kernel 源码和延迟 loader。
+
+```bash
+python3 -m venv ~/venvs/noahmp-phase3b
+source ~/venvs/noahmp-phase3b/bin/activate
+pip install 'jax[cuda12]' cupy-cuda12x
+pip install -e '.[dev]'
+unset LD_LIBRARY_PATH  # xuanze 登录环境的系统 CUDA 库会干扰 pip CUDA 库
+export CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda JAX_ENABLE_X64=true
+export CUDA_PATH=/usr/local/cuda-12.4
+export PATH="$CUDA_PATH/bin:$PATH"
+export XLA_PYTHON_CLIENT_PREALLOCATE=false PYTHONPATH=src
+python -c "import jax; print(jax.devices())"
+NOAHMP_REQUIRE_GPU=1 python -m pytest tests/test_gpu_parity.py -q
+python benchmarks/bench_gpu.py --sizes 100 1000 10000 100000 300000 --steps 48
+```
+
+历史性能表属于 **K2修复前** 的冻结源（JAX `0e296691…`、CUDA `7640b062…`），
+不能标为当前物理源码性能。`N=100000 × 48` 三预热/三正式的中位秒数如下：
+
+| NumPy单核 | JAX x64 | JAX x32 | CUDA x32 |
+|---:|---:|---:|---:|
+| 3616.904161 | 21.355447 | 3.807727 | 0.196976 |
+
+GPU计时包含同步计算、完整输出归约、逐值校验和host回读；CPU仅逐柱消费标量
+checksum。N300000单核基线已收齐，中位10272.657723秒；CPU启动时未记录加载源码hash，
+来源限制保留。本轮最终 `b954d90` 物理源码的N100000复测单列于
+[BENCHMARK.md](docs/BENCHMARK.md)，不拿旧CPU基线拼出新源码加速比。
+`.[gpu]` 只安装CPU JAX，Linux CUDA安装见[GPU_ENV.md](docs/GPU_ENV.md)。
+
+本轮 `b954d90` 最终物理源码、同样三预热/三正式、同样完整输出校验口径：
+N100000×48的中位数为 **JAX x64 22.042122 s / JAX x32 3.227870 s /
+CUDA 0.203611 s**。所有计时样本输出门通过；原H4与M4失败仍单独报告。
+
+JAX64混合门、CUDA/JAX32同精度门通过，原NumPy64 H4仍失败；M2合成门各字段
+通过率≥99.5%，residual中位 .000293732、p99 .00181961 W/m²。K2四后端365天
+可靠性已通过；K3原域门仍有5565/64800柱状态超差（8.58796%），全部归因于
+已记录的冻土/厚雪下温度轨迹误差。融尽后仍有222784.419 J/m²热量路由缺口，
+表面闭合不等于整柱焓守恒。范围、原始计时和失败证据见
+[GPU_SUMMARY.md](docs/GPU_SUMMARY.md)、
+[BENCHMARK.md](docs/BENCHMARK.md)、[GPU_BLOCKERS.md](docs/GPU_BLOCKERS.md)。
+
+各环境运行方式：
+
+```bash
+# EHPC：共享home中，先串行/多进程，再跨两节点MPI
+qsub benchmarks/ehpc/serial_pool.pbs
+qsub benchmarks/ehpc/mpi_two_nodes.pbs
+
+# xuanze：使用上述CUDA环境；输出目录必须是新的
+python benchmarks/check_closeout.py --directory outputs/m2-recheck
+python benchmarks/bench_gpu.py --sizes 100000 --steps 48 --backends jax64 jax32 cuda
+```
+
+EHPC脚本与环境变量说明见[EHPC README](benchmarks/ehpc/README.md)；
+HF ZeroGPU演示和客户端调用见[Space说明](examples/hf_zerogpu/README.md)。
+各环境的实测/未测边界、硬件、软件、耗时与checksum见[ENV_TESTS](docs/ENV_TESTS.md)。
 
 最小调用示例：
 
@@ -65,7 +139,13 @@ src/noahmp_clm/
         canopy.py    # 气孔阻抗、Penman-Monteith
         energy.py    # 地表能量平衡迭代、湍流通量
         soil.py      # 土壤水热求解器
-        snow.py      # 单层积雪
+        snow.py      # 多层积雪、反照率、压实与导热
+    options.py      # Noah-MP v5.0 Opt* 配置值对象
+    gpu/
+        pack.py      # 定长状态 ABI
+        jax_core.py  # JAX jit/vmap/scan 物理链路
+        cupy_core.py # CuPy 正确性锚点
+        cuda/        # 35值分发 SoA CUDA kernel；同精度门通过，原NumPy64 H4仍失败
 examples/run_single_column.py
 tests/test_column.py
 ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 → JAX/CUDA
@@ -73,10 +153,39 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 
 ## 验证状态
 
-`pytest` 覆盖三条硬约束（每次提交都应通过）：
+`pytest` 覆盖四条硬约束（每次提交都应通过），并覆盖阶段 1 各物理选项：
 
 - **能量闭合**：每步 `|Rnet − H − LE − G| < 0.5 W/m²`
 - **水平衡**：`降水 = ET + 径流 + Δ蓄水`，误差 `< 1e-9 m`
-- **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
+- **格点独立**：普通版测试范围内，批量跑 N 个柱与逐个单柱跑的结果逐位一致；GPU各shape另设数值回归
+- **雪累积/消融**：冷期 SWE 增长，暖期融化减少
 
-与 Noah-MP v5.0 离线参考运行的定量对标尚未开始（ROADMAP 阶段 1）。
+当前 Linux GPU 验收结果：
+
+- K2生产源全量 `python -m pytest -q -s`：**147 passed, 2 failed, 0 skipped**；两项失败分别为 CUDA N=1024 的 1 步与 48 步原NumPy64 H4，保留原容差，未隐藏失败。本轮最终复验日志见[GPU_SUMMARY](docs/GPU_SUMMARY.md)。
+- JAX-CUDA 的 H2 混合门和相关回归 **7 passed**；H6 已实现物理 35 个选项取值通过，18 个占位字段的 55 个值仅验证无效应，另有 2 个单值字段及 11 个未实现值明确记录。
+- 当前共同源码8场景一日 JAX x32/x64 最大累计偏差：ET **9.64719e-6 mm**、感热 **2.15644e-5 MJ/m²**；相对差均小于1e-4，不能外推年度或原H4。详细范围见 [GPU.md](docs/GPU.md)。
+
+阶段 3a 的 Windows 历史验收：
+
+- `python -m pytest -q`：**36 passed, 4 skipped**（基础环境没有 JAX/CuPy，Windows CUDA kernel 标记未实测）；`python -m compileall -q src examples tests benchmarks` 通过。
+- 35 个已实现选项组合（降水 3、地表拖曳 2、气孔 2、胁迫 3、地面阻抗 4、雪反照率 2、雪导热 5、压实 2、冻土渗透率 2、径流表层/地下各 4）均通过有限值、入口不变性和能量诊断检查；雪方案冷暖转换的 13 个组合水量误差均小于 `5e-16 m`，最大能量残差小于 `1e-3 W/m²`。
+- `python examples/run_single_column.py` 和 `python examples/parity_noahmp.py --days 5` 均可运行；默认 5 日示例最大能量残差为 `9.538e-4 W/m²`。
+
+### NCAR/noahmp v5.0 对照
+
+工作区用 NCAR/noahmp v5.0 `src/` 的 **135 个 Fortran 模块全部编译通过**（Windows
+conda-forge Flang 19.1.7；SNICAR 输入模块使用 netCDF Fortran module），并编译运行了
+`AtmosForcingMod` 单柱烟囱测试。以与官方相同的 IEEE single-precision 温度输入，Jordan
+(1991)、BATS 和冰点阈值在 `Tair−273.15 = −1, 0, 1, 2, 3 K` 的 15 个输出上与官方
+`FrozenPrecipFrac`/`RainfallRefHeight` 一致，最大冻结比例差为 `1.22e-6`。恰好冰点的
+双精度/单精度舍入差会改变阈值分支，但不是方程差异。这项测试覆盖 `AtmosForcingMod.F90`
+的阶段 1 降水分配入口；其余日尺度 ET/感热/地温需要 HRLDAS 的站点强迫和参数表。
+
+`examples/parity_noahmp.py` 接受官方单柱 CSV（列：`et_mm,h_wm2,tsoil1_k`）并报告日偏差：
+
+```bash
+python examples/parity_noahmp.py --reference official_daily.csv
+```
+
+没有官方 CSV 时脚本仍生成 Python 日诊断，但不会伪造官方偏差数值。

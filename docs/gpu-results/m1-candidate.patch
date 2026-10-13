@@ -1,0 +1,623 @@
+diff --git a/src/noahmp_clm/driver.py b/src/noahmp_clm/driver.py
+index 471fca2..7af9739 100644
+--- a/src/noahmp_clm/driver.py
++++ b/src/noahmp_clm/driver.py
+@@ -67,18 +67,22 @@ def step_column(state: ColumnState, f: Forcing):
+         albedo, emiss = s.snow_albedo, 0.99
+         snow_response = SN.snow_surface_response(s, dt)
+ 
+-        def F(ts):
+-            rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+-            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+-            h = rho * CP * ce_ts * (ts - f.tair)
+-            g = SN.coupled_snow_flux(ts, snow_response)
++        def F(delta):
++            ts = f.tair + delta
++            rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * E.temperature_fourth_delta(f.tair, delta))
++            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag, temperature_delta=delta)
++            h = rho * CP * ce_ts * delta
++            g = max(snow_response[1] * ((f.tair - snow_response[0]) + delta),
++                       snow_response[2] * ((f.tair - 273.15) + delta))
+             return rnet - h - g
+ 
+-        ts = E.secant_solve(F, f.tair, f.tair + 1.0)
+-        rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+-        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+-        h = rho * CP * ce * (ts - f.tair)
+-        g_snow = SN.coupled_snow_flux(ts, snow_response)
++        delta = E.secant_solve(F, 0.0, 1.0, origin=f.tair)
++        ts = f.tair + delta
++        rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * E.temperature_fourth_delta(f.tair, delta))
++        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag, temperature_delta=delta)
++        h = rho * CP * ce * delta
++        g_snow = max(snow_response[1] * ((f.tair - snow_response[0]) + delta),
++                       snow_response[2] * ((f.tair - 273.15) + delta))
+         melt = SN.apply_snow_heat(s, dt, g_snow)
+         le_g = le_c = 0.0
+         ecan_m = esoil_m = 0.0
+@@ -99,11 +103,12 @@ def step_column(state: ColumnState, f: Forcing):
+         canw_cap_rate = s.canw * LV * RHO_W / dt          # 截留水允许的最大蒸发功率
+         smc0_cap_rate = s.smc[0] * dz1 * LV * RHO_W / dt  # 表层水允许的最大蒸发功率
+ 
+-        def F(ts):
+-            rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+-            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+-            h = rho * CP * ce_ts * (ts - f.tair)
+-            dqs = E.qsat(ts, f.ps) - f.qair
++        def F(delta):
++            ts = f.tair + delta
++            rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * E.temperature_fourth_delta(f.tair, delta))
++            ce_ts = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag, temperature_delta=delta)
++            h = rho * CP * ce_ts * delta
++            dqs = E.qsat_delta(f.tair, delta, f.ps) - f.qair
+             ra_ts = 1.0 / max(ce_ts, 1.0e-6)
+             le_g = min(
+                 beta * rho * LV * max(0.0, dqs) / (ra_ts + rs_ground),
+@@ -111,14 +116,15 @@ def step_column(state: ColumnState, f: Forcing):
+             )
+             le_c = min(rho * LV * ce_ts * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
+                        canw_cap_rate)
+-            g = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
++            g = kt1 * ((f.tair - s.tsoil[0]) + delta) / (0.5 * dz1)
+             return rnet - h - le_g - le_c - tr_le - g
+ 
+-        ts = E.secant_solve(F, f.tair, f.tair + 1.0)
+-        rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * ts ** 4)
+-        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag)
+-        h = rho * CP * ce * (ts - f.tair)
+-        dqs = E.qsat(ts, f.ps) - f.qair
++        delta = E.secant_solve(F, 0.0, 1.0, origin=f.tair)
++        ts = f.tair + delta
++        rnet = (1.0 - albedo) * f.swdown + emiss * (f.lwdown - SIGMA * E.temperature_fourth_delta(f.tair, delta))
++        ce = exchange_velocity(f, s.z0m, ts, s.options.OptSurfaceDrag, temperature_delta=delta)
++        h = rho * CP * ce * delta
++        dqs = E.qsat_delta(f.tair, delta, f.ps) - f.qair
+         ra = 1.0 / max(ce, 1.0e-6)
+         le_g = min(
+             beta * rho * LV * max(0.0, dqs) / (ra + rs_ground),
+@@ -126,7 +132,7 @@ def step_column(state: ColumnState, f: Forcing):
+         )
+         le_c = min(rho * LV * ce * dqs * min(1.0, s.canw / max(1e-9, 0.2 * canmax)),
+                    canw_cap_rate)
+-        g_soil = kt1 * (ts - s.tsoil[0]) / (0.5 * dz1)
++        g_soil = kt1 * ((f.tair - s.tsoil[0]) + delta) / (0.5 * dz1)
+         esoil_m = le_g / LV * dt / RHO_W
+         ecan_m = le_c / LV * dt / RHO_W
+         s.canw = max(0.0, s.canw - ecan_m)
+diff --git a/src/noahmp_clm/gpu/cuda/column_kernel.cu b/src/noahmp_clm/gpu/cuda/column_kernel.cu
+index 47d41e7..76c3e17 100644
+--- a/src/noahmp_clm/gpu/cuda/column_kernel.cu
++++ b/src/noahmp_clm/gpu/cuda/column_kernel.cu
+@@ -44,7 +44,7 @@ __device__ void stability(float zeta, float* pm, float* ph) {
+     *ph = 2.0f * logf((1.0f + x*x) / 2.0f);
+ }
+ // 对应普通版: surface_drag.most_exchange_velocity。固定20次，收敛后冻结。
+-__device__ float exchange(const float* u, float z0, float ts, int option=1) {
++__device__ float exchange_delta(const float* u, float z0, float delta, int option=1) {
+     // 对应普通版: surface_drag.exchange_velocity。Chen/bulk option 2.
+     if (option==2) {
+         float rough=clip(z0,1.0e-5f,5.0f);
+@@ -63,7 +63,7 @@ __device__ float exchange(const float* u, float z0, float ts, int option=1) {
+             float dm = fmaxf(1.0f, lm-pm), dh = fmaxf(1.0f, lh-ph);
+             float us = 0.4f * wind / dm;
+             float cn = fmaxf(1.0e-6f, 0.16f * wind / (dm*dh));
+-            float h = rho * CP * cn * (ts-u[1]);
++            float h = rho * CP * cn * delta;
+             // Python precomputes KARMAN*GRAVITY before conversion to f32;
+             // match that constant and the ustar**3 multiplication tree.
+             float on = fabsf(h) < 1.0e-8f ? 1.0e30f
+@@ -76,6 +76,18 @@ __device__ float exchange(const float* u, float z0, float ts, int option=1) {
+     }
+     return ce;
+ }
++__device__ float exchange(const float* u, float z0, float ts, int option=1) {
++    return exchange_delta(u,z0,ts-u[1],option);
++}
++__device__ float qsat_delta(float tair, float delta, float ps) {
++    float tc=(tair-TF)+delta;
++    float exponent=expf(17.67f*tc/(tc+243.5f));
++    return (0.622f*611.2f)*exponent/fmaxf(1.0f,ps-(0.378f*611.2f)*exponent);
++}
++__device__ float temperature_fourth_delta(float tair,float delta) {
++    float t2=tair*tair;
++    return t2*t2+delta*(4.0f*tair*t2+delta*(6.0f*t2+delta*(4.0f*tair+delta)));
++}
+ // 对应普通版: frozen_soil._niu_yang_liquid。Niu & Yang (2006)。
+ __device__ float liquid(float smc, float t, const float* s, int option=1) {
+     float total = fmaxf(0.0f, smc);
+@@ -234,11 +246,13 @@ __device__ float snow_heat(float* s, int* count, float dt, float top_flux, int o
+     for (int j=0;j<2;++j) conduct[j]=j+1<*count
+         ? (2.0f/(1.0f/k[j]+1.0f/k[j+1]))/fmaxf(0.5f*(depth[j]+depth[j+1]),1.0e-4f) : 0.0f;
+     float b0=cap[0]+conduct[0], c0=-conduct[0]/safe_den(b0);
+-    float d0=(cap[0]*s[19]+top_flux)/safe_den(b0);
++    float q01=conduct[0]*(s[20]-s[19]), q12=conduct[1]*(s[21]-s[20]);
++    float d0=(top_flux+q01)/safe_den(b0);
+     float b1=cap[1]+conduct[0]+conduct[1]+conduct[0]*c0;
+-    float c1=-conduct[1]/safe_den(b1), d1=(cap[1]*s[20]+conduct[0]*d0)/safe_den(b1);
++    float c1=-conduct[1]/safe_den(b1), d1=((-q01+q12)+conduct[0]*d0)/safe_den(b1);
+     float b2=cap[2]+conduct[1]+conduct[1]*c1;
+-    t[2]=(cap[2]*s[21]+conduct[1]*d1)/safe_den(b2); t[1]=d1-c1*t[2]; t[0]=d0-c0*t[1];
++    t[2]=(-q12+conduct[1]*d1)/safe_den(b2); t[1]=d1-c1*t[2]; t[0]=d0-c0*t[1];
++    for(int j=0;j<3;++j) t[j]+=s[19+j];
+     float melt=0.0f; int kept=0;
+     for (int j=0;j<*count;++j) {
+         float amount=fminf(s[16+j],fmaxf(t[j]-TF,0.0f)*630000.0f*depth[j]/(LF*RW));
+@@ -280,60 +294,60 @@ __device__ float coupled_snow_flux(float ts, SnowBoundary b) {
+ }
+ struct Energy { float rn,h,le,g,ecan,esoil,residual; };
+ // 对应普通版: driver.step_column。LE包含土壤蒸发、截留蒸发和PM蒸腾。
+-__device__ Energy energy(float ts, const float* s, const float* u, bool snow, float transp,
++__device__ Energy energy_delta(float delta, const float* s, const float* u, bool snow, float transp,
+                          int drag=1, int ground=4, int water=1, int conductivity=1,
+                          SnowBoundary boundary={0.0f,0.0f,0.0f}) {
+     Energy e;
+     float emiss=snow ? 0.99f : s[35], albedo=snow ? s[28] : s[34];
+-    float t2=ts*ts, ce=exchange(u,s[33],ts,drag), rho=air_density(u);
++    float ce=exchange_delta(u,s[33],delta,drag), rho=air_density(u);
+     // jax_core uses SIGMA * ts**4: square twice before scaling, so the
+     // float32 rounding tree does not depend on left-associated products.
+-    e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*(t2*t2));
+-    e.h=rho*CP*ce*(ts-u[1]); e.ecan=0.0f; e.esoil=0.0f; e.le=0.0f;
++    e.rn=(1.0f-albedo)*u[5]+emiss*(u[6]-SIGMA*temperature_fourth_delta(u[1],delta));
++    e.h=rho*CP*ce*delta; e.ecan=0.0f; e.esoil=0.0f; e.le=0.0f;
+     if (snow) {
+         if(boundary.surface_k==0.0f) boundary=snow_response(s,u[0],conductivity);
+-        e.g=coupled_snow_flux(ts,boundary); e.residual=e.rn-e.h-e.g;
++        e.g=fmaxf(boundary.effective_k*((u[1]-boundary.reference)+delta),boundary.surface_k*((u[1]-TF)+delta)); e.residual=e.rn-e.h-e.g;
+     }
+     else {
+-        float dq=qsat(ts,u[4])-u[2], ra=1.0f/fmaxf(ce,1.0e-6f);
++        float dq=qsat_delta(u[1],delta,u[4])-u[2], ra=1.0f/fmaxf(ce,1.0e-6f);
+         float eg=fminf(beta(s[4],s,water)*rho*LV*fmaxf(0.0f,dq)/(ra+ground_resistance(s,ground)),s[4]*DZ[0]*LV*RW/u[0]);
+         float ec=fminf(rho*LV*ce*dq*fminf(1.0f,s[30]/fmaxf(1.0e-9f,0.2f*0.5e-3f*s[31])),s[30]*LV*RW/u[0]);
+         e.esoil=eg/LV*u[0]/RW; e.ecan=ec/LV*u[0]/RW;
+-        e.le=eg+ec+transp; e.g=soil_k(s[4],s)*(ts-s[0])/(0.5f*DZ[0]);
++        e.le=eg+ec+transp; e.g=soil_k(s[4],s)*((u[1]-s[0])+delta)/(0.5f*DZ[0]);
+         // Match the reference/JAX root function's ordered subtractions.
+         e.residual=e.rn-e.h-eg-ec-transp-e.g;
+     }
+     return e;
+ }
+ // 对应普通版: energy.secant_solve。固定25次割线，失败时扫描/二分回退。
+-__device__ float surface_temperature(const float* s, const float* u, bool snow, float transp,
++__device__ float surface_temperature_delta(const float* s, const float* u, bool snow, float transp,
+                                     int drag=1, int ground=4, int water=1, int conductivity=1) {
+     SnowBoundary boundary=snow ? snow_response(s,u[0],conductivity) : SnowBoundary{0.0f,0.0f,0.0f};
+-    float x0=u[1], x1=u[1]+1.0f, f0=energy(x0,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
++    float x0=0.0f, x1=1.0f, f0=energy_delta(x0,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
+     float best=x0, best_abs=fabsf(f0); bool stopped=false, converged=false;
+     for (int it=0;it<25;++it) {
+         if (!stopped) {
+-            float f1=energy(x1,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
++            float f1=energy_delta(x1,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
+             if (fabsf(f1)<best_abs) { best=x1; best_abs=fabsf(f1); }
+             if (fabsf(f1)<1.0e-3f) { stopped=true; converged=true; }
+             else if (fabsf(f1-f0)<1.0e-12f) stopped=true;
+-            else { float x2=clip(x1-f1*(x1-x0)/(f1-f0),200.0f,330.0f); x0=x1; f0=f1; x1=x2; }
++            else { float x2=clip(x1-f1*(x1-x0)/(f1-f0),200.0f-u[1],330.0f-u[1]); x0=x1; f0=f1; x1=x2; }
+         }
+     }
+     if (converged) return x1;
+-    float previous=energy(200.0f,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
++    float previous=energy_delta(200.0f-u[1],s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
+     int bracket=-1;
+     for (int j=0;j<130;++j) {
+-        float next=energy(201.0f+j,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
++        float next=energy_delta((201.0f+j)-u[1],s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
+         if (bracket<0 && isfinite(previous) && isfinite(next) && previous*next<=0.0f) bracket=j;
+         previous=next;
+     }
+     if (bracket<0) return best;
+-    float lo=200.0f+bracket, hi=lo+1.0f, flo=energy(lo,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual, result=lo;
++    float lo=(200.0f+bracket)-u[1], hi=lo+1.0f, flo=energy_delta(lo,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual, result=lo;
+     bool done=false;
+     for (int j=0;j<40;++j) {
+         if (!done) {
+-            float mid=0.5f*(lo+hi), fm=energy(mid,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
++            float mid=0.5f*(lo+hi), fm=energy_delta(mid,s,u,snow,transp,drag,ground,water,conductivity,boundary).residual;
+             if (fabsf(fm)<1.0e-3f) { result=mid; done=true; }
+             else if (flo*fm<=0.0f) hi=mid;
+             else { lo=mid; flo=fm; }
+@@ -422,10 +436,10 @@ __device__ void soil_heat(float* s, float dt, float flux, int supercool=1) {
+     for (int j=0;j<4;++j) {
+         float up=j>0 ? conduct[j-1] : 0.0f, down=j<3 ? conduct[j] : 0.0f;
+         a[j]=-up; c[j]=-down; b[j]=cap[j]*DZ[j]/dt+up+down;
+-        rhs[j]=cap[j]*DZ[j]/dt*s[j]+(j==0 ? flux : 0.0f);
++        rhs[j]=(j>0 ? up*(s[j-1]-s[j]) : flux)+(j<3 ? down*(s[j+1]-s[j]) : 0.0f);
+     }
+     thomas4(a,b,c,rhs,out);
+-    for (int j=0;j<4;++j) { s[j]=out[j]; s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s,supercool)); }
++    for (int j=0;j<4;++j) { s[j]+=out[j]; s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s,supercool)); }
+ }
+ // 对应普通版: precip.partition_precipitation。Jordan, BATS, freezing threshold.
+ __device__ float snow_fraction(float tair, int option=1) {
+@@ -475,8 +489,9 @@ __device__ void step_selected(float* s, int* count, const float* u, float* diag,
+     if (tr_m>available) tr*=available/fmaxf(tr_m,1.0e-12f);
+     tr_m=tr/LV*u[0]/RW;
+     bool is_snow=s[26]>1.0e-4f;
+-    float ts=surface_temperature(s,u,is_snow,tr,drag,ground,water,conductivity);
+-    Energy e=energy(ts,s,u,is_snow,tr,drag,ground,water,conductivity); float melt=0.0f;
++    float delta=surface_temperature_delta(s,u,is_snow,tr,drag,ground,water,conductivity);
++    float ts=u[1]+delta;
++    Energy e=energy_delta(delta,s,u,is_snow,tr,drag,ground,water,conductivity); float melt=0.0f;
+     if (is_snow) melt=snow_heat(s,count,u[0],e.g,conductivity);
+     else s[30]=fmaxf(0.0f,s[30]-e.ecan);
+     float et, runoff=soil_water(s,u,through+melt,tr_m,e.esoil,&et,permeability,supercool,surface,subsurface);
+diff --git a/src/noahmp_clm/gpu/jax_core.py b/src/noahmp_clm/gpu/jax_core.py
+index ea59d6a..9c583bc 100644
+--- a/src/noahmp_clm/gpu/jax_core.py
++++ b/src/noahmp_clm/gpu/jax_core.py
+@@ -93,6 +93,17 @@ def _qsat(t: jax.Array, ps: jax.Array) -> jax.Array:
+     return 0.622 * es / jnp.maximum(1.0, ps - 0.378 * es)
+ 
+ 
++def _qsat_delta(tair, delta, ps):
++    tc = (tair - 273.15) + delta
++    exponent = jnp.exp(17.67 * tc / (tc + 243.5))
++    return (0.622 * 611.2) * exponent / jnp.maximum(1.0, ps - (0.378 * 611.2) * exponent)
++
++
++def _temperature_fourth_delta(tair, delta):
++    t2 = tair * tair
++    return t2 * t2 + delta * (4.0 * tair * t2 + delta * (6.0 * t2 + delta * (4.0 * tair + delta)))
++
++
+ def _air_density(tair: jax.Array, qair: jax.Array, ps: jax.Array) -> jax.Array:
+     """对应普通版: energy.air_density。"""
+     return ps / (RD * tair * (1.0 + 0.61 * qair))
+@@ -134,12 +145,14 @@ def _most_exchange_velocity(
+     ps: jax.Array,
+     z0m: jax.Array,
+     surface_temperature: jax.Array,
++    temperature_delta=None,
+ ) -> jax.Array:
+     """对应普通版: surface_drag.most_exchange_velocity。
+ 
+     固定 20 次 ``lax.fori_loop``；达到普通版相对变化阈值后冻结状态，
+     保持早停的数值语义而不改变编译期循环上限。
+     """
++    delta = surface_temperature - tair if temperature_delta is None else temperature_delta
+     wind = jnp.maximum(wind, 0.3)
+     z0m_safe = jnp.clip(z0m, 1.0e-5, 5.0)
+     z0h = jnp.maximum(z0m_safe / 10.0, 1.0e-6)
+@@ -156,7 +169,7 @@ def _most_exchange_velocity(
+         den_h = jnp.maximum(1.0, neutral_h - _psi_h(zeta))
+         ustar = KARMAN * wind / den_m
+         ce_new = jnp.maximum(1.0e-6, KARMAN**2 * wind / (den_m * den_h))
+-        sensible = rho * CP * ce_new * (surface_temperature - tair)
++        sensible = rho * CP * ce_new * delta
+         obukhov_new = -rho * CP * tair * ustar**3 / (
+             KARMAN * GRAVITY * jnp.where(jnp.abs(sensible) < 1.0e-8, 1.0, sensible)
+         )
+@@ -186,10 +199,11 @@ def _exchange_velocity(
+     z0m: jax.Array,
+     surface_temperature: jax.Array,
+     option: jax.Array,
++    temperature_delta=None,
+ ) -> jax.Array:
+     """对应普通版: surface_drag.exchange_velocity。"""
+     most = lambda _: _most_exchange_velocity(
+-        wind, tair, qair, ps, z0m, surface_temperature
++        wind, tair, qair, ps, z0m, surface_temperature, temperature_delta
+     )
+     bulk = lambda _: _bulk_ch(jnp.maximum(wind, 0.3), z0m) * jnp.maximum(wind, 0.3)
+     return _switch(option, [most, bulk], None)
+@@ -411,6 +425,7 @@ def _snow_surface_flux(
+     snow_density_layers: jax.Array,
+     option: jax.Array,
+     surface_temperature: jax.Array,
++    temperature_delta=None,
+ ) -> jax.Array:
+     """对应普通版: snow.surface_snow_flux。"""
+     top_swe = jnp.maximum(swe_layers[0], 1.0e-8)
+@@ -501,8 +516,10 @@ def _snow_heat(
+     lower = jnp.array([0.0, -g01, -g12], dtype=cap.dtype)
+     diagonal = jnp.array([cap[0] + g01, cap[1] + g01 + g12, cap[2] + g12])
+     upper = jnp.array([-g01, -g12, 0.0], dtype=cap.dtype)
+-    rhs = cap * snow_t_layers + jnp.array([top_flux, 0.0, 0.0], dtype=cap.dtype)
+-    updated = _thomas3(lower, diagonal, upper, rhs)
++    q01 = g01 * (snow_t_layers[1] - snow_t_layers[0])
++    q12 = g12 * (snow_t_layers[2] - snow_t_layers[1])
++    rhs = jnp.array([top_flux + q01, -q01 + q12, -q12], dtype=cap.dtype)
++    updated = snow_t_layers + _thomas3(lower, diagonal, upper, rhs)
+     excess = jnp.maximum(updated - FREEZING_POINT, 0.0) * C_SNOW * safe_thickness
+     melt = jnp.minimum(swe_layers, excess / (LF * RHO_W)) * mask
+     remaining = jnp.maximum(swe_layers - melt, 0.0)
+@@ -613,9 +630,13 @@ def _soil_heat(
+         cap[3] * dz[3] / dt + g23,
+     ])
+     upper = jnp.array([-g01, -g12, -g23, 0.0], dtype=tsoil.dtype)
+-    rhs = cap * dz / dt * tsoil
+-    rhs = rhs.at[0].add(g_flux)
+-    new_tsoil = _thomas4(lower, diagonal, upper, rhs)
++    rhs = jnp.array([
++        g_flux + g01 * (tsoil[1] - tsoil[0]),
++        g01 * (tsoil[0] - tsoil[1]) + g12 * (tsoil[2] - tsoil[1]),
++        g12 * (tsoil[1] - tsoil[2]) + g23 * (tsoil[3] - tsoil[2]),
++        g23 * (tsoil[2] - tsoil[3]),
++    ], dtype=tsoil.dtype)
++    new_tsoil = tsoil + _thomas4(lower, diagonal, upper, rhs)
+     new_ice, _ = _phase_and_capacity(new_tsoil * 0.0 + smc, new_tsoil, smcmax, bexp, supercool_option)
+     return new_tsoil, new_ice
+ 
+@@ -810,7 +831,7 @@ def _penman_monteith(
+     return jnp.maximum(0.0, numerator / denominator)
+ 
+ 
+-def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax.Array) -> jax.Array:
++def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax.Array, origin=0.0) -> jax.Array:
+     """对应普通版: energy.secant_solve。
+ 
+     固定 25 次割线更新；收敛后冻结，并保留普通版 131 点扫描/40 次二分回退。
+@@ -827,7 +848,7 @@ def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax
+         best_abs_new = jnp.where(better, jnp.abs(f1), old_best_abs)
+         denom = f1 - old_f0
+         x2_raw = old_x1 - f1 * (old_x1 - old_x0) / jnp.where(jnp.abs(denom) < 1.0e-12, 1.0, denom)
+-        x2 = jnp.clip(jnp.where(jnp.abs(denom) < 1.0e-12, old_x1, x2_raw), 200.0, 330.0)
++        x2 = jnp.clip(jnp.where(jnp.abs(denom) < 1.0e-12, old_x1, x2_raw), 200.0 - origin, 330.0 - origin)
+         hit = jnp.abs(f1) < 1.0e-3
+         freeze = stopped | hit | (jnp.abs(denom) < 1.0e-12)
+         return (jnp.where(freeze, old_x0, old_x1),
+@@ -843,16 +864,16 @@ def _secant_solve(func: Callable[[jax.Array], jax.Array], x0: jax.Array, x1: jax
+     def fallback(_):
+         def scan(index, carry):
+             previous, bracket = carry
+-            value = func(jnp.asarray(201.0, dtype=x0.dtype) + index)
++            value = func((jnp.asarray(201.0, dtype=x0.dtype) + index) - origin)
+             crossing = jnp.isfinite(previous) & jnp.isfinite(value) & (previous * value <= 0.0)
+             return value, jnp.where((bracket < 0) & crossing, index, bracket)
+ 
+         _, bracket = lax.fori_loop(
+-            0, 130, scan, (func(jnp.asarray(200.0, dtype=x0.dtype)), jnp.asarray(-1, jnp.int32))
++            0, 130, scan, (func(jnp.asarray(200.0, dtype=x0.dtype) - origin), jnp.asarray(-1, jnp.int32))
+         )
+ 
+         def bisect(_):
+-            left = jnp.asarray(200.0, dtype=x0.dtype) + bracket
++            left = (jnp.asarray(200.0, dtype=x0.dtype) + bracket) - origin
+             right = left + 1.0
+ 
+             def iteration(_, carry):
+@@ -964,18 +985,22 @@ def step_column_jax(
+         response = _snow_surface_response(snow_swe_layers, snow_t_layers,
+             snow_density_layers, snow_count, dt, option_snow_k)
+ 
+-        def residual(ts):
+-            rnet_local = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * ts**4)
+-            ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
+-            h_local = rho * CP * ce_local * (ts - tair)
+-            g_local = _coupled_snow_flux(ts, response)
++        def residual(delta):
++            ts = tair + delta
++            rnet_local = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * _temperature_fourth_delta(tair, delta))
++            ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag, delta)
++            h_local = rho * CP * ce_local * delta
++            g_local = jnp.maximum(response[1] * ((tair - response[0]) + delta),
++                            response[2] * ((tair - FREEZING_POINT) + delta))
+             return rnet_local - h_local - g_local
+ 
+-        ts = _secant_solve(residual, tair, tair + 1.0)
+-        rnet = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * ts**4)
+-        ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
+-        h = rho * CP * ce * (ts - tair)
+-        g_snow = _coupled_snow_flux(ts, response)
++        delta = _secant_solve(residual, jnp.zeros_like(tair), jnp.ones_like(tair), origin=tair)
++        ts = tair + delta
++        rnet = (1.0 - snow_albedo) * swdown + snow_emiss * (lwdown - SIGMA * _temperature_fourth_delta(tair, delta))
++        ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag, delta)
++        h = rho * CP * ce * delta
++        g_snow = jnp.maximum(response[1] * ((tair - response[0]) + delta),
++                            response[2] * ((tair - FREEZING_POINT) + delta))
+         new_layers = _snow_heat(
+             snow_swe_layers, snow_t_layers, snow_density_layers, snow_count,
+             dt, g_snow, option_snow_k,
+@@ -1001,11 +1026,12 @@ def step_column_jax(
+         canw_cap_rate = canw_intercepted * LV * RHO_W / jnp.maximum(dt, 1.0e-6)
+         smc0_cap_rate = smc[0] * dz[0] * LV * RHO_W / jnp.maximum(dt, 1.0e-6)
+ 
+-        def residual(ts):
+-            rnet_local = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * ts**4)
+-            ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
+-            h_local = rho * CP * ce_local * (ts - tair)
+-            dqs = _qsat(ts, ps) - qair
++        def residual(delta):
++            ts = tair + delta
++            rnet_local = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * _temperature_fourth_delta(tair, delta))
++            ce_local = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag, delta)
++            h_local = rho * CP * ce_local * delta
++            dqs = _qsat_delta(tair, delta, ps) - qair
+             ra_local = 1.0 / jnp.maximum(ce_local, 1.0e-6)
+             le_g_local = jnp.minimum(
+                 beta_surface * rho * LV * jnp.maximum(0.0, dqs) / (ra_local + ground_res),
+@@ -1015,14 +1041,15 @@ def step_column_jax(
+                 rho * LV * ce_local * dqs * jnp.minimum(1.0, canw_intercepted / jnp.maximum(1.0e-9, 0.2 * canmax)),
+                 canw_cap_rate,
+             )
+-            g_local = kt1 * (ts - tsoil[0]) / (0.5 * dz[0])
++            g_local = kt1 * ((tair - tsoil[0]) + delta) / (0.5 * dz[0])
+             return rnet_local - h_local - le_g_local - le_c_local - tr_le - g_local
+ 
+-        ts = _secant_solve(residual, tair, tair + 1.0)
+-        rnet = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * ts**4)
+-        ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag)
+-        h = rho * CP * ce * (ts - tair)
+-        dqs = _qsat(ts, ps) - qair
++        delta = _secant_solve(residual, jnp.zeros_like(tair), jnp.ones_like(tair), origin=tair)
++        ts = tair + delta
++        rnet = (1.0 - albedo) * swdown + emiss * (lwdown - SIGMA * _temperature_fourth_delta(tair, delta))
++        ce = _exchange_velocity(wind, tair, qair, ps, z0m, ts, option_drag, delta)
++        h = rho * CP * ce * delta
++        dqs = _qsat_delta(tair, delta, ps) - qair
+         ra = 1.0 / jnp.maximum(ce, 1.0e-6)
+         le_g = jnp.minimum(
+             beta_surface * rho * LV * jnp.maximum(0.0, dqs) / (ra + ground_res),
+@@ -1032,7 +1059,7 @@ def step_column_jax(
+             rho * LV * ce * dqs * jnp.minimum(1.0, canw_intercepted / jnp.maximum(1.0e-9, 0.2 * canmax)),
+             canw_cap_rate,
+         )
+-        g_soil = kt1 * (ts - tsoil[0]) / (0.5 * dz[0])
++        g_soil = kt1 * ((tair - tsoil[0]) + delta) / (0.5 * dz[0])
+         ecan = le_c / LV * dt / RHO_W
+         return (
+             ts, rnet, h, le_g + le_c + tr_le, g_soil, ecan,
+diff --git a/src/noahmp_clm/physics/energy.py b/src/noahmp_clm/physics/energy.py
+index 1f586ea..46e6ef9 100644
+--- a/src/noahmp_clm/physics/energy.py
++++ b/src/noahmp_clm/physics/energy.py
+@@ -26,6 +26,19 @@ def qsat(t: float, ps: float) -> float:
+     return 0.622 * es / max(1.0, ps - 0.378 * es)
+ 
+ 
++def qsat_delta(tair: float, delta: float, ps: float) -> float:
++    """Tetens evaluation without first rounding tair + delta to Kelvin."""
++    tc = (tair - 273.15) + delta
++    es = 611.2 * np.exp(17.67 * tc / (tc + 243.5))
++    return 0.622 * es / max(1.0, ps - 0.378 * es)
++
++
++def temperature_fourth_delta(tair: float, delta: float) -> float:
++    """Exact quartic expansion about air temperature (no linearization)."""
++    t2 = tair * tair
++    return t2 * t2 + delta * (4.0 * tair * t2 + delta * (6.0 * t2 + delta * (4.0 * tair + delta)))
++
++
+ def air_density(f) -> float:
+     return f.ps / (RD * f.tair * (1.0 + 0.61 * f.qair))
+ 
+@@ -37,7 +50,7 @@ def bulk_ch(wind: float, z0m: float, zref: float = 10.0) -> float:
+ 
+ 
+ def secant_solve(func, x0: float, x1: float,
+-                 tol: float = 1e-3, maxit: int = 25) -> float:
++                 tol: float = 1e-3, maxit: int = 25, *, origin: float = 0.0) -> float:
+     """割线法求根，Ts 钳制在 [200, 330] K。
+ 
+     割线法在 MOST 稳定度修正与雪导热方案叠加时，两个初值可能落在同一
+@@ -58,12 +71,12 @@ def secant_solve(func, x0: float, x1: float,
+         if abs(denom) < 1e-12:
+             break
+         x2 = x1 - f1 * (x1 - x0) / denom
+-        x2 = float(np.clip(x2, 200.0, 330.0))
++        x2 = float(np.clip(x2, 200.0 - origin, 330.0 - origin))
+         x0, f0, x1 = x1, f1, x2
+ 
+     # 固定扫描只在割线没有达到闭合容差时触发；对雪面 F(Ts) 的局部
+     # 非单调性，比盲目继续外推更稳健。扫描次数固定，便于后续向量化。
+-    grid = np.linspace(200.0, 330.0, 131)
++    grid = np.linspace(200.0, 330.0, 131) - origin
+     values = np.asarray([float(func(float(x))) for x in grid])
+     finite = np.isfinite(values)
+     roots = np.flatnonzero(
+diff --git a/src/noahmp_clm/physics/snow.py b/src/noahmp_clm/physics/snow.py
+index caa86b4..91c02cd 100644
+--- a/src/noahmp_clm/physics/snow.py
++++ b/src/noahmp_clm/physics/snow.py
+@@ -220,13 +220,16 @@ def _implicit_heat_step(
+     lower = np.zeros(n)
+     diag = cap.copy()
+     upper = np.zeros(n)
+-    rhs = cap * temperatures
++    rhs = np.zeros(n)
+     rhs[0] += top_flux
+     for i, g in enumerate(conductance):
+         diag[i] += g
+         diag[i + 1] += g
+         upper[i] = -g
+         lower[i + 1] = -g
++        transfer = g * (temperatures[i + 1] - temperatures[i])
++        rhs[i] += transfer
++        rhs[i + 1] -= transfer
+     # Thomas algorithm, written for the fixed small layer count.
+     for i in range(1, n):
+         factor = lower[i] / max(diag[i - 1], 1.0e-12)
+@@ -236,7 +239,7 @@ def _implicit_heat_step(
+     result[-1] = rhs[-1] / max(diag[-1], 1.0e-12)
+     for i in range(n - 2, -1, -1):
+         result[i] = (rhs[i] - upper[i] * result[i + 1]) / max(diag[i], 1.0e-12)
+-    return result
++    return temperatures + result
+ 
+ 
+ def albedo_bats(age_days: float, snow_temperature: float, new_snow: bool = False) -> float:
+diff --git a/src/noahmp_clm/physics/soil.py b/src/noahmp_clm/physics/soil.py
+index 3cdbf44..2c158a7 100644
+--- a/src/noahmp_clm/physics/soil.py
++++ b/src/noahmp_clm/physics/soil.py
+@@ -47,13 +47,16 @@ def step_soil_heat(state: ColumnState, dt: float, g_flux: float) -> None:
+     a = np.zeros(n)  # 下对角
+     b = np.zeros(n)  # 主对角
+     c = np.zeros(n)  # 上对角
+-    d = cap * dz / dt * state.tsoil.copy()
++    # Solve A * delta_T = boundary_flux - L * T_old.
++    # Uniform temperatures with zero boundary flux give an exact zero RHS.
++    old = state.tsoil.copy()
++    d = np.zeros(n)
+ 
+     # 第 0 层：上边界通量 G
+     k0 = kt_if[0] / dz_if[0]
+     b[0] = cap[0] * dz[0] / dt + k0
+     c[0] = -k0
+-    d[0] += g_flux
++    d[0] = g_flux + k0 * (old[1] - old[0])
+     # 中间层
+     for i in range(1, n - 1):
+         ku = kt_if[i - 1] / dz_if[i - 1]
+@@ -61,12 +64,14 @@ def step_soil_heat(state: ColumnState, dt: float, g_flux: float) -> None:
+         a[i] = -ku
+         b[i] = cap[i] * dz[i] / dt + ku + kd
+         c[i] = -kd
++        d[i] = ku * (old[i - 1] - old[i]) + kd * (old[i + 1] - old[i])
+     # 底层：零通量
+     ku = kt_if[n - 2] / dz_if[n - 2]
+     a[n - 1] = -ku
+     b[n - 1] = cap[n - 1] * dz[n - 1] / dt + ku
+ 
+-    state.tsoil[:] = _thomas(a, b, c, d)
++    d[n - 1] = ku * (old[n - 2] - old[n - 1])
++    state.tsoil[:] = old + _thomas(a, b, c, d)
+     update_soil_phase(state)
+ 
+ 
+diff --git a/src/noahmp_clm/physics/surface_drag.py b/src/noahmp_clm/physics/surface_drag.py
+index f00e714..3c03fe6 100644
+--- a/src/noahmp_clm/physics/surface_drag.py
++++ b/src/noahmp_clm/physics/surface_drag.py
+@@ -48,12 +48,14 @@ def most_exchange_velocity(
+     *,
+     max_iterations: int = 20,
+     tolerance: float = 1.0e-4,
++    temperature_delta: float | None = None,
+ ) -> float:
+     """计算 MOST 标量交换速度 ``ce = CH * wind`` (m/s)。
+ 
+     迭代只使用当前柱和当前强迫，因而是无副作用的纯函数。零感热通量
+     回退到中性系数；风速下限与原 bulk 方案相同。
+     """
++    delta = float(surface_temperature) - forcing.tair if temperature_delta is None else temperature_delta
+     wind = max(float(forcing.wind), 0.3)
+     zref = 10.0
+     z0m_safe = float(np.clip(z0m, 1.0e-5, 0.5 * zref))
+@@ -72,7 +74,7 @@ def most_exchange_velocity(
+         ustar = k * wind / den_m
+         ch = k * k / (den_m * den_h)
+         ce_new = max(1.0e-6, ch * wind)
+-        sensible = rho * energy.CP * ce_new * (float(surface_temperature) - forcing.tair)
++        sensible = rho * energy.CP * ce_new * delta
+         if abs(sensible) < 1.0e-8:
+             obukhov_new = np.inf
+         else:
+@@ -94,11 +96,12 @@ def most_exchange_velocity(
+ 
+ 
+ def exchange_velocity(
+-    forcing: Forcing, z0m: float, surface_temperature: float, option: int
++    forcing: Forcing, z0m: float, surface_temperature: float, option: int,
++    *, temperature_delta: float | None = None,
+ ) -> float:
+     """按 ``OptSurfaceDrag`` 分发交换速度 ``ce`` (m/s)。"""
+     if option == 1:
+-        return most_exchange_velocity(forcing, z0m, surface_temperature)
++        return most_exchange_velocity(forcing, z0m, surface_temperature, temperature_delta=temperature_delta)
+     if option == 2:
+         wind = max(float(forcing.wind), 0.3)
+         return float(energy.bulk_ch(wind, z0m) * wind)

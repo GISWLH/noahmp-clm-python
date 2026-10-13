@@ -1,0 +1,17 @@
+{
+  "parent_commit": "f29d7ad4427c0a88710fd87835b43f9150604ac7",
+  "isolated_directory": "/home/lhwang/work/noahmp-phase3b/j4-cross-candidate",
+  "sources": {
+    "src/noahmp_clm/gpu/jax_core.py": "d49b4dd62e0b3b503325e4f0bdb67d9c990f02ce57b95c5645cbc08c25bc061c",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "d804f17a6ef310e24fb4a7644e9f8f66382de2ce02854490a42b68a0e1f5e9bf",
+    "src/noahmp_clm/gpu/cuda/loader.py": "5af928650ebc53a55a965e3292552c0d561c945d206a9a544d2dd4ea920046b4",
+    "src/noahmp_clm/gpu/cuda/build.sh": "c74821bed1d224a0079545a26ea6ca9f334d8a0cac75355a034a8de5309252e4"
+  },
+  "only_change": "_soil_stress jnp.sum four weighted stress terms replaced by explicit (w0+w2)+(w1+w3)",
+  "tests": [
+    "tests/test_gpu_float32_parity.py",
+    "tests/test_gpu_parity.py",
+    "tests/test_gpu_numerical_components.py"
+  ],
+  "production_modified": false
+}

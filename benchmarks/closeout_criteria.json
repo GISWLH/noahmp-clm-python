@@ -1,0 +1,11 @@
+{
+  "version": "M2-20261013-preregistered",
+  "same_precision": {"rtol": 1e-6, "atol": 1e-6, "minimum_fraction": 1.0},
+  "cross_precision": {"rtol": 0.001, "state_atol": 0.0, "flux_atol_W_m2": 0.01, "minimum_fraction_per_field": 0.995},
+  "residual": {"absolute_median_lt_W_m2": 0.001, "absolute_p99_lt_W_m2": 0.01},
+  "roundoff_multiplier": 32,
+  "latent_heat_J_kg": 2500000.0,
+  "domain_columns": 64800,
+  "annual_days": 365,
+  "whole_column_energy_exception": "Wang explicitly accepts surface closure; whole-column melt-out heat gap remains a known limitation"
+}

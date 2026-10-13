@@ -1,0 +1,7970 @@
+[
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.5319817237013922e-05,
+    "max_ratio": 0.0005350683786783493,
+    "worst_index": [
+      7,
+      0
+    ],
+    "cuda": 286.3051452636719,
+    "reference": 286.30512994385464
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.8053980154681994e-05,
+    "max_ratio": 0.017604436731007662,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.785575866699219,
+    "reference": 5.785565663932314
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00034012888684742393,
+    "max_ratio": 0.21960459314695405,
+    "worst_index": [
+      6,
+      0
+    ],
+    "cuda": -2.3304176330566406,
+    "reference": -2.3303662375390997
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0004992695641732325,
+    "max_ratio": 0.039408318249397715,
+    "worst_index": [
+      10,
+      0
+    ],
+    "cuda": 126.68191528320312,
+    "reference": 126.68141601363895
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0002994079384421866,
+    "max_ratio": 0.26258384426685444,
+    "worst_index": [
+      6,
+      0
+    ],
+    "cuda": -6.019783020019531,
+    "reference": -6.019624691816425
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.646897857034759e-07,
+    "max_ratio": 0.03603275914059304,
+    "worst_index": [
+      10,
+      0
+    ],
+    "cuda": 0.0912109836935997,
+    "reference": 0.091210619003814
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 9.094364941120148e-07,
+    "max_ratio": 0.00025255110166063136,
+    "worst_index": [
+      2,
+      0
+    ],
+    "cuda": 36.0,
+    "reference": 35.999999090563506
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.311471917845978e-08,
+    "max_ratio": 0.0009217819185576912,
+    "worst_index": [
+      1,
+      0
+    ],
+    "cuda": 0.5662178993225098,
+    "reference": 0.5662178462077906
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 7.770722731947899e-09,
+    "max_ratio": 0.0003408211686786419,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.218000002525514
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 4.737026361445462e-10,
+    "max_ratio": 0.00041893147016249936,
+    "worst_index": [
+      150,
+      0
+    ],
+    "cuda": 0.0013074020389467478,
+    "reference": 0.0013074015652441116
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 1024,
+    "max_abs": 0.0007172553254335412,
+    "max_ratio": 713.3163305367707,
+    "worst_index": [
+      7,
+      0
+    ],
+    "cuda": -0.0007724761962890625,
+    "reference": -5.52208708555213e-05,
+    "max_abs_cuda_residual": 0.001613616943359375,
+    "max_abs_reference_residual": 0.0009691937889924063,
+    "abs_difference_exceeds_2e3": 0,
+    "abs_cuda_residual_exceeds_2e3": 0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.522463254692411e-05,
+    "max_ratio": 0.0019365244712925712,
+    "worst_index": [
+      11
+    ],
+    "cuda": 285.16400146484375,
+    "reference": 285.1639462402112
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.9878659549685835e-05,
+    "max_ratio": 0.0013992073152289891,
+    "worst_index": [
+      66
+    ],
+    "cuda": 284.9989013671875,
+    "reference": 284.99894124584705
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.576537596927665e-05,
+    "max_ratio": 0.0012548814647841504,
+    "worst_index": [
+      54
+    ],
+    "cuda": 285.0000305175781,
+    "reference": 284.99999475220216
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.054760418308433e-05,
+    "max_ratio": 0.0011386731138763478,
+    "worst_index": [
+      8
+    ],
+    "cuda": 267.9999694824219,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.7440624833220397e-08,
+    "max_ratio": 0.0005124010478827766,
+    "worst_index": [
+      5
+    ],
+    "cuda": 0.33037057518959045,
+    "reference": 0.3303705926302153
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 4.8971005695008785e-08,
+    "max_ratio": 0.0012173617526494657,
+    "worst_index": [
+      26
+    ],
+    "cuda": 0.3922715485095978,
+    "reference": 0.3922715974806035
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.0197828165248168e-08,
+    "max_ratio": 0.0005340285023228894,
+    "worst_index": [
+      138
+    ],
+    "cuda": 0.12016977369785309,
+    "reference": 0.12016978064929039
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.2501755186633545e-08,
+    "max_ratio": 0.0003731869483928027,
+    "worst_index": [
+      11
+    ],
+    "cuda": 0.3249998092651367,
+    "reference": 0.32499979676338153
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.8676757962410306e-07,
+    "max_ratio": 0.019984706312914827,
+    "worst_index": [
+      4
+    ],
+    "cuda": 0.07181727886199951,
+    "reference": 0.07181744237175522
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.6350975595713635e-07,
+    "max_ratio": 0.019984706343446176,
+    "worst_index": [
+      4
+    ],
+    "cuda": 0.07181727886199951,
+    "reference": 0.07181744237175547
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.1961230672596912e-07,
+    "max_ratio": 0.01461941405873877,
+    "worst_index": [
+      4
+    ],
+    "cuda": 0.0718175619840622,
+    "reference": 0.07181744237175547
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.2615680544669772e-07,
+    "max_ratio": 0.01226045071934946,
+    "worst_index": [
+      8
+    ],
+    "cuda": 0.09289748966693878,
+    "reference": 0.09289736351013334
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.0212633129734758e-10,
+    "max_ratio": 0.00011593945886717294,
+    "worst_index": [
+      1
+    ],
+    "cuda": 0.007433782331645489,
+    "reference": 0.00743378253377182
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.0671404038209431e-10,
+    "max_ratio": 1.290895636637532e-05,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666750850466
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.0671404038209431e-10,
+    "max_ratio": 1.290895636637532e-05,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666750850466
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.8727088988489413e-05,
+    "max_ratio": 0.0010718362940988625,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0075055337296
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.530500648845191e-05,
+    "max_ratio": 0.0009441811959802251,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0000915527344,
+    "reference": 268.0000662477279
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 6.1035156022626325e-06,
+    "max_ratio": 0.0002234410456239066,
+    "worst_index": [
+      1
+    ],
+    "cuda": 273.1499938964844,
+    "reference": 273.15
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.2986189688035665e-05,
+    "max_ratio": 0.00043272926129870953,
+    "worst_index": [
+      1
+    ],
+    "cuda": 300.0896301269531,
+    "reference": 300.0896431131428
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 6.318269527127995e-06,
+    "max_ratio": 0.00022266579220227222,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.7457275390625,
+    "reference": 283.745733857332
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.825762235010188e-06,
+    "max_ratio": 0.00013491918903230102,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.5495300292969,
+    "reference": 283.5495338550591
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.5319817237013922e-05,
+    "max_ratio": 0.0005350683786783493,
+    "worst_index": [
+      7
+    ],
+    "cuda": 286.3051452636719,
+    "reference": 286.30512994385464
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 7.770722731947899e-09,
+    "max_ratio": 0.0003408211686786419,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.218000002525514
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.8727088988489413e-05,
+    "max_ratio": 0.0010718362940988625,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0075055337296
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.3841857821338408e-08,
+    "max_ratio": 0.00027723090489928376,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8500000238418579,
+    "reference": 0.8500000000000001
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 6.208817175668013e-10,
+    "max_ratio": 0.0002013670435351788,
+    "worst_index": [
+      1
+    ],
+    "cuda": 0.02083333395421505,
+    "reference": 0.020833333333333332
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 4.737026361445462e-10,
+    "max_ratio": 0.00041893147016249936,
+    "worst_index": [
+      150
+    ],
+    "cuda": 0.0013074020389467478,
+    "reference": 0.0013074015652441116
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.785575866699219,
+    "reference": 5.785575866699219
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.107432842254639,
+    "reference": 5.107432842254639
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.678276538848877,
+    "reference": 0.678276538848877
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "reference": 18.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": -0.000133514404296875,
+    "reference": -0.000133514404296875,
+    "max_abs_cuda_residual": 0.001613616943359375,
+    "max_abs_reference_residual": 0.001613616943359375,
+    "abs_difference_exceeds_2e3": 0,
+    "abs_cuda_residual_exceeds_2e3": 0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0074768066406
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0000915527344,
+    "reference": 268.0000915527344
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.9419250488281,
+    "reference": 283.9419250488281
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.7457275390625,
+    "reference": 283.7457275390625
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.5495300292969,
+    "reference": 283.5495300292969
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0074768066406
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8500000238418579,
+    "reference": 0.8500000238418579
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.785575866699219,
+    "reference": 5.785575866699219
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.107432842254639,
+    "reference": 5.107432842254639
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.678276538848877,
+    "reference": 0.678276538848877
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "reference": 18.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": -0.000133514404296875,
+    "reference": -0.000133514404296875,
+    "max_abs_cuda_residual": 0.001613616943359375,
+    "max_abs_reference_residual": 0.001613616943359375,
+    "abs_difference_exceeds_2e3": 0,
+    "abs_cuda_residual_exceeds_2e3": 0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.07266666740179062,
+    "reference": 0.07266666740179062
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0074768066406
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0000915527344,
+    "reference": 268.0000915527344
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.9419250488281,
+    "reference": 283.9419250488281
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.7457275390625,
+    "reference": 283.7457275390625
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 283.5495300292969,
+    "reference": 283.5495300292969
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0074768066406,
+    "reference": 268.0074768066406
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8500000238418579,
+    "reference": 0.8500000238418579
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 1,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00020772868879248563,
+    "max_ratio": 0.0072778020756881,
+    "worst_index": [
+      106,
+      24
+    ],
+    "cuda": 285.4175720214844,
+    "reference": 285.41777975017317
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0010714897072148233,
+    "max_ratio": 0.4191505366868328,
+    "worst_index": [
+      0,
+      9
+    ],
+    "cuda": 1.898238182067871,
+    "reference": 1.8983181693263553
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 1205,
+    "max_abs": 0.00288770996388088,
+    "max_ratio": 38.4788774112182,
+    "worst_index": [
+      142,
+      44
+    ],
+    "cuda": 0.23740455508232117,
+    "reference": 0.23836021731792115
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 6,
+    "max_abs": 0.007383211287461222,
+    "max_ratio": 1.0412582214346005,
+    "worst_index": [
+      130,
+      20
+    ],
+    "cuda": 70.90401458740234,
+    "reference": 70.89663137611488
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 18096,
+    "max_abs": 0.0038673531185082766,
+    "max_ratio": 150.96169516714636,
+    "worst_index": [
+      154,
+      39
+    ],
+    "cuda": 0.05713556706905365,
+    "reference": 0.05816459129426951
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.320132740918582e-06,
+    "max_ratio": 0.8715017989289906,
+    "worst_index": [
+      130,
+      20
+    ],
+    "cuda": 0.05105089396238327,
+    "reference": 0.05104557382964235
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 9.094364941120148e-07,
+    "max_ratio": 0.00025255110166063136,
+    "worst_index": [
+      2,
+      0
+    ],
+    "cuda": 36.0,
+    "reference": 35.999999090563506
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00018672354937621094,
+    "max_ratio": 0.15319271341912782,
+    "worst_index": [
+      26,
+      9
+    ],
+    "cuda": 10.065011024475098,
+    "reference": 10.065165368667195
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.2321936603564296e-06,
+    "max_ratio": 0.12657466360578995,
+    "worst_index": [
+      1,
+      15
+    ],
+    "cuda": 0.16635167598724365,
+    "reference": 0.166353908180904
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.6007106756754652e-07,
+    "max_ratio": 0.0037575368192032384,
+    "worst_index": [
+      0,
+      11
+    ],
+    "cuda": 0.4160001575946808,
+    "reference": 0.4159999975236132
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.685018164240178e-08,
+    "max_ratio": 0.025938656752607297,
+    "worst_index": [
+      142,
+      40
+    ],
+    "cuda": 0.0003514424606692046,
+    "reference": 0.0003514156104875622
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 49145,
+    "max_abs": 0.0025070868802805624,
+    "max_ratio": 2487.161271765866,
+    "worst_index": [
+      134,
+      3
+    ],
+    "cuda": -0.0024843215942382812,
+    "reference": 3.7797663843264218e-06,
+    "max_abs_cuda_residual": 0.0024843215942382812,
+    "max_abs_reference_residual": 0.00099085093306428,
+    "abs_difference_exceeds_2e3": 569,
+    "abs_cuda_residual_exceeds_2e3": 229
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.000244140625,
+    "max_ratio": 0.009109384911010782,
+    "worst_index": [
+      8
+    ],
+    "cuda": 268.000244140625,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00079345703125,
+    "max_ratio": 0.02960550096078504,
+    "worst_index": [
+      4
+    ],
+    "cuda": 268.00079345703125,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0004959279124250315,
+    "max_ratio": 0.017397197869521732,
+    "worst_index": [
+      7
+    ],
+    "cuda": 285.05145263671875,
+    "reference": 285.0519485646312
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00047020276258535887,
+    "max_ratio": 0.016497776763539064,
+    "worst_index": [
+      154
+    ],
+    "cuda": 285.000244140625,
+    "reference": 284.9997739378624
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 4.995437334898156e-07,
+    "max_ratio": 0.015247932767829195,
+    "worst_index": [
+      11
+    ],
+    "cuda": 0.3176135718822479,
+    "reference": 0.3176140714259814
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 2.6669538949475324e-07,
+    "max_ratio": 0.005795538485232434,
+    "worst_index": [
+      62
+    ],
+    "cuda": 0.45017334818840027,
+    "reference": 0.45017361488378976
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.4026923739771675e-07,
+    "max_ratio": 0.007079509016358017,
+    "worst_index": [
+      122
+    ],
+    "cuda": 0.47063925862312317,
+    "reference": 0.47063959889236057
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 4.2630376589913865e-07,
+    "max_ratio": 0.012725828246040493,
+    "worst_index": [
+      11
+    ],
+    "cuda": 0.3249914050102234,
+    "reference": 0.3249909787064575
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.2447500243872867e-06,
+    "max_ratio": 0.12097006006035359,
+    "worst_index": [
+      8
+    ],
+    "cuda": 0.09289611876010895,
+    "reference": 0.09289736351013334
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.605677991735945e-06,
+    "max_ratio": 0.44069795965422104,
+    "worst_index": [
+      4
+    ],
+    "cuda": 0.07181383669376373,
+    "reference": 0.07181744237175547
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 9.540773335814379e-07,
+    "max_ratio": 0.11661050577044177,
+    "worst_index": [
+      4
+    ],
+    "cuda": 0.07181839644908905,
+    "reference": 0.07181744237175547
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.2615680544669772e-07,
+    "max_ratio": 0.01226045071934946,
+    "worst_index": [
+      8
+    ],
+    "cuda": 0.09289748966693878,
+    "reference": 0.09289736351013334
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.335702252251551e-08,
+    "max_ratio": 0.0035890374093347755,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.1386666658412044
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.335702252251551e-08,
+    "max_ratio": 0.0035890374093347755,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.1386666658412044
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 5.335702252251551e-08,
+    "max_ratio": 0.0035890374093347755,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.1386666658412044
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00019794987036902967,
+    "max_ratio": 0.007385220259450247,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.0251613287766
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0001640011378754025,
+    "max_ratio": 0.0061191407299884685,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0035095214844,
+    "reference": 268.0033455203465
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 6.389460111222434e-05,
+    "max_ratio": 0.0023840105075496375,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0030212402344,
+    "reference": 268.0030851348355
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 9.135035190865892e-05,
+    "max_ratio": 0.003975636790164482,
+    "worst_index": [
+      0
+    ],
+    "cuda": 229.76548767089844,
+    "reference": 229.76539632054653
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00011120456869662121,
+    "max_ratio": 0.005148840119227463,
+    "worst_index": [
+      0
+    ],
+    "cuda": 215.96995544433594,
+    "reference": 215.96984423976724
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 9.520219668956997e-05,
+    "max_ratio": 0.00470864206860745,
+    "worst_index": [
+      0
+    ],
+    "cuda": 202.1761932373047,
+    "reference": 202.176098035108
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00013086412758411825,
+    "max_ratio": 0.004574505899199165,
+    "worst_index": [
+      74
+    ],
+    "cuda": 286.0628356933594,
+    "reference": 286.0627048292318
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.6007106756754652e-07,
+    "max_ratio": 0.0037575368192032384,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4160001575946808,
+    "reference": 0.4159999975236132
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.00019794987036902967,
+    "max_ratio": 0.007385220259450247,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.0251613287766
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 3.0543361173585026e-08,
+    "max_ratio": 0.0003848514708507581,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7836402654647827,
+    "reference": 0.7836402349214215
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.7881393454821648e-07,
+    "max_ratio": 0.0023528149282660057,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7499998211860657,
+    "reference": 0.7500000000000002
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 1.0185134240289686e-08,
+    "max_ratio": 0.010117970486441861,
+    "worst_index": [
+      142
+    ],
+    "cuda": 6.639084313064814e-05,
+    "reference": 6.638065799640785e-05
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "numpy64_exploratory_state",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 0.0001,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.785575866699219,
+    "reference": 5.785575866699219
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.107432842254639,
+    "reference": 5.107432842254639
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.678276538848877,
+    "reference": 0.678276538848877
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "reference": 18.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": -0.000133514404296875,
+    "reference": -0.000133514404296875,
+    "max_abs_cuda_residual": 0.0024843215942382812,
+    "max_abs_reference_residual": 0.0024843215942382812,
+    "abs_difference_exceeds_2e3": 0,
+    "abs_cuda_residual_exceeds_2e3": 229
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.02496337890625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0035095214844,
+    "reference": 268.0035095214844
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0030212402344,
+    "reference": 268.0030212402344
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 229.76548767089844,
+    "reference": 229.76548767089844
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 215.96995544433594,
+    "reference": 215.96995544433594
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 202.1761932373047,
+    "reference": 202.1761932373047
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.5269775390625,
+    "reference": 268.5269775390625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4160001575946808,
+    "reference": 0.4160001575946808
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.02496337890625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7836402654647827,
+    "reference": 0.7836402654647827
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7499998211860657,
+    "reference": 0.7499998211860657
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_original_H4",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "ts",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 268.42071533203125,
+    "reference": 268.42071533203125
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "rnet",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.785575866699219,
+    "reference": 5.785575866699219
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "h",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 5.107432842254639,
+    "reference": 5.107432842254639
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "le",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "g",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.678276538848877,
+    "reference": 0.678276538848877
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "et_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "prcp_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 18.0,
+    "reference": 18.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "runoff_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "melt_mm",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "swe",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.21799999475479126,
+    "reference": 0.21799999475479126
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "canw",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "diagnostics",
+    "field": "residual",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0,
+      0
+    ],
+    "cuda": -0.000133514404296875,
+    "reference": -0.000133514404296875,
+    "max_abs_cuda_residual": 0.0024843215942382812,
+    "max_abs_reference_residual": 0.0024843215942382812,
+    "abs_difference_exceeds_2e3": 0,
+    "abs_cuda_residual_exceeds_2e3": 229
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_0",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_1",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_2",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_3",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0,
+    "reference": 268.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_4",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_5",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_6",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_7",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.11999999731779099,
+    "reference": 0.11999999731779099
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_8",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_9",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_10",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_11",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.04885280877351761,
+    "reference": 0.04885280877351761
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_12",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.58685702085495,
+    "reference": 0.58685702085495
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_13",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.32207396626472473,
+    "reference": 0.32207396626472473
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_14",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.08349453657865524,
+    "reference": 0.08349453657865524
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_15",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.007574453949928284,
+    "reference": 0.007574453949928284
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_16",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_17",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_18",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.13866671919822693,
+    "reference": 0.13866671919822693
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_19",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.02496337890625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_20",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0035095214844,
+    "reference": 268.0035095214844
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_21",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.0030212402344,
+    "reference": 268.0030212402344
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_22",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 229.76548767089844,
+    "reference": 229.76548767089844
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_23",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 215.96995544433594,
+    "reference": 215.96995544433594
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_24",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 202.1761932373047,
+    "reference": 202.1761932373047
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_25",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.5269775390625,
+    "reference": 268.5269775390625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_26",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4160001575946808,
+    "reference": 0.4160001575946808
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_27",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 268.02496337890625,
+    "reference": 268.02496337890625
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_28",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7836402654647827,
+    "reference": 0.7836402654647827
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_29",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.7499998211860657,
+    "reference": 0.7499998211860657
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_30",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_31",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 1.0,
+    "reference": 1.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_32",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.800000011920929,
+    "reference": 0.800000011920929
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_33",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05000000074505806,
+    "reference": 0.05000000074505806
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_34",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.20000000298023224,
+    "reference": 0.20000000298023224
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_35",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.9700000286102295,
+    "reference": 0.9700000286102295
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_36",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 120.0,
+    "reference": 120.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_37",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_38",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 2.0,
+    "reference": 2.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_39",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.4000000059604645,
+    "reference": 0.4000000059604645
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_40",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.05999999865889549,
+    "reference": 0.05999999865889549
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_41",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.18000000715255737,
+    "reference": 0.18000000715255737
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_42",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.999999873689376e-05,
+    "reference": 4.999999873689376e-05
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_43",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 4.0,
+    "reference": 4.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_44",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.8999999761581421,
+    "reference": 0.8999999761581421
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_45",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_46",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_47",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_48",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_49",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_50",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_51",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_52",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_53",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_54",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_55",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_56",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_57",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_58",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_59",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_60",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_61",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_62",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_63",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_64",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_65",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_66",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_67",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_68",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  },
+  {
+    "steps": 48,
+    "comparison": "jax32_J2",
+    "kind": "state",
+    "field": "fvec_69",
+    "rtol": 1e-06,
+    "atol": 1e-06,
+    "failed": 0,
+    "max_abs": 0.0,
+    "max_ratio": 0.0,
+    "worst_index": [
+      0
+    ],
+    "cuda": 0.0,
+    "reference": 0.0
+  }
+]

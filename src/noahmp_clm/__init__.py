@@ -5,12 +5,13 @@
 """
 
 from .column import ColumnState, Forcing, SoilParams, default_soil_params
+from .options import PhysicsOptions
 from .driver import run_column, run_columns, step_column
 from .io import synthetic_forcing
 
 __all__ = [
-    "ColumnState", "Forcing", "SoilParams", "default_soil_params",
+    "ColumnState", "Forcing", "SoilParams", "default_soil_params", "PhysicsOptions",
     "run_column", "run_columns", "step_column", "synthetic_forcing",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

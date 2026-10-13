@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-13T06:27:04.506719+00:00",
+  "scope": "all GPUs; no process identities or paths collected",
+  "background_workloads_may_be_present": true,
+  "command": [
+    "nvidia-smi",
+    "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+    "--format=csv"
+  ],
+  "gpus": [
+    {
+      "index": "0",
+      "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+      "name": "NVIDIA GeForce RTX 4090",
+      "driver_version": "570.153.02",
+      "memory.total [MiB]": "24564 MiB",
+      "memory.used [MiB]": "23497 MiB",
+      "utilization.gpu [%]": "100 %",
+      "utilization.memory [%]": "1 %",
+      "temperature.gpu": "57",
+      "power.draw [W]": "137.71 W",
+      "power.limit [W]": "450.00 W",
+      "clocks.current.sm [MHz]": "2745 MHz",
+      "clocks.current.memory [MHz]": "10501 MHz"
+    },
+    {
+      "index": "1",
+      "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+      "name": "NVIDIA GeForce RTX 4090",
+      "driver_version": "570.153.02",
+      "memory.total [MiB]": "24564 MiB",
+      "memory.used [MiB]": "959 MiB",
+      "utilization.gpu [%]": "0 %",
+      "utilization.memory [%]": "0 %",
+      "temperature.gpu": "46",
+      "power.draw [W]": "25.38 W",
+      "power.limit [W]": "450.00 W",
+      "clocks.current.sm [MHz]": "210 MHz",
+      "clocks.current.memory [MHz]": "405 MHz"
+    }
+  ]
+}

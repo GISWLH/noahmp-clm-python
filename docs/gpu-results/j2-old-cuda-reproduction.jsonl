@@ -1,0 +1,9 @@
+{"event": "environment", "cpu": "x86_64", "python": "3.12.2", "numpy": "2.5.4", "cuda_visible_devices": "0", "warmups": 3, "repeats": 3}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "start"}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 0, "seconds": 0.841587096452713}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 1, "seconds": 0.00781606137752533}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "warmup", "index": 2, "seconds": 0.0075147151947021484}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 0, "seconds": 0.007535301148891449}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 1, "seconds": 0.007784023880958557}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "measured_run", "index": 2, "seconds": 0.007508322596549988}
+{"backend": "cuda", "n": 100000, "steps": 48, "event": "result", "status": "measured_unvalidated", "seconds": 0.007535301148891449, "samples_seconds": [0.007535301148891449, 0.007784023880958557, 0.007508322596549988], "us_per_column_step": 0.001569854406019052, "column_steps_per_second": 637001747.5288495}

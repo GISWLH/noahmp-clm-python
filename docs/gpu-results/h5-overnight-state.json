@@ -1,0 +1,93 @@
+{
+  "supervisor_pid": 2293032,
+  "started_utc": "2026-10-13T04:43:49.951946+00:00",
+  "deadline_utc": "2026-10-13T10:45:00+00:00",
+  "status": "running",
+  "jobs": [
+    {
+      "n": 10000,
+      "cores": [
+        2,
+        4,
+        6
+      ],
+      "pid": 2293033,
+      "pgid": 2293033,
+      "command": [
+        "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+        "-u",
+        "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+        "--sizes",
+        "10000",
+        "--cores",
+        "2",
+        "4",
+        "6",
+        "--steps",
+        "48",
+        "--output",
+        "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.jsonl"
+      ],
+      "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.jsonl",
+      "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-10000.log",
+      "exit_code": 0
+    },
+    {
+      "n": 100000,
+      "cores": [
+        8,
+        10,
+        12
+      ],
+      "pid": 2293034,
+      "pgid": 2293034,
+      "command": [
+        "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+        "-u",
+        "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+        "--sizes",
+        "100000",
+        "--cores",
+        "8",
+        "10",
+        "12",
+        "--steps",
+        "48",
+        "--output",
+        "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.jsonl"
+      ],
+      "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.jsonl",
+      "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-100000.log",
+      "exit_code": null
+    },
+    {
+      "n": 300000,
+      "cores": [
+        14,
+        16,
+        18
+      ],
+      "pid": 2293035,
+      "pgid": 2293035,
+      "command": [
+        "/home/lhwang/venvs/noahmp-phase3b/bin/python",
+        "-u",
+        "/home/lhwang/work/noahmp-phase3b/repo/benchmarks/bench_numpy_parallel_repeats.py",
+        "--sizes",
+        "300000",
+        "--cores",
+        "14",
+        "16",
+        "18",
+        "--steps",
+        "48",
+        "--output",
+        "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.jsonl"
+      ],
+      "output": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.jsonl",
+      "console": "/home/lhwang/work/noahmp-phase3b/logs/h5-overnight/numpy-300000.log",
+      "exit_code": null
+    }
+  ],
+  "updated_utc": "2026-10-13T05:03:19.991663+00:00"
+}

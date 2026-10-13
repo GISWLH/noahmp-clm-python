@@ -1,0 +1,113 @@
+{
+  "columns": [
+    6,
+    5063,
+    6550,
+    15414,
+    31398,
+    38422,
+    41262,
+    46918,
+    49974,
+    53534,
+    53982,
+    55542,
+    62398
+  ],
+  "trace_vs_full_batch_gate": true,
+  "trace_vs_full_batch_mismatches": 0,
+  "trace_vs_full_batch_max_abs": 0.0,
+  "tail_columns": [
+    {
+      "column": 6,
+      "max_ts_abs": 0.00013573209048445278,
+      "max_ts_step": 22
+    },
+    {
+      "column": 5063,
+      "max_ts_abs": 2.3499405777305924,
+      "max_ts_step": 44
+    },
+    {
+      "column": 6550,
+      "max_ts_abs": 0.060900006302517795,
+      "max_ts_step": 22
+    },
+    {
+      "column": 15414,
+      "max_ts_abs": 0.013811383730171656,
+      "max_ts_step": 47
+    },
+    {
+      "column": 31398,
+      "max_ts_abs": 0.0346498868505023,
+      "max_ts_step": 23
+    },
+    {
+      "column": 38422,
+      "max_ts_abs": 0.04159191724716038,
+      "max_ts_step": 23
+    },
+    {
+      "column": 41262,
+      "max_ts_abs": 0.052369360597595005,
+      "max_ts_step": 22
+    },
+    {
+      "column": 46918,
+      "max_ts_abs": 0.030685706838880833,
+      "max_ts_step": 22
+    },
+    {
+      "column": 49974,
+      "max_ts_abs": 0.07477710764482026,
+      "max_ts_step": 21
+    },
+    {
+      "column": 53534,
+      "max_ts_abs": 0.03256455045487883,
+      "max_ts_step": 23
+    },
+    {
+      "column": 53982,
+      "max_ts_abs": 0.036935639804426046,
+      "max_ts_step": 23
+    },
+    {
+      "column": 55542,
+      "max_ts_abs": 0.00019847630949243467,
+      "max_ts_step": 14
+    },
+    {
+      "column": 62398,
+      "max_ts_abs": 0.03466127919853079,
+      "max_ts_step": 22
+    }
+  ],
+  "source_hashes": {
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "421631170b9ef081871336d2feacbeeef590ba9b63e709c1828c713b3a40cb5c",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/jax_core.py": "c78ddf49a75eb214afe3e79c766239e7ab521d12b4a9914610e023a2c69c4f6e",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "cb62a942c1a0e769835adafc25b5be49bc66db46496e80f1603fc0cba028a9cd",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "4096aa72eb998aa58f4048d0bdbe877d9b380b4f5066754a347311dcd971f8ab",
+    "benchmarks/check_gpu_extended.py": "b55f21e9923bf2f4aa88fadd3ad8eb8e7898089fc1dee15753e81236ff9c9ff1"
+  }
+}

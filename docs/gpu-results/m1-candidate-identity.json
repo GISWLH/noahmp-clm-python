@@ -1,0 +1,14 @@
+{
+  "candidate_utc": "2026-10-13T11:36:56.338109+00:00",
+  "baseline_commit": "b954d9022e5f96925f6d41fea833f740ab0c04f3",
+  "decision": "revert_on_same_precision_regression",
+  "changed_files": {
+    "src/noahmp_clm/driver.py": "eca5d5eab0fad403730ba2e63ec47f58b5284d4b1125961fbccd11fa86497e0e",
+    "src/noahmp_clm/physics/soil.py": "bb1726d7a2504cce16d9ff958a15639ae258e2881be5990ae3f7be2ecd2511df",
+    "src/noahmp_clm/physics/snow.py": "c9a1aac8401aa169986ca71bedb20909bd6dfd025eda2b903353e562de6b2963",
+    "src/noahmp_clm/physics/energy.py": "774cf7cf2561a0cf642e216fe2df2d9f0869438c95410d542450212a05bc16fb",
+    "src/noahmp_clm/physics/surface_drag.py": "7ff34f1f6d9a5536cfc04090b3cc19ccabd9bfd03a771e880a288da40e43a523",
+    "src/noahmp_clm/gpu/jax_core.py": "a033238e244b0a4c80ff814798fc282517be44dafffedc91bea6e31f42306922",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "948f735c4cf675a6b0b2386fd4035ffb62d2d4c1902880e517d3b91b22a38b18"
+  }
+}

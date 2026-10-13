@@ -1,0 +1,53 @@
+{
+  "checked_at_utc": "2026-10-13T11:38:53.003960+00:00",
+  "space": "LonghaoWang/weatherlearn-fengwu-smoke",
+  "api_name": "/run_cuda_ping",
+  "noahmp_source_commit": "b954d90",
+  "noahmp_jax_status": "not_tested",
+  "noahmp_jax_reason": "Independent ZeroGPU Space creation rejected: namespace already has 10 ZeroGPU Spaces (limit 10). Existing WeatherLearn Space exposes no JAX/Noah-MP endpoint; unrelated Spaces were not modified.",
+  "requested_new_space": "LonghaoWang/noahmp-clm-gpu-smoke",
+  "space_creation_http_status": 400,
+  "runtime": {
+    "stage": "RUNNING",
+    "hardware": {
+      "current": "zero-a10g",
+      "requested": "zero-a10g"
+    },
+    "gcTimeout": 172800,
+    "replicas": {
+      "current": 1,
+      "requested": 1
+    },
+    "devMode": false,
+    "domains": [
+      {
+        "domain": "longhaowang-weatherlearn-fengwu-smoke.hf.space",
+        "stage": "READY"
+      }
+    ],
+    "sha": "ac601ba2f1f4a35e74229fc0e66819128c22fc4c"
+  },
+  "quota_before": {
+    "base": 2400,
+    "current": 2398.911856,
+    "resetsAt": "2026-10-14T11:14:48.062Z",
+    "overquotaUsed": 0
+  },
+  "request_status": 200,
+  "response_status": 200,
+  "sse_output": "event: complete\ndata: [\"torch=2.13.0+cu130\\ncuda_available=True\\ngpu=NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb\\nmatmul_ok=True\\npeak_cuda_mem_gb=0.0313\\nSTATUS=OK\\n\"]\n\n",
+  "request_wall_seconds": 2.4522118999998384,
+  "quota_after": {
+    "base": 2400,
+    "current": 2397.641964,
+    "resetsAt": "2026-10-14T11:14:48.352Z",
+    "overquotaUsed": 0
+  },
+  "existing_demo_passed": true,
+  "space_creation_error": "ZeroGPU Spaces are currently limited to 10 per user, and there are already 10 Spaces running on ZeroGPU in namespace LonghaoWang.",
+  "noahmp_numeric_checksum": null,
+  "existing_demo_numeric_checksum": null,
+  "sse_output_sha256": "44753cc89dc160511c7afb0a542810681efe6bd42f5a72bdd17d6eb509ada96f",
+  "historical_check_only": true,
+  "subsequent_user_action": "The user explicitly requested deletion of the four oldest ZeroGPU Spaces; weatherlearn-fengwu-smoke was one of those and was deleted after this successful availability check. See m3-hf-deleted-oldest-four.json."
+}

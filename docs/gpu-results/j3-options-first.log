@@ -1,0 +1,28 @@
+...................F................................F.                   [100%]
+=================================== FAILURES ===================================
+_ test_cuda_implemented_option_eight_scenarios_24_steps[OptRainSnowPartition-3] _
+tests/test_gpu_cuda_options.py:121: in test_cuda_implemented_option_eight_scenarios_24_steps
+    _run_compare(gpu, _scenarios.scenarios(24, options))
+tests/test_gpu_cuda_options.py:115: in _run_compare
+    _strict_report(actual, expected, [name for name, _, _ in cases])
+tests/test_gpu_cuda_options.py:103: in _strict_report
+    assert not failures, json.dumps(failures)
+E   AssertionError: [{"group": "diagnostics", "count": 14, "first": [6, 0, 11], "first_case": "rain_snow_transition_sand", "worst": [6, 0, 11], "max_ratio": 7.621021565777934, "cuda": 0.00110626220703125, "jax32": 0.0010986328125}]
+E   assert not [{'group': 'diagnostics', 'count': 14, 'first': [6, 0, 11], 'first_case': 'rain_snow_transition_sand', ...}]
+----------------------------- Captured stdout call -----------------------------
+{"cases": 8, "failures": [{"group": "diagnostics", "count": 14, "first": [6, 0, 11], "first_case": "rain_snow_transition_sand", "worst": [6, 0, 11], "max_ratio": 7.621021565777934, "cuda": 0.00110626220703125, "jax32": 0.0010986328125}]}
+______________ test_cuda_mixed_all_options_1024_columns_48_steps _______________
+tests/test_gpu_cuda_options.py:132: in test_cuda_mixed_all_options_1024_columns_48_steps
+    _run_compare(gpu, cases)
+tests/test_gpu_cuda_options.py:115: in _run_compare
+    _strict_report(actual, expected, [name for name, _, _ in cases])
+tests/test_gpu_cuda_options.py:103: in _strict_report
+    assert not failures, json.dumps(failures)
+E   AssertionError: [{"group": "diagnostics", "count": 1677, "first": [14, 1, 11], "first_case": "14:rain_snow_transition_sand", "worst": [14, 1, 11], "max_ratio": 7.628114539368774, "cuda": -0.00016021728515625, "jax32": -0.0001678466796875}]
+E   assert not [{'group': 'diagnostics', 'count': 1677, 'first': [14, 1, 11], 'first_case': '14:rain_snow_transition_sand', ...}]
+----------------------------- Captured stdout call -----------------------------
+{"cases": 1024, "failures": [{"group": "diagnostics", "count": 1677, "first": [14, 1, 11], "first_case": "14:rain_snow_transition_sand", "worst": [14, 1, 11], "max_ratio": 7.628114539368774, "cuda": -0.00016021728515625, "jax32": -0.0001678466796875}]}
+=========================== short test summary info ============================
+FAILED tests/test_gpu_cuda_options.py::test_cuda_implemented_option_eight_scenarios_24_steps[OptRainSnowPartition-3]
+FAILED tests/test_gpu_cuda_options.py::test_cuda_mixed_all_options_1024_columns_48_steps
+2 failed, 52 passed in 89.27s (0:01:29)

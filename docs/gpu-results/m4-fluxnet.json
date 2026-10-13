@@ -1,0 +1,1933 @@
+{
+  "utc": "2026-10-13T11:37:53.475104+00:00",
+  "python": "3.12.2",
+  "numpy": "2.5.4",
+  "physical_validation": false,
+  "calibrated": false,
+  "parameters": "unchanged ColumnState defaults; no spinup; no tower-height correction",
+  "source_sha256": {
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "4d5008604fe12a513b6ab2510a0985ce2c4ef36ceafb9f3af165688872eebd09",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/jax_core.py": "6ec9039c7fcfae07842abeba99e5deb9c005b2679bfc7327d6939fdd01b31bac",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "e56b13921e5f138f216e8ead446e8ae66a2df4bc26d1c692c6e74dd31a7a49b2",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "e1f7cf0d98657ccb3ebf8b73316ddbc362ee18aa91a924f66affb88ba461d847",
+    "examples/fluxnet_multisite.py": "277468ed2fc482348fdf652cbd6c8ce15f5dfe7af04a0bc334b65808ddff0c3d",
+    "examples/fluxnet_smoke.py": "11dd72ae3fc8efee82166da4bf27fd1e539e4ef688c8bdb99321feaa643e729f",
+    "benchmarks/closeout_criteria.json": "7e6f111df600eae4fa979906e20f9585bcc49170b9ef9db1b84184b2440d6675",
+    "benchmarks/check_closeout.py": "3c3e68a0c69e14f57ef27f4e2b3a64f0cc101d83d91afbca0d677d755eec6ab4"
+  },
+  "inputs": [
+    {
+      "site": "CN-Cng",
+      "csv_name": "CN-Cng_20070701_30d.csv",
+      "csv_sha256": "c5eab070872fc1062dc6b651ee27b3157b485516a657ba93b6bfa1a16cac2e10",
+      "start_local_standard": "2007-07-01",
+      "end_exclusive_local_standard": "2007-07-31T00:00:00",
+      "timezone_convention": "local standard, no DST; no UTC conversion",
+      "days": 30,
+      "steps": 1440,
+      "dt_seconds": 1800.0,
+      "humidity_source": "VPD_F",
+      "forcing_qc_counts": {
+        "TA_F": {
+          "0": 1440
+        },
+        "WS_F": {
+          "0": 1440
+        },
+        "PA_F": {
+          "0": 1439,
+          "2": 1
+        },
+        "SW_IN_F": {
+          "0": 1439,
+          "1": 1
+        },
+        "LW_IN_F": {
+          "0": 1440
+        },
+        "P_F": {
+          "0": 1440
+        },
+        "VPD_F": {
+          "0": 1440
+        }
+      },
+      "observation_qc_counts": {
+        "le": {
+          "0": 1360,
+          "1": 80
+        },
+        "h": {
+          "0": 1414,
+          "1": 26
+        }
+      },
+      "observation_policy": "uncorrected LE_F_MDS/H_F_MDS, finite and QC=0 only; no gapfill scoring",
+      "precipitation_mm": 56.5,
+      "source": "/volume2/Data/Global/FLUXNET-Data-Shop/processed/site_csv/CN-Cng.csv",
+      "source_sha256": "54c9fb1a4bf3e8589b2feeb232270a3e2b59930b1e59c110f8efeded4841ce3f"
+    },
+    {
+      "site": "CN-HaM",
+      "csv_name": "CN-HaM_20070701_30d.csv",
+      "csv_sha256": "a975c547381a34a1439ef929f9a8cdc7b9d7f2c8192ea61bf94f894500df9043",
+      "start_local_standard": "2007-07-01",
+      "end_exclusive_local_standard": "2007-07-31T00:00:00",
+      "timezone_convention": "local standard, no DST; no UTC conversion",
+      "days": 30,
+      "steps": 1440,
+      "dt_seconds": 1800.0,
+      "humidity_source": "VPD_F",
+      "forcing_qc_counts": {
+        "TA_F": {
+          "0": 1440
+        },
+        "WS_F": {
+          "0": 1440
+        },
+        "PA_F": {
+          "2": 1440
+        },
+        "SW_IN_F": {
+          "0": 1440
+        },
+        "LW_IN_F": {
+          "0": 1440
+        },
+        "P_F": {
+          "2": 1440
+        },
+        "VPD_F": {
+          "0": 1440
+        }
+      },
+      "observation_qc_counts": {
+        "le": {
+          "missing": 1440
+        },
+        "h": {
+          "0": 971,
+          "1": 448,
+          "2": 21
+        }
+      },
+      "observation_policy": "uncorrected LE_F_MDS/H_F_MDS, finite and QC=0 only; no gapfill scoring",
+      "precipitation_mm": 609.22,
+      "source": "/volume2/Data/Global/FLUXNET-Data-Shop/processed/site_csv/CN-HaM.csv",
+      "source_sha256": "3f28225205b14cb46420ebe83e22962fbdb902abeb7a1f9e4bde17cb9d782dfe"
+    },
+    {
+      "site": "CN-Qia",
+      "csv_name": "CN-Qia_20030701_30d.csv",
+      "csv_sha256": "22d8fa1bf65fbf237ce35062632e207f2063a38e1842d6d773d972afe9b91f27",
+      "start_local_standard": "2003-07-01",
+      "end_exclusive_local_standard": "2003-07-31T00:00:00",
+      "timezone_convention": "local standard, no DST; no UTC conversion",
+      "days": 30,
+      "steps": 1440,
+      "dt_seconds": 1800.0,
+      "humidity_source": "VPD_F",
+      "forcing_qc_counts": {
+        "TA_F": {
+          "0": 1438,
+          "1": 2
+        },
+        "WS_F": {
+          "0": 1439,
+          "2": 1
+        },
+        "PA_F": {
+          "0": 1440
+        },
+        "SW_IN_F": {
+          "0": 1440
+        },
+        "LW_IN_F": {
+          "0": 1440
+        },
+        "P_F": {
+          "0": 1440
+        },
+        "VPD_F": {
+          "0": 1438,
+          "1": 2
+        }
+      },
+      "observation_qc_counts": {
+        "le": {
+          "0": 1393,
+          "1": 45,
+          "2": 2
+        },
+        "h": {
+          "0": 1406,
+          "1": 34
+        }
+      },
+      "observation_policy": "uncorrected LE_F_MDS/H_F_MDS, finite and QC=0 only; no gapfill scoring",
+      "precipitation_mm": 3.9,
+      "source": "/volume2/Data/Global/FLUXNET-Data-Shop/processed/site_csv/CN-Qia.csv",
+      "source_sha256": "a8cd8c7512b318fa86bfd0a943c9f7abfc3778612039aa9c58ea8369b335a3bb"
+    },
+    {
+      "site": "CN-Cha",
+      "csv_name": "CN-Cha_20030701_30d.csv",
+      "csv_sha256": "c6aaf9a7a0e22a863cfb1b66cb966fe93775d02bd1d96a4a88f27cf5f6feee91",
+      "start_local_standard": "2003-07-01",
+      "end_exclusive_local_standard": "2003-07-31T00:00:00",
+      "timezone_convention": "local standard, no DST; no UTC conversion",
+      "days": 30,
+      "steps": 1440,
+      "dt_seconds": 1800.0,
+      "humidity_source": "VPD_F",
+      "forcing_qc_counts": {
+        "TA_F": {
+          "0": 1440
+        },
+        "WS_F": {
+          "0": 1431,
+          "2": 9
+        },
+        "PA_F": {
+          "0": 1440
+        },
+        "SW_IN_F": {
+          "0": 1439,
+          "1": 1
+        },
+        "LW_IN_F": {
+          "0": 1440
+        },
+        "P_F": {
+          "0": 1440
+        },
+        "VPD_F": {
+          "0": 1440
+        }
+      },
+      "observation_qc_counts": {
+        "le": {
+          "0": 982,
+          "1": 456,
+          "2": 2
+        },
+        "h": {
+          "0": 1099,
+          "1": 340,
+          "2": 1
+        }
+      },
+      "observation_policy": "uncorrected LE_F_MDS/H_F_MDS, finite and QC=0 only; no gapfill scoring",
+      "precipitation_mm": 179.8,
+      "source": "/volume2/Data/Global/FLUXNET-Data-Shop/processed/site_csv/CN-Cha.csv",
+      "source_sha256": "794fcb68f07b8ce679d0385620200af43165215c1f23695186cc2c9039d5e5b9"
+    }
+  ],
+  "backends": {
+    "numpy64": {
+      "elapsed_s": 4.779975168406963,
+      "device": "CPU",
+      "production_trace_exact": true,
+      "finite": true,
+      "observations": {
+        "CN-Cng": {
+          "le": {
+            "n": 1360,
+            "r": 0.8693415383421506,
+            "bias_W_m2": 0.45213122806493333,
+            "rmse_W_m2": 47.681827282691934
+          },
+          "h": {
+            "n": 1414,
+            "r": 0.8973729341512718,
+            "bias_W_m2": 6.490629438638018,
+            "rmse_W_m2": 35.385034635305736
+          }
+        },
+        "CN-HaM": {
+          "le": {
+            "n": 0,
+            "r": null,
+            "bias_W_m2": null,
+            "rmse_W_m2": null
+          },
+          "h": {
+            "n": 971,
+            "r": 0.23823117736371793,
+            "bias_W_m2": -22.542932118096473,
+            "rmse_W_m2": 56.52668585255153
+          }
+        },
+        "CN-Qia": {
+          "le": {
+            "n": 1393,
+            "r": 0.8383500187941108,
+            "bias_W_m2": -40.194766158434035,
+            "rmse_W_m2": 79.23668332461979
+          },
+          "h": {
+            "n": 1406,
+            "r": 0.8908222316481181,
+            "bias_W_m2": 10.476968225241672,
+            "rmse_W_m2": 46.73942105626503
+          }
+        },
+        "CN-Cha": {
+          "le": {
+            "n": 982,
+            "r": 0.8583759273596978,
+            "bias_W_m2": 8.408103487465718,
+            "rmse_W_m2": 63.318906720412095
+          },
+          "h": {
+            "n": 1099,
+            "r": 0.7034533898300114,
+            "bias_W_m2": -6.177463174555172,
+            "rmse_W_m2": 42.22646598705938
+          }
+        }
+      },
+      "checksum_sha256": "31b50fd53f4433b062acbfbecb5470bea13e4d4c34f66a2891d33f6706a696a2",
+      "conservation": {
+        "surface_accounting_max_abs_W_m2": 0.0,
+        "surface_accounting_max_bound_ratio": 0.0,
+        "surface_accounting_passed": true,
+        "water_step_max_abs_m": 3.012997837337217e-16,
+        "water_step_max_bound_ratio": 5.519506546208835e-11,
+        "water_step_passed": true,
+        "water_cumulative_per_column_m": [
+          2.787844833253999e-16,
+          -5.539695001414427e-16,
+          -6.009174394435351e-16,
+          -6.062444031790378e-16
+        ],
+        "water_cumulative_max_abs_m": 6.062444031790378e-16,
+        "whole_column_energy_passed": false,
+        "whole_column_energy_status": "known melt-out routing gap; explicitly accepted limitation"
+      }
+    },
+    "jax64": {
+      "elapsed_s": 318.79130740463734,
+      "device": "{CudaDevice(id=0)}",
+      "production_trace_exact": true,
+      "finite": true,
+      "observations": {
+        "CN-Cng": {
+          "le": {
+            "n": 1360,
+            "r": 0.8693415383421506,
+            "bias_W_m2": 0.45213122806493,
+            "rmse_W_m2": 47.68182728269192
+          },
+          "h": {
+            "n": 1414,
+            "r": 0.8973729341512723,
+            "bias_W_m2": 6.490629438638223,
+            "rmse_W_m2": 35.38503463530579
+          }
+        },
+        "CN-HaM": {
+          "le": {
+            "n": 0,
+            "r": null,
+            "bias_W_m2": null,
+            "rmse_W_m2": null
+          },
+          "h": {
+            "n": 971,
+            "r": 0.23823117736371688,
+            "bias_W_m2": -22.542932118096477,
+            "rmse_W_m2": 56.52668585255157
+          }
+        },
+        "CN-Qia": {
+          "le": {
+            "n": 1393,
+            "r": 0.8383500187941108,
+            "bias_W_m2": -40.194766158434035,
+            "rmse_W_m2": 79.23668332461979
+          },
+          "h": {
+            "n": 1406,
+            "r": 0.8908222316481184,
+            "bias_W_m2": 10.476968225241688,
+            "rmse_W_m2": 46.739421056265
+          }
+        },
+        "CN-Cha": {
+          "le": {
+            "n": 982,
+            "r": 0.8583759273596978,
+            "bias_W_m2": 8.408103487465725,
+            "rmse_W_m2": 63.31890672041208
+          },
+          "h": {
+            "n": 1099,
+            "r": 0.7034533898300112,
+            "bias_W_m2": -6.177463174555237,
+            "rmse_W_m2": 42.226465987059406
+          }
+        }
+      },
+      "checksum_sha256": "7100ebcc2bac2d921e9cdd0d13f616e955e1315de99f84c18869c1ceb2780273",
+      "conservation": {
+        "surface_accounting_max_abs_W_m2": 1.1368683772161603e-13,
+        "surface_accounting_max_bound_ratio": 3.6925485737778396e-11,
+        "surface_accounting_passed": true,
+        "water_step_max_abs_m": 3.010829432992246e-16,
+        "water_step_max_bound_ratio": 5.975368024471858e-11,
+        "water_step_passed": true,
+        "water_cumulative_per_column_m": [
+          2.908313829479446e-16,
+          -5.838132766698494e-16,
+          -5.994381228709351e-16,
+          -5.890299143639723e-16
+        ],
+        "water_cumulative_max_abs_m": 5.994381228709351e-16,
+        "whole_column_energy_passed": false,
+        "whole_column_energy_status": "known melt-out routing gap; explicitly accepted limitation"
+      }
+    },
+    "jax32": {
+      "elapsed_s": 185.25673037022352,
+      "device": "{CudaDevice(id=0)}",
+      "production_trace_exact": true,
+      "finite": true,
+      "observations": {
+        "CN-Cng": {
+          "le": {
+            "n": 1360,
+            "r": 0.8693420562825631,
+            "bias_W_m2": 0.452154084988377,
+            "rmse_W_m2": 47.68173232394162
+          },
+          "h": {
+            "n": 1414,
+            "r": 0.8973718973122103,
+            "bias_W_m2": 6.49163024136045,
+            "rmse_W_m2": 35.38567083757392
+          }
+        },
+        "CN-HaM": {
+          "le": {
+            "n": 0,
+            "r": null,
+            "bias_W_m2": null,
+            "rmse_W_m2": null
+          },
+          "h": {
+            "n": 971,
+            "r": 0.23822680946134422,
+            "bias_W_m2": -22.54214568569594,
+            "rmse_W_m2": 56.52664556132995
+          }
+        },
+        "CN-Qia": {
+          "le": {
+            "n": 1393,
+            "r": 0.838349784642848,
+            "bias_W_m2": -40.194737613927614,
+            "rmse_W_m2": 79.23669051136574
+          },
+          "h": {
+            "n": 1406,
+            "r": 0.8908239163286488,
+            "bias_W_m2": 10.47753690735623,
+            "rmse_W_m2": 46.739222001853285
+          }
+        },
+        "CN-Cha": {
+          "le": {
+            "n": 982,
+            "r": 0.8583750887865915,
+            "bias_W_m2": 8.408290256389302,
+            "rmse_W_m2": 63.31915290417339
+          },
+          "h": {
+            "n": 1099,
+            "r": 0.7034553292723481,
+            "bias_W_m2": -6.177216723401274,
+            "rmse_W_m2": 42.22632997861895
+          }
+        }
+      },
+      "checksum_sha256": "360d37f634ee883591a8269cadb0dcf8d6b9ab07a8a54d0fd36b70873b444c05",
+      "conservation": {
+        "surface_accounting_max_abs_W_m2": 8.7738037109375e-05,
+        "surface_accounting_max_bound_ratio": 0.02309036507955843,
+        "surface_accounting_passed": true,
+        "water_step_max_abs_m": 5.097314717607032e-08,
+        "water_step_max_bound_ratio": 0.010402013495482317,
+        "water_step_passed": true,
+        "water_cumulative_per_column_m": [
+          5.449693999356748e-07,
+          1.1123806216089947e-06,
+          1.686368777885391e-07,
+          1.2211414377920236e-06
+        ],
+        "water_cumulative_max_abs_m": 1.2211414377920236e-06,
+        "whole_column_energy_passed": false,
+        "whole_column_energy_status": "known melt-out routing gap; explicitly accepted limitation"
+      }
+    },
+    "cuda": {
+      "elapsed_s": 2.7770782336592674,
+      "device": "b'NVIDIA GeForce RTX 4090'",
+      "production_trace_exact": true,
+      "finite": true,
+      "observations": {
+        "CN-Cng": {
+          "le": {
+            "n": 1360,
+            "r": 0.8693420562825631,
+            "bias_W_m2": 0.452154084988377,
+            "rmse_W_m2": 47.68173232394162
+          },
+          "h": {
+            "n": 1414,
+            "r": 0.8973718973122103,
+            "bias_W_m2": 6.49163024136045,
+            "rmse_W_m2": 35.38567083757392
+          }
+        },
+        "CN-HaM": {
+          "le": {
+            "n": 0,
+            "r": null,
+            "bias_W_m2": null,
+            "rmse_W_m2": null
+          },
+          "h": {
+            "n": 971,
+            "r": 0.23822680946134422,
+            "bias_W_m2": -22.54214568569594,
+            "rmse_W_m2": 56.52664556132995
+          }
+        },
+        "CN-Qia": {
+          "le": {
+            "n": 1393,
+            "r": 0.838349784642848,
+            "bias_W_m2": -40.194737613927614,
+            "rmse_W_m2": 79.23669051136574
+          },
+          "h": {
+            "n": 1406,
+            "r": 0.8908239163286488,
+            "bias_W_m2": 10.47753690735623,
+            "rmse_W_m2": 46.739222001853285
+          }
+        },
+        "CN-Cha": {
+          "le": {
+            "n": 982,
+            "r": 0.8583750887865915,
+            "bias_W_m2": 8.408290256389302,
+            "rmse_W_m2": 63.31915290417339
+          },
+          "h": {
+            "n": 1099,
+            "r": 0.7034553292723481,
+            "bias_W_m2": -6.177216723401274,
+            "rmse_W_m2": 42.22632997861895
+          }
+        }
+      },
+      "checksum_sha256": "7b7baf483239db28c4b8bb0aa72a72f9f144e620015d3e2db0829cd22bb4d140",
+      "conservation": {
+        "surface_accounting_max_abs_W_m2": 8.7738037109375e-05,
+        "surface_accounting_max_bound_ratio": 0.02309036507955843,
+        "surface_accounting_passed": true,
+        "water_step_max_abs_m": 5.097314717607032e-08,
+        "water_step_max_bound_ratio": 0.010402013495482317,
+        "water_step_passed": true,
+        "water_cumulative_per_column_m": [
+          5.449843010968716e-07,
+          1.1123806216089947e-06,
+          1.686368777885391e-07,
+          1.2211414377920236e-06
+        ],
+        "water_cumulative_max_abs_m": 1.2211414377920236e-06,
+        "whole_column_energy_passed": false,
+        "whole_column_energy_status": "known melt-out routing gap; explicitly accepted limitation"
+      }
+    }
+  },
+  "cuda_visible_devices": "1",
+  "run_completed": true,
+  "criteria": {
+    "version": "M2-20261013-preregistered",
+    "same_precision": {
+      "rtol": 1e-06,
+      "atol": 1e-06,
+      "minimum_fraction": 1.0
+    },
+    "cross_precision": {
+      "rtol": 0.001,
+      "state_atol": 0.0,
+      "flux_atol_W_m2": 0.01,
+      "minimum_fraction_per_field": 0.995
+    },
+    "residual": {
+      "absolute_median_lt_W_m2": 0.001,
+      "absolute_p99_lt_W_m2": 0.01
+    },
+    "roundoff_multiplier": 32,
+    "latent_heat_J_kg": 2500000.0,
+    "domain_columns": 64800,
+    "annual_days": 365,
+    "whole_column_energy_exception": "Wang explicitly accepts surface closure; whole-column melt-out heat gap remains a known limitation"
+  },
+  "m2": {
+    "jax32": {
+      "fields": {
+        "tsoil": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.007717404545132922,
+          "mean_signed_error": 0.0010714811024369257,
+          "p99_abs_error": 0.006850731736259377,
+          "comparison_unit": "K",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "smc": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 5.659787802425598e-06,
+          "mean_signed_error": 7.375338867901528e-08,
+          "p99_abs_error": 9.076827387552448e-07,
+          "comparison_unit": "m3/m3",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "soil_ice": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.0,
+          "mean_signed_error": 0.0,
+          "p99_abs_error": 0.0,
+          "comparison_unit": "m3/m3",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "swe": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 1.2465137834145705e-09,
+          "mean_signed_error": -2.1095194895652991e-10,
+          "p99_abs_error": 1.204417484460831e-09,
+          "comparison_unit": "m",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "canw": {
+          "elements": 5760,
+          "failed_elements": 51,
+          "fraction_passed": 0.9911458333333333,
+          "finite": true,
+          "max_abs": 9.424830467734575e-08,
+          "mean_signed_error": -2.7170035823801554e-09,
+          "p99_abs_error": 4.2277147711713795e-08,
+          "comparison_unit": "m",
+          "passed": false,
+          "failure_groups": {
+            "CN-Cng": 3,
+            "CN-HaM": 2,
+            "CN-Qia": 4,
+            "CN-Cha": 42
+          }
+        },
+        "h": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.023724014608163202,
+          "mean_signed_error": 0.0006365170455775108,
+          "p99_abs_error": 0.005032060554761627,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "le": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.04319362853175335,
+          "mean_signed_error": 0.0003227765223939753,
+          "p99_abs_error": 0.004619675319480896,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "g": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.020847498123515606,
+          "mean_signed_error": -0.0013795230459879746,
+          "p99_abs_error": 0.006292860945045077,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "et_mm": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.04315756109906488,
+          "mean_signed_error": 0.00032157928820445553,
+          "p99_abs_error": 0.004699406197208871,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {},
+          "max_abs_mm_per_step": 3.107344399128076e-05
+        }
+      },
+      "residual": {
+        "median_abs_W_m2": 0.000324249267578125,
+        "p99_abs_W_m2": 0.0020554351806640614,
+        "max_abs_W_m2": 0.01068115234375,
+        "median_abs_difference_W_m2": 0.0003017525133905963,
+        "p99_abs_difference_W_m2": 0.002199409148389114,
+        "max_abs_difference_W_m2": 0.010679687518035053,
+        "passed": true
+      },
+      "numeric_thresholds_passed": false,
+      "outlier_attribution": "requires_evidence_review",
+      "outlier_count": 51,
+      "per_site": {
+        "CN-Cng": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007717404545132922,
+              "mean_signed_error": 0.0011961958857395988,
+              "p99_abs_error": 0.00731219896546861,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 6.260014334402708e-07,
+              "mean_signed_error": 1.5292341253893764e-07,
+              "p99_abs_error": 6.068195468386661e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 3,
+              "fraction_passed": 0.9979166666666667,
+              "finite": true,
+              "max_abs": 1.6710374963532088e-08,
+              "mean_signed_error": 4.25660779487012e-10,
+              "p99_abs_error": 1.4127734339765921e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-Cng": 3
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0077858713632927845,
+              "mean_signed_error": 0.000989504343055315,
+              "p99_abs_error": 0.005431764738459884,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.01334234477204177,
+              "mean_signed_error": 1.4985772958369145e-05,
+              "p99_abs_error": 0.0016889240558765526,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007665313602778667,
+              "mean_signed_error": -0.0014621569342629006,
+              "p99_abs_error": 0.006644752420205888,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.016571413336464502,
+              "mean_signed_error": 1.8546228685958586e-05,
+              "p99_abs_error": 0.001693740658581077,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 1.1931417602251138e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.000316619873046875,
+            "p99_abs_W_m2": 0.0015076446533203117,
+            "max_abs_W_m2": 0.002838134765625,
+            "median_abs_difference_W_m2": 0.0002922568116723312,
+            "p99_abs_difference_W_m2": 0.0016752352804729335,
+            "max_abs_difference_W_m2": 0.0027851961535247938,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 3
+        },
+        "CN-HaM": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.00280226024113972,
+              "mean_signed_error": 0.0007496392343351705,
+              "p99_abs_error": 0.0025605578349291135,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 5.659787802425598e-06,
+              "mean_signed_error": -2.819613305989683e-08,
+              "p99_abs_error": 7.273560680040591e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 1.2465137834145705e-09,
+              "mean_signed_error": -8.438077958261197e-10,
+              "p99_abs_error": 1.204542847275036e-09,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 2,
+              "fraction_passed": 0.9986111111111111,
+              "finite": true,
+              "max_abs": 4.9944979715584384e-08,
+              "mean_signed_error": -5.401420227596528e-09,
+              "p99_abs_error": 4.1206461096517005e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-HaM": 2
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.016203449597853137,
+              "mean_signed_error": 0.0007195945468482885,
+              "p99_abs_error": 0.0037179546413352647,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.04319362853175335,
+              "mean_signed_error": 0.0009248364604231277,
+              "p99_abs_error": 0.004991213288265043,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.020847498123515606,
+              "mean_signed_error": -0.0020359296125067447,
+              "p99_abs_error": 0.0054214227086821125,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.04315756109906488,
+              "mean_signed_error": 0.0009311700242486264,
+              "p99_abs_error": 0.005011729035402363,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 3.107344399128076e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0004100799560546875,
+            "p99_abs_W_m2": 0.0032627868652343704,
+            "max_abs_W_m2": 0.01068115234375,
+            "median_abs_difference_W_m2": 0.00039862534277546047,
+            "p99_abs_difference_W_m2": 0.0032650964605464546,
+            "max_abs_difference_W_m2": 0.010679687518035053,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 2
+        },
+        "CN-Qia": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007123867633026748,
+              "mean_signed_error": 0.0013115950172868868,
+              "p99_abs_error": 0.007026200458172979,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 2.3882903799066213e-07,
+              "mean_signed_error": 4.047420037453393e-08,
+              "p99_abs_error": 2.0171690189113575e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 4,
+              "fraction_passed": 0.9972222222222222,
+              "finite": true,
+              "max_abs": 3.510321513094982e-08,
+              "mean_signed_error": -7.202870275925065e-10,
+              "p99_abs_error": 2.4128427731598834e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-Qia": 4
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.023724014608163202,
+              "mean_signed_error": 0.0005873209727560117,
+              "p99_abs_error": 0.004732560723299448,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.036796234236106784,
+              "mean_signed_error": 2.6950215400095954e-05,
+              "p99_abs_error": 0.002898005652027107,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007088802823062679,
+              "mean_signed_error": -0.0012832761523000464,
+              "p99_abs_error": 0.006279678393435685,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.036826564810255036,
+              "mean_signed_error": 8.73857856220487e-06,
+              "p99_abs_error": 0.002955861631750476,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 2.651512666339284e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0002288818359375,
+            "p99_abs_W_m2": 0.0009918212890625,
+            "max_abs_W_m2": 0.00589752197265625,
+            "median_abs_difference_W_m2": 0.00020688565074777898,
+            "p99_abs_difference_W_m2": 0.0010623285930076768,
+            "max_abs_difference_W_m2": 0.005976967549713663,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 4
+        },
+        "CN-Cha": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.004955487608128806,
+              "mean_signed_error": 0.0010284942723860467,
+              "p99_abs_error": 0.004725191240276558,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 1.1064313648612156e-06,
+              "mean_signed_error": 1.2981207486248638e-07,
+              "p99_abs_error": 9.920945734509522e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 42,
+              "fraction_passed": 0.9708333333333333,
+              "finite": true,
+              "max_abs": 9.424830467734575e-08,
+              "mean_signed_error": -5.1719678538186e-09,
+              "p99_abs_error": 7.906739929836094e-08,
+              "comparison_unit": "m",
+              "passed": false,
+              "failure_groups": {
+                "CN-Cha": 42
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.009244458865552474,
+              "mean_signed_error": 0.0002496483196504277,
+              "p99_abs_error": 0.0040417400188961635,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.02190966994749033,
+              "mean_signed_error": 0.0003243336407943084,
+              "p99_abs_error": 0.005708157232426169,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.009140512832729542,
+              "mean_signed_error": -0.0007367294848822066,
+              "p99_abs_error": 0.0051328182390164906,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.021929246761942522,
+              "mean_signed_error": 0.00032786232132103234,
+              "p99_abs_error": 0.005707747318035951,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 1.578905766858041e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0003757476806640625,
+            "p99_abs_W_m2": 0.00196849822998046,
+            "max_abs_W_m2": 0.003143310546875,
+            "median_abs_difference_W_m2": 0.0003650214021444498,
+            "p99_abs_difference_W_m2": 0.0022059791306001113,
+            "max_abs_difference_W_m2": 0.003112810367817076,
+            "passed": true
+          },
+          "numeric_thresholds_passed": false,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 42
+        }
+      },
+      "integers_equal": true,
+      "outliers_file": "m4-fluxnet-jax32-outliers.jsonl.gz"
+    },
+    "cuda": {
+      "fields": {
+        "tsoil": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.007717404545132922,
+          "mean_signed_error": 0.0010714811024369257,
+          "p99_abs_error": 0.006850731736259377,
+          "comparison_unit": "K",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "smc": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 5.659787802425598e-06,
+          "mean_signed_error": 7.375338867901528e-08,
+          "p99_abs_error": 9.076827387552448e-07,
+          "comparison_unit": "m3/m3",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "soil_ice": {
+          "elements": 23040,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.0,
+          "mean_signed_error": 0.0,
+          "p99_abs_error": 0.0,
+          "comparison_unit": "m3/m3",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "swe": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 1.2465137834145705e-09,
+          "mean_signed_error": -2.1095194895652991e-10,
+          "p99_abs_error": 1.204417484460831e-09,
+          "comparison_unit": "m",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "canw": {
+          "elements": 5760,
+          "failed_elements": 51,
+          "fraction_passed": 0.9911458333333333,
+          "finite": true,
+          "max_abs": 9.424830467734575e-08,
+          "mean_signed_error": -2.7170035823801554e-09,
+          "p99_abs_error": 4.2277147711713795e-08,
+          "comparison_unit": "m",
+          "passed": false,
+          "failure_groups": {
+            "CN-Cng": 3,
+            "CN-HaM": 2,
+            "CN-Qia": 4,
+            "CN-Cha": 42
+          }
+        },
+        "h": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.023724014608163202,
+          "mean_signed_error": 0.0006365170455775108,
+          "p99_abs_error": 0.005032060554761627,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "le": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.04319362853175335,
+          "mean_signed_error": 0.00032277917148929865,
+          "p99_abs_error": 0.004619675319480896,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "g": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.020847498123515606,
+          "mean_signed_error": -0.0013795230640970247,
+          "p99_abs_error": 0.006292860945045077,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {}
+        },
+        "et_mm": {
+          "elements": 5760,
+          "failed_elements": 0,
+          "fraction_passed": 1.0,
+          "finite": true,
+          "max_abs": 0.04315756109906488,
+          "mean_signed_error": 0.0003215828812699402,
+          "p99_abs_error": 0.004699406197208871,
+          "comparison_unit": "W/m2",
+          "passed": true,
+          "failure_groups": {},
+          "max_abs_mm_per_step": 3.107344399128076e-05
+        }
+      },
+      "residual": {
+        "median_abs_W_m2": 0.000324249267578125,
+        "p99_abs_W_m2": 0.0020554351806640614,
+        "max_abs_W_m2": 0.01068115234375,
+        "median_abs_difference_W_m2": 0.0003017525133905963,
+        "p99_abs_difference_W_m2": 0.002199409148389114,
+        "max_abs_difference_W_m2": 0.010679687518035053,
+        "passed": true
+      },
+      "numeric_thresholds_passed": false,
+      "outlier_attribution": "requires_evidence_review",
+      "outlier_count": 51,
+      "per_site": {
+        "CN-Cng": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007717404545132922,
+              "mean_signed_error": 0.0011961958857395988,
+              "p99_abs_error": 0.00731219896546861,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 6.260014334402708e-07,
+              "mean_signed_error": 1.5292341253893764e-07,
+              "p99_abs_error": 6.068195468386661e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 3,
+              "fraction_passed": 0.9979166666666667,
+              "finite": true,
+              "max_abs": 1.6710374963532088e-08,
+              "mean_signed_error": 4.25660779487012e-10,
+              "p99_abs_error": 1.4127734339765921e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-Cng": 3
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0077858713632927845,
+              "mean_signed_error": 0.000989504343055315,
+              "p99_abs_error": 0.005431764738459884,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.01334234477204177,
+              "mean_signed_error": 1.4985772958369145e-05,
+              "p99_abs_error": 0.0016889240558765526,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007665313602778667,
+              "mean_signed_error": -0.0014621569342629006,
+              "p99_abs_error": 0.006644752420205888,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.016571413336464502,
+              "mean_signed_error": 1.8560600947897176e-05,
+              "p99_abs_error": 0.001693740658581077,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 1.1931417602251138e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.000316619873046875,
+            "p99_abs_W_m2": 0.0015076446533203117,
+            "max_abs_W_m2": 0.002838134765625,
+            "median_abs_difference_W_m2": 0.0002922568116723312,
+            "p99_abs_difference_W_m2": 0.0016752352804729335,
+            "max_abs_difference_W_m2": 0.0027851961535247938,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 3
+        },
+        "CN-HaM": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.00280226024113972,
+              "mean_signed_error": 0.0007496392343351705,
+              "p99_abs_error": 0.0025605578349291135,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 5.659787802425598e-06,
+              "mean_signed_error": -2.819613305989683e-08,
+              "p99_abs_error": 7.273560680040591e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 1.2465137834145705e-09,
+              "mean_signed_error": -8.438077958261197e-10,
+              "p99_abs_error": 1.204542847275036e-09,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 2,
+              "fraction_passed": 0.9986111111111111,
+              "finite": true,
+              "max_abs": 4.9944979715584384e-08,
+              "mean_signed_error": -5.401420227596528e-09,
+              "p99_abs_error": 4.1206461096517005e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-HaM": 2
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.016203449597853137,
+              "mean_signed_error": 0.0007195945468482885,
+              "p99_abs_error": 0.0037179546413352647,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.04319362853175335,
+              "mean_signed_error": 0.0009248470568044211,
+              "p99_abs_error": 0.004991213288265043,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.020847498123515606,
+              "mean_signed_error": -0.002035929684942945,
+              "p99_abs_error": 0.0054214227086821125,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.04315756109906488,
+              "mean_signed_error": 0.0009311700242486264,
+              "p99_abs_error": 0.005011729035402363,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 3.107344399128076e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0004100799560546875,
+            "p99_abs_W_m2": 0.0032627868652343704,
+            "max_abs_W_m2": 0.01068115234375,
+            "median_abs_difference_W_m2": 0.00039862534277546047,
+            "p99_abs_difference_W_m2": 0.0032650964605464546,
+            "max_abs_difference_W_m2": 0.010679687518035053,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 2
+        },
+        "CN-Qia": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007123867633026748,
+              "mean_signed_error": 0.0013115950172868868,
+              "p99_abs_error": 0.007026200458172979,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 2.3882903799066213e-07,
+              "mean_signed_error": 4.047420037453393e-08,
+              "p99_abs_error": 2.0171690189113575e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 4,
+              "fraction_passed": 0.9972222222222222,
+              "finite": true,
+              "max_abs": 3.510321513094982e-08,
+              "mean_signed_error": -7.202870275925065e-10,
+              "p99_abs_error": 2.4128427731598834e-08,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {
+                "CN-Qia": 4
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.023724014608163202,
+              "mean_signed_error": 0.0005873209727560117,
+              "p99_abs_error": 0.004732560723299448,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.036796234236106784,
+              "mean_signed_error": 2.6950215400095954e-05,
+              "p99_abs_error": 0.002898005652027107,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.007088802823062679,
+              "mean_signed_error": -0.0012832761523000464,
+              "p99_abs_error": 0.006279678393435685,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.036826564810255036,
+              "mean_signed_error": 8.73857856220487e-06,
+              "p99_abs_error": 0.002955861631750476,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 2.651512666339284e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0002288818359375,
+            "p99_abs_W_m2": 0.0009918212890625,
+            "max_abs_W_m2": 0.00589752197265625,
+            "median_abs_difference_W_m2": 0.00020688565074777898,
+            "p99_abs_difference_W_m2": 0.0010623285930076768,
+            "max_abs_difference_W_m2": 0.005976967549713663,
+            "passed": true
+          },
+          "numeric_thresholds_passed": true,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 4
+        },
+        "CN-Cha": {
+          "fields": {
+            "tsoil": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.004955487608128806,
+              "mean_signed_error": 0.0010284942723860467,
+              "p99_abs_error": 0.004725191240276558,
+              "comparison_unit": "K",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "smc": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 1.1064313648612156e-06,
+              "mean_signed_error": 1.2981207486248638e-07,
+              "p99_abs_error": 9.920945734509522e-07,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "soil_ice": {
+              "elements": 5760,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m3/m3",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "swe": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.0,
+              "mean_signed_error": 0.0,
+              "p99_abs_error": 0.0,
+              "comparison_unit": "m",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "canw": {
+              "elements": 1440,
+              "failed_elements": 42,
+              "fraction_passed": 0.9708333333333333,
+              "finite": true,
+              "max_abs": 9.424830467734575e-08,
+              "mean_signed_error": -5.1719678538186e-09,
+              "p99_abs_error": 7.906739929836094e-08,
+              "comparison_unit": "m",
+              "passed": false,
+              "failure_groups": {
+                "CN-Cha": 42
+              }
+            },
+            "h": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.009244458865552474,
+              "mean_signed_error": 0.0002496483196504277,
+              "p99_abs_error": 0.0040417400188961635,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "le": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.02190966994749033,
+              "mean_signed_error": 0.0003243336407943084,
+              "p99_abs_error": 0.005708157232426169,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "g": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.009140512832729542,
+              "mean_signed_error": -0.0007367294848822066,
+              "p99_abs_error": 0.0051328182390164906,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {}
+            },
+            "et_mm": {
+              "elements": 1440,
+              "failed_elements": 0,
+              "fraction_passed": 1.0,
+              "finite": true,
+              "max_abs": 0.021929246761942522,
+              "mean_signed_error": 0.00032786232132103234,
+              "p99_abs_error": 0.005707747318035951,
+              "comparison_unit": "W/m2",
+              "passed": true,
+              "failure_groups": {},
+              "max_abs_mm_per_step": 1.578905766858041e-05
+            }
+          },
+          "residual": {
+            "median_abs_W_m2": 0.0003757476806640625,
+            "p99_abs_W_m2": 0.00196849822998046,
+            "max_abs_W_m2": 0.003143310546875,
+            "median_abs_difference_W_m2": 0.0003650214021444498,
+            "p99_abs_difference_W_m2": 0.0022059791306001113,
+            "max_abs_difference_W_m2": 0.003112810367817076,
+            "passed": true
+          },
+          "numeric_thresholds_passed": false,
+          "outlier_attribution": "requires_evidence_review",
+          "outlier_count": 42
+        }
+      },
+      "integers_equal": true,
+      "outliers_file": "m4-fluxnet-cuda-outliers.jsonl.gz"
+    }
+  },
+  "jax64_parity": {
+    "active_states": {
+      "elements": 224796,
+      "failed_elements": 0,
+      "fraction_passed": 1.0,
+      "finite": true,
+      "max_abs": 9.663381206337363e-13,
+      "mean_signed_error": 2.775777769424277e-16,
+      "p99_abs_error": 2.2737367544323206e-13
+    },
+    "diagnostics": {
+      "elements": 69120,
+      "failed_elements": 0,
+      "fraction_passed": 1.0,
+      "finite": true,
+      "max_abs": 1.6115109247039072e-11,
+      "mean_signed_error": -1.6862183042163629e-15,
+      "p99_abs_error": 2.0037305148434825e-12
+    },
+    "integers_equal": true,
+    "passed": true
+  },
+  "same_precision": {
+    "states": {
+      "elements": 403480,
+      "failed_elements": 0,
+      "fraction_passed": 1.0,
+      "finite": true,
+      "max_abs": 0.0,
+      "mean_signed_error": 0.0,
+      "p99_abs_error": 0.0
+    },
+    "diagnostics": {
+      "elements": 69120,
+      "failed_elements": 0,
+      "fraction_passed": 1.0,
+      "finite": true,
+      "max_abs": 1.52587890625e-05,
+      "mean_signed_error": 2.20973527541867e-10,
+      "p99_abs_error": 0.0
+    },
+    "integers_equal": true,
+    "passed": true
+  },
+  "source_unchanged": true,
+  "arrays": "m4-fluxnet.npz",
+  "arrays_sha256": "223c0d0123c38b74bdb2c91265646e028fb1a09fca28eae3c7b8b49ac13317bd"
+}

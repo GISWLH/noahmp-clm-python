@@ -1,0 +1,20 @@
+{
+  "raw_remote_directory": "/home/lhwang/work/noahmp-phase3b/profile_output/j4-shape",
+  "frozen_source_directory": "/home/lhwang/work/noahmp-phase3b/j4-stable-jax-20261013T0513",
+  "script_hashes": {
+    "j4-shape-probe.py": "fd84cb599dfa27ff50d9d3ce1dfa0de855a5a4b74c3afb41c54c1ad9829c6c10",
+    "j4-shape-components.py": "94702a43db7eb4372b1062df357fe5dde75161b3ecec0047d4c69837a017bb94"
+  },
+  "component_first12_equal_to_fixedts_probe": true,
+  "candidate_jax_sha256": "d49b4dd62e0b3b503325e4f0bdb67d9c990f02ce57b95c5645cbc08c25bc061c",
+  "candidate_status": "Validated in isolated directory: original col2 N64800/N1 complete48 bitwise, J2 N1024 1/48 bitwise, H2/thin-snow regression: 7 passed in35.28s. Production unchanged during experiment; whole-domain shard/five-size gates not retested.",
+  "production_modified": true,
+  "production_change": "Adopted the validated four-term tree, then added one explanatory comment only. Final raw/LF SHA256 0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270; measured candidate/regression/domain logs retain pre-comment d49b4dd source identity.",
+  "regression": {
+    "test_sha256": "c546f123760ebc43304c64603547aac4d36ab993f3a4c46bc0d364be8d229e50",
+    "fixture_sha256": "288e8f7eeb9fa6574297406a254b715d707895e03c1a4d00281e8cbb701e15fc",
+    "before": "old frozen JAX: 1failed; diagnostics max_abs=.001068115234375,194400 failures across replicated64800 columns",
+    "after": "same candidate source adopted in production:1passed in12.89s,diagnostics andstate bitwise equal"
+  },
+  "final_production_jax_sha256": "0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270"
+}

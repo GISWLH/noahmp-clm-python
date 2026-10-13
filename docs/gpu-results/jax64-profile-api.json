@@ -1,0 +1,101 @@
+[
+  {
+    "Time (%)": 95.7,
+    "Total Time (ns)": 20552542797,
+    "Num Calls": 806114,
+    "Avg (ns)": 25495.8,
+    "Med (ns)": 5652.0,
+    "Min (ns)": 2544,
+    "Max (ns)": 3156749,
+    "StdDev (ns)": 53370.8,
+    "Name": "cuLaunchKernel"
+  },
+  {
+    "Time (%)": 2.7,
+    "Total Time (ns)": 586787330,
+    "Num Calls": 19249,
+    "Avg (ns)": 30484.0,
+    "Med (ns)": 46770.0,
+    "Min (ns)": 4294,
+    "Max (ns)": 2490741,
+    "StdDev (ns)": 57448.8,
+    "Name": "cuGraphLaunch"
+  },
+  {
+    "Time (%)": 1.6,
+    "Total Time (ns)": 339849697,
+    "Num Calls": 13152,
+    "Avg (ns)": 25840.2,
+    "Med (ns)": 30615.0,
+    "Min (ns)": 3748,
+    "Max (ns)": 2473021,
+    "StdDev (ns)": 54054.9,
+    "Name": "cuMemcpyDtoDAsync_v2"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 1979927,
+    "Num Calls": 13267,
+    "Avg (ns)": 149.2,
+    "Med (ns)": 129.0,
+    "Min (ns)": 90,
+    "Max (ns)": 16098,
+    "StdDev (ns)": 176.5,
+    "Name": "cuStreamIsCapturing"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 380195,
+    "Num Calls": 123,
+    "Avg (ns)": 3091.0,
+    "Med (ns)": 106.0,
+    "Min (ns)": 87,
+    "Max (ns)": 331044,
+    "StdDev (ns)": 29851.5,
+    "Name": "cuCtxSetCurrent"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 22250,
+    "Num Calls": 2,
+    "Avg (ns)": 11125.0,
+    "Med (ns)": 11125.0,
+    "Min (ns)": 10564,
+    "Max (ns)": 11686,
+    "StdDev (ns)": 793.4,
+    "Name": "cuLaunchHostFunc"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 7850,
+    "Num Calls": 4,
+    "Avg (ns)": 1962.5,
+    "Med (ns)": 1897.0,
+    "Min (ns)": 431,
+    "Max (ns)": 3625,
+    "StdDev (ns)": 1754.7,
+    "Name": "cuEventRecord"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 5323,
+    "Num Calls": 1,
+    "Avg (ns)": 5323.0,
+    "Med (ns)": 5323.0,
+    "Min (ns)": 5323,
+    "Max (ns)": 5323,
+    "StdDev (ns)": 0.0,
+    "Name": "cuProfilerStart"
+  },
+  {
+    "Time (%)": 0.0,
+    "Total Time (ns)": 4948,
+    "Num Calls": 2,
+    "Avg (ns)": 2474.0,
+    "Med (ns)": 2474.0,
+    "Min (ns)": 2456,
+    "Max (ns)": 2492,
+    "StdDev (ns)": 25.5,
+    "Name": "cuStreamWaitEvent"
+  }
+]

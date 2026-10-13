@@ -8,6 +8,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import numpy as np
 
+from .options import PhysicsOptions
+
 
 @dataclass
 class SoilParams:
@@ -59,6 +61,13 @@ class ColumnState:
     rsmin: float = 120.0              # 最小气孔阻抗 (s/m)
     soil: SoilParams = field(default_factory=SoilParams)
     root_frac: np.ndarray | None = None  # 各层根系权重（归一）
+    options: PhysicsOptions = field(default_factory=PhysicsOptions)
+    terrain_index: float = 0.0          # TOPMODEL 地形指数
+    groundwater_depth: float = 2.0      # 地下水位深度 (m)
+    soil_ice: np.ndarray | None = None  # 各层冰含量 (m3/m3)
+    snow_swe_layers: np.ndarray | None = None  # 各层雪水当量 (m), 最多 3 层
+    snow_t_layers: np.ndarray | None = None    # 各层雪温 (K)
+    snow_density_layers: np.ndarray | None = None  # 各层密度 (kg/m3)
 
     def __post_init__(self):
         n = len(self.dz)
@@ -66,6 +75,34 @@ class ColumnState:
             self.tsoil = np.full(n, 285.0)
         if self.smc is None:
             self.smc = np.full(n, 0.5 * (self.soil.smcwlt + self.soil.smcref))
+        if self.soil_ice is None:
+            self.soil_ice = np.zeros(n, dtype=float)
+        else:
+            self.soil_ice = np.asarray(self.soil_ice, dtype=float).copy()
+            if len(self.soil_ice) != n:
+                raise ValueError("soil_ice 与 soil 层数必须一致")
+        if self.snow_swe_layers is None:
+            self.snow_swe_layers = np.array([max(0.0, self.swe)], dtype=float)
+        else:
+            self.snow_swe_layers = np.asarray(self.snow_swe_layers, dtype=float)
+            if self.snow_swe_layers.ndim != 1 or len(self.snow_swe_layers) == 0:
+                raise ValueError("snow_swe_layers 必须是一维且至少含一层")
+            self.snow_swe_layers = self.snow_swe_layers[-3:].copy()
+            if self.swe == 0.0:
+                self.swe = float(np.sum(self.snow_swe_layers))
+        n_snow = len(self.snow_swe_layers)
+        if self.snow_t_layers is None:
+            self.snow_t_layers = np.full(n_snow, self.snow_t, dtype=float)
+        else:
+            self.snow_t_layers = np.asarray(self.snow_t_layers, dtype=float).copy()
+            if len(self.snow_t_layers) != n_snow:
+                raise ValueError("snow_t_layers 与 snow_swe_layers 长度必须一致")
+        if self.snow_density_layers is None:
+            self.snow_density_layers = np.full(n_snow, 300.0, dtype=float)
+        else:
+            self.snow_density_layers = np.asarray(self.snow_density_layers, dtype=float).copy()
+            if len(self.snow_density_layers) != n_snow:
+                raise ValueError("snow_density_layers 与 snow_swe_layers 长度必须一致")
         if self.root_frac is None:
             zc = np.cumsum(self.dz) - 0.5 * self.dz
             rf = np.exp(-3.0 * zc)
@@ -76,7 +113,11 @@ class ColumnState:
         return dataclasses.replace(
             self,
             dz=self.dz.copy(), tsoil=self.tsoil.copy(), smc=self.smc.copy(),
+            soil_ice=self.soil_ice.copy(),
             root_frac=self.root_frac.copy(),
+            snow_swe_layers=self.snow_swe_layers.copy(),
+            snow_t_layers=self.snow_t_layers.copy(),
+            snow_density_layers=self.snow_density_layers.copy(),
         )
 
 

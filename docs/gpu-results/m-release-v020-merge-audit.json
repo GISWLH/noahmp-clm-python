@@ -1,0 +1,54 @@
+{
+  "remote_main_before": "fc269837457610ea64576e7ea46aea1d9884e633",
+  "merge_base": "db453154ee2aea9e53bdfb3a42dc093f53c33828",
+  "release_branch_commit": "0884b77462f47616ed7df897f333fc161ba08b16",
+  "tested_candidate_commit": "a751f6dd174c7dda9dca955db77cd11d8003f451",
+  "resolution": "Retain tested migration implementation and completed-feature documentation; preserve all five main-only prompt archives. Main-only source changes had removed the previously implemented options, frozen-soil and multilayer-snow features.",
+  "paths_verified": {
+    "README.md": {
+      "candidate_blob": "d1e49d73efe47167b3598635287ea3558abd513e",
+      "merged_index_blob": "d1e49d73efe47167b3598635287ea3558abd513e"
+    },
+    "ROADMAP.md": {
+      "candidate_blob": "308f20097d2bce0e047a973b9060bb12fe1a00b8",
+      "merged_index_blob": "308f20097d2bce0e047a973b9060bb12fe1a00b8"
+    },
+    "src/noahmp_clm/__init__.py": {
+      "candidate_blob": "b8d656c446a96426c6915710b461b55870579542",
+      "merged_index_blob": "b8d656c446a96426c6915710b461b55870579542"
+    },
+    "src/noahmp_clm/column.py": {
+      "candidate_blob": "452b7aca7fa8e54d5c169dd870ee29b65c1def2e",
+      "merged_index_blob": "452b7aca7fa8e54d5c169dd870ee29b65c1def2e"
+    },
+    "src/noahmp_clm/driver.py": {
+      "candidate_blob": "471fca248b140edfc6b9b8c5abde7aebab46c88d",
+      "merged_index_blob": "471fca248b140edfc6b9b8c5abde7aebab46c88d"
+    },
+    "src/noahmp_clm/physics/canopy.py": {
+      "candidate_blob": "337cd4d66b2143cfa36c88ddce4cd30667d9ea9e",
+      "merged_index_blob": "337cd4d66b2143cfa36c88ddce4cd30667d9ea9e"
+    },
+    "src/noahmp_clm/physics/energy.py": {
+      "candidate_blob": "1f586ea9b3607db6ad4db2d9f4a290647ce2ade7",
+      "merged_index_blob": "1f586ea9b3607db6ad4db2d9f4a290647ce2ade7"
+    },
+    "src/noahmp_clm/physics/snow.py": {
+      "candidate_blob": "caa86b4f1a83825bdd80c907651f4823f4370741",
+      "merged_index_blob": "caa86b4f1a83825bdd80c907651f4823f4370741"
+    },
+    "src/noahmp_clm/physics/soil.py": {
+      "candidate_blob": "3cdbf441cff212a608d5328804a72f347eb5d7fb",
+      "merged_index_blob": "3cdbf441cff212a608d5328804a72f347eb5d7fb"
+    }
+  },
+  "main_only_documents_preserved": [
+    "docs/AGENT_PROMPT_FINAL.md",
+    "docs/AGENT_PROMPT_GPU.md",
+    "docs/AGENT_PROMPT_GPU_3C.md",
+    "docs/AGENT_PROMPT_GPU_3D.md",
+    "docs/AGENT_PROMPT_GPU_XUANZE.md"
+  ],
+  "implementation_tests_benchmarks_examples_identical_to_candidate": true,
+  "unmerged_entries": 0
+}

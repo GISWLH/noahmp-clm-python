@@ -1,0 +1,739 @@
+{
+  "scope": "same-source complete-output single versus dual GPU timing; does not establish independent physics/H4",
+  "snapshot": "/home/lhwang/work/noahmp-phase3b/j2-v2-stable-gated-final",
+  "approved_identities": {
+    "src/noahmp_clm/gpu/jax_core.py": "0e2966918699eb39ee520ec2993eee5819df9d49371a1bfc87901b2dc8e69270",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "7640b062a329bf290c3719a62bddf97ea2ec523167b387730e758b8bd1b40454",
+    "src/noahmp_clm/gpu/cuda/loader.py": "c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a"
+  },
+  "source_unchanged": true,
+  "case_count": 4,
+  "cases": [
+    {
+      "backend": "jax32",
+      "n": 100000,
+      "steps": 48,
+      "status": "measured",
+      "accepted_speedup": true,
+      "full_reference_gate_passed": true,
+      "inclusive_speedup": 1.046820528410811,
+      "compute_speedup": 1.022564654141236,
+      "single_gpu": {
+        "inclusive_coordinator_seconds": 4.02250931,
+        "compute_coordinator_seconds": 3.832952003,
+        "compute_worker_max_seconds": 3.832478653,
+        "inclusive_worker_max_seconds": 4.021448018,
+        "mode": "single_gpu",
+        "backend": "jax32",
+        "n": 100000,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 3.957412358,
+            "compute_coordinator_seconds": 3.765601336,
+            "compute_worker_max_seconds": 3.765177716,
+            "inclusive_worker_max_seconds": 3.956136526
+          },
+          {
+            "inclusive_coordinator_seconds": 4.077296935,
+            "compute_coordinator_seconds": 3.887023124,
+            "compute_worker_max_seconds": 3.886525595,
+            "inclusive_worker_max_seconds": 4.075912904
+          },
+          {
+            "inclusive_coordinator_seconds": 4.02250931,
+            "compute_coordinator_seconds": 3.832952003,
+            "compute_worker_max_seconds": 3.832478653,
+            "inclusive_worker_max_seconds": 4.021448018
+          }
+        ],
+        "devices": [
+          0
+        ],
+        "full_reference_gate_passed": true
+      },
+      "dual_gpu": {
+        "inclusive_coordinator_seconds": 3.842596893,
+        "compute_coordinator_seconds": 3.748371301,
+        "compute_worker_max_seconds": 3.74805354,
+        "inclusive_worker_max_seconds": 3.841754414,
+        "mode": "dual_gpu",
+        "backend": "jax32",
+        "n": 100000,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 3.878050897,
+            "compute_coordinator_seconds": 3.783268677,
+            "compute_worker_max_seconds": 3.78293419,
+            "inclusive_worker_max_seconds": 3.877123552
+          },
+          {
+            "inclusive_coordinator_seconds": 3.842596893,
+            "compute_coordinator_seconds": 3.748371301,
+            "compute_worker_max_seconds": 3.74805354,
+            "inclusive_worker_max_seconds": 3.841754414
+          },
+          {
+            "inclusive_coordinator_seconds": 3.83233499,
+            "compute_coordinator_seconds": 3.738447492,
+            "compute_worker_max_seconds": 3.738070957,
+            "inclusive_worker_max_seconds": 3.831538527
+          }
+        ],
+        "devices": [
+          0,
+          1
+        ],
+        "full_reference_gate_passed": true
+      },
+      "validated_worker_samples": 18,
+      "max_tolerance_ratios_across_all_warmups_and_samples": {
+        "float_state": 0.0,
+        "diagnostics": 0.0,
+        "integer_state": 0.0,
+        "reduction": 0.0
+      },
+      "raw": "j4-v2-scaling-jax32-100000.jsonl"
+    },
+    {
+      "backend": "jax32",
+      "n": 64800,
+      "steps": 48,
+      "status": "measured",
+      "accepted_speedup": true,
+      "full_reference_gate_passed": true,
+      "inclusive_speedup": 1.087585556284664,
+      "compute_speedup": 1.0719422344840723,
+      "single_gpu": {
+        "inclusive_coordinator_seconds": 3.808625352,
+        "compute_coordinator_seconds": 3.685254198,
+        "compute_worker_max_seconds": 3.68485363,
+        "inclusive_worker_max_seconds": 3.807445485,
+        "mode": "single_gpu",
+        "backend": "jax32",
+        "n": 64800,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 3.808625352,
+            "compute_coordinator_seconds": 3.685254198,
+            "compute_worker_max_seconds": 3.68485363,
+            "inclusive_worker_max_seconds": 3.807445485
+          },
+          {
+            "inclusive_coordinator_seconds": 3.682198394,
+            "compute_coordinator_seconds": 3.559810452,
+            "compute_worker_max_seconds": 3.559420299,
+            "inclusive_worker_max_seconds": 3.681165119
+          },
+          {
+            "inclusive_coordinator_seconds": 3.932404925,
+            "compute_coordinator_seconds": 3.807003015,
+            "compute_worker_max_seconds": 3.806629826,
+            "inclusive_worker_max_seconds": 3.930822942
+          }
+        ],
+        "devices": [
+          0
+        ],
+        "full_reference_gate_passed": true
+      },
+      "dual_gpu": {
+        "inclusive_coordinator_seconds": 3.501908728,
+        "compute_coordinator_seconds": 3.43792238,
+        "compute_worker_max_seconds": 3.437430023,
+        "inclusive_worker_max_seconds": 3.50077588,
+        "mode": "dual_gpu",
+        "backend": "jax32",
+        "n": 64800,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 3.396434375,
+            "compute_coordinator_seconds": 3.332522097,
+            "compute_worker_max_seconds": 3.33202604,
+            "inclusive_worker_max_seconds": 3.395245475
+          },
+          {
+            "inclusive_coordinator_seconds": 3.501908728,
+            "compute_coordinator_seconds": 3.43792238,
+            "compute_worker_max_seconds": 3.437430023,
+            "inclusive_worker_max_seconds": 3.50077588
+          },
+          {
+            "inclusive_coordinator_seconds": 3.58293981,
+            "compute_coordinator_seconds": 3.519019523,
+            "compute_worker_max_seconds": 3.518602982,
+            "inclusive_worker_max_seconds": 3.581878762
+          }
+        ],
+        "devices": [
+          0,
+          1
+        ],
+        "full_reference_gate_passed": true
+      },
+      "validated_worker_samples": 18,
+      "max_tolerance_ratios_across_all_warmups_and_samples": {
+        "float_state": 0.0,
+        "diagnostics": 0.0,
+        "integer_state": 0.0,
+        "reduction": 0.0
+      },
+      "raw": "j4-v2-scaling-jax32-64800.jsonl"
+    },
+    {
+      "backend": "jax64",
+      "n": 100000,
+      "steps": 48,
+      "status": "measured",
+      "accepted_speedup": true,
+      "full_reference_gate_passed": true,
+      "inclusive_speedup": 1.6222739357989817,
+      "compute_speedup": 1.6198146274268381,
+      "single_gpu": {
+        "inclusive_coordinator_seconds": 21.480918773,
+        "compute_coordinator_seconds": 21.289326155,
+        "compute_worker_max_seconds": 21.288742841,
+        "inclusive_worker_max_seconds": 21.479680621,
+        "mode": "single_gpu",
+        "backend": "jax64",
+        "n": 100000,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 21.482861663,
+            "compute_coordinator_seconds": 21.289905013,
+            "compute_worker_max_seconds": 21.289384338,
+            "inclusive_worker_max_seconds": 21.481529047
+          },
+          {
+            "inclusive_coordinator_seconds": 21.480918773,
+            "compute_coordinator_seconds": 21.289073989,
+            "compute_worker_max_seconds": 21.288689485,
+            "inclusive_worker_max_seconds": 21.479680621
+          },
+          {
+            "inclusive_coordinator_seconds": 21.476557953,
+            "compute_coordinator_seconds": 21.289326155,
+            "compute_worker_max_seconds": 21.288742841,
+            "inclusive_worker_max_seconds": 21.475547021
+          }
+        ],
+        "devices": [
+          0
+        ],
+        "full_reference_gate_passed": true
+      },
+      "dual_gpu": {
+        "inclusive_coordinator_seconds": 13.24124015,
+        "compute_coordinator_seconds": 13.143063283,
+        "compute_worker_max_seconds": 13.142634736,
+        "inclusive_worker_max_seconds": 13.240319798,
+        "mode": "dual_gpu",
+        "backend": "jax64",
+        "n": 100000,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 13.240224112,
+            "compute_coordinator_seconds": 13.143063283,
+            "compute_worker_max_seconds": 13.142634736,
+            "inclusive_worker_max_seconds": 13.239241615
+          },
+          {
+            "inclusive_coordinator_seconds": 13.24124015,
+            "compute_coordinator_seconds": 13.142508965,
+            "compute_worker_max_seconds": 13.142135124,
+            "inclusive_worker_max_seconds": 13.240319798
+          },
+          {
+            "inclusive_coordinator_seconds": 13.277111147,
+            "compute_coordinator_seconds": 13.17615902,
+            "compute_worker_max_seconds": 13.175769827,
+            "inclusive_worker_max_seconds": 13.275882941
+          }
+        ],
+        "devices": [
+          0,
+          1
+        ],
+        "full_reference_gate_passed": true
+      },
+      "validated_worker_samples": 18,
+      "max_tolerance_ratios_across_all_warmups_and_samples": {
+        "float_state": 0.0,
+        "diagnostics": 0.0,
+        "integer_state": 0.0,
+        "reduction": 0.0
+      },
+      "raw": "j4-v2-scaling-jax64-100000.jsonl"
+    },
+    {
+      "backend": "jax64",
+      "n": 64800,
+      "steps": 48,
+      "status": "measured",
+      "accepted_speedup": true,
+      "full_reference_gate_passed": true,
+      "inclusive_speedup": 1.7495719018106553,
+      "compute_speedup": 1.7482259641599334,
+      "single_gpu": {
+        "inclusive_coordinator_seconds": 12.865216299,
+        "compute_coordinator_seconds": 12.742729881,
+        "compute_worker_max_seconds": 12.74238874,
+        "inclusive_worker_max_seconds": 12.863876362,
+        "mode": "single_gpu",
+        "backend": "jax64",
+        "n": 64800,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 12.864950163,
+            "compute_coordinator_seconds": 12.742729881,
+            "compute_worker_max_seconds": 12.74238874,
+            "inclusive_worker_max_seconds": 12.863876362
+          },
+          {
+            "inclusive_coordinator_seconds": 12.865216299,
+            "compute_coordinator_seconds": 12.742406296,
+            "compute_worker_max_seconds": 12.741944012,
+            "inclusive_worker_max_seconds": 12.864030859
+          },
+          {
+            "inclusive_coordinator_seconds": 12.865671557,
+            "compute_coordinator_seconds": 12.74454967,
+            "compute_worker_max_seconds": 12.742735366,
+            "inclusive_worker_max_seconds": 12.863244749
+          }
+        ],
+        "devices": [
+          0
+        ],
+        "full_reference_gate_passed": true
+      },
+      "dual_gpu": {
+        "inclusive_coordinator_seconds": 7.353351003,
+        "compute_coordinator_seconds": 7.288948993,
+        "compute_worker_max_seconds": 7.288448829,
+        "inclusive_worker_max_seconds": 7.351999604,
+        "mode": "dual_gpu",
+        "backend": "jax64",
+        "n": 64800,
+        "steps": 48,
+        "event": "mode_result",
+        "status": "timing_validated",
+        "samples": [
+          {
+            "inclusive_coordinator_seconds": 7.353351003,
+            "compute_coordinator_seconds": 7.288948993,
+            "compute_worker_max_seconds": 7.288448829,
+            "inclusive_worker_max_seconds": 7.351999604
+          },
+          {
+            "inclusive_coordinator_seconds": 7.330032003,
+            "compute_coordinator_seconds": 7.266240827,
+            "compute_worker_max_seconds": 7.265608917,
+            "inclusive_worker_max_seconds": 7.328655985
+          },
+          {
+            "inclusive_coordinator_seconds": 7.363709801,
+            "compute_coordinator_seconds": 7.29902492,
+            "compute_worker_max_seconds": 7.298560084,
+            "inclusive_worker_max_seconds": 7.362427329
+          }
+        ],
+        "devices": [
+          0,
+          1
+        ],
+        "full_reference_gate_passed": true
+      },
+      "validated_worker_samples": 18,
+      "max_tolerance_ratios_across_all_warmups_and_samples": {
+        "float_state": 0.0,
+        "diagnostics": 0.0,
+        "integer_state": 0.0,
+        "reduction": 0.0
+      },
+      "raw": "j4-v2-scaling-jax64-64800.jsonl"
+    }
+  ],
+  "hardware_boundaries": [
+    {
+      "backend": "jax32",
+      "n": 100000,
+      "boundary": "start",
+      "utc": "2026-10-13T06:41:18.748050+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "43",
+          "power.draw [W]": "54.40 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2520 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "37",
+          "power.draw [W]": "23.32 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "210 MHz",
+          "clocks.current.memory [MHz]": "405 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax32",
+      "n": 100000,
+      "boundary": "end",
+      "utc": "2026-10-13T06:42:53.318670+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "15 %",
+          "utilization.memory [%]": "1 %",
+          "temperature.gpu": "49",
+          "power.draw [W]": "94.99 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2745 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "43",
+          "power.draw [W]": "71.88 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2655 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax32",
+      "n": 64800,
+      "boundary": "start",
+      "utc": "2026-10-13T06:42:53.368585+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "15 %",
+          "utilization.memory [%]": "1 %",
+          "temperature.gpu": "49",
+          "power.draw [W]": "90.96 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2745 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "43",
+          "power.draw [W]": "71.88 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2655 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax32",
+      "n": 64800,
+      "boundary": "end",
+      "utc": "2026-10-13T06:44:09.575037+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "50",
+          "power.draw [W]": "75.42 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2760 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "22 %",
+          "utilization.memory [%]": "2 %",
+          "temperature.gpu": "46",
+          "power.draw [W]": "87.14 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2640 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax64",
+      "n": 100000,
+      "boundary": "start",
+      "utc": "2026-10-13T06:44:09.622963+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "50",
+          "power.draw [W]": "75.49 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2760 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "46",
+          "power.draw [W]": "83.89 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2640 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax64",
+      "n": 100000,
+      "boundary": "end",
+      "utc": "2026-10-13T06:48:29.885070+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "53",
+          "power.draw [W]": "77.34 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2745 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "25 %",
+          "utilization.memory [%]": "2 %",
+          "temperature.gpu": "49",
+          "power.draw [W]": "88.98 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2640 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax64",
+      "n": 64800,
+      "boundary": "start",
+      "utc": "2026-10-13T06:48:29.929557+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "53",
+          "power.draw [W]": "77.41 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2745 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "49",
+          "power.draw [W]": "84.17 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2640 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    },
+    {
+      "backend": "jax64",
+      "n": 64800,
+      "boundary": "end",
+      "utc": "2026-10-13T06:51:14.921460+00:00",
+      "background_workloads_may_be_present": true,
+      "scope": "GPU hardware metrics only; no process paths or identities",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.total,memory.used,utilization.gpu,utilization.memory,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory",
+        "--format=csv"
+      ],
+      "gpus": [
+        {
+          "index": "0",
+          "uuid": "GPU-e0adbd49-46d5-1291-1415-d208c0926b58",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "1081 MiB",
+          "utilization.gpu [%]": "0 %",
+          "utilization.memory [%]": "0 %",
+          "temperature.gpu": "54",
+          "power.draw [W]": "92.30 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2745 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        },
+        {
+          "index": "1",
+          "uuid": "GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452",
+          "name": "NVIDIA GeForce RTX 4090",
+          "driver_version": "570.153.02",
+          "memory.total [MiB]": "24564 MiB",
+          "memory.used [MiB]": "959 MiB",
+          "utilization.gpu [%]": "20 %",
+          "utilization.memory [%]": "1 %",
+          "temperature.gpu": "47",
+          "power.draw [W]": "90.98 W",
+          "power.limit [W]": "450.00 W",
+          "clocks.current.sm [MHz]": "2655 MHz",
+          "clocks.current.memory [MHz]": "10501 MHz"
+        }
+      ]
+    }
+  ]
+}

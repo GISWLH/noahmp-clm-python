@@ -1,0 +1,513 @@
+{
+  "site": "CN-Cng",
+  "input": {
+    "csv_name": "FLX_CN-Cng_FLUXNET2015_FULLSET_HH_20070701-20070730.csv",
+    "csv_sha256": "caeeefd6f414e94fd5502067edaed16cdb50758e645d92908e0e320f407bc916",
+    "start_local_standard": "2007-07-01",
+    "end_exclusive_local_standard": "2007-07-31T00:00:00",
+    "timezone_convention": "local standard, no DST; no UTC conversion",
+    "days": 30,
+    "steps": 1440,
+    "dt_seconds": 1800.0,
+    "humidity_source": "VPD_F",
+    "forcing_qc_counts": {
+      "TA_F": {
+        "0": 1440
+      },
+      "WS_F": {
+        "0": 1440
+      },
+      "PA_F": {
+        "0": 1439,
+        "2": 1
+      },
+      "SW_IN_F": {
+        "0": 1439,
+        "1": 1
+      },
+      "LW_IN_F": {
+        "0": 1440
+      },
+      "P_F": {
+        "0": 1440
+      },
+      "VPD_F": {
+        "0": 1440
+      }
+    },
+    "observation_qc_counts": {
+      "le": {
+        "0": 1360,
+        "1": 80
+      },
+      "h": {
+        "0": 1414,
+        "1": 26
+      }
+    },
+    "observation_policy": "uncorrected LE_F_MDS/H_F_MDS, finite and QC=0 only; no gapfill scoring",
+    "precipitation_mm": 56.5
+  },
+  "utc": "2026-10-13T08:18:58.064283+00:00",
+  "python": "3.12.2",
+  "numpy": "2.5.4",
+  "cuda_visible_devices": "1",
+  "source_sha256": {
+    "examples/fluxnet_smoke.py": "191374c682cb2f10b735505a291f900e163e8afed718565f049747c335b1ce23",
+    "src/noahmp_clm/__init__.py": "2d04f281c0a7b8b7f2dd07eea17dc3bbe18cb970d977cdc05dcac6f9428c41f8",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "4d5008604fe12a513b6ab2510a0985ce2c4ef36ceafb9f3af165688872eebd09",
+    "src/noahmp_clm/gpu/__init__.py": "f985bf137dfbf7411f2fcbd2df2dd953ca79815fae6b242d07d8f7df573d7a65",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "227d981dc8092b63fcae41b4e24f03add771e279c88d4500c21d22f3de972584",
+    "src/noahmp_clm/gpu/cuda/loader.py": "c4afdbed8502242c356ea970e5ce74b375bae8dfaefb082249ae1148c6b4d08a",
+    "src/noahmp_clm/gpu/cupy_core.py": "da0ff919b86e773c113675b245b4a4b322c18d62b9186f397b39eb2b7abf931b",
+    "src/noahmp_clm/gpu/jax_core.py": "a9c0a69d3b803d2e2fc8548d538f776ac439604df38c3ffde5da54c547a498ec",
+    "src/noahmp_clm/gpu/pack.py": "624e4a8c83131f0e10fe96c22714d1e5b7a8786ce4cf3acf8893e57e2a892e37",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "5f7340afbcae1d6497faa84a9a0b61a2c01cb1d8ed2aa1dccd96b7bf7b525a7a",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snow.py": "834718f736efe01693e25b9deec40b1d2cb97c8fac70deff884c3fe415348aa9",
+    "src/noahmp_clm/physics/soil.py": "2c3b443b03d4c2de9f0aad466f40d2b41e58f50c4db868b1b3d90b37d893f74d",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "bd2b34a1e8e5e5558117b3e7a2308113ab39549e2b71c8585b3b48fc03cbf270"
+  },
+  "physical_validation": false,
+  "parameters": "unchanged ColumnState defaults: loam, LAI=3, fveg=0.8, z0m=0.05m; uniform 285K; no spinup/calibration; tower-height correction not applied",
+  "observed_comparisons": {
+    "numpy64": {
+      "le": {
+        "n": 1360,
+        "r": 0.8693415383421506,
+        "bias_W_m2": 0.45213122806493333,
+        "rmse_W_m2": 47.681827282691934
+      },
+      "h": {
+        "n": 1414,
+        "r": 0.8973729341512718,
+        "bias_W_m2": 6.490629438638018,
+        "rmse_W_m2": 35.385034635305736
+      }
+    },
+    "jax64": {
+      "le": {
+        "n": 1360,
+        "r": 0.8693415383421506,
+        "bias_W_m2": 0.45213122806493,
+        "rmse_W_m2": 47.68182728269192
+      },
+      "h": {
+        "n": 1414,
+        "r": 0.8973729341512723,
+        "bias_W_m2": 6.49062943863822,
+        "rmse_W_m2": 35.385034635305786
+      }
+    },
+    "jax32": {
+      "le": {
+        "n": 1360,
+        "r": 0.8693420562833652,
+        "bias_W_m2": 0.4521540846377614,
+        "rmse_W_m2": 47.68173232392943
+      },
+      "h": {
+        "n": 1414,
+        "r": 0.8973718973122103,
+        "bias_W_m2": 6.49163024136045,
+        "rmse_W_m2": 35.38567083757392
+      }
+    },
+    "cuda": {
+      "le": {
+        "n": 1360,
+        "r": 0.8693420562825631,
+        "bias_W_m2": 0.452154084988377,
+        "rmse_W_m2": 47.68173232394162
+      },
+      "h": {
+        "n": 1414,
+        "r": 0.8973718973122103,
+        "bias_W_m2": 6.49163024136045,
+        "rmse_W_m2": 35.38567083757392
+      }
+    }
+  },
+  "backend_parity": {
+    "jax64": {
+      "device": "{CudaDevice(id=0)}",
+      "matched_input_dtype": "float64",
+      "reference": "NumPy64 using identical packed/quantized inputs; ordinary physics unchanged",
+      "finite": true,
+      "diagnostics": {
+        "ts": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 3.979039320256561e-13,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "rnet": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 2.5011104298755527e-12,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "h": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 1.0246026249660645e-11,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "le": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 1.6115109247039072e-11,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "g": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 3.637978807091713e-12,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "et_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 1.1629586182948515e-14,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "prcp_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "runoff_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "melt_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "swe": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "canw": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 2.1575623232461538e-17,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        },
+        "residual": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 6.31317220722849e-12,
+          "rtol": 1e-06,
+          "atol": 1e-06
+        }
+      },
+      "active_final_state": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 39,
+        "max_abs": 9.663381206337363e-13,
+        "rtol": 1e-06,
+        "atol": 1e-06
+      },
+      "inactive_snow_padding": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 6,
+        "max_abs": 0.0,
+        "rtol": 1e-06,
+        "atol": 1e-06
+      },
+      "integer_equal": true,
+      "passed": true
+    },
+    "jax32": {
+      "device": "{CudaDevice(id=0)}",
+      "matched_input_dtype": "float32",
+      "reference": "NumPy64 using identical packed/quantized inputs; ordinary physics unchanged",
+      "finite": true,
+      "diagnostics": {
+        "ts": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.000952646318467032,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "rnet": {
+          "passed": false,
+          "failed_values": 52,
+          "values": 1440,
+          "max_abs": 0.005061674147597728,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "h": {
+          "passed": false,
+          "failed_values": 402,
+          "values": 1440,
+          "max_abs": 0.007897285849260527,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "le": {
+          "passed": false,
+          "failed_values": 36,
+          "values": 1440,
+          "max_abs": 0.013229445230734882,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "g": {
+          "passed": false,
+          "failed_values": 218,
+          "values": 1440,
+          "max_abs": 0.007663278764777459,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "et_mm": {
+          "passed": false,
+          "failed_values": 1,
+          "values": 1440,
+          "max_abs": 1.1397033327878447e-05,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "prcp_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 3.4182448871433735e-07,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "runoff_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "melt_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "swe": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "canw": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 1.6616762105723694e-08,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "residual": {
+          "passed": false,
+          "failed_values": 1433,
+          "values": 1440,
+          "max_abs": 0.002785196885046304,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        }
+      },
+      "active_final_state": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 39,
+        "max_abs": 0.007636941947964715,
+        "rtol": 0.0001,
+        "atol": 1e-06
+      },
+      "inactive_snow_padding": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 6,
+        "max_abs": 0.0,
+        "rtol": 0.0001,
+        "atol": 1e-06
+      },
+      "integer_equal": true,
+      "passed": false
+    },
+    "cuda": {
+      "device": "b'NVIDIA GeForce RTX 4090'",
+      "matched_input_dtype": "float32",
+      "reference": "NumPy64 using identical packed/quantized inputs; ordinary physics unchanged",
+      "finite": true,
+      "diagnostics": {
+        "ts": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.000952646318467032,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "rnet": {
+          "passed": false,
+          "failed_values": 52,
+          "values": 1440,
+          "max_abs": 0.005061674147597728,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "h": {
+          "passed": false,
+          "failed_values": 402,
+          "values": 1440,
+          "max_abs": 0.007897285849260527,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "le": {
+          "passed": false,
+          "failed_values": 36,
+          "values": 1440,
+          "max_abs": 0.013229445230734882,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "g": {
+          "passed": false,
+          "failed_values": 218,
+          "values": 1440,
+          "max_abs": 0.007663278764777459,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "et_mm": {
+          "passed": false,
+          "failed_values": 1,
+          "values": 1440,
+          "max_abs": 1.1397033327878447e-05,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "prcp_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 3.4182448871433735e-07,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "runoff_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "melt_mm": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "swe": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 0.0,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "canw": {
+          "passed": true,
+          "failed_values": 0,
+          "values": 1440,
+          "max_abs": 1.6616762105723694e-08,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        },
+        "residual": {
+          "passed": false,
+          "failed_values": 1433,
+          "values": 1440,
+          "max_abs": 0.002785196885046304,
+          "rtol": 0.0001,
+          "atol": 1e-06
+        }
+      },
+      "active_final_state": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 39,
+        "max_abs": 0.007636941947964715,
+        "rtol": 0.0001,
+        "atol": 1e-06
+      },
+      "inactive_snow_padding": {
+        "passed": true,
+        "failed_values": 0,
+        "values": 6,
+        "max_abs": 0.0,
+        "rtol": 0.0001,
+        "atol": 1e-06
+      },
+      "integer_equal": true,
+      "passed": false
+    }
+  },
+  "numpy_elapsed_s": 1.115229308605194,
+  "numpy_finite": true,
+  "source_unchanged": true,
+  "all_parity_passed": false
+}

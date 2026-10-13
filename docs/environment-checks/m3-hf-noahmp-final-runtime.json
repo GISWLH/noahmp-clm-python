@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-13T11:57:42.294791+00:00",
+  "repo_id": "LonghaoWang/noahmp-clm-gpu-smoke",
+  "private": true,
+  "createdAt": "2026-10-13T11:48:14.000Z",
+  "sha": "4259f47a3468e56e3747b03231852f240ea594e5",
+  "runtime": {
+    "stage": "RUNNING",
+    "hardware": {
+      "current": "zero-a10g",
+      "requested": "zero-a10g"
+    },
+    "gcTimeout": 172800,
+    "replicas": {
+      "current": 1,
+      "requested": 1
+    },
+    "devMode": false,
+    "domains": [
+      {
+        "domain": "longhaowang-noahmp-clm-gpu-smoke.hf.space",
+        "stage": "READY"
+      }
+    ],
+    "sha": "4259f47a3468e56e3747b03231852f240ea594e5",
+    "pySpacesVersion": "0.51.3"
+  },
+  "tests": {
+    "float32_report": "m3-hf-noahmp-float32.json",
+    "float64_report": "m3-hf-noahmp-float64.json"
+  }
+}

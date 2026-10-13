@@ -1,0 +1,7 @@
+==WARNING== Note: Running with uncontrolled GPU caches. Profiling results may be inconsistent.
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 2386560 (/home/lhwang/anaconda3/bin/python3.12)
+==PROF== Profiling "step_columns": 0%....50%....100% - 3 passes
+{"status": "diagnostic_only_h4_unvalidated", "n": 100000, "steps": 48, "kernel_attributes": {"max_threads_per_block": 640, "shared_size_bytes": 0, "const_size_bytes": 16, "local_size_bytes": 304, "num_regs": 94, "ptx_version": 89, "binary_version": 89, "cache_mode_ca": 0, "max_dynamic_shared_size_bytes": 49152, "preferred_shared_memory_carveout": -1}}
+==PROF== Disconnected from process 2386560
+==PROF== Report: /home/lhwang/work/noahmp-phase3b/timing-audit-original-20261013T050056Z/profile_output/j4-original-cuda-flops.ncu-rep

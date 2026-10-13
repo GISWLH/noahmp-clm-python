@@ -1,0 +1,12 @@
+Full uninstrumented HLO: j3-transition-before.production.hlo.txt
+SHA256: ef4a5df4614ba466c1b39b0d27d548d66ff23fe2dd5d1b3f2a3b8c7d176066d7
+
+10453:   %sub.618.9.clone.1 = f32[8]{0} subtract(%broadcast.1189.5.clone.1, %bitcast.33.112), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/sub" stack_frame_id=1401}
+10454:   %integer_pow.70.7.clone.1 = f32[8]{0} multiply(%sub.618.9.clone.1, %sub.618.9.clone.1), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/integer_pow" stack_frame_id=1400}
+10455:   %constant_1627_1_clone_1 = f32[] constant(0.0016)
+10456:   %broadcast.1188.5.clone.1 = f32[8]{0} broadcast(%constant_1627_1_clone_1), dimensions={}
+10457:   %mul.1440.7.clone.1 = f32[8]{0} multiply(%integer_pow.70.7.clone.1, %broadcast.1188.5.clone.1), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/mul" stack_frame_id=1399}
+10458:   %sub.619.7.clone.1 = f32[8]{0} subtract(%broadcast_in_dim.195.322, %mul.1440.7.clone.1), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/sub" stack_frame_id=1398}
+10459:   %clamp.118.5.clone.1 = f32[8]{0} clamp(%broadcast.1209.24.clone.1, %sub.619.7.clone.1, %broadcast_in_dim.195.322), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/jit(clip)/min" stack_frame_id=1397}
+10460:   %mul.1446.11.clone.1 = f32[8]{0} multiply(%mul.1445.13.clone.1, %clamp.118.5.clone.1), metadata={op_name="jit(_run_one_jax)/vmap()/while/body/eval_jaxpr/mul" stack_frame_id=1394}
+10461:   %param_11.2479 = f32[8]{0} parameter(11)

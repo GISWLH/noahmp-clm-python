@@ -1,0 +1,69 @@
+
+----------------------------- live log collection ------------------------------
+DEBUG    jax._src.path:path.py:40 etils.epath was not found. Using pathlib for file I/O.
+DEBUG    jax._src.dispatch:dispatch.py:204 Finished tracing convert_element_type for jit in 0.000344515 sec
+DEBUG    jax._src.xla_bridge:xla_bridge.py:468 Discovered path based JAX plugin: jax_plugins.xla_cuda12
+DEBUG    jax._src.xla_bridge:xla_bridge.py:477 Discovered entry-point based JAX plugin: jax_plugins.xla_cuda12
+DEBUG    jax._src.xla_bridge:xla_bridge.py:483 Loading plugin module jax_plugins.xla_cuda12
+ERROR    jax._src.xla_bridge:xla_bridge.py:498 Jax plugin configuration error: Exception when calling jax_plugins.xla_cuda12.initialize()
+Traceback (most recent call last):
+  File "/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 200, in _version_check
+    version = get_version()
+              ^^^^^^^^^^^^^
+RuntimeError: jaxlib/cuda/versions_helpers.cc:85: operation cusparseGetProperty(MAJOR_VERSION, &major) failed: The cuSPARSE library was not found.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/xla_bridge.py", line 496, in discover_pjrt_plugins
+    plugin_module.initialize()
+  File "/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 369, in initialize
+    _check_cuda_versions(raise_on_first_error = True)
+  File "/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 265, in _check_cuda_versions
+    _version_check("cuSPARSE", cuda_versions.cusparse_get_version,
+  File "/home/lhwang/venvs/noahmp-phase3b/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 204, in _version_check
+    raise RuntimeError(err_msg) from e
+RuntimeError: Unable to load cuSPARSE. Is it installed?
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_gpu_parity.py ___________________
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/xla_bridge.py:827: in backends
+    backend = _init_backend(platform)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/xla_bridge.py:903: in _init_backend
+    raise RuntimeError(
+E   RuntimeError: Backend 'cuda' is not in the list of known backends: ['cpu', 'tpu'].
+
+During handling of the above exception, another exception occurred:
+tests/test_gpu_parity.py:26: in <module>
+    from noahmp_clm.gpu.jax_core import _run_one_jax, run_columns_jax
+src/noahmp_clm/gpu/jax_core.py:43: in <module>
+    DZ = jnp.asarray([0.1, 0.3, 0.6, 1.0])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/numpy/array_constructors.py:456: in asarray
+    return array(a, dtype=dtype, copy=bool(copy), order=order, device=device,
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/numpy/array_constructors.py:338: in array
+    out_array: Array = lax._convert_element_type(
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/lax/lax.py:1804: in _convert_element_type
+    return convert_element_type_p.bind(
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/core.py:731: in bind
+    return self.bind_with_trace(prev_trace, args, avals, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/lax/lax.py:5504: in _convert_element_type_bind_with_trace
+    operand = core.Primitive.bind_with_trace(convert_element_type_p, trace, args,
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/core.py:739: in bind_with_trace
+    return trace.process_primitive(self, args, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/core.py:1320: in process_primitive
+    return primitive.impl(*args, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../venvs/noahmp-phase3b/lib/python3.12/site-packages/jax/_src/dispatch.py:88: in apply_primitive
+    outs = fun(*args)
+           ^^^^^^^^^^
+E   RuntimeError: Unable to initialize backend 'cuda': Backend 'cuda' is not in the list of known backends: ['cpu', 'tpu']. (set JAX_PLATFORMS='' to automatically choose an available backend)
+E   --------------------
+E   For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+=========================== short test summary info ============================
+ERROR tests/test_gpu_parity.py - RuntimeError: Unable to initialize backend '...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 1.33s
