@@ -1,11 +1,17 @@
 # ROADMAP — 从普通版本到 CUDA
 
+截至2026-10-13，**v0.2.0 的阶段3/M0–M5 GPU移植收尾已完成并验收**，
+已合并main并发布标签；这不表示下面全部物理开发和科学验证已完成。
+NumPy64、JAX64、JAX32、CUDA32在已测范围内可用、总体一致，原H4/K3及M4
+近零冠层水差异仍保留，发布例外见[验收记录](docs/GPU_ACCEPTANCE.md)，
+使用边界见[已知限制](docs/KNOWN_LIMITATIONS.md)。
+
 ## 设计不变量
 
 贯穿所有阶段：**单柱状态全封装、柱间零耦合**。任何阶段都不允许出现"柱 A 读柱 B 状态"
 的代码。批量轴（格点 × 时间步）永远是独立的，这是 CUDA/JAX 向量化的前提。
 
-## 阶段 0 — v0.1 基线（本仓库当前状态）✅
+## 阶段 0 — v0.1 初始基线（已完成的历史阶段）✅
 
 纯 Python + numpy，可读优先：
 
@@ -32,32 +38,48 @@
 
 ## 阶段 2 — CLM 柱子集
 
+以下为尚未完成的物理扩展，不属于v0.2.0的GPU移植验收范围。
+
 - CLM5 生物地球物理核心的柱版本：多层冠层（~10 层）光合—气孔耦合（Farquhar + Ball-Berry）
 - 保留"柱"抽象：CLM 的 gridcell → landunit → column → PFT 层级在本仓库中
   坍缩为"一个 column = 一个独立 PFT 柱"，批量轴天然对应 PFT × 格点
 - 与阶段 1 共用 driver：`run_columns` 签名不变，只换 `step_column` 里的物理包
 
-## 阶段 3 — 批量加速（JAX / CUDA）
+## 阶段 3 — 批量加速（JAX / CUDA，v0.2.0已验收）
 
 - [x] 环境侦察、固定状态/强迫 ABI（`docs/STATE_SPEC.md`）和 50 柱 round-trip
 - [x] JAX 定长单柱核心：`jit`、`vmap`、`lax.scan`、`lax.switch`、固定迭代 Thomas/割线
 - [x] CuPy host-reference 正确性锚点（CUDA headers 缺失时明确 unavailable）
 - [x] 性能基准脚本和本机 N=100 实测记录
-- [x] 完整默认物理 SoA CUDA kernel、256-thread grid-stride loader；xuanze nvcc 零 warning 编译并实际执行
+- [x] 已实现默认物理的 SoA CUDA kernel、256-thread grid-stride loader；xuanze nvcc编译并实际执行，发布前编译成功且保留1条既有未使用变量warning
 - [x] JAX `vmap(scan)` 批量入口及 Linux GPU float64 8 柱 × 48 步混合门
 - [x] GPU 已实现选项 35 个取值抽查和一日 float32/float64 累积精度实测
 - [ ] CUDA32/NumPy64 N=1024 原H4 parity（同精度CUDA/JAX32已通过，NumPy64的residual、近零H/G等仍超差）
-- [ ] CuPy 直译版作为对照；之后手写 CUDA kernel：一个 thread block 处理一批柱，
-  土壤三对角求解用 batch Thomas
-- [ ] 性能目标：在 A100 上相对单核 Python 基线 ≥100×（N=10⁵ 柱量级）
+- [x] 最终物理源码N100000三预热/三正式含校验计时，四后端365天及64800柱域检查完成
+- [x] EHPC串行/多进程/两节点MPI、xuanze及HF ZeroGPU兼容性检查
+- [x] M0–M5证据归档、Wang明确验收、main合并与v0.2.0标签
+- [ ] 独立CuPy物理直译实现（可选后续）；现有CuPy host-reference为CPU对照锚点，
+  不能称为另一个GPU物理实现，手写CUDA kernel已经完成
+- [ ] A100硬件性能检查（未测、非本次收尾门）
 
-阶段 3 总体未完成：H2 和 H3 已通过，J3的35值CUDA分发联合55项通过，H4仍红；
-新共同源码五档三后端计时门已过，N100000在RTX4090上三后端均超过单核100×；
-这不验证上列A100目标，N300000的CPU基线仍运行。只有H2+H4+H5全绿才可合并main；
-当前状态与阻塞原因见 `docs/GPU_SUMMARY.md`。
+原H4两项仍失败；Wang以M2总体一致性口径及随后明确的M4验收例外完成收尾，
+不把旧门改绿。全量GPU测试147通过/2原H4失败/0跳过。N300000 CPU基线已收齐；
+旧五档性能来源与最终物理N100000复测分开报告，不把旧CPU基线拼成新版本加速比。
+最终数字和来源边界见[GPU_SUMMARY](docs/GPU_SUMMARY.md)及[BENCHMARK](docs/BENCHMARK.md)。
+
+## 阶段 4 — 完整真实数据验证（后续）
+
+- [x] 四个FLUXNET站点各30天有界smoke、后端对照和LE/H的r/bias/RMSE；未调参
+- [ ] 站点元数据及测高映射、spinup、多站多年评价、独立留出集和校准
+- [ ] 完整官方HRLDAS站点输出对标（与阶段1未完成项关联）
+- [ ] ERA5格点驱动对照：本轮可达数据缺下行辐射和总降水，保持未测
+
+具体站点、指标和校准设计见[FLUXNET_PLAN](docs/FLUXNET_PLAN.md)。四站短期
+后端数值吻合不等于观测物理验证；完整CLM核心、11个明确未实现物理选项等
+开发范围也不能因GPU移植验收而标为完成。
 
 ## 不做的事
 
 - 不移植整机 CESM/WRF，只做单柱物理
 - 不做河道演算、地下水侧向流（那是另一个并行模式）
-- 阶段 1 完成前不碰 GPU：先保证物理是对的
+- 新增物理先建立NumPy参考与可核验用例，再同步对应GPU实现和精度检查
