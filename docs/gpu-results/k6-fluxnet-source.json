@@ -1,0 +1,27 @@
+{
+  "site": "CN-Cng",
+  "name": "Changling",
+  "latitude": 44.5934,
+  "longitude": 123.5092,
+  "igbp": "GRA",
+  "site_reference": "https://fluxnet.org/sites/siteinfo/CN-Cng",
+  "data_doi": "https://doi.org/10.18140/FLX/1440209",
+  "nas_source": "/volume2/Data/Global/FLUXNET-Data-Shop/raw/added_2026-06/ameriflux_downloads/FLX_CN-Cng_FLUXNET2015_FULLSET_2007-2010_1-4.zip",
+  "mirror_url": "http://10.168.18.205:8013/fluxnet-shop/files/FLX_CN-Cng_FLUXNET2015_FULLSET_2007-2010_1-4.zip",
+  "window_selection": "2007-07-01 00:00 to 2007-07-31 00:00 exclusive, selected before simulation; continuous warm-season readiness smoke, not a performance-selected period",
+  "extraction": "Archive FULLSET_HH member; header and original row bytes whose TIMESTAMP_START lies in window. No values edited. Original archive/full CSV/subset remain ignored outputs/k6 or private remote data directory; only hashes/aggregates committed.",
+  "files": {
+    "FLX_CN-Cng_FLUXNET2015_FULLSET_2007-2010_1-4.zip": {
+      "size_bytes": 45384649,
+      "sha256": "8d76e4e174779e6838bbb115e48acb8f5627ee46578c5938815fe9688437020b"
+    },
+    "FLX_CN-Cng_FLUXNET2015_FULLSET_HH_2007-2010_1-4.csv": {
+      "size_bytes": 105566580,
+      "sha256": "e114525ffceac946d158d2cad5b72c924475eb45c9726ac59cac79f44a07208a"
+    },
+    "FLX_CN-Cng_FLUXNET2015_FULLSET_HH_20070701-20070730.csv": {
+      "size_bytes": 2117762,
+      "sha256": "caeeefd6f414e94fd5502067edaed16cdb50758e645d92908e0e320f407bc916"
+    }
+  }
+}
