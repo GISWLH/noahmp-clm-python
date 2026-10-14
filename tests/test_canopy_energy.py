@@ -30,6 +30,13 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
     albedo = kwargs.get("ground_albedo",(.15,.3))
     radiation = canopy_shortwave(area,swdown,ground_albedo=albedo,
         diffuse_fraction=kwargs.get("diffuse_fraction",.5),cosine_zenith=kwargs.get("cosine_zenith",.5))
+    coupled=None
+    if kwargs.get('snowpack') is not None:
+        from noahmp_clm.physics.canopy_snow_radiation import canopy_snow_shortwave
+        coupled=canopy_snow_shortwave(area,kwargs['snowpack'],swdown,vegetated_fraction=fv,
+            ground_albedo=albedo,diffuse_fraction=kwargs.get('diffuse_fraction',.5),
+            cosine_zenith=kwargs.get('cosine_zenith',.5))
+        radiation=coupled['canopy']
     rho = e.pressure/(287.*e.air_temperature*(1.+.61*e.specific_humidity))
     mol_density = e.pressure/(8.314462618*e.air_temperature)
     heat_weights = np.r_[area*e.leaf_velocity,e.ground_velocity]
@@ -47,6 +54,8 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
     def evaluate(x, details=False):
         t, qc = x[:-1], x[-1]*.001
         es = 611.2*np.exp(17.67*(t-273.15)/(t-29.65))
+        if kwargs.get('ground_is_ice',False):
+            es[-1]=np.exp(9.550426-5723.265/t[-1]+3.53068*np.log(t[-1])-.00728332*t[-1])
         qs = .622*es/(e.pressure-.378*es)
         leaf = leaf_gas_exchange(radiation["absorbed_par"],t[:-1],co2_ppm=e.co2_ppm,
             relative_humidity=qc*e.pressure/(.622+.378*qc)/es[:-1],
@@ -76,7 +85,7 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
                 else:
                     right = level
             uptake = np.minimum(supply.roots,.5*(left+right)*supply.weights)
-            surface_limit = max(0.,supply.surface-uptake[0])
+            if kwargs.get('ground_shares_soil',True): surface_limit = max(0.,supply.surface-uptake[0])
         ground = cap(rho*np.array([fv*(qs[-1]-qc)/(1./e.ground_velocity+e.ground_resistance),
                      (1.-fv)*(qs[-1]-e.specific_humidity)/(1./e.atmosphere_velocity+e.ground_resistance)]),
                      "ground_evaporation_limit",surface_limit)
@@ -85,9 +94,14 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
             fv*(radiation["ground_absorbed"]+lw["ground_net"])+(1.-fv)*
             (swdown*(1.-.5*sum(albedo))+emiss*(lwdown-5.670374419e-8*t[-1]**4))]
         le = 2.5e6*np.r_[wet+tr,ground.sum()]
+        if kwargs.get('ground_is_ice',False): le[-1]+=334000.*ground.sum()
+        if coupled is not None:
+            rn[-1]=coupled['snow_absorbed'].sum()+coupled['soil_absorbed']+fv*lw['ground_net']+(1-fv)*emiss*(lwdown-5.670374419e-8*t[-1]**4)
         g = e.soil_conductance*(t[-1]-e.soil_temperature)+e.soil_flux_offset
         residual = rn-h-le
+        if kwargs.get('fixed_ground_temperature') is not None: g=residual[-1]
         residual[-1] -= g
+        if kwargs.get('fixed_ground_temperature') is not None: residual[-1]=kwargs['fixed_ground_temperature']-t[-1]
         residual[:-1] = np.where(fv*area>0,residual[:-1],e.air_temperature-t[:-1])
         qres = (wet.sum()+tr.sum()+ground[0]-rho*fv*e.atmosphere_velocity*(qc-e.specific_humidity))*2.5e6
         if fv == 0:
@@ -185,3 +199,42 @@ def test_failed_balance_is_explicit_and_input_is_not_mutated():
         solve_canopy_energy([.3]*10,800.,350.,boundary(),canopy_evaporation_limit=-1.)
     with pytest.raises(ValueError):
         boundary(leaf_velocity=0.)
+
+
+@pytest.mark.parametrize('ground_temperature',[250.,265.,273.15])
+@pytest.mark.parametrize('fraction',[0.,.7,1.])
+def test_fixed_snow_surface_against_independent_leaf_air_solve(ground_temperature,fraction):
+    from noahmp_clm.physics.snowpack import Snowpack
+    pack=Snowpack.from_ice([4.,12.,30.],ground_temperature)
+    e=boundary(air_temperature=ground_temperature+2.,specific_humidity=.001,soil_temperature=274.)
+    kw=dict(vegetated_fraction=fraction,fixed_ground_temperature=ground_temperature,
+        ground_is_ice=True,snowpack=pack,ground_shares_soil=False,ground_evaporation_limit=1e-6,
+        soil_supply=SoilWaterSupply(np.array([0.,2e-6,2e-6,2e-6]),np.array([.6,.3,.1,0.]),0.))
+    got=solve_canopy_energy([.3]*10,500.,220.,e,**kw)
+    ref=independent_energy_reference([.3]*10,500.,220.,e,**kw)
+    np.testing.assert_allclose(np.r_[got['leaf_temperature'],got['ground_temperature']],ref['temperature'],atol=5e-5,rtol=0.)
+    for key in ('h','le','ground_heat','gpp'):
+        np.testing.assert_allclose(got[key],ref[key],atol=2e-4,rtol=1e-5)
+    assert got['ground_temperature']==ground_temperature
+    assert abs(got['ground_heat']-got['ground_nonshortwave_heat']-got['snow_absorbed_shortwave'].sum()-got['soil_absorbed_shortwave'])<1e-10
+    assert abs(720.-got['outgoing_shortwave']-got['outgoing_longwave']-got['h']-got['le']-got['ground_heat'])<6e-4
+    assert got['ground_latent_heat']==2834000.
+    assert got['ground_evaporation']<=1e-6+1e-15
+    assert np.max(np.abs(got['layer_residual']))<5e-5
+
+
+def test_ice_saturation_reference_and_derivative():
+    from noahmp_clm.physics.canopy_energy import _ice_saturation
+    t=np.linspace(208.15,273.15,80)
+    q,deriv,es=_ice_saturation(t,90000.)
+    # Independent Smithsonian/Goff--Gratch curve, NCAR EOL reference table.
+    reference=100.*10.**(-9.09718*(273.16/t-1)-3.56654*np.log10(273.16/t)+.876793*(1-t/273.16)+np.log10(6.1071))
+    assert np.max(np.abs(es/reference-1.))<.01
+    finite=(_ice_saturation(t+1e-4,90000.)[0]-_ice_saturation(t-1e-4,90000.)[0])/2e-4
+    np.testing.assert_allclose(deriv,finite,rtol=1e-7,atol=1e-12)
+
+
+def test_gpu_packer_does_not_silently_drop_winter_boundary():
+    from noahmp_clm.gpu.canopy_energy import pack_canopy_case
+    with pytest.raises(NotImplementedError,match='Winter canopy'):
+        pack_canopy_case([.3]*10,500.,220.,boundary(),fixed_ground_temperature=265.)

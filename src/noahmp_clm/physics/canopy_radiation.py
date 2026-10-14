@@ -76,18 +76,19 @@ def _solve_layers(r, t, source_up, source_down, top_diffuse, bottom_albedo, bott
 
 def two_stream_shortwave(leaf_area, direct_flux, diffuse_flux, *,
                          leaf_reflectance=.1, leaf_transmittance=.05,
-                         ground_albedo=.2, cosine_zenith=.5, doublings=10):
+                         ground_albedo=.2, ground_albedo_direct=None, cosine_zenith=.5, doublings=10):
     """Single spectral band; all reflected and transmitted streams are explicit."""
+    ad = ground_albedo if ground_albedo_direct is None else ground_albedo_direct
     if not (np.isfinite(direct_flux) and np.isfinite(diffuse_flux)
-            and direct_flux >= 0 and diffuse_flux >= 0 and 0 <= ground_albedo <= 1):
+            and direct_flux >= 0 and diffuse_flux >= 0 and 0 <= ground_albedo <= 1 and 0 <= ad <= 1):
         raise ValueError("Invalid radiation boundary conditions")
     r, t, beam_up, beam_down, beam_t = layer_coefficients(leaf_area,
         leaf_reflectance, leaf_transmittance, cosine_zenith=cosine_zenith, doublings=doublings)
     direct = np.concatenate(([direct_flux], direct_flux*np.cumprod(beam_t)))
     diffuse, upward = _solve_layers(r, t, beam_up*direct[:-1],
-        beam_down*direct[:-1], diffuse_flux, ground_albedo, ground_albedo*direct[-1])
+        beam_down*direct[:-1], diffuse_flux, ground_albedo, ad*direct[-1])
     absorbed = direct[:-1]+diffuse[:-1]+upward[1:]-direct[1:]-diffuse[1:]-upward[:-1]
-    ground = (1.-ground_albedo)*(direct[-1]+diffuse[-1])
+    ground = (1.-ad)*direct[-1]+(1.-ground_albedo)*diffuse[-1]
     residual = direct_flux+diffuse_flux-upward[0]-np.sum(absorbed)-ground
     return {"absorbed": absorbed, "direct": direct, "diffuse_down": diffuse,
         "diffuse_up": upward, "reflected": upward[0], "ground_absorbed": ground,
@@ -96,7 +97,7 @@ def two_stream_shortwave(leaf_area, direct_flux, diffuse_flux, *,
 
 def canopy_shortwave(leaf_area, swdown, *, diffuse_fraction=.5, cosine_zenith=.5,
                      visible_fraction=.5, ground_albedo=(.15,.3),
-                     leaf_reflectance=(.1,.45), leaf_transmittance=(.05,.25)):
+                     leaf_reflectance=(.1,.45), leaf_transmittance=(.05,.25), ground_albedo_direct=None):
     """Visible/NIR bands; PAR conversion is 4.6 µmol photon/J of visible light.
 
     Fractions and zenith are explicit inputs, to be mapped from site forcing;
@@ -104,12 +105,13 @@ def canopy_shortwave(leaf_area, swdown, *, diffuse_fraction=.5, cosine_zenith=.5
     """
     if not (0 <= diffuse_fraction <= 1 and 0 <= visible_fraction <= 1):
         raise ValueError("Radiation fractions must lie in [0,1]")
+    direct_albedo = ground_albedo if ground_albedo_direct is None else ground_albedo_direct
     bands = []
     for i, fraction in enumerate((visible_fraction, 1.-visible_fraction)):
         bands.append(two_stream_shortwave(leaf_area, swdown*fraction*(1.-diffuse_fraction),
             swdown*fraction*diffuse_fraction, leaf_reflectance=leaf_reflectance[i],
             leaf_transmittance=leaf_transmittance[i], ground_albedo=ground_albedo[i],
-            cosine_zenith=cosine_zenith))
+            ground_albedo_direct=direct_albedo[i],cosine_zenith=cosine_zenith))
     lai = np.asarray(leaf_area, float)
     par = np.divide(bands[0]["absorbed"]*4.6, lai, out=np.zeros_like(lai), where=lai>0)
     return {"bands": bands, "absorbed": bands[0]["absorbed"]+bands[1]["absorbed"],

@@ -4,7 +4,7 @@ from noahmp_clm.physics.canopy_radiation import (
     two_stream_shortwave, canopy_shortwave, canopy_longwave)
 
 
-def continuous_reference(lai, refl, tran, mu, direct0=400., diffuse0=200., ag=.3):
+def continuous_reference(lai, refl, tran, mu, direct0=400., diffuse0=200., ag=.3, ag_direct=None):
     """Independent continuous ODE solution using full matrix exponentials.
 
     No production optical or solver helper is used. Boundary conditions are
@@ -12,6 +12,7 @@ def continuous_reference(lai, refl, tran, mu, direct0=400., diffuse0=200., ag=.3
     """
     scipy_linalg = pytest.importorskip("scipy.linalg")
     n = len(lai)
+    ad = ag if ag_direct is None else ag_direct
     omega = refl+tran
     backscatter = (5.*refl+3.*tran)/8.
     extinction = 1.-omega+backscatter
@@ -23,7 +24,7 @@ def continuous_reference(lai, refl, tran, mu, direct0=400., diffuse0=200., ag=.3
     matrix = np.zeros((2*n+2,2*n+2))
     rhs = np.zeros(2*n+2)
     matrix[0,0], rhs[0] = 1., diffuse0
-    matrix[1,n], matrix[1,2*n+1], rhs[1] = -ag, 1., ag*beam[-1]
+    matrix[1,n], matrix[1,2*n+1], rhs[1] = -ag, 1., ad*beam[-1]
     for j, width in enumerate(lai):
         transfer = scipy_linalg.expm(generator*width)
         for stream in range(2):
@@ -35,7 +36,7 @@ def continuous_reference(lai, refl, tran, mu, direct0=400., diffuse0=200., ag=.3
     result = np.linalg.solve(matrix,rhs)
     down, up = result[:n+1], result[n+1:]
     absorb = down[:-1]+up[1:]+beam[:-1]-down[1:]-up[:-1]-beam[1:]
-    return {"absorbed":absorb,"reflected":up[0],"ground_absorbed":(1.-ag)*(down[-1]+beam[-1])}
+    return {"absorbed":absorb,"reflected":up[0],"ground_absorbed":(1.-ag)*down[-1]+(1.-ad)*beam[-1]}
 
 
 @pytest.mark.parametrize("lai", [0.,.1,3.,8.])
@@ -84,3 +85,15 @@ def test_unphysical_optics_rejected():
         two_stream_shortwave([1.],300.,100.,leaf_reflectance=.8,leaf_transmittance=.8)
     with pytest.raises(ValueError):
         two_stream_shortwave([1.],300.,100.,cosine_zenith=0.)
+
+
+@pytest.mark.parametrize('albedos',[(.15,.3),(.5,.85),(.95,.6)])
+@pytest.mark.parametrize('mu',[.1,.5,1.])
+def test_distinct_direct_and_diffuse_snow_boundary(albedos,mu):
+    area=np.linspace(.05,.55,10)
+    actual=two_stream_shortwave(area,400.,200.,leaf_reflectance=.45,leaf_transmittance=.25,
+        ground_albedo=albedos[0],ground_albedo_direct=albedos[1],cosine_zenith=mu)
+    expected=continuous_reference(area,.45,.25,mu,ag=albedos[0],ag_direct=albedos[1])
+    for key in expected:
+        np.testing.assert_allclose(actual[key],expected[key],rtol=.01,atol=1e-8)
+    assert abs(actual['residual'])<1e-10

@@ -1,0 +1,1202 @@
+{
+  "scope": "NumPy fixed snow-surface leaf/air exchange, ice saturation, and canopy/snow radiation boundary; not a time-stepped whole column or observed-site validation",
+  "cases": 60,
+  "max_absolute_error": {
+    "h": 0.00010189737439247892,
+    "le": 1.2721900144896381e-05,
+    "ground_heat": 3.5015186611531135e-05,
+    "gpp": 4.247049666616931e-06,
+    "temperature_k": 1.0467259073720925e-05,
+    "humidity_kgkg": 2.660881161676426e-10
+  },
+  "max_layer_energy_residual_wm2": 4.904530578286881e-05,
+  "max_total_energy_residual_wm2": 0.0001672168768784843,
+  "max_air_heat_residual_wm2": 4.547473508864641e-13,
+  "max_air_water_residual_kgm2s": 1.4674845811180753e-17,
+  "max_iterations": 15,
+  "ice_saturation": {
+    "reference": "Smithsonian/Goff-Gratch via NCAR EOL",
+    "temperatures": 800,
+    "min_temperature_k": 208.15,
+    "max_temperature_k": 273.15,
+    "max_relative_bias_percent": 0.2737090322019853
+  },
+  "split_albedo_radiation": {
+    "cases": 9,
+    "reference": "independent SciPy matrix-exponential boundary-value solve",
+    "max_flux_difference_wm2": 0.02162750885148057,
+    "max_relative_difference_percent": 0.025085442260463896,
+    "max_budget_residual_wm2": 2.7000623958883807e-13
+  },
+  "rows": [
+    {
+      "case": 0,
+      "layers": 1,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 258.371407654287,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 0.0,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 1,
+      "layers": 2,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 269.04870844113543,
+      "absolute_error": {
+        "h": 3.8991980858327224e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 1.3960516628941377e-05,
+        "gpp": 1.8926087061998942e-06,
+        "temperature_k": 3.906388940322358e-06,
+        "humidity_kgkg": 2.1120258320017626e-16
+      },
+      "layer_energy_residual_wm2": 1.5527825944383622e-05,
+      "total_energy_residual_wm2": 6.287763560663961e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": -3.0323779511703952e-18,
+      "iterations": 11
+    },
+    {
+      "case": 2,
+      "layers": 3,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 258.7197285612854,
+      "absolute_error": {
+        "h": 4.197644017267521e-06,
+        "le": 1.1672253297234647e-06,
+        "ground_heat": 4.658637919874309e-07,
+        "gpp": 3.5193649328135734e-07,
+        "temperature_k": 8.114849265439261e-06,
+        "humidity_kgkg": 1.9802023736026353e-11
+      },
+      "layer_energy_residual_wm2": 3.619518310360448e-05,
+      "total_energy_residual_wm2": 1.0732982573813388e-05,
+      "air_heat_residual_wm2": 5.684341886080802e-14,
+      "air_water_residual_kgm2s": -3.1797616839926435e-18,
+      "iterations": 12
+    },
+    {
+      "case": 3,
+      "layers": 4,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 272.7814563301108,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -7.105427357601002e-15,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 4,
+      "layers": 5,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 246.85750615332947,
+      "absolute_error": {
+        "h": 5.416529404556059e-06,
+        "le": 2.6034086308968085e-07,
+        "ground_heat": 9.680999255579081e-07,
+        "gpp": 1.3310541047140134e-07,
+        "temperature_k": 2.062304133687576e-06,
+        "humidity_kgkg": 6.997561384503026e-12
+      },
+      "layer_energy_residual_wm2": 1.811410798546742e-05,
+      "total_energy_residual_wm2": 9.40326245313372e-06,
+      "air_heat_residual_wm2": 3.126388037344441e-13,
+      "air_water_residual_kgm2s": -4.783618569618661e-18,
+      "iterations": 14
+    },
+    {
+      "case": 5,
+      "layers": 1,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 255.58643570296667,
+      "absolute_error": {
+        "h": 5.715260564187474e-05,
+        "le": 1.2721900144896381e-05,
+        "ground_heat": 1.9217975519403296e-05,
+        "gpp": 0.0,
+        "temperature_k": 4.506073878474126e-06,
+        "humidity_kgkg": 2.1285331613593583e-10
+      },
+      "layer_energy_residual_wm2": 4.731103053323693e-05,
+      "total_energy_residual_wm2": -0.00010192726040525457,
+      "air_heat_residual_wm2": -4.263256414560601e-14,
+      "air_water_residual_kgm2s": 5.683591076076355e-18,
+      "iterations": 10
+    },
+    {
+      "case": 6,
+      "layers": 2,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 259.8524827327524,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 4.263256414560601e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 7,
+      "layers": 3,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 259.37176889030195,
+      "absolute_error": {
+        "h": 1.8322681484050918e-05,
+        "le": 9.141446248861484e-07,
+        "ground_heat": 5.670819589909115e-06,
+        "gpp": 3.714172316371389e-07,
+        "temperature_k": 3.4336893577346927e-06,
+        "humidity_kgkg": 2.5672275286506285e-11
+      },
+      "layer_energy_residual_wm2": 1.8500409857791222e-05,
+      "total_energy_residual_wm2": 3.0230656577145965e-05,
+      "air_heat_residual_wm2": -5.684341886080802e-14,
+      "air_water_residual_kgm2s": 2.0913243467708675e-18,
+      "iterations": 12
+    },
+    {
+      "case": 8,
+      "layers": 4,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 267.92015895613673,
+      "absolute_error": {
+        "h": 2.8954001635383975e-05,
+        "le": 2.1004844068528428e-06,
+        "ground_heat": 1.0420519050313715e-05,
+        "gpp": 8.149387635825178e-07,
+        "temperature_k": 1.8546385831541556e-06,
+        "humidity_kgkg": 3.610494780752205e-11
+      },
+      "layer_energy_residual_wm2": 1.3802182757371995e-05,
+      "total_energy_residual_wm2": 4.864823152317399e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 6.19858710800697e-18,
+      "iterations": 10
+    },
+    {
+      "case": 9,
+      "layers": 5,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 268.45510751877646,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -7.105427357601002e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 10,
+      "layers": 1,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 247.6215783791738,
+      "absolute_error": {
+        "h": 7.888553869861425e-05,
+        "le": 9.970502524936364e-06,
+        "ground_heat": 2.5207656648262855e-05,
+        "gpp": 0.0,
+        "temperature_k": 7.046335781524249e-06,
+        "humidity_kgkg": 2.660881161676426e-10
+      },
+      "layer_energy_residual_wm2": 3.867794238354705e-05,
+      "total_energy_residual_wm2": 0.00012757257254847332,
+      "air_heat_residual_wm2": -2.1316282072803006e-14,
+      "air_water_residual_kgm2s": -6.10202535201998e-18,
+      "iterations": 10
+    },
+    {
+      "case": 11,
+      "layers": 2,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 248.40016381735327,
+      "absolute_error": {
+        "h": 1.2316301479131653e-05,
+        "le": 8.212272106788987e-07,
+        "ground_heat": 2.6099260708178917e-06,
+        "gpp": 3.3563692758420416e-07,
+        "temperature_k": 2.225852256287908e-06,
+        "humidity_kgkg": 1.3191686458469132e-11
+      },
+      "layer_energy_residual_wm2": 4.6817124168097024e-05,
+      "total_energy_residual_wm2": 2.098030097386072e-05,
+      "air_heat_residual_wm2": 5.684341886080802e-14,
+      "air_water_residual_kgm2s": -1.0695723252996466e-17,
+      "iterations": 15
+    },
+    {
+      "case": 12,
+      "layers": 3,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 264.79169318595774,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 4.440892098500626e-16,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -3.552713678800501e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 13,
+      "layers": 4,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 247.80012495557727,
+      "absolute_error": {
+        "h": 2.225625166829559e-05,
+        "le": 4.402516253776412e-07,
+        "ground_heat": 5.383587222240749e-06,
+        "gpp": 2.0374905507214436e-07,
+        "temperature_k": 5.616658086182724e-06,
+        "humidity_kgkg": 1.1761531527355873e-11
+      },
+      "layer_energy_residual_wm2": 4.197973476838257e-05,
+      "total_energy_residual_wm2": 3.5373592638165974e-05,
+      "air_heat_residual_wm2": -2.842170943040401e-14,
+      "air_water_residual_kgm2s": 1.096907666694319e-18,
+      "iterations": 12
+    },
+    {
+      "case": 14,
+      "layers": 5,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 272.68880680289504,
+      "absolute_error": {
+        "h": 1.4493130748860494e-05,
+        "le": 3.552713678800501e-15,
+        "ground_heat": 4.994325003337963e-06,
+        "gpp": 3.4787696634452914e-07,
+        "temperature_k": 2.2406651396522648e-06,
+        "humidity_kgkg": 4.154662724964453e-16
+      },
+      "layer_energy_residual_wm2": 1.7480466728558852e-05,
+      "total_energy_residual_wm2": 2.5011390064832995e-05,
+      "air_heat_residual_wm2": 2.2737367544323206e-13,
+      "air_water_residual_kgm2s": 9.552837579133999e-18,
+      "iterations": 13
+    },
+    {
+      "case": 15,
+      "layers": 1,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 271.50207735014186,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -2.842170943040401e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 16,
+      "layers": 2,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 265.7723983391904,
+      "absolute_error": {
+        "h": 1.722112079960425e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 5.836919996227152e-06,
+        "gpp": 2.0881266848959967e-07,
+        "temperature_k": 2.887031882892188e-06,
+        "humidity_kgkg": 9.150666335777657e-17
+      },
+      "layer_energy_residual_wm2": 1.8662829597948516e-05,
+      "total_energy_residual_wm2": 2.9509210975220412e-05,
+      "air_heat_residual_wm2": 1.9895196601282805e-13,
+      "air_water_residual_kgm2s": 1.302736672877114e-18,
+      "iterations": 15
+    },
+    {
+      "case": 17,
+      "layers": 3,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 266.3980839370849,
+      "absolute_error": {
+        "h": 3.082422654188122e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 1.0431561520363175e-05,
+        "gpp": 9.266862832646439e-07,
+        "temperature_k": 3.2586074212304084e-06,
+        "humidity_kgkg": 4.830120678422922e-16
+      },
+      "layer_energy_residual_wm2": 2.1509881605430436e-05,
+      "total_energy_residual_wm2": 5.0167109996834824e-05,
+      "air_heat_residual_wm2": -1.5631940186722204e-13,
+      "air_water_residual_kgm2s": 1.1299419516372367e-17,
+      "iterations": 11
+    },
+    {
+      "case": 18,
+      "layers": 4,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 265.2112632553955,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 0.0,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 1.4210854715202004e-13,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 19,
+      "layers": 5,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 264.8154655381154,
+      "absolute_error": {
+        "h": 1.6540459760960857e-05,
+        "le": 1.4712902114411008e-06,
+        "ground_heat": 4.486015740212679e-06,
+        "gpp": 5.897457944215034e-07,
+        "temperature_k": 2.9245917403386557e-06,
+        "humidity_kgkg": 4.1383931437960486e-11
+      },
+      "layer_energy_residual_wm2": 1.9270357581646635e-05,
+      "total_energy_residual_wm2": 2.815368428343845e-05,
+      "air_heat_residual_wm2": -1.4210854715202004e-14,
+      "air_water_residual_kgm2s": -1.90667116426943e-18,
+      "iterations": 10
+    },
+    {
+      "case": 20,
+      "layers": 1,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 272.53495419772605,
+      "absolute_error": {
+        "h": 0.00010189737439247892,
+        "le": 3.394581771232197e-06,
+        "ground_heat": 3.5015186611531135e-05,
+        "gpp": 0.0,
+        "temperature_k": 7.43828661597945e-06,
+        "humidity_kgkg": 5.897089565796987e-11
+      },
+      "layer_energy_residual_wm2": 4.904530578286881e-05,
+      "total_energy_residual_wm2": -0.0001672168768784843,
+      "air_heat_residual_wm2": 7.105427357601002e-15,
+      "air_water_residual_kgm2s": 5.005964718272915e-19,
+      "iterations": 10
+    },
+    {
+      "case": 21,
+      "layers": 2,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 246.72461080966536,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 0.0,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -5.684341886080802e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 22,
+      "layers": 3,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 266.2994143818915,
+      "absolute_error": {
+        "h": 5.436534758018752e-05,
+        "le": 2.275889477765247e-06,
+        "ground_heat": 1.8075576385001568e-05,
+        "gpp": 8.17103642747341e-07,
+        "temperature_k": 6.743287201516068e-06,
+        "humidity_kgkg": 6.382428765182302e-11
+      },
+      "layer_energy_residual_wm2": 4.036725538744679e-05,
+      "total_energy_residual_wm2": -8.81535799521771e-05,
+      "air_heat_residual_wm2": -7.105427357601002e-15,
+      "air_water_residual_kgm2s": 3.1573153108904045e-19,
+      "iterations": 10
+    },
+    {
+      "case": 23,
+      "layers": 4,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 270.4844733862356,
+      "absolute_error": {
+        "h": 7.910599354410408e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 2.385040644981018e-05,
+        "gpp": 2.751439727610716e-06,
+        "temperature_k": 6.8424225219132495e-06,
+        "humidity_kgkg": 1.6002824065886045e-16
+      },
+      "layer_energy_residual_wm2": 4.866371018286131e-05,
+      "total_energy_residual_wm2": 0.00012780446306592808,
+      "air_heat_residual_wm2": 1.5543122344752192e-15,
+      "air_water_residual_kgm2s": -3.680358155819935e-18,
+      "iterations": 8
+    },
+    {
+      "case": 24,
+      "layers": 5,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 267.6086565447709,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 4.263256414560601e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 25,
+      "layers": 1,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 262.96319179897273,
+      "absolute_error": {
+        "h": 3.356413639465927e-06,
+        "le": 6.597793600349178e-08,
+        "ground_heat": 4.5800582881838636e-07,
+        "gpp": 0.0,
+        "temperature_k": 9.500523105998582e-07,
+        "humidity_kgkg": 1.8982766747388524e-12
+      },
+      "layer_energy_residual_wm2": 1.0474210660152417e-05,
+      "total_energy_residual_wm2": 5.445637398793224e-06,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 7.326834993749698e-19,
+      "iterations": 9
+    },
+    {
+      "case": 26,
+      "layers": 2,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 266.02083129270744,
+      "absolute_error": {
+        "h": 1.2619943095870667e-05,
+        "le": 5.344661673234441e-07,
+        "ground_heat": 4.7006628196566425e-06,
+        "gpp": 1.3969748247077973e-07,
+        "temperature_k": 9.385224757352262e-07,
+        "humidity_kgkg": 9.085471741263063e-12
+      },
+      "layer_energy_residual_wm2": 1.3914630534239691e-05,
+      "total_energy_residual_wm2": -1.9676480329522406e-05,
+      "air_heat_residual_wm2": 8.881784197001252e-16,
+      "air_water_residual_kgm2s": 4.081851772818473e-18,
+      "iterations": 9
+    },
+    {
+      "case": 27,
+      "layers": 3,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 270.0954032526904,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 1.4210854715202004e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 28,
+      "layers": 4,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 252.04543058337796,
+      "absolute_error": {
+        "h": 6.493244279681676e-05,
+        "le": 6.937299650289219e-07,
+        "ground_heat": 2.0026096390068915e-05,
+        "gpp": 2.5859813873596593e-07,
+        "temperature_k": 6.0516111375363835e-06,
+        "humidity_kgkg": 1.770709642280599e-11
+      },
+      "layer_energy_residual_wm2": 1.7794957803851652e-05,
+      "total_energy_residual_wm2": 9.765508360715103e-05,
+      "air_heat_residual_wm2": -7.105427357601002e-15,
+      "air_water_residual_kgm2s": -4.23092957153523e-19,
+      "iterations": 9
+    },
+    {
+      "case": 29,
+      "layers": 5,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 264.37042555969896,
+      "absolute_error": {
+        "h": 6.519819550021566e-05,
+        "le": 1.5223378113660146e-12,
+        "ground_heat": 2.3039381972012052e-05,
+        "gpp": 4.247049666616931e-06,
+        "temperature_k": 4.812744180071604e-06,
+        "humidity_kgkg": 1.5265566588595902e-16
+      },
+      "layer_energy_residual_wm2": 3.4628335068509486e-05,
+      "total_energy_residual_wm2": 0.00010697527791592165,
+      "air_heat_residual_wm2": -5.684341886080802e-14,
+      "air_water_residual_kgm2s": 4.124203420181188e-18,
+      "iterations": 12
+    },
+    {
+      "case": 30,
+      "layers": 1,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 256.71223670450775,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 0.0,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 0.0,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 31,
+      "layers": 2,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 270.0880704498647,
+      "absolute_error": {
+        "h": 4.458468358592427e-05,
+        "le": 3.1005457934440983e-06,
+        "ground_heat": 1.6069062006351942e-05,
+        "gpp": 6.645865462395761e-07,
+        "temperature_k": 4.850476159390382e-06,
+        "humidity_kgkg": 8.895099565774112e-11
+      },
+      "layer_energy_residual_wm2": 1.853050451194882e-05,
+      "total_energy_residual_wm2": -7.289105879237923e-05,
+      "air_heat_residual_wm2": 7.105427357601002e-15,
+      "air_water_residual_kgm2s": 1.7334529265559256e-18,
+      "iterations": 10
+    },
+    {
+      "case": 32,
+      "layers": 3,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 256.12787574666567,
+      "absolute_error": {
+        "h": 1.0415507944117053e-05,
+        "le": 1.0534133068063056e-06,
+        "ground_heat": 1.3421382760725464e-06,
+        "gpp": 3.5907240381050087e-07,
+        "temperature_k": 2.5025152581292787e-06,
+        "humidity_kgkg": 1.733435140219286e-11
+      },
+      "layer_energy_residual_wm2": 3.878191416584187e-05,
+      "total_energy_residual_wm2": 1.851999556379269e-05,
+      "air_heat_residual_wm2": 1.1368683772161603e-13,
+      "air_water_residual_kgm2s": -7.808796740737395e-18,
+      "iterations": 12
+    },
+    {
+      "case": 33,
+      "layers": 4,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 265.11622653970295,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 2.842170943040401e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 34,
+      "layers": 5,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 254.5492187759818,
+      "absolute_error": {
+        "h": 8.194652173187933e-05,
+        "le": 2.8030910925735952e-12,
+        "ground_heat": 2.607691457967576e-05,
+        "gpp": 3.71045942859638e-06,
+        "temperature_k": 1.0467259073720925e-05,
+        "humidity_kgkg": 4.436555289810684e-16
+      },
+      "layer_energy_residual_wm2": 4.139278428683113e-05,
+      "total_energy_residual_wm2": 0.00013024813350170916,
+      "air_heat_residual_wm2": -4.547473508864641e-13,
+      "air_water_residual_kgm2s": -7.587297625030395e-18,
+      "iterations": 14
+    },
+    {
+      "case": 35,
+      "layers": 1,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 259.10519345732166,
+      "absolute_error": {
+        "h": 6.613543698819058e-05,
+        "le": 8.671724991415886e-07,
+        "ground_heat": 2.1225686705150792e-05,
+        "gpp": 0.0,
+        "temperature_k": 4.343381760918419e-06,
+        "humidity_kgkg": 1.4247518854808294e-11
+      },
+      "layer_energy_residual_wm2": 3.6877025186343726e-05,
+      "total_energy_residual_wm2": 0.0001022034294066998,
+      "air_heat_residual_wm2": -7.105427357601002e-15,
+      "air_water_residual_kgm2s": 2.143840389500634e-18,
+      "iterations": 9
+    },
+    {
+      "case": 36,
+      "layers": 2,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 257.74931833733547,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 1.4210854715202004e-13,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 37,
+      "layers": 3,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 269.3737235974888,
+      "absolute_error": {
+        "h": 4.840968774288967e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 1.75665786237289e-05,
+        "gpp": 2.6694533614701754e-06,
+        "temperature_k": 5.220639025083074e-06,
+        "humidity_kgkg": 4.651227319962814e-16
+      },
+      "layer_energy_residual_wm2": 2.131872872812579e-05,
+      "total_energy_residual_wm2": 7.90889394046701e-05,
+      "air_heat_residual_wm2": -1.3500311979441904e-13,
+      "air_water_residual_kgm2s": -6.500130837229501e-18,
+      "iterations": 11
+    },
+    {
+      "case": 38,
+      "layers": 4,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 247.864707706122,
+      "absolute_error": {
+        "h": 3.0440012174892672e-05,
+        "le": 5.167086589707992e-06,
+        "ground_heat": 1.0165935506734058e-05,
+        "gpp": 9.44660921708973e-08,
+        "temperature_k": 2.4643543667934864e-06,
+        "humidity_kgkg": 8.400376455639652e-11
+      },
+      "layer_energy_residual_wm2": 1.864279200003427e-05,
+      "total_energy_residual_wm2": 5.168494694629544e-05,
+      "air_heat_residual_wm2": -4.973799150320701e-14,
+      "air_water_residual_kgm2s": -8.046812998915853e-20,
+      "iterations": 11
+    },
+    {
+      "case": 39,
+      "layers": 5,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 272.0201046494829,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 0.0,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 40,
+      "layers": 1,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 249.0486008342417,
+      "absolute_error": {
+        "h": 3.229512762459308e-05,
+        "le": 3.99636434877948e-06,
+        "ground_heat": 1.0508240160689297e-05,
+        "gpp": 0.0,
+        "temperature_k": 2.6636008385594323e-06,
+        "humidity_kgkg": 1.0720623488339603e-10
+      },
+      "layer_energy_residual_wm2": 1.2936817017084046e-05,
+      "total_energy_residual_wm2": 5.208726028982369e-05,
+      "air_heat_residual_wm2": -2.842170943040401e-14,
+      "air_water_residual_kgm2s": 2.9434394917086937e-18,
+      "iterations": 10
+    },
+    {
+      "case": 41,
+      "layers": 2,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 252.88044855847895,
+      "absolute_error": {
+        "h": 1.7194850272517215e-05,
+        "le": 1.3717863565076982e-06,
+        "ground_heat": 4.741811125086315e-06,
+        "gpp": 4.726946847277702e-07,
+        "temperature_k": 3.1728665703667502e-06,
+        "humidity_kgkg": 2.2466870377990666e-11
+      },
+      "layer_energy_residual_wm2": 3.427214367368592e-05,
+      "total_energy_residual_wm2": 2.937833559712999e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": -8.504422548669989e-18,
+      "iterations": 14
+    },
+    {
+      "case": 42,
+      "layers": 3,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 267.67337367531843,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 1.4210854715202004e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -2.842170943040401e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 43,
+      "layers": 4,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 249.19885900598595,
+      "absolute_error": {
+        "h": 6.609634485243987e-05,
+        "le": 1.6102440341114743e-06,
+        "ground_heat": 1.9079819196576864e-05,
+        "gpp": 6.988040573974175e-07,
+        "temperature_k": 9.384164229686576e-06,
+        "humidity_kgkg": 4.32372779073098e-11
+      },
+      "layer_energy_residual_wm2": 4.3627256810535586e-05,
+      "total_energy_residual_wm2": 0.00010333382805072233,
+      "air_heat_residual_wm2": 8.526512829121202e-14,
+      "air_water_residual_kgm2s": -2.9934144355966974e-18,
+      "iterations": 13
+    },
+    {
+      "case": 44,
+      "layers": 5,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 263.92327387458687,
+      "absolute_error": {
+        "h": 1.2003972940988206e-05,
+        "le": 8.20774435084104e-07,
+        "ground_heat": 3.5014824106838205e-06,
+        "gpp": 3.629952738393172e-07,
+        "temperature_k": 1.4436603805734194e-06,
+        "humidity_kgkg": 1.3891604012938874e-11
+      },
+      "layer_energy_residual_wm2": 1.1980406723788306e-05,
+      "total_energy_residual_wm2": 2.0234089262771704e-05,
+      "air_heat_residual_wm2": -2.842170943040401e-14,
+      "air_water_residual_kgm2s": -7.885876738937536e-19,
+      "iterations": 11
+    },
+    {
+      "case": 45,
+      "layers": 1,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 249.1888604637202,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 7.105427357601002e-15,
+        "ground_heat": 2.1316282072803006e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 0.0,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 46,
+      "layers": 2,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 260.50109768348153,
+      "absolute_error": {
+        "h": 1.1590879864797898e-05,
+        "le": 0.0,
+        "ground_heat": 3.8572462273123165e-06,
+        "gpp": 8.537432893973573e-07,
+        "temperature_k": 1.3771559679298662e-06,
+        "humidity_kgkg": 3.679782173415802e-16
+      },
+      "layer_energy_residual_wm2": 1.1515544260820576e-05,
+      "total_energy_residual_wm2": 1.8881110293023085e-05,
+      "air_heat_residual_wm2": 2.8421709430404007e-13,
+      "air_water_residual_kgm2s": -5.588723385983874e-18,
+      "iterations": 15
+    },
+    {
+      "case": 47,
+      "layers": 3,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 272.17302830739015,
+      "absolute_error": {
+        "h": 1.0367044680492654e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 3.557237398865709e-06,
+        "gpp": 2.0866149874620987e-07,
+        "temperature_k": 1.300029964568239e-06,
+        "humidity_kgkg": 3.0769657655138616e-16
+      },
+      "layer_energy_residual_wm2": 1.4110245973419921e-05,
+      "total_energy_residual_wm2": 1.780403383833118e-05,
+      "air_heat_residual_wm2": -4.263256414560601e-14,
+      "air_water_residual_kgm2s": -7.013432803265607e-18,
+      "iterations": 12
+    },
+    {
+      "case": 48,
+      "layers": 4,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 269.97353178041215,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 1.4210854715202004e-13,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 49,
+      "layers": 5,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 265.911468571958,
+      "absolute_error": {
+        "h": 3.882159499468685e-05,
+        "le": 4.367019675655115e-06,
+        "ground_heat": 1.2556284474385393e-05,
+        "gpp": 1.2621019807035339e-06,
+        "temperature_k": 5.086108103569131e-06,
+        "humidity_kgkg": 1.210039963193965e-10
+      },
+      "layer_energy_residual_wm2": 4.488093270804683e-05,
+      "total_energy_residual_wm2": 6.702714984285763e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 1.5123773273225533e-18,
+      "iterations": 10
+    },
+    {
+      "case": 50,
+      "layers": 1,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 250.30006284417624,
+      "absolute_error": {
+        "h": 2.5135776986928704e-05,
+        "le": 5.482654891864058e-06,
+        "ground_heat": 8.796984317882561e-06,
+        "gpp": 0.0,
+        "temperature_k": 1.5132698649722442e-06,
+        "humidity_kgkg": 9.027775684129768e-11
+      },
+      "layer_energy_residual_wm2": 1.2057439368717837e-05,
+      "total_energy_residual_wm2": 4.437701584691922e-05,
+      "air_heat_residual_wm2": -1.2079226507921703e-13,
+      "air_water_residual_kgm2s": 1.1424780392566003e-17,
+      "iterations": 11
+    },
+    {
+      "case": 51,
+      "layers": 2,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 267.9228306775674,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 7.105427357601002e-15,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": -2.1316282072803006e-14,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 52,
+      "layers": 3,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 263.95324581552677,
+      "absolute_error": {
+        "h": 2.8226089881400185e-05,
+        "le": 0.0,
+        "ground_heat": 9.450008150224676e-06,
+        "gpp": 2.6919102147360263e-07,
+        "temperature_k": 3.952385952743498e-06,
+        "humidity_kgkg": 9.39352762241441e-16
+      },
+      "layer_energy_residual_wm2": 3.7976693397556716e-05,
+      "total_energy_residual_wm2": 4.739635997452751e-05,
+      "air_heat_residual_wm2": -1.4210854715202004e-13,
+      "air_water_residual_kgm2s": 1.3707534185416342e-17,
+      "iterations": 15
+    },
+    {
+      "case": 53,
+      "layers": 4,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 262.5125865049745,
+      "absolute_error": {
+        "h": 2.549291639297735e-05,
+        "le": 1.7763568394002505e-15,
+        "ground_heat": 8.285271462682431e-06,
+        "gpp": 1.297664185884173e-06,
+        "temperature_k": 2.950882844743319e-06,
+        "humidity_kgkg": 3.2482697087665713e-16
+      },
+      "layer_energy_residual_wm2": 3.084165020927898e-05,
+      "total_energy_residual_wm2": 4.20543894392722e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": -7.791856081792309e-18,
+      "iterations": 14
+    },
+    {
+      "case": 54,
+      "layers": 5,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 256.6941506965821,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 7.105427357601002e-15,
+        "ground_heat": 7.105427357601002e-15,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 7.105427357601002e-15,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 55,
+      "layers": 1,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 257.9024334708999,
+      "absolute_error": {
+        "h": 3.5307264898420954e-06,
+        "le": 8.563987066168011e-07,
+        "ground_heat": 1.0422579244107055e-06,
+        "gpp": 0.0,
+        "temperature_k": 4.253780616636504e-06,
+        "humidity_kgkg": 2.3946428607396486e-11
+      },
+      "layer_energy_residual_wm2": 4.7305967043165253e-05,
+      "total_energy_residual_wm2": -7.2828145434300495e-06,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": -1.5788694136820158e-18,
+      "iterations": 8
+    },
+    {
+      "case": 56,
+      "layers": 2,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 271.05480342871687,
+      "absolute_error": {
+        "h": 2.1579913294544895e-05,
+        "le": 3.552713678800501e-15,
+        "ground_heat": 7.661166691264043e-06,
+        "gpp": 1.1802071320232699e-07,
+        "temperature_k": 1.8128929468730348e-06,
+        "humidity_kgkg": 6.354508932937541e-16
+      },
+      "layer_energy_residual_wm2": 2.3690660095887495e-05,
+      "total_energy_residual_wm2": 3.653252018409603e-05,
+      "air_heat_residual_wm2": -1.9895196601282805e-13,
+      "air_water_residual_kgm2s": -1.4674845811180753e-17,
+      "iterations": 13
+    },
+    {
+      "case": 57,
+      "layers": 3,
+      "vegetated_fraction": 0.0,
+      "ground_temperature_k": 256.290522025023,
+      "absolute_error": {
+        "h": 0.0,
+        "le": 0.0,
+        "ground_heat": 2.842170943040401e-14,
+        "gpp": 0.0,
+        "temperature_k": 0.0,
+        "humidity_kgkg": 0.0
+      },
+      "layer_energy_residual_wm2": 0.0,
+      "total_energy_residual_wm2": 0.0,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": 0.0,
+      "iterations": 1
+    },
+    {
+      "case": 58,
+      "layers": 4,
+      "vegetated_fraction": 0.6,
+      "ground_temperature_k": 245.3424668110625,
+      "absolute_error": {
+        "h": 7.174443709345724e-06,
+        "le": 1.2419960349063786e-07,
+        "ground_heat": 1.8381150113100375e-06,
+        "gpp": 6.017567966143389e-08,
+        "temperature_k": 1.8523941776038555e-06,
+        "humidity_kgkg": 2.97618223468743e-12
+      },
+      "layer_energy_residual_wm2": 1.0950455593461417e-05,
+      "total_energy_residual_wm2": 1.1264225662444005e-05,
+      "air_heat_residual_wm2": -1.1368683772161603e-13,
+      "air_water_residual_kgm2s": -1.6360441376216811e-18,
+      "iterations": 13
+    },
+    {
+      "case": 59,
+      "layers": 5,
+      "vegetated_fraction": 1.0,
+      "ground_temperature_k": 253.5776494259497,
+      "absolute_error": {
+        "h": 1.5984488470621727e-05,
+        "le": 1.0116906494772593e-06,
+        "ground_heat": 4.225818670988701e-06,
+        "gpp": 3.6717332196900543e-07,
+        "temperature_k": 2.907629152559821e-06,
+        "humidity_kgkg": 1.672792004740742e-11
+      },
+      "layer_energy_residual_wm2": 2.499658177534947e-05,
+      "total_energy_residual_wm2": 2.669668845101114e-05,
+      "air_heat_residual_wm2": 0.0,
+      "air_water_residual_kgm2s": -4.919567357652976e-18,
+      "iterations": 13
+    }
+  ],
+  "wall_seconds": 10.875106899999992,
+  "source_sha256": {
+    "benchmarks/check_winter_boundary.py": "97207db97e2d33a8703c6ca99b5359fe01bcadd608cee1ceaec2aa259de2aae8",
+    "tests/test_canopy_energy.py": "f5787b50f2804186a97495b669be9e4314281e56316cc90735ecade3858ae057",
+    "tests/test_canopy_radiation.py": "72e5f7b7abfc348ec2957268a7af17f7dab2ab7b0c9c3d87580b852cd6e2b126",
+    "src/noahmp_clm/data/snow_tables.npz": "43aaf77afdfec87990c64250418d13db89ebfc66c8e21e5a75023aaa70ced357",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/canopy_energy.py": "bbe24915935785ffd32528608cc7834eab703fe5d8950680ecde88ba73aeb5a0",
+    "src/noahmp_clm/physics/canopy_radiation.py": "7be76a325078bf5097a9f11d902b2dd81ab3fc4eb5be0790c377e89433c4479f",
+    "src/noahmp_clm/physics/canopy_snow_radiation.py": "1c081ea3c55aad02ee3612796863975974ef7f5d5fd2498b6467447d679242bf",
+    "src/noahmp_clm/physics/column_heat.py": "22ca998dfc7bbbdff1a15c3cc70fb94463dcc176688bc1fe8b60d4087223d968",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "b14d3a3ea04e8fded6d7c8b0a9947c2d2ad6a6c2946f035eae0ccc98804bfede",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/photosynthesis.py": "fcdc24145faefca68581c3ddcbcc273e65e9672b68898dc28fd1a5dfbaa249f2",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snicar.py": "f9db89e46ad8157242f10fdde5b661f5f4d33787419d721bb5c39c5531fa2a0b",
+    "src/noahmp_clm/physics/snow.py": "8e0deb92e23e2e54bc0b2ad0d3e55500baea4676549204e58113b1333f5bd156",
+    "src/noahmp_clm/physics/snowpack.py": "bfdd260e62d2062b4f8eb4f861ca9b25902c4ad0f761c9f0ca90edc29ad33ff9",
+    "src/noahmp_clm/physics/snow_evolution.py": "61c361a9f06b4a7a2f6308c17fd4aa74ece6fac5edeea26410cfa04b06e053dc",
+    "src/noahmp_clm/physics/snow_heat.py": "366e5fc2b00878291ddd961c168b019dbe4943ea843ba4bc8039ec058eae6027",
+    "src/noahmp_clm/physics/soil.py": "cf0a2d2f8fc5ec5b81de40c11185bc918483f1f3e122dbf3c41414be395db6ac",
+    "src/noahmp_clm/physics/soil_enthalpy.py": "b3b60feda7ecc497f73ed12fc4262322e68c59b89413523156869dfc12b4e3eb",
+    "src/noahmp_clm/physics/soil_uptake.py": "c9690f055b35debbe13e142b8105f553b84ed76e06bbc40f639c4f66cc8fdf41",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77"
+  }
+}

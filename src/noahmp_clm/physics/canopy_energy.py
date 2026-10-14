@@ -14,6 +14,7 @@ from .canopy_radiation import canopy_shortwave
 from .energy import CP, LV, RD, SIGMA
 from .photosynthesis import R_GAS, leaf_gas_exchange
 from .soil_uptake import _allocate
+from .snowpack import LF, TF
 
 
 @dataclass(frozen=True)
@@ -57,6 +58,20 @@ def _saturation(temperature, pressure):
     return q, derivative, es
 
 
+def _ice_saturation(temperature,pressure):
+    """Murphy--Koop (2005) ice vapour pressure, Pa, with analytic dq/dT.
+
+    Equation documented by NCAR EOL Water Vapor Pressure Formulations. Liquid
+    leaf saturation retains the existing Bolton equation; only the snow/ice
+    ground boundary uses this equation and the sublimation latent heat.
+    """
+    t=np.asarray(temperature,float)
+    es=np.exp(9.550426-5723.265/t+3.53068*np.log(t)-.00728332*t)
+    slope=5723.265/t**2+3.53068/t-.00728332
+    den=pressure-.378*es
+    return .622*es/den,.622*pressure*es*slope/den**2,es
+
+
 def _longwave_operator(area, emissivity, fraction):
     """Map leaf/ground blackbody exitance and sky flux to net absorption."""
     n = len(area)
@@ -86,7 +101,7 @@ def _positive_scale(flux, limit):
 
 
 def _water_flux(qcan, qsat, gs_velocity, area, fraction, wet_fraction,
-                rho, exchange, limits, soil_supply=None):
+                rho, exchange, limits, soil_supply=None,ground_shares_soil=True):
     """Mass fluxes and their effective conductances at a trial canopy q."""
     e = exchange
     leaf_boundary = rho*fraction*area*e.leaf_velocity
@@ -102,7 +117,7 @@ def _water_flux(qcan, qsat, gs_velocity, area, fraction, wet_fraction,
     kt *= _positive_scale(transp,tr_limit)
     root_uptake = (np.empty(0) if soil_supply is None else
                    _allocate(np.sum(kt*(qsat[:-1]-qcan)),soil_supply.roots,soil_supply.weights))
-    ground_limit = limits[2] if soil_supply is None else min(limits[2],max(0.,soil_supply.surface-root_uptake[0]))
+    ground_limit = limits[2] if soil_supply is None or not ground_shares_soil else min(limits[2],max(0.,soil_supply.surface-root_uptake[0]))
     under = rho*fraction/(1./e.ground_velocity+e.ground_resistance)
     bare = rho*(1.-fraction)/(1./e.atmosphere_velocity+e.ground_resistance)
     ground_parts = np.array([under*(qsat[-1]-qcan),bare*(qsat[-1]-e.specific_humidity)])
@@ -114,20 +129,20 @@ def _water_flux(qcan, qsat, gs_velocity, area, fraction, wet_fraction,
     return wet, transp, ground_under, ground_bare, kw+kt, under, bare, residual, root_uptake
 
 
-def _humidity(qsat, gs, area, fraction, wet_fraction, rho, exchange, limits, soil_supply=None):
+def _humidity(qsat, gs, area, fraction, wet_fraction, rho, exchange, limits, soil_supply=None,ground_shares_soil=True):
     if fraction == 0.:
         qcan = exchange.specific_humidity
     else:
         left, right = min(qsat.min(),exchange.specific_humidity), max(qsat.max(),exchange.specific_humidity)
         for _ in range(42):
             middle = .5*(left+right)
-            flux = _water_flux(middle,qsat,gs,area,fraction,wet_fraction,rho,exchange,limits,soil_supply)
+            flux = _water_flux(middle,qsat,gs,area,fraction,wet_fraction,rho,exchange,limits,soil_supply,ground_shares_soil)
             if flux[7] > 0.:
                 left = middle
             else:
                 right = middle
         qcan = .5*(left+right)
-    return qcan, _water_flux(qcan,qsat,gs,area,fraction,wet_fraction,rho,exchange,limits,soil_supply)
+    return qcan, _water_flux(qcan,qsat,gs,area,fraction,wet_fraction,rho,exchange,limits,soil_supply,ground_shares_soil)
 
 
 def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
@@ -137,7 +152,8 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
                         soil_supply=None,
                         leaf_parameters=None, ground_emissivity=.97, ground_albedo=(.15,.3),
                         diffuse_fraction=.5, cosine_zenith=.5, initial_temperatures=None,
-                        tolerance=5e-5, max_iterations=100):
+                        tolerance=5e-5, max_iterations=100,fixed_ground_temperature=None,
+                        ground_is_ice=False,ground_shares_soil=True,snowpack=None):
     """Solve n leaf temperatures plus ground temperature (K).
 
     Areas are one-sided LAI per vegetated ground, ordered top to bottom;
@@ -148,6 +164,11 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     store, returning exact root withdrawals for the caller's water update.
     Limits without soil_supply must describe disjoint root/surface budgets.
     Nonconvergence raises, so a nonclosed solution cannot silently advance.
+    With ``fixed_ground_temperature``, solve only leaf temperatures; returned
+    ground_heat is the energy available to a prognostic snow/soil column. A
+    caller must match that heat to its physical enthalpy change. For ice ground,
+    ground evaporation uses ice saturation and Lv+Lf. Snow water is disjoint
+    from roots: set ground_shares_soil=False and supply its own evaporation cap.
     """
     e = exchange
     area = np.asarray(leaf_area,float)
@@ -163,6 +184,13 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     if area.sum() == 0.:
         fv = 0.
     n = len(area)
+    if fixed_ground_temperature is not None and (not np.isfinite(fixed_ground_temperature)
+            or not 200.<=fixed_ground_temperature<=350.):
+        raise ValueError('Invalid fixed ground temperature')
+    if ground_is_ice and (fixed_ground_temperature is None or fixed_ground_temperature>TF):
+        raise ValueError('Ice exchange requires a fixed ground temperature at or below freezing')
+    if snowpack is not None and fixed_ground_temperature is None:
+        raise ValueError('Snow radiation requires prognostic ground enthalpy coupling')
     for name,value in (("nitrogen_factor",nitrogen_factor),("water_stress",water_stress)):
         factor = np.asarray(value,float)
         if not np.all(np.isfinite(factor)) or np.any((factor<0.)|(factor>1.)):
@@ -170,10 +198,21 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         if np.broadcast_shapes(factor.shape,(n,)) != (n,):
             raise ValueError(f"{name} must be scalar or one value per leaf layer")
     active = fv*area > 0.
-    sw = canopy_shortwave(area,swdown,ground_albedo=ground_albedo,
-                         diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
-    bare_sw = swdown*(1.-.5*sum(ground_albedo))
-    shortwave = np.r_[fv*sw["absorbed"],fv*sw["ground_absorbed"]+(1.-fv)*bare_sw]
+    if snowpack is None:
+        sw = canopy_shortwave(area,swdown,ground_albedo=ground_albedo,
+                             diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
+        bare_sw = swdown*(1.-.5*sum(ground_albedo))
+        shortwave = np.r_[fv*sw["absorbed"],fv*sw["ground_absorbed"]+(1.-fv)*bare_sw]
+        outgoing_sw = fv*sw['reflected']+(1.-fv)*(swdown-bare_sw)
+        snow_sw=np.empty(0);soil_sw=shortwave[-1]
+    else:
+        from .canopy_snow_radiation import canopy_snow_shortwave
+        radiation=canopy_snow_shortwave(area,snowpack,swdown,vegetated_fraction=fv,
+            ground_albedo=ground_albedo,diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
+        sw=radiation['canopy'];snow_sw=radiation['snow_absorbed'];soil_sw=radiation['soil_absorbed']
+        shortwave=np.r_[radiation['canopy_absorbed'],snow_sw.sum()+soil_sw]
+        outgoing_sw=radiation['reflected']
+    latent_heat=np.full(n+1,LV);latent_heat[-1]+=LF if ground_is_ice else 0.
     lw = _longwave_operator(area,ground_emissivity,fv)
     rho = e.pressure/(RD*e.air_temperature*(1.+.61*e.specific_humidity))
     hcan = rho*CP*np.r_[fv*area*e.leaf_velocity,fv*e.ground_velocity]
@@ -189,6 +228,7 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     if temperature.shape != (n+1,) or not np.all(np.isfinite(temperature)) or np.any((temperature<200)|(temperature>350)):
         raise ValueError("Invalid initial leaf/ground temperatures")
     temperature[:-1] = np.where(active,temperature[:-1],e.air_temperature)
+    if fixed_ground_temperature is not None: temperature[-1]=fixed_ground_temperature
     qcan = e.specific_humidity
     molar_density = e.pressure/(R_GAS*e.air_temperature)
     # Simplified soil-beta closure: water stress downregulates biochemical
@@ -201,13 +241,15 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         capacity_stress = capacity_stress*0.
     for iteration in range(1,max_iterations+1):
         saturation, dq, es = _saturation(temperature,e.pressure)
+        if ground_is_ice:
+            saturation[-1],dq[-1],es[-1]=_ice_saturation(temperature[-1],e.pressure)
         vapor = qcan*e.pressure/(.622+.378*qcan)
         gas = leaf_gas_exchange(sw["absorbed_par"],temperature[:-1],co2_ppm=e.co2_ppm,
             relative_humidity=vapor/es[:-1],boundary_conductance=e.leaf_velocity*molar_density,
             parameters=leaf_parameters,water_stress=water_stress,
             nitrogen_factor=np.asarray(nitrogen_factor)*capacity_stress)
         qnew, water = _humidity(saturation,gas["gs_mol"]/molar_density,area,fv,
-                               wet_fraction,rho,e,limits,soil_supply)
+                               wet_fraction,rho,e,limits,soil_supply,ground_shares_soil)
         wet, transp, ground_under, ground_bare, kleaf, kunder, kbare, vapor_residual, root_uptake = water
         # Diagnostic air mixing in differences avoids cancellation of weighted
         # absolute Kelvin temperatures. The state/output remains Kelvin.
@@ -218,7 +260,8 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         evaporation = np.r_[wet+transp,ground_under+ground_bare]
         net_radiation = shortwave+lw@np.r_[SIGMA*temperature**4,lwdown]
         ground_heat = e.soil_conductance*(temperature[-1]-e.soil_temperature)+e.soil_flux_offset
-        residual = net_radiation-sensible-LV*evaporation
+        residual = net_radiation-sensible-latent_heat*evaporation
+        if fixed_ground_temperature is not None: ground_heat=residual[-1]
         residual[-1] -= ground_heat
         # q supplied to photosynthesis must also be consistent with the solved
         # air space; testing energy alone could accept one lagged stomatal step.
@@ -239,12 +282,14 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
             # The bare-ground contribution does not enter the canopy air box.
             ejac -= np.outer(kcan,kcan*dq)/kden
         ejac[-1,-1] += kbare*dq[-1]
-        jac = lw[:,:-1]*(4.*SIGMA*temperature**3)[None,:]-hjac-LV*ejac
+        jac = lw[:,:-1]*(4.*SIGMA*temperature**3)[None,:]-hjac-latent_heat[:,None]*ejac
         jac[-1,-1] -= e.soil_conductance
         inactive = np.flatnonzero(~active)
         jac[inactive,:] = 0.
         jac[inactive,inactive] = -1.
         residual[inactive] = e.air_temperature-temperature[inactive]
+        if fixed_ground_temperature is not None:
+            jac[-1,:]=0.;jac[-1,-1]=-1.;residual[-1]=0.
         delta = np.linalg.solve(jac,-residual)
         temperature += .8*np.clip(delta,-5.,5.)
         temperature = np.clip(temperature,200.,350.)
@@ -253,7 +298,6 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
                            f"max residual={np.max(np.abs(residual)):.6g} W/m², dq={q_error:.6g}")
     leaf_gross = np.where(active,gas["gross"],0.)
     leaf_respiration = np.where(active,gas["respiration"],0.)
-    outgoing_sw = fv*sw["reflected"]+(1.-fv)*(swdown-bare_sw)
     outgoing_lw = lwdown-(net_radiation-shortwave).sum()
     atmosphere_h = hatm*air_offset+hbare*(temperature[-1]-e.air_temperature)
     atmosphere_e = rho*fv*e.atmosphere_velocity*(qcan-e.specific_humidity)+ground_bare
@@ -262,7 +306,10 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         "gpp":float(fv*np.dot(area,leaf_gross)),
         "leaf_respiration":float(fv*np.dot(area,leaf_respiration)),
         "leaf_sensible":sensible[:-1],"ground_sensible":sensible[-1],"h":sensible.sum(),
-        "le":LV*evaporation.sum(),"ground_heat":ground_heat,"rnet":net_radiation.sum(),
+        "le":float(latent_heat@evaporation),"ground_heat":ground_heat,"rnet":net_radiation.sum(),
+        "ground_nonshortwave_heat":ground_heat-shortwave[-1],
+        "snow_absorbed_shortwave":snow_sw,"soil_absorbed_shortwave":float(soil_sw),
+        "ground_latent_heat":float(latent_heat[-1]),
         "wet_evaporation":wet,"transpiration":transp,"ground_evaporation":evaporation[-1],
         "root_uptake":root_uptake,
         "layer_residual":residual,"residual":residual.sum(),"iterations":iteration,
