@@ -1,0 +1,178 @@
+{
+  "source_archive": "p4-plant-cn-c",
+  "tests_passed": 14,
+  "skipped": 0,
+  "elapsed_seconds": 81.65,
+  "component_cases": 512,
+  "trajectory_columns": 8,
+  "trajectory_steps": 336,
+  "backends": 4,
+  "max_absolute": {
+    "float32": {
+      "turnover/state": 0.00013262516404211055,
+      "turnover/litter_carbon_gc_m2": 8.10720143817889e-05,
+      "turnover/litter_nitrogen_gn_m2": 2.126126787516114e-06,
+      "turnover/retranslocated_nitrogen_gn_m2": 3.2552083339965066e-06,
+      "turnover/tissue_carbon_loss_gc_m2": 9.605100899534591e-05,
+      "turnover/tissue_nitrogen_loss_gn_m2": 1.8487262494204515e-06,
+      "allocation/state": 0.00023955024653332657,
+      "allocation/gpp_gc_m2": 0.0,
+      "allocation/npp_gc_m2": 7.383287250917192e-06,
+      "allocation/autotrophic_respiration_gc_m2": 7.62939453125e-06,
+      "allocation/maintenance_respiration_gc_m2": 8.139827727404736e-06,
+      "allocation/growth_respiration_gc_m2": 1.9976085446904435e-07,
+      "allocation/unmet_maintenance_gc_m2": 2.125545385922578e-05,
+      "allocation/carbon_growth_gc_m2": 6.281316515810431e-07,
+      "allocation/nitrogen_growth_gn_m2": 4.530383352774857e-06,
+      "allocation/nitrogen_repair_gn_m2": 1.075667432814953e-05,
+      "allocation/soil_n_demand_gn_m2": 2.802810521984611e-05,
+      "allocation/soil_n_uptake_gn_m2": 2.0381606532282603e-05,
+      "allocation/nitrogen_factor": 5.96046447642884e-07,
+      "allocation/root_respiration_gc_m2": 2.384185791015625e-06,
+      "plan": 0.00013262516404211055
+    },
+    "float64": {
+      "turnover/state": 0.0,
+      "turnover/litter_carbon_gc_m2": 0.0,
+      "turnover/litter_nitrogen_gn_m2": 0.0,
+      "turnover/retranslocated_nitrogen_gn_m2": 0.0,
+      "turnover/tissue_carbon_loss_gc_m2": 0.0,
+      "turnover/tissue_nitrogen_loss_gn_m2": 0.0,
+      "allocation/state": 3.552713678800501e-15,
+      "allocation/gpp_gc_m2": 0.0,
+      "allocation/npp_gc_m2": 3.552713678800501e-15,
+      "allocation/autotrophic_respiration_gc_m2": 3.552713678800501e-15,
+      "allocation/maintenance_respiration_gc_m2": 1.7763568394002505e-15,
+      "allocation/growth_respiration_gc_m2": 1.3877787807814457e-16,
+      "allocation/unmet_maintenance_gc_m2": 1.7763568394002505e-15,
+      "allocation/carbon_growth_gc_m2": 4.440892098500626e-16,
+      "allocation/nitrogen_growth_gn_m2": 6.938893903907228e-18,
+      "allocation/nitrogen_repair_gn_m2": 0.0,
+      "allocation/soil_n_demand_gn_m2": 0.0,
+      "allocation/soil_n_uptake_gn_m2": 0.0,
+      "allocation/nitrogen_factor": 0.0,
+      "allocation/root_respiration_gc_m2": 8.881784197001252e-16,
+      "plan": 3.552713678800501e-15
+    }
+  },
+  "budgets": {
+    "float32": {
+      "turnover": {
+        "carbon": 0.00025461800396442413,
+        "nitrogen": 6.721413228660822e-06,
+        "carbon_bound": 0.1366163347972602,
+        "nitrogen_bound": 0.003354671513274232
+      },
+      "allocation": {
+        "carbon": 0.00019121170043945312,
+        "nitrogen": 1.4699995517730713e-05,
+        "carbon_bound": 0.12184448635116496,
+        "nitrogen_bound": 0.003792284263077761
+      }
+    },
+    "float64": {
+      "turnover": {
+        "carbon": 1.3642420526593924e-12,
+        "nitrogen": 3.2862601528904634e-14,
+        "carbon_bound": 2.5446775202714827e-10,
+        "nitrogen_bound": 6.248562626508178e-12
+      },
+      "allocation": {
+        "carbon": 1.3629097850298422e-12,
+        "nitrogen": 2.842170943040401e-14,
+        "carbon_bound": 2.269530357317912e-10,
+        "nitrogen_bound": 7.06367983814078e-12
+      }
+    }
+  },
+  "same_precision_max_absolute": {
+    "turnover/state": 0.0,
+    "turnover/carbon": 0.0,
+    "turnover/nitrogen": 0.0,
+    "turnover/reserve_carbon": 0.0,
+    "turnover/reserve_nitrogen": 0.0,
+    "turnover/litter_carbon_gc_m2": 0.0,
+    "turnover/litter_nitrogen_gn_m2": 0.0,
+    "turnover/tissue_carbon_loss_gc_m2": 0.0,
+    "turnover/tissue_nitrogen_loss_gn_m2": 0.0,
+    "turnover/retranslocated_nitrogen_gn_m2": 0.0,
+    "turnover/carbon_residual_gc_m2": 0.0,
+    "turnover/nitrogen_residual_gn_m2": 0.0,
+    "turnover/carbon_bound_gc_m2": 0.0,
+    "turnover/nitrogen_bound_gn_m2": 0.0,
+    "turnover/valid": 0.0,
+    "plan/plan": 0.0,
+    "allocation/state": 0.0,
+    "allocation/carbon": 0.0,
+    "allocation/nitrogen": 0.0,
+    "allocation/reserve_carbon": 0.0,
+    "allocation/reserve_nitrogen": 0.0,
+    "allocation/carbon_growth_gc_m2": 0.0,
+    "allocation/nitrogen_growth_gn_m2": 0.0,
+    "allocation/nitrogen_repair_gn_m2": 0.0,
+    "allocation/maintenance_respiration_gc_m2": 0.0,
+    "allocation/growth_respiration_gc_m2": 0.0,
+    "allocation/unmet_maintenance_gc_m2": 0.0,
+    "allocation/gpp_gc_m2": 0.0,
+    "allocation/npp_gc_m2": 0.0,
+    "allocation/autotrophic_respiration_gc_m2": 0.0,
+    "allocation/soil_n_demand_gn_m2": 0.0,
+    "allocation/soil_n_uptake_gn_m2": 0.0,
+    "allocation/nitrogen_factor": 0.0,
+    "allocation/root_respiration_gc_m2": 0.0,
+    "allocation/carbon_residual_gc_m2": 0.0,
+    "allocation/nitrogen_residual_gn_m2": 0.0,
+    "allocation/carbon_bound_gc_m2": 0.0,
+    "allocation/nitrogen_bound_gn_m2": 0.0,
+    "allocation/valid": 0.0
+  },
+  "cuda_budgets": {
+    "turnover": {
+      "carbon": 0.00025461800396442413,
+      "nitrogen": 6.721413228660822e-06,
+      "carbon_bound": 0.1366163347972602,
+      "nitrogen_bound": 0.003354671513274232
+    },
+    "allocation": {
+      "carbon": 1.817941665649414e-05,
+      "nitrogen": 1.5626661479473114e-05,
+      "carbon_bound": 0.12184448635116496,
+      "nitrogen_bound": 0.003571043724491574
+    }
+  },
+  "trajectory": {
+    "numpy64": {
+      "carbon": 2.226707707109199e-11,
+      "nitrogen": 1.2505552149377763e-12,
+      "carbon_bound": 2.7141896551385813e-07,
+      "nitrogen_bound": 5.9903521533351574e-09,
+      "plant_max_abs": 0.0,
+      "soil_max_abs": 0.0
+    },
+    "jax64": {
+      "carbon": 2.226707707109199e-11,
+      "nitrogen": 1.2505552149377763e-12,
+      "carbon_bound": 2.7141896551385813e-07,
+      "nitrogen_bound": 5.9903521533351574e-09,
+      "plant_max_abs": 7.105427357601002e-15,
+      "soil_max_abs": 3.469446951953614e-18
+    },
+    "jax32": {
+      "carbon": 0.07559161669813363,
+      "nitrogen": 0.0012457677439670078,
+      "carbon_bound": 145.7168105468154,
+      "nitrogen_bound": 3.21604112314526,
+      "plant_max_abs": 0.03997064293616859,
+      "soil_max_abs": 0.04016171559760551
+    },
+    "cuda32": {
+      "carbon": 0.07559161669813363,
+      "nitrogen": 0.0012457677439670078,
+      "carbon_bound": 145.7168105468154,
+      "nitrogen_bound": 3.21604112314526,
+      "plant_max_abs": 0.03997064293616859,
+      "soil_max_abs": 0.04016171559760551
+    }
+  },
+  "trajectory_same_precision_max_absolute": 0.0
+}
