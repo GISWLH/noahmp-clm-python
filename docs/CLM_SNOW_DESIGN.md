@@ -3,7 +3,8 @@
 本文保留五层雪的初始设计与分阶段证据。当前已接入
 [NumPy冠层—雪—土壤质量/焓时间步](CLM_EXTENSIVE_COLUMN.md)，
 [联合热量](CLM_GPU_ENTHALPY.md)及[雪辐射/冠层短波](CLM_GPU_SNOW_RADIATION.md)
-已同步原生JAX/CUDA；雪水文和完整冬季柱GPU、官方/观测验收仍待完成。
+已同步原生JAX/CUDA；[质量/焓/杂质输送](CLM_GPU_SNOW_MASS.md)也已同步。
+雪表层水汽、霜露和微结构演化、完整冬季柱GPU、官方/观测验收仍待完成。
 下文“尚未连接/同步”描述对应历史检查点。范围按 Wang 的五层上限执行。
 
 CTSM 官方雪水文技术说明同时保存液水、冰、厚度和温度，分层/并层需保存质量

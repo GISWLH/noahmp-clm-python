@@ -120,12 +120,27 @@ def remap_layers(mass,enthalpy,thickness,radius_um,impurities,new_thickness):
     if not m.size: return Snowpack.empty()
     old_edges=np.r_[0.,np.cumsum(z)]
     new_edges=np.r_[0.,np.cumsum(nz)]
-    overlap=np.maximum(0.,np.minimum(new_edges[1:,None],old_edges[None,1:])-
-        np.maximum(new_edges[:-1,None],old_edges[None,:-1]))
-    weights=overlap/z[None,:]
-    nm=weights@m
-    nr=nm/(weights@(m/r))
-    return Snowpack(nm,weights@h,nz,nr,weights@a)
+    # Distribute each source parcel completely. Subtracting absolute edges
+    # can lose relative precision for a thin cell deep in the snowpack;
+    # dividing that overlap by the original thickness then loses contents.
+    # Normalize by the represented overlap and assign the final parcel its
+    # remaining extensive contents, including the inverse-radius proxy.
+    contents=np.column_stack((m,h,m/r,a));result=np.zeros((len(nz),8))
+    new_edges[-1]=old_edges[-1]
+    for k in range(len(m)):
+        span=np.maximum(0.,np.minimum(new_edges[1:],old_edges[k+1])-
+            np.maximum(new_edges[:-1],old_edges[k]))
+        recipients=np.flatnonzero(span>0.)
+        if not len(recipients):
+            # A source thinner than the absolute-edge ULP belongs entirely
+            # to the cell containing its represented position.
+            recipients=np.array([min(np.searchsorted(new_edges[1:],old_edges[k],side='right'),len(nz)-1)])
+        remaining=contents[k].copy();total=span.sum()
+        for i in recipients[:-1]:
+            parcel=contents[k]*(span[i]/total)
+            result[i]+=parcel;remaining-=parcel
+        result[recipients[-1]]+=remaining
+    return Snowpack(result[:,0],result[:,1],nz,result[:,0]/result[:,2],result[:,3:])
 
 
 def regrid(pack):
@@ -212,13 +227,21 @@ def drain_liquid(pack,*,retention=.033,impermeable_porosity=.05,scavenging=(.2,.
                         if volume(mid)<=z[j+1]: low=mid
                         else: high=mid
                     water=low
-        overflow=(float(liq)-water if ice==0. else
-            max(0.,float(liq)-water-pore*z[j]*RHO_WATER))
-        total=water+overflow
+        left=float(liq)-water
+        # Use the same occupied-volume predicate as receiver admission.
+        # Re-evaluating 1 - ice/(rho*z) near saturation can spuriously spill
+        # a parcel that just passed that admission predicate.
+        overflow=(left if ice==0. else max(0.,left-(z[j]-float(ice)/RHO_ICE)*RHO_WATER)
+            if float(ice)/RHO_ICE+left/RHO_WATER>z[j] else 0.)
+        # A fully melted cell exports exactly all of its mass and tracers.
+        # Re-adding water + (liq-water) can differ from liq by one ULP and
+        # incorrectly leave a vanishing/negative cell with unexported aerosol.
+        total=float(liq) if ice==0. else water+overflow
         heat=water*specific
         fraction=np.minimum(1.,scav*total/m[j])
         exported=a[j].copy() if total==m[j] else a[j]*fraction
-        tracer=exported*(water/total) if total>0. else np.zeros(5)
+        tracer=(exported.copy() if water==total else
+            exported*np.clip(water/total,0.,1.) if total>0. else np.zeros(5))
         runoff+=overflow;runoff_heat+=overflow*specific
         runoff_tracer+=exported-tracer
         m[j]-=total;h[j]-=total*specific;a[j]-=exported

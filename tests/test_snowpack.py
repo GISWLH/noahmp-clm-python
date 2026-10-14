@@ -133,3 +133,16 @@ def test_receiving_cell_capacity_accounts_for_freezing_expansion():
     assert_budget(old,new,d['runoff_kgm2']+d['drainage_kgm2'],
         d['runoff_enthalpy_jm2']+d['drainage_enthalpy_jm2'],
         d['runoff_impurities_kgm2']+d['drainage_impurities_kgm2'])
+
+
+def test_saved_full_melt_exhaustion_preserves_all_aerosol():
+    import json
+    from pathlib import Path
+    fixtures=json.loads((Path(__file__).parent/'fixtures/snow_melt_tracer_exhaustion.json').read_text())['cases']
+    for f in fixtures:
+        c=np.asarray(f['cells'])[:f['count']];u=f['inputs']
+        old=Snowpack(c[:,0],c[:,1],c[:,2],c[:,3],c[:,4:])
+        new,d=drain_liquid(old,retention=u[4],impermeable_porosity=u[5],scavenging=u[6:11],return_ledger=True)
+        assert_budget(old,new,d['runoff_kgm2']+d['drainage_kgm2'],
+            d['runoff_enthalpy_jm2']+d['drainage_enthalpy_jm2'],
+            d['runoff_impurities_kgm2']+d['drainage_impurities_kgm2'])
