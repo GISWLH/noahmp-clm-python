@@ -21,7 +21,7 @@ extern "C" __global__ void prepare_layered_transfer(const float* old_c,const flo
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
         const float* p=params+6*row;const int* o=options+9*row;const float* site=sites+12*row;
         const float* f=forcing+8*row;const float* cc=condensate+20*row;
-        float total=f[7]*f[0],sm=total*snow_fraction(f[1],o[2]),rain=(total-sm)*1000.f,snow=sm*1000.f;
+        float total=f[7]*f[0],sm=total*snow_fraction(f[1],o[2],f[2],f[4]),rain=(total-sm)*1000.f,snow=sm*1000.f;
         float* intercepted=ledger_out+182*row;lc_interception(cc,site,f,rain,snow,intercepted);
         float c[45],g[12],runoff[2];for(int k=0;k<45;++k)c[k]=old_c[row*45+k];for(int k=0;k<12;++k)g[k]=old_g[row*12+k];
         int n=o[0];bool valid=lc_route(c,g,n,p,o[1],f,intercepted+170,runoff);

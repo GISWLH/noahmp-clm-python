@@ -21,11 +21,13 @@ from .physics.surface_drag import exchange_velocity
 
 def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
                     diffuse_fraction=.5, leaf_dimension=.04, canopy_layers=10,
-                    leaf_parameters=None, nitrogen_factor=1.):
+                    leaf_parameters=None, nitrogen_factor=1., most_geometry=None):
     """Advance one NumPy CLM column, dispatching by its state representation.
 
     Solar partition, CO2 and leaf dimension are explicit site assumptions until
-    the forcing metadata adapter supplies them. Neutral friction velocity sets
+    the forcing metadata adapter supplies them. With explicit most_geometry,
+    the extensive path iterates exchange against actual H/E and measurement
+    heights. Otherwise neutral friction velocity sets
     leaf/under-canopy conductance (CLM5 equations 2.5.116--122); above-canopy
     stability uses the previous surface temperature. Full aerodynamic iteration
     and complete winter physics are required before making this the default driver.
@@ -35,7 +37,9 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
         from .clm_enthalpy_driver import step_clm_enthalpy_column
         return step_clm_enthalpy_column(state,forcing,co2_ppm=co2_ppm,cosine_zenith=cosine_zenith,
             diffuse_fraction=diffuse_fraction,leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,
-            leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor)
+            leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry)
+    if most_geometry is not None:
+        raise NotImplementedError('MOST flux feedback requires an extensive CLMColumnState')
     f = forcing
     if not np.isfinite(f.dt) or f.dt <= 0 or not (0 <= state.fveg <= 1) or state.lai < 0:
         raise ValueError("Invalid CLM column time step, vegetation fraction, or LAI")
@@ -43,7 +47,7 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
         raise ValueError("Invalid canopy discretization or leaf dimension")
     if state.options.OptStomataResistance != 1:
         raise NotImplementedError("The CLM canopy currently requires Ball-Berry stomata")
-    rain, snowfall = partition_precipitation(f.prcp,f.dt,f.tair,state.options.OptRainSnowPartition)
+    rain, snowfall = partition_precipitation(f.prcp,f.dt,f.tair,state.options.OptRainSnowPartition,qair=f.qair,pressure=f.ps)
     if state.swe > 0. or snowfall > 0.:
         raise NotImplementedError("CLM winter coupling requires the pending five-layer snow implementation")
     s = state.copy()

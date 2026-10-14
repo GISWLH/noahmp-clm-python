@@ -21,8 +21,11 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('output',type=Path);ap.add_argument('--days',type=int,default=7)
     ap.add_argument('--layered-canopy',action='store_true',help='Carry ten conservative canopy ice/liquid stores through the whole column')
+    ap.add_argument('--most',action='store_true',help='Iterate actual H/E with explicit synthetic tower heights')
     args=ap.parse_args();start=time.perf_counter();dt=1800.
-    report={'scope':__doc__,'days':args.days,'layered_canopy':args.layered_canopy,'columns':[]}
+    from noahmp_clm.physics.canopy_most import MOSTGeometry
+    geometry=MOSTGeometry(wind_height=15.,temperature_height=12.,humidity_height=10.,displacement=2.) if args.most else None
+    report={'scope':__doc__,'days':args.days,'layered_canopy':args.layered_canopy,'most_geometry':None if geometry is None else vars(geometry),'columns':[]}
     sources=[p for p in (ROOT/'src/noahmp_clm').rglob('*') if p.is_file() and '__pycache__' not in p.parts]
     sources.append(Path(__file__))
     report['source_sha256']={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
@@ -51,7 +54,7 @@ def main():
             precip=2e-6 if step%96<6 else 0.
             f=Forcing(dt,air,q,2.5,101325.,650.*sun,270.+35.*sun,precip)
             try:
-                after,d=step_clm_enthalpy_column(state,f,cosine_zenith=max(.05,sun),deposition_rates=rates)
+                after,d=step_clm_enthalpy_column(state,f,cosine_zenith=max(.05,sun),deposition_rates=rates,most_geometry=geometry)
             except Exception:
                 failure=dict(case=case,step=step,state=asdict(state),forcing=asdict(f),traceback=traceback.format_exc())
                 args.output.with_suffix('.failure.json').write_text(json.dumps(failure,indent=2,default=encode))

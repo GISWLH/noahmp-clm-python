@@ -8,6 +8,21 @@ from test_gpu_snicar import assert_science_close
 from noahmp_clm.gpu.clm_enthalpy_column import step_clm_enthalpy_columns_jax,DIAGNOSTICS
 from noahmp_clm.gpu.cuda.clm_enthalpy_column import step_clm_enthalpy_columns_cuda
 from noahmp_clm.physics.precip import partition_precipitation
+from noahmp_clm.physics.canopy_most import MOSTGeometry
+from dataclasses import astuple
+
+MOST=None
+
+
+def cast_column_precision(arrays,dtype):
+    """Preserve quantized physical stores; regenerate redundant layer aliases.
+
+    A float32 sum promoted to float64 is not the float64 sum of the promoted
+    layers. This only repairs packing metadata, never rescales layer M/H.
+    """
+    result=[a.copy() if a.dtype.kind in 'iu' else a.astype(dtype) for a in arrays]
+    if len(result)==8:result[5][:,:2]=result[7].sum(axis=1)
+    return tuple(result)
 
 
 def maxima(old,new):
@@ -19,8 +34,10 @@ def maxima(old,new):
 def run(arrays,forcing,dep,backend,cp):
     if backend!='numpy64':
         runner=step_clm_enthalpy_columns_cuda if backend=='cuda32' else step_clm_enthalpy_columns_jax
-        return check.host(runner(*arrays,forcing,deposition=dep,return_surface=True),cp.asnumpy if backend=='cuda32' else np.asarray)
-    refs=[check.reference(row,f,d) for row,f,d in zip(zip(*arrays),forcing,dep)]
+        options={} if MOST is None else dict(most_geometry=np.broadcast_to(np.array(astuple(MOST),arrays[0].dtype),(len(forcing),9)).copy())
+        return check.host(runner(*arrays,forcing,deposition=dep,return_surface=True,**options),cp.asnumpy if backend=='cuda32' else np.asarray)
+    options={} if MOST is None else dict(most_geometry=MOST)
+    refs=[check.reference(row,f,d,**options) for row,f,d in zip(zip(*arrays),forcing,dep)]
     result={key:np.stack([r[key] for r in refs]) for key in ('snow_cells','soil_cells','options','storage','impurity_output_kgm2')}
     if len(arrays)==8:result['condensate']=np.stack([r['condensate'] for r in refs])
     result['diagnostics']={key:np.array([r['diagnostics'][key] for r in refs]) for key in DIAGNOSTICS}
@@ -44,9 +61,10 @@ def advance(arrays,r):
 
 def trajectory(steps,cp):
     base,_,deposition=check.cases(np.float32);selected=[0,9,4]
+    if MOST is not None:base[3][:,5]=1
     base=tuple(x[selected].copy() for x in base);deposition=deposition[selected]
     names=('numpy64','jax64','jax32','cuda32')
-    states={name:tuple(x.copy() if x.dtype.kind in 'iu' else x.astype(np.float64 if name.endswith('64') else np.float32) for x in base) for name in names}
+    states={name:cast_column_precision(base,np.float64 if name.endswith('64') else np.float32) for name in names}
     initial={name:total(a) for name,a in states.items()};net={name:np.zeros((3,2)) for name in names}
     errors={name:dict(step=[0.,0.],cumulative=[0.,0.]) for name in names};bounds={name:np.zeros(2) for name in names}
     daily={name:{} for name in names};same_precision=0.
@@ -100,24 +118,32 @@ def trajectory(steps,cp):
 
 
 def main():
-    global check,step_clm_enthalpy_columns_jax,step_clm_enthalpy_columns_cuda
+    global check,step_clm_enthalpy_columns_jax,step_clm_enthalpy_columns_cuda,MOST
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--steps',type=int,default=336)
-    parser.add_argument('--layered-canopy',action='store_true');args=parser.parse_args()
+    parser.add_argument('--layered-canopy',action='store_true')
+    parser.add_argument('--most',action='store_true',help='Actual H/E feedback with explicit synthetic tower heights; requires --layered-canopy')
+    args=parser.parse_args()
+    if args.most:
+        if not args.layered_canopy:parser.error('--most requires --layered-canopy')
+        MOST=MOSTGeometry(wind_height=15.,temperature_height=12.,humidity_height=10.,displacement=2.)
     if args.layered_canopy:
         import test_gpu_clm_layered_column as check
         from noahmp_clm.gpu.clm_layered_column import step_clm_layered_columns_jax as step_clm_enthalpy_columns_jax
         from noahmp_clm.gpu.cuda.clm_layered_column import step_clm_layered_columns_cuda as step_clm_enthalpy_columns_cuda
     import cupy as cp
     start=time.monotonic();arrays,f,dep=check.cases(np.float32)
-    refs=[check.reference(row,one,d) for row,one,d in zip(zip(*arrays),f,dep)]
-    report=dict(source_manifest=json.loads((ROOT/'SOURCE_SHA256.json').read_text()),layered_canopy=args.layered_canopy,cases=len(refs),single={});results={}
+    if MOST is not None:arrays[3][:,5]=1
+    options={} if MOST is None else dict(most_geometry=MOST)
+    refs=[check.reference(row,one,d,**options) for row,one,d in zip(zip(*arrays),f,dep)]
+    report=dict(source_manifest=json.loads((ROOT/'SOURCE_SHA256.json').read_text()),layered_canopy=args.layered_canopy,
+        most_geometry=None if MOST is None else vars(MOST),cases=len(refs),single={});results={}
     for name in ('jax64','jax32','cuda32'):
         dtype=np.float64 if name=='jax64' else np.float32
-        x=tuple(a if a.dtype.kind in 'iu' else a.astype(dtype) for a in arrays)
+        x=cast_column_precision(arrays,dtype)
         print('single backend',name,flush=True);r=run(x,f.astype(dtype),dep.astype(dtype),name,cp);maximum={}
         for k,ref in enumerate(refs):
             one={key:({a:b[k] for a,b in v.items()} if isinstance(v,dict) else v[k]) for key,v in r.items()
-                if key not in ('surface','canopy_interception','canopy_post_interception')}
+                if key not in ('surface','canopy_interception','canopy_post_interception','most')}
             maxima(maximum,check.science(one,ref,dtype))
         report['single'][name]=dict(max_absolute=maximum,budget=check.budgets(x,f.astype(dtype),dep.astype(dtype),r));results[name]=r
     report['same_precision_max_absolute']=check.compare_same_precision(results['cuda32'],results['jax32'])

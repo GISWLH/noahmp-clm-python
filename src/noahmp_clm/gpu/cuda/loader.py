@@ -1,4 +1,4 @@
-"""12个物理字段/35值的 float32 CUDA SoA loader；数值验收见 GPU.md。"""
+"""12个物理字段/36值的 float32 CUDA SoA loader；数值验收见 GPU.md。"""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ KERNEL_SOURCE = Path(__file__).with_name("column_kernel.cu").read_text(encoding=
 # Only implemented physics is advertised. Other ABI selectors retain their
 # default values; accepting them would not implement their named physics.
 PHYSICS_OPTION_VALUES = {
-    "OptRainSnowPartition": (1, 2, 3),
+    "OptRainSnowPartition": (1, 2, 3, 5),
     "OptSoilWaterTranspiration": (1, 2, 3),
     "OptGroundResistanceEvap": (1, 2, 3, 4),
     "OptSurfaceDrag": (1, 2),
@@ -94,15 +94,18 @@ def launch_columns(
         if any(begin < other_end and other_begin < end for other_begin, other_end in ranges[:index]):
             raise ValueError("__restrict__ 输入/输出不得重叠")
     _check_options(options_soa)
+    from ..wetbulb import validate_wetbulb
+    selected=options_soa[OPTION_FIELDS.index('OptRainSnowPartition')]==5
+    validate_wetbulb(forcing_soa[[1,2,4]][:,selected].T,cp)
     _launch_unchecked(state_soa, options_soa, forcing_soa, state_out_soa, options_out_soa, diag_soa)
 
 
 def _check_options(options_soa) -> None:
     """对应普通版: options.PhysicsOptions。Validate every column before launch."""
-    # All advertised ranges are contiguous. One device reduction checks all
-    # selectors/columns, avoiding a host synchronization for each option field.
+    # One device reduction checks ranges and the explicit rain/snow hole.
     low, high = cp.asarray(_OPTION_MIN), cp.asarray(_OPTION_MAX)
     valid = (options_soa[:32] >= low[:, None]) & (options_soa[:32] <= high[:, None])
+    valid[OPTION_FIELDS.index('OptRainSnowPartition')] &= options_soa[OPTION_FIELDS.index('OptRainSnowPartition')] != 4
     if not bool(cp.all(valid)):
         field, column = np.argwhere(~cp.asnumpy(valid))[0]
         name = OPTION_FIELDS[field]
@@ -148,6 +151,9 @@ def run_columns_cuda(fvecs, ivecs, forcings):
     # be contiguous and ascontiguousarray would alias the caller's input.
     state, options = f.T.copy(order="C"), i.T.copy(order="C")
     _check_options(options)
+    from ..wetbulb import validate_wetbulb
+    selected=i[:,OPTION_FIELDS.index('OptRainSnowPartition')]==5
+    validate_wetbulb(u[selected].reshape(-1,8)[:,[1,2,4]],cp)
     forcing_soa = cp.ascontiguousarray(u.transpose(1, 2, 0))
     state_out, options_out = cp.empty_like(state), cp.empty_like(options)
     diag = cp.empty((u.shape[1], 12, n), dtype=cp.float32)

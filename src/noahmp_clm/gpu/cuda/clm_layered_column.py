@@ -20,7 +20,7 @@ def _stages():
     return tuple(module.get_function(n) for n in exports)
 
 
-def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False):
+def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None):
     import cupy as cp
     if cp.asarray(o).dtype.kind not in 'iu':raise ValueError('CLM options must be integers')
     c,g,p,site,storage,roots,condensate,forcing=[cp.ascontiguousarray(cp.asarray(x,cp.float32)) for x in (c,g,p,site,storage,roots,condensate,forcing)]
@@ -38,7 +38,12 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
         base_prepare(*launch,(pc0,pg0,p,po0,site,empty,roots,dry,pc,pg,po,a,u,f,v,unused,valid,np.int32(n)))
         v[:,1:3]=totals
         if not bool(cp.all((good>0)&(valid>0))):raise RuntimeError('CUDA layered precipitation preparation failed')
-    surface=run_canopy_phase_surface_cuda(pc,pg,p,po,a,u,f,v,cc,parameters=leaf_parameters)
+    surface_arrays=(pc,pg,p,po,a,u,f,v,cc)
+    if most_geometry is None:surface=run_canopy_phase_surface_cuda(*surface_arrays,parameters=leaf_parameters)
+    else:
+        from ..canopy_most_surface import run_most_surface
+        if bool(cp.any(o[:,5]!=1)):raise ValueError('MOST geometry requires OptSurfaceDrag=1')
+        surface=run_most_surface(surface_arrays,most_geometry,forcing[:,3],site[:,10],site[:,0],backend='cuda',parameters=leaf_parameters)
     flux=cp.ascontiguousarray(cp.stack([surface[key] for key in SURFACE_FIELDS],axis=1))
     sc=cp.ascontiguousarray(surface['snow_cells']);sg=cp.ascontiguousarray(surface['soil_cells']);sn=cp.ascontiguousarray(surface['snow_counts'])
     cond=cp.ascontiguousarray(surface['condensate']);imp=cp.ascontiguousarray(surface['impurity_output_kgm2'])
@@ -51,4 +56,5 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
         raise RuntimeError('CUDA layered post-surface transfer failed')
     result=unpack_column(nc,ng,no,ns,diag,impurity,surface=surface if return_surface else None)
     result.update(condensate=cc,canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(post))
+    if most_geometry is not None:result['most']=surface['most']
     return result

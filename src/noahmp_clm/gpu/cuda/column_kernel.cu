@@ -441,9 +441,27 @@ __device__ void soil_heat(float* s, float dt, float flux, int supercool=1) {
     thomas4(a,b,c,rhs,out);
     for (int j=0;j<4;++j) { s[j]=out[j]; s[8+j]=fmaxf(0.0f,s[4+j]-liquid(s[4+j],s[j],s,supercool)); }
 }
-// 对应普通版: precip.partition_precipitation。Jordan, BATS, freezing threshold.
-__device__ float snow_fraction(float tair, int option=1) {
+// Wang (2019) equations 1-2, fixed dry-bulb temperature in the depression equation.
+__device__ void wetbulb_values(float t,float q,float p,float *tw,float *fraction) {
+    float tc=t-273.15f,vapor=q*p/(.622f+.378f*q);
+    float latent=t>273.15f?2500000.f:2834000.f;
+    float gamma=1004.f*p/(.622f*latent),lower=-150.f,upper=100.f;
+    for(int k=0;k<60;k++) {
+        float middle=.5f*(lower+upper);
+        float es=610.8f*expf(17.27f*middle/(237.3f+middle));
+        float residual=(es-vapor)+gamma*(middle-tc);
+        if(residual<0.f)lower=middle;else upper=middle;
+    }
+    float offset=.5f*(lower+upper);
+    *tw=273.15f+offset;
+    float argument=(float)log(6.99e-5)+2.f*(offset+3.97f);
+    float tail=expf(-fabsf(argument)),den=1.f+tail;
+    *fraction=argument>=0.f?tail/den:1.f/den;
+}
+// 对应普通版: precip.partition_precipitation。Jordan, BATS, freezing, wet bulb.
+__device__ float snow_fraction(float tair, int option=1,float qair=0.f,float pressure=101325.f) {
     switch(option) {
+        case 5: {float tw,fraction;wetbulb_values(tair,qair,pressure,&tw,&fraction);return fraction;}
         case 2: return tair<(273.15f+2.2f) ? 1.0f : 0.0f;
         case 3: return tair<TF ? 1.0f : 0.0f;
         default: {
@@ -475,7 +493,7 @@ __device__ void step_selected(float* s, int* count, const float* u, float* diag,
     const int albedo=Defaults ? 1 : opts[6], conductivity=Defaults ? 1 : opts[9], supercool=Defaults ? 1 : opts[11];
     const int surface=Defaults ? 3 : opts[12], subsurface=Defaults ? 3 : opts[13];
     const int permeability=Defaults ? 1 : opts[14], compaction=Defaults ? 2 : opts[23];
-    float total=fmaxf(0.0f,u[7])*fmaxf(0.0f,u[0]), fraction=snow_fraction(u[1],phase);
+    float total=fmaxf(0.0f,u[7])*fmaxf(0.0f,u[0]), fraction=snow_fraction(u[1],phase,u[2],u[4]);
     float snow=total*fraction, rain=total-snow, canmax=0.5e-3f*s[31];
     float add=fminf(rain,fmaxf(0.0f,canmax-s[30])); s[30]+=add;
     float through=rain-add;

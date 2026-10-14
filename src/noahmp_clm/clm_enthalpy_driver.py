@@ -1,9 +1,9 @@
 """Developing all-season extensive CLM column: precipitation to runoff.
 
 An optional layered canopy carries intercepted ice/liquid and their enthalpy
-through the leaf solve, snowfall, drip and unloading. MOST flux feedback and
-native layered-column integration remain pending. The released default driver
-is not switched by introducing this development entry point.
+through the leaf solve, snowfall, drip and unloading. Explicit MOST geometry
+enables actual H/E feedback with independent heat and humidity measurement
+heights. The released default driver is not switched by this development entry.
 """
 from dataclasses import replace,fields
 import numpy as np
@@ -24,9 +24,11 @@ from .physics.canopy_interception import intercept_precipitation
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
-                            deposition_rates=None):
+                            deposition_rates=None,most_geometry=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     f=forcing;opt=state.options
+    if most_geometry is not None and opt.OptSurfaceDrag!=1:
+        raise ValueError('Explicit MOST geometry requires OptSurfaceDrag=1')
     supported={'OptRainSnowPartition','OptSoilWaterTranspiration','OptGroundResistanceEvap',
         'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen'}
     baseline=clm_options()
@@ -36,7 +38,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if (not np.all(np.isfinite(list(vars(f).values()))) or f.dt<=0. or f.prcp<0. or f.wind<0.
             or not isinstance(canopy_layers,int) or canopy_layers<1 or leaf_dimension<=0.):
         raise ValueError('Invalid CLM forcing or canopy discretization')
-    rain,snowfall=partition_precipitation(f.prcp,f.dt,f.tair,opt.OptRainSnowPartition)
+    rain,snowfall=partition_precipitation(f.prcp,f.dt,f.tair,opt.OptRainSnowPartition,qair=f.qair,pressure=f.ps)
     rain*=1000.;snowfall*=1000.
     rain_heat=LF+CW*(f.tair-TF);ice_heat=CI*(min(f.tair,TF)-TF)
     precipitation_heat=rain*rain_heat+snowfall*ice_heat
@@ -89,11 +91,18 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         co2_ppm=co2_ppm,ground_resistance=ground_resistance(view,opt.OptGroundResistanceEvap,snow_cover=bool(len(snow.mass))))
     wet=min(1.,(canopy/capacity)**(2./3.)) if capacity>0. else 0.
     storage_args=(dict(canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat) if condensate is None else dict(canopy_condensate=condensate))
-    snow,ground,canopy,d=surface_step(snow,ground,f.dt,area,f.swdown,f.lwdown,
-        exchange,**storage_args,root_weights=state.root_frac,
-        wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
-        leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
-        cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction)
+    def solve_surface(boundary):
+        return surface_step(snow,ground,f.dt,area,f.swdown,f.lwdown,
+            boundary,**storage_args,root_weights=state.root_frac,
+            wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
+            leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
+            cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction)
+    if most_geometry is None:surface_result=solve_surface(exchange)
+    else:
+        from .physics.canopy_most import solve_surface_most
+        surface_result=solve_surface_most(solve_surface,exchange,f.wind,most_geometry,
+            leaf_dimension=leaf_dimension,plant_area=state.lai,time_step=f.dt)
+    snow,ground,canopy,d=surface_result
     canopy_heat=d['canopy_enthalpy_after_jm2'];runoff+=d['runoff_kgm2'];runoff_heat+=d['runoff_enthalpy_jm2']
     impurity_out=d['impurity_output_kgm2'].copy()
     if condensate is not None:

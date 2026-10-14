@@ -200,8 +200,8 @@ def _snow_fraction(
 ) -> jax.Array:
     """对应普通版: precip.partition_precipitation。
 
-    分支 1--3 对应 Jordan (1991)、BATS 和冰点阈值；4 沿用 Jordan，5 用
-    湿球近似（阶段 1 的纯 Python 版预留接口）。
+    分支1--3对应Jordan、BATS和冰点阈值，5解Wang湿球降温方程。
+    4的历史占位分支不可作为WRF微物理输出方案使用。
     """
     delta = tair - FREEZING_POINT
     jordan = jnp.where(
@@ -215,13 +215,9 @@ def _snow_fraction(
     )
     bats = (tair < FREEZING_POINT + 2.2).astype(tair.dtype)
     threshold = (tair < FREEZING_POINT).astype(tair.dtype)
-    # 线性湿球替代项：相对湿度越低，湿球越低，越偏向降雪。
-    es = _sat_vapor_pressure(tair)
-    ea = qair * ps / (0.622 + 0.378 * qair)
-    rh = jnp.clip(ea / jnp.maximum(es, 1.0), 0.0, 1.0)
-    wetbulb = jnp.clip((FREEZING_POINT + 1.5 - (tair - 3.0 * (1.0 - rh))) / 3.0, 0.0, 1.0)
+    from .wetbulb import wetbulb_kernel_jax
     return _switch(option, [lambda _: jordan, lambda _: bats, lambda _: threshold,
-                            lambda _: jordan, lambda _: wetbulb], None)
+                            lambda _: jordan, lambda _: wetbulb_kernel_jax(jnp.stack((tair,qair,ps)))[1]], None)
 
 
 def _smooth_water_cap(total, potential):

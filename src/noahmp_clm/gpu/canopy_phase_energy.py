@@ -66,12 +66,13 @@ def unpack_phase(out):
     return result
 
 
-def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,max_iterations=100,tolerance=.005,radiation=None):
+def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,max_iterations=100,tolerance=.005,radiation=None,exchange_extension=None):
     import jax
     import jax.numpy as j
     from jax import lax
     from .photosynthesis import leaf_kernel_jax
     s=lax.optimization_barrier
+    water_velocity,heat_temperature=(u[3],u[0]) if exchange_extension is None else exchange_extension
     area=s(leaf+stem);mass=c[:,0];oldh=c[:,1];fv=j.where(_sum(area)>0.,u[13],0.);active=s(fv*area)>0.
     rad=(canopy_snow_kernel_jax(area,snow,count,j.stack((u[11],fv,u[21],u[22],u[19],u[20])),ice,impurity,track_absorption=True)
         if radiation is None else radiation)
@@ -113,10 +114,10 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         uptake=j.where(soil[0]>0.,_root_allocation(_sum(tr),soil),j.zeros(4,u.dtype))
         limit=j.where((soil[0]>0.)&(b[3]>0.),j.minimum(u[17],j.maximum(0.,s(soil[9]-uptake[0]))),u[17])
         gqs=j.where(b[2]>0.,qice[10],qliq[10])
-        ge=s(rho*j.stack((s(fv*s(gqs-q)),s(s(1.-fv)*s(gqs-u[1])))))/s(1./j.stack((u[4],u[3]))+u[9])
+        ge=s(rho*j.stack((s(fv*s(gqs-q)),s(s(1.-fv)*s(gqs-u[1])))))/s(1./j.stack((u[4],water_velocity))+u[9])
         ge=s(j.minimum(ge,0.)+s(j.maximum(ge,0.)*_positive_scale(ge,limit)))
-        offset=j.where(hden>0.,_dot(weights,s(t-u[0]))/j.maximum(hden,1e-30),0.)
-        sensible=s(weights*s(s(t-u[0])-offset));sensible=sensible.at[10].add(s(bare*s(t[10]-u[0])))
+        offset=j.where(hden>0.,_dot(weights,s(t-heat_temperature))/j.maximum(hden,1e-30),0.)
+        sensible=s(weights*s(s(t-heat_temperature)-offset));sensible=sensible.at[10].add(s(bare*s(t[10]-heat_temperature)))
         emission=j.concatenate((s(5.670374419e-8*s(s(t*t)*s(t*t))),u[12:13]))
         rn=s(sw+jax.vmap(lambda row:_dot(row,emission))(lw))
         latent=j.concatenate((s(lewet/b[4]+s(2.5e6*tr)),j.asarray([s(latent_ground*_sum(ge))])))
@@ -128,12 +129,12 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         residual=raw.at[:10].add(-s(thermal_delta+trheat)).at[10].add(-gh)
         residual=residual.at[:10].set(j.where(active,residual[:10],s(u[0]-tleaf)))
         residual=residual.at[10].set(j.where(b[0]>0.,s(b[1]-t[10]),residual[10]))
-        airwater=s(s(s(_sum(wet)+_sum(tr))+ge[0])-s(s(s(rho*fv)*u[3])*s(q-u[1])))
+        airwater=s(s(s(_sum(wet)+_sum(tr))+ge[0])-s(s(s(rho*fv)*water_velocity)*s(q-u[1])))
         allres=j.concatenate((residual,j.asarray([j.where(fv>0.,s(airwater*2.5e6),s(s(q-u[1])*1e5))])))
-        out=j.zeros(PHASE_OUTPUT_SIZE,u.dtype).at[:10].set(tleaf).at[10:15].set(j.stack((t[10],s(u[0]+offset),q,s(fv*_dot(leaf,j.where(active,gas[:,0],0.))),s(fv*_dot(leaf,j.where(active,gas[:,5],0.))))))
+        out=j.zeros(PHASE_OUTPUT_SIZE,u.dtype).at[:10].set(tleaf).at[10:15].set(j.stack((t[10],s(heat_temperature+offset),q,s(fv*_dot(leaf,j.where(active,gas[:,0],0.))),s(fv*_dot(leaf,j.where(active,gas[:,5],0.))))))
         out=out.at[15:26].set(sensible).at[26:30].set(j.stack((_sum(sensible),_sum(latent),gh,_sum(rn))))
         out=out.at[30:40].set(wet).at[40:50].set(tr).at[50].set(_sum(ge)).at[51:55].set(uptake).at[55:66].set(physical).at[66].set(_sum(physical))
-        out=out.at[69].set(_sum(s(s(newm-mass)+vapor))).at[71].set(s(s(_sum(sensible)-s(atm*offset))-s(bare*s(t[10]-u[0])))).at[72].set(airwater)
+        out=out.at[69].set(_sum(s(s(newm-mass)+vapor))).at[71].set(s(s(_sum(sensible)-s(atm*offset))-s(bare*s(t[10]-heat_temperature)))).at[72].set(airwater)
         out=out.at[73].set(rad[26]).at[74].set(s(u[12]-_sum(s(rn-sw)))).at[75:195].set(gas.ravel())
         fields=j.stack((newm,newh,thermal,iv,liquid,adv,lewet,j.maximum(s(amount-loss),0.),x))
         out=out.at[195:285].set(fields.ravel()).at[285:293].set(j.stack((_sum(storage),_sum(adv)/b[4],_dot(tr,s(334000.+s(4180.*s(tleaf-273.15)))),s(gh-sw[10]),rad[25],latent_ground,j.asarray(0.,u.dtype),j.max(abs(allres))))).at[293:298].set(rad[20:25])

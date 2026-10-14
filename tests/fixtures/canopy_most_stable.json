@@ -1,0 +1,168 @@
+{
+  "case": 2,
+  "step": 7,
+  "state": {
+    "ground": {
+      "water": [
+        42.52116876326142,
+        128.94353850383123,
+        258.0012494740605,
+        430.00136083874685
+      ],
+      "enthalpy": [
+        16102729.7612053,
+        49733745.214221366,
+        99599287.55331019,
+        165999697.5454887
+      ],
+      "dz": [
+        0.1,
+        0.3,
+        0.6,
+        1.0
+      ],
+      "params": {
+        "name": "clay",
+        "smcmax": 0.5,
+        "smcwlt": 0.25,
+        "smcref": 0.4,
+        "satdk": 1e-06,
+        "bexp": 9.0,
+        "quartz": 0.2
+      },
+      "freezing_option": 1
+    },
+    "snow": {
+      "mass": [
+        2.2578760973672,
+        5.593564304712938,
+        6.483832557473774
+      ],
+      "enthalpy": [
+        -31667.389377896638,
+        -54350.393435028476,
+        60970.7928388581
+      ],
+      "thickness": [
+        0.02,
+        0.05,
+        0.05420615470685522
+      ],
+      "radius_um": [
+        174.70854733774263,
+        175.10563133418478,
+        178.39693878719692
+      ],
+      "impurities": [
+        [
+          3.443219041334921e-09,
+          6.886438082669842e-09,
+          3.443219041334921e-09,
+          1.7216095206674605e-09,
+          8.608047603337302e-10
+        ],
+        [
+          3.974596253304205e-09,
+          7.94919250660841e-09,
+          3.974596253304205e-09,
+          1.9872981266521024e-09,
+          9.936490633260512e-10
+        ],
+        [
+          5.182184705360874e-09,
+          1.0364369410721748e-08,
+          5.182184705360874e-09,
+          2.591092352680437e-09,
+          1.2955461763402185e-09
+        ]
+      ]
+    },
+    "canopy_water_kgm2": 7.362992767048514,
+    "canopy_enthalpy_jm2": -106729.66088546597,
+    "lai": 2.0,
+    "fveg": 0.65,
+    "z0m": 0.05,
+    "albedo": 0.2,
+    "emiss": 0.97,
+    "surface_temperature": 266.4712857671182,
+    "root_frac": [
+      0.5868570361135262,
+      0.3220739701427555,
+      0.08349453996706505,
+      0.00757445377665319
+    ],
+    "options": {
+      "OptDynamicVeg": 4,
+      "OptRainSnowPartition": 1,
+      "OptSoilWaterTranspiration": 1,
+      "OptGroundResistanceEvap": 4,
+      "OptSurfaceDrag": 1,
+      "OptStomataResistance": 1,
+      "OptSnowAlbedo": 3,
+      "OptCanopyRadiationTransfer": 3,
+      "OptSnowSoilTempTime": 3,
+      "OptSnowThermConduct": 1,
+      "OptSoilTemperatureBottom": 1,
+      "OptSoilSupercoolWater": 1,
+      "OptRunoffSurface": 3,
+      "OptRunoffSubsurface": 3,
+      "OptSoilPermeabilityFrozen": 1,
+      "OptDynVicInfiltration": 1,
+      "OptTileDrainage": 0,
+      "OptIrrigation": 0,
+      "OptIrrigationMethod": 0,
+      "OptCropModel": 0,
+      "OptSoilProperty": 1,
+      "OptPedotransfer": 1,
+      "OptGlacierTreatment": 1,
+      "OptSnowCompaction": 2,
+      "OptSnowCoverGround": 1,
+      "OptWetlandModel": 0,
+      "OptSnicarSnowShape": 1,
+      "OptSnicarRTSolver": 1,
+      "OptSnicarBandNum": 1,
+      "OptSnicarSolarSpec": 1,
+      "OptSnicarSnwOptic": 1,
+      "OptSnicarDustOptic": 1
+    },
+    "terrain_index": 0.0,
+    "groundwater_depth": 2.0,
+    "canopy_condensate": {
+      "mass": [
+        0.7366241545181642,
+        0.736516756164846,
+        0.736426671278436,
+        0.7363510900340597,
+        0.7362876367971112,
+        0.7362343044074012,
+        0.7361893969279447,
+        0.7361514800639104,
+        0.7361193383840403,
+        0.7360919384726006
+      ],
+      "enthalpy": [
+        -10944.024586584042,
+        -10854.019618576363,
+        -10778.774475383254,
+        -10715.804524339432,
+        -10663.03736983924,
+        -10618.74124127751,
+        -10581.465779013917,
+        -10549.992886850561,
+        -10523.295770402343,
+        -10500.50463319932
+      ]
+    }
+  },
+  "forcing": {
+    "dt": 1800.0,
+    "tair": 267.6317381960974,
+    "qair": 0.0023946595013168083,
+    "wind": 2.5,
+    "ps": 101325.0,
+    "swdown": 0.0,
+    "lwdown": 270.0,
+    "prcp": 0.0
+  },
+  "source": "p2-canopy-most-c, three-column trajectory, case 2 step 7; fixed-old-state Picard feedback exceeds 50 iterations"
+}

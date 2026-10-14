@@ -47,18 +47,29 @@ def unpack_phase_surface(out):
     return result
 
 
-@lru_cache(maxsize=1)
-def _compiled():
+@lru_cache(maxsize=2)
+def _compiled(extended=False):
     import jax
-    return jax.jit(jax.vmap(surface_kernel_jax,in_axes=(0,0,0,0,0,0,0,0,0,None,None,0)))
+    axes=(0,0,0,0,0,0,0,0,0,None,None,0)
+    return jax.jit(jax.vmap(surface_kernel_jax,in_axes=axes+(0,) if extended else axes))
 
 
-def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True):
+def validate_exchange_extension(extension,n,xp):
+    if extension.shape!=(n,2) or not bool(xp.all(xp.isfinite(extension))) or bool(xp.any(
+            (extension[:,0]<=0.)|(extension[:,1]<200.)|(extension[:,1]>400.))):
+        raise ValueError('Invalid separate water velocity/potential temperature extension')
+
+
+def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,arrays));validate_phase_surface(arrays,j)
     c,g,p,o,a,u,f,v,condensate=arrays;dtype=str(c.dtype)
     radiation=_radiation()(a,c[:,:,j.array([0,3,4,5,6,7,8])],o[:,0],radiation_inputs(a,u,j),*_jax_tables(dtype))
-    out=_compiled()(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate)
+    extra=() if exchange_extension is None else (j.asarray(exchange_extension),)
+    if extra:
+        validate_exchange_extension(extra[0],len(c),j)
+        if extra[0].dtype!=c.dtype:raise ValueError('Exchange extension precision mismatch')
+    out=_compiled(bool(extra))(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate,*extra)
     result=unpack_phase_surface(out)
     if raise_on_failure and (not bool(j.all(j.isfinite(out))) or not bool(j.all(result['converged']))):
         raise RuntimeError('Layered phase surface failed; inspect with raise_on_failure=False')

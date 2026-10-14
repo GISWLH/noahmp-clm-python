@@ -140,11 +140,11 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         uptake=np.empty(0) if soil_supply is None else _allocate(tr.sum(),roots,soil_supply.weights)
         surface=ground_evaporation_limit
         if soil_supply is not None and ground_shares_soil:surface=min(surface,max(0.,soil_supply.surface-uptake[0]))
-        ge=rho*np.array([fv*(ground_sat-qc),(1.-fv)*(ground_sat-e.specific_humidity)])/(1./np.array([e.ground_velocity,e.atmosphere_velocity])+e.ground_resistance)
+        ge=rho*np.array([fv*(ground_sat-qc),(1.-fv)*(ground_sat-e.specific_humidity)])/(1./np.array([e.ground_velocity,e.water_velocity])+e.ground_resistance)
         positive=np.maximum(ge,0.);negative=np.minimum(ge,0.)
         ge=negative+positive*(min(1.,(surface-negative.sum())/positive.sum()) if positive.sum()>0. else 1.)
-        air_offset=float(heat_weight@(t-e.air_temperature)/heat_den) if heat_den>0. else 0.
-        sensible=heat_weight*((t-e.air_temperature)-air_offset);sensible[-1]+=bare_h*(t[-1]-e.air_temperature)
+        air_offset=float(heat_weight@(t-e.heat_temperature)/heat_den) if heat_den>0. else 0.
+        sensible=heat_weight*((t-e.heat_temperature)-air_offset);sensible[-1]+=bare_h*(t[-1]-e.heat_temperature)
         rn=shortwave+lw@np.r_[SIGMA*t**4,lwdown]
         latent=np.r_[parcel['latent_energy_jm2']/dt+LV*tr,ground_latent*ge.sum()]
         root_mean=float(uptake@root_h/uptake.sum()) if uptake.sum()>0. else 0.
@@ -156,7 +156,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         residual[-1]-=ground_heat
         residual[:-1]=np.where(active,residual[:-1],e.air_temperature-leaf_t)
         if fixed_ground_temperature is not None:residual[-1]=fixed_ground_temperature-t[-1]
-        air_water=wet.sum()+tr.sum()+ge[0]-rho*fv*e.atmosphere_velocity*(qc-e.specific_humidity)
+        air_water=wet.sum()+tr.sum()+ge[0]-rho*fv*e.water_velocity*(qc-e.specific_humidity)
         qres=air_water*LV if fv>0. else (qc-e.specific_humidity)*1e5
         all_residual=np.r_[residual,qres]
         if not details:return all_residual
@@ -164,9 +164,9 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         # the solve's pre-vapour identity is not the independent closure test.
         storage=(final.enthalpy-condensate.enthalpy)/dt;advected=parcel['advected_enthalpy_jm2']/dt
         physical=rn-sensible-latent;physical[:-1]-=storage+advected+transp_heat;physical[-1]-=ground_heat
-        atm_water=rho*fv*e.atmosphere_velocity*(qc-e.specific_humidity)+ge[1]
+        atm_water=rho*fv*e.water_velocity*(qc-e.specific_humidity)+ge[1]
         return dict(condensate=final,thermal_condensate=heated,leaf_temperature=leaf_t,ground_temperature=float(t[-1]),
-            canopy_temperature=e.air_temperature+air_offset,canopy_humidity=qc,gas_exchange=gas,
+            canopy_temperature=e.heat_temperature+air_offset,canopy_humidity=qc,gas_exchange=gas,
             gpp=float(fv*leaf@np.where(active,gas['gross'],0.)),leaf_respiration=float(fv*leaf@np.where(active,gas['respiration'],0.)),
             h=float(sensible.sum()),le=float(latent.sum()),rnet=float(rn.sum()),ground_heat=float(ground_heat),
             ground_nonshortwave_heat=float(ground_heat-shortwave[-1]),snow_absorbed_shortwave=snow_sw,soil_absorbed_shortwave=float(soil_sw),
@@ -178,7 +178,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             root_advected_heat_wm2=float(uptake@root_h),transpiration_net_heat_wm2=float(transp_heat.sum()),vapor_parcels=parcel,
             layer_residual=physical,residual=float(physical.sum()),solver_residual=all_residual,
             air_water_residual=float(wet.sum()+tr.sum()+ge.sum()-atm_water),
-            air_heat_residual=float(sensible.sum()-atm_h*air_offset-bare_h*(t[-1]-e.air_temperature)),
+            air_heat_residual=float(sensible.sum()-atm_h*air_offset-bare_h*(t[-1]-e.heat_temperature)),
             canopy_water_residual=float((final.mass-mass+dt*wet).sum()),phase_coordinates=z[:n].copy())
 
     # Test the atmospheric-temperature branch as well as the old enthalpy.

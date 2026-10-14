@@ -136,7 +136,7 @@ def budgets(arrays,forcing,deposition,got):
     newh=snow[:,:,1].sum(1)+soil[:,:,1].sum(1)+storage[:,1]
     precipitation=[];ph=[]
     for f,opt in zip(forcing.astype(float),o):
-        rain,ice=partition_precipitation(f[7],f[0],f[1],int(opt[2]));rain*=1000.;ice*=1000.
+        rain,ice=partition_precipitation(f[7],f[0],f[1],int(opt[2]),qair=f[2],pressure=f[4]);rain*=1000.;ice*=1000.
         precipitation.append(rain+ice);ph.append(rain*(334000.+4180.*(f[1]-TF))+ice*2100.*(min(f[1],TF)-TF))
     precipitation=np.array(precipitation);ph=np.array(ph)
     atmo=(forcing[:,5].astype(float)+forcing[:,6]-np.asarray(sf['outgoing_shortwave'],float)-

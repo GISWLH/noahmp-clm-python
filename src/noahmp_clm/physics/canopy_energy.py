@@ -37,15 +37,26 @@ class CanopyExchange:
     co2_ppm: float = 420.
     ground_resistance: float = 0.
     soil_flux_offset: float = 0.
+    atmosphere_water_velocity: float | None = None
+    potential_temperature: float | None = None
+
+    @property
+    def water_velocity(self):
+        return self.atmosphere_velocity if self.atmosphere_water_velocity is None else self.atmosphere_water_velocity
+
+    @property
+    def heat_temperature(self):
+        return self.air_temperature if self.potential_temperature is None else self.potential_temperature
 
     def __post_init__(self):
-        if not np.all(np.isfinite(list(vars(self).values()))):
+        if not np.all(np.isfinite([v for v in vars(self).values() if v is not None])):
             raise ValueError("Nonfinite canopy exchange boundary")
         if not (200 <= self.air_temperature <= 350 and 200 <= self.soil_temperature <= 350
                 and 0 <= self.specific_humidity < .2 and self.pressure >= 30000
                 and self.atmosphere_velocity > 0 and self.ground_velocity > 0
                 and self.leaf_velocity > 0 and self.soil_conductance >= 0
-                and self.ground_resistance >= 0 and self.co2_ppm > 0):
+                and self.ground_resistance >= 0 and self.co2_ppm > 0
+                and self.water_velocity > 0 and 200 <= self.heat_temperature <= 400):
             raise ValueError("Unphysical canopy exchange boundary")
 
 
@@ -141,13 +152,13 @@ def _water_flux(qcan, qsat, gs_velocity, area, fraction, wet_fraction,
                    _allocate(np.sum(kt*(qsat[:-1]-qcan)),soil_supply.roots,soil_supply.weights))
     ground_limit = limits[2] if soil_supply is None or not ground_shares_soil else min(limits[2],max(0.,soil_supply.surface-root_uptake[0]))
     under = rho*fraction/(1./e.ground_velocity+e.ground_resistance)
-    bare = rho*(1.-fraction)/(1./e.atmosphere_velocity+e.ground_resistance)
+    bare = rho*(1.-fraction)/(1./e.water_velocity+e.ground_resistance)
     ground_parts = np.array([under*(qsat[-1]-qcan),bare*(qsat[-1]-e.specific_humidity)])
     scale = np.where(ground_parts > 0.,_positive_scale(ground_parts,ground_limit),1.)
     under, bare = under*scale[0], bare*scale[1]
     wet, transp = kw*(qsat[:-1]-qcan), kt*(qsat[:-1]-qcan)
     ground_under, ground_bare = under*(qsat[-1]-qcan), bare*(qsat[-1]-e.specific_humidity)
-    residual = wet.sum()+transp.sum()+ground_under-rho*fraction*e.atmosphere_velocity*(qcan-e.specific_humidity)
+    residual = wet.sum()+transp.sum()+ground_under-rho*fraction*e.water_velocity*(qcan-e.specific_humidity)
     return wet, transp, ground_under, ground_bare, kw+kt, under, bare, residual, root_uptake
 
 
@@ -283,10 +294,10 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         wet, transp, ground_under, ground_bare, kleaf, kunder, kbare, vapor_residual, root_uptake = water
         # Diagnostic air mixing in differences avoids cancellation of weighted
         # absolute Kelvin temperatures. The state/output remains Kelvin.
-        air_offset = hcan@(temperature-e.air_temperature)/hden if hden > 0 else 0.
-        tair_can = e.air_temperature+air_offset
-        sensible = hcan*((temperature-e.air_temperature)-air_offset)
-        sensible[-1] += hbare*(temperature[-1]-e.air_temperature)
+        air_offset = hcan@(temperature-e.heat_temperature)/hden if hden > 0 else 0.
+        tair_can = e.heat_temperature+air_offset
+        sensible = hcan*((temperature-e.heat_temperature)-air_offset)
+        sensible[-1] += hbare*(temperature[-1]-e.heat_temperature)
         evaporation = np.r_[wet+transp,ground_under+ground_bare]
         net_radiation = shortwave+lw@np.r_[SIGMA*temperature**4,lwdown]
         ground_heat = e.soil_conductance*(temperature[-1]-e.soil_temperature)+e.soil_flux_offset
@@ -316,7 +327,7 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
             # unnecessary sub-ulp step can otherwise create a two-state cycle.
             continue
         kcan = np.r_[kleaf,kunder]
-        kden = kcan.sum()+rho*fv*e.atmosphere_velocity
+        kden = kcan.sum()+rho*fv*e.water_velocity
         ejac = np.diag(kcan*dq)
         if kden > 0:
             # The bare-ground contribution does not enter the canopy air box.
@@ -342,8 +353,8 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     leaf_gross = np.where(active,gas["gross"],0.)
     leaf_respiration = np.where(active,gas["respiration"],0.)
     outgoing_lw = lwdown-(net_radiation-shortwave).sum()
-    atmosphere_h = hatm*air_offset+hbare*(temperature[-1]-e.air_temperature)
-    atmosphere_e = rho*fv*e.atmosphere_velocity*(qcan-e.specific_humidity)+ground_bare
+    atmosphere_h = hatm*air_offset+hbare*(temperature[-1]-e.heat_temperature)
+    atmosphere_e = rho*fv*e.water_velocity*(qcan-e.specific_humidity)+ground_bare
     return {"leaf_temperature":temperature[:-1],"ground_temperature":temperature[-1],
         "canopy_temperature":tair_can,"canopy_humidity":qcan,"gas_exchange":gas,
         "gpp":float(fv*np.dot(area,leaf_gross)),

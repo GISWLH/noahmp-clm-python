@@ -28,5 +28,15 @@ def test_partition_conserves_water_and_rejects_unimplemented_scheme() -> None:
     assert rain == 0.0
     assert rain + snow == pytest.approx(0.012)
     with pytest.raises(NotImplementedError):
-        partition_precipitation(1.0e-5, 600.0, 273.0, option=5)
+        partition_precipitation(1.0e-5, 600.0, 273.0, option=4)
+
+
+def test_wetbulb_dispatch_requires_humidity_and_preserves_water():
+    from noahmp_clm.physics.wetbulb import wetbulb_snow_fraction
+    with pytest.raises(ValueError,match='qair'):
+        partition_precipitation(1e-5,600.,273.,option=5)
+    rain,snow=partition_precipitation(1e-5,600.,276.,option=5,qair=.002,pressure=90000.)
+    assert 0<rain<.006 and 0<snow<.006
+    assert rain+snow==.006
+    assert snow/.006==pytest.approx(wetbulb_snow_fraction(276.,.002,90000.))
 

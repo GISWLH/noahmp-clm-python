@@ -3,11 +3,12 @@
 struct PhaseContext {
     const float *leaf,*u,*f,*soil,*c,*b,*p,*rad;
     float area[10],fw[10],dry[10],vc[10],weights[11],sw[11],lw[132];
-    float fv,rho,mol,atm,bare,hden,trlimit,lg;
+    float fv,rho,mol,atm,bare,hden,trlimit,lg,water_velocity,heat_temperature;
 };
 __device__ void phase_prepare(const float* leaf,const float* u,const float* f,const float* soil,
     const float* stem,const float* c,const float* b,const float* p,const float* rad,PhaseContext& v) {
     v.leaf=leaf;v.u=u;v.f=f;v.soil=soil;v.c=c;v.b=b;v.p=p;v.rad=rad;
+    v.water_velocity=u[3];v.heat_temperature=u[0];
     for(int i=0;i<10;++i)v.area[i]=leaf[i]+stem[i];
     v.fv=ca_sum(v.area,10)>0.f?u[13]:0.f;v.rho=u[2]/((287.f*u[0])*(1.f+.61f*u[1]));v.mol=u[2]/(8.314462618f*u[0]);
     v.atm=((v.rho*1004.f)*v.fv)*u[3];v.bare=((v.rho*1004.f)*(1.f-v.fv))*u[3];
@@ -53,13 +54,13 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
     ca_allocate(ca_sum(tr,10),v.soil,take);if(v.soil[0]==0.f)for(int i=0;i<4;++i)take[i]=0.f;
     float limit=v.soil[0]>0.f&&b[3]>0.f?fminf(u[17],fmaxf(0.f,v.soil[9]-take[0])):u[17];
     float gqs=b[2]>0.f?qi[10]:qs[10];
-    float ge[2]={(v.rho*(v.fv*(gqs-q)))/(1.f/u[4]+u[9]),(v.rho*((1.f-v.fv)*(gqs-u[1])))/(1.f/u[3]+u[9])};
+    float ge[2]={(v.rho*(v.fv*(gqs-q)))/(1.f/u[4]+u[9]),(v.rho*((1.f-v.fv)*(gqs-u[1])))/(1.f/v.water_velocity+u[9])};
     scale=ca_scale(ge,2,limit);for(int i=0;i<2;++i)ge[i]=fminf(ge[i],0.f)+fmaxf(ge[i],0.f)*scale;
-    float offset=0.f;for(int i=0;i<11;++i)offset+=v.weights[i]*(t[i]-u[0]);offset=v.hden>0.f?offset/fmaxf(v.hden,1e-30f):0.f;
+    float offset=0.f;for(int i=0;i<11;++i)offset+=v.weights[i]*(t[i]-v.heat_temperature);offset=v.hden>0.f?offset/fmaxf(v.hden,1e-30f):0.f;
     float sensible[11],emission[12],rn[11],latent[11],raw[11],storage[10],trheat[10],physical[11];
     float taken=ca_sum(take,4),root=taken>0.f?ca_dot(take,b+5,4)/fmaxf(taken,1e-30f):0.f;
-    for(int i=0;i<11;++i){sensible[i]=v.weights[i]*((t[i]-u[0])-offset);emission[i]=5.670374419e-8f*((t[i]*t[i])*(t[i]*t[i]));}
-    sensible[10]+=v.bare*(t[10]-u[0]);emission[11]=u[12];
+    for(int i=0;i<11;++i){sensible[i]=v.weights[i]*((t[i]-v.heat_temperature)-offset);emission[i]=5.670374419e-8f*((t[i]*t[i])*(t[i]*t[i]));}
+    sensible[10]+=v.bare*(t[10]-v.heat_temperature);emission[11]=u[12];
     for(int i=0;i<11;++i) {
         rn[i]=v.sw[i]+ca_dot(v.lw+12*i,emission,12);
         latent[i]=i<10?wetle[i]/b[4]+2.5e6f*tr[i]:v.lg*ca_sum(ge,2);
@@ -72,7 +73,7 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
         residual[i]=v.fv*v.area[i]>0.f?raw[i]-((thermal[i]-c[2*i+1])/b[4]+trheat[i]):u[0]-t[i];
     }
     physical[10]=raw[10]-gh;residual[10]=b[0]>0.f?b[1]-t[10]:raw[10]-gh;
-    float airwater=((ca_sum(wet,10)+ca_sum(tr,10))+ge[0])-((v.rho*v.fv)*u[3])*(q-u[1]);
+    float airwater=((ca_sum(wet,10)+ca_sum(tr,10))+ge[0])-((v.rho*v.fv)*v.water_velocity)*(q-u[1]);
     residual[11]=v.fv>0.f?airwater*2.5e6f:(q-u[1])*1e5f;
     if(!out)return;
     for(int i=0;i<300;++i)out[i]=0.f;
@@ -83,10 +84,10 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
         out[13]+=v.leaf[i]*(v.fv*v.area[i]>0.f?gas[12*i]:0.f);out[14]+=v.leaf[i]*(v.fv*v.area[i]>0.f?gas[12*i+5]:0.f);
         out[69]+=(mass[i]-c[2*i])+vapor[i];
     }
-    out[13]*=v.fv;out[14]*=v.fv;out[10]=t[10];out[11]=u[0]+offset;out[12]=q;out[25]=sensible[10];
+    out[13]*=v.fv;out[14]*=v.fv;out[10]=t[10];out[11]=v.heat_temperature+offset;out[12]=q;out[25]=sensible[10];
     out[26]=ca_sum(sensible,11);out[27]=ca_sum(latent,11);out[28]=gh;out[29]=ca_sum(rn,11);out[50]=ca_sum(ge,2);
     for(int i=0;i<4;++i)out[51+i]=take[i];for(int i=0;i<11;++i)out[55+i]=physical[i];out[66]=ca_sum(physical,11);
-    out[71]=(ca_sum(sensible,11)-v.atm*offset)-v.bare*(t[10]-u[0]);out[72]=airwater;out[73]=v.rad[26];
+    out[71]=(ca_sum(sensible,11)-v.atm*offset)-v.bare*(t[10]-v.heat_temperature);out[72]=airwater;out[73]=v.rad[26];
     float lwtotal=0.f;for(int i=0;i<11;++i)lwtotal+=rn[i]-v.sw[i];out[74]=u[12]-lwtotal;
     for(int i=0;i<120;++i)out[75+i]=gas[i];
     out[285]=ca_sum(storage,10);out[286]=ca_sum(adv,10)/b[4];

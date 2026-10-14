@@ -59,7 +59,7 @@ def validate_surface(arrays,xp):
         raise ValueError('Invalid surface stores, roots or soil properties')
 
 
-def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None):
+def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exchange_extension=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=c.dtype;zero=j.zeros((),dtype);dt=v[0];n=o[0];phase=o[1]
@@ -80,7 +80,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None):
             from .canopy_phase_energy import phase_energy_kernel_jax
             b=j.concatenate((row(1.,temp,(temp<273.15).astype(dtype),(n==0).astype(dtype),dt),root_h))
             extra=phase_energy_kernel_jax(a,u,f,supply,j.zeros(10,dtype),condensate,b,None,n,leaf,None,None,
-                tolerance=.005 if dtype==j.float32 else 1e-7,radiation=radiation)
+                tolerance=.005 if dtype==j.float32 else 1e-7,radiation=radiation,exchange_extension=exchange_extension)
             canopy=j.concatenate((extra[:195],extra[288:289],extra[293:298],extra[289:291],extra[285:286],
                 row(_sum(extra[195:205]),_sum(extra[205:215])),extra[286:288]))
         roots=s(canopy[51:55]*dt);gm=s(canopy[50]*dt);wet=s(_sum(canopy[30:40])*dt)

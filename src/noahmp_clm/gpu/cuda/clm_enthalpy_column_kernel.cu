@@ -32,7 +32,7 @@ extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const f
         const float* store=storage+row*3;const float* roots=roots_in+row*4;const float* f=forcing+row*8;
         float c[45],g[12];for(int k=0;k<45;++k)c[k]=snow_in[row*45+k];for(int k=0;k<12;++k)g[k]=soil_in[row*12+k];
         int n=o[0],phase=o[1];float dt=f[0],tair=f[1],capacity=(.5f*site[1])*site[0],mass=store[0],heat=store[1];
-        float total=f[7]*dt,snow_m=total*snow_fraction(tair,o[2]),rain=(total-snow_m)*1000.f,snowfall=snow_m*1000.f;
+        float total=f[7]*dt,snow_m=total*snow_fraction(tair,o[2],f[2],f[4]),rain=(total-snow_m)*1000.f,snowfall=snow_m*1000.f;
         float rain_h=334000.f+4180.f*(tair-273.15f),ice_h=2100.f*(fminf(tair,273.15f)-273.15f);
         float precipitation_h=rain*rain_h+snowfall*ice_h;
         float drip=fmaxf(0.f,mass-capacity),drip_h=(drip*heat)/(mass>0.f?mass:1.f),runoff[2];

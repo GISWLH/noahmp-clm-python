@@ -56,7 +56,7 @@ class OptionSpec:
 # A new field fails inventory validation until it has an explicit classification.
 SPECS = {
     "OptDynamicVeg": OptionSpec("singleton", (4,), "Input LAI only; no dynamic vegetation selector."),
-    "OptRainSnowPartition": OptionSpec("physics", (1, 2, 3, 4, 5), "physics.precip.partition_precipitation", (4, 5)),
+    "OptRainSnowPartition": OptionSpec("physics", (1, 2, 3, 4, 5), "physics.precip.partition_precipitation", (4,)),
     "OptSoilWaterTranspiration": OptionSpec("physics", (1, 2, 3), "physics.stress.soil_water_stress"),
     "OptGroundResistanceEvap": OptionSpec("physics", (1, 2, 3, 4), "physics.ground_evap.ground_resistance"),
     "OptSurfaceDrag": OptionSpec("physics", (1, 2), "physics.surface_drag.exchange_velocity"),

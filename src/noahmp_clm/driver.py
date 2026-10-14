@@ -36,7 +36,7 @@ def step_column(state: ColumnState, f: Forcing):
 
     # ---- 1. 降水分配：由 state.options 选择纯函数方案 ----
     rain_m, snow_m = partition_precipitation(
-        f.prcp, dt, f.tair, s.options.OptRainSnowPartition
+        f.prcp, dt, f.tair, s.options.OptRainSnowPartition,qair=f.qair,pressure=f.ps
     )
 
     # ---- 2. 冠层截留 ----

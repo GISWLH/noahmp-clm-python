@@ -25,7 +25,9 @@ def pack_canopy_case(area, swdown, lwdown, exchange, *, dtype=np.float64, **kwar
     if area.shape != (10,):
         raise ValueError("GPU canopy requires ten leaf layers")
     alb = kwargs.get("ground_albedo",(.15,.3))
-    u = np.asarray((*astuple(exchange),swdown,lwdown,kwargs.get("vegetated_fraction",1.),
+    if exchange.water_velocity!=exchange.atmosphere_velocity or exchange.heat_temperature!=exchange.air_temperature:
+        raise NotImplementedError('MOST measurement-height extensions require the pending native MOST entry')
+    u = np.asarray((*astuple(exchange)[:11],swdown,lwdown,kwargs.get("vegetated_fraction",1.),
         kwargs.get("wet_fraction",0.),kwargs.get("canopy_evaporation_limit",np.inf),
         kwargs.get("transpiration_limit",np.inf),kwargs.get("ground_evaporation_limit",np.inf),
         kwargs.get("ground_emissivity",.97),*alb,kwargs.get("diffuse_fraction",.5),

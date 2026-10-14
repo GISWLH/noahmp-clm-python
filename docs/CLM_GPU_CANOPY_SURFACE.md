@@ -128,8 +128,11 @@ SHA256 `bdc6d9dbfb6a91e4b79ac952247a52b756dbe4a867f29e22ea16289ca5904c0f`；
 `e/full.log` 和 `surface-audit.json` 位于上述远程冻结目录；当前归档的
 `p2-canopy-surface-e-single.json.gz` 仅包含已经完成的 50 工况。
 审核命令 `benchmarks/check_canopy_surface_gpu.py --output surface-audit.json
---random-count 40 --steps 336` 已正常结束，耗时7153.37秒；终态JSON和日志另存
+--random-count 40 --steps 336` 的主计算完成，耗时7153.37秒；终态JSON和日志另存
 `p2-canopy-surface-e-audit.json.gz` / `p2-canopy-surface-e-audit.log.gz`，保留早期单步归档。
+随后发现该Python进程在写出终态报告后的退出阶段长时间停留于内核分页等待
+`__folio_lock_or_retry`。2026-10-14核对PID、工作目录、完整336步终态及日志后
+发送SIGTERM清理，进程已退出；上述主计算结果保留，未把退出阶段描述为自然成功。
 
 三柱×336步×四后端共4032柱步，CUDA32/JAX32全部轨迹字段最大差0。
 日ET/H/LE/GPP最大非近零相对偏差分别为0.00451249% / 0.00752130% /

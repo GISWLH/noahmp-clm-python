@@ -2,7 +2,8 @@
 
 实现参考 Noah-MP v5.0 ``AtmosForcingMod.F90`` 中的相态分配入口；代码按
 Jordan (1991) 的分段关系和 Noah-MP 的 BATS/冰点阈值定义重新组织，没有
-逐行翻译上游 Fortran。冠层截雪和湿球温度方案留给后续阶段。
+逐行翻译上游 Fortran。湿球选项按 Wang (2019) 的降温方程实现，
+与官方迭代写法的差异明确记录于 docs/CLM_WETBULB.md。
 """
 from __future__ import annotations
 
@@ -52,7 +53,8 @@ SNOW_FRACTIONS: dict[int, Callable[[float], float]] = {
 
 
 def partition_precipitation(
-    prcp_rate: float, dt: float, tair: float, option: int = 1
+    prcp_rate: float, dt: float, tair: float, option: int = 1, *,
+    qair: float | None = None, pressure: float | None = None
 ) -> tuple[float, float]:
     """按选项把降水率拆成雨/雪水量。
 
@@ -65,17 +67,23 @@ def partition_precipitation(
     tair:
         参考高度气温，单位 ``K``。
     option:
-        ``OptRainSnowPartition``；阶段 1 实现 1--3。
+        ``OptRainSnowPartition``；支持1、2、3、5。选项5必须提供比湿和气压。
 
     返回
     ------
     ``(rain_m, snow_m)``，均为该时间步的水当量（m）。函数不修改输入。
     """
-    if option not in SNOW_FRACTIONS:
+    if option==5:
+        if qair is None or pressure is None:raise ValueError('Wet-bulb option requires qair and pressure')
+        from .wetbulb import wetbulb_snow_fraction
+        fraction=wetbulb_snow_fraction(tair,qair,pressure)
+    elif option in SNOW_FRACTIONS:
+        fraction=SNOW_FRACTIONS[option](float(tair))
+    else:
         raise NotImplementedError(
-            f"OptRainSnowPartition={option} 尚未实现；阶段 1 支持 1、2、3"
+            f"OptRainSnowPartition={option} 尚未实现；支持 1、2、3、5"
         )
     total = max(0.0, float(prcp_rate)) * max(0.0, float(dt))
-    snow = total * SNOW_FRACTIONS[option](float(tair))
+    snow = total * fraction
     return total - snow, snow
 

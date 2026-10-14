@@ -41,7 +41,7 @@ def pack_clm_enthalpy_columns(states,*,dtype=np.float64,co2_ppm=420.,cosine_zeni
     rows=[]
     for k,state in enumerate(states):
         if state.canopy_condensate is not None:
-            raise NotImplementedError('Layered canopy needs the pending native column integration; aggregate packing would lose its phase profile')
+            raise NotImplementedError('Use pack_clm_layered_columns for the canopy phase profile; aggregate packing would lose it')
         for field in fields(state.options):
             if field.name not in OPTION_NAMES and getattr(state.options,field.name)!=getattr(baseline,field.name):
                 raise NotImplementedError(f'{field.name} is outside the CLM enthalpy profile')
@@ -72,15 +72,16 @@ def validate_column(arrays,forcing,deposition,xp):
     soil_options=xp.stack((zero,o[:,1],o[:,8]),axis=1)
     soil_inputs=xp.concatenate((xp.zeros((n,2),dtype=c.dtype),forcing[:,:1],xp.zeros((n,4),dtype=c.dtype)),axis=1)
     validate_soil_transport(g,p[:,:4],soil_options,soil_inputs,xp)
-    maxopt=xp.asarray([5,2,3,3,4,2,4,4,2])
-    if bool(xp.any((o<xp.asarray([0,1,1,1,1,1,1,1,1]))|(o>maxopt))):raise NotImplementedError('Unsupported CLM column option')
+    maxopt=xp.asarray([5,2,5,3,4,2,4,4,2])
+    if bool(xp.any((o<xp.asarray([0,1,1,1,1,1,1,1,1]))|(o>maxopt))) or bool(xp.any(o[:,2]==4)):
+        raise NotImplementedError('Unsupported CLM column option')
     bad=((site[:,0]<0.)|(site[:,1]<0.)|(site[:,1]>1.)|(site[:,2]<=0.)|
         (site[:,3]<0.)|(site[:,3]>1.)|(site[:,4]<=0.)|(site[:,4]>1.)|(site[:,7]<=0.)|
         (site[:,8]<=0.)|(site[:,8]>1.)|(site[:,9]<0.)|(site[:,9]>1.)|(site[:,10]<=0.)|
         (site[:,11]<0.)|(site[:,11]>1.)|(storage[:,0]<0.)|((storage[:,0]==0.)&(storage[:,1]!=0.))|
         (storage[:,2]<200.)|(storage[:,2]>350.)|(p[:,4]<0.)|(p[:,4]>1.)|(p[:,5]<0.)|(p[:,5]>p[:,2])|
         (forcing[:,0]<=0.)|(forcing[:,1]<200.)|(forcing[:,1]>350.)|(forcing[:,2]<0.)|(forcing[:,2]>=.2)|
-        (forcing[:,3]<0.)|(forcing[:,4]<30000.)|xp.any(forcing[:,5:]<0.,axis=1))
+        (forcing[:,3]<0.)|(forcing[:,4]<30000.)|((o[:,2]==5)&(forcing[:,4]>120000.))|xp.any(forcing[:,5:]<0.,axis=1))
     if bool(xp.any(bad)) or bool(xp.any(roots<0.)) or bool(xp.any(deposition<0.)):
         raise ValueError('Invalid extensive CLM state, forcing or site')
 

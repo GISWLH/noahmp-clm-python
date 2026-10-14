@@ -16,12 +16,12 @@ def cases(dtype=np.float64):
     return (*arrays,condensate),f,dep
 
 
-def reference(row,forcing,deposition):
+def reference(row,forcing,deposition,*,most_geometry=None):
     state=state_from_row(row[:7]);roots=state.root_frac
     cc=np.asarray(row[7],float);state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     object.__setattr__(state,'root_frac',roots);site=np.asarray(row[4],float)
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),
-        **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float))
+        **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
@@ -88,3 +88,16 @@ def test_layered_column_contract():
     packed=pack_clm_layered_columns([state.with_layered_canopy()]);validate_layered_column(packed,f[:1],dep[:1],np)
     bad=[v.copy() for v in arrays];bad[7][0,0,0]=-1.
     with pytest.raises(ValueError):validate_layered_column(bad,f,dep,np)
+
+
+def test_quantized_state_precision_conversion_rebuilds_only_aliases():
+    from benchmarks.check_clm_enthalpy_column_gpu import cast_column_precision
+    arrays,f,dep=cases(np.float32)
+    naive=tuple(a.copy() if a.dtype.kind in 'iu' else a.astype(float) for a in arrays)
+    with pytest.raises(ValueError,match='aliases'):validate_layered_column(naive,f.astype(float),dep.astype(float),np)
+    promoted=cast_column_precision(arrays,np.float64)
+    validate_layered_column(promoted,f.astype(float),dep.astype(float),np)
+    np.testing.assert_array_equal(promoted[7],arrays[7].astype(float))
+    np.testing.assert_array_equal(promoted[0],arrays[0].astype(float))
+    np.testing.assert_array_equal(promoted[1],arrays[1].astype(float))
+    np.testing.assert_array_equal(promoted[5][:,:2],promoted[7].sum(1))

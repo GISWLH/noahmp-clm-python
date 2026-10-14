@@ -49,11 +49,11 @@ def gpu():
     return cp, jax
 
 
-def test_cuda_option_inventory_has_35_values_and_preserves_reserved_abi():
+def test_cuda_option_inventory_has_36_values_and_preserves_reserved_abi():
     expected = {name: tuple(v for v in spec.values if v not in spec.unsupported)
                 for name, spec in _scenarios.SPECS.items() if spec.category == "physics"}
     assert loader.PHYSICS_OPTION_VALUES == expected
-    assert len(expected) == 12 and len(VALUES) == 35
+    assert len(expected) == 12 and len(VALUES) == 36
     defaults = PhysicsOptions()
     for index, name in enumerate(OPTION_FIELDS):
         if name not in expected:
@@ -61,7 +61,7 @@ def test_cuda_option_inventory_has_35_values_and_preserves_reserved_abi():
 
 
 @pytest.mark.parametrize("name,value", [
-    ("OptRainSnowPartition", 4), ("OptRainSnowPartition", 5), ("OptSnowAlbedo", 3),
+    ("OptRainSnowPartition", 4), ("OptSnowAlbedo", 3),
     *[(name, value) for name in ("OptRunoffSurface", "OptRunoffSubsurface") for value in range(5, 9)],
     ("OptCanopyRadiationTransfer", 1), ("OptDynamicVeg", 1),
 ])

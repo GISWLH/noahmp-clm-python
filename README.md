@@ -11,8 +11,8 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入
-NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳定度连接与
-观测评价待完成，默认驱动仍是v0.2路径。
+NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)，并继续扩展到下述
+完整五层雪/冠层焓柱。稳定度连续回归与观测评价待完成，默认驱动仍是v0.2路径。
 单叶实测仍有未达标曲线。
 新增[NumPy五层雪组件](docs/CLM_SNOW_DESIGN.md)：质量/焓、压实、粒径老化、
 五波段SNICAR近似与气候态沉降映射。新增[雪—土壤联合焓及冬季冠层边界](docs/CLM_COLUMN_ENTHALPY.md)，
@@ -48,7 +48,9 @@ CUDA32/JAX32全字段最大差0，日冰出流偏差最大0.0000271%；最终全
 正在开发[NumPy分层冠层焓—叶温—空气湿度联立](docs/CLM_CANOPY_PHASE_ENERGY.md)：
 75个独立方程工况及三类冠层七天1008步完成；该NumPy检查点全量528 passed / 0 skipped，累计焓残差最大2.519 J/m²。
 新增[原生冠层相变联立](docs/CLM_GPU_CANOPY_PHASE_ENERGY.md)：22项目标测试、75个设备对照工况及七天4032次联立求解完成，同精度全字段最大差0，LE最大偏差0.00542%；该检查点全量532 passed / 0 skipped。
-[分层冠层完整柱](docs/CLM_LAYERED_CANOPY_COLUMN.md)NumPy 44项目标通过，随后冻结b全量554 passed / 0 skipped；新增原生JAX/CUDA完整柱4项目标通过，16工况同精度全输出最大差4.76837e-7，最大土温差1.91494e-5 K。最终全量与四后端七天连续整柱仍在运行。
+[分层冠层完整柱](docs/CLM_LAYERED_CANOPY_COLUMN.md)NumPy 44项目标通过，随后冻结b全量554 passed / 0 skipped；新增原生JAX/CUDA完整柱4项目标通过，16工况同精度全输出最大差4.76837e-7，最大土温差1.91494e-5 K。最终冻结全量563 passed / 0 skipped，四后端七天连续整柱仍在运行。
+新增[MOST实际通量反馈](docs/CLM_CANOPY_MOST.md)：60个独立积分对照最大偏差0.534%，100个系数工况CUDA32/JAX32全输出最大差0；完整设备耦合5项目标通过，同精度最大差2.98023e-8。连续检查发现稳定反馈收敛慢，改用有界求根后真实失败旧态10次收敛、11项NumPy回归通过；修后设备及连续检查进行中。
+新增[Wang湿球相态](docs/CLM_WETBULB.md)：334个独立方程工况、1000个原生三后端工况完成，最大float32温差2.67421e-5 K；选项5已接入NumPy及设备完整柱，整柱设备回归正在执行。论文方程与官方迭代的差异已明确记录，官方科学对标仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。

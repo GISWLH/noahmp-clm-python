@@ -102,14 +102,19 @@ def _stages():
     return jax.jit(jax.vmap(prepare_layered_jax)),jax.jit(jax.vmap(finish_layered_jax))
 
 
-def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False):
+def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
     validate_layered_column(arrays,forcing,deposition,j);prepare,finish=_stages()
     pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
-    surface=run_canopy_phase_surface_jax(pc,pg,arrays[2],po,a,u,f,v,cc,parameters=leaf_parameters)
+    surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
+    if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters)
+    else:
+        from .canopy_most_surface import run_most_surface
+        if bool(j.any(arrays[3][:,5]!=1)):raise ValueError('MOST geometry requires OptSurfaceDrag=1')
+        surface=run_most_surface(surface_arrays,most_geometry,forcing[:,3],arrays[4][:,10],arrays[4][:,0],backend='jax',parameters=leaf_parameters)
     flux=j.stack([surface[key] for key in SURFACE_FIELDS],axis=1)
     out=finish(arrays[0],arrays[1],arrays[2],arrays[3],arrays[4],old,forcing,deposition,prep,
         surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],surface['condensate'],flux,surface['impurity_output_kgm2'])
@@ -117,4 +122,5 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
         raise RuntimeError('Layered canopy post-surface transfer failed')
     result=unpack_column(*out[:6],surface=surface if return_surface else None)
     result.update(condensate=out[6],canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(out[7]))
+    if most_geometry is not None:result['most']=surface['most']
     return result
