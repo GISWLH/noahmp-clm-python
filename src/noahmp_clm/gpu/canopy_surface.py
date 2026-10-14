@@ -59,11 +59,12 @@ def validate_surface(arrays,xp):
         raise ValueError('Invalid surface stores, roots or soil properties')
 
 
-def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging):
+def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=c.dtype;zero=j.zeros((),dtype);dt=v[0];n=o[0];phase=o[1]
     row=lambda *x:j.asarray(x,dtype)
+    if condensate is not None:v=v.at[1].set(_sum(condensate[:,0])).at[2].set(_sum(condensate[:,1]))
     inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],phase)
     root_h=s(334000.+s(4180.*inv[0]))
     supply=j.concatenate((row(1.),j.maximum(0.,s(inv[3]-s(s(p[5]*1000.)*g[:,2])))/dt,v[3:7],row(inv[3][0]/dt)))
@@ -71,8 +72,17 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging):
     initial=j.full(11,u[0],dtype)
     def evaluate(temp):
         boundary=j.concatenate((row(temp,(temp<273.15).astype(dtype),(n==0).astype(dtype),1.,v[1],v[2],dt),root_h))
-        canopy=canopy_energy_kernel_jax(a,u,f,supply,initial,leaf,boundary=boundary,radiation=radiation,
-            tolerance=.005 if dtype==j.float32 else 1e-7,q_tolerance=1e-8 if dtype==j.float32 else 1e-12)
+        if condensate is None:
+            canopy=canopy_energy_kernel_jax(a,u,f,supply,initial,leaf,boundary=boundary,radiation=radiation,
+                tolerance=.005 if dtype==j.float32 else 1e-7,q_tolerance=1e-8 if dtype==j.float32 else 1e-12)
+            extra=j.zeros(0,dtype)
+        else:
+            from .canopy_phase_energy import phase_energy_kernel_jax
+            b=j.concatenate((row(1.,temp,(temp<273.15).astype(dtype),(n==0).astype(dtype),dt),root_h))
+            extra=phase_energy_kernel_jax(a,u,f,supply,j.zeros(10,dtype),condensate,b,None,n,leaf,None,None,
+                tolerance=.005 if dtype==j.float32 else 1e-7,radiation=radiation)
+            canopy=j.concatenate((extra[:195],extra[288:289],extra[293:298],extra[289:291],extra[285:286],
+                row(_sum(extra[195:205]),_sum(extra[205:215])),extra[286:288]))
         roots=s(canopy[51:55]*dt);gm=s(canopy[50]*dt);wet=s(_sum(canopy[30:40])*dt)
         demand=roots.at[0].add(j.where((n==0)&(gm>0.),gm,0.))
         tr=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(1),phase,j.asarray(1))),j.concatenate((row(0.,0.,dt),demand)))
@@ -109,7 +119,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging):
         residual=s(heat[18]-s(temp-273.15))
         valid=valid&(canopy[68]>0.)&(heat[75]>0.)&j.all(inv[4])
         return j.concatenate((pack.ravel(),row(nn),ground.ravel(),canopy,heat,ice_before,
-            row(gm,gh,latent,wet,_sum(roots),runoff,runoff_h),residue,row(temp,residual,valid.astype(dtype))))
+            row(gm,gh,latent,wet,_sum(roots),runoff,runoff_h),residue,row(temp,residual,valid.astype(dtype)),extra))
     center=j.clip(s(j.where(n>0,snow_phase_jax(c[0,0],c[0,1])[0],inv[0][0])+273.15),200.,350.)
     candidate=evaluate(center)
     resolution=s(s(2.*j.finfo(dtype).eps)*273.15)
@@ -146,11 +156,12 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging):
     # root. Keep its endpoints and the actual residual: never report that the
     # residual test passed when rounding prevented further refinement.
     converged=((j.abs(candidate[361])<=tol)|(bracketed&(s(right-left)<=resolution)))&(candidate[362]>0.)
-    finished=surface_finish_jax(c,g,v,candidate,count,converged,aging,p,phase)
-    return j.concatenate((finished,row(left,right)))
+    details=None if condensate is None else candidate[363:]
+    finished=surface_finish_jax(c,g,v,candidate[:363],count,converged,aging,p,phase,details)
+    return j.concatenate((finished,row(left,right),candidate[363:]))
 
 
-def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase):
+def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase,phase_details=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=d.dtype;dt=v[0];row=lambda *x:j.asarray(x,dtype)
@@ -177,6 +188,7 @@ def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase):
     runoff=s(s(d[353]+drain[60])+admission[26]);runoff_h=s(s(d[354]+drain[61])+admission[27])
     advected=s(d[349]+s(dt*s(canopy[206]+canopy[207])))
     et=s(s(d[352]+d[348])+d[351]);le=s(s(2500000.*s(_sum(canopy[40:50])+_sum(canopy[30:40])))+d[350])
+    if phase_details is not None:le=s(s(_sum(phase_details[255:265])/dt+s(2500000.*_sum(canopy[40:50])))+d[350])
     atmospheric=s(s(s(canopy[29]-canopy[26])-le)*dt)
     old_h=s(s(_sum(old_snow[:,1])+_sum(old_soil[:,1]))+v[2]);new_h=s(s(_sum(pack[:,1])+_sum(ground[:,1]))+canopy[205])
     old_m=s(s(_sum(old_snow[:,0])+_sum(old_soil[:,0]))+v[1]);new_m=s(s(_sum(pack[:,0])+_sum(ground[:,0]))+canopy[204])

@@ -40,6 +40,8 @@ def pack_clm_enthalpy_columns(states,*,dtype=np.float64,co2_ppm=420.,cosine_zeni
         (co2_ppm,cosine_zenith,diffuse_fraction,leaf_dimension,nitrogen_factor)],axis=1)
     rows=[]
     for k,state in enumerate(states):
+        if state.canopy_condensate is not None:
+            raise NotImplementedError('Layered canopy needs the pending native column integration; aggregate packing would lose its phase profile')
         for field in fields(state.options):
             if field.name not in OPTION_NAMES and getattr(state.options,field.name)!=getattr(baseline,field.name):
                 raise NotImplementedError(f'{field.name} is outside the CLM enthalpy profile')

@@ -20,8 +20,9 @@ def encode(value):
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('output',type=Path);ap.add_argument('--days',type=int,default=7)
+    ap.add_argument('--layered-canopy',action='store_true',help='Carry ten conservative canopy ice/liquid stores through the whole column')
     args=ap.parse_args();start=time.perf_counter();dt=1800.
-    report={'scope':__doc__,'days':args.days,'columns':[]}
+    report={'scope':__doc__,'days':args.days,'layered_canopy':args.layered_canopy,'columns':[]}
     sources=[p for p in (ROOT/'src/noahmp_clm').rglob('*') if p.is_file() and '__pycache__' not in p.parts]
     sources.append(Path(__file__))
     report['source_sha256']={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
@@ -32,11 +33,12 @@ def main():
             ts=TF-3. if case<2 else TF+8.,fveg=(.8,0.,.65)[case],lai=(3.,0.,2.)[case],canw=.0001 if case!=1 else 0.)
         snow=Snowpack.from_ice([3.,5.,8.,15.,30.],TF-3.,250.) if case==1 else Snowpack.empty()
         state=CLMColumnState.from_column(old,snow=snow)
+        if args.layered_canopy:state=state.with_layered_canopy()
         water0=state.water_kgm2;heat0=state.enthalpy_jm2
         inflow=et=runoff=net_heat=advected=outheat=0.
         traces=np.zeros(5);traceout=np.zeros(5);rates=np.array([1.,2.,1.,.5,.25])*1e-12
         maximum=np.zeros(5);minimum_t=1e9;maximum_t=-1e9;max_snow=0.;max_layers=0;max_evaluations=0
-        daily=[];snow_steps=0;totals=np.zeros(5)
+        daily=[];snow_steps=0;totals=np.zeros(5);max_canopy_ice=0.;max_canopy_liquid=0.
         for step in range(args.days*48):
             day=step/48.;hour=(step%48)*.5
             # Seven-day cold-to-warm transition repeated for longer audits.
@@ -66,18 +68,24 @@ def main():
             minimum_t=min(minimum_t,float(tt.min()));maximum_t=max(maximum_t,float(tt.max()))
             max_snow=max(max_snow,after.swe);max_layers=max(max_layers,len(after.snow.mass))
             max_evaluations=max(max_evaluations,d['surface_evaluations']);snow_steps+=bool(len(after.snow.mass))
+            if args.layered_canopy:
+                max_canopy_ice=max(max_canopy_ice,float(after.canopy_condensate.ice.sum()))
+                max_canopy_liquid=max(max_canopy_liquid,float(after.canopy_condensate.liquid.sum()))
             totals+=np.array([d['et_mm'],d['h']*dt,d['le']*dt,d['gpp_gcm2'],d['runoff_mm']])
             state=after
             if step%48==47:
                 daily.append(dict(day=step//48+1,et_mm=totals[0],h_jm2=totals[1],le_jm2=totals[2],gpp_gcm2=totals[3],runoff_mm=totals[4],
                     swe_m=state.swe,canopy_kgm2=state.canopy_water_kgm2,soil_temperature_k=state.tsoil,soil_water_kgm2=state.ground.water,
                     cumulative_water_error_kgm2=mass_error,cumulative_enthalpy_error_jm2=heat_error))
+                if args.layered_canopy:
+                    daily[-1].update(canopy_ice_kgm2=state.canopy_condensate.ice.sum(),canopy_liquid_kgm2=state.canopy_condensate.liquid.sum())
                 totals[:]=0.
                 print(f'column {case}, day {step//48+1}: max water {maximum[0]:.9g} kg/m2, enthalpy {maximum[1]:.9g} J/m2',flush=True)
         result=dict(column=case,steps=args.days*48,snow_steps=snow_steps,max_layers=max_layers,max_swe_m=max_snow,
             min_temperature_k=minimum_t,max_temperature_k=maximum_t,max_surface_evaluations=max_evaluations,
             max_cumulative_water_error_kgm2=maximum[0],max_cumulative_enthalpy_error_jm2=maximum[1],
             max_step_water_error_kgm2=maximum[2],max_step_enthalpy_error_jm2=maximum[3],max_impurity_error_kgm2=maximum[4],
+            max_canopy_ice_kgm2=max_canopy_ice,max_canopy_liquid_kgm2=max_canopy_liquid,
             precipitation_kgm2=inflow,et_kgm2=et,runoff_kgm2=runoff,daily=daily)
         report['columns'].append(result);report['wall_seconds']=time.perf_counter()-start
         args.output.write_text(json.dumps(report,indent=2,allow_nan=False,default=encode))

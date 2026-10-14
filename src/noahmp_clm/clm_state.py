@@ -6,6 +6,7 @@ from .column import ColumnState
 from .options import PhysicsOptions
 from .physics.snowpack import Snowpack,TF,LF,CW
 from .physics.soil_enthalpy import SoilEnthalpyState
+from .physics.canopy_interception import CanopyCondensate
 
 
 def clm_options():
@@ -14,7 +15,7 @@ def clm_options():
 
 @dataclass(frozen=True)
 class CLMColumnState:
-    """Independent snow, soil and intercepted-liquid mass/enthalpy stores.
+    """Independent snow, soil and optional layered canopy mass/enthalpy stores.
 
     No lossy conversion to the old three-snow-layer GPU ABI is performed.
     The optical, site and option fields apply to this single independent PFT.
@@ -33,8 +34,15 @@ class CLMColumnState:
     options: PhysicsOptions=field(default_factory=clm_options)
     terrain_index: float=0.
     groundwater_depth: float=2.
+    canopy_condensate: CanopyCondensate | None=None
 
     def __post_init__(self):
+        # When present, layer M/H are authoritative. Scalar fields remain
+        # read-only aggregate aliases for diagnostics and parameter adapters.
+        if self.canopy_condensate is not None:
+            if not isinstance(self.canopy_condensate,CanopyCondensate):raise ValueError('Invalid layered canopy state')
+            object.__setattr__(self,'canopy_water_kgm2',float(self.canopy_condensate.mass.sum()))
+            object.__setattr__(self,'canopy_enthalpy_jm2',float(self.canopy_condensate.enthalpy.sum()))
         values=[self.canopy_water_kgm2,self.canopy_enthalpy_jm2,self.lai,self.fveg,self.z0m,
             self.albedo,self.emiss,self.surface_temperature,self.terrain_index,self.groundwater_depth]
         if (not np.all(np.isfinite(values)) or self.canopy_water_kgm2<0. or self.lai<0.
@@ -76,6 +84,19 @@ class CLMColumnState:
     def swe(self): return self.snow.swe
     @property
     def canw(self): return self.canopy_water_kgm2/1000.
+
+    def with_layered_canopy(self,layers=10):
+        """Convert shared mass/enthalpy to equal leaf-area layers, retaining heat.
+
+        Existing extensive M/H determines phase; a liquid store initialized
+        below Tf is consequently reinterpreted at phase equilibrium. Calling
+        this on an already layered canopy never redistributes its state.
+        """
+        if not isinstance(layers,int) or layers<1:raise ValueError('Positive canopy layer count required')
+        if self.canopy_condensate is not None:
+            if len(self.canopy_condensate.mass)!=layers:raise ValueError('Explicit conservative canopy remapping required')
+            return self
+        return replace(self,canopy_condensate=CanopyCondensate(np.full(layers,self.canopy_water_kgm2/layers),np.full(layers,self.canopy_enthalpy_jm2/layers)))
     @property
     def tsoil(self): return self.ground.temperature
     @property

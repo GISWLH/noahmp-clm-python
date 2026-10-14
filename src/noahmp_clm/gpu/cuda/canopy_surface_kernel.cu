@@ -1,11 +1,21 @@
-// Native extensive winter surface; component sources are compiled first.
-__device__ void surface_evaluate(const float* c,const float* g,const float* p,int n,int phase,
+// Shared extensive surface coupling. The solver adapter preserves each canopy ABI.
+struct LiquidSurfaceCanopy {
+    static const int output_size=441;
+    const float *a,*f,*leaf,*radiation,*v;
+    __device__ void solve(float temp,const float* u,const float* supply,const float* root_h,int n,float* out) const {
+        float initial[11],boundary[11]={temp,temp<273.15f?1.f:0.f,n==0?1.f:0.f,1.f,v[1],v[2],v[0]};
+        for(int i=0;i<11;++i)initial[i]=u[0];for(int i=0;i<4;++i)boundary[7+i]=root_h[i];
+        canopy_energy_device(a,u,f,supply,initial,leaf,out+58,100,.005f,1e-8f,boundary,radiation);
+    }
+    __device__ float latent(const float* out) const {
+        return 2500000.f*(ca_sum(out+98,10)+ca_sum(out+88,10))+out[350];
+    }
+};
+template<class Solver> __device__ void surface_evaluate(const float* c,const float* g,const float* p,int n,int phase,
     const float* a,const float* u,const float* f,const float* v,const float* radiation,const float* leaf,
-    const float* supply,const float* root_h,bool inverse_ok,float temp,float* out) {
-    float dt=v[0],initial[11],boundary[11]={temp,temp<273.15f?1.f:0.f,n==0?1.f:0.f,1.f,v[1],v[2],dt};
-    for(int i=0;i<11;++i)initial[i]=u[0];for(int i=0;i<4;++i)boundary[7+i]=root_h[i];
+    const float* supply,const float* root_h,bool inverse_ok,float temp,float* out,const Solver& solver) {
+    float dt=v[0];solver.solve(temp,u,supply,root_h,n,out);
     float* canopy=out+58;
-    canopy_energy_device(a,u,f,supply,initial,leaf,canopy,100,.005f,1e-8f,boundary,radiation);
     float roots[4],carried[4],demand[7]={0.f,0.f,dt},tr[47];int operation[3]={1,phase,1};
     float gm=canopy[50]*dt,wet=ca_sum(canopy+30,10)*dt;
     for(int i=0;i<4;++i){roots[i]=canopy[51+i]*dt;carried[i]=roots[i]*root_h[i];demand[3+i]=roots[i];}
@@ -48,8 +58,8 @@ __device__ void surface_evaluate(const float* c,const float* g,const float* p,in
     out[362]=valid&&canopy[68]>0.f&&heat[75]>0.f&&inverse_ok?1.f:0.f;
 }
 
-__device__ void surface_finish(const float* old_snow,const float* old_soil,const float* v,
-    float* out,int count,bool converged,const float* aging,const float* p,int phase) {
+template<class Solver> __device__ void surface_finish(const float* old_snow,const float* old_soil,const float* v,
+    float* out,int count,bool converged,const float* aging,const float* p,int phase,const Solver& solver) {
     const float* d=out;const float* canopy=d+58;const float* heat=d+266;int n=(int)d[45];float dt=v[0];
     float z[6],centers[6],temperatures[6],args[23]={0.f};args[0]=dt;
     for(int i=0;i<6;++i){z[i]=i<n?d[9*i+2]:d[48];temperatures[i]=i<n?heat[18+i]:heat[18+n];}
@@ -69,7 +79,7 @@ __device__ void surface_finish(const float* old_snow,const float* old_soil,const
     soil_transport_device(d+46,p,so,admitargs,admission);for(int i=0;i<12;++i)out[409+i]=admission[i];
     float runoff=(d[353]+drain[60])+admission[26],runoff_h=(d[354]+drain[61])+admission[27];
     float advected=d[349]+dt*(canopy[206]+canopy[207]),et=(d[352]+d[348])+d[351];
-    float le=2500000.f*(ca_sum(canopy+40,10)+ca_sum(canopy+30,10))+d[350];
+    float le=solver.latent(out);
     float atmospheric=((canopy[29]-canopy[26])-le)*dt;
     float old_hs=0.f,new_hs=0.f,old_hg=0.f,new_hg=0.f,old_ms=0.f,new_ms=0.f,old_mg=0.f,new_mg=0.f;
     for(int i=0;i<5;++i){old_hs+=old_snow[i*9+1];new_hs+=drain[i*9+1];old_ms+=old_snow[i*9];new_ms+=drain[i*9];}
@@ -84,9 +94,9 @@ __device__ void surface_finish(const float* old_snow,const float* old_soil,const
     if(d[348]!=0.f)out[260]=(d[350]*dt)/d[348];
 }
 
-__device__ void canopy_surface_device(const float* c,const float* g,const float* p,const int* o,
+template<class Solver> __device__ void surface_device(const float* c,const float* g,const float* p,const int* o,
     const float* a,const float* input,const float* f,const float* v,const float* radiation,
-    const float* leaf,const float* aging,float* out) {
+    const float* leaf,const float* aging,float* out,const Solver& solver) {
     int n=o[0],phase=o[1];float u[23],supply[10],root_h[4],offset0=0.f;bool inverse_ok=true;
     for(int i=0;i<23;++i)u[i]=input[i];u[15]=v[1]/v[0];u[17]=n>0?c[0]/v[0]:__int_as_float(0x7f800000);supply[0]=1.f;
     for(int i=0;i<4;++i) {
@@ -96,28 +106,36 @@ __device__ void canopy_surface_device(const float* c,const float* g,const float*
     }
     if(n>0){float ice,liq;snow_mass_phase(c[0],c[1],offset0,ice,liq);}
     float center=fminf(350.f,fmaxf(200.f,offset0+273.15f));
-    surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,center,out);
+    surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,center,out,solver);
     const float tol=2.f*1.1920928955078125e-7f*273.15f;
-    int count=1;float left=center,right=center,fl=out[361],fr=fl,width=2.f,unused[363];
+    int count=1;float left=center,right=center,fl=out[361],fr=fl,width=2.f,unused[Solver::output_size];
     if(fabsf(out[361])>tol)for(int k=0;k<8;++k) {
-        if(fl<0.f&&left>200.f){left=fmaxf(200.f,center-width);surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,left,unused);fl=unused[361];++count;}
-        if(fr>0.f&&right<350.f){right=fminf(350.f,center+width);surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,right,unused);fr=unused[361];++count;}
+        if(fl<0.f&&left>200.f){left=fmaxf(200.f,center-width);surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,left,unused,solver);fl=unused[361];++count;}
+        if(fr>0.f&&right<350.f){right=fminf(350.f,center+width);surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,right,unused,solver);fr=unused[361];++count;}
         width*=2.f;
     }
     bool bracketed=fl>=0.f&&fr<=0.f;
     for(int k=0;k<60&&fabsf(out[361])>tol&&bracketed&&(right-left)>tol;++k) {
         float span=right-left,trial=left-(fl*span)/(fr!=fl?fr-fl:1.f);
         trial=fminf(right-.05f*span,fmaxf(left+.05f*span,trial));
-        surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,trial,out);++count;
+        surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,trial,out,solver);++count;
         if(out[361]>0.f){left=trial;fl=out[361];}else{right=trial;fr=out[361];}
     }
     if(out[45]>0.f&&out[284]==0.f&&out[360]!=273.15f) {
-        surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,273.15f,unused);++count;
+        surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,273.15f,unused,solver);++count;
         if(fabsf(unused[361])<=tol)for(int i=0;i<363;++i)out[i]=unused[i];
+        if(fabsf(unused[361])<=tol)for(int i=441;i<Solver::output_size;++i)out[i]=unused[i];
     }
     bool converged=(fabsf(out[361])<=tol||(bracketed&&(right-left)<=tol))&&out[362]>0.f;
-    surface_finish(c,g,v,out,count,converged,aging,p,phase);
+    surface_finish(c,g,v,out,count,converged,aging,p,phase,solver);
     out[439]=left;out[440]=right;
+}
+
+__device__ void canopy_surface_device(const float* c,const float* g,const float* p,const int* o,
+    const float* a,const float* input,const float* f,const float* v,const float* radiation,
+    const float* leaf,const float* aging,float* out) {
+    LiquidSurfaceCanopy solver{a,f,leaf,radiation,v};
+    surface_device(c,g,p,o,a,input,f,v,radiation,leaf,aging,out,solver);
 }
 
 extern "C" __global__ void run_canopy_surface(const float* c,const float* g,const float* p,const int* o,

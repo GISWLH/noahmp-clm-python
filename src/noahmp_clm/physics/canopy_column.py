@@ -6,8 +6,8 @@ their actual mass and condensed-phase enthalpy are removed before the implicit
 heat solve. Optics and supply are frozen during a step; thermal coefficients
 are evaluated after mass transfer and frozen within the inner solve.
 Precipitation/interception and gravity drainage belong to the
-column driver. Shared canopy liquid retains sensible and fusion enthalpy;
-intercepted snow/ice is still separate pending work.
+column driver. Shared liquid storage and optional per-layer ice/liquid stores
+both retain sensible and fusion enthalpy.
 """
 import numpy as np
 from .canopy_energy import solve_canopy_energy,CanopyWaterStorage
@@ -22,7 +22,7 @@ LV=2.5e6
 
 
 def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kgm2=0.,
-                 canopy_enthalpy_jm2=None,root_weights=None,wet_fraction=0.,temperature_tolerance=2e-7,**canopy_options):
+                 canopy_enthalpy_jm2=None,canopy_condensate=None,root_weights=None,wet_fraction=0.,temperature_tolerance=2e-7,**canopy_options):
     """Return snow, soil, canopy water, diagnostics after one surface step.
 
     Temperature convergence concerns the post-vapour, pre-drain thermal state.
@@ -30,7 +30,15 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     splitting. Evaporation is kg/m2/s and all heat budgets are extensive J/m2.
     Positive advected heat leaves the model, independently of turbulent LE.
     Caller-provided root weights may be zero (no accessible roots).
+    A supplied CanopyCondensate selects the layered ice/liquid energy solve;
+    diagnostics then include the actual final canopy_condensate. The third
+    return value remains total canopy mass for compatibility.
     """
+    if canopy_condensate is not None:
+        if canopy_water_kgm2!=0. or canopy_enthalpy_jm2 is not None:
+            raise ValueError('Provide layered condensate or shared liquid storage, not both')
+        canopy_water_kgm2=float(canopy_condensate.mass.sum())
+        canopy_enthalpy_jm2=float(canopy_condensate.enthalpy.sum())
     if (not np.isfinite(dt) or dt<=0 or not np.isfinite(canopy_water_kgm2) or canopy_water_kgm2<0
             or not np.isfinite(temperature_tolerance) or temperature_tolerance<=0):
         raise ValueError('Invalid surface time step, canopy water or tolerance')
@@ -49,16 +57,22 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     def evaluate(temperature):
         nonlocal evaluations
         evaluations+=1
-        result=solve_canopy_energy(leaf_area,swdown,lwdown,exchange,
-            fixed_ground_temperature=temperature,ground_is_ice=bool(temperature<TF),
-            ground_shares_soil=not ns,snowpack=snow,
-            canopy_evaporation_limit=canopy_water_kgm2/dt,
-            ground_evaporation_limit=snow.mass[0]/dt if ns else np.inf,
-            soil_supply=supply,wet_fraction=wet_fraction,tolerance=1e-7,canopy_storage=storage,**canopy_options)
+        boundary=dict(fixed_ground_temperature=temperature,ground_is_ice=bool(temperature<TF),
+            ground_shares_soil=not ns,snowpack=snow,ground_evaporation_limit=snow.mass[0]/dt if ns else np.inf,
+            soil_supply=supply,tolerance=1e-7)
+        if canopy_condensate is None:
+            result=solve_canopy_energy(leaf_area,swdown,lwdown,exchange,**boundary,
+                canopy_evaporation_limit=canopy_water_kgm2/dt,wet_fraction=wet_fraction,canopy_storage=storage,**canopy_options)
+        else:
+            from .canopy_phase_energy import solve_canopy_phase_energy
+            result=solve_canopy_phase_energy(leaf_area,swdown,lwdown,exchange,canopy_condensate,dt,
+                root_enthalpy=storage.root_enthalpy,**boundary,**canopy_options)
+            result.update(canopy_water_after_kgm2=float(result['condensate'].mass.sum()),
+                canopy_enthalpy_after_jm2=float(result['condensate'].enthalpy.sum()))
         root_mass=result['root_uptake']*dt
         ground_mass=float(result['ground_evaporation']*dt)
         wet_mass=float(result['wet_evaporation'].sum()*dt)
-        new_canopy=canopy_water_kgm2-wet_mass
+        new_canopy=(canopy_water_kgm2-wet_mass if canopy_condensate is None else result['canopy_water_after_kgm2'])
         if new_canopy<-1e-12: raise RuntimeError('Canopy water overdraw')
         new_canopy=max(0.,new_canopy)
         demand=root_mass.copy()
@@ -154,7 +168,9 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     runoff_heat=details['runoff_heat']+flow['runoff_enthalpy_jm2']+overflow_heat
     advected=details['ground_heat']+dt*(result['wet_advected_heat_wm2']+result['transpiration_advected_heat_wm2'])
     et=float(details['root_mass'].sum()+details['ground_mass']+details['wet_mass'])
-    le=LV*float(result['transpiration'].sum()+result['wet_evaporation'].sum())+details['ground_latent']
+    le=(LV*float(result['transpiration'].sum()+result['wet_evaporation'].sum())+details['ground_latent']
+        if canopy_condensate is None else float(result['vapor_parcels']['latent_energy_jm2'].sum()/dt+
+            LV*result['transpiration'].sum()+details['ground_latent']))
     atmospheric=float((result['rnet']-result['h']-le)*dt)
     final_heat=float(pack.enthalpy.sum()+ground.enthalpy.sum()+result['canopy_enthalpy_after_jm2'])
     final_mass=float(pack.mass.sum()+ground.water.sum()+details['canopy_water'])
@@ -170,4 +186,5 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         snow_drainage_kgm2=flow['drainage_kgm2'],snow_drainage_enthalpy_jm2=flow['drainage_enthalpy_jm2'],
         impurity_output_kgm2=details['residue']+flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2'])
     diagnostics.update(thermal_state)
+    if canopy_condensate is not None:diagnostics['canopy_condensate']=result['condensate']
     return pack,ground,details['canopy_water'],diagnostics

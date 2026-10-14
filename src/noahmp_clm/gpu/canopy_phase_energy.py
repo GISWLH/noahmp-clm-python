@@ -66,14 +66,15 @@ def unpack_phase(out):
     return result
 
 
-def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,max_iterations=100,tolerance=.005):
+def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,max_iterations=100,tolerance=.005,radiation=None):
     import jax
     import jax.numpy as j
     from jax import lax
     from .photosynthesis import leaf_kernel_jax
     s=lax.optimization_barrier
     area=s(leaf+stem);mass=c[:,0];oldh=c[:,1];fv=j.where(_sum(area)>0.,u[13],0.);active=s(fv*area)>0.
-    rad=canopy_snow_kernel_jax(area,snow,count,j.stack((u[11],fv,u[21],u[22],u[19],u[20])),ice,impurity,track_absorption=True)
+    rad=(canopy_snow_kernel_jax(area,snow,count,j.stack((u[11],fv,u[21],u[22],u[19],u[20])),ice,impurity,track_absorption=True)
+        if radiation is None else radiation)
     sw=j.concatenate((rad[:10],j.asarray([s(_sum(rad[20:25])+rad[25])])));par=rad[10:20]
     lw=_longwave_operator(area,u[18],fv)
     rho=u[2]/s(s(287.*u[0])*s(1.+s(.61*u[1])));mol=u[2]/s(8.314462618*u[0])
@@ -163,10 +164,10 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             chosen,accepted=carry
             # exp2 is lowered through an approximate exponential by XLA;
             # these exact binary half-steps must not depend on that lowering.
-            fraction=j.asarray([2.**(-i) for i in range(18)],u.dtype)[k]
+            fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
             trial=j.clip(s(x+s(delta*fraction)),lower,upper);rr,_=evaluate(trial)
             good=(~accepted)&(_dot(rr,rr)<norm);return j.where(good,trial,chosen),accepted|good
-        trial,accepted=lax.fori_loop(0,18,backtrack,(x,j.asarray(False)))
+        trial,accepted=lax.fori_loop(0,24,backtrack,(x,j.asarray(False)))
         retry=(~accepted)&avail
         return iteration+1,j.where(retry,alternative,trial),restarts+retry.astype(j.int32),avail&(~retry),~(accepted|retry)
     def condition(state):

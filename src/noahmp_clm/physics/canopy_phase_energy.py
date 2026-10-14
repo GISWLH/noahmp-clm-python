@@ -216,7 +216,10 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         # separate clipping of humidity and enthalpy can reverse descent.
         delta/=max(1.,float(np.max(abs(delta)/np.r_[np.full(n,20.),5.,5.])))
         norm=float(residual@residual);accepted=False
-        for backtrack in range(18):
+        # Near a latent-plateau edge, the Newton step can be much larger than
+        # the distance to the kink. Keep sub-Jacobian steps available rather
+        # than falsely declaring a nonsmooth but solvable state stalled.
+        for backtrack in range(24):
             trial=np.clip(x+delta*2.**(-backtrack),lower,upper)
             r=evaluate(trial)
             if r@r<norm:x=trial;accepted=True;break

@@ -22,6 +22,7 @@ def run(arrays,forcing,dep,backend,cp):
         return check.host(runner(*arrays,forcing,deposition=dep,return_surface=True),cp.asnumpy if backend=='cuda32' else np.asarray)
     refs=[check.reference(row,f,d) for row,f,d in zip(zip(*arrays),forcing,dep)]
     result={key:np.stack([r[key] for r in refs]) for key in ('snow_cells','soil_cells','options','storage','impurity_output_kgm2')}
+    if len(arrays)==8:result['condensate']=np.stack([r['condensate'] for r in refs])
     result['diagnostics']={key:np.array([r['diagnostics'][key] for r in refs]) for key in DIAGNOSTICS}
     result['surface']={key:np.stack([r['surface'][key] for r in refs]) for key in
         ('outgoing_shortwave','outgoing_longwave','thermal_layer_tolerance','layer_residual')}
@@ -29,13 +30,16 @@ def run(arrays,forcing,dep,backend,cp):
 
 
 def total(arrays):
-    c,g,_,_,_,store,_=arrays
+    c,g,_,_,_,store,_=arrays[:7]
+    if len(arrays)==8:
+        store=store.astype(float).copy();store[:,:2]=arrays[7].astype(float).sum(1)
     return np.stack((c[:,:,0].astype(float).sum(1)+g[:,:,0].astype(float).sum(1)+store[:,0],
         c[:,:,1].astype(float).sum(1)+g[:,:,1].astype(float).sum(1)+store[:,1]),axis=1)
 
 
 def advance(arrays,r):
-    return r['snow_cells'],r['soil_cells'],arrays[2],r['options'],arrays[4],r['storage'],arrays[6]
+    base=r['snow_cells'],r['soil_cells'],arrays[2],r['options'],arrays[4],r['storage'],arrays[6]
+    return (*base,r['condensate']) if len(arrays)==8 else base
 
 
 def trajectory(steps,cp):
@@ -96,17 +100,24 @@ def trajectory(steps,cp):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--steps',type=int,default=336);args=parser.parse_args()
+    global check,step_clm_enthalpy_columns_jax,step_clm_enthalpy_columns_cuda
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--steps',type=int,default=336)
+    parser.add_argument('--layered-canopy',action='store_true');args=parser.parse_args()
+    if args.layered_canopy:
+        import test_gpu_clm_layered_column as check
+        from noahmp_clm.gpu.clm_layered_column import step_clm_layered_columns_jax as step_clm_enthalpy_columns_jax
+        from noahmp_clm.gpu.cuda.clm_layered_column import step_clm_layered_columns_cuda as step_clm_enthalpy_columns_cuda
     import cupy as cp
     start=time.monotonic();arrays,f,dep=check.cases(np.float32)
     refs=[check.reference(row,one,d) for row,one,d in zip(zip(*arrays),f,dep)]
-    report=dict(source_manifest=json.loads((ROOT/'SOURCE_SHA256.json').read_text()),cases=len(refs),single={});results={}
+    report=dict(source_manifest=json.loads((ROOT/'SOURCE_SHA256.json').read_text()),layered_canopy=args.layered_canopy,cases=len(refs),single={});results={}
     for name in ('jax64','jax32','cuda32'):
         dtype=np.float64 if name=='jax64' else np.float32
         x=tuple(a if a.dtype.kind in 'iu' else a.astype(dtype) for a in arrays)
         print('single backend',name,flush=True);r=run(x,f.astype(dtype),dep.astype(dtype),name,cp);maximum={}
         for k,ref in enumerate(refs):
-            one={key:({a:b[k] for a,b in v.items()} if isinstance(v,dict) else v[k]) for key,v in r.items() if key!='surface'}
+            one={key:({a:b[k] for a,b in v.items()} if isinstance(v,dict) else v[k]) for key,v in r.items()
+                if key not in ('surface','canopy_interception','canopy_post_interception')}
             maxima(maximum,check.science(one,ref,dtype))
         report['single'][name]=dict(max_absolute=maximum,budget=check.budgets(x,f.astype(dtype),dep.astype(dtype),r));results[name]=r
     report['same_precision_max_absolute']=check.compare_same_precision(results['cuda32'],results['jax32'])

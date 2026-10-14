@@ -138,7 +138,7 @@ __device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,
         for(int i=0;i<12;++i)delta[i]/=scale;
         float norm=ca_dot(r,r,12),chosen[12];bool accepted=false;
         for(int i=0;i<12;++i)chosen[i]=x[i];
-        for(int k=0;k<18;++k) {
+        for(int k=0;k<24;++k) {
             float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+delta[i]*ldexpf(1.f,-k)));
             phase_evaluate(v,trial,rr,nullptr);
             if(!accepted&&ca_dot(rr,rr,12)<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;}

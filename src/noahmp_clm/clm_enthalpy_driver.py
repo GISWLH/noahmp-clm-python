@@ -1,8 +1,9 @@
 """Developing all-season extensive CLM column: precipitation to runoff.
 
-Snowfall currently reaches the ground directly: interception ice, MOST flux
-feedback and GPU state expansion remain pending. The released driver is not
-switched by introducing this entry point.
+An optional layered canopy carries intercepted ice/liquid and their enthalpy
+through the leaf solve, snowfall, drip and unloading. MOST flux feedback and
+native layered-column integration remain pending. The released default driver
+is not switched by introducing this development entry point.
 """
 from dataclasses import replace,fields
 import numpy as np
@@ -18,6 +19,7 @@ from .physics.surface_drag import exchange_velocity
 from .physics.ground_evap import ground_resistance
 from .physics.stress import soil_water_stress
 from .physics.runoff import route_runoff
+from .physics.canopy_interception import intercept_precipitation
 
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
@@ -39,6 +41,9 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     rain_heat=LF+CW*(f.tair-TF);ice_heat=CI*(min(f.tair,TF)-TF)
     precipitation_heat=rain*rain_heat+snowfall*ice_heat
     snow,ground=state.snow,state.ground;canopy=state.canopy_water_kgm2;canopy_heat=state.canopy_enthalpy_jm2
+    condensate=state.canopy_condensate
+    if condensate is not None and len(condensate.mass)!=canopy_layers:raise ValueError('Canopy state and leaf discretization disagree')
+    area=np.full(canopy_layers,state.lai/canopy_layers)
     capacity=.5*state.fveg*state.lai
     runoff=runoff_heat=0.
     def route_water(pack,earth,mass,heat):
@@ -49,18 +54,30 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             return pack,earth,0.,0.
         earth,out,out_heat=infiltrate(earth,mass,heat)
         return pack,earth,out,out_heat
-    if canopy>capacity:
+    def route_canopy_outlets(pack,earth,flow):
+        ice=flow['ground_ice_kgm2']
+        if ice:
+            density,radius=fresh_snow_properties(f.tair,f.wind)
+            temperature=TF+flow['ground_ice_enthalpy_jm2']/(ice*CI)
+            pack=add_snowfall(pack,ice,temperature,float(density),float(radius))
+        return route_water(pack,earth,flow['ground_liquid_kgm2'],flow['ground_liquid_enthalpy_jm2'])
+    if condensate is not None:
+        condensate,interception=intercept_precipitation(condensate,rain,snowfall,f.tair,f.dt/2.,area,vegetated_fraction=state.fveg,wind=f.wind)
+        snow,ground,out,oh=route_canopy_outlets(snow,ground,interception);runoff+=out;runoff_heat+=oh
+        canopy=float(condensate.mass.sum());canopy_heat=float(condensate.enthalpy.sum())
+    elif canopy>capacity:
         drip=canopy-capacity;heat=drip*canopy_heat/canopy
         canopy-=drip;canopy_heat-=heat
         snow,ground,out,oh=route_water(snow,ground,drip,heat);runoff+=out;runoff_heat+=oh
-    intercepted=min(state.fveg*rain,max(0.,capacity-canopy))
-    canopy+=intercepted;canopy_heat+=intercepted*rain_heat
-    if snowfall:
-        density,radius=fresh_snow_properties(f.tair,f.wind)
-        snow=add_snowfall(snow,snowfall,min(f.tair,TF),float(density),float(radius))
-    snow,ground,out,oh=route_water(snow,ground,rain-intercepted,(rain-intercepted)*rain_heat)
-    runoff+=out;runoff_heat+=oh
-    work=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat)
+    if condensate is None:
+        intercepted=min(state.fveg*rain,max(0.,capacity-canopy))
+        canopy+=intercepted;canopy_heat+=intercepted*rain_heat
+        if snowfall:
+            density,radius=fresh_snow_properties(f.tair,f.wind)
+            snow=add_snowfall(snow,snowfall,min(f.tair,TF),float(density),float(radius))
+        snow,ground,out,oh=route_water(snow,ground,rain-intercepted,(rain-intercepted)*rain_heat)
+        runoff+=out;runoff_heat+=oh
+    work=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,canopy_condensate=condensate)
     view=work.parameter_view();view.smc=ground.liquid/(1000.*ground.dz)
     stress=soil_water_stress(view,opt.OptSoilWaterTranspiration)
     velocity=exchange_velocity(f,state.z0m,state.surface_temperature,opt.OptSurfaceDrag)
@@ -71,14 +88,24 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     exchange=CanopyExchange(f.tair,f.qair,f.ps,velocity,ground_velocity,leaf_velocity,float(ground.temperature[0]),0.,
         co2_ppm=co2_ppm,ground_resistance=ground_resistance(view,opt.OptGroundResistanceEvap,snow_cover=bool(len(snow.mass))))
     wet=min(1.,(canopy/capacity)**(2./3.)) if capacity>0. else 0.
-    snow,ground,canopy,d=surface_step(snow,ground,f.dt,np.full(canopy_layers,state.lai/canopy_layers),f.swdown,f.lwdown,
-        exchange,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,root_weights=state.root_frac,
+    storage_args=(dict(canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat) if condensate is None else dict(canopy_condensate=condensate))
+    snow,ground,canopy,d=surface_step(snow,ground,f.dt,area,f.swdown,f.lwdown,
+        exchange,**storage_args,root_weights=state.root_frac,
         wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
         leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
         cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction)
     canopy_heat=d['canopy_enthalpy_after_jm2'];runoff+=d['runoff_kgm2'];runoff_heat+=d['runoff_enthalpy_jm2']
     impurity_out=d['impurity_output_kgm2'].copy()
-    if canopy>capacity:
+    if condensate is not None:
+        condensate,post=intercept_precipitation(d['canopy_condensate'],0.,0.,f.tair,f.dt/2.,area,vegetated_fraction=state.fveg,wind=f.wind)
+        snow,ground,out,oh=route_canopy_outlets(snow,ground,post);runoff+=out;runoff_heat+=oh
+        canopy=float(condensate.mass.sum());canopy_heat=float(condensate.enthalpy.sum())
+        snow,flow=drain_liquid(snow,return_ledger=True)
+        ground,out,oh=infiltrate(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+        runoff+=out+flow['runoff_kgm2'];runoff_heat+=oh+flow['runoff_enthalpy_jm2']
+        impurity_out+=flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2']
+        d.update(canopy_condensate=condensate,canopy_interception=interception,canopy_post_interception=post)
+    elif canopy>capacity:
         drip=canopy-capacity;heat=drip*canopy_heat/canopy
         canopy-=drip;canopy_heat-=heat
         snow,ground,out,oh=route_water(snow,ground,drip,heat);runoff+=out;runoff_heat+=oh
@@ -94,7 +121,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     # temperature. The next step's drag must see the surviving surface.
     final_temperature=float(snow.temperature[0] if len(snow.mass) else ground.temperature[0])
     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
-        surface_temperature=final_temperature)
+        surface_temperature=final_temperature,canopy_condensate=condensate)
     surface,deep=route_runoff(runoff/1000.,final.parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
     d.update(ts=final.surface_temperature,h=float(d['h']),le=float(d['le']),g=float(d['ground_heat']),
         et_mm=d['et_kgm2'],prcp_mm=rain+snowfall,runoff_mm=runoff,runoff_kgm2=runoff,
