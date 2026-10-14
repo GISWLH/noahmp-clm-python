@@ -78,3 +78,12 @@ def test_deposition_and_refreezing_optical_area():
     assert not bare.any()
     _,bare=deposit_impurities(Snowpack.empty(),rates,1800.)
     np.testing.assert_allclose(bare,rates*1800,rtol=1e-15)
+
+
+def test_aging_table_nodes_do_not_mix_roundoff_sized_neighbors():
+    table=snow_tables();index=(1,25,5)
+    t,g,r=(table['aging_'+key][i] for key,i in zip(('T','dTdz','sno_dns'),index))
+    for direction in (-np.inf,np.inf):
+        values=aging_parameters(np.nextafter(t,direction),np.nextafter(g,direction),np.nextafter(r,direction))
+        for value,key in zip(values,('tau','kappa','drdsdt0')):
+            assert value==table['aging_'+key][index]

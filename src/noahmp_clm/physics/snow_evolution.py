@@ -71,6 +71,11 @@ def aging_parameters(temperature,gradient,density):
     table=snow_tables();coordinates=[]
     for key,value in zip(('T','dTdz','sno_dns'),(t,g,r)):
         axis=table['aging_'+key];x=np.clip(value,axis[0],axis[-1])
+        # The fitted tau spans 39 orders of magnitude. A roundoff-sized
+        # offset from a table node must not mix an O(1) neighbor into an
+        # O(1e-26) coefficient. Preserve nodes within the input precision.
+        nearest=np.clip(np.rint((x-axis[0])/(axis[1]-axis[0])).astype(int),0,len(axis)-1)
+        x=np.where(np.abs(x-axis[nearest])<=8*np.finfo(float).eps*np.maximum(np.abs(x),1.),axis[nearest],x)
         index=np.clip(np.searchsorted(axis,x,side='right')-1,0,len(axis)-2)
         f=(x-axis[index])/(axis[index+1]-axis[index])
         coordinates.append((index,f))
