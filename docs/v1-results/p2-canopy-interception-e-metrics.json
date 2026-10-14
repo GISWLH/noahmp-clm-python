@@ -1,0 +1,286 @@
+{
+  "cases": 428,
+  "single": {
+    "jax64": {
+      "max_absolute": {
+        "cells": [
+          1.3322676295501878e-15,
+          2.9103830456733704e-11
+        ],
+        "temperature": 5.684341886080802e-14,
+        "ice": 1.3322676295501878e-15,
+        "liquid": 8.673617379884035e-17,
+        "wet_fraction": 0.0,
+        "dry_fraction": 0.0,
+        "snow_fraction": 2.3370194668359545e-14,
+        "canopy_drip_kgm2": 8.881784197001252e-16,
+        "canopy_snowfall_kgm2": 8.881784197001252e-16,
+        "canopy_unloading_kgm2": 8.881784197001252e-16,
+        "mass_kgm2": 4.235164736271502e-22,
+        "ice_kgm2": 0.0,
+        "liquid_kgm2": 4.235164736271502e-22,
+        "advected_enthalpy_jm2": 0.0,
+        "latent_energy_jm2": 1.7763568394002505e-15,
+        "unmet_evaporation_kgm2": 0.0,
+        "ledger": {
+          "intercepted_rain_kgm2": 5.329070518200751e-15,
+          "intercepted_snow_kgm2": 8.881784197001252e-16,
+          "through_rain_kgm2": 5.329070518200751e-15,
+          "through_snow_kgm2": 8.881784197001252e-16,
+          "ground_liquid_kgm2": 7.105427357601002e-15,
+          "ground_ice_kgm2": 3.552713678800501e-15,
+          "ground_liquid_enthalpy_jm2": 1.862645149230957e-09,
+          "ground_ice_enthalpy_jm2": 5.820766091346741e-11,
+          "precipitation_enthalpy_jm2": 0.0
+        }
+      },
+      "budgets": {
+        "max_residual": [
+          7.105427357601002e-15,
+          1.862645149230957e-09
+        ],
+        "max_numerical_bound": [
+          2.644557774194751e-12,
+          1.3497108877027807e-06
+        ]
+      }
+    },
+    "jax32": {
+      "max_absolute": {
+        "cells": [
+          1.0531089502663349e-06,
+          0.10471153096295893
+        ],
+        "temperature": 3.105387168034213e-05,
+        "ice": 1.076830163704301e-06,
+        "liquid": 1.1920928955078125e-07,
+        "wet_fraction": 5.960464477539063e-08,
+        "dry_fraction": 5.960465188081798e-08,
+        "snow_fraction": 2.1793636331146615e-06,
+        "canopy_drip_kgm2": 8.059546110494864e-07,
+        "canopy_snowfall_kgm2": 7.92666906335171e-07,
+        "canopy_unloading_kgm2": 3.5715906898659e-07,
+        "mass_kgm2": 1.1865086424478477e-07,
+        "ice_kgm2": 1.1865086424478477e-07,
+        "liquid_kgm2": 1.2706784663509647e-13,
+        "advected_enthalpy_jm2": 0.10471153096295893,
+        "latent_energy_jm2": 0.746192766353488,
+        "unmet_evaporation_kgm2": 2.086162567138672e-07,
+        "ledger": {
+          "intercepted_rain_kgm2": 1.902060633440783e-06,
+          "intercepted_snow_kgm2": 1.1488464295439371e-06,
+          "through_rain_kgm2": 1.902060633440783e-06,
+          "through_snow_kgm2": 1.1488464295439371e-06,
+          "ground_liquid_kgm2": 4.1214280983581375e-06,
+          "ground_ice_kgm2": 2.9287667047128707e-06,
+          "ground_liquid_enthalpy_jm2": 1.664698302745819,
+          "ground_ice_enthalpy_jm2": 0.2688163753482513,
+          "precipitation_enthalpy_jm2": 1.097961745224893
+        }
+      },
+      "budgets": {
+        "max_residual": [
+          4.161614924669266e-06,
+          1.6639762409031391
+        ],
+        "max_numerical_bound": [
+          0.00088291524443731,
+          187.74959441712645
+        ]
+      }
+    },
+    "cuda32": {
+      "max_absolute": {
+        "cells": [
+          1.0531089502663349e-06,
+          0.10471153096295893
+        ],
+        "temperature": 3.105387168034213e-05,
+        "ice": 1.076830163704301e-06,
+        "liquid": 1.1920928955078125e-07,
+        "wet_fraction": 5.960464477539063e-08,
+        "dry_fraction": 5.960465188081798e-08,
+        "snow_fraction": 2.1793636331146615e-06,
+        "canopy_drip_kgm2": 8.059546110494864e-07,
+        "canopy_snowfall_kgm2": 7.92666906335171e-07,
+        "canopy_unloading_kgm2": 3.5715906898659e-07,
+        "mass_kgm2": 1.1865086424478477e-07,
+        "ice_kgm2": 1.1865086424478477e-07,
+        "liquid_kgm2": 1.2706784663509647e-13,
+        "advected_enthalpy_jm2": 0.10471153096295893,
+        "latent_energy_jm2": 0.746192766353488,
+        "unmet_evaporation_kgm2": 2.086162567138672e-07,
+        "ledger": {
+          "intercepted_rain_kgm2": 1.902060633440783e-06,
+          "intercepted_snow_kgm2": 1.1488464295439371e-06,
+          "through_rain_kgm2": 1.902060633440783e-06,
+          "through_snow_kgm2": 1.1488464295439371e-06,
+          "ground_liquid_kgm2": 4.1214280983581375e-06,
+          "ground_ice_kgm2": 2.9287667047128707e-06,
+          "ground_liquid_enthalpy_jm2": 1.664698302745819,
+          "ground_ice_enthalpy_jm2": 0.2688163753482513,
+          "precipitation_enthalpy_jm2": 1.097961745224893
+        }
+      },
+      "budgets": {
+        "max_residual": [
+          4.161614924669266e-06,
+          1.6639762409031391
+        ],
+        "max_numerical_bound": [
+          0.00088291524443731,
+          187.74959441712645
+        ]
+      }
+    }
+  },
+  "same_precision_max_absolute": 0.0,
+  "trajectory": {
+    "steps": 336,
+    "columns": 3,
+    "operations_per_step": 2,
+    "backends": 4,
+    "same_precision_max_absolute": 0.0,
+    "budgets": {
+      "numpy64": {
+        "step": [
+          1.7763568394002505e-15,
+          4.656612873077393e-10
+        ],
+        "cumulative": [
+          1.0658141036401503e-14,
+          1.257285475730896e-08
+        ]
+      },
+      "jax64": {
+        "step": [
+          1.7763568394002505e-15,
+          4.656612873077393e-10
+        ],
+        "cumulative": [
+          1.2434497875801753e-14,
+          1.257285475730896e-08
+        ]
+      },
+      "jax32": {
+        "step": [
+          9.87667590379715e-07,
+          0.3133942084386945
+        ],
+        "cumulative": [
+          2.606320776976645e-06,
+          0.3133942084386945
+        ]
+      },
+      "cuda32": {
+        "step": [
+          9.87667590379715e-07,
+          0.3133942084386945
+        ],
+        "cumulative": [
+          2.606320776976645e-06,
+          0.3133942084386945
+        ]
+      }
+    },
+    "cumulative_numerical_bounds": {
+      "numpy64": [
+        6.830833843672117e-10,
+        0.0006736262415499095
+      ],
+      "jax64": [
+        6.830833843672117e-10,
+        0.0006736262415499095
+      ],
+      "jax32": [
+        0.005950347651829438,
+        873.0825633634887
+      ],
+      "cuda32": [
+        0.005950347651829438,
+        873.0825633634887
+      ]
+    },
+    "daily_comparison": {
+      "jax64": {
+        "et": {
+          "max_absolute": 5.551115123125783e-17,
+          "max_relative_percent": 0.0
+        },
+        "le": {
+          "max_absolute": 3.552713678800501e-15,
+          "max_relative_percent": 0.0
+        },
+        "liquid_out": {
+          "max_absolute": 1.1102230246251565e-16,
+          "max_relative_percent": 1.6970588017375312e-14
+        },
+        "ice_out": {
+          "max_absolute": 1.1102230246251565e-16,
+          "max_relative_percent": 0.0
+        },
+        "canopy_water": {
+          "max_absolute": 1.1102230246251565e-16,
+          "max_relative_percent": 0.0
+        },
+        "temperature": {
+          "max_absolute": 1.1368683772161603e-13,
+          "max_relative_percent": 0.0
+        }
+      },
+      "jax32": {
+        "et": {
+          "max_absolute": 2.1345944400952277e-08,
+          "max_relative_percent": 0.0
+        },
+        "le": {
+          "max_absolute": 7.601196481132888e-07,
+          "max_relative_percent": 0.0
+        },
+        "liquid_out": {
+          "max_absolute": 1.0262528338245147e-06,
+          "max_relative_percent": 1.5196888410974864e-05
+        },
+        "ice_out": {
+          "max_absolute": 2.8121799444669193e-07,
+          "max_relative_percent": 2.7100509867562292e-05
+        },
+        "canopy_water": {
+          "max_absolute": 1.5540415448933587e-07,
+          "max_relative_percent": 5.914220602532613e-06
+        },
+        "temperature": {
+          "max_absolute": 2.271508782314413e-05,
+          "max_relative_percent": 0.0
+        }
+      },
+      "cuda32": {
+        "et": {
+          "max_absolute": 2.1345944400952277e-08,
+          "max_relative_percent": 0.0
+        },
+        "le": {
+          "max_absolute": 7.601196481132888e-07,
+          "max_relative_percent": 0.0
+        },
+        "liquid_out": {
+          "max_absolute": 1.0262528338245147e-06,
+          "max_relative_percent": 1.5196888410974864e-05
+        },
+        "ice_out": {
+          "max_absolute": 2.8121799444669193e-07,
+          "max_relative_percent": 2.7100509867562292e-05
+        },
+        "canopy_water": {
+          "max_absolute": 1.5540415448933587e-07,
+          "max_relative_percent": 5.914220602532613e-06
+        },
+        "temperature": {
+          "max_absolute": 2.271508782314413e-05,
+          "max_relative_percent": 0.0
+        }
+      }
+    }
+  },
+  "seconds": 56.675812885165215
+}
