@@ -112,3 +112,24 @@ def test_invalid_state_and_excess_sublimation():
     with pytest.raises(ValueError): Snowpack(np.ones(6),np.zeros(6),np.ones(6))
     with pytest.raises(ValueError): add_rain(Snowpack.empty(),1.,TF)
     with pytest.raises(ValueError): remove_sublimation(Snowpack.from_ice([1.],TF),2.)
+
+
+def test_ice_barrier_perching_and_overflow_are_not_soil_drainage():
+    # Upper layer: 1 kg ice + 10 kg liquid. Lower layer: impermeable ice.
+    old=Snowpack([11.,9.17],[10*LF,0.],[.003,.01],impurities=np.ones((2,5))*1e-8)
+    new,d=drain_liquid(old,return_ledger=True)
+    assert d['drainage_kgm2']==0.
+    assert d['runoff_kgm2']>8.
+    assert new.liquid.sum()>0.
+    assert_budget(old,new,d['runoff_kgm2'],d['runoff_enthalpy_jm2'],d['runoff_impurities_kgm2'])
+
+
+def test_receiving_cell_capacity_accounts_for_freezing_expansion():
+    old=Snowpack([10.,5.],[10*LF,-5*CI*20],[.02,.008])
+    new,d=drain_liquid(old,return_ledger=True)
+    # The melted upper cell vanishes; some of its water cannot fit below.
+    assert d['runoff_kgm2']>0.
+    assert np.all(new.ice/917.+new.liquid/1000.<=new.thickness+1e-13)
+    assert_budget(old,new,d['runoff_kgm2']+d['drainage_kgm2'],
+        d['runoff_enthalpy_jm2']+d['drainage_enthalpy_jm2'],
+        d['runoff_impurities_kgm2']+d['drainage_impurities_kgm2'])

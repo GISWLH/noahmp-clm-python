@@ -32,6 +32,15 @@ def test_heat_capacity_depends_on_mass_not_density():
     np.testing.assert_allclose(temperatures,TF-10+6000/(3*CI),rtol=0,atol=1e-12)
 
 
+def test_implicit_top_exchange_analytic_solution():
+    p=Snowpack.from_ice([.2],TF-20.,100.)
+    q,d=heat_step(p,1800.,10.,top_temperature=TF-10.,top_conductance=8.)
+    expected_offset=(.2*CI*(-20.)+1800*(10.+8.*(-10.)))/(.2*CI+1800*8.)
+    assert q.temperature[0]==pytest.approx(TF+expected_offset,abs=1e-12)
+    assert d['top_flux_wm2']==pytest.approx(10.+8.*(-10.-expected_offset),abs=1e-11)
+    assert abs(d['residual_jm2'])<1e-7
+
+
 def test_two_cells_exact_backward_euler():
     # Different thickness and conductivity: equal harmonic averaging is wrong.
     m=np.array([3.,20.]);z=np.array([.03,.08]);k=np.array([.1,.6])

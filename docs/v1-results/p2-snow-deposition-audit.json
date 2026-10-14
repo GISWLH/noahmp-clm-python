@@ -1,0 +1,68 @@
+{
+  "source_sha256": "2e920f2558685c790e904185bd3a9150435f31e3dca2d2ebb1aa1f6b60ae61ff",
+  "shape": [
+    12,
+    96,
+    144,
+    5
+  ],
+  "units": "kg m-2 s-1",
+  "examples": [
+    {
+      "latitude": 45.0,
+      "longitude": 125.0,
+      "day_of_year_zero_based": 15.5,
+      "year": 2026,
+      "bc_dust01_dust02_dust03_dust04": [
+        1.765592236486772e-12,
+        6.9664267166339784e-12,
+        2.5655442505677307e-11,
+        8.717633169161278e-11,
+        3.752371839898368e-10
+      ]
+    },
+    {
+      "latitude": 45.0,
+      "longitude": 125.0,
+      "day_of_year_zero_based": 196.0,
+      "year": 2026,
+      "bc_dust01_dust02_dust03_dust04": [
+        5.587550551283555e-12,
+        1.708318046895571e-11,
+        4.789109685393469e-11,
+        5.7995109796050304e-11,
+        1.2240901467543932e-10
+      ]
+    },
+    {
+      "latitude": 40.0,
+      "longitude": -105.0,
+      "day_of_year_zero_based": 15.5,
+      "year": 2026,
+      "bc_dust01_dust02_dust03_dust04": [
+        2.4846356217343367e-13,
+        1.8649329155795723e-12,
+        5.455423303856947e-12,
+        8.976512079223613e-12,
+        2.6435129331485988e-11
+      ]
+    },
+    {
+      "latitude": 70.0,
+      "longitude": 0.0,
+      "day_of_year_zero_based": 15.5,
+      "year": 2026,
+      "bc_dust01_dust02_dust03_dust04": [
+        3.6051360716853137e-13,
+        2.8198706364406306e-12,
+        6.03800158743144e-12,
+        2.2297633062615616e-12,
+        1.655845238123414e-12
+      ]
+    }
+  ],
+  "source_hashes": {
+    "src/noahmp_clm/snow_forcing.py": "af4f7961513ddba1ebb104bd6bcae9543c90344edc981c17962a060fad17c0e1",
+    "tests/test_snow_forcing.py": "000ee9177e39747d3fa36f066512fff55573ab2df95fece687c09ee6dd1c0dd1"
+  }
+}

@@ -159,40 +159,78 @@ def add_rain(pack,amount_kgm2,temperature):
     return Snowpack(m,h,pack.thickness,pack.radius_um,pack.impurities)
 
 
-def drain_liquid(pack,*,retention=.033,impermeable_porosity=.05,scavenging=(.2,.02,.02,.01,.01)):
+def drain_liquid(pack,*,retention=.033,impermeable_porosity=.05,scavenging=(.2,.02,.02,.01,.01),
+                 return_ledger=False):
     """Top-down liquid retention/drainage, carrying water enthalpy and impurities.
 
-    CLM-style irreducible saturation and ice-pore blockage. Excess liquid over
-    pore volume is forced through (saturated overflow); the receiving cell
-    mixes/refreezes it before its own drainage is evaluated. A fully melted
-    cell drains all liquid and passes its remaining deposited impurities on.
+    CLM-style irreducible saturation and ice-pore blockage. Downward transfer
+    is limited by the receiving cell's pore volume INCLUDING refreezing. Water
+    can perch above a blocked cell. Overflow that cannot fit within pore space
+    leaves as local runoff, not as fictitious flow through impermeable ice.
+    A fully melted cell has no snow skeleton; its untransferred water runs off.
     Returns (new_pack, water_out_kgm2, enthalpy_out_jm2, impurity_out_kgm2).
-    Enthalpy of warm meltwater includes all post-melt excess energy.
+    The four-value return combines bottom drainage and local runoff. A column
+    driver must use ``return_ledger=True`` to get (new_pack, ledger) with both
+    paths separated, before sending drainage to soil and runoff out of column.
+    Enthalpy of warm meltwater includes all post-melt excess energy. This is a
+    bucket representation of perched overflow, not lateral snow hydrodynamics.
     """
     if not 0<=retention<1 or not 0<=impermeable_porosity<1:
         raise ValueError('Invalid snow retention or porosity threshold')
     scav=np.asarray(scavenging,float)
-    if scav.shape!=(5,) or np.any((scav<0)|(scav>1)): raise ValueError('Invalid impurity scavenging')
+    if scav.shape!=(5,) or not np.all(np.isfinite(scav)) or np.any((scav<0)|(scav>1)):
+        raise ValueError('Invalid impurity scavenging')
     m,h,z,a=pack.mass.copy(),pack.enthalpy.copy(),pack.thickness.copy(),pack.impurities.copy()
     water,heat,tracer=0.,0.,np.zeros(5)
+    runoff,runoff_heat,runoff_tracer=0.,0.,np.zeros(5)
     for j in range(m.size):
         m[j]+=water;h[j]+=heat;a[j]+=tracer
         t,ice,liq=equilibrium(m[j],h[j])
+        # Freezing expansion can enlarge a saturated layer; ice cannot have
+        # a volume smaller than its actual mass / ice density.
+        z[j]=max(z[j],float(ice)/RHO_ICE)
         pore=max(0.,1.-float(ice)/(RHO_ICE*z[j]))
         cap=retention*pore*z[j]*RHO_WATER
-        # Preserve an ice skeleton's volume on melt; pure-water cells vanish.
-        water=(float(liq) if ice==0. else max(0.,float(liq)-cap) if pore>=impermeable_porosity
-            else max(0.,float(liq)-pore*z[j]*RHO_WATER))
+        potential=(float(liq) if ice==0. else max(0.,float(liq)-cap) if pore>=impermeable_porosity else 0.)
         specific=LF+CW*(float(t)-TF)
+        water=potential
+        if j+1<m.size and potential>0.:
+            _,next_ice,_=equilibrium(m[j+1],h[j+1])
+            if 1.-next_ice/(RHO_ICE*z[j+1])<impermeable_porosity:
+                water=0.
+            else:
+                # Analytic equilibrium at each trial includes latent freezing
+                # in the receiver. This avoids accepting 1000 kg/m3 water
+                # volume and subsequently overfilling it with 917 kg/m3 ice.
+                def volume(incoming):
+                    _,ni,nl=equilibrium(m[j+1]+incoming,h[j+1]+incoming*specific)
+                    return float(ni/RHO_ICE+nl/RHO_WATER)
+                if volume(potential)>z[j+1]:
+                    low,high=0.,potential
+                    for _ in range(48):
+                        mid=(low+high)*.5
+                        if volume(mid)<=z[j+1]: low=mid
+                        else: high=mid
+                    water=low
+        overflow=(float(liq)-water if ice==0. else
+            max(0.,float(liq)-water-pore*z[j]*RHO_WATER))
+        total=water+overflow
         heat=water*specific
-        fraction=np.minimum(1.,scav*water/m[j])
-        tracer=a[j].copy() if water==m[j] else a[j]*fraction
-        m[j]-=water;h[j]-=heat;a[j]-=tracer
+        fraction=np.minimum(1.,scav*total/m[j])
+        exported=a[j].copy() if total==m[j] else a[j]*fraction
+        tracer=exported*(water/total) if total>0. else np.zeros(5)
+        runoff+=overflow;runoff_heat+=overflow*specific
+        runoff_tracer+=exported-tracer
+        m[j]-=total;h[j]-=total*specific;a[j]-=exported
         if m[j]==0.: h[j]=0.
     keep=m>0.
     new=(regrid(Snowpack(m[keep],h[keep],z[keep],pack.radius_um[keep],a[keep]))
         if np.any(keep) else Snowpack.empty())
-    return new,float(water),float(heat),tracer
+    if return_ledger:
+        return new,dict(drainage_kgm2=float(water),drainage_enthalpy_jm2=float(heat),
+            drainage_impurities_kgm2=tracer,runoff_kgm2=float(runoff),
+            runoff_enthalpy_jm2=float(runoff_heat),runoff_impurities_kgm2=runoff_tracer)
+    return new,float(water+runoff),float(heat+runoff_heat),tracer+runoff_tracer
 
 
 def remove_sublimation(pack,amount_kgm2):

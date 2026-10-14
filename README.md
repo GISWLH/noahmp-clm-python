@@ -14,6 +14,9 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳定度连接与
 观测评价待完成，默认驱动仍是v0.2路径。
 单叶实测仍有未达标曲线。
+新增[NumPy五层雪组件](docs/CLM_SNOW_DESIGN.md)：质量/焓、压实、粒径老化、
+五波段SNICAR近似与气候态沉降映射。独立方程及雪组件全年守恒已测；
+尚未连接整柱冬季流程，也尚未同步该雪组件的JAX/CUDA。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。

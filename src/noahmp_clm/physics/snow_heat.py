@@ -21,7 +21,8 @@ def conductivity(pack):
 
 
 def heat_step(pack, dt, top_flux, *, absorbed=None, bottom_temperature=TF,
-              bottom_conductance=0., thermal_conductivity=None):
+              bottom_conductance=0., thermal_conductivity=None,
+              top_temperature=None,top_conductance=0.):
     """Advance a nonempty pack; return (new_pack, diagnostic dictionary).
 
     ``top_flux`` and per-layer ``absorbed`` are W/m2, positive into snow.
@@ -30,6 +31,9 @@ def heat_step(pack, dt, top_flux, *, absorbed=None, bottom_temperature=TF,
     Conductivities and geometry are frozen within this time step. All ice,
     mixed-phase and warm-water energy is retained; call ``drain_liquid`` next
     to route meltwater and its enthalpy. No excess energy is temperature-clipped.
+    Optionally add implicit heat exchange ``top_conductance*(top_temperature-
+    T_top_new)`` to the specified top flux. The returned top flux includes this
+    exchange and must be used in the external reservoir's energy ledger.
     """
     n = pack.mass.size
     q = np.zeros(n) if absorbed is None else np.asarray(absorbed, float).copy()
@@ -37,8 +41,10 @@ def heat_step(pack, dt, top_flux, *, absorbed=None, bottom_temperature=TF,
         np.broadcast_to(thermal_conductivity, (n,)), float)
     if (not n or q.shape != (n,) or not np.all(np.isfinite(q))
             or not np.all(np.isfinite(k)) or np.any(k <= 0.)
-            or not np.all(np.isfinite([dt,top_flux,bottom_temperature,bottom_conductance]))
-            or dt <= 0. or bottom_conductance < 0.):
+            or not np.all(np.isfinite([dt,top_flux,bottom_temperature,bottom_conductance,top_conductance]))
+            or dt <= 0. or bottom_conductance < 0. or top_conductance<0.
+            or (top_temperature is None and top_conductance>0.)
+            or (top_temperature is not None and not np.isfinite(top_temperature))):
         raise ValueError('Invalid snow heat boundary, conductivity or time step')
     z, m = pack.thickness, pack.mass
     conduct = 1./(.5*z[:-1]/k[:-1] + .5*z[1:]/k[1:])
@@ -47,7 +53,9 @@ def heat_step(pack, dt, top_flux, *, absorbed=None, bottom_temperature=TF,
         operator[j,j] -= g; operator[j+1,j+1] -= g
         operator[j,j+1] += g; operator[j+1,j] += g
     operator[-1,-1] -= bottom_conductance
+    operator[0,0] -= top_conductance
     q[0] += top_flux
+    if top_temperature is not None: q[0] += top_conductance*(top_temperature-TF)
     q[-1] += bottom_conductance*(bottom_temperature-TF)
     h0 = pack.enthalpy
     # Work with temperature relative to the enthalpy origin, not absolute K.
@@ -81,10 +89,11 @@ def heat_step(pack, dt, top_flux, *, absorbed=None, bottom_temperature=TF,
     temp = TF+offset(h)
     internal = conduct*(temp[:-1]-temp[1:])
     bottom = bottom_conductance*(temp[-1]-bottom_temperature)
-    total_input = dt*(top_flux+(0. if absorbed is None else np.sum(absorbed))-bottom)
+    top=top_flux+(top_conductance*(top_temperature-temp[0]) if top_temperature is not None else 0.)
+    total_input = dt*(top+(0. if absorbed is None else np.sum(absorbed))-bottom)
     balance = float(np.sum(h-h0)-total_input)
     return pack.with_enthalpy(h), dict(
-        bottom_flux_wm2=float(bottom), interface_flux_wm2=internal,
+        top_flux_wm2=float(top),bottom_flux_wm2=float(bottom), interface_flux_wm2=internal,
         enthalpy_change_jm2=float(np.sum(h-h0)), input_energy_jm2=float(total_input),
         residual_jm2=balance, layer_residual_jm2=r, iterations=iterations,
         convergence_tolerance_jm2=float(tolerance))
