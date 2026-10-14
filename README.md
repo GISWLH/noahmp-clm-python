@@ -37,7 +37,10 @@ Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
 新增[原生冠层—雪—土壤非线性表面步](docs/CLM_GPU_CANOPY_SURFACE.md)：
 50工况同精度全字段最大差0，H/LE最大绝对差0.01409/0.01139 W/m²，
 完整质量/焓收支独立核算，最终Linux全量492 passed / 0 skipped；连续轨迹仍在运行。
-冠层截雪/冻结、MOST反馈及完整新柱JAX/CUDA连接仍待完成。
+新增[降水至排水的完整质量/焓柱原生入口](docs/CLM_GPU_EXTENSIVE_COLUMN.md)：
+16类工况目标4 passed / 0 skipped，同精度全字段最大差4.76837e-7，
+最大土温差0.0000403881 K、LE差0.0183929 W/m²；最终全量与七天审核待完成。
+冠层截雪/冻结、MOST反馈及外部科学验收仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
