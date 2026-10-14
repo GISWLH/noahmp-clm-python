@@ -24,7 +24,7 @@ from .physics.canopy_interception import intercept_precipitation
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
-                            deposition_rates=None,most_geometry=None,vic_parameters=None):
+                            deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     f=forcing;opt=state.options
     vic_surface=opt.OptRunoffSurface==6;vic_bottom=opt.OptRunoffSubsurface==6
@@ -40,7 +40,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if most_geometry is not None and opt.OptSurfaceDrag!=1:
         raise ValueError('Explicit MOST geometry requires OptSurfaceDrag=1')
     supported={'OptRainSnowPartition','OptSoilWaterTranspiration','OptGroundResistanceEvap',
-        'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen'}
+        'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen','OptDynamicVeg'}
     baseline=clm_options()
     for item in fields(opt):
         if item.name not in supported and getattr(opt,item.name)!=getattr(baseline,item.name):
@@ -48,6 +48,18 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if (not np.all(np.isfinite(list(vars(f).values()))) or f.dt<=0. or f.prcp<0. or f.wind<0.
             or not isinstance(canopy_layers,int) or canopy_layers<1 or leaf_dimension<=0.):
         raise ValueError('Invalid CLM forcing or canopy discretization')
+    phenology=None
+    if opt.OptDynamicVeg==5:
+        from .physics.phenology import PhenologyEnvironment,step_phenology
+        if not isinstance(phenology_environment,PhenologyEnvironment):
+            raise ValueError('Dynamic vegetation requires an explicit PhenologyEnvironment')
+        e=phenology_environment;old_lai=state.lai
+        next_phenology,phenology=step_phenology(state.phenology_state,float(state.ground.temperature[2]),
+            e.daylength_seconds,e.increasing_daylength,e.winter_solstice,f.dt,state.phenology_parameters)
+        state=replace(state,phenology_state=next_phenology)
+        phenology.update(lai_before=old_lai)
+    elif phenology_environment is not None:
+        raise ValueError('Phenology environment requires OptDynamicVeg=5')
     rain,snowfall=partition_precipitation(f.prcp,f.dt,f.tair,opt.OptRainSnowPartition,qair=f.qair,pressure=f.ps)
     rain*=1000.;snowfall*=1000.
     rain_heat=LF+CW*(f.tair-TF);ice_heat=CI*(min(f.tair,TF)-TF)
@@ -158,4 +170,5 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         water_residual_kgm2=final.water_kgm2-state.water_kgm2-rain-snowfall+d['et_kgm2']+runoff,
         energy_residual_jm2=final.enthalpy_jm2-state.enthalpy_jm2-precipitation_heat-d['atmospheric_energy_jm2']+d['advected_enthalpy_jm2']+runoff_heat,
         impurity_output_kgm2=impurity_out,canopy_water_after_kgm2=canopy,canopy_enthalpy_after_jm2=canopy_heat)
+    if phenology is not None:d['phenology']=phenology
     return final,d

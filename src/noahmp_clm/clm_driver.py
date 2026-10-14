@@ -21,7 +21,7 @@ from .physics.surface_drag import exchange_velocity
 
 def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
                     diffuse_fraction=.5, leaf_dimension=.04, canopy_layers=10,
-                    leaf_parameters=None, nitrogen_factor=1., most_geometry=None, vic_parameters=None):
+                    leaf_parameters=None, nitrogen_factor=1., most_geometry=None, vic_parameters=None, phenology_environment=None):
     """Advance one NumPy CLM column, dispatching by its state representation.
 
     Solar partition, CO2 and leaf dimension are explicit site assumptions until
@@ -37,7 +37,10 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
         from .clm_enthalpy_driver import step_clm_enthalpy_column
         return step_clm_enthalpy_column(state,forcing,co2_ppm=co2_ppm,cosine_zenith=cosine_zenith,
             diffuse_fraction=diffuse_fraction,leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,
-            leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry,vic_parameters=vic_parameters)
+            leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry,vic_parameters=vic_parameters,
+            phenology_environment=phenology_environment)
+    if phenology_environment is not None or state.options.OptDynamicVeg==5:
+        raise NotImplementedError('Dynamic vegetation requires an extensive CLMColumnState')
     if most_geometry is not None:
         raise NotImplementedError('MOST flux feedback requires an extensive CLMColumnState')
     if vic_parameters is not None or state.options.OptRunoffSurface==6 or state.options.OptRunoffSubsurface==6:

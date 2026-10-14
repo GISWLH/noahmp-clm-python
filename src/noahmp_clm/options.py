@@ -107,7 +107,7 @@ class PhysicsOptions:
     def __post_init__(self) -> None:
         """验证配置枚举，尽早报告拼写或越界的 namelist 选项。"""
         choices = {
-            "OptDynamicVeg": (4,),
+            "OptDynamicVeg": (4,5),
             "OptRainSnowPartition": (1, 2, 3, 4, 5),
             "OptSoilWaterTranspiration": (1, 2, 3),
             "OptGroundResistanceEvap": (1, 2, 3, 4),

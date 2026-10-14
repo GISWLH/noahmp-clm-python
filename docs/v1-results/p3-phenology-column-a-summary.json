@@ -1,0 +1,55 @@
+{
+  "source_archive": "p3-phenology-column-a",
+  "tests_passed": 28,
+  "skipped": 0,
+  "elapsed_seconds": 520.12,
+  "cases_per_precision_per_step": 8,
+  "steps": 2,
+  "same_precision_max_absolute": 0.0,
+  "max_absolute": {
+    "float32": {
+      "h": 0.0014093376599930707,
+      "le": 0.002157068993547284,
+      "gpp_umol_m2s": 5.7192563833963206e-05,
+      "soil_temperature": 1.308843900460488e-05,
+      "lai": 2.384185795456517e-07,
+      "leaf_gain_fraction": 3.9736429924275285e-08,
+      "leaf_loss_fraction": 1.9868214962137642e-08,
+      "gdd_increment": 8.517394434193193e-08
+    },
+    "float64": {
+      "h": 2.2893686946190428e-11,
+      "le": 1.5646151041437406e-11,
+      "gpp_umol_m2s": 1.3553602684623911e-12,
+      "soil_temperature": 1.1368683772161603e-13,
+      "lai": 0.0,
+      "leaf_gain_fraction": 0.0,
+      "leaf_loss_fraction": 0.0,
+      "gdd_increment": 0.0
+    }
+  },
+  "budgets": {
+    "float32": {
+      "water_kgm2": 3.088382072746754e-05,
+      "heat_jm2": 10.1744384765625,
+      "impurity_kgm2": 0.0,
+      "water_bound_max_kgm2": 0.004661560080541036,
+      "heat_bound_max_jm2": 2213.7847805904566,
+      "canopy_interception_heat_jm2": 0.03125,
+      "canopy_interception_water_kgm2": 2.384185791015625e-07,
+      "canopy_post_interception_heat_jm2": 0.02734375,
+      "canopy_post_interception_water_kgm2": 1.0058283805847168e-07
+    },
+    "float64": {
+      "water_kgm2": 1.3081202787645907e-13,
+      "heat_jm2": 0.00014291343904915266,
+      "impurity_kgm2": 0.0,
+      "water_bound_max_kgm2": 8.682832302954619e-12,
+      "heat_bound_max_jm2": 0.00015838732512170098,
+      "canopy_interception_heat_jm2": 5.820766091346741e-11,
+      "canopy_interception_water_kgm2": 2.220446049250313e-16,
+      "canopy_post_interception_heat_jm2": 5.093170329928398e-11,
+      "canopy_post_interception_water_kgm2": 9.020562075079397e-17
+    }
+  }
+}

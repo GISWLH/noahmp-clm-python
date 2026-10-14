@@ -1,0 +1,116 @@
+{
+  "source_archive": "p4-decomposition-b",
+  "tests_passed": 13,
+  "skipped": 0,
+  "elapsed_seconds": 49.16,
+  "component_cases": 512,
+  "trajectory_columns": 8,
+  "trajectory_steps": 336,
+  "backends": 4,
+  "max_absolute": {
+    "float32": {
+      "state": 0.0009933385972544784,
+      "heterotrophic_respiration_gc_m2": 1.4960765838623047e-05,
+      "heterotrophic_respiration_umol_m2s": 3.9871026729088044e-05,
+      "temperature_factor": 6.052979442117135e-07,
+      "moisture_factor": 2.6226043701171875e-06,
+      "rate_multiplier": 6.052979442117135e-07,
+      "potential_immobilization_gn_m2": 7.62939453125e-06,
+      "immobilization_gn_m2": 1.55717134475708e-06,
+      "gross_mineralization_gn_m2": 1.4901161193847656e-06,
+      "plant_uptake_gn_m2": 5.712825865145099e-09,
+      "nitrogen_limitation": 6.782295961654805e-07,
+      "carbon_out_gc_m2": 1.8423909367903946e-05,
+      "carbon_in_gc_m2": 9.440326294907209e-06,
+      "nitrogen_out_gn_m2": 1.2203812804756353e-06,
+      "nitrogen_in_gn_m2": 1.180040786863401e-06
+    },
+    "float64": {
+      "state": 4.547473508864641e-13,
+      "heterotrophic_respiration_gc_m2": 2.842170943040401e-14,
+      "heterotrophic_respiration_umol_m2s": 1.1368683772161603e-13,
+      "temperature_factor": 1.3322676295501878e-15,
+      "moisture_factor": 6.938893903907228e-18,
+      "rate_multiplier": 8.881784197001252e-16,
+      "potential_immobilization_gn_m2": 7.105427357601002e-15,
+      "immobilization_gn_m2": 1.7763568394002505e-15,
+      "gross_mineralization_gn_m2": 2.6645352591003757e-15,
+      "plant_uptake_gn_m2": 2.7755575615628914e-17,
+      "nitrogen_limitation": 2.220446049250313e-16,
+      "carbon_out_gc_m2": 4.263256414560601e-14,
+      "carbon_in_gc_m2": 1.4210854715202004e-14,
+      "nitrogen_out_gn_m2": 3.552713678800501e-15,
+      "nitrogen_in_gn_m2": 1.7763568394002505e-15
+    }
+  },
+  "budgets": {
+    "float32": {
+      "carbon_gc_m2": 0.0013782154212549358,
+      "nitrogen_gn_m2": 8.011167665245011e-05,
+      "carbon_bound_max_gc_m2": 0.4492852302821979,
+      "nitrogen_bound_max_gn_m2": 0.0427265794250621
+    },
+    "float64": {
+      "carbon_gc_m2": 7.31049933994565e-12,
+      "nitrogen_gn_m2": 2.537853824660652e-13,
+      "carbon_bound_max_gc_m2": 8.368589714305702e-10,
+      "nitrogen_bound_max_gn_m2": 7.958445970448668e-11
+    }
+  },
+  "same_precision_max_absolute": {
+    "state": 0.0,
+    "carbon": 0.0,
+    "nitrogen": 0.0,
+    "mineral_nitrogen": 0.0,
+    "carbon_out_gc_m2": 0.0,
+    "carbon_in_gc_m2": 0.0,
+    "nitrogen_out_gn_m2": 0.0,
+    "nitrogen_in_gn_m2": 0.0,
+    "heterotrophic_respiration_gc_m2": 0.0,
+    "heterotrophic_respiration_umol_m2s": 0.0,
+    "temperature_factor": 0.0,
+    "moisture_factor": 0.0,
+    "rate_multiplier": 0.0,
+    "potential_immobilization_gn_m2": 0.0,
+    "immobilization_gn_m2": 0.0,
+    "gross_mineralization_gn_m2": 0.0,
+    "plant_uptake_gn_m2": 0.0,
+    "nitrogen_limitation": 0.0,
+    "carbon_residual_gc_m2": 0.0,
+    "nitrogen_residual_gn_m2": 0.0,
+    "carbon_bound_gc_m2": 0.0,
+    "nitrogen_bound_gn_m2": 0.0,
+    "valid": 0.0
+  },
+  "trajectory": {
+    "numpy64": {
+      "carbon_gc_m2": 3.271697496254333e-11,
+      "nitrogen_gn_m2": 3.410605131648481e-13,
+      "carbon_bound_max_gc_m2": 1.8073084276646115e-07,
+      "nitrogen_bound_max_gn_m2": 4.570955277355688e-09,
+      "state_max_abs": 0.0
+    },
+    "jax64": {
+      "carbon_gc_m2": 3.271697496254333e-11,
+      "nitrogen_gn_m2": 3.410605131648481e-13,
+      "carbon_bound_max_gc_m2": 1.8073084276646115e-07,
+      "nitrogen_bound_max_gn_m2": 4.570955277355688e-09,
+      "state_max_abs": 3.552713678800501e-15
+    },
+    "jax32": {
+      "carbon_gc_m2": 0.18931205722037703,
+      "nitrogen_gn_m2": 0.004371011178591289,
+      "carbon_bound_max_gc_m2": 97.0291323825586,
+      "nitrogen_bound_max_gn_m2": 2.4540129284651613,
+      "state_max_abs": 0.12207498922543891
+    },
+    "cuda32": {
+      "carbon_gc_m2": 0.18931205722037703,
+      "nitrogen_gn_m2": 0.004371011178591289,
+      "carbon_bound_max_gc_m2": 97.0291323825586,
+      "nitrogen_bound_max_gn_m2": 2.4540129284651613,
+      "state_max_abs": 0.12207498922543891
+    }
+  },
+  "trajectory_same_precision_max_absolute": 0.0
+}

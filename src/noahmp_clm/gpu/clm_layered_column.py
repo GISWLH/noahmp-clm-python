@@ -19,6 +19,8 @@ from .canopy_phase_surface import run_canopy_phase_surface_jax
 
 def pack_clm_layered_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.options.OptDynamicVeg!=4 for s in states):
+        raise NotImplementedError('Use pack_clm_phenology_columns to retain dynamic vegetation state')
     if any(s.canopy_condensate is None or len(s.canopy_condensate.mass)!=10 for s in states):
         raise ValueError('Every column must carry ten canopy layers')
     base=pack_clm_enthalpy_columns([replace(s,canopy_condensate=None) for s in states],**kwargs)

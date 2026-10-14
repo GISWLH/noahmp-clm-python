@@ -26,6 +26,8 @@ SIGMA = E.SIGMA
 
 def step_column(state: ColumnState, f: Forcing):
     """推进单个柱一个时间步。返回 (new_state, diag)。"""
+    if state.options.OptDynamicVeg!=4:
+        raise NotImplementedError('Dynamic vegetation requires the extensive CLM driver and phenology state')
     s = state.copy()
     dt = f.dt
     p = s.soil

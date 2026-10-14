@@ -87,6 +87,8 @@ def column_state_to_vec(state: ColumnState) -> tuple[np.ndarray, np.ndarray]:
     稳定性；阶段 B 进入 JAX 后再显式选择 float64 或 float32。所有输入数组只
     被读取，不会原地修改。
     """
+    if state.options.OptDynamicVeg!=4:
+        raise NotImplementedError('Dynamic vegetation requires pack_clm_phenology_columns; the legacy ABI cannot retain its state')
     _require_soil_shape(state)
     fvec = np.zeros(FLOAT_SIZE, dtype=np.float64)
 

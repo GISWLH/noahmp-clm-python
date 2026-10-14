@@ -21,6 +21,25 @@ class PhenologyPhase(IntEnum):
 
 
 @dataclass(frozen=True)
+class PhenologyEnvironment:
+    """Explicit site/calendar input for the extratropical deciduous scheme.
+
+    ``winter_solstice`` marks a crossing during this step, not an entire day.
+    The caller supplies the local seasonal trend, including in the south.
+    """
+    daylength_seconds: float
+    increasing_daylength: bool
+    winter_solstice: bool
+    latitude_degrees: float
+
+    def __post_init__(self):
+        if (not math.isfinite(self.daylength_seconds) or not 0.<=self.daylength_seconds<=DAY
+            or not math.isfinite(self.latitude_degrees) or not 19.5<abs(self.latitude_degrees)<=90.
+            or not isinstance(self.increasing_daylength,bool) or not isinstance(self.winter_solstice,bool)):
+            raise ValueError('Explicit extratropical latitude, daylength and boolean calendar flags required')
+
+
+@dataclass(frozen=True)
 class PhenologyParameters:
     gdd_threshold: float=400.
     onset_days: float=30.

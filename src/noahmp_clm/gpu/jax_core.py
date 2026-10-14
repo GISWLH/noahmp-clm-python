@@ -1136,6 +1136,8 @@ def run_columns_jax(
     _require_jax()
     fvecs = jnp.asarray(fvecs)
     ivecs = jnp.asarray(ivecs, dtype=jnp.int32)
+    if bool(jnp.any(ivecs[:,OPTION_INDEX['OptDynamicVeg']]!=4)):
+        raise NotImplementedError('Dynamic vegetation requires the extensive seasonal column ABI')
     forcing_array = jnp.asarray(forcings)
     if forcing_array.ndim == 2:
         forcing_array = jnp.broadcast_to(

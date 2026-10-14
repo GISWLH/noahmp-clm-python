@@ -16,12 +16,18 @@ def cases(dtype=np.float64):
     return (*arrays,condensate),f,dep
 
 
-def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None):
+def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None):
     state=state_from_row(row[:7]);roots=state.root_frac
     cc=np.asarray(row[7],float);state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
+    if phenology is not None:
+        from noahmp_clm.physics.phenology import PhenologyState,PhenologyParameters
+        ps,flags,parameters=phenology
+        state=state.with_phenology(PhenologyParameters(*np.asarray(parameters,float)),
+            PhenologyState(*np.asarray(ps,float),int(flags[0]),bool(flags[1])))
     object.__setattr__(state,'root_frac',roots);site=np.asarray(row[4],float)
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),
-        **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry,vic_parameters=vic_parameters)
+        **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry,vic_parameters=vic_parameters,
+        phenology_environment=phenology_environment)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.

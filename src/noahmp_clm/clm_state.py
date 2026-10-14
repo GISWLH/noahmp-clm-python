@@ -7,6 +7,7 @@ from .options import PhysicsOptions
 from .physics.snowpack import Snowpack,TF,LF,CW
 from .physics.soil_enthalpy import SoilEnthalpyState
 from .physics.canopy_interception import CanopyCondensate
+from .physics.phenology import PhenologyState,PhenologyParameters
 
 
 def clm_options():
@@ -35,8 +36,19 @@ class CLMColumnState:
     terrain_index: float=0.
     groundwater_depth: float=2.
     canopy_condensate: CanopyCondensate | None=None
+    phenology_state: PhenologyState | None=None
+    phenology_parameters: PhenologyParameters | None=None
 
     def __post_init__(self):
+        if self.options.OptDynamicVeg==5:
+            if (not isinstance(self.phenology_state,PhenologyState)
+                or not isinstance(self.phenology_parameters,PhenologyParameters)
+                or self.canopy_condensate is None or len(self.ground.water)<3):
+                raise ValueError('Dynamic vegetation requires phenology state/parameters, layered canopy and third soil layer')
+            p=self.phenology_parameters
+            object.__setattr__(self,'lai',p.lai_minimum+(p.lai_maximum-p.lai_minimum)*self.phenology_state.leaf_fraction)
+        elif self.phenology_state is not None or self.phenology_parameters is not None:
+            raise ValueError('Phenology state/parameters require OptDynamicVeg=5')
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -84,6 +96,16 @@ class CLMColumnState:
     def swe(self): return self.snow.swe
     @property
     def canw(self): return self.canopy_water_kgm2/1000.
+
+    def with_phenology(self,parameters,initial=None):
+        """Enable simplified GDD leaf display with fixed maximum vegetation cover.
+
+        Layer M/H is retained when LAI changes. The next interception stage
+        routes any excess liquid/ice and its heat to the ground. Plant carbon
+        pools are separate from this leaf-availability controller.
+        """
+        return replace(self,options=replace(self.options,OptDynamicVeg=5),
+            phenology_state=PhenologyState() if initial is None else initial,phenology_parameters=parameters)
 
     def with_layered_canopy(self,layers=10):
         """Convert shared mass/enthalpy to equal leaf-area layers, retaining heat.

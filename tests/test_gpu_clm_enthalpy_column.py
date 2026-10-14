@@ -201,7 +201,9 @@ def test_full_column_same_precision():
 
 def test_full_column_contract():
     arrays,f,dep=cases();validate_column(arrays,f,dep,np)
-    bad=[x.copy() for x in arrays];bad[3][0,2]=5
+    accepted=[x.copy() for x in arrays];accepted[3][0,2]=5
+    validate_column(accepted,f,dep,np) # Wet-bulb option 5 is now implemented.
+    bad=[x.copy() for x in arrays];bad[3][0,2]=4
     with pytest.raises(NotImplementedError):validate_column(bad,f,dep,np)
     bad=[x.copy() for x in arrays];bad[5][0,0]=-1.
     with pytest.raises(ValueError):validate_column(bad,f,dep,np)
