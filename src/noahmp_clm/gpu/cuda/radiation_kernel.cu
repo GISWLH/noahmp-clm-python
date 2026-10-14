@@ -1,6 +1,7 @@
 // Ten-layer two-stream component, independent of the NumPy and JAX code.
 // NVRTC device math is built in; no system includes are needed.
-__device__ void shortwave_device(const float* lai, const float* u, float* out) {
+__device__ void shortwave_device_albedos(const float* lai, const float* u,
+                                         float direct_albedo,bool separate_albedo,float* out) {
         float beam0=u[0], diffuse0=u[1], ag=u[2], mu=u[3], refl=u[4], tran=u[5];
         float k=.5f/mu, omega=refl+tran, back=.625f*refl+.375f*tran;
         // Explicit .5/k == mu avoids a second, separately rounded reciprocal.
@@ -31,7 +32,7 @@ __device__ void shortwave_device(const float* lai, const float* u, float* out) {
             su[j]*=beam[j];sd[j]*=beam[j];
         }
         float re[11],so[11],down[11],up[11],absorbed[10];
-        re[10]=ag;so[10]=ag*beam[10];
+        re[10]=ag;so[10]=direct_albedo*beam[10];
         for(int j=9;j>=0;--j) {
             float den=1.f-r[j]*re[j+1];
             re[j]=r[j]+t[j]*t[j]*re[j+1]/den;
@@ -47,11 +48,15 @@ __device__ void shortwave_device(const float* lai, const float* u, float* out) {
             absorbed[j]=beam[j]+down[j]+up[j+1]-beam[j+1]-down[j+1]-up[j];
             total+=absorbed[j];
         }
-        float ground=(1.f-ag)*(beam[10]+down[10]);
+        float ground=separate_albedo?(1.f-direct_albedo)*beam[10]+(1.f-ag)*down[10]:(1.f-ag)*(beam[10]+down[10]);
         float residual=beam0+diffuse0-up[0]-total-ground;
         for(int j=0;j<10;++j)out[j]=absorbed[j];
         for(int j=0;j<11;++j) {out[10+j]=beam[j];out[21+j]=down[j];out[32+j]=up[j];}
         out[43]=up[0];out[44]=ground;out[45]=residual;
+}
+
+__device__ void shortwave_device(const float* lai,const float* u,float* out) {
+    shortwave_device_albedos(lai,u,u[2],false,out);
 }
 
 extern "C" __global__ void run_shortwave(const float* leaf, const float* inputs,

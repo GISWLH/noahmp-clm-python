@@ -1,0 +1,366 @@
+{
+  "scope": "Large three-backend SNICAR/canopy optical audit, not a snow evolution run.",
+  "backends": "[CudaDevice(id=0)]",
+  "snow": {
+    "cases": 368,
+    "same_precision": {
+      "absorbed": 1.2240747901912546e-37,
+      "spectral_absorbed": 7.869299363662653e-37,
+      "spectral_ground_absorbed": 7.529084723637982e-38,
+      "spectral_reflected": 0.0,
+      "ground_absorbed": 1.706586749061086e-39,
+      "reflected": 0.0,
+      "albedo": 0.0,
+      "residual": 1.706586749061086e-39,
+      "albedo_defined": 0.0,
+      "radius_clipped": 0.0,
+      "conditions": 1.833483842624868e-36,
+      "optics": 0.0
+    },
+    "jax64": {
+      "numpy64": {
+        "absorbed": {
+          "max_absolute": 8.404299478570465e-10,
+          "max_relative_percent": 3.0409224436557905e-09,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_absorbed": {
+          "max_absolute": 8.002700724318856e-10,
+          "max_relative_percent": 9.262765684524916e-09,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_ground_absorbed": {
+          "max_absolute": 4.0964565073409176e-11,
+          "max_relative_percent": 1.9117713376435193e-09,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_reflected": {
+          "max_absolute": 7.497646947740577e-10,
+          "max_relative_percent": 1.2988596856921136e-10,
+          "relative_reference_floor": 1.0
+        },
+        "ground_absorbed": {
+          "max_absolute": 3.958433580919518e-11,
+          "max_relative_percent": 1.7885583360745068e-09,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 7.827338777133264e-10,
+          "max_relative_percent": 8.08190354544165e-11,
+          "relative_reference_floor": 1.0
+        },
+        "albedo": {
+          "max_absolute": 6.104006189389111e-13,
+          "max_relative_percent": 8.08126823648242e-11,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 5.115907697472721e-13,
+      "minimum_absorbed_wm2": -8.817026599574081e-16
+    },
+    "jax32": {
+      "numpy64": {
+        "absorbed": {
+          "max_absolute": 0.044928660709331325,
+          "max_relative_percent": 0.1946534359604293,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_absorbed": {
+          "max_absolute": 0.041116708121990087,
+          "max_relative_percent": 0.6048110694727641,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_ground_absorbed": {
+          "max_absolute": 0.0040073815642642785,
+          "max_relative_percent": 0.05749530364190267,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_reflected": {
+          "max_absolute": 0.030149253752824734,
+          "max_relative_percent": 0.004186459785994661,
+          "relative_reference_floor": 1.0
+        },
+        "ground_absorbed": {
+          "max_absolute": 0.004026024108782167,
+          "max_relative_percent": 0.057519249398583897,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 0.0329993338764325,
+          "max_relative_percent": 0.0027365865185587867,
+          "relative_reference_floor": 1.0
+        },
+        "albedo": {
+          "max_absolute": 2.3882543066844342e-05,
+          "max_relative_percent": 0.002737072779818322,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 0.0001964867115020752,
+      "minimum_absorbed_wm2": 0.0
+    },
+    "cuda32": {
+      "numpy64": {
+        "absorbed": {
+          "max_absolute": 0.044928660709331325,
+          "max_relative_percent": 0.1946534359604293,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_absorbed": {
+          "max_absolute": 0.041116708121990087,
+          "max_relative_percent": 0.6048110694727641,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_ground_absorbed": {
+          "max_absolute": 0.0040073815642642785,
+          "max_relative_percent": 0.05749530364190267,
+          "relative_reference_floor": 1.0
+        },
+        "spectral_reflected": {
+          "max_absolute": 0.030149253752824734,
+          "max_relative_percent": 0.004186459785994661,
+          "relative_reference_floor": 1.0
+        },
+        "ground_absorbed": {
+          "max_absolute": 0.004026024108782167,
+          "max_relative_percent": 0.057519249398583897,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 0.0329993338764325,
+          "max_relative_percent": 0.0027365865185587867,
+          "relative_reference_floor": 1.0
+        },
+        "albedo": {
+          "max_absolute": 2.3882543066844342e-05,
+          "max_relative_percent": 0.002737072779818322,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 0.0001964867115020752,
+      "minimum_absorbed_wm2": 0.0
+    }
+  },
+  "canopy_snow": {
+    "cases": 349,
+    "same_precision": {
+      "canopy_absorbed": 0.0,
+      "absorbed_par": 0.0,
+      "snow_absorbed": 5.3338056168561296e-37,
+      "soil_absorbed": 4.4623550856299134e-39,
+      "reflected": 0.0,
+      "residual": 0.0,
+      "snow_direct_albedo": 0.0,
+      "snow_diffuse_albedo": 0.0,
+      "canopy_bands": 0.0,
+      "snow.absorbed": 5.3338056168561296e-37,
+      "snow.spectral_absorbed": 1.0866069175839306e-36,
+      "snow.spectral_ground_absorbed": 3.317591378286085e-37,
+      "snow.spectral_reflected": 0.0,
+      "snow.ground_absorbed": 4.4623550856299134e-39,
+      "snow.reflected": 0.0,
+      "snow.albedo": 0.0,
+      "snow.residual": 4.4623550856299134e-39,
+      "snow.albedo_defined": 0.0,
+      "snow.radius_clipped": 0.0,
+      "snow.conditions": 2.002398018651963e-36,
+      "snow.optics": 0.0
+    },
+    "jax64": {
+      "numpy64": {
+        "canopy_absorbed": {
+          "max_absolute": 6.828315690654563e-12,
+          "max_relative_percent": 1.883346039215285e-11,
+          "relative_reference_floor": 1.0
+        },
+        "absorbed_par": {
+          "max_absolute": 1.014086592476815e-10,
+          "max_relative_percent": 2.771034475131886e-11,
+          "relative_reference_floor": 1.0
+        },
+        "snow_absorbed": {
+          "max_absolute": 2.098943241435336e-10,
+          "max_relative_percent": 1.098273302333242e-09,
+          "relative_reference_floor": 1.0
+        },
+        "soil_absorbed": {
+          "max_absolute": 5.517719614545058e-11,
+          "max_relative_percent": 1.784900633707706e-09,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 1.4631496014771983e-10,
+          "max_relative_percent": 2.3264830140274657e-11,
+          "relative_reference_floor": 1.0
+        },
+        "snow_direct_albedo": {
+          "max_absolute": 4.150013666048835e-13,
+          "max_relative_percent": 4.8808562361273725e-11,
+          "relative_reference_floor": 0.001
+        },
+        "snow_diffuse_albedo": {
+          "max_absolute": 6.246114736541131e-13,
+          "max_relative_percent": 6.869881396612276e-11,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 4.183646132003579e-13,
+      "minimum_absorbed_wm2": -1.1197434466644155e-13
+    },
+    "jax32": {
+      "numpy64": {
+        "canopy_absorbed": {
+          "max_absolute": 0.046655552295817415,
+          "max_relative_percent": 0.5859809271800335,
+          "relative_reference_floor": 1.0
+        },
+        "absorbed_par": {
+          "max_absolute": 4.454463897469168,
+          "max_relative_percent": 0.4674707843268393,
+          "relative_reference_floor": 1.0
+        },
+        "snow_absorbed": {
+          "max_absolute": 0.022655425011237185,
+          "max_relative_percent": 0.18529886915042554,
+          "relative_reference_floor": 1.0
+        },
+        "soil_absorbed": {
+          "max_absolute": 0.027675558533644562,
+          "max_relative_percent": 0.2834289124181847,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 0.03546871300591192,
+          "max_relative_percent": 0.020161353713914032,
+          "relative_reference_floor": 1.0
+        },
+        "snow_direct_albedo": {
+          "max_absolute": 5.205555866272249e-05,
+          "max_relative_percent": 0.005564196670731302,
+          "relative_reference_floor": 0.001
+        },
+        "snow_diffuse_albedo": {
+          "max_absolute": 6.174220600263514e-05,
+          "max_relative_percent": 0.00670032628099667,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 0.00023236251774960692,
+      "minimum_absorbed_wm2": -9.027876512845978e-05
+    },
+    "cuda32": {
+      "numpy64": {
+        "canopy_absorbed": {
+          "max_absolute": 0.046655552295817415,
+          "max_relative_percent": 0.5859809271800335,
+          "relative_reference_floor": 1.0
+        },
+        "absorbed_par": {
+          "max_absolute": 4.454463897469168,
+          "max_relative_percent": 0.4674707843268393,
+          "relative_reference_floor": 1.0
+        },
+        "snow_absorbed": {
+          "max_absolute": 0.022655425011237185,
+          "max_relative_percent": 0.18529886915042554,
+          "relative_reference_floor": 1.0
+        },
+        "soil_absorbed": {
+          "max_absolute": 0.027675558533644562,
+          "max_relative_percent": 0.2834289124181847,
+          "relative_reference_floor": 1.0
+        },
+        "reflected": {
+          "max_absolute": 0.03546871300591192,
+          "max_relative_percent": 0.020161353713914032,
+          "relative_reference_floor": 1.0
+        },
+        "snow_direct_albedo": {
+          "max_absolute": 5.205555866272249e-05,
+          "max_relative_percent": 0.005564196670731302,
+          "relative_reference_floor": 0.001
+        },
+        "snow_diffuse_albedo": {
+          "max_absolute": 6.174220600263514e-05,
+          "max_relative_percent": 0.00670032628099667,
+          "relative_reference_floor": 0.001
+        }
+      },
+      "max_independent_radiation_budget_wm2": 0.00023236251774960692,
+      "minimum_absorbed_wm2": -9.027876512845978e-05
+    }
+  },
+  "source_sha256": {
+    "benchmarks/check_snow_radiation_gpu.py": "ab1071fdf018ef3f873e92f50f4aead627ef0a9e184c1ff8a92ee5764a5bf36f",
+    "tests/test_gpu_snicar.py": "16b52f9f9395daec5cd892a7f35ad4156e8392406cd9af2a9f297f644db5f5bf",
+    "tests/test_gpu_canopy_snow_radiation.py": "7fa28568d293fb3c7dfb87ef1b5ed5af7d9b7672c2647fcc5df6a032486bffce",
+    "src/noahmp_clm/__init__.py": "fc1ce6f975d69ddcdf373d1ae5cc9f440ece2ea5b37f557be01ea17a5a42471e",
+    "src/noahmp_clm/clm_driver.py": "9a8c023a2ce08e2001c1aae6dc8276ecd18531ad86d1f4aba6fd411185a20982",
+    "src/noahmp_clm/clm_enthalpy_driver.py": "fb2c6150b47f96010e1407375f2746dea0997aa0cb040b013ee02d62106e08cf",
+    "src/noahmp_clm/clm_state.py": "36f0ddc736454eefa88a0e3a4dec8be3d829d68068ed3851142f75a5deb6d552",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "0a7dbd098c4138e782efa89e6f2f706bd5e8991a383d41b4a77078ca204fe0a0",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/snow_forcing.py": "af4f7961513ddba1ebb104bd6bcae9543c90344edc981c17962a060fad17c0e1",
+    "src/noahmp_clm/validation.py": "2366e21c80f512d46c62771ce388879276ad1adc1d4e8f0747da8aeb67fb492f",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/canopy_energy.py": "2ab7615cfef4cf35aa1d7977cce6a361aa4aa2c1246cc818e578c7ae04ac49f5",
+    "src/noahmp_clm/gpu/canopy_radiation.py": "c83f2ecaa0af215dd8422882f188655d8b13db2bf3c425184455c4ed53bd2622",
+    "src/noahmp_clm/gpu/canopy_snow_radiation.py": "40dcda076c1be2700a7013e50b33e10ec39a158d5ff65fe7b3ea2989d8c917ee",
+    "src/noahmp_clm/gpu/clm_column.py": "15adb013361439d0d67b1e8f89703d9ded6c5fda9df660efe10494051a4f25aa",
+    "src/noahmp_clm/gpu/column_heat.py": "4f79fdd6fd50b11d6e23126253d1b8796a3878d676a762c3c53f3d4a7f5d165b",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/enthalpy.py": "c5df399bce9190b053100f23a27a2782b666824c81ce41b5f234514fc69fca32",
+    "src/noahmp_clm/gpu/jax_core.py": "175defb55b5620a2f58cc5693490427e336d49ea033d05442995ed94005e8c60",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/gpu/photosynthesis.py": "824bd62a4cc183f97445e54eb6a166305733062235e10566ce3dc18d6283ba48",
+    "src/noahmp_clm/gpu/snicar.py": "752f0ca1e16d1397f042414cf35f0257e6c4a620b70dc942ec764be86414c0bf",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/canopy_column.py": "e10cea2ec04facc379a38db3196216c290091f1c81e5210f35466cfa778d3f45",
+    "src/noahmp_clm/physics/canopy_energy.py": "7efe7d8e6da3146df3ae3b45619ab3def31c8b85805fa1dc20eee96044d723ce",
+    "src/noahmp_clm/physics/canopy_radiation.py": "7be76a325078bf5097a9f11d902b2dd81ab3fc4eb5be0790c377e89433c4479f",
+    "src/noahmp_clm/physics/canopy_snow_radiation.py": "1c081ea3c55aad02ee3612796863975974ef7f5d5fd2498b6467447d679242bf",
+    "src/noahmp_clm/physics/column_heat.py": "22ca998dfc7bbbdff1a15c3cc70fb94463dcc176688bc1fe8b60d4087223d968",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "b14d3a3ea04e8fded6d7c8b0a9947c2d2ad6a6c2946f035eae0ccc98804bfede",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/photosynthesis.py": "fcdc24145faefca68581c3ddcbcc273e65e9672b68898dc28fd1a5dfbaa249f2",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snicar.py": "f9db89e46ad8157242f10fdde5b661f5f4d33787419d721bb5c39c5531fa2a0b",
+    "src/noahmp_clm/physics/snow.py": "8e0deb92e23e2e54bc0b2ad0d3e55500baea4676549204e58113b1333f5bd156",
+    "src/noahmp_clm/physics/snow_evolution.py": "61c361a9f06b4a7a2f6308c17fd4aa74ece6fac5edeea26410cfa04b06e053dc",
+    "src/noahmp_clm/physics/snow_heat.py": "366e5fc2b00878291ddd961c168b019dbe4943ea843ba4bc8039ec058eae6027",
+    "src/noahmp_clm/physics/snow_vapor.py": "3800880dc33ef6d714f7f3d8cc2de3fe960b45f0d5595de024e5c82ccaa790cb",
+    "src/noahmp_clm/physics/snowpack.py": "bfdd260e62d2062b4f8eb4f861ca9b25902c4ad0f761c9f0ca90edc29ad33ff9",
+    "src/noahmp_clm/physics/soil.py": "cf0a2d2f8fc5ec5b81de40c11185bc918483f1f3e122dbf3c41414be395db6ac",
+    "src/noahmp_clm/physics/soil_drainage.py": "885899506775d0e0b931f9d6df50210fd38ec823671ff5d6182400a0da7ce0de",
+    "src/noahmp_clm/physics/soil_enthalpy.py": "b3b60feda7ecc497f73ed12fc4262322e68c59b89413523156869dfc12b4e3eb",
+    "src/noahmp_clm/physics/soil_uptake.py": "c9690f055b35debbe13e142b8105f553b84ed76e06bbc40f639c4f66cc8fdf41",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/canopy_energy.py": "5036f2f27ca4ff1819e041fc66356132af5953f22cd7ff8587faebea6c7ed1dc",
+    "src/noahmp_clm/gpu/cuda/canopy_radiation.py": "dd5515d50cdaaa016e93755a3e8af813cc2d37a49fabe844a83f38c1afdd8c58",
+    "src/noahmp_clm/gpu/cuda/canopy_snow_radiation.py": "02ed79566410d487a98c9a7bbe5a24d35f9e31102296900e2c45e98a79107e04",
+    "src/noahmp_clm/gpu/cuda/clm_column.py": "7061e89df911ca609cefedd96a9e1c1d6fe8b3dee3916377fad6a56b0db59a64",
+    "src/noahmp_clm/gpu/cuda/column_heat.py": "b4e532954a1a9737c63c44f859d12a4f36787ef13519a8d72e28662c0f02bc12",
+    "src/noahmp_clm/gpu/cuda/enthalpy.py": "93e629f1d6f3d8b4ca2b77ceda5ec16c7abea8294814c81b51fb360649c5ad34",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cuda/photosynthesis.py": "fc851e22825cb456fa73cbb396b8d4413d63a378158f00e87ce612af1819d62c",
+    "src/noahmp_clm/gpu/cuda/snicar.py": "5de6db166c10736468ad3b906245e4207e7424804d9a7a7492d0561f2a0ce901",
+    "src/noahmp_clm/gpu/cuda/canopy_energy_kernel.cu": "12f4fa0e3d9f30ad7122762024881075825cf351fe53a78e050971bc004cc5a9",
+    "src/noahmp_clm/gpu/cuda/canopy_snow_kernel.cu": "ca95ad6f77087a21b3ef6b388c3e73a3e284b265c5fb25e9b36625cb0da5cd39",
+    "src/noahmp_clm/gpu/cuda/clm_column_kernel.cu": "44843c3c5b6517ee78ac093b970a3a75b5230d85f4e38a33dcb9009b0e410134",
+    "src/noahmp_clm/gpu/cuda/column_heat_kernel.cu": "7050856a3d0ba4d0ac5b3ab887abd668876507890a27e2a7954d108045345746",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "b7d4ebbbe513eb22304ad2d64f65167aee79416deac172ca2a326e949e373c9c",
+    "src/noahmp_clm/gpu/cuda/enthalpy_kernel.cu": "cf9230361e5bd4eca1470bbfb3993f63534a7ca48f663c4eae369a6ebfc61d9c",
+    "src/noahmp_clm/gpu/cuda/leaf_kernel.cu": "9e46aa399c97ffd7cd73cbe571cd402de678fb7716fe125deb585c7271046ea5",
+    "src/noahmp_clm/gpu/cuda/radiation_kernel.cu": "2340f915a9cd74554147a30f1bf231f879f903667a213824453a50effe384f0c",
+    "src/noahmp_clm/gpu/cuda/snicar_kernel.cu": "65f4452a516c2f3edb86ddcb5c6b76c70dd552ca0049e2b6a69890272240c1ac",
+    "src/noahmp_clm/data/snow_tables.npz": "43aaf77afdfec87990c64250418d13db89ebfc66c8e21e5a75023aaa70ced357"
+  },
+  "wall_seconds": 30.065900184214115
+}

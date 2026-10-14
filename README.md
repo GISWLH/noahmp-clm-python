@@ -20,7 +20,9 @@ NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳�
 已建立[NumPy冠层—雪—土壤质量/焓时间步](docs/CLM_EXTENSIVE_COLUMN.md)，
 连接水汽、融水和排水携热。新增[联合热量原生JAX/CUDA](docs/CLM_GPU_ENTHALPY.md)：
 252个热工况同精度全字段最大差0，7天连续热柱float32最大温差0.0001205 K。
-冠层截雪/冻结、MOST反馈及雪水文/光学/完整新柱JAX/CUDA仍待完成。
+新增[原生JAX/CUDA雪辐射及冠层短波耦合](docs/CLM_GPU_SNOW_RADIATION.md)：
+368个雪况最大逐层光谱吸收偏差0.6048%，349个耦合工况最大雪吸收偏差0.1853%；
+Linux全量460 passed / 0 skipped。冠层截雪/冻结、MOST反馈及雪水文/完整新柱JAX/CUDA仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。

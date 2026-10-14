@@ -14,10 +14,11 @@ def validate_shortwave_inputs(lai, u, xp):
         raise ValueError("Unphysical radiation input")
 
 
-def shortwave_kernel_jax(lai, u):
+def shortwave_kernel_jax(lai, u, ground_albedo_direct=None):
     import jax.numpy as jnp
     from jax import lax
     beam0, diffuse0, ag, mu, refl, tran = u
+    direct_albedo = ag if ground_albedo_direct is None else ground_albedo_direct
     k = .5/mu
     omega = refl+tran
     backscatter = .625*refl+.375*tran
@@ -51,7 +52,7 @@ def shortwave_kernel_jax(lai, u):
     beam = lax.fori_loop(0,10,transmit,beam)
     su, sd = up*beam[:-1], down*beam[:-1]
     reflect = jnp.zeros_like(beam).at[10].set(ag)
-    source = jnp.zeros_like(beam).at[10].set(ag*beam[10])
+    source = jnp.zeros_like(beam).at[10].set(direct_albedo*beam[10])
 
     def eliminate(idx, arrays):
         re, so = arrays
@@ -66,7 +67,8 @@ def shortwave_kernel_jax(lai, u):
     diffuse = lax.fori_loop(0,10,forward,diffuse)
     upward = reflect*diffuse+source
     absorbed = beam[:-1]+diffuse[:-1]+upward[1:]-beam[1:]-diffuse[1:]-upward[:-1]
-    ground = (1.-ag)*(beam[10]+diffuse[10])
+    ground = ((1.-ag)*(beam[10]+diffuse[10]) if ground_albedo_direct is None else
+              (1.-direct_albedo)*beam[10]+(1.-ag)*diffuse[10])
     total = lax.fori_loop(0,10,lambda j,s:s+absorbed[j], jnp.zeros_like(ground))
     residual = beam0+diffuse0-upward[0]-total-ground
     return jnp.concatenate((absorbed,beam,diffuse,upward,jnp.stack((upward[0],ground,residual))))

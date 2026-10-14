@@ -17,7 +17,8 @@ def main():
     root = Path(__file__).resolve().parents[1]
     paths = [p for folder in ("src", "tests", "benchmarks", "examples")
              for p in (root / folder).rglob("*")
-             if p.is_file() and "__pycache__" not in p.parts]
+             if p.is_file() and "__pycache__" not in p.parts
+             and not any(part.endswith('.egg-info') for part in p.parts)]
     paths += [root / "pyproject.toml"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     hashes = {}
