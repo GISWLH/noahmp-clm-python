@@ -128,7 +128,7 @@ def _positive_scale(flux,limit):
     return jnp.where(positive>0.,jnp.minimum(1.,(limit-negative)/jnp.maximum(positive,1e-30)),1.)
 
 
-def _water(qcan,qs,gs,area,fv,rho,u,soil):
+def _water(qcan,qs,gs,area,fv,rho,u,soil,ground_shares_soil=True):
     import jax.numpy as jnp
     boundary = rho*fv*area*u[5]
     drying = qs[:10]>qcan
@@ -142,7 +142,7 @@ def _water(qcan,qs,gs,area,fv,rho,u,soil):
     kt = kt*_positive_scale(transp,limit)
     transp = kt*(qs[:10]-qcan)
     uptake = jnp.where(soil[0]>0.,_root_allocation(_sum(transp),soil),jnp.zeros((4,),u.dtype))
-    glimit = jnp.where(soil[0]>0.,jnp.minimum(u[17],jnp.maximum(0.,soil[9]-uptake[0])),u[17])
+    glimit = jnp.where((soil[0]>0.)&ground_shares_soil,jnp.minimum(u[17],jnp.maximum(0.,soil[9]-uptake[0])),u[17])
     under = rho*fv/(1./u[4]+u[9])
     bare = rho*(1.-fv)/(1./u[3]+u[9])
     ground = jnp.stack((under*(qs[10]-qcan),bare*(qs[10]-u[1])))
@@ -171,7 +171,8 @@ def _longwave_operator(area,eps,fv):
     return mat.at[10,10].add(-(1.-fv)*eps).at[10,11].add((1.-fv)*eps)
 
 
-def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,tolerance=.005,q_tolerance=1e-8):
+def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,tolerance=.005,q_tolerance=1e-8,
+                             boundary=None,radiation=None):
     import jax
     import jax.numpy as jnp
     from jax import lax
@@ -188,6 +189,13 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
         jnp.asarray([fv*(bands[0][44]+bands[1][44])+(1.-fv)*bare_sw])))
     par = jnp.where(area>0.,bands[0][:10]*4.6/jnp.maximum(area,1e-30),0.)
     outgoing_sw = fv*(bands[0][43]+bands[1][43])+(1.-fv)*(u[11]-bare_sw)
+    if boundary is not None:
+        # Native canopy/SNICAR output; radiation is frozen for a surface solve.
+        sw=jnp.concatenate((radiation[:10],jnp.asarray([_sum(radiation[20:25])+radiation[25]])))
+        par=radiation[10:20]
+        outgoing_sw=radiation[26]
+        latent=jnp.full((11,),2.5e6,u.dtype).at[10].add(jnp.where(boundary[1]>0.,334000.,0.))
+        weights=area/jnp.maximum(_sum(area),1e-30)
     lw = _longwave_operator(area,u[18],fv)
     rho = u[2]/(287.*u[0]*(1.+.61*u[1]))
     hcan = rho*1004.*jnp.concatenate((fv*area*u[5],jnp.asarray([fv*u[4]])))
@@ -199,6 +207,8 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
     empty_roots = (soil[0]>0.)&(_sum(jnp.where(soil[5:9]>0.,soil[1:5],0.))==0.)
     capacity_stress = jnp.where((u[16]==0.)|empty_roots,0.,factors[:,1])
     temperature = initial.at[:10].set(jnp.where(active,initial[:10],u[0]))
+    if boundary is not None:
+        temperature=temperature.at[10].set(boundary[0])
 
     def iteration(carry):
         count,temp,qcan,_,_ = carry
@@ -212,6 +222,16 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
         numerator = lax.optimization_barrier(.622*u[2]*es)
         numerator = lax.optimization_barrier(numerator*17.67)*243.5
         dq = numerator/(den*den*(tc+243.5)*(tc+243.5))
+        if boundary is not None:
+            t=temp[10]
+            ies=lax.optimization_barrier(jnp.exp(9.550426-5723.265/t+3.53068*jnp.log(t)-.00728332*t))
+            slope=5723.265/(t*t)+3.53068/t-.00728332
+            iden=u[2]-.378*ies
+            iqs=.622*ies/iden
+            idq=lax.optimization_barrier(.622*u[2]*ies)*slope/(iden*iden)
+            qs=qs.at[10].set(jnp.where(boundary[1]>0.,iqs,qs[10]))
+            dq=dq.at[10].set(jnp.where(boundary[1]>0.,idq,dq[10]))
+            es=es.at[10].set(jnp.where(boundary[1]>0.,ies,es[10]))
         vapor = qcan*u[2]/(.622+.378*qcan)
         leaf_input = jnp.stack((par,temp[:10],jnp.full((10,),u[8]),vapor/es[:10],
             jnp.full((10,),u[5]*mol_density),factors[:,0]*capacity_stress,factors[:,1]),axis=1)
@@ -221,11 +241,11 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
         def bisect(_,bracket):
             lo,hi=bracket
             mid=.5*(lo+hi)
-            residual=_water(mid,qs,gs,area,fv,rho,u,soil)[7]
+            residual=_water(mid,qs,gs,area,fv,rho,u,soil,True if boundary is None else boundary[2]>0.)[7]
             return jnp.where(residual>0.,mid,lo),jnp.where(residual>0.,hi,mid)
         left,right=lax.fori_loop(0,42,bisect,(left,right))
         qnew=jnp.where(fv>0.,.5*(left+right),u[1])
-        wet,tr,eg,eb,kleaf,kunder,kbare,water_res,uptake=_water(qnew,qs,gs,area,fv,rho,u,soil)
+        wet,tr,eg,eb,kleaf,kunder,kbare,water_res,uptake=_water(qnew,qs,gs,area,fv,rho,u,soil,True if boundary is None else boundary[2]>0.)
         relative_temp=lax.optimization_barrier(temp-u[0])
         air_offset=jnp.where(hden>0.,_dot(hcan,relative_temp)/jnp.maximum(hden,1e-30),0.)
         tair=u[0]+air_offset
@@ -237,6 +257,19 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
         net=sw+jax.vmap(_dot,in_axes=(0,None))(lw,blackbody)
         ground=u[7]*(temp[10]-u[6])+u[10]
         residual=(net-sensible-2.5e6*evaporation).at[10].add(-ground)
+        if boundary is not None:
+            residual=net-sensible-latent*evaporation
+            ground=residual[10]
+            residual=residual.at[10].set(0.)
+            enabled=boundary[3]>0.
+            mass=jnp.where(enabled,jnp.maximum(0.,boundary[4]-boundary[6]*_sum(wet)),0.)
+            liquid_heat=334000.+4180.*(temp[:10]-273.15)
+            enthalpy=mass*_dot(weights,liquid_heat)
+            storage=jnp.where(enabled,(enthalpy-boundary[5])/boundary[6],0.)
+            root_mean=jnp.where(_sum(uptake)>0.,_dot(uptake,boundary[7:11])/jnp.maximum(_sum(uptake),1e-30),0.)
+            wet_adv=jnp.where(enabled,_dot(wet,liquid_heat),0.)
+            tr_adv=jnp.where(enabled,_dot(tr,liquid_heat),0.)
+            residual=residual.at[:10].add(-jnp.where(enabled,weights*storage+wet*liquid_heat+tr*(liquid_heat-root_mean),0.))
         qerror=jnp.abs(qnew-qcan)
         energy_balanced=jnp.max(jnp.abs(residual))<=tolerance
         converged=energy_balanced&(qerror<=q_tolerance)
@@ -247,9 +280,16 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
         ejac=ejac.at[10,10].add(kbare*dq[10])
         jac=lw[:,:11]*(4.*5.670374419e-8*(temp*temp*temp))[None,:]-hjac-2.5e6*ejac
         jac=jac.at[10,10].add(-u[7])
+        if boundary is not None:
+            jac=lw[:,:11]*(4.*5.670374419e-8*(temp*temp*temp))[None,:]-hjac-latent[:,None]*ejac
+            jac=jac.at[:10,:10].add(-jnp.where(enabled,4180.*mass/boundary[6]*(weights[:,None]*weights[None,:]),0.))
+            jac=jac.at[jnp.arange(10),jnp.arange(10)].add(-jnp.where(enabled,4180.*(wet+tr),0.))
         inactive=jnp.concatenate((~active,jnp.asarray([False])))
         jac=jnp.where(inactive[:,None],-jnp.eye(11,dtype=u.dtype),jac)
         rhs=jnp.where(inactive,u[0]-temp,residual)
+        if boundary is not None:
+            jac=jac.at[10].set(-jnp.eye(11,dtype=u.dtype)[10])
+            rhs=rhs.at[10].set(0.)
         delta=_linear_solve(jac,-rhs)
         next_temp=jnp.where(energy_balanced,temp,jnp.clip(temp+.8*jnp.clip(delta,-5.,5.),200.,350.))
         h,evap=_sum(sensible),_sum(evaporation)
@@ -261,8 +301,12 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
             jnp.stack((sensible[10],h,2.5e6*evap,ground,_sum(net))),wet,tr,jnp.asarray([eg+eb]),
             uptake,residual,jnp.stack((_sum(residual),count+1.,converged.astype(u.dtype),water_res,
             qerror,h-air_h,evap-air_e,outgoing_sw,u[12]-_sum(net-sw))),gas.reshape(-1)))
+        if boundary is not None:
+            out=out.at[27].set(_dot(latent,evaporation))
+            out=jnp.concatenate((out,jnp.asarray([ground-sw[10]]),radiation[20:26],
+                jnp.stack((latent[10],storage,mass,enthalpy,wet_adv,tr_adv))))
         return count+1,next_temp,qnew,out,converged
-    carry=(jnp.asarray(0,jnp.int32),temperature,u[1],jnp.zeros((CANOPY_OUTPUT_SIZE,),u.dtype),jnp.asarray(False))
+    carry=(jnp.asarray(0,jnp.int32),temperature,u[1],jnp.zeros((CANOPY_OUTPUT_SIZE+(13 if boundary is not None else 0),),u.dtype),jnp.asarray(False))
     return lax.while_loop(lambda c:(c[0]<max_iterations)&(~c[4]),iteration,carry)[3]
 
 

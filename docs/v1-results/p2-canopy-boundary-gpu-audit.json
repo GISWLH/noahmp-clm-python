@@ -1,0 +1,1007 @@
+{
+  "kind": "synthetic fixed ground canopy and stored water heat, not winter column/observations",
+  "cases": 425,
+  "versions": {
+    "numpy": "2.5.4",
+    "jax": "0.11.2",
+    "cupy": "14.2.0"
+  },
+  "devices": "[CudaDevice(id=0)]",
+  "backends": {
+    "jax64": {
+      "errors": {
+        "leaf_temperature": {
+          "max_absolute": 8.298002285300754e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "ground_temperature": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_temperature": {
+          "max_absolute": 9.606537787476555e-12,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity": {
+          "max_absolute": 1.1948775302528247e-14,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 7.44666668098259e-11
+        },
+        "gpp": {
+          "max_absolute": 7.030820370346191e-12,
+          "zero_floor": 1.0,
+          "max_relative_percent": 6.63151250087293e-11
+        },
+        "leaf_respiration": {
+          "max_absolute": 7.549516567451064e-13,
+          "zero_floor": 1.0,
+          "max_relative_percent": 3.9090512813090743e-11
+        },
+        "leaf_sensible": {
+          "max_absolute": 3.834799144897261e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 9.59510636938952e-10
+        },
+        "ground_sensible": {
+          "max_absolute": 3.4649616509341286e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 6.031994983728089e-10
+        },
+        "h": {
+          "max_absolute": 9.36211108637508e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 7.810941479621863e-10
+        },
+        "le": {
+          "max_absolute": 5.525748747459147e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.0716529740410367e-09
+        },
+        "ground_heat": {
+          "max_absolute": 1.708713170955889e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 3.682117043084824e-10
+        },
+        "rnet": {
+          "max_absolute": 1.708855279503041e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 5.466675465057444e-10
+        },
+        "wet_evaporation": {
+          "max_absolute": 4.694764813451685e-17,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 1.8901936935450787e-09
+        },
+        "transpiration": {
+          "max_absolute": 8.263653433412954e-18,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 2.0606277769461833e-10
+        },
+        "ground_evaporation": {
+          "max_absolute": 2.199575157429967e-17,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 1.800849943661123e-10
+        },
+        "root_uptake": {
+          "max_absolute": 2.5759965991897782e-17,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 2.3390101817388406e-10
+        },
+        "layer_residual": {
+          "max_absolute": 1.4747181253937924e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "residual": {
+          "max_absolute": 6.890985143614969e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_water_residual": {
+          "max_absolute": 3.0105583824491244e-16,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity_change": {
+          "max_absolute": 6.855627177060342e-15,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_heat_residual": {
+          "max_absolute": 8.526512829121202e-13,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_water_residual": {
+          "max_absolute": 3.011100483535367e-16,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "outgoing_shortwave": {
+          "max_absolute": 1.7070078683900647e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 4.554485025813938e-11
+        },
+        "outgoing_longwave": {
+          "max_absolute": 2.893330020015128e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 7.222857994838796e-12
+        },
+        "ground_nonshortwave_heat": {
+          "max_absolute": 1.1374368114047684e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 2.125360674426377e-10
+        },
+        "snow_absorbed_shortwave": {
+          "max_absolute": 1.808331262509455e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 3.325862525048913e-09
+        },
+        "soil_absorbed_shortwave": {
+          "max_absolute": 2.9459101824613754e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.6139910148081425e-09
+        },
+        "ground_latent_heat": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0
+        },
+        "canopy_storage_change_wm2": {
+          "max_absolute": 1.0136602668353589e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.4162972084071485e-09
+        },
+        "canopy_water_after_kgm2": {
+          "max_absolute": 7.156497616733759e-13,
+          "zero_floor": 0.001,
+          "max_relative_percent": 1.1962734825057098e-09
+        },
+        "canopy_enthalpy_after_jm2": {
+          "max_absolute": 2.6289490051567554e-07,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.2002976990905302e-09
+        },
+        "wet_advected_heat_wm2": {
+          "max_absolute": 8.548539653929765e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.847078643138848e-09
+        },
+        "transpiration_advected_heat_wm2": {
+          "max_absolute": 1.6484591469634324e-11,
+          "zero_floor": 1.0,
+          "max_relative_percent": 1.5448934929856847e-10
+        }
+      },
+      "ledgers": {
+        "energy_wm2": 0.0003030540468955678,
+        "water_kgm2": 9.71445146547012e-17,
+        "shortwave_wm2": 5.684341886080802e-14
+      },
+      "max_layer_residual_wm2": 4.950262106895309e-05,
+      "max_iterations": 28
+    },
+    "jax32": {
+      "errors": {
+        "leaf_temperature": {
+          "max_absolute": 0.00818310217096041,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "ground_temperature": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_temperature": {
+          "max_absolute": 0.0029299942917759836,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity": {
+          "max_absolute": 1.3593744067862124e-06,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.020395094509876522
+        },
+        "gpp": {
+          "max_absolute": 0.0012812938495585513,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.02646959487546916
+        },
+        "leaf_respiration": {
+          "max_absolute": 0.00011841726052663759,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.004564073178516777
+        },
+        "leaf_sensible": {
+          "max_absolute": 0.003977550138834829,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.19541917976058443
+        },
+        "ground_sensible": {
+          "max_absolute": 0.003597650285534826,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07993173307969711
+        },
+        "h": {
+          "max_absolute": 0.012968456653151605,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.10389714316373597
+        },
+        "le": {
+          "max_absolute": 0.014896232521437014,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.23073428998641232
+        },
+        "ground_heat": {
+          "max_absolute": 0.012215416662968437,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0677744310194472
+        },
+        "rnet": {
+          "max_absolute": 0.011230052857229111,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.1620879757197449
+        },
+        "wet_evaporation": {
+          "max_absolute": 8.714497029521624e-10,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.046729393519105676
+        },
+        "transpiration": {
+          "max_absolute": 4.815978898888815e-10,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.03944237458229385
+        },
+        "ground_evaporation": {
+          "max_absolute": 1.0588929121234473e-09,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.029448950029399654
+        },
+        "root_uptake": {
+          "max_absolute": 1.2657621799652685e-09,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.038924099838932476
+        },
+        "layer_residual": {
+          "max_absolute": 0.004845957379499666,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "residual": {
+          "max_absolute": 0.027271788171078823,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_water_residual": {
+          "max_absolute": 3.346939287946892e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity_change": {
+          "max_absolute": 9.260303582107887e-09,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_heat_residual": {
+          "max_absolute": 0.00045776367178973487,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_water_residual": {
+          "max_absolute": 3.3469392882179427e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "outgoing_shortwave": {
+          "max_absolute": 0.011476445792538925,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.002917119088888375
+        },
+        "outgoing_longwave": {
+          "max_absolute": 0.004652140143207362,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0013269019688839743
+        },
+        "ground_nonshortwave_heat": {
+          "max_absolute": 0.006911244115606507,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.19202145970221907
+        },
+        "snow_absorbed_shortwave": {
+          "max_absolute": 0.012408506394560703,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.47299374149720125
+        },
+        "soil_absorbed_shortwave": {
+          "max_absolute": 0.0036431537572532147,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.34682650726854736
+        },
+        "ground_latent_heat": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0
+        },
+        "canopy_storage_change_wm2": {
+          "max_absolute": 0.0058148563141742216,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07028319300255498
+        },
+        "canopy_water_after_kgm2": {
+          "max_absolute": 1.6141971417082956e-05,
+          "zero_floor": 0.001,
+          "max_relative_percent": 0.032455701605628905
+        },
+        "canopy_enthalpy_after_jm2": {
+          "max_absolute": 5.190230049192905,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.031690891084122624
+        },
+        "wet_advected_heat_wm2": {
+          "max_absolute": 0.0023053001959354447,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07616244837440911
+        },
+        "transpiration_advected_heat_wm2": {
+          "max_absolute": 0.0005993161971760141,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.039524445325855126
+        }
+      },
+      "ledgers": {
+        "energy_wm2": 0.027469262844083797,
+        "water_kgm2": 5.522139119584768e-08,
+        "shortwave_wm2": 3.7454068660736084e-05
+      },
+      "max_layer_residual_wm2": 0.004871845245361328,
+      "max_iterations": 21
+    },
+    "cuda32": {
+      "errors": {
+        "leaf_temperature": {
+          "max_absolute": 0.00818310217096041,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "ground_temperature": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_temperature": {
+          "max_absolute": 0.0029299942917759836,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity": {
+          "max_absolute": 1.3593744067862124e-06,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.020395094509876522
+        },
+        "gpp": {
+          "max_absolute": 0.0012812938495585513,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.02646959487546916
+        },
+        "leaf_respiration": {
+          "max_absolute": 0.00011841726052663759,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.004564073178516777
+        },
+        "leaf_sensible": {
+          "max_absolute": 0.003977550138834829,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.19541917976058443
+        },
+        "ground_sensible": {
+          "max_absolute": 0.003597650285534826,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07993173307969711
+        },
+        "h": {
+          "max_absolute": 0.012968456653151605,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.10389714316373597
+        },
+        "le": {
+          "max_absolute": 0.014896232521437014,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.23073428998641232
+        },
+        "ground_heat": {
+          "max_absolute": 0.012215416662968437,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0677744310194472
+        },
+        "rnet": {
+          "max_absolute": 0.011230052857229111,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.1620879757197449
+        },
+        "wet_evaporation": {
+          "max_absolute": 8.714497029521624e-10,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.046729393519105676
+        },
+        "transpiration": {
+          "max_absolute": 4.815978898888815e-10,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.03944237458229385
+        },
+        "ground_evaporation": {
+          "max_absolute": 1.0588929121234473e-09,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.029448950029399654
+        },
+        "root_uptake": {
+          "max_absolute": 1.2657621799652685e-09,
+          "zero_floor": 1e-06,
+          "max_relative_percent": 0.038924099838932476
+        },
+        "layer_residual": {
+          "max_absolute": 0.004845957379499666,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "residual": {
+          "max_absolute": 0.027271788171078823,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_water_residual": {
+          "max_absolute": 3.346939287946892e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "canopy_humidity_change": {
+          "max_absolute": 9.260303582107887e-09,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_heat_residual": {
+          "max_absolute": 0.00045776367178973487,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "air_water_residual": {
+          "max_absolute": 3.3469392882179427e-10,
+          "zero_floor": 1.0,
+          "max_relative_percent": null
+        },
+        "outgoing_shortwave": {
+          "max_absolute": 0.011476445792538925,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.002917119088888375
+        },
+        "outgoing_longwave": {
+          "max_absolute": 0.004652140143207362,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0013269019688839743
+        },
+        "ground_nonshortwave_heat": {
+          "max_absolute": 0.006911244115606507,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.19202145970221907
+        },
+        "snow_absorbed_shortwave": {
+          "max_absolute": 0.012408506394560703,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.47299374149720125
+        },
+        "soil_absorbed_shortwave": {
+          "max_absolute": 0.0036431537572532147,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.34682650726854736
+        },
+        "ground_latent_heat": {
+          "max_absolute": 0.0,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.0
+        },
+        "canopy_storage_change_wm2": {
+          "max_absolute": 0.0058148563141742216,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07028319300255498
+        },
+        "canopy_water_after_kgm2": {
+          "max_absolute": 1.6141971417082956e-05,
+          "zero_floor": 0.001,
+          "max_relative_percent": 0.032455701605628905
+        },
+        "canopy_enthalpy_after_jm2": {
+          "max_absolute": 5.190230049192905,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.031690891084122624
+        },
+        "wet_advected_heat_wm2": {
+          "max_absolute": 0.0023053001959354447,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.07616244837440911
+        },
+        "transpiration_advected_heat_wm2": {
+          "max_absolute": 0.0005993161971760141,
+          "zero_floor": 1.0,
+          "max_relative_percent": 0.039524445325855126
+        }
+      },
+      "ledgers": {
+        "energy_wm2": 0.027469262844083797,
+        "water_kgm2": 5.522139119584768e-08,
+        "shortwave_wm2": 3.7454068660736084e-05
+      },
+      "max_layer_residual_wm2": 0.004871845245361328,
+      "max_iterations": 21
+    }
+  },
+  "same_precision": {
+    "leaf_temperature": 0.0,
+    "ground_temperature": 0.0,
+    "canopy_temperature": 0.0,
+    "canopy_humidity": 0.0,
+    "gpp": 0.0,
+    "leaf_respiration": 0.0,
+    "leaf_sensible": 0.0,
+    "ground_sensible": 0.0,
+    "h": 0.0,
+    "le": 0.0,
+    "ground_heat": 0.0,
+    "rnet": 0.0,
+    "wet_evaporation": 0.0,
+    "transpiration": 0.0,
+    "ground_evaporation": 0.0,
+    "root_uptake": 0.0,
+    "layer_residual": 0.0,
+    "residual": 0.0,
+    "iterations": 0,
+    "converged": 0,
+    "canopy_water_residual": 0.0,
+    "canopy_humidity_change": 0.0,
+    "air_heat_residual": 0.0,
+    "air_water_residual": 0.0,
+    "outgoing_shortwave": 0.0,
+    "outgoing_longwave": 0.0,
+    "gas_exchange.gross": 0.0,
+    "gas_exchange.net": 0.0,
+    "gas_exchange.rubisco": 0.0,
+    "gas_exchange.rubp": 0.0,
+    "gas_exchange.tpu": 0.0,
+    "gas_exchange.respiration": 0.0,
+    "gas_exchange.electron_transport": 0.0,
+    "gas_exchange.ci_ppm": 0.0,
+    "gas_exchange.cs_ppm": 0.0,
+    "gas_exchange.gs_mol": 0.0,
+    "gas_exchange.surface_relative_humidity": 0.0,
+    "gas_exchange.diffusion_residual": 0.0,
+    "ground_nonshortwave_heat": 0.0,
+    "snow_absorbed_shortwave": 0.0,
+    "soil_absorbed_shortwave": 0.0,
+    "ground_latent_heat": 0.0,
+    "canopy_storage_change_wm2": 0.0,
+    "canopy_water_after_kgm2": 0.0,
+    "canopy_enthalpy_after_jm2": 0.0,
+    "wet_advected_heat_wm2": 0.0,
+    "transpiration_advected_heat_wm2": 0.0
+  },
+  "independent": [
+    {
+      "backend": "jax64",
+      "case": 0,
+      "temperature_k": 0.0,
+      "h": 0.0,
+      "le": 0.0,
+      "ground_heat": 3.922195901395753e-11,
+      "gpp": 0.0
+    },
+    {
+      "backend": "jax64",
+      "case": 3,
+      "temperature_k": 1.5387958001156221e-06,
+      "h": 1.3979889700976855e-05,
+      "le": 4.274980813789853e-06,
+      "ground_heat": 5.962574718409996e-06,
+      "gpp": 1.64312648598397e-07
+    },
+    {
+      "backend": "jax64",
+      "case": 5,
+      "temperature_k": 1.6655828858347377e-06,
+      "h": 2.0940541702429982e-05,
+      "le": 6.447702979528458e-06,
+      "ground_heat": 8.949078434739022e-06,
+      "gpp": 2.4894421346566276e-07
+    },
+    {
+      "backend": "jax64",
+      "case": 11,
+      "temperature_k": 3.5157847264599695e-06,
+      "h": 5.580138049765537e-05,
+      "le": 3.448562304697589e-05,
+      "ground_heat": 3.091065121907377e-05,
+      "gpp": 2.196873166049329e-06
+    },
+    {
+      "backend": "jax64",
+      "case": 17,
+      "temperature_k": 2.801761468163022e-06,
+      "h": 4.792554987176345e-05,
+      "le": 4.101254779698138e-05,
+      "ground_heat": 3.133849070025008e-05,
+      "gpp": 3.2802672578213787e-06
+    },
+    {
+      "backend": "jax64",
+      "case": 21,
+      "temperature_k": 3.492881319289154e-06,
+      "h": 3.489073561624423e-05,
+      "le": 9.236751031949098e-05,
+      "ground_heat": 1.924308288892007e-05,
+      "gpp": 1.534301201644439e-06
+    },
+    {
+      "backend": "jax64",
+      "case": 23,
+      "temperature_k": 3.482719478142826e-06,
+      "h": 4.9687500919048944e-05,
+      "le": 0.00013155357291338987,
+      "ground_heat": 2.7406228369386554e-05,
+      "gpp": 2.184281790107434e-06
+    },
+    {
+      "backend": "jax32",
+      "case": 0,
+      "temperature_k": 0.0,
+      "h": 4.098368755478532e-06,
+      "le": 1.4854608281211767e-06,
+      "ground_heat": 0.005777110519318285,
+      "gpp": 0.0
+    },
+    {
+      "backend": "jax32",
+      "case": 3,
+      "temperature_k": 0.00021934139635959582,
+      "h": 0.0018617822046849142,
+      "le": 0.000537946579903803,
+      "ground_heat": 0.0011171601438206835,
+      "gpp": 2.166114042290168e-05
+    },
+    {
+      "backend": "jax32",
+      "case": 5,
+      "temperature_k": 0.0002441908523564962,
+      "h": 0.0027330697992340447,
+      "le": 0.0008575446945968679,
+      "ground_heat": 0.0010224603261548282,
+      "gpp": 3.272378383067931e-05
+    },
+    {
+      "backend": "jax32",
+      "case": 11,
+      "temperature_k": 0.00011729725707709804,
+      "h": 0.0016333546294617918,
+      "le": 0.0009330966517211436,
+      "ground_heat": 0.0007275967878541678,
+      "gpp": 6.11768600817797e-05
+    },
+    {
+      "backend": "jax32",
+      "case": 17,
+      "temperature_k": 0.0004625839301297674,
+      "h": 0.007939768307437589,
+      "le": 0.0068137652510813496,
+      "ground_heat": 0.004885225847132801,
+      "gpp": 0.0005334502871789937
+    },
+    {
+      "backend": "jax32",
+      "case": 21,
+      "temperature_k": 0.0005506747853019078,
+      "h": 0.0055890537053571165,
+      "le": 0.014988600067169955,
+      "ground_heat": 0.0030792878893635134,
+      "gpp": 0.00024482734130870654
+    },
+    {
+      "backend": "jax32",
+      "case": 23,
+      "temperature_k": 0.00010517031603285432,
+      "h": 0.0015197255328658343,
+      "le": 0.004034619479256207,
+      "ground_heat": 0.0008306748460711333,
+      "gpp": 7.246213051459449e-05
+    },
+    {
+      "backend": "cuda32",
+      "case": 0,
+      "temperature_k": 0.0,
+      "h": 4.098368755478532e-06,
+      "le": 1.4854608281211767e-06,
+      "ground_heat": 0.005777110519318285,
+      "gpp": 0.0
+    },
+    {
+      "backend": "cuda32",
+      "case": 3,
+      "temperature_k": 0.00021934139635959582,
+      "h": 0.0018617822046849142,
+      "le": 0.000537946579903803,
+      "ground_heat": 0.0011171601438206835,
+      "gpp": 2.166114042290168e-05
+    },
+    {
+      "backend": "cuda32",
+      "case": 5,
+      "temperature_k": 0.0002441908523564962,
+      "h": 0.0027330697992340447,
+      "le": 0.0008575446945968679,
+      "ground_heat": 0.0010224603261548282,
+      "gpp": 3.272378383067931e-05
+    },
+    {
+      "backend": "cuda32",
+      "case": 11,
+      "temperature_k": 0.00011729725707709804,
+      "h": 0.0016333546294617918,
+      "le": 0.0009330966517211436,
+      "ground_heat": 0.0007275967878541678,
+      "gpp": 6.11768600817797e-05
+    },
+    {
+      "backend": "cuda32",
+      "case": 17,
+      "temperature_k": 0.0004625839301297674,
+      "h": 0.007939768307437589,
+      "le": 0.0068137652510813496,
+      "ground_heat": 0.004885225847132801,
+      "gpp": 0.0005334502871789937
+    },
+    {
+      "backend": "cuda32",
+      "case": 21,
+      "temperature_k": 0.0005506747853019078,
+      "h": 0.0055890537053571165,
+      "le": 0.014988600067169955,
+      "ground_heat": 0.0030792878893635134,
+      "gpp": 0.00024482734130870654
+    },
+    {
+      "backend": "cuda32",
+      "case": 23,
+      "temperature_k": 0.00010517031603285432,
+      "h": 0.0015197255328658343,
+      "le": 0.004034619479256207,
+      "ground_heat": 0.0008306748460711333,
+      "gpp": 7.246213051459449e-05
+    }
+  ],
+  "elapsed_s": 89.93162705004215,
+  "source_sha256": {
+    "src/noahmp_clm/__init__.py": "fc1ce6f975d69ddcdf373d1ae5cc9f440ece2ea5b37f557be01ea17a5a42471e",
+    "src/noahmp_clm/clm_driver.py": "9a8c023a2ce08e2001c1aae6dc8276ecd18531ad86d1f4aba6fd411185a20982",
+    "src/noahmp_clm/clm_enthalpy_driver.py": "fb2c6150b47f96010e1407375f2746dea0997aa0cb040b013ee02d62106e08cf",
+    "src/noahmp_clm/clm_state.py": "36f0ddc736454eefa88a0e3a4dec8be3d829d68068ed3851142f75a5deb6d552",
+    "src/noahmp_clm/column.py": "fafe65bb6346e9997526daccd572abe835b9851230f9778e1fcf80b26f3c3abd",
+    "src/noahmp_clm/driver.py": "0a7dbd098c4138e782efa89e6f2f706bd5e8991a383d41b4a77078ca204fe0a0",
+    "src/noahmp_clm/io.py": "75359db7ed005fd8cd89642579e6f22978dfa9ea62d641c62c1ccba3e9d43b93",
+    "src/noahmp_clm/options.py": "a9aab041282c7345fa97ff85eab54e8a2f7c41b4bd9c2884d42264f786c23c17",
+    "src/noahmp_clm/snow_forcing.py": "af4f7961513ddba1ebb104bd6bcae9543c90344edc981c17962a060fad17c0e1",
+    "src/noahmp_clm/validation.py": "2366e21c80f512d46c62771ce388879276ad1adc1d4e8f0747da8aeb67fb492f",
+    "src/noahmp_clm/data/NOTICE.md": "228983f2d0bb5f367ac9d9e0b22c7222145c24ccffe955a3f98fa609d3cb0d45",
+    "src/noahmp_clm/data/snow_tables.npz": "43aaf77afdfec87990c64250418d13db89ebfc66c8e21e5a75023aaa70ced357",
+    "src/noahmp_clm/gpu/__init__.py": "2f51321f7498ab0d57c52b32674028c69bf4ae04a79eeea020ffc0209b721af7",
+    "src/noahmp_clm/gpu/canopy_boundary.py": "3f7e7a02b7432ca69eac68765201f6ddc8e66b11e94cfdc68303e14e143036a2",
+    "src/noahmp_clm/gpu/canopy_energy.py": "8ff923f0dc36507796488e3e6b68ea030f84b04e474efbe56c4680fb3c53e148",
+    "src/noahmp_clm/gpu/canopy_radiation.py": "6e89a92c1906b05ffa5330a934ab46cb65fca8f003c6998db0a32c89c7f8d4b8",
+    "src/noahmp_clm/gpu/canopy_snow_radiation.py": "ee8fec71571d153bbe6eb0e254811552998e647d6ec473ddfd6c8178f09a6a0a",
+    "src/noahmp_clm/gpu/clm_column.py": "15adb013361439d0d67b1e8f89703d9ded6c5fda9df660efe10494051a4f25aa",
+    "src/noahmp_clm/gpu/column_heat.py": "4f79fdd6fd50b11d6e23126253d1b8796a3878d676a762c3c53f3d4a7f5d165b",
+    "src/noahmp_clm/gpu/cupy_core.py": "4de3230585af58c2ce7f61140dc7e248d661ffc8d50f310310584b04a1e220df",
+    "src/noahmp_clm/gpu/enthalpy.py": "c5df399bce9190b053100f23a27a2782b666824c81ce41b5f234514fc69fca32",
+    "src/noahmp_clm/gpu/jax_core.py": "175defb55b5620a2f58cc5693490427e336d49ea033d05442995ed94005e8c60",
+    "src/noahmp_clm/gpu/pack.py": "bcbf555703002d5d8f257c86a5ba3fa52bf700095fbf528f1fc75753ecb6ab94",
+    "src/noahmp_clm/gpu/photosynthesis.py": "824bd62a4cc183f97445e54eb6a166305733062235e10566ce3dc18d6283ba48",
+    "src/noahmp_clm/gpu/snicar.py": "752f0ca1e16d1397f042414cf35f0257e6c4a620b70dc942ec764be86414c0bf",
+    "src/noahmp_clm/gpu/snow_evolution.py": "ef0fe79ffd28d6eeb63ba65831b2907b1f55a572af6058f80f0d88e6abdfd414",
+    "src/noahmp_clm/gpu/snow_mass.py": "7a62379df0d6e57a8926c3a5d6c79b48ffbad630d515e2e5d42df15bc40a1658",
+    "src/noahmp_clm/gpu/snow_vapor.py": "611b2de16cf054b4fbcfb30fceecb14875d7c4eda4e4f665478a38f513074592",
+    "src/noahmp_clm/physics/__init__.py": "4829a19d06683afd1f1d122a78aedd54771bd11d1bcfff6fe68dca112bc47e77",
+    "src/noahmp_clm/physics/canopy.py": "64000e7c6f3a8b7e2e9b71bae92de15408b1529993f2e2388a305062f621784c",
+    "src/noahmp_clm/physics/canopy_column.py": "e10cea2ec04facc379a38db3196216c290091f1c81e5210f35466cfa778d3f45",
+    "src/noahmp_clm/physics/canopy_energy.py": "7efe7d8e6da3146df3ae3b45619ab3def31c8b85805fa1dc20eee96044d723ce",
+    "src/noahmp_clm/physics/canopy_radiation.py": "7be76a325078bf5097a9f11d902b2dd81ab3fc4eb5be0790c377e89433c4479f",
+    "src/noahmp_clm/physics/canopy_snow_radiation.py": "1c081ea3c55aad02ee3612796863975974ef7f5d5fd2498b6467447d679242bf",
+    "src/noahmp_clm/physics/column_heat.py": "22ca998dfc7bbbdff1a15c3cc70fb94463dcc176688bc1fe8b60d4087223d968",
+    "src/noahmp_clm/physics/energy.py": "6ded840225f8d6b6b96d3821c2dd44dd4e15be8d9ae328b9262f62bb543e7789",
+    "src/noahmp_clm/physics/frozen_soil.py": "b14d3a3ea04e8fded6d7c8b0a9947c2d2ad6a6c2946f035eae0ccc98804bfede",
+    "src/noahmp_clm/physics/ground_evap.py": "f1098753a3daaad31837e14a31896304daa18a918643e8c9f4a35b673018b9d5",
+    "src/noahmp_clm/physics/photosynthesis.py": "fcdc24145faefca68581c3ddcbcc273e65e9672b68898dc28fd1a5dfbaa249f2",
+    "src/noahmp_clm/physics/precip.py": "e527543911deb01f911b3090f7ed204035a7ef6b6cff2c873ab0bcd584462713",
+    "src/noahmp_clm/physics/runoff.py": "49d9da69cf8058f0d94d2d1f84087748c93bc2fee68ec96893a32d6f36c11ee7",
+    "src/noahmp_clm/physics/snicar.py": "f9db89e46ad8157242f10fdde5b661f5f4d33787419d721bb5c39c5531fa2a0b",
+    "src/noahmp_clm/physics/snow.py": "8e0deb92e23e2e54bc0b2ad0d3e55500baea4676549204e58113b1333f5bd156",
+    "src/noahmp_clm/physics/snow_evolution.py": "2640843df991866f6b2d2e5f829a7c8e9dc0de5af446f4425e7547b6dd7a16ef",
+    "src/noahmp_clm/physics/snow_heat.py": "366e5fc2b00878291ddd961c168b019dbe4943ea843ba4bc8039ec058eae6027",
+    "src/noahmp_clm/physics/snow_vapor.py": "3800880dc33ef6d714f7f3d8cc2de3fe960b45f0d5595de024e5c82ccaa790cb",
+    "src/noahmp_clm/physics/snowpack.py": "f3e0d77b9ae917f4dd048ec4671a14d861ba36e6350625977f74e31f84c76d6f",
+    "src/noahmp_clm/physics/soil.py": "cf0a2d2f8fc5ec5b81de40c11185bc918483f1f3e122dbf3c41414be395db6ac",
+    "src/noahmp_clm/physics/soil_drainage.py": "885899506775d0e0b931f9d6df50210fd38ec823671ff5d6182400a0da7ce0de",
+    "src/noahmp_clm/physics/soil_enthalpy.py": "b3b60feda7ecc497f73ed12fc4262322e68c59b89413523156869dfc12b4e3eb",
+    "src/noahmp_clm/physics/soil_uptake.py": "c9690f055b35debbe13e142b8105f553b84ed76e06bbc40f639c4f66cc8fdf41",
+    "src/noahmp_clm/physics/stress.py": "886f0534f40385646ab76569504265245a117a4ba325b11e1404f0a1d7410ee5",
+    "src/noahmp_clm/physics/surface_drag.py": "103eca679ca051d006b1220c7a0e922d29dab6c8014130b68fbf1e8249af1deb",
+    "src/noahmp_clm/gpu/cuda/__init__.py": "a3c54d81224c54fa57c6ef20f0b1f47b90dce1adba7df13a3623f6c12d43f767",
+    "src/noahmp_clm/gpu/cuda/build.sh": "0426e4cea3e3f15524f4f9ae0ae44cf02b5024eb7b29876b9dd4ad017257eedb",
+    "src/noahmp_clm/gpu/cuda/canopy_boundary.py": "94ad4f83ec00c38f4719cd29d9dee47f4a01b0e22607b8d879c26c5bbc5ca3c8",
+    "src/noahmp_clm/gpu/cuda/canopy_energy.py": "5036f2f27ca4ff1819e041fc66356132af5953f22cd7ff8587faebea6c7ed1dc",
+    "src/noahmp_clm/gpu/cuda/canopy_energy_kernel.cu": "b64224fc0cba1440f12bd772b69f3341176a40cc263195442484467d925b3643",
+    "src/noahmp_clm/gpu/cuda/canopy_radiation.py": "dd5515d50cdaaa016e93755a3e8af813cc2d37a49fabe844a83f38c1afdd8c58",
+    "src/noahmp_clm/gpu/cuda/canopy_snow_kernel.cu": "825fe5d050221927507122beca2736a06643d38555665e123d5a35607bfbcca0",
+    "src/noahmp_clm/gpu/cuda/canopy_snow_radiation.py": "50de73b136df20250c8328f7670867bb53127188836d2d4c0f8fd01241aae0e7",
+    "src/noahmp_clm/gpu/cuda/clm_column.py": "7061e89df911ca609cefedd96a9e1c1d6fe8b3dee3916377fad6a56b0db59a64",
+    "src/noahmp_clm/gpu/cuda/clm_column_kernel.cu": "44843c3c5b6517ee78ac093b970a3a75b5230d85f4e38a33dcb9009b0e410134",
+    "src/noahmp_clm/gpu/cuda/column_heat.py": "b4e532954a1a9737c63c44f859d12a4f36787ef13519a8d72e28662c0f02bc12",
+    "src/noahmp_clm/gpu/cuda/column_heat_kernel.cu": "7050856a3d0ba4d0ac5b3ab887abd668876507890a27e2a7954d108045345746",
+    "src/noahmp_clm/gpu/cuda/column_kernel.cu": "b7d4ebbbe513eb22304ad2d64f65167aee79416deac172ca2a326e949e373c9c",
+    "src/noahmp_clm/gpu/cuda/enthalpy.py": "93e629f1d6f3d8b4ca2b77ceda5ec16c7abea8294814c81b51fb360649c5ad34",
+    "src/noahmp_clm/gpu/cuda/enthalpy_kernel.cu": "cf9230361e5bd4eca1470bbfb3993f63534a7ca48f663c4eae369a6ebfc61d9c",
+    "src/noahmp_clm/gpu/cuda/leaf_kernel.cu": "9e46aa399c97ffd7cd73cbe571cd402de678fb7716fe125deb585c7271046ea5",
+    "src/noahmp_clm/gpu/cuda/loader.py": "ee5846de2b9e448623b26a9c9dac115ea2e916c5d39aee96ba3a8a80cb7cff4e",
+    "src/noahmp_clm/gpu/cuda/photosynthesis.py": "fc851e22825cb456fa73cbb396b8d4413d63a378158f00e87ce612af1819d62c",
+    "src/noahmp_clm/gpu/cuda/radiation_kernel.cu": "67358db2fbfe6550367d680888a1f891c1fd1ab153aee16dc3c30b1f7951e002",
+    "src/noahmp_clm/gpu/cuda/snicar.py": "5de6db166c10736468ad3b906245e4207e7424804d9a7a7492d0561f2a0ce901",
+    "src/noahmp_clm/gpu/cuda/snicar_kernel.cu": "65f4452a516c2f3edb86ddcb5c6b76c70dd552ca0049e2b6a69890272240c1ac",
+    "src/noahmp_clm/gpu/cuda/snow_evolution.py": "4121fc53f67c27811862d11ff6fcda19a72ee5a00ff678a6439feeb6a6073539",
+    "src/noahmp_clm/gpu/cuda/snow_evolution_kernel.cu": "e976235f875308b919c954db6d1224825163bfe10818d9a24172e02c9d792006",
+    "src/noahmp_clm/gpu/cuda/snow_mass.py": "3956b590b9521580d67d3c03510d0b3b2a9a8f908d830aacaea2c74d1dc52f48",
+    "src/noahmp_clm/gpu/cuda/snow_mass_kernel.cu": "087106187168e6beb4c8223fac818b05a797ae952ba0d1139f9ab00336f13668",
+    "src/noahmp_clm/gpu/cuda/snow_vapor.py": "3db51211a501ca7482c398d0a6778319221b4c8ea7023e8e97b68aa64b2d5775",
+    "src/noahmp_clm/gpu/cuda/snow_vapor_kernel.cu": "b475fd6ba0d0f6f6edf3b5d058dfdeb722c26e63132f38a884611ba7f8f822f7",
+    "tests/test_canopy_column.py": "f45f7a2a9629df80720669111e716d3481599e0eeeff7666ea92e537ef3ebefa",
+    "tests/test_canopy_energy.py": "0bd64fc5ee15d10e2d780c4cf04dbaedc2b8910dfaadc158cc60d155c0a716b4",
+    "tests/test_canopy_radiation.py": "72e5f7b7abfc348ec2957268a7af17f7dab2ab7b0c9c3d87580b852cd6e2b126",
+    "tests/test_canopy_snow_radiation.py": "73a157728089440ada9f5bd8e449a02f4bbbc0044f051817ece366e45021e18c",
+    "tests/test_canopy_stomata.py": "cc9d5f246af811614d3ecb1cbd127993f85dc3f8359bd1a3e7385fcef59350d7",
+    "tests/test_clm_driver.py": "a6ff15e1b9a5f6e8d3e64898485e20f6fe4b1d6262c27172992993069575e2a6",
+    "tests/test_clm_enthalpy_driver.py": "a2602f6825ccc7ce4b2f2087f1f24c89c60a3fce496be50434b094fffab33a25",
+    "tests/test_column.py": "bd1ddc046bf18b1d318c806d1c6b05987f9fe529aec4947902e84db34da46f1f",
+    "tests/test_column_heat.py": "c6b5665a12d73d1b82b906ecfc30c865f53cb82aed6f528b4b218261c511663b",
+    "tests/test_fluxnet_loader.py": "868cd0695a5a105e5f1205eed462f3adac66eb51e2ab411948f1b1c3674d1557",
+    "tests/test_frozen_soil.py": "fc9d0855963c9024459cb2c735390e99114c2cdb8a8339110f1443e9a1747b23",
+    "tests/test_gpu_batch_shape.py": "1838004958d74b1cbcc656c0344807f2064c5b7ecea2bf980cedbed6b48557c3",
+    "tests/test_gpu_benchmark_checksum.py": "2db4d3035e532883dd8148f60bc45917a86a65bafebe09a7b6db31d2b2bd5a46",
+    "tests/test_gpu_canopy_boundary.py": "0bde28328ecc3b83a650aa70c397155c5207835c7a2492a414ef0063a19838e3",
+    "tests/test_gpu_canopy_energy.py": "31efe43e81d6ca026ebd74c1d8cf21f8fcc07d325ade8400265a53a11bc54b76",
+    "tests/test_gpu_canopy_radiation.py": "8ccbfed9db08aeae751e845ecc45ef2c007965d61df21af0ceb5cbaaf60b7774",
+    "tests/test_gpu_canopy_snow_radiation.py": "7fa28568d293fb3c7dfb87ef1b5ed5af7d9b7672c2647fcc5df6a032486bffce",
+    "tests/test_gpu_clm_column.py": "d633116266cf7a07f70e32922dc9b07167635a6407f34f68ee849da531eca52b",
+    "tests/test_gpu_column_heat.py": "b4877a4b1c7988aa73e210f82b8fb5b5324f6b1cfb96ced6413e1995e46313b9",
+    "tests/test_gpu_cuda.py": "478577b26b4a062f1099ec9c7609b1064585a8aa657b386e5a8d1e706b3d2b71",
+    "tests/test_gpu_cuda_inputs.py": "a637c8c7ce17d59963c65bf6fa9c9a2e31b6d617fe3c0d9644a8e63f0810a60d",
+    "tests/test_gpu_cuda_options.py": "e993ee8a019295db76871532670bc426f3ea008892d561be21b6576f3bc70d2c",
+    "tests/test_gpu_cupy.py": "c5cf61e007cfeb5089a2a5f808ffe5e7c6a50428d633ba00dd424c39070f6344",
+    "tests/test_gpu_enthalpy.py": "e945e77372317837fb6056bdc3afae5368a39fd43b1dcfb2e844a3b23c62ae19",
+    "tests/test_gpu_float32_parity.py": "cc939ff188ec8f3130e3a55667a8e07c2afea2bcc4f879496420503f5d5518c5",
+    "tests/test_gpu_jax.py": "42a4a7f610ed45c4840b0cb86ab765571292120b4606a21815a8023ff3ab652c",
+    "tests/test_gpu_numerical_components.py": "82e0d1b5f9780b367c11af28dcbe3497bb3a7350b79623696bf21349518b105f",
+    "tests/test_gpu_pack.py": "7a757a43d8cc98b09b07adcc7a0d6b2c6ae9b12c28815e9ae6235ab0f3ed2a0a",
+    "tests/test_gpu_parity.py": "ae23e3198ad42bc748bc957f59f0aae12c3a957b103540e74b11bc2411c1ff1f",
+    "tests/test_gpu_photosynthesis.py": "b4b01f29ad69242afe8367c1b352278d201b0e896d9afd7276cd2218625074e5",
+    "tests/test_gpu_snicar.py": "16b52f9f9395daec5cd892a7f35ad4156e8392406cd9af2a9f297f644db5f5bf",
+    "tests/test_gpu_snow_mass.py": "8c212e4308cb8cc78a4240d6e8e80f7b780e9f30512e21da1706ee1ebbaf396b",
+    "tests/test_gpu_snow_processes.py": "bed858524bc702fb646e082d2f46f257f5c5b9ceb5f6cc91f6e03ca0a4c1f472",
+    "tests/test_ground_evap.py": "2bf577f1207cf9fbef72f2a867918e7d45249ef20acad547b9b23b6490eb3906",
+    "tests/test_multilayer_snow.py": "b1875e1e27b2615e5b269797903646c46cb3f4cbb7370ef44cb077090c952f0e",
+    "tests/test_numpy_benchmark_checksum.py": "c91d55313bfc05f20d07e7cd3943e1f5972148f2f12095bac68971d61aff1313",
+    "tests/test_options.py": "ca776bc0a8148199e8828c7870fbdaa45978afba0ac39273a1051f49cfcfcf3f",
+    "tests/test_phase_regularization.py": "0379206d8ee025b846926b2dfbe8c9c81a5ec97c44d8da70565bac121bd6a7b1",
+    "tests/test_photosynthesis.py": "709811a6656dfa8ac8ffb1759eb4936d337f13bee418008ebd6db217a8a1e37c",
+    "tests/test_precip.py": "f92d97ee88fc5eaaf0207edcc82be8b1f589efbfb3868e03431cc71e8a81141a",
+    "tests/test_runoff.py": "cc7595ab9e74defd81364a238230a3586ae89c213719fa2b2aa446303480a5ea",
+    "tests/test_snicar.py": "7c77e9d022aacf54a4a9a1bd6ea93d5612a89429929ae80790ce43edfe8ce446",
+    "tests/test_snow_albedo.py": "74732e8768165a32fe0177a15f69776df846997d7f0f56835c026c215249632c",
+    "tests/test_snow_boundary_coupling.py": "9a01a79d1c5acfb6579e36a11f0ae4cc7fda2fbcfda17172b2f7c5b3a171c6c8",
+    "tests/test_snow_compaction.py": "133f2ebd3272813a695e45436655b24481fe45dc936b999b07821685a72291b0",
+    "tests/test_snow_energy_routing.py": "91bcb7c72ffc6d10d9fcc48b86db8cad2eec4f3cbf75016a76071672711ae7ff",
+    "tests/test_snow_evolution.py": "8615203bf7f1b5426774b46192df7e512be4f1fc255b33a7f80877f466ccd69f",
+    "tests/test_snow_forcing.py": "000ee9177e39747d3fa36f066512fff55573ab2df95fece687c09ee6dd1c0dd1",
+    "tests/test_snow_heat.py": "14aab904766e283afe5e3f22799cc015eafb99a8e3ab2882c800b0d0371c3bde",
+    "tests/test_snow_thermal.py": "fc25eb540ac966cbaba9956f42023ffeb07f826c6ae308d4ac43dea75846eed6",
+    "tests/test_snow_vapor.py": "b27e7b03d0e84fd2a7daa249fa75795241dae0e87ac62638c592f8e09aac6f7f",
+    "tests/test_snowpack.py": "ebedabc80937154962b844b605dc73e67ef69ea07fdf7ec836ab85d6a8ca12b6",
+    "tests/test_soil_drainage.py": "c254c3ead23b2f1bc3598c42ee67eb20c1e44d15db702ab3a2e855bf82f1bb44",
+    "tests/test_soil_enthalpy.py": "b933b2af76d1b33e032abb9cc77aec791e3f316724bd0b8845fea21c20ba56e9",
+    "tests/test_soil_uptake.py": "b3cd7f49916ff64b21d86fc64afb2fc449256c740121699b76432e3034f03d4e",
+    "tests/test_stress.py": "753effb843eb42afe83d86d6fe09796a9185b93d03be739312ad410e3d15ab74",
+    "tests/test_surface_drag.py": "8658e24b8bff0d85c1f5c7301582c3c5993a1b9575790f53364542a59661c4c1",
+    "tests/test_surface_independent.py": "a9cd89d751824ceed485a6ce0bb68655fa82dec4c5ac96aaa9c00b26714ea1c7",
+    "tests/test_validation.py": "953675779468312a399479be65e3c2bc61d18a3be4de38401cd20fa293a1f0ce",
+    "tests/fixtures/annual_thin_snow.json": "90b66f5d066cbfe8683ddb8a57f9826d9a80ef10314c2dae98083a2567a2cbc3",
+    "tests/fixtures/canopy_thin_leaf_boundary.json": "56182929142b76a9ce399450c4a1a20d559e65e069c3af69189e82c052baacd2",
+    "tests/fixtures/column_phase_boundary.json": "737005d16ce3664899e9b32e4477c4f069819b4fdee185822e444d41457aa070",
+    "tests/fixtures/gpu_batch_shape_column2.json": "288e8f7eeb9fa6574297406a254b715d707895e03c1a4d00281e8cbb701e15fc",
+    "tests/fixtures/heat_merit_phase_events.json": "9c328ed2d48108f023b31c81deb1a173a8e03a424d790800edbe56552906714d",
+    "tests/fixtures/k3_phase_causal.json": "f8a23e40093b14e11b526073195a6702962a99b179466f61973368bc3c1152a3",
+    "tests/fixtures/leaf_clm5_equations.json": "2fa0598526154c5d565e5a1b83c90166b700f8149c0d60543750e8b0fe667506",
+    "tests/fixtures/leafweb_c3_grass.zip": "936cff54c647e84bb4fc59e380c6d234888f8e47722635b00d24e55068c83cd5",
+    "tests/fixtures/snow_melt_tracer_exhaustion.json": "23cc02a3648bf1a4cba1dd021311926c95902813ee965c92fbc1c91866313dd4",
+    "tests/fixtures/snow_weak_absorption.json": "adeb0034f75da23faa5480f40c43de890a7f6acb3bbfc7b3f6098b84a9870d2f",
+    "tests/fixtures/surface_soil_frost.json": "2dc1cf4a2ecb0afa73881f20bfc35de1937a5f554cf13ee6b4108dc4e9450cfa",
+    "benchmarks/attribute_closeout_canopy.py": "8895903b7c57c320289053147eed15cc534b8bd833de0d9705c94f732be40df1",
+    "benchmarks/attribute_fluxnet_canopy.py": "0a902451ee2e9fba2fa7e2a829dadffadc2952a6df943388582a38f3f92148aa",
+    "benchmarks/audit_fluxnet_matched_inputs.py": "c6c8c5077b65e0f608daad791d13e5a151c6897467e2a6ab8eb0d9a9dbc937dd",
+    "benchmarks/audit_gpu_timing.py": "218daa1a84be89821f182770eee1521123a7046e95b4b6d6c006d9117910c981",
+    "benchmarks/bench_cuda_occupancy.py": "582cce47345053e6da6f8d6a60f3b53ff772c95d834a82970d2ba70fda1ed1db",
+    "benchmarks/bench_gpu.py": "6a6e0043b48b3d65633dbb0fd6498b32644587e81a57f7acc69497ba4765afbb",
+    "benchmarks/bench_gpu_scaling.py": "f27c07df7936cbf9f0bd7eb4b261d7f22b0581eb131aab9ba78e18e8f08064eb",
+    "benchmarks/bench_numpy_parallel_repeats.py": "8370d2d75fb8f31c00f4eefc91367a4e2ff84af60adf3b98fe1c5b2d389678c2",
+    "benchmarks/check_annual_gpu.py": "86c3f4be31bc612bdd11b5d8d747239efabb5af5e36c00d1e19c79888eebfd2b",
+    "benchmarks/check_annual_numpy.py": "fc0143ea3e5a2b9c9c88ae71b46b22c43840793422b6843e1f8da38ac2bc4793",
+    "benchmarks/check_canopy_boundary_gpu.py": "1b57f70e16b487884bc94d282bd8cc46885c06f571a031da5d2f2f5f3965eec4",
+    "benchmarks/check_canopy_components.py": "52f62481be20d55e6ce0f6dfb477f0e9292ebc70d1040416b2a2da131314cdbb",
+    "benchmarks/check_canopy_energy.py": "0fa50015a9573038865c6cb87b57cde1bedbae795d3a4ab1d9311bb6ed1dbbd1",
+    "benchmarks/check_canopy_energy_gpu.py": "098de4c1cfbf26a14e3d9b854a00994a95dee47a51c7e86c2b863a42209b3760",
+    "benchmarks/check_clm_column_gpu.py": "ba0f77a4acf183a31b96baf888e1f6ccfb7eddc6571263ec043b0e0d803438bc",
+    "benchmarks/check_clm_coupling.py": "b05edc942e141d792cd78f152697a4c931c4fc5a13fb276fd43930257a489a6c",
+    "benchmarks/check_clm_enthalpy_column.py": "32afd5ffdb1a98f87bc0dd172604ffb7162a4c3f849b9b7b6777651f885d1f99",
+    "benchmarks/check_closeout.py": "217672d1fbcc1778dfdd352d25d7148680e82a9e4195d008494cb5aa91e12427",
+    "benchmarks/check_column_enthalpy.py": "9205d5e4e25c89fbb25862136bba914f78e61a08bef1698b87f2413805132998",
+    "benchmarks/check_enthalpy_gpu.py": "a155e92e1ce0c62f9a8a14dd3a0a3c01f6ce56a18916be875bd7096f442972c4",
+    "benchmarks/check_gpu_extended.py": "b55f21e9923bf2f4aa88fadd3ad8eb8e7898089fc1dee15753e81236ff9c9ff1",
+    "benchmarks/check_gpu_options.py": "0dba321995158a40b424e332c82d5a1cbe43442e2e68099315b683fc841a0c14",
+    "benchmarks/check_heat_sequence_gpu.py": "c0582db9bbedf2bb4e79bee2e641242a4d820d468d123190602cfa2da3e5be50",
+    "benchmarks/check_snow_mass_gpu.py": "89f5c5135393a9c5159152cba1888be1d7fac846bc8de306398c132eb3d64c27",
+    "benchmarks/check_snow_numpy.py": "a00912f77f081450f208b8b3e117d7f2f521594d09b0634981834e4413b0f63b",
+    "benchmarks/check_snow_process_gpu.py": "eff98920997d5f8df2c26e5701abd1f0edc360af1b2fce43582ac4a6156c151b",
+    "benchmarks/check_snow_radiation_gpu.py": "ab1071fdf018ef3f873e92f50f4aead627ef0a9e184c1ff8a92ee5764a5bf36f",
+    "benchmarks/check_surface_reference.py": "6bab7c196f108a27c7673da6c1939b4a2b13b9408f062396d3ffbad3e0ea22ca",
+    "benchmarks/check_v1_p1.py": "f08917ea57886668a45f279974e1faf5803e9972bf8eb630c3f3547579e764fe",
+    "benchmarks/check_winter_boundary.py": "97207db97e2d33a8703c6ca99b5359fe01bcadd608cee1ceaec2aa259de2aae8",
+    "benchmarks/closeout_criteria.json": "27b57f167d58d2513a233603ce77aefaf7a4fb40d2119da6a83ba1119bd59e57",
+    "benchmarks/evaluate_leafweb.py": "109dbff5a341ba03cc3d9b77ee6deeb2acf76264f1d3e77c57496f2f5a17cca5",
+    "benchmarks/forensic_gpu_domain.py": "1e6aff81df0ee5b40024f717841c8e997ff9d19accb5c955cb77075175742fb7",
+    "benchmarks/forensic_gpu_residual.py": "8fcf7c863c975721e12a4a274ef8fc4a5627e36e6a24a2f178783a111aef9136",
+    "benchmarks/gpu_checksum.py": "2131570dfcd58ec2a8ea75390023106a50927c086074ce252165c052b89a96e7",
+    "benchmarks/package_snapshot.py": "5fb5e0616aff1bf8f033f7a2a49b861bc4bc5ec1d26f292b5694afc54e2600fd",
+    "benchmarks/prepare_snow_tables.py": "f05c135013c2935b206bb7896db69c1862785a9485ccedde9ccf1d29fe297370",
+    "benchmarks/probe_annual_failure.py": "cc3bc1ecd78fd8bb63f8eb8fec1e74b0db576a971002a6c14ac29e55c1918c59",
+    "benchmarks/probe_canopy_energy.py": "a8616739ff5ee3458fdb5562e42ead5e0f2762a61475238fa668f7cfe65a1913",
+    "benchmarks/probe_canopy_water.py": "59799e9fd0e5fe3ffde69b2b52bb26521d55d2544be30acba04b275f06871443",
+    "benchmarks/probe_clm_column.py": "30903a4d5b566a8060664e29069d8c3ae6e8e27de36736a574516eb89d9cd205",
+    "benchmarks/probe_cuda_option_residual.py": "96dd6e5c1111b1ea2298263a3cd3ceec1261286b934a3044fef0fb41d1c23ed2",
+    "benchmarks/probe_float32_residual.py": "b5ee2c7b2f55eedf554fa5320aacd1e15255883ea75e42805b0a1c12e0adbbec",
+    "benchmarks/probe_gpu_barrier.py": "cb909ffc9970fa7d522e45395db4cd408892d7b7776db8ef0f0bc03c91c4c2fe",
+    "benchmarks/probe_gpu_flux_math.py": "4f6316a4d2b917278e85dc2685b37eaadbcec3a0a1f6b703e7ddca945a3efce6",
+    "benchmarks/probe_gpu_most.py": "cb866f15a71fefad2d2ae68926538610c777184c3ae300d059fb6d79b875cf43",
+    "benchmarks/probe_gpu_numerics.py": "0b83cb5a9be8c1a1bbf8e6aa04920e76bde6adfd6606eb4a72b7d7a1785a56aa",
+    "benchmarks/probe_gpu_scalar_math.py": "14fff22d58cefc31b59d059b78ab7be3c8ef28a0198bfbb05927070d94ebc850",
+    "benchmarks/probe_gpu_stages.py": "a650a06a712efc03445d760c302ff9cf358dd8e1f7ab609c7917ddc9784402ed",
+    "benchmarks/probe_gpu_trajectory.py": "94c987c853ff15417a50867efe093d06da986f38bdf17c11fc173f445b4113ac",
+    "benchmarks/probe_heat_audit.py": "73cf480b4c4cde73d68717cab11aba249f0fdceda85449e1a49a326258d5fef2",
+    "benchmarks/probe_joint_heat.py": "6d77843e74491230bf9a667e4e5a06d99fa7779b2e41b3691af1e18778df5b50",
+    "benchmarks/probe_leaf_arithmetic.py": "1b769fbc7bb9c8817e32085bf7cb9517b9b51ae2f21c56cd886195926b978d26",
+    "benchmarks/probe_mixed_secant.py": "59e3665f99001bb06d5fffa417c142ae1c12baf1183c77e4f0c705f9062b24db",
+    "benchmarks/probe_radiation_arithmetic.py": "6a1145243f9fa8b1d7c8c9b8537f3aa0518af70beae7a833c7a19e55332a7e4e",
+    "benchmarks/probe_snow_absorption.py": "41f9668309e28eba868314fd77b6e4361b336c79cc6b190180d0897a5600c268",
+    "benchmarks/probe_snow_aging.py": "b60c89c90aea2eb968595a63b0884505df43790d6b3c31306de9b80b7efd7ce9",
+    "benchmarks/probe_snow_boundary_gpu.py": "d4855ecc46b69929971c65116beeae964076827c9f7cde027474cf9c8c9b6f6f",
+    "benchmarks/probe_snow_coefficients.py": "268d336293a88160e93cec38dc40299c5ea4fa294bf75a2715393f124eb54486",
+    "benchmarks/profile_cuda_kernel.py": "6ac16f359965fbcb1d9fbb1ccd7cdea8a20a35043926c260d6b769438b72dad0",
+    "benchmarks/profile_gpu.py": "afee0fddf742925e528034c0fff335a110dfe6d2238852b2ed48fed10aed37f5",
+    "benchmarks/reference_leaf_table.py": "c5786aa6c0044d3ecd1824e58c001ba873ac2a6015c9e10b67345a95c57c2926",
+    "benchmarks/report_gpu_precision.py": "ac3e7a26c33726e0c3eecc7b3b6bc0a1a802951be3a44ee7faa7b839af7ab6fa",
+    "benchmarks/run_cpu_batch.py": "81d8fa7884da9c90aa3ab51b6e0ef8b4a2c62601820276412ba4318543c7c0bb",
+    "benchmarks/status_v1_runs.py": "bbc39a62728f7a4f33155d17594d60aabc10cd1c99307f9f14267bcd573091fe",
+    "benchmarks/summarize_clm_column.py": "0620bfcdfd20e490575bb8c021e5ca94cdace9985f8f5c47152ca1e55d1cd235",
+    "benchmarks/summarize_v1_domain.py": "ea3e16b8a359f39946253bfcf03b7cd5c68402e691f9a86f55677690a0de530c",
+    "benchmarks/time_mixed_secant.py": "9243c0b72190be33ec39906c4d13fc5ccbf4c669ec8f570f3ae2eff1cccacc63",
+    "benchmarks/trace_heat_merit.py": "25fd542e39100f033c14e1b4e9d616691e3d3420b10d9216e94ceadd07498922",
+    "benchmarks/verify_v1_annual.py": "818379b5c1873720afdaa95568360b60fdc4cd0d5de4df2379a930125891fcfd",
+    "benchmarks/ehpc/mpi_two_nodes.pbs": "4175018fa161023832cb8853357978e8dd58c7394de03f55263c7062c548a7a8",
+    "benchmarks/ehpc/README.md": "0a5f0f24c4979c85e53ebb9e456c2ae8505bd7150e3d238d058390480d5eb16a",
+    "benchmarks/ehpc/serial_pool.pbs": "fb7cbb0b5d28341f49a5b45b92f3566d640b09b1f80a6d7ef596a59c5664ca41",
+    "benchmarks/ehpc/smoke.py": "ca0b4bfb88e1b23638a610c378d05d3b95b899925cdde97a7f04c2130321d177"
+  }
+}

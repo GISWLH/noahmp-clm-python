@@ -6,13 +6,14 @@ from ..canopy_snow_radiation import validate_canopy_snow,unpack_canopy_snow
 from .snicar import _tables
 
 
-@lru_cache(maxsize=1)
-def _kernel():
+@lru_cache(maxsize=2)
+def _kernel(track_absorption=False):
     import cupy as cp
     source='\n'.join(Path(__file__).with_name(p).read_text() for p in
         ('radiation_kernel.cu','snicar_kernel.cu','canopy_snow_kernel.cu'))
-    module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false'),name_expressions=('run_canopy_snow',))
-    return module.get_function('run_canopy_snow')
+    name='run_canopy_snow_stable' if track_absorption else 'run_canopy_snow'
+    module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false'),name_expressions=(name,))
+    return module.get_function(name)
 
 
 def run_canopy_snow_cuda(area,cells,counts,inputs):

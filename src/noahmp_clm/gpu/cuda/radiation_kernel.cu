@@ -1,13 +1,13 @@
 // Ten-layer two-stream component, independent of the NumPy and JAX code.
 // NVRTC device math is built in; no system includes are needed.
 __device__ void shortwave_device_albedos(const float* lai, const float* u,
-                                         float direct_albedo,bool separate_albedo,float* out) {
+                                         float direct_albedo,bool separate_albedo,float* out,bool track_absorption=false) {
         float beam0=u[0], diffuse0=u[1], ag=u[2], mu=u[3], refl=u[4], tran=u[5];
         float k=.5f/mu, omega=refl+tran, back=.625f*refl+.375f*tran;
         // Explicit .5/k == mu avoids a second, separately rounded reciprocal.
         float beta=(1.f+k)*mu*(1.f-mu*logf(1.f+1.f/mu));
         float a=1.f-omega+back;
-        float r[10],t[10],su[10],sd[10],bt[10],beam[11];
+        float r[10],t[10],su[10],sd[10],bt[10],beam[11],da[10],ba[10];
         for(int j=0;j<10;++j) {
             float width=lai[j]/1024.f;
             t[j]=1.f/(1.f+a*width);
@@ -16,13 +16,22 @@ __device__ void shortwave_device_albedos(const float* lai, const float* u,
             bt[j]=1.f-intercepted;
             su[j]=omega*beta*intercepted;
             sd[j]=omega*(1.f-beta)*intercepted;
+            da[j]=(1.f-omega)*width*t[j];ba[j]=(1.f-omega)*intercepted;
             for(int iter=0;iter<10;++iter) {
                 float den=1.f-r[j]*r[j];
                 float nr=r[j]+t[j]*t[j]*r[j]/den;
                 float nt=t[j]*t[j]/den;
                 float nu=su[j]+t[j]*(r[j]*sd[j]+su[j]*bt[j])/den;
                 float nd=sd[j]*bt[j]+t[j]*(sd[j]+r[j]*su[j]*bt[j])/den;
-                r[j]=nr;t[j]=nt;su[j]=nu;sd[j]=nd;bt[j]=bt[j]*bt[j];
+                float nb=bt[j]*bt[j];
+                if(track_absorption) {
+                    float nda=da[j]*(1.f+t[j]/(1.f-r[j]));
+                    float nba=ba[j]*(1.f+bt[j])+da[j]*(sd[j]+su[j]*bt[j])/(1.f-r[j]);
+                    intercepted=intercepted*(2.f-intercepted);
+                    nt=(1.f-nr)-nda;nb=1.f-intercepted;nd=(intercepted-nu)-nba;
+                    da[j]=nda;ba[j]=nba;
+                }
+                r[j]=nr;t[j]=nt;su[j]=nu;sd[j]=nd;bt[j]=nb;
                 if(omega==1.f) {t[j]=1.f-r[j];sd[j]=1.f-bt[j]-su[j];}
             }
         }
@@ -46,6 +55,7 @@ __device__ void shortwave_device_albedos(const float* lai, const float* u,
         float total=0.f;
         for(int j=0;j<10;++j) {
             absorbed[j]=beam[j]+down[j]+up[j+1]-beam[j+1]-down[j+1]-up[j];
+            if(track_absorption)absorbed[j]=da[j]*(down[j]+up[j+1])+ba[j]*beam[j];
             total+=absorbed[j];
         }
         float ground=separate_albedo?(1.f-direct_albedo)*beam[10]+(1.f-ag)*down[10]:(1.f-ag)*(beam[10]+down[10]);

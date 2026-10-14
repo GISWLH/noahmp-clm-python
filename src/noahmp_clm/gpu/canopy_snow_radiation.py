@@ -25,7 +25,7 @@ def validate_canopy_snow(area,cells,counts,inputs,xp):
     validate_snow_optics(cells,counts,snow_boundary,xp)
 
 
-def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table):
+def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table,*,track_absorption=False):
     import jax
     import jax.numpy as j
     from jax import lax
@@ -39,7 +39,7 @@ def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table):
     af=j.stack((response[1,0,23],sum4(response[1,:,23])))
     beam=s(s(.5*sw)*s(1.-diff));sky=s(s(.5*sw)*diff)
     canopy=jax.vmap(lambda band:shortwave_kernel_jax(area,j.stack((beam,sky,af[band],mu,
-        j.where(band==0,.1,.45),j.where(band==0,.05,.25))),ad[band]))(j.arange(2))
+        j.where(band==0,.1,.45),j.where(band==0,.05,.25))),ad[band],track_absorption=track_absorption))(j.arange(2))
     bottom_beam=s(s(fv*canopy[:,20])+s(s(1.-fv)*beam))
     bottom_sky=s(s(fv*canopy[:,31])+s(s(1.-fv)*sky))
     snow_boundary=j.concatenate((bottom_beam,bottom_sky,j.stack((agv,agn,mu))))

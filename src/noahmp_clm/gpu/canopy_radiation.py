@@ -14,7 +14,7 @@ def validate_shortwave_inputs(lai, u, xp):
         raise ValueError("Unphysical radiation input")
 
 
-def shortwave_kernel_jax(lai, u, ground_albedo_direct=None):
+def shortwave_kernel_jax(lai, u, ground_albedo_direct=None,*,track_absorption=False):
     import jax.numpy as jnp
     from jax import lax
     beam0, diffuse0, ag, mu, refl, tran = u
@@ -34,9 +34,11 @@ def shortwave_kernel_jax(lai, u, ground_albedo_direct=None):
     beam_t = 1.-intercepted
     up = omega*beta*intercepted
     down = omega*(1.-beta)*intercepted
+    diffuse_abs=(1.-omega)*width*t
+    beam_abs=(1.-omega)*intercepted
 
     def double(_, coeff):
-        r, t, up, down, bt = coeff
+        r, t, up, down, bt, da, ba, interception = coeff
         den = 1.-r*r
         nr, nt = r+t*t*r/den, t*t/den
         nu = up+t*(r*down+up*bt)/den
@@ -44,8 +46,17 @@ def shortwave_kernel_jax(lai, u, ground_albedo_direct=None):
         nb = bt*bt
         nt = jnp.where(omega == 1.,1.-nr,nt)
         nd = jnp.where(omega == 1.,1.-nb-nu,nd)
-        return nr, nt, nu, nd, nb
-    r, t, up, down, beam_t = lax.fori_loop(0,10,double,(r,t,up,down,beam_t))
+        if track_absorption:
+            # Integrate absorption under doubling. Keep small deficits out of
+            # repeated subtraction from unity, especially for very thin LAI.
+            nda=da*(1.+t/(1.-r))
+            nba=ba*(1.+bt)+da*(down+up*bt)/(1.-r)
+            interception=interception*(2.-interception)
+            nt=(1.-nr)-nda;nb=1.-interception;nd=(interception-nu)-nba
+            da,ba=nda,nba
+        return nr, nt, nu, nd, nb, da, ba, interception
+    r,t,up,down,beam_t,diffuse_abs,beam_abs,_=lax.fori_loop(0,10,double,
+        (r,t,up,down,beam_t,diffuse_abs,beam_abs,intercepted))
     beam = jnp.zeros((11,), dtype=lai.dtype).at[0].set(beam0)
     def transmit(j, beam):
         return beam.at[j+1].set(beam[j]*beam_t[j])
@@ -67,6 +78,8 @@ def shortwave_kernel_jax(lai, u, ground_albedo_direct=None):
     diffuse = lax.fori_loop(0,10,forward,diffuse)
     upward = reflect*diffuse+source
     absorbed = beam[:-1]+diffuse[:-1]+upward[1:]-beam[1:]-diffuse[1:]-upward[:-1]
+    if track_absorption:
+        absorbed=diffuse_abs*(diffuse[:-1]+upward[1:])+beam_abs*beam[:-1]
     ground = ((1.-ag)*(beam[10]+diffuse[10]) if ground_albedo_direct is None else
               (1.-direct_albedo)*beam[10]+(1.-ag)*diffuse[10])
     total = lax.fori_loop(0,10,lambda j,s:s+absorbed[j], jnp.zeros_like(ground))

@@ -1,7 +1,7 @@
 // Included after radiation_kernel.cu and snicar_kernel.cu.
 // Reuse linear unit snow responses for downward direct/diffuse spectra.
 __device__ void canopy_snow_device(const float* lai,const float* cells,int count,const float* inputs,
-                                   const float* ice,const float* impurities,float* out) {
+                                   const float* ice,const float* impurities,float* out,bool track_absorption=false) {
     float sw=inputs[0],fv=inputs[1],diff=inputs[2],mu=inputs[3];
     float boundary[7]={1.f,1.f,1.f,1.f,inputs[4],inputs[5],mu},unit[460];
     snow_shortwave_device(cells,count,boundary,ice,impurities,unit);
@@ -10,7 +10,7 @@ __device__ void canopy_snow_device(const float* lai,const float* cells,int count
     float beam=(.5f*sw)*(1.f-diff),sky=(.5f*sw)*diff,canopy[92];
     for(int band=0;band<2;++band) {
         float u[6]={beam,sky,af[band],mu,band==0?.1f:.45f,band==0?.05f:.25f};
-        shortwave_device_albedos(lai,u,ad[band],true,canopy+band*46);
+        shortwave_device_albedos(lai,u,ad[band],true,canopy+band*46,track_absorption);
         boundary[band]=fv*canopy[band*46+20]+(1.f-fv)*beam;
         boundary[2+band]=fv*canopy[band*46+31]+(1.f-fv)*sky;
     }
@@ -49,4 +49,10 @@ extern "C" __global__ void run_canopy_snow(const float* area,const float* cells,
                                           const float* inputs,const float* ice,const float* impurities,float* output,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
         canopy_snow_device(area+row*10,cells+row*35,counts[row],inputs+row*6,ice,impurities,output+row*584);
+}
+
+extern "C" __global__ void run_canopy_snow_stable(const float* area,const float* cells,const int* counts,
+                                          const float* inputs,const float* ice,const float* impurities,float* output,int n) {
+    for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
+        canopy_snow_device(area+row*10,cells+row*35,counts[row],inputs+row*6,ice,impurities,output+row*584,true);
 }
