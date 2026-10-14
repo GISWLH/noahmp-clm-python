@@ -17,7 +17,8 @@ NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳�
 新增[NumPy五层雪组件](docs/CLM_SNOW_DESIGN.md)：质量/焓、压实、粒径老化、
 五波段SNICAR近似与气候态沉降映射。新增[雪—土壤联合焓及冬季冠层边界](docs/CLM_COLUMN_ENTHALPY.md)，
 联合热/质量转移365天累计焓残差最大1.878e-6 J/m²；
-尚未连接整柱冬季流程，也尚未同步该雪组件的JAX/CUDA。
+已建立[NumPy冠层—雪—土壤质量/焓时间步](docs/CLM_EXTENSIVE_COLUMN.md)，
+连接水汽、融水和排水携热；冠层截雪/冻结、MOST反馈和新增路径JAX/CUDA仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。

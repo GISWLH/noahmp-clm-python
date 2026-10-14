@@ -18,7 +18,7 @@ CANOPY_OUTPUT_SIZE = 195
 
 def pack_canopy_case(area, swdown, lwdown, exchange, *, dtype=np.float64, **kwargs):
     """Pack one NumPy reference call for either GPU backend; no physics here."""
-    pending={'fixed_ground_temperature','ground_is_ice','ground_shares_soil','snowpack'} & kwargs.keys()
+    pending={'fixed_ground_temperature','ground_is_ice','ground_shares_soil','snowpack','canopy_storage'} & kwargs.keys()
     if pending:
         raise NotImplementedError('Winter canopy arguments are not yet in the GPU batch contract: '+', '.join(sorted(pending)))
     area = np.asarray(area,dtype=dtype)

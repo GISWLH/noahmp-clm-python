@@ -14,7 +14,7 @@ from .canopy_radiation import canopy_shortwave
 from .energy import CP, LV, RD, SIGMA
 from .photosynthesis import R_GAS, leaf_gas_exchange
 from .soil_uptake import _allocate
-from .snowpack import LF, TF
+from .snowpack import LF, TF, CW
 
 
 @dataclass(frozen=True)
@@ -47,6 +47,28 @@ class CanopyExchange:
                 and self.leaf_velocity > 0 and self.soil_conductance >= 0
                 and self.ground_resistance >= 0 and self.co2_ppm > 0):
             raise ValueError("Unphysical canopy exchange boundary")
+
+
+@dataclass(frozen=True)
+class CanopyWaterStorage:
+    """Shared intercepted liquid mass/enthalpy and root source water heat.
+
+    Mass kg/m2, enthalpy J/m2 relative to ice at freezing, dt seconds, root
+    specific liquid enthalpies J/kg. Water is redistributed by leaf area;
+    its final sensible storage uses the area-weighted leaf temperature.
+    This liquid-only store does not yet represent intercepted snow/ice.
+    """
+    mass: float
+    enthalpy: float
+    dt: float
+    root_enthalpy: np.ndarray
+
+    def __post_init__(self):
+        h=np.array(self.root_enthalpy,float,copy=True)
+        if (not np.all(np.isfinite([self.mass,self.enthalpy,self.dt])) or self.mass<0. or self.dt<=0.
+                or (self.mass==0. and self.enthalpy!=0.) or h.ndim!=1 or not np.all(np.isfinite(h))):
+            raise ValueError('Invalid canopy liquid storage or root source enthalpy')
+        h.setflags(write=False);object.__setattr__(self,'root_enthalpy',h)
 
 
 def _saturation(temperature, pressure):
@@ -153,7 +175,7 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
                         leaf_parameters=None, ground_emissivity=.97, ground_albedo=(.15,.3),
                         diffuse_fraction=.5, cosine_zenith=.5, initial_temperatures=None,
                         tolerance=5e-5, max_iterations=100,fixed_ground_temperature=None,
-                        ground_is_ice=False,ground_shares_soil=True,snowpack=None):
+                        ground_is_ice=False,ground_shares_soil=True,snowpack=None,canopy_storage=None):
     """Solve n leaf temperatures plus ground temperature (K).
 
     Areas are one-sided LAI per vegetated ground, ordered top to bottom;
@@ -184,6 +206,14 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     if area.sum() == 0.:
         fv = 0.
     n = len(area)
+    if canopy_storage is not None:
+        if soil_supply is None or canopy_storage.root_enthalpy.shape!=soil_supply.roots.shape:
+            raise ValueError('Canopy thermal storage requires matching root supply and source enthalpy')
+        if fv==0. and canopy_storage.mass>0.:
+            raise ValueError('Intercepted water on a leafless column must drip before the surface solve')
+        if canopy_evaporation_limit>canopy_storage.mass/canopy_storage.dt:
+            raise ValueError('Canopy evaporation limit exceeds its thermal water store')
+    storage_weights=np.divide(area,area.sum(),out=np.zeros_like(area),where=area.sum()>0.)
     if fixed_ground_temperature is not None and (not np.isfinite(fixed_ground_temperature)
             or not 200.<=fixed_ground_temperature<=350.):
         raise ValueError('Invalid fixed ground temperature')
@@ -263,6 +293,16 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         residual = net_radiation-sensible-latent_heat*evaporation
         if fixed_ground_temperature is not None: ground_heat=residual[-1]
         residual[-1] -= ground_heat
+        storage_flux=wet_advected=transp_advected=0.;canopy_mass=canopy_enthalpy=0.
+        if canopy_storage is not None:
+            cs=canopy_storage
+            canopy_mass=max(0.,cs.mass-cs.dt*wet.sum())
+            liquid_heat=LF+CW*(temperature[:-1]-TF)
+            canopy_enthalpy=canopy_mass*float(storage_weights@liquid_heat)
+            storage_flux=(canopy_enthalpy-cs.enthalpy)/cs.dt
+            root_mean=float(root_uptake@cs.root_enthalpy/root_uptake.sum()) if root_uptake.sum()>0. else 0.
+            wet_advected=float(wet@liquid_heat);transp_advected=float(transp@liquid_heat)
+            residual[:-1]-=storage_weights*storage_flux+wet*liquid_heat+transp*(liquid_heat-root_mean)
         # q supplied to photosynthesis must also be consistent with the solved
         # air space; testing energy alone could accept one lagged stomatal step.
         q_error = abs(qnew-qcan)
@@ -284,6 +324,9 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         ejac[-1,-1] += kbare*dq[-1]
         jac = lw[:,:-1]*(4.*SIGMA*temperature**3)[None,:]-hjac-latent_heat[:,None]*ejac
         jac[-1,-1] -= e.soil_conductance
+        if canopy_storage is not None:
+            jac[:-1,:-1]-=CW*canopy_mass/canopy_storage.dt*np.outer(storage_weights,storage_weights)
+            jac[np.arange(n),np.arange(n)]-=CW*(wet+transp)
         inactive = np.flatnonzero(~active)
         jac[inactive,:] = 0.
         jac[inactive,inactive] = -1.
@@ -310,6 +353,9 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         "ground_nonshortwave_heat":ground_heat-shortwave[-1],
         "snow_absorbed_shortwave":snow_sw,"soil_absorbed_shortwave":float(soil_sw),
         "ground_latent_heat":float(latent_heat[-1]),
+        "canopy_storage_change_wm2":float(storage_flux),"canopy_water_after_kgm2":float(canopy_mass),
+        "canopy_enthalpy_after_jm2":float(canopy_enthalpy),
+        "wet_advected_heat_wm2":float(wet_advected),"transpiration_advected_heat_wm2":float(transp_advected),
         "wet_evaporation":wet,"transpiration":transp,"ground_evaporation":evaporation[-1],
         "root_uptake":root_uptake,
         "layer_residual":residual,"residual":residual.sum(),"iterations":iteration,

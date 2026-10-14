@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from noahmp_clm.physics.canopy_energy import (
-    CanopyExchange, solve_canopy_energy, _longwave_operator)
+    CanopyExchange, CanopyWaterStorage, solve_canopy_energy, _longwave_operator)
 from noahmp_clm.physics.canopy_radiation import canopy_shortwave, canopy_longwave
 from noahmp_clm.physics.photosynthesis import leaf_gas_exchange
 from noahmp_clm.physics.soil_uptake import SoilWaterSupply
@@ -102,6 +102,13 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
         if kwargs.get('fixed_ground_temperature') is not None: g=residual[-1]
         residual[-1] -= g
         if kwargs.get('fixed_ground_temperature') is not None: residual[-1]=kwargs['fixed_ground_temperature']-t[-1]
+        if kwargs.get('canopy_storage') is not None:
+            storage=kwargs['canopy_storage'];weights=area/area.sum() if area.sum() else np.zeros(n)
+            mass=storage.mass-storage.dt*wet.sum()
+            enthalpy=mass*(334000.+4180.*(weights@t[:-1]-273.15))
+            outgoing_heat=334000.+4180.*(t[:-1]-273.15)
+            source=float(uptake@storage.root_enthalpy/tr.sum()) if tr.sum()>0. else 0.
+            residual[:-1]-=weights*(enthalpy-storage.enthalpy)/storage.dt+wet*outgoing_heat+tr*(outgoing_heat-source)
         residual[:-1] = np.where(fv*area>0,residual[:-1],e.air_temperature-t[:-1])
         qres = (wet.sum()+tr.sum()+ground[0]-rho*fv*e.atmosphere_velocity*(qc-e.specific_humidity))*2.5e6
         if fv == 0:
@@ -238,3 +245,21 @@ def test_gpu_packer_does_not_silently_drop_winter_boundary():
     from noahmp_clm.gpu.canopy_energy import pack_canopy_case
     with pytest.raises(NotImplementedError,match='Winter canopy'):
         pack_canopy_case([.3]*10,500.,220.,boundary(),fixed_ground_temperature=265.)
+
+
+@pytest.mark.parametrize('mass,temperature,humidity,sw',[(0.,285.,.008,600.),(.3,278.,.008,800.),(.8,305.,.015,50.),(.1,285.,.022,0.)])
+def test_canopy_sensible_storage_and_root_water_heat_against_independent_solver(mass,temperature,humidity,sw):
+    supply=SoilWaterSupply(np.full(4,1e-4),np.array([.6,.25,.1,.05]),1e-4)
+    store=CanopyWaterStorage(mass,mass*(334000.+4180.*(temperature-273.15)),1800.,
+        334000.+4180.*(np.array([280.,282.,284.,286.])-273.15))
+    e=boundary(specific_humidity=humidity)
+    kwargs=dict(soil_supply=supply,canopy_evaporation_limit=mass/1800.,wet_fraction=.5,
+        canopy_storage=store,fixed_ground_temperature=295.)
+    result=solve_canopy_energy([.3]*10,sw,330.,e,**kwargs)
+    ref=independent_energy_reference([.3]*10,sw,330.,e,**kwargs)
+    np.testing.assert_allclose(np.r_[result['leaf_temperature'],result['ground_temperature']],ref['temperature'],rtol=0.,atol=5e-5)
+    for field in ('h','le','ground_heat','gpp'):
+        np.testing.assert_allclose(result[field],ref[field],rtol=1e-5,atol=3e-4)
+    assert abs(result['canopy_water_after_kgm2']-mass+1800.*result['wet_evaporation'].sum())<1e-12
+    expected=result['canopy_water_after_kgm2']*(334000.+4180.*(result['leaf_temperature'].mean()-273.15))
+    assert abs(expected-result['canopy_enthalpy_after_jm2'])<1e-8

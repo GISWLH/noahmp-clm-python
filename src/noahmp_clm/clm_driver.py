@@ -1,9 +1,9 @@
 """Developing CLM column path: multilayer canopy connected to soil water/heat.
 
-This NumPy reference path currently covers snow-free columns. Winter stepping
-will be added with the five-layer snow implementation; an unsupported winter
-step raises explicitly. The released driver remains in driver.py until the
-complete path and both GPU backends have passed validation.
+The legacy ColumnState path covers snow-free columns. CLMColumnState dispatches
+to the developing extensive canopy/snow/soil driver with five snow layers.
+The released driver remains in driver.py until the complete path and both
+GPU backends have passed validation.
 """
 from __future__ import annotations
 import numpy as np
@@ -22,14 +22,20 @@ from .physics.surface_drag import exchange_velocity
 def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
                     diffuse_fraction=.5, leaf_dimension=.04, canopy_layers=10,
                     leaf_parameters=None, nitrogen_factor=1.):
-    """Advance one snow-free NumPy CLM column, returning state and diagnostics.
+    """Advance one NumPy CLM column, dispatching by its state representation.
 
     Solar partition, CO2 and leaf dimension are explicit site assumptions until
     the forcing metadata adapter supplies them. Neutral friction velocity sets
     leaf/under-canopy conductance (CLM5 equations 2.5.116--122); above-canopy
     stability uses the previous surface temperature. Full aerodynamic iteration
-    and snowy ground are still required before making this the default driver.
+    and complete winter physics are required before making this the default driver.
     """
+    from .clm_state import CLMColumnState
+    if isinstance(state,CLMColumnState):
+        from .clm_enthalpy_driver import step_clm_enthalpy_column
+        return step_clm_enthalpy_column(state,forcing,co2_ppm=co2_ppm,cosine_zenith=cosine_zenith,
+            diffuse_fraction=diffuse_fraction,leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,
+            leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor)
     f = forcing
     if not np.isfinite(f.dt) or f.dt <= 0 or not (0 <= state.fveg <= 1) or state.lai < 0:
         raise ValueError("Invalid CLM column time step, vegetation fraction, or LAI")

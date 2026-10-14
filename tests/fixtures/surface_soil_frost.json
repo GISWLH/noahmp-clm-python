@@ -1,0 +1,104 @@
+{
+  "case": 0,
+  "step": 77,
+  "state": {
+    "ground": {
+      "water": [
+        25.525639212421385,
+        74.30696790547422,
+        144.2230051151334,
+        251.88256521020236
+      ],
+      "enthalpy": [
+        3958996.3731651474,
+        5961974.077683206,
+        7770345.938894138,
+        16590194.632311022
+      ],
+      "dz": [
+        0.1,
+        0.3,
+        0.6,
+        1.0
+      ],
+      "params": {
+        "name": "sand",
+        "smcmax": 0.4,
+        "smcwlt": 0.06,
+        "smcref": 0.18,
+        "satdk": 5e-05,
+        "bexp": 4.0,
+        "quartz": 0.9
+      },
+      "freezing_option": 1
+    },
+    "snow": {
+      "mass": [],
+      "enthalpy": [],
+      "thickness": [],
+      "radius_um": [],
+      "impurities": []
+    },
+    "canopy_water_kgm2": 0.0,
+    "canopy_enthalpy_jm2": 0.0,
+    "lai": 3.0,
+    "fveg": 0.8,
+    "z0m": 0.05,
+    "albedo": 0.2,
+    "emiss": 0.97,
+    "surface_temperature": 276.564402339171,
+    "root_frac": [
+      0.5868570361135262,
+      0.3220739701427555,
+      0.08349453996706505,
+      0.00757445377665319
+    ],
+    "options": {
+      "OptDynamicVeg": 4,
+      "OptRainSnowPartition": 1,
+      "OptSoilWaterTranspiration": 1,
+      "OptGroundResistanceEvap": 4,
+      "OptSurfaceDrag": 1,
+      "OptStomataResistance": 1,
+      "OptSnowAlbedo": 3,
+      "OptCanopyRadiationTransfer": 3,
+      "OptSnowSoilTempTime": 3,
+      "OptSnowThermConduct": 1,
+      "OptSoilTemperatureBottom": 1,
+      "OptSoilSupercoolWater": 1,
+      "OptRunoffSurface": 3,
+      "OptRunoffSubsurface": 3,
+      "OptSoilPermeabilityFrozen": 1,
+      "OptDynVicInfiltration": 1,
+      "OptTileDrainage": 0,
+      "OptIrrigation": 0,
+      "OptIrrigationMethod": 0,
+      "OptCropModel": 0,
+      "OptSoilProperty": 1,
+      "OptPedotransfer": 1,
+      "OptGlacierTreatment": 1,
+      "OptSnowCompaction": 2,
+      "OptSnowCoverGround": 1,
+      "OptWetlandModel": 0,
+      "OptSnicarSnowShape": 1,
+      "OptSnicarRTSolver": 1,
+      "OptSnicarBandNum": 1,
+      "OptSnicarSolarSpec": 1,
+      "OptSnicarSnwOptic": 1,
+      "OptSnicarDustOptic": 1
+    },
+    "terrain_index": 0.0,
+    "groundwater_depth": 2.0
+  },
+  "forcing": {
+    "dt": 1800.0,
+    "tair": 281.9840041172964,
+    "qair": 0.004546449930116218,
+    "wind": 2.5,
+    "ps": 101325.0,
+    "swdown": 515.6796711893029,
+    "lwdown": 297.76736691019323,
+    "prcp": 0.0
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"/home/lhwang/work/noahmp-v1/p2-surface-a/benchmarks/check_clm_enthalpy_column.py\", line 52, in main\n    after,d=step_clm_enthalpy_column(state,f,cosine_zenith=max(.05,sun),deposition_rates=rates)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/lhwang/work/noahmp-v1/p2-surface-a/src/noahmp_clm/clm_enthalpy_driver.py\", line 74, in step_clm_enthalpy_column\n    snow,ground,canopy,d=surface_step(snow,ground,f.dt,np.full(canopy_layers,state.lai/canopy_layers),f.swdown,f.lwdown,\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/lhwang/work/noahmp-v1/p2-surface-a/src/noahmp_clm/physics/canopy_column.py\", line 126, in surface_step\n    else: raise RuntimeError(f'Surface heat/water iteration did not converge: {value:.9g} K')\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Surface heat/water iteration did not converge: -0.388727594 K\n"
+}
