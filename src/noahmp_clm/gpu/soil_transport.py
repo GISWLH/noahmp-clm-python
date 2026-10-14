@@ -1,7 +1,8 @@
 """Native extensive soil water transfers and advected enthalpy, four layers.
 
 Modes: 0 top-down water admission, 1 prescribed liquid withdrawal, 2 Campbell
-gravity drainage. These transfer primitives do not implement Richards or VIC.
+gravity drainage. An optional VIC configuration selects variable admission
+and ARNO bottom flow. These primitives do not implement Richards flow.
 Pore capacities use liquid-equivalent total water, as in the NumPy reference.
 """
 from functools import lru_cache
@@ -45,7 +46,7 @@ def unpack_soil_transport(out):
         interface_enthalpy_jm2=out[:,40:44],bottom_outflow=out[:,44:46],valid=out[:,46]>0.)
 
 
-def soil_transport_kernel_jax(c,p,o,u):
+def soil_transport_kernel_jax(c,p,o,u,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier
@@ -56,11 +57,18 @@ def soil_transport_kernel_jax(c,p,o,u):
     zeros=j.zeros((4,),c.dtype);pair=j.zeros((2,),c.dtype)
     def admission(_):
         specific=u[1]/j.where(u[0]>0.,u[0],1.)
+        incoming=u[0];surface=j.asarray(0.,c.dtype)
+        if vic is not None:
+            from .vic import infiltration_jax
+            capacity=s(s(1000.*por)*s(z[0]+z[1]));water=j.minimum(capacity,s(w[0]+w[1]))
+            admitted=infiltration_jax(incoming,water,capacity,vic[2])
+            incoming=j.where(vic[0]>0.,admitted,incoming);surface=s(u[0]-incoming)
         def fill(k,carry):
             water,heat,left=carry
             accepted=j.minimum(left,j.maximum(0.,s(s(1000.*por)*z[k])-water[k]))
             return water.at[k].add(accepted),heat.at[k].add(s(accepted*specific)),s(left-accepted)
-        nw,nh,left=lax.fori_loop(0,4,fill,(w,h,u[0]))
+        nw,nh,left=lax.fori_loop(0,4,fill,(w,h,incoming))
+        left=s(left+surface)
         return nw,nh,u[:2],j.stack((left,s(left*specific))),zeros,zeros,zeros,zeros,pair,ok
     def withdrawal(_):
         demand=u[3:7];available=initial[3]
@@ -81,6 +89,9 @@ def soil_transport_kernel_jax(c,p,o,u):
             hydraulic=s(s(s(s(1000.*u[2])*satdk)*frozen)*j.power(wet,s(s(2.*b)+3.)))
             excess=j.maximum(0.,water[k]-s(s(1000.*field)*z[k]))
             amount=j.minimum(j.minimum(hydraulic,excess),liquid)
+            if vic is not None:
+                from .vic import baseflow_jax
+                amount=j.where((k==3)&(vic[1]>0.),s(baseflow_jax(liquid,capacity,u[2],vic)*frozen),amount)
             next_index=j.minimum(k+1,3)
             receiver=j.maximum(0.,s(s(1000.*por)*z[next_index])-water[next_index])
             amount=j.where(k<3,j.minimum(amount,receiver),amount)

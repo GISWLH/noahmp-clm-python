@@ -24,9 +24,19 @@ from .physics.canopy_interception import intercept_precipitation
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
-                            deposition_rates=None,most_geometry=None):
+                            deposition_rates=None,most_geometry=None,vic_parameters=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     f=forcing;opt=state.options
+    vic_surface=opt.OptRunoffSurface==6;vic_bottom=opt.OptRunoffSubsurface==6
+    if vic_surface or vic_bottom:
+        if opt.OptRunoffSurface not in (3,6) or opt.OptRunoffSubsurface not in (3,6):
+            raise NotImplementedError('VIC supports explicit surface/bottom combinations of options 3 and 6')
+        from .physics.vic import VICParameters,infiltrate_vic
+        if vic_parameters is None:vic_parameters=VICParameters()
+        if not isinstance(vic_parameters,VICParameters):raise TypeError('Expected VICParameters')
+    elif vic_parameters is not None:raise ValueError('VIC parameters require runoff option 6')
+    def admit(earth,mass,heat):
+        return infiltrate_vic(earth,mass,heat,vic_parameters) if vic_surface else infiltrate(earth,mass,heat)
     if most_geometry is not None and opt.OptSurfaceDrag!=1:
         raise ValueError('Explicit MOST geometry requires OptSurfaceDrag=1')
     supported={'OptRainSnowPartition','OptSoilWaterTranspiration','OptGroundResistanceEvap',
@@ -54,7 +64,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             temperature=TF+(heat/mass-LF)/CW
             pack=add_rain(pack,mass,temperature)
             return pack,earth,0.,0.
-        earth,out,out_heat=infiltrate(earth,mass,heat)
+        earth,out,out_heat=admit(earth,mass,heat)
         return pack,earth,out,out_heat
     def route_canopy_outlets(pack,earth,flow):
         ice=flow['ground_ice_kgm2']
@@ -96,7 +106,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             boundary,**storage_args,root_weights=state.root_frac,
             wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
             leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
-            cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction)
+            cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction,
+            infiltration_parameters=vic_parameters if vic_surface else None)
     if most_geometry is None:surface_result=solve_surface(exchange)
     else:
         from .physics.canopy_most import solve_surface_most
@@ -110,7 +121,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         snow,ground,out,oh=route_canopy_outlets(snow,ground,post);runoff+=out;runoff_heat+=oh
         canopy=float(condensate.mass.sum());canopy_heat=float(condensate.enthalpy.sum())
         snow,flow=drain_liquid(snow,return_ledger=True)
-        ground,out,oh=infiltrate(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+        ground,out,oh=admit(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
         runoff+=out+flow['runoff_kgm2'];runoff_heat+=oh+flow['runoff_enthalpy_jm2']
         impurity_out+=flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2']
         d.update(canopy_condensate=condensate,canopy_interception=interception,canopy_post_interception=post)
@@ -119,10 +130,11 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         canopy-=drip;canopy_heat-=heat
         snow,ground,out,oh=route_water(snow,ground,drip,heat);runoff+=out;runoff_heat+=oh
         snow,flow=drain_liquid(snow,return_ledger=True)
-        ground,out,oh=infiltrate(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+        ground,out,oh=admit(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
         runoff+=out+flow['runoff_kgm2'];runoff_heat+=oh+flow['runoff_enthalpy_jm2']
         impurity_out+=flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2']
-    ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen)
+    ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen,
+        bottom_parameters=vic_parameters if vic_bottom else None)
     runoff+=drain['bottom_mass_kgm2'];runoff_heat+=drain['bottom_enthalpy_jm2']
     if deposition_rates is not None:
         snow,bare=deposit_impurities(snow,deposition_rates,f.dt);impurity_out+=bare
@@ -131,10 +143,14 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     final_temperature=float(snow.temperature[0] if len(snow.mass) else ground.temperature[0])
     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
         surface_temperature=final_temperature,canopy_condensate=condensate)
-    surface,deep=route_runoff(runoff/1000.,final.parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
+    if vic_surface or vic_bottom:
+        # These are physical outlets, already removed from the state with heat.
+        deep=drain['bottom_mass_kgm2']/1000.;surface=(runoff-drain['bottom_mass_kgm2'])/1000.
+    else:surface,deep=route_runoff(runoff/1000.,final.parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
     d.update(ts=final.surface_temperature,h=float(d['h']),le=float(d['le']),g=float(d['ground_heat']),
         et_mm=d['et_kgm2'],prcp_mm=rain+snowfall,runoff_mm=runoff,runoff_kgm2=runoff,
         runoff_surface_mm=surface*1000.,runoff_deep_mm=deep*1000.,
+        bottom_outflow_kgm2=drain['bottom_mass_kgm2'],bottom_outflow_enthalpy_jm2=drain['bottom_enthalpy_jm2'],
         flux_surface_temperature=d['surface_temperature'],surface_temperature=final_temperature,
         swe=final.swe,canw=final.canw,tsoil=final.tsoil,smc=final.smc,
         gpp_umol_m2s=d['gpp'],gpp_gcm2=d['gpp']*12.0107e-6*f.dt,

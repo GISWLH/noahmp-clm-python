@@ -27,7 +27,7 @@ def pack_clm_layered_columns(states,**kwargs):
 
 
 def validate_layered_column(arrays,forcing,deposition,xp):
-    *base,condensate=arrays;validate_column(base,forcing,deposition,xp)
+    *base,condensate=arrays;validate_column(base,forcing,deposition,xp,allow_vic=True)
     c,g,p,o,site,store,roots=base;n=len(c);dtype=c.dtype
     area=xp.stack((xp.broadcast_to(site[:,0,None]/10.,(n,10)),xp.zeros((n,10),dtype)),axis=2)
     u=xp.stack((xp.zeros(n,dtype),xp.zeros(n,dtype),forcing[:,1],forcing[:,0]/2.,site[:,1],forcing[:,3],xp.full(n,270.15,dtype)),axis=1)
@@ -37,7 +37,7 @@ def validate_layered_column(arrays,forcing,deposition,xp):
         raise ValueError('Column aggregate aliases disagree with canopy layers')
 
 
-def route_layer_outlets_jax(c,g,n,p,phase,forcing,ledger):
+def route_layer_outlets_jax(c,g,n,p,phase,forcing,ledger,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dt,tair,_,wind=forcing[:4];row=lambda *x:j.asarray(x,c.dtype)
@@ -48,7 +48,7 @@ def route_layer_outlets_jax(c,g,n,p,phase,forcing,ledger):
         out=snow_transfer_kernel_jax(c,n,j.asarray(1),u)
         return out[:45].reshape(5,9),out[45].astype(j.int32)
     c,n=lax.cond(ledger[5]>0.,snowfall,lambda:(c,n))
-    c,g,runoff,valid=route_water_jax(c,g,n,p,phase,dt,ledger[4],ledger[6])
+    c,g,runoff,valid=route_water_jax(c,g,n,p,phase,dt,ledger[4],ledger[6],vic)
     return c,g,n,runoff,valid
 
 
@@ -61,7 +61,7 @@ def layered_interception_jax(condensate,site,forcing,rain,snow):
     return canopy_water_kernel_jax(condensate,area,u,j.zeros_like(condensate),j.asarray(0))
 
 
-def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing):
+def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None):
     import jax.numpy as j
     from jax import lax
     from . import jax_core as core
@@ -70,7 +70,7 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing):
     rain=s(s(total-sm)*1000.);snow=s(sm*1000.)
     intercepted=layered_interception_jax(condensate,site,forcing,rain,snow)
     cc=intercepted[:20].reshape(10,2);ledger=intercepted[170:182]
-    c,g,n,out,valid=route_layer_outlets_jax(c,g,o[0],p,o[1],forcing,ledger)
+    c,g,n,out,valid=route_layer_outlets_jax(c,g,o[0],p,o[1],forcing,ledger,vic)
     empty=storage.at[:2].set(0.);dry=forcing.at[7].set(0.)
     pc,pg,po,a,u,f,v,prep,good=prepare_column_jax(c,g,p,o.at[0].set(n),site,empty,roots,dry)
     v=v.at[1].set(_sum(cc[:,0])).at[2].set(_sum(cc[:,1]))
@@ -79,45 +79,48 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing):
     return pc,pg,po,a,u,f,v,prep,valid&good,cc,intercepted,old
 
 
-def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,condensate,flux,impurity):
+def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,condensate,flux,impurity,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;row=lambda *x:j.asarray(x,c.dtype)
     post=layered_interception_jax(condensate,site,forcing,j.asarray(0.,c.dtype),j.asarray(0.,c.dtype))
-    cc=post[:20].reshape(10,2);c,g,n,runoff,valid=route_layer_outlets_jax(c,g,n,p,o[1],forcing,post[170:182])
+    cc=post[:20].reshape(10,2);c,g,n,runoff,valid=route_layer_outlets_jax(c,g,n,p,o[1],forcing,post[170:182],vic)
     drained=snow_transfer_kernel_jax(c,n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
     admit=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),o[1],j.asarray(1))),
-        j.concatenate((row(drained[53],drained[54],forcing[0]),j.zeros(4,c.dtype))))
+        j.concatenate((row(drained[53],drained[54],forcing[0]),j.zeros(4,c.dtype))),vic)
     runoff=s(s(runoff+drained[60:62])+admit[26:28]);valid=valid&(admit[46]>0.)
     impurity=s(impurity+s(drained[62:67]+drained[55:60]))
     canopy=row(_sum(cc[:,0]),_sum(cc[:,1]));prep=prep.at[2:4].set(s(prep[2:4]+runoff)).at[4].set(canopy[0])
     out=finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,
-        drained[:45].reshape(5,9),admit[:12].reshape(4,3),drained[45].astype(j.int32),canopy,flux,impurity)
+        drained[:45].reshape(5,9),admit[:12].reshape(4,3),drained[45].astype(j.int32),canopy,flux,impurity,vic)
     return (*out,cc,post,valid)
 
 
-@lru_cache(maxsize=1)
-def _stages():
+@lru_cache(maxsize=2)
+def _stages(vic=False):
     import jax
-    return jax.jit(jax.vmap(prepare_layered_jax)),jax.jit(jax.vmap(finish_layered_jax))
+    return (jax.jit(jax.vmap(prepare_layered_jax,in_axes=(0,)*9+(0 if vic else None,))),
+            jax.jit(jax.vmap(finish_layered_jax,in_axes=(0,)*15+(0 if vic else None,))))
 
 
-def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None):
+def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
-    validate_layered_column(arrays,forcing,deposition,j);prepare,finish=_stages()
-    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing)
+    from .vic import column_vic
+    validate_layered_column(arrays,forcing,deposition,j)
+    vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None)
+    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing,vic)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
-    if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters)
+    if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic)
     else:
         from .canopy_most_surface import run_most_surface
         if bool(j.any(arrays[3][:,5]!=1)):raise ValueError('MOST geometry requires OptSurfaceDrag=1')
-        surface=run_most_surface(surface_arrays,most_geometry,forcing[:,3],arrays[4][:,10],arrays[4][:,0],backend='jax',parameters=leaf_parameters)
+        surface=run_most_surface(surface_arrays,most_geometry,forcing[:,3],arrays[4][:,10],arrays[4][:,0],backend='jax',parameters=leaf_parameters,vic=vic)
     flux=j.stack([surface[key] for key in SURFACE_FIELDS],axis=1)
     out=finish(arrays[0],arrays[1],arrays[2],arrays[3],arrays[4],old,forcing,deposition,prep,
-        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],surface['condensate'],flux,surface['impurity_output_kgm2'])
+        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],surface['condensate'],flux,surface['impurity_output_kgm2'],vic)
     if not bool(j.all(out[-1])) or not bool(j.all(out[4][:,25]>0.)) or not all(bool(j.all(j.isfinite(x))) for x in out):
         raise RuntimeError('Layered canopy post-surface transfer failed')
     result=unpack_column(*out[:6],surface=surface if return_surface else None)

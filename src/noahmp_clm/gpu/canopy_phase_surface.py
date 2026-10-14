@@ -47,11 +47,11 @@ def unpack_phase_surface(out):
     return result
 
 
-@lru_cache(maxsize=2)
-def _compiled(extended=False):
+@lru_cache(maxsize=4)
+def _compiled(extended=False,vic=False):
     import jax
     axes=(0,0,0,0,0,0,0,0,0,None,None,0)
-    return jax.jit(jax.vmap(surface_kernel_jax,in_axes=axes+(0,) if extended else axes))
+    return jax.jit(jax.vmap(surface_kernel_jax,in_axes=axes+(0 if extended else None,0 if vic else None)))
 
 
 def validate_exchange_extension(extension,n,xp):
@@ -60,7 +60,7 @@ def validate_exchange_extension(extension,n,xp):
         raise ValueError('Invalid separate water velocity/potential temperature extension')
 
 
-def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None):
+def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None,vic=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,arrays));validate_phase_surface(arrays,j)
     c,g,p,o,a,u,f,v,condensate=arrays;dtype=str(c.dtype)
@@ -69,7 +69,12 @@ def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,e
     if extra:
         validate_exchange_extension(extra[0],len(c),j)
         if extra[0].dtype!=c.dtype:raise ValueError('Exchange extension precision mismatch')
-    out=_compiled(bool(extra))(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate,*extra)
+    if vic is not None:
+        from .vic import validate_vic
+        vic=j.asarray(vic);validate_vic(vic,len(c),j)
+        if vic.dtype!=c.dtype:raise ValueError('VIC precision mismatch')
+    out=_compiled(bool(extra),vic is not None)(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate,
+        extra[0] if extra else None,vic)
     result=unpack_phase_surface(out)
     if raise_on_failure and (not bool(j.all(j.isfinite(out))) or not bool(j.all(result['converged']))):
         raise RuntimeError('Layered phase surface failed; inspect with raise_on_failure=False')

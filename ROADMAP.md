@@ -25,8 +25,8 @@
   该NumPy检查点全量528 passed / 0 skipped，见[当前结果与失败记录](docs/CLM_CANOPY_PHASE_ENERGY.md)。
   [原生相变联立](docs/CLM_GPU_CANOPY_PHASE_ENERGY.md)22项目标测试、75个设备工况完成，同精度最大差0；原生七天4032次联立求解完成，同精度最大差0，最终全量532 passed / 0 skipped。
   [分层完整柱](docs/CLM_LAYERED_CANOPY_COLUMN.md)NumPy 44项目标及三柱七天1008步完成；原生整柱4项目标通过，同精度最大差4.76837e-7，最终冻结全量563 passed；四后端连续整柱进行中。
-  [MOST通量反馈](docs/CLM_CANOPY_MOST.md)原生完整耦合5项目标通过，同精度最大差2.98023e-8；连续稳定工况收敛慢修复后11项NumPy回归通过，修后设备及连续检查进行中。
-- [ ] P3湿球选项5：334个独立根及1000个原生组件工况完成；完整驱动已连接，设备整柱/连续验证和官方差异核对待完成，见[湿球记录](docs/CLM_WETBULB.md)。VIC、GDD物候仍未实现。
+  [MOST通量反馈](docs/CLM_CANOPY_MOST.md)原生完整耦合5项目标通过，同精度最大差2.98023e-8；连续稳定工况收敛慢修复后11项NumPy回归通过，修后三柱一天144步完成；修后设备检查进行中。
+- [ ] P3湿球选项5：334个独立根及1000个原生组件工况完成；完整驱动及设备选项矩阵69项目标通过，同精度差0；连续验证和官方差异核对待完成，见[湿球记录](docs/CLM_WETBULB.md)。[VIC](docs/CLM_VIC.md) NumPy完整柱和原生组件已完成，原生完整柱验证中；GDD三后端组件完成、整柱LAI接入待做。
 - [x] P2固定雪/土表温冠层、冰面交换和液水储热/根水携热原生JAX/CUDA；425工况同精度全字段最大差0，详见[边界报告](docs/CLM_GPU_CANOPY_BOUNDARY.md)。
 - [x] P2土壤入渗/取水/重力排水及携热原生JAX/CUDA；1062工况、三柱7天过程链，日底部出流偏差最大0.00733%，详见[土壤输送报告](docs/CLM_GPU_SOIL_TRANSPORT.md)。
 - [x] P2冬季冠层—雪—土壤表面求根、实际水汽/根水携焓、联合传热及雪融水入渗接成原生JAX/CUDA时间步；50工况同精度最大差0，最终全量492 passed / 0 skipped，详见[表面步报告](docs/CLM_GPU_CANOPY_SURFACE.md)。七天4032柱步完成，同精度全轨迹最大差0。

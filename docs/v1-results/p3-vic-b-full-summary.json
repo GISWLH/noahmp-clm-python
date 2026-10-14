@@ -1,0 +1,50 @@
+{
+  "source_archive": "p3-vic-b",
+  "scope": "eight full-column cases; larger 13-test target still running at capture",
+  "cases_per_reference_precision": 8,
+  "same_precision_max_absolute": 4.76837158203125e-07,
+  "max_absolute": {
+    "float32": {
+      "h": 0.00018975743103766263,
+      "le": 0.0018425797994439108,
+      "runoff_mm": 2.5000054914015024e-06,
+      "runoff_surface_mm": 2.531993449128578e-06,
+      "runoff_deep_mm": 4.547182470560074e-07,
+      "gpp_umol_m2s": 2.5367201939019424e-05,
+      "soil_temperature": 1.1921564521344408e-05
+    },
+    "float64": {
+      "h": 1.765698698363849e-11,
+      "le": 2.489741746103391e-11,
+      "runoff_mm": 1.509903313490213e-14,
+      "runoff_surface_mm": 1.4988010832439613e-14,
+      "runoff_deep_mm": 1.3010426069826053e-16,
+      "gpp_umol_m2s": 1.2718714970105793e-12,
+      "soil_temperature": 1.1368683772161603e-13
+    }
+  },
+  "budgets": {
+    "float32": {
+      "water_kgm2": 2.4713168386369944e-05,
+      "heat_jm2": 11.283374385908246,
+      "impurity_kgm2": 4.3021142204224816e-16,
+      "water_bound_max_kgm2": 0.006826019252036852,
+      "heat_bound_max_jm2": 3431.5534387583884,
+      "canopy_interception_heat_jm2": 0.5,
+      "canopy_interception_water_kgm2": 2.384185791015625e-06,
+      "canopy_post_interception_heat_jm2": 0.03125,
+      "canopy_post_interception_water_kgm2": 7.301568984985352e-07
+    },
+    "float64": {
+      "water_kgm2": 1.119496205806425e-13,
+      "heat_jm2": 0.00040600351712782867,
+      "impurity_kgm2": 0.0,
+      "water_bound_max_kgm2": 1.2714451713691232e-11,
+      "heat_bound_max_jm2": 0.0004219928096659442,
+      "canopy_interception_heat_jm2": 9.313225746154785e-10,
+      "canopy_interception_water_kgm2": 3.552713678800501e-15,
+      "canopy_post_interception_heat_jm2": 2.9103830456733704e-11,
+      "canopy_post_interception_water_kgm2": 9.43689570931383e-16
+    }
+  }
+}

@@ -22,7 +22,8 @@ LV=2.5e6
 
 
 def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kgm2=0.,
-                 canopy_enthalpy_jm2=None,canopy_condensate=None,root_weights=None,wet_fraction=0.,temperature_tolerance=2e-7,**canopy_options):
+                 canopy_enthalpy_jm2=None,canopy_condensate=None,root_weights=None,wet_fraction=0.,temperature_tolerance=2e-7,
+                 infiltration_parameters=None,**canopy_options):
     """Return snow, soil, canopy water, diagnostics after one surface step.
 
     Temperature convergence concerns the post-vapour, pre-drain thermal state.
@@ -163,7 +164,11 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         pack=compact(pack,dt,ice_before=details['ice_before'],remap=False)
         pack=grain_growth(pack,dt,temperature_gradient=gradient,refrozen_mass=refrozen)
     pack,flow=drain_liquid(pack,return_ledger=True)
-    ground,overflow,overflow_heat=infiltrate(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+    if infiltration_parameters is None:
+        ground,overflow,overflow_heat=infiltrate(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+    else:
+        from .vic import infiltrate_vic
+        ground,overflow,overflow_heat=infiltrate_vic(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'],infiltration_parameters)
     runoff=details['runoff']+flow['runoff_kgm2']+overflow
     runoff_heat=details['runoff_heat']+flow['runoff_enthalpy_jm2']+overflow_heat
     advected=details['ground_heat']+dt*(result['wet_advected_heat_wm2']+result['transpiration_advected_heat_wm2'])

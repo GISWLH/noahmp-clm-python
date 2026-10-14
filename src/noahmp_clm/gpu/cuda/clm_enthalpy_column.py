@@ -40,7 +40,7 @@ def step_clm_enthalpy_columns_cuda(c,g,p,o,site,storage,roots,forcing,*,depositi
     sn=cp.ascontiguousarray(surface['snow_counts']);imp=cp.ascontiguousarray(surface['impurity_output_kgm2'])
     nc=cp.empty_like(c);ng=cp.empty_like(g);no=cp.empty_like(o);ns=cp.empty_like(storage);diag=cp.empty((n,26),cp.float32);impurity=cp.empty((n,5),cp.float32)
     if n:
-        finish(*launch,(c,g,p,o,site,storage,forcing,deposition,prep,sc,sg,sn,canopy,flux,imp,nc,ng,no,ns,diag,impurity,np.int32(n)))
+        finish(*launch,(c,g,p,o,site,storage,forcing,deposition,prep,sc,sg,sn,canopy,flux,imp,nc,ng,no,ns,diag,impurity,np.uint64(0),np.int32(n)))
     if not bool(cp.all(diag[:,25]>0.)) or not all(bool(cp.all(cp.isfinite(x))) for x in (nc,ng,ns,diag,impurity)):
         raise RuntimeError('CUDA CLM post-surface water/heat transfer failed')
     return unpack_column(nc,ng,no,ns,diag,impurity,surface=surface if return_surface else None)

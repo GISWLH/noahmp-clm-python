@@ -59,7 +59,7 @@ def validate_surface(arrays,xp):
         raise ValueError('Invalid surface stores, roots or soil properties')
 
 
-def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exchange_extension=None):
+def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exchange_extension=None,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=c.dtype;zero=j.zeros((),dtype);dt=v[0];n=o[0];phase=o[1]
@@ -157,11 +157,11 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
     # residual test passed when rounding prevented further refinement.
     converged=((j.abs(candidate[361])<=tol)|(bracketed&(s(right-left)<=resolution)))&(candidate[362]>0.)
     details=None if condensate is None else candidate[363:]
-    finished=surface_finish_jax(c,g,v,candidate[:363],count,converged,aging,p,phase,details)
+    finished=surface_finish_jax(c,g,v,candidate[:363],count,converged,aging,p,phase,details,vic)
     return j.concatenate((finished,row(left,right),candidate[363:]))
 
 
-def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase,phase_details=None):
+def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase,phase_details=None,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=d.dtype;dt=v[0];row=lambda *x:j.asarray(x,dtype)
@@ -183,7 +183,7 @@ def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase,phase
     drain=snow_transfer_kernel_jax(ev[:45].reshape(5,9),n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
     pack=drain[:45].reshape(5,9);nn=drain[45]
     admission=soil_transport_kernel_jax(ground,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),
-        j.concatenate((row(drain[53],drain[54],dt),j.zeros(4,dtype))))
+        j.concatenate((row(drain[53],drain[54],dt),j.zeros(4,dtype))),vic)
     ground=admission[:12].reshape(4,3)
     runoff=s(s(d[353]+drain[60])+admission[26]);runoff_h=s(s(d[354]+drain[61])+admission[27])
     advected=s(d[349]+s(dt*s(canopy[206]+canopy[207])))

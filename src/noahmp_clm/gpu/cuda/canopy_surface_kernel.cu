@@ -59,7 +59,7 @@ template<class Solver> __device__ void surface_evaluate(const float* c,const flo
 }
 
 template<class Solver> __device__ void surface_finish(const float* old_snow,const float* old_soil,const float* v,
-    float* out,int count,bool converged,const float* aging,const float* p,int phase,const Solver& solver) {
+    float* out,int count,bool converged,const float* aging,const float* p,int phase,const Solver& solver,const float* vic=nullptr) {
     const float* d=out;const float* canopy=d+58;const float* heat=d+266;int n=(int)d[45];float dt=v[0];
     float z[6],centers[6],temperatures[6],args[23]={0.f};args[0]=dt;
     for(int i=0;i<6;++i){z[i]=i<n?d[9*i+2]:d[48];temperatures[i]=i<n?heat[18+i]:heat[18+n];}
@@ -76,7 +76,7 @@ template<class Solver> __device__ void surface_finish(const float* old_snow,cons
     snow_transfer_device(evolved,n,3,drainargs,drain);
     for(int i=0;i<45;++i)out[363+i]=drain[i];out[408]=drain[45];
     float admitargs[7]={drain[53],drain[54],dt,0.f,0.f,0.f,0.f},admission[47];int so[3]={0,phase,1};
-    soil_transport_device(d+46,p,so,admitargs,admission);for(int i=0;i<12;++i)out[409+i]=admission[i];
+    soil_transport_device(d+46,p,so,admitargs,admission,vic);for(int i=0;i<12;++i)out[409+i]=admission[i];
     float runoff=(d[353]+drain[60])+admission[26],runoff_h=(d[354]+drain[61])+admission[27];
     float advected=d[349]+dt*(canopy[206]+canopy[207]),et=(d[352]+d[348])+d[351];
     float le=solver.latent(out);
@@ -96,7 +96,7 @@ template<class Solver> __device__ void surface_finish(const float* old_snow,cons
 
 template<class Solver> __device__ void surface_device(const float* c,const float* g,const float* p,const int* o,
     const float* a,const float* input,const float* f,const float* v,const float* radiation,
-    const float* leaf,const float* aging,float* out,const Solver& solver) {
+    const float* leaf,const float* aging,float* out,const Solver& solver,const float* vic=nullptr) {
     int n=o[0],phase=o[1];float u[23],supply[10],root_h[4],offset0=0.f;bool inverse_ok=true;
     for(int i=0;i<23;++i)u[i]=input[i];u[15]=v[1]/v[0];u[17]=n>0?c[0]/v[0]:__int_as_float(0x7f800000);supply[0]=1.f;
     for(int i=0;i<4;++i) {
@@ -127,7 +127,7 @@ template<class Solver> __device__ void surface_device(const float* c,const float
         if(fabsf(unused[361])<=tol)for(int i=441;i<Solver::output_size;++i)out[i]=unused[i];
     }
     bool converged=(fabsf(out[361])<=tol||(bracketed&&(right-left)<=tol))&&out[362]>0.f;
-    surface_finish(c,g,v,out,count,converged,aging,p,phase,solver);
+    surface_finish(c,g,v,out,count,converged,aging,p,phase,solver,vic);
     out[439]=left;out[440]=right;
 }
 

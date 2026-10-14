@@ -12,6 +12,8 @@ from noahmp_clm.physics.canopy_most import MOSTGeometry
 from dataclasses import astuple
 
 MOST=None
+VIC=False
+WETBULB=False
 
 
 def cast_column_precision(arrays,dtype):
@@ -62,6 +64,8 @@ def advance(arrays,r):
 def trajectory(steps,cp):
     base,_,deposition=check.cases(np.float32);selected=[0,9,4]
     if MOST is not None:base[3][:,5]=1
+    if VIC:base[3][:,6:8]=6
+    if WETBULB:base[3][:,2]=5
     base=tuple(x[selected].copy() for x in base);deposition=deposition[selected]
     names=('numpy64','jax64','jax32','cuda32')
     states={name:cast_column_precision(base,np.float64 if name.endswith('64') else np.float32) for name in names}
@@ -80,7 +84,7 @@ def trajectory(steps,cp):
             diag=r['diagnostics'];surface=r['surface'];ff=forcing.astype(float)
             pm=ff[:,0]*ff[:,7]*1000.;ph=[]
             for one,opt in zip(ff,arrays[3]):
-                rain,snow=partition_precipitation(one[7],one[0],one[1],int(opt[2]))
+                rain,snow=partition_precipitation(one[7],one[0],one[1],int(opt[2]),qair=one[2],pressure=one[4])
                 ph.append(1000.*(rain*(334000.+4180.*(one[1]-273.15))+snow*2100.*(min(one[1],273.15)-273.15)))
             atmo=(ff[:,5]+ff[:,6]-surface['outgoing_shortwave'].astype(float)-surface['outgoing_longwave'].astype(float)-
                 diag['h'].astype(float)-diag['le'].astype(float))*ff[:,0]
@@ -118,11 +122,15 @@ def trajectory(steps,cp):
 
 
 def main():
-    global check,step_clm_enthalpy_columns_jax,step_clm_enthalpy_columns_cuda,MOST
+    global check,step_clm_enthalpy_columns_jax,step_clm_enthalpy_columns_cuda,MOST,VIC,WETBULB
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--steps',type=int,default=336)
     parser.add_argument('--layered-canopy',action='store_true')
     parser.add_argument('--most',action='store_true',help='Actual H/E feedback with explicit synthetic tower heights; requires --layered-canopy')
+    parser.add_argument('--vic',action='store_true',help='VIC admission and ARNO baseflow with explicit documented defaults; requires --layered-canopy')
+    parser.add_argument('--wetbulb',action='store_true',help='Wang wet-bulb partition, including independent precipitation enthalpy')
     args=parser.parse_args()
+    VIC=args.vic;WETBULB=args.wetbulb
+    if VIC and not args.layered_canopy:parser.error('--vic requires --layered-canopy')
     if args.most:
         if not args.layered_canopy:parser.error('--most requires --layered-canopy')
         MOST=MOSTGeometry(wind_height=15.,temperature_height=12.,humidity_height=10.,displacement=2.)
@@ -133,10 +141,12 @@ def main():
     import cupy as cp
     start=time.monotonic();arrays,f,dep=check.cases(np.float32)
     if MOST is not None:arrays[3][:,5]=1
+    if VIC:arrays[3][:,6:8]=6
+    if WETBULB:arrays[3][:,2]=5
     options={} if MOST is None else dict(most_geometry=MOST)
     refs=[check.reference(row,one,d,**options) for row,one,d in zip(zip(*arrays),f,dep)]
     report=dict(source_manifest=json.loads((ROOT/'SOURCE_SHA256.json').read_text()),layered_canopy=args.layered_canopy,
-        most_geometry=None if MOST is None else vars(MOST),cases=len(refs),single={});results={}
+        most_geometry=None if MOST is None else vars(MOST),vic=VIC,wetbulb=WETBULB,cases=len(refs),single={});results={}
     for name in ('jax64','jax32','cuda32'):
         dtype=np.float64 if name=='jax64' else np.float32
         x=cast_column_precision(arrays,dtype)

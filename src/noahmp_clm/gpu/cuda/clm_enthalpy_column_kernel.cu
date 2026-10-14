@@ -3,12 +3,12 @@
 __device__ float ec_sum(const float* x,int n,int stride=1){float v=0.f;for(int k=0;k<n;++k)v+=x[k*stride];return v;}
 
 __device__ bool ec_route_water(float* snow,float* soil,int n,const float* p,int phase,float dt,
-                               float mass,float heat,float* runoff) {
+                               float mass,float heat,float* runoff,const float* vic=nullptr) {
     runoff[0]=runoff[1]=0.f;
     if(mass<=0.f)return true;
     if(n>0){snow[0]+=mass;snow[1]+=heat;return true;}
     int opt[3]={0,phase,1};float u[7]={mass,heat,dt,0.f,0.f,0.f,0.f},out[47];
-    soil_transport_device(soil,p,opt,u,out);for(int k=0;k<12;++k)soil[k]=out[k];
+    soil_transport_device(soil,p,opt,u,out,vic);for(int k=0;k<12;++k)soil[k]=out[k];
     runoff[0]=out[26];runoff[1]=out[27];return out[46]>0.f;
 }
 
@@ -87,25 +87,26 @@ extern "C" __global__ void finish_enthalpy_columns(const float* old_snow,const f
     const int* options,const float* sites,const float* old_storage,const float* forcing,const float* deposition,
     const float* prep_in,const float* surface_snow,const float* surface_soil,const int* counts,const float* canopy,
     const float* flux_in,const float* surface_impurity,float* snow_out,float* soil_out,int* options_out,
-    float* storage_out,float* diag_out,float* impurity_out,int size) {
+    float* storage_out,float* diag_out,float* impurity_out,const float* vic_parameters,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
         const float* p=params+row*6;const int* o=options+row*9;const float* site=sites+row*12;const float* old_store=old_storage+row*3;
         const float* prep=prep_in+row*5;const float* flux=flux_in+row*15;float dt=forcing[row*8];int phase=o[1],n=counts[row];
+        const float* vic=vic_parameters?vic_parameters+row*8:nullptr;
         float c[45],g[12],impurity[5];for(int k=0;k<45;++k)c[k]=surface_snow[row*45+k];for(int k=0;k<12;++k)g[k]=surface_soil[row*12+k];
         for(int k=0;k<5;++k)impurity[k]=surface_impurity[row*5+k];
         float mass=canopy[row*2],heat=canopy[row*2+1],runoff[2]={prep[2]+flux[1],prep[3]+flux[2]};bool valid=true;
         float drip=fmaxf(0.f,mass-prep[4]),drip_h=(drip*heat)/(mass>0.f?mass:1.f);mass-=drip;heat-=drip_h;
         if(drip>0.f) {
-            float flow[2];valid=ec_route_water(c,g,n,p,phase,dt,drip,drip_h,flow);
+            float flow[2];valid=ec_route_water(c,g,n,p,phase,dt,drip,drip_h,flow,vic);
             float u[16]={0.f,0.f,100.f,54.5f,.033f,.05f,.2f,.02f,.02f,.01f,.01f,0.f,0.f,0.f,0.f,0.f},drained[74];
             snow_transfer_device(c,n,3,u,drained);for(int k=0;k<45;++k)c[k]=drained[k];n=(int)drained[45];
             float su[7]={drained[53],drained[54],dt,0.f,0.f,0.f,0.f},admitted[47];int so[3]={0,phase,1};
-            soil_transport_device(g,p,so,su,admitted);for(int k=0;k<12;++k)g[k]=admitted[k];valid=valid&&admitted[46]>0.f;
+            soil_transport_device(g,p,so,su,admitted,vic);for(int k=0;k<12;++k)g[k]=admitted[k];valid=valid&&admitted[46]>0.f;
             runoff[0]+=(flow[0]+drained[60])+admitted[26];runoff[1]+=(flow[1]+drained[61])+admitted[27];
             for(int k=0;k<5;++k)impurity[k]+=drained[62+k]+drained[55+k];
         }
         float su[7]={0.f,0.f,dt,0.f,0.f,0.f,0.f},drained[47];int so[3]={2,phase,o[8]};
-        soil_transport_device(g,p,so,su,drained);for(int k=0;k<12;++k)g[k]=drained[k];valid=valid&&drained[46]>0.f;
+        soil_transport_device(g,p,so,su,drained,vic);for(int k=0;k<12;++k)g[k]=drained[k];valid=valid&&drained[46]>0.f;
         runoff[0]+=drained[44];runoff[1]+=drained[45];
         for(int k=0;k<5;++k){float addition=deposition[row*5+k]*dt;if(n>0)c[4+k]+=addition;else impurity[k]+=addition;}
         float offset=drained[12];if(n>0){float ice,liq;snow_mass_phase(c[0],c[1],offset,ice,liq);}float temp=offset+273.15f;
@@ -120,6 +121,7 @@ extern "C" __global__ void finish_enthalpy_columns(const float* old_snow,const f
         float d[26]={temp,flux[9],flux[6],flux[7],flux[8],flux[0],prep[0],runoff[0],surface*1000.f,deep*1000.f,
             ec_sum(c,5,9)/1000.f,mass/1000.f,flux[5],(flux[5]*12.0107e-6f)*dt,flux[10],flux[12],flux[13],flux[14],
             prep[1],runoff[1],flux[4],flux[3],water_res,energy_res,flux[11],valid?1.f:0.f};
+        if(vic&&(vic[0]>0.f||vic[1]>0.f)){d[8]=runoff[0]-drained[44];d[9]=drained[44];}
         for(int k=0;k<45;++k)snow_out[row*45+k]=c[k];for(int k=0;k<12;++k)soil_out[row*12+k]=g[k];
         for(int k=0;k<9;++k)options_out[row*9+k]=k==0?n:o[k];
         storage_out[row*3]=mass;storage_out[row*3+1]=heat;storage_out[row*3+2]=temp;

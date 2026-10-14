@@ -58,7 +58,7 @@ def pack_clm_enthalpy_columns(states,*,dtype=np.float64,co2_ppm=420.,cosine_zeni
     return tuple(np.stack([row[k] for row in rows]) for k in range(7))
 
 
-def validate_column(arrays,forcing,deposition,xp):
+def validate_column(arrays,forcing,deposition,xp,*,allow_vic=False):
     c,g,p,o,site,storage,roots=arrays;n=len(c)
     if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,6) or o.shape!=(n,9)
         or site.shape!=(n,12) or storage.shape!=(n,3) or roots.shape!=(n,4)
@@ -72,9 +72,12 @@ def validate_column(arrays,forcing,deposition,xp):
     soil_options=xp.stack((zero,o[:,1],o[:,8]),axis=1)
     soil_inputs=xp.concatenate((xp.zeros((n,2),dtype=c.dtype),forcing[:,:1],xp.zeros((n,4),dtype=c.dtype)),axis=1)
     validate_soil_transport(g,p[:,:4],soil_options,soil_inputs,xp)
-    maxopt=xp.asarray([5,2,5,3,4,2,4,4,2])
+    maxopt=xp.asarray([5,2,5,3,4,2,6 if allow_vic else 4,6 if allow_vic else 4,2])
     if bool(xp.any((o<xp.asarray([0,1,1,1,1,1,1,1,1]))|(o>maxopt))) or bool(xp.any(o[:,2]==4)):
         raise NotImplementedError('Unsupported CLM column option')
+    if bool(xp.any(o[:,6:8]==5)) or bool(xp.any(
+        xp.any(o[:,6:8]==6,axis=1)&xp.any((o[:,6:8]!=3)&(o[:,6:8]!=6),axis=1))):
+        raise NotImplementedError('VIC supports explicit combinations of runoff options 3 and 6')
     bad=((site[:,0]<0.)|(site[:,1]<0.)|(site[:,1]>1.)|(site[:,2]<=0.)|
         (site[:,3]<0.)|(site[:,3]>1.)|(site[:,4]<=0.)|(site[:,4]>1.)|(site[:,7]<=0.)|
         (site[:,8]<=0.)|(site[:,8]>1.)|(site[:,9]<0.)|(site[:,9]>1.)|(site[:,10]<=0.)|
@@ -86,7 +89,7 @@ def validate_column(arrays,forcing,deposition,xp):
         raise ValueError('Invalid extensive CLM state, forcing or site')
 
 
-def route_water_jax(c,g,n,p,phase,dt,mass,heat):
+def route_water_jax(c,g,n,p,phase,dt,mass,heat,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier
@@ -97,7 +100,7 @@ def route_water_jax(c,g,n,p,phase,dt,mass,heat):
         return pack,g,j.zeros(2,c.dtype),j.asarray(True)
     def into_soil():
         u=j.concatenate((j.stack((mass,heat,dt)),j.zeros(4,c.dtype)))
-        out=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u)
+        out=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
         return c,out[:12].reshape(4,3),out[26:28],out[46]>0.
     return lax.cond(mass>0.,lambda:lax.cond(n>0,into_snow,into_soil),
         lambda:(c,g,j.zeros(2,c.dtype),j.asarray(True)))
@@ -162,7 +165,7 @@ def runoff_jax(incoming,g,p,site,surface_option,subsurface_option):
     return j.stack((surf,s(incoming-surf)))
 
 
-def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,canopy,flux,impurity):
+def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,canopy,flux,impurity,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;row=lambda *x:j.asarray(x,c.dtype);dt=forcing[0];phase=o[1]
@@ -170,20 +173,21 @@ def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g
     drip=j.maximum(0.,s(mass-prep[4]));drip_h=s(s(drip*heat)/j.where(mass>0.,mass,1.))
     mass=s(mass-drip);heat=s(heat-drip_h)
     def overflow():
-        pack,soil,out,ok=route_water_jax(c,g,n,p,phase,dt,drip,drip_h)
+        pack,soil,out,ok=route_water_jax(c,g,n,p,phase,dt,drip,drip_h,vic)
         drained=snow_transfer_kernel_jax(pack,n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
         u=j.concatenate((row(drained[53],drained[54],dt),j.zeros(4,c.dtype)))
-        admitted=soil_transport_kernel_jax(soil,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u)
+        admitted=soil_transport_kernel_jax(soil,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
         out=s(s(out+drained[60:62])+admitted[26:28]);tracer=s(drained[62:67]+drained[55:60])
         return drained[:45].reshape(5,9),admitted[:12].reshape(4,3),drained[45].astype(j.int32),out,tracer,ok&(admitted[46]>0.)
     c,g,n,out,tracer,valid=lax.cond(drip>0.,overflow,lambda:(c,g,n,j.zeros(2,c.dtype),j.zeros(5,c.dtype),valid))
     runoff=s(runoff+out);impurity=s(impurity+tracer)
-    drained=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(2),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))))
+    drained=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(2),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))),vic)
     g=drained[:12].reshape(4,3);runoff=s(runoff+drained[44:46]);valid=valid&(drained[46]>0.)
     addition=s(deposition*dt);c=c.at[0,4:].set(j.where(n>0,s(c[0,4:]+addition),c[0,4:]));impurity=s(impurity+j.where(n==0,addition,0.))
     temp=s(j.where(n>0,snow_phase_jax(c[0,0],c[0,1])[0],drained[12])+273.15)
     store=row(mass,heat,temp);options=o.at[0].set(n)
     classified=s(runoff_jax(runoff[0]/1000.,g,p,site,o[6],o[7])*1000.)
+    if vic is not None:classified=j.where(j.any(vic[:2]>0.),row(s(runoff[0]-drained[44]),drained[44]),classified)
     water0=s(s(_sum(old_c[:,0])+_sum(old_g[:,0]))+old_store[0]);water1=s(s(_sum(c[:,0])+_sum(g[:,0]))+mass)
     h0=s(s(_sum(old_c[:,1])+_sum(old_g[:,1]))+old_store[1]);h1=s(s(_sum(c[:,1])+_sum(g[:,1]))+heat)
     water_res=s(s(s(s(water1-water0)-prep[0])+flux[0])+runoff[0])
