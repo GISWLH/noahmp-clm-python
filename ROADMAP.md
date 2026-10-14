@@ -24,13 +24,14 @@
   NumPy焓—叶温—空气湿度联立开发中，75个独立方程工况、三类冠层七天1008步完成；18项目标测试通过，累计焓残差最大2.519 J/m²，
   该NumPy检查点全量528 passed / 0 skipped，见[当前结果与失败记录](docs/CLM_CANOPY_PHASE_ENERGY.md)。
   [原生相变联立](docs/CLM_GPU_CANOPY_PHASE_ENERGY.md)22项目标测试、75个设备工况完成，同精度最大差0；原生七天4032次联立求解完成，同精度最大差0，最终全量532 passed / 0 skipped。
-  [分层完整柱](docs/CLM_LAYERED_CANOPY_COLUMN.md)NumPy 44项目标及三柱七天1008步完成；原生整柱4项目标通过，同精度最大差4.76837e-7，最终冻结全量563 passed；四后端连续整柱进行中。
+  [分层完整柱](docs/CLM_LAYERED_CANOPY_COLUMN.md)NumPy 44项目标及三柱七天1008步完成；原生整柱4项目标通过，同精度最大差4.76837e-7，最终冻结全量563 passed；四后端七天4032柱步已完成，日H最大偏差0.00876828%。
   [MOST通量反馈](docs/CLM_CANOPY_MOST.md)原生完整耦合5项目标通过，同精度最大差2.98023e-8；连续稳定工况收敛慢修复后11项NumPy回归通过，修后三柱一天144步完成；修后设备6项目标通过。
 - [ ] P3湿球选项5：334个独立根及1000个原生组件工况完成；完整驱动及设备选项矩阵69项目标通过，同精度差0；连续验证和官方差异核对待完成，见[湿球记录](docs/CLM_WETBULB.md)。[VIC](docs/CLM_VIC.md)原生完整柱8工况同精度最大差4.76837e-7；旧湿球合同失败修正后已复验。
 - [x] P3 [GDD物候组件与整柱LAI](docs/CLM_PHENOLOGY.md)：选项5接入实际截留/辐射/水热，28项目标通过、8类柱两步同精度差0；长期站点与C/N联动仍待验收。
 - [x] P4 [凋落物及三库土壤C/N分解独立组件](docs/CLM_DECOMPOSITION.md)：日步对连续ODE最大碳库/呼吸偏差0.22448%/0.52504%；三后端13项目标和四后端七天完成，同精度差0。
 - [x] P4植物C/N、储备、组织分配/凋落、维持/生长呼吸与叶N反馈组件：三后端14项目标通过，七天植物—土壤联算同精度差0；[完整数字及简化](docs/CLM_PLANT_CN.md)。实际整柱GPP/NEE与长期反馈验证尚未完成。
-- [ ] P4植物C/N分配、氮限制光合、整柱呼吸/NEE、真实强迫spinup及观测验收。
+- [x] P4 [NumPy整柱C/N连接](docs/CLM_BGC_COLUMN.md)：实际叶碳LAI、叶N容量、凋落、土壤N竞争、RA/RH/NEE，36项新目标及相关回归。
+- [ ] P4整柱C/N原生JAX/CUDA同步、真实强迫spinup及GPP/NEE观测验收。
 - [x] P2固定雪/土表温冠层、冰面交换和液水储热/根水携热原生JAX/CUDA；425工况同精度全字段最大差0，详见[边界报告](docs/CLM_GPU_CANOPY_BOUNDARY.md)。
 - [x] P2土壤入渗/取水/重力排水及携热原生JAX/CUDA；1062工况、三柱7天过程链，日底部出流偏差最大0.00733%，详见[土壤输送报告](docs/CLM_GPU_SOIL_TRANSPORT.md)。
 - [x] P2冬季冠层—雪—土壤表面求根、实际水汽/根水携焓、联合传热及雪融水入渗接成原生JAX/CUDA时间步；50工况同精度最大差0，最终全量492 passed / 0 skipped，详见[表面步报告](docs/CLM_GPU_CANOPY_SURFACE.md)。七天4032柱步完成，同精度全轨迹最大差0。

@@ -1,0 +1,344 @@
+{
+  "layered_canopy": true,
+  "most_geometry": null,
+  "cases": 16,
+  "single": {
+    "jax64": {
+      "max_absolute": {
+        "ts": 3.410605131648481e-13,
+        "rnet": 6.110667527536862e-11,
+        "h": 4.799716180059477e-11,
+        "le": 2.773958840407431e-11,
+        "g": 4.547473508864641e-11,
+        "et_mm": 1.9984014443252818e-14,
+        "prcp_mm": 0.0,
+        "runoff_mm": 3.469446951953614e-17,
+        "runoff_surface_mm": 1.0658141036401503e-14,
+        "runoff_deep_mm": 1.0436096431476471e-14,
+        "swe": 3.3306690738754696e-16,
+        "canw": 8.803721640582296e-17,
+        "gpp_umol_m2s": 5.70378674069616e-07,
+        "gpp_gcm2": 1.2331164866985489e-08,
+        "leaf_respiration_umol_m2s": 1.5787371410169726e-13,
+        "canopy_temperature": 4.149569576838985e-12,
+        "canopy_humidity": 9.367506770274758e-16,
+        "flux_surface_temperature": 3.979039320256561e-13,
+        "precipitation_enthalpy_jm2": 0.0,
+        "runoff_enthalpy_jm2": 1.862645149230957e-09,
+        "advected_enthalpy_jm2": 1.0331859812140465e-08,
+        "atmospheric_energy_jm2": 8.440110832452774e-08,
+        "snow_drainage_kgm2": 3.3217872896784684e-13,
+        "snow_cells": [
+          2.255973186038318e-13,
+          2.60770320892334e-08,
+          6.869504964868156e-16,
+          1.5347723092418164e-12,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "soil_cells": [
+          2.8421709430404007e-13,
+          1.043081283569336e-07,
+          0.0
+        ],
+        "soil_temperature": 3.410605131648481e-13
+      },
+      "budget": {
+        "water_kgm2": 1.636451391062721e-13,
+        "heat_jm2": 0.0005590824184764642,
+        "impurity_kgm2": 0.0,
+        "water_bound_max_kgm2": 1.306403873662364e-11,
+        "heat_bound_max_jm2": 0.000574919396753185,
+        "canopy_interception_heat_jm2": 4.656612873077393e-10,
+        "canopy_interception_water_kgm2": 3.552713678800501e-15,
+        "canopy_post_interception_heat_jm2": 4.547473508864641e-12,
+        "canopy_post_interception_water_kgm2": 2.7755575615628914e-16
+      }
+    },
+    "jax32": {
+      "max_absolute": {
+        "ts": 3.172634558268328e-05,
+        "rnet": 0.0035958960420998665,
+        "h": 0.0007480876230303579,
+        "le": 0.0012925975303232917,
+        "g": 0.004278283534176808,
+        "et_mm": 9.305128655934247e-07,
+        "prcp_mm": 2.273591235280037e-07,
+        "runoff_mm": 4.547182470560074e-07,
+        "runoff_surface_mm": 1.6784323904062148e-06,
+        "runoff_deep_mm": 2.3620668798685074e-06,
+        "swe": 3.793271983326685e-08,
+        "canw": 9.876201052718553e-10,
+        "gpp_umol_m2s": 8.93745746282093e-05,
+        "gpp_gcm2": 1.944548325027995e-06,
+        "leaf_respiration_umol_m2s": 2.036922752286438e-06,
+        "canopy_temperature": 6.643502553060898e-05,
+        "canopy_humidity": 2.8640317142197835e-08,
+        "flux_surface_temperature": 2.4844120673606085e-05,
+        "precipitation_enthalpy_jm2": 0.9021884917165153,
+        "runoff_enthalpy_jm2": 0.4609358385205269,
+        "advected_enthalpy_jm2": 0.39418051671236753,
+        "atmospheric_energy_jm2": 8.953909990261309,
+        "snow_drainage_kgm2": 3.7079902892145356e-05,
+        "snow_cells": [
+          2.3629585546913745e-05,
+          0.9714392204768956,
+          6.650371543043265e-08,
+          0.0006728850706849698,
+          4.5102810375396984e-17,
+          4.3021142204224816e-16,
+          2.1510571102112408e-16,
+          1.0755285551056204e-16,
+          9.020562075079397e-17
+        ],
+        "soil_cells": [
+          2.5471898140949634e-05,
+          24.092402637004852,
+          0.0
+        ],
+        "soil_temperature": 1.9149374566040933e-05
+      },
+      "budget": {
+        "water_kgm2": 2.653121919138357e-05,
+        "heat_jm2": 19.657646941021085,
+        "impurity_kgm2": 4.3021142204224816e-16,
+        "water_bound_max_kgm2": 0.007013702382625109,
+        "heat_bound_max_jm2": 3417.5599395777767,
+        "canopy_interception_heat_jm2": 0.75,
+        "canopy_interception_water_kgm2": 9.5367431640625e-07,
+        "canopy_post_interception_heat_jm2": 0.015625,
+        "canopy_post_interception_water_kgm2": 1.5273690223693848e-07
+      }
+    },
+    "cuda32": {
+      "max_absolute": {
+        "ts": 3.172634558268328e-05,
+        "rnet": 0.0035958960420998665,
+        "h": 0.0007480876230303579,
+        "le": 0.0012925975303232917,
+        "g": 0.004278283534176808,
+        "et_mm": 9.305128655934247e-07,
+        "prcp_mm": 2.273591235280037e-07,
+        "runoff_mm": 4.547182470560074e-07,
+        "runoff_surface_mm": 1.6784323904062148e-06,
+        "runoff_deep_mm": 2.3620668798685074e-06,
+        "swe": 3.793271983326685e-08,
+        "canw": 9.876201052718553e-10,
+        "gpp_umol_m2s": 8.93745746282093e-05,
+        "gpp_gcm2": 1.944548325027995e-06,
+        "leaf_respiration_umol_m2s": 2.036922752286438e-06,
+        "canopy_temperature": 6.643502553060898e-05,
+        "canopy_humidity": 2.8640317142197835e-08,
+        "flux_surface_temperature": 2.4844120673606085e-05,
+        "precipitation_enthalpy_jm2": 0.9021884917165153,
+        "runoff_enthalpy_jm2": 0.4609358385205269,
+        "advected_enthalpy_jm2": 0.39418051671236753,
+        "atmospheric_energy_jm2": 8.953909990261309,
+        "snow_drainage_kgm2": 3.7079902892145356e-05,
+        "snow_cells": [
+          2.3629585546913745e-05,
+          0.9714392204768956,
+          6.650371543043265e-08,
+          0.0006728850706849698,
+          4.5102810375396984e-17,
+          4.3021142204224816e-16,
+          2.1510571102112408e-16,
+          1.0755285551056204e-16,
+          9.020562075079397e-17
+        ],
+        "soil_cells": [
+          2.5471898140949634e-05,
+          24.092402637004852,
+          0.0
+        ],
+        "soil_temperature": 1.9149374566040933e-05
+      },
+      "budget": {
+        "water_kgm2": 2.653121919138357e-05,
+        "heat_jm2": 19.657646941021085,
+        "impurity_kgm2": 4.3021142204224816e-16,
+        "water_bound_max_kgm2": 0.007013702382625109,
+        "heat_bound_max_jm2": 3417.5599395777767,
+        "canopy_interception_heat_jm2": 0.75,
+        "canopy_interception_water_kgm2": 9.5367431640625e-07,
+        "canopy_post_interception_heat_jm2": 0.015625,
+        "canopy_post_interception_water_kgm2": 1.5273690223693848e-07
+      }
+    }
+  },
+  "same_precision_max_absolute": 4.76837158203125e-07,
+  "trajectory": {
+    "steps": 336,
+    "columns": 3,
+    "backends": 4,
+    "budgets": {
+      "numpy64": {
+        "step": [
+          3.1943978712201115e-13,
+          0.0006231064785424678
+        ],
+        "cumulative": [
+          1.048938713665848e-12,
+          0.014368429780006409
+        ]
+      },
+      "jax64": {
+        "step": [
+          2.928681602787364e-13,
+          0.0006230785163552355
+        ],
+        "cumulative": [
+          1.028510610012745e-12,
+          0.014369577169418335
+        ]
+      },
+      "jax32": {
+        "step": [
+          5.042180418968201e-05,
+          37.00337219238281
+        ],
+        "cumulative": [
+          0.0016642606678942684,
+          834.6335017681122
+        ]
+      },
+      "cuda32": {
+        "step": [
+          5.042180418968201e-05,
+          37.00337219238281
+        ],
+        "cumulative": [
+          0.0016642606678942684,
+          834.6335017681122
+        ]
+      }
+    },
+    "cumulative_numerical_bounds": {
+      "numpy64": [
+        3.785695693375867e-09,
+        0.03113907336881288
+      ],
+      "jax64": [
+        3.785695693389116e-09,
+        0.02941200533760678
+      ],
+      "jax32": [
+        2.032431550772521,
+        796509.3259330728
+      ],
+      "cuda32": [
+        2.032431550772521,
+        796509.3259330728
+      ]
+    },
+    "daily_comparison": {
+      "jax64": {
+        "et_mm": {
+          "max_absolute": 2.752590844146141e-08,
+          "max_relative_percent": 1.5119809538294438e-06
+        },
+        "runoff_mm": {
+          "max_absolute": 3.181143348740534e-09,
+          "max_relative_percent": 1.2276282769539153e-07
+        },
+        "gpp_gcm2": {
+          "max_absolute": 1.594006882044141e-07,
+          "max_relative_percent": 2.059048341793298e-06
+        },
+        "h": {
+          "max_absolute": 5.514616248092352e-07,
+          "max_relative_percent": 1.655391915396397e-06
+        },
+        "le": {
+          "max_absolute": 7.964672619209523e-07,
+          "max_relative_percent": 1.5119809264671445e-06
+        },
+        "swe": {
+          "max_absolute": 2.0896423480465387e-11,
+          "max_relative_percent": 1.2579068198338727e-08
+        },
+        "temperature": {
+          "max_absolute": 1.171667918242747e-08,
+          "max_relative_percent": 0.0
+        },
+        "water": {
+          "max_absolute": 3.481908650293519e-10,
+          "max_relative_percent": 1.2488653959461808e-07
+        }
+      },
+      "jax32": {
+        "et_mm": {
+          "max_absolute": 1.1227823210280263e-05,
+          "max_relative_percent": 0.0012475654416776942
+        },
+        "runoff_mm": {
+          "max_absolute": 4.995628905613003e-05,
+          "max_relative_percent": 0.001688284392654571
+        },
+        "gpp_gcm2": {
+          "max_absolute": 9.732529250960908e-06,
+          "max_relative_percent": 0.0003628090171262734
+        },
+        "h": {
+          "max_absolute": 0.0013883346064034185,
+          "max_relative_percent": 0.008768283737652465
+        },
+        "le": {
+          "max_absolute": 0.0003245892038847842,
+          "max_relative_percent": 0.001282961395720764
+        },
+        "swe": {
+          "max_absolute": 9.559725902552607e-08,
+          "max_relative_percent": 5.1300487607968895e-05
+        },
+        "temperature": {
+          "max_absolute": 8.197799428444341e-05,
+          "max_relative_percent": 0.0
+        },
+        "water": {
+          "max_absolute": 1.2821760660974846e-06,
+          "max_relative_percent": 0.00042739035901888145
+        }
+      },
+      "cuda32": {
+        "et_mm": {
+          "max_absolute": 1.1227823210280263e-05,
+          "max_relative_percent": 0.0012475654416776942
+        },
+        "runoff_mm": {
+          "max_absolute": 4.995628905613003e-05,
+          "max_relative_percent": 0.001688284392654571
+        },
+        "gpp_gcm2": {
+          "max_absolute": 9.732529250960908e-06,
+          "max_relative_percent": 0.0003628090171262734
+        },
+        "h": {
+          "max_absolute": 0.0013883346064034185,
+          "max_relative_percent": 0.008768283737652465
+        },
+        "le": {
+          "max_absolute": 0.0003245892038847842,
+          "max_relative_percent": 0.001282961395720764
+        },
+        "swe": {
+          "max_absolute": 9.559725902552607e-08,
+          "max_relative_percent": 5.1300487607968895e-05
+        },
+        "temperature": {
+          "max_absolute": 8.197799428444341e-05,
+          "max_relative_percent": 0.0
+        },
+        "water": {
+          "max_absolute": 1.2821760660974846e-06,
+          "max_relative_percent": 0.00042739035901888145
+        }
+      }
+    },
+    "same_precision_max_absolute": 1.52587890625e-05
+  },
+  "seconds": 9675.10411734134
+}

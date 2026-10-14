@@ -24,8 +24,17 @@ from .physics.canopy_interception import intercept_precipitation
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
-                            deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None):
+                            deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
+                            nitrogen_deposition_gn_m2=0.,oxygen_factor=1.):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
+    if state.bgc_state is not None:
+        from .clm_bgc_driver import step_clm_bgc_column
+        return step_clm_bgc_column(state,forcing,co2_ppm=co2_ppm,cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction,
+            leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,
+            deposition_rates=deposition_rates,most_geometry=most_geometry,vic_parameters=vic_parameters,
+            phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor)
+    if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
+        raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
     f=forcing;opt=state.options
     vic_surface=opt.OptRunoffSurface==6;vic_bottom=opt.OptRunoffSubsurface==6
     if vic_surface or vic_bottom:

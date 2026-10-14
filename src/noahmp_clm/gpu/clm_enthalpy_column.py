@@ -40,6 +40,8 @@ def pack_clm_enthalpy_columns(states,*,dtype=np.float64,co2_ppm=420.,cosine_zeni
         (co2_ppm,cosine_zenith,diffuse_fraction,leaf_dimension,nitrogen_factor)],axis=1)
     rows=[]
     for k,state in enumerate(states):
+        if state.bgc_state is not None:
+            raise NotImplementedError('BGC requires an extended native entry retaining all plant/soil C/N stores')
         if state.canopy_condensate is not None:
             raise NotImplementedError('Use pack_clm_layered_columns for the canopy phase profile; aggregate packing would lose it')
         for field in fields(state.options):

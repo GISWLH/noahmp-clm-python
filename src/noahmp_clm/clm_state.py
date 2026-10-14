@@ -8,6 +8,7 @@ from .physics.snowpack import Snowpack,TF,LF,CW
 from .physics.soil_enthalpy import SoilEnthalpyState
 from .physics.canopy_interception import CanopyCondensate
 from .physics.phenology import PhenologyState,PhenologyParameters
+from .physics.biogeochemistry import BGCState,BGCParameters
 
 
 def clm_options():
@@ -38,6 +39,8 @@ class CLMColumnState:
     canopy_condensate: CanopyCondensate | None=None
     phenology_state: PhenologyState | None=None
     phenology_parameters: PhenologyParameters | None=None
+    bgc_state: BGCState | None=None
+    bgc_parameters: BGCParameters | None=None
 
     def __post_init__(self):
         if self.options.OptDynamicVeg==5:
@@ -49,6 +52,12 @@ class CLMColumnState:
             object.__setattr__(self,'lai',p.lai_minimum+(p.lai_maximum-p.lai_minimum)*self.phenology_state.leaf_fraction)
         elif self.phenology_state is not None or self.phenology_parameters is not None:
             raise ValueError('Phenology state/parameters require OptDynamicVeg=5')
+        if self.bgc_state is not None or self.bgc_parameters is not None:
+            if (not isinstance(self.bgc_state,BGCState) or not isinstance(self.bgc_parameters,BGCParameters)
+                or self.canopy_condensate is None):
+                raise ValueError('BGC requires C/N state, parameters and a layered canopy')
+            from .physics.plant_cn import plant_lai
+            object.__setattr__(self,'lai',plant_lai(self.bgc_state.plant,self.fveg,self.bgc_parameters.plant))
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -71,6 +80,8 @@ class CLMColumnState:
         if roots.shape!=self.ground.water.shape or not np.all(np.isfinite(roots)) or np.any(roots<0):
             raise ValueError('Invalid CLM root fractions')
         if roots.sum()>0: roots/=roots.sum()
+        if self.bgc_state is not None and roots.sum()==0.:
+            raise ValueError('BGC requires a nonempty root distribution')
         roots.setflags(write=False);object.__setattr__(self,'root_frac',roots)
 
     @classmethod
@@ -106,6 +117,14 @@ class CLMColumnState:
         """
         return replace(self,options=replace(self.options,OptDynamicVeg=5),
             phenology_state=PhenologyState() if initial is None else initial,phenology_parameters=parameters)
+
+    def with_biogeochemistry(self,state,parameters=None):
+        """Attach explicit C/N pools; actual LAI becomes a leaf-carbon alias.
+
+        Retain all water/enthalpy. Seasonal option 5 supplies a leaf target,
+        not biomass; any capacity excess is routed by the next physical step.
+        """
+        return replace(self,bgc_state=state,bgc_parameters=BGCParameters() if parameters is None else parameters)
 
     def with_layered_canopy(self,layers=10):
         """Convert shared mass/enthalpy to equal leaf-area layers, retaining heat.
