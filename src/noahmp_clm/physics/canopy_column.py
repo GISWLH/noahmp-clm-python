@@ -128,6 +128,14 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
             if value>0.: left,fl=trial,value
             else: right,fr=trial,value
         else: raise RuntimeError(f'Surface heat/water iteration did not converge: {value:.9g} K')
+    # A mixed-phase snow surface is exactly on its latent plateau. A scalar
+    # secant can stop one Kelvin ULP below TF and wrongly classify deposition
+    # as frost rather than dew. Re-evaluate the exact physical phase event;
+    # only accept it if the complete coupled solve still satisfies its root.
+    if (len(details['snow'].mass) and details['snow'].temperature[0]==TF
+            and details['temperature']!=TF):
+        residual,plateau=evaluate(TF)
+        if abs(residual)<=temperature_tolerance:details=plateau
     pack,ground=details['snow'],details['soil'];result=details['result']
     thermal_state=dict(thermal_snow_mass=pack.mass.copy(),thermal_snow_enthalpy=pack.enthalpy.copy(),
         thermal_snow_temperature=pack.temperature.copy(),thermal_soil_water=ground.water.copy(),

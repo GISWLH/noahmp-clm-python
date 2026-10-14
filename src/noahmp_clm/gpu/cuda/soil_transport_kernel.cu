@@ -1,6 +1,9 @@
 // Four liquid-equivalent soil reservoirs; H remains authoritative.
 // Compiled after enthalpy_kernel.cu, independent of the released soil scheme.
-__device__ void soil_transport_device(const float* cells,const float* p,const int* option,
+// Keep the transfer call boundary when reused in the fused nonlinear surface.
+// NVRTC's inlined version corrupts local soil masses in that caller (the
+// standalone transfer is unaffected); full-field regression covers both.
+__device__ __noinline__ void soil_transport_device(const float* cells,const float* p,const int* option,
                                       const float* u,float* out) {
     float water[4],heat[4],z[4],offset[4],liquid[4];bool valid=true;
     float por=p[0],b=p[1],field=p[2],satdk=p[3];int mode=option[0],phase=option[1],permeability=option[2];

@@ -34,6 +34,9 @@ NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳�
 新增[土壤入渗/取水/排水质量与携热原生输送](docs/CLM_GPU_SOIL_TRANSPORT.md)：
 1062同输入工况和12096次连续柱操作同精度最大差0，日底部出流偏差最大0.00733%；
 Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
+新增[原生冠层—雪—土壤非线性表面步](docs/CLM_GPU_CANOPY_SURFACE.md)：
+50工况同精度全字段最大差0，H/LE最大绝对差0.01409/0.01139 W/m²，
+完整质量/焓收支独立核算，最终Linux全量492 passed / 0 skipped；连续轨迹仍在运行。
 冠层截雪/冻结、MOST反馈及完整新柱JAX/CUDA连接仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
