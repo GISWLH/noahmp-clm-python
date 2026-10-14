@@ -2,6 +2,12 @@
 
 ## v1 P2：Windows参考环境访问异常，已绕行Linux（2026-10-13）
 
+- 2026-10-14冠层焓—叶温独立参考再次出现相同环境类问题：Windows进程
+  返回−1073741819，堆栈位于SciPy `optimize/_lsq/trf.py:235`；当时已设置
+  OMP/OPENBLAS单线程，前3项物理测试成功，不能据此确认具体原生库原因。
+  冻结`p2-canopy-phase-energy-c`转至既有Linux环境后 **16 passed / 0 skipped**，
+  13.88秒。继续在Linux进行扩展参考与物理开发，不在本机反复重启求根任务。
+  原始堆栈保留为`v1-results/p2-canopy-phase-energy-windows-crash.log.gz`。
 - 16:46 UTC和17:30 UTC两次完整pytest进程出现Windows access violation，
   退出码−1073741819；间隔超过30分钟。后一次禁用了第三方pytest插件，
   仍在NumPy `zeros_like` / SciPy有限差分参考求根路径复现；不能认定为插件问题。

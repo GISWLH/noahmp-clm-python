@@ -43,8 +43,10 @@ Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
 0 skipped，七天审核已启动。
 新增[分层冠层截留/冰水相态与水汽携焓组件](docs/CLM_CANOPY_INTERCEPTION.md)：
 1728个独立方程工况、365天NumPy守恒及428个设备工况、四后端七天过程链完成，
-CUDA32/JAX32全字段最大差0，日冰出流偏差最大0.0000271%；全量回归在运行。
-该组件尚未接入叶温能量迭代与完整柱；MOST反馈及外部科学验收仍待完成。
+CUDA32/JAX32全字段最大差0，日冰出流偏差最大0.0000271%；最终全量510 passed / 0 skipped。
+原生完整柱尚未接入分层冠层冰水；MOST反馈及外部科学验收仍待完成。
+正在开发[NumPy分层冠层焓—叶温—空气湿度联立](docs/CLM_CANOPY_PHASE_ENERGY.md)：
+75个独立方程工况及三类冠层七天1008步完成；18项目标测试通过，累计焓残差最大2.519 J/m²，尚未同步GPU或接入完整柱。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
