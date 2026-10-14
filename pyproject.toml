@@ -21,6 +21,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "noahmp_clm.gpu.cuda" = ["*.cu"]
+"noahmp_clm" = ["data/*.npz", "data/NOTICE.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
