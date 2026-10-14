@@ -31,7 +31,10 @@ NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳�
 新增[冬季固定表温冠层与储水携热原生边界](docs/CLM_GPU_CANOPY_BOUNDARY.md)：
 425工况同精度全字段最大差0，H/LE最大偏差0.1039%/0.2307%。
 该检查点Linux全量481 passed / 0 skipped。
-冠层截雪/冻结、MOST反馈、土壤水文及完整新柱JAX/CUDA仍待完成。
+新增[土壤入渗/取水/排水质量与携热原生输送](docs/CLM_GPU_SOIL_TRANSPORT.md)：
+1062同输入工况和12096次连续柱操作同精度最大差0，日底部出流偏差最大0.00733%；
+Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
+冠层截雪/冻结、MOST反馈及完整新柱JAX/CUDA连接仍待完成。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
