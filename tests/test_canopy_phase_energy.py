@@ -153,7 +153,10 @@ def test_phase_energy_independent_network(name,area,sw,lw,e,c,kw):
     assert abs(got['air_water_residual'])<2.1e-11
     assert abs(got['air_heat_residual'])<1e-9
     total=sw+lw-got['outgoing_shortwave']-got['outgoing_longwave']-got['h']-got['le']-got['ground_heat']
-    total-=got['canopy_storage_change_wm2']+got['wet_advected_heat_wm2']+got['transpiration_advected_heat_wm2']
+    total-=got['canopy_storage_change_wm2']+got['wet_advected_heat_wm2']+got['transpiration_advected_heat_wm2']-got['root_advected_heat_wm2']
+    assert got['transpiration_advected_heat_wm2']==pytest.approx(float(got['transpiration']@(334000.+4180.*(got['leaf_temperature']-273.15))),abs=1e-12)
+    assert got['root_advected_heat_wm2']==pytest.approx(float(got['root_uptake']@kw['root_enthalpy']),abs=1e-12)
+    assert got['transpiration_net_heat_wm2']==pytest.approx(got['transpiration_advected_heat_wm2']-got['root_advected_heat_wm2'],abs=1e-12)
     assert abs(total)<6e-4
     print(name,dict(iterations=got['iterations'],temperature_error=float(np.max(abs(np.r_[got['leaf_temperature'],got['ground_temperature']]-ref['temperature']))),energy_residual=float(total)))
 

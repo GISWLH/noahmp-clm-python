@@ -36,7 +36,7 @@ NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)；冬季、稳�
 Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
 新增[原生冠层—雪—土壤非线性表面步](docs/CLM_GPU_CANOPY_SURFACE.md)：
 50工况同精度全字段最大差0，H/LE最大绝对差0.01409/0.01139 W/m²，
-完整质量/焓收支独立核算，最终Linux全量492 passed / 0 skipped；连续轨迹仍在运行。
+完整质量/焓收支独立核算，最终Linux全量492 passed / 0 skipped；七天4032柱步完成，同精度全轨迹最大差0。
 新增[降水至排水的完整质量/焓柱原生入口](docs/CLM_GPU_EXTENSIVE_COLUMN.md)：
 16类工况目标4 passed / 0 skipped，同精度全字段最大差4.76837e-7，
 最大土温差0.0000403881 K、LE差0.0183929 W/m²；最终Linux全量496 passed /
@@ -46,7 +46,8 @@ Linux全量487 passed / 0 skipped，float32累计舍入残差详见报告。
 CUDA32/JAX32全字段最大差0，日冰出流偏差最大0.0000271%；最终全量510 passed / 0 skipped。
 原生完整柱尚未接入分层冠层冰水；MOST反馈及外部科学验收仍待完成。
 正在开发[NumPy分层冠层焓—叶温—空气湿度联立](docs/CLM_CANOPY_PHASE_ENERGY.md)：
-75个独立方程工况及三类冠层七天1008步完成；18项目标测试通过，累计焓残差最大2.519 J/m²，尚未同步GPU或接入完整柱。
+75个独立方程工况及三类冠层七天1008步完成；该NumPy检查点全量528 passed / 0 skipped，累计焓残差最大2.519 J/m²。
+新增[原生冠层相变联立](docs/CLM_GPU_CANOPY_PHASE_ENERGY.md)：22项目标测试、75个设备对照工况完成，同精度全字段最大差0，LE最大偏差0.00542%；连续/完整回归与整柱接入仍在推进。
 
 **状态：可用，带[已知限制](docs/KNOWN_LIMITATIONS.md)。** NumPy、JAX x64/x32 和
 CUDA 后端均可运行；`v0.2.0` 为 GPU 移植收尾版，已获 Wang 验收。
