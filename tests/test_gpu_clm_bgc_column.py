@@ -31,7 +31,7 @@ def cases(dtype):
     return pack_clm_bgc_columns(states,dtype=dtype),np.asarray(forcings,dtype),np.zeros((8,5),dtype),env,cal
 
 
-def reference(row,forcing,deposition,env,cal,nitrogen,oxygen):
+def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None):
     state=state_from_row(row[:7]);cc=np.asarray(row[7],float)
     state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     ps,flags,pp,plant,plant_p,soil,soil_p,bp=row[8:]
@@ -44,11 +44,17 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen):
     plant=PlantState(plant[:3],plant[3:6],plant[6],plant[7]);soil=DecompositionState(soil[:7],soil[7:14],soil[14])
     parameters=BGCParameters(plant_parameters(plant_p),DecompositionParameters(tuple(soil_p[:7]),tuple(soil_p[7:10]),*soil_p[10:]),*map(float,bp))
     state=state.with_biogeochemistry(BGCState(plant,soil),parameters)
+    crop_management=None
+    if crop_data is not None:
+        from noahmp_clm.physics.crop import CropState,CropParameters,CropManagement
+        cs,phase,cp,events=crop_data;cs=np.asarray(cs,float)
+        state=state.with_crop(CropParameters(*np.asarray(cp,float)),CropState(*cs[:3],int(phase[0]),*cs[3:]))
+        crop_management=CropManagement(bool(events[0]),bool(events[1]))
     # CLMColumnState normalizes the quantized root weights on reconstruction;
     # no reference host tendency is supplied to the native implementation.
     site=np.asarray(row[4],float);kwargs=dict(zip(SITE_NAMES[7:-1],site[7:-1]))
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),**kwargs,deposition_rates=np.asarray(deposition,float),
-        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen))
+        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
@@ -56,7 +62,7 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen):
     d['thermal_layer_tolerance'][:len(d['thermal']['layer_residual_jm2'])]=d['thermal']['convergence_tolerance_jm2']
     plant=final.bgc_state.plant;soil=final.bgc_state.soil
     final_site=site.copy();final_site[0]=final.lai;final_site[11]=d['biogeochemistry']['nitrogen_factor_after']
-    return dict(snow_cells=cells,soil_cells=np.column_stack((final.ground.water,final.ground.enthalpy,final.ground.dz)),
+    result=dict(snow_cells=cells,soil_cells=np.column_stack((final.ground.water,final.ground.enthalpy,final.ground.dz)),
         options=options,storage=np.array([final.canopy_water_kgm2,final.canopy_enthalpy_jm2,final.surface_temperature]),
         diagnostics=d,surface=d,site=final_site,impurity_output_kgm2=d['impurity_output_kgm2'],
         condensate=np.column_stack((final.canopy_condensate.mass,final.canopy_condensate.enthalpy)),
@@ -65,6 +71,11 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen):
         soil_cn_state=np.r_[soil.carbon,soil.nitrogen,soil.mineral_nitrogen],biogeochemistry=d['biogeochemistry'],
         phenology_state=(row[8] if environment is None else np.array([final.phenology_state.gdd,final.phenology_state.leaf_fraction,final.phenology_state.remaining_seconds])),
         phenology_flags=(flags if environment is None else np.array([final.phenology_state.phase,final.phenology_state.armed,5])))
+    if crop_data is not None:
+        cs=final.crop_state
+        result.update(crop_state=np.array([cs.air_degree_days,cs.soil_degree_days,cs.age_days,cs.seed_carbon,cs.seed_nitrogen]),
+            crop_phase=np.array([cs.phase]),crop=d['crop'])
+    return result
 
 
 def cn_budgets(arrays,got,nitrogen):

@@ -19,6 +19,8 @@ DIAGNOSTICS=('seed_input_gc_m2','seed_input_gn_m2','harvest_gc_m2','harvest_gn_m
 
 def pack_crop(state,plant,air_temperature,soil_temperature,dt,*,planting=False,force_harvest=False,
               vegetated_fraction=1.,parameters=CropParameters(),plant_parameters=PlantParameters(),dtype=np.float64):
+    from ..physics.crop import CropManagement
+    CropManagement(planting,force_harvest)
     b,pp=pack_plant(plant,plant_parameters,dtype=dtype)
     return (np.asarray([state.air_degree_days,state.soil_degree_days,state.age_days,state.seed_carbon,state.seed_nitrogen],dtype),
         np.asarray([state.phase],np.int32),b,np.asarray([air_temperature,soil_temperature,dt,vegetated_fraction],dtype),

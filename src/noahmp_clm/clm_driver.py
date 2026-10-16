@@ -22,7 +22,7 @@ from .physics.surface_drag import exchange_velocity
 def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
                     diffuse_fraction=.5, leaf_dimension=.04, canopy_layers=10,
                     leaf_parameters=None, nitrogen_factor=1., most_geometry=None, vic_parameters=None, phenology_environment=None,
-                    nitrogen_deposition_gn_m2=0.,oxygen_factor=1.):
+                    nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None):
     """Advance one NumPy CLM column, dispatching by its state representation.
 
     Solar partition, CO2 and leaf dimension are explicit site assumptions until
@@ -39,7 +39,10 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
         return step_clm_enthalpy_column(state,forcing,co2_ppm=co2_ppm,cosine_zenith=cosine_zenith,
             diffuse_fraction=diffuse_fraction,leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,
             leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry,vic_parameters=vic_parameters,
-            phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor)
+            phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
+            crop_management=crop_management)
+    if crop_management is not None or state.options.OptCropModel!=0:
+        raise NotImplementedError('Crop requires an extensive CLMColumnState with BGC')
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise NotImplementedError('Biogeochemistry requires an extensive CLMColumnState')
     if phenology_environment is not None or state.options.OptDynamicVeg==5:

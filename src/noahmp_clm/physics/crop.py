@@ -23,6 +23,19 @@ class CropPhase(IntEnum):
 
 
 @dataclass(frozen=True)
+class CropManagement:
+    """Explicit one-step events; absent management means no new event."""
+    planting: bool=False
+    force_harvest: bool=False
+
+    def __post_init__(self):
+        if (not isinstance(self.planting,(bool,np.bool_))
+            or not isinstance(self.force_harvest,(bool,np.bool_))
+            or (self.planting and self.force_harvest)):
+            raise ValueError('Crop management requires mutually exclusive boolean events')
+
+
+@dataclass(frozen=True)
 class CropParameters:
     base_temperature_k: float=273.15
     maximum_daily_heat: float=26.

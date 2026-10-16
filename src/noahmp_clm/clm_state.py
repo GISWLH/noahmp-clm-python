@@ -9,6 +9,7 @@ from .physics.soil_enthalpy import SoilEnthalpyState
 from .physics.canopy_interception import CanopyCondensate
 from .physics.phenology import PhenologyState,PhenologyParameters
 from .physics.biogeochemistry import BGCState,BGCParameters
+from .physics.crop import CropState,CropParameters,CropPhase
 
 
 def clm_options():
@@ -41,6 +42,8 @@ class CLMColumnState:
     phenology_parameters: PhenologyParameters | None=None
     bgc_state: BGCState | None=None
     bgc_parameters: BGCParameters | None=None
+    crop_state: CropState | None=None
+    crop_parameters: CropParameters | None=None
 
     def __post_init__(self):
         if self.options.OptDynamicVeg==5:
@@ -58,6 +61,15 @@ class CLMColumnState:
                 raise ValueError('BGC requires C/N state, parameters and a layered canopy')
             from .physics.plant_cn import plant_lai
             object.__setattr__(self,'lai',plant_lai(self.bgc_state.plant,self.fveg,self.bgc_parameters.plant))
+        if self.options.OptCropModel==1:
+            if (not isinstance(self.crop_state,CropState) or not isinstance(self.crop_parameters,CropParameters)
+                or self.bgc_state is None or self.options.OptDynamicVeg!=4 or not self.fveg>0.):
+                raise ValueError('Crop requires crop state/parameters, BGC, positive vegetation cover and OptDynamicVeg=4')
+            plant=self.bgc_state.plant
+            if self.crop_state.phase in (CropPhase.FALLOW,CropPhase.SOWN) and (plant.total_carbon>0. or plant.total_nitrogen>0.):
+                raise ValueError('Fallow/unemerged crop cannot carry live or reserve plant biomass')
+        elif self.crop_state is not None or self.crop_parameters is not None:
+            raise ValueError('Crop state/parameters require OptCropModel=1')
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -138,6 +150,26 @@ class CLMColumnState:
             if len(self.canopy_condensate.mass)!=layers:raise ValueError('Explicit conservative canopy remapping required')
             return self
         return replace(self,canopy_condensate=CanopyCondensate(np.full(layers,self.canopy_water_kgm2/layers),np.full(layers,self.canopy_enthalpy_jm2/layers)))
+
+    def with_crop(self,parameters=None,initial=None):
+        """Attach an annual crop to explicit BGC pools, retaining canopy M/H.
+
+        Existing seasonal phenology is incompatible. Fallow starts require
+        empty plant pools; attaching a growing crop requires its actual phase.
+        """
+        return replace(self,options=replace(self.options,OptCropModel=1),
+            crop_state=CropState() if initial is None else initial,
+            crop_parameters=CropParameters() if parameters is None else parameters)
+
+    @property
+    def carbon_gc_m2(self):
+        if self.bgc_state is None:raise ValueError('Total carbon requires BGC')
+        return self.bgc_state.total_carbon+(self.crop_state.seed_carbon if self.crop_state is not None else 0.)
+
+    @property
+    def nitrogen_gn_m2(self):
+        if self.bgc_state is None:raise ValueError('Total nitrogen requires BGC')
+        return self.bgc_state.total_nitrogen+(self.crop_state.seed_nitrogen if self.crop_state is not None else 0.)
     @property
     def tsoil(self): return self.ground.temperature
     @property

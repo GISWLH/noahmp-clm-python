@@ -17,6 +17,8 @@ from ..physics.plant_cn import leaf_nitrogen_factor
 
 def pack_clm_bgc_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.crop_state is not None or s.options.OptCropModel!=0 for s in states):
+        raise NotImplementedError('Crop needs its extended state ABI; the sixteen-array BGC ABI cannot carry seed or management')
     if any(s.bgc_state is None for s in states):raise ValueError('Every BGC column needs explicit plant/soil C/N stores')
     factor=kwargs.pop('nitrogen_factor',1.)
     if np.ndim(factor)!=0 or factor!=1.:raise ValueError('BGC derives nitrogen_factor from leaf C/N')
@@ -93,7 +95,7 @@ def _ratio(numerator,denominator,backend):
     return _division()(numerator,denominator)
 
 
-def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,**kwargs):
+def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arrays=None,crop_management=None,**kwargs):
     if backend=='jax':
         import jax.numpy as xp
         from .enthalpy import run_soil_thermodynamics_jax as inverse
@@ -131,8 +133,28 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,**kwargs):
     retention=xp.where(seasonal,xp.where(before>0.,xp.minimum(1.,_ratio(after,
         xp.maximum(before,xp.finfo(dtype).tiny),backend)),xp.where(after>0.,1.,0.)),1.)
     target=xp.where(seasonal,ph['lai'],bp[:,0]);growing=((~seasonal)|((next_flags[:,0]==1)|(next_flags[:,0]==2)))&(site[:,1]>0.)
-    td=turnover(plant,xp.stack((forcing[:,0],retention),axis=1),plant_p)
+    cd=None;managed_plant=plant
+    if crop_arrays is not None:
+        if len(crop_arrays)!=3 or bool(xp.any(seasonal)):
+            raise ValueError('Crop requires three extra state arrays and OptDynamicVeg=4')
+        if xp.asarray(crop_arrays[1]).dtype.kind not in 'iu':raise ValueError('Crop phase must be integer')
+        cs,phase,cp=tuple(xp.asarray(v,xp.int32 if k==1 else dtype) for k,v in enumerate(crop_arrays))
+        events=xp.zeros((n,2),xp.int32) if crop_management is None else xp.asarray(crop_management)
+        top_t=inverse(xp.concatenate((g[:,0,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
+        cu=xp.stack((forcing[:,1],top_t,forcing[:,0],site[:,1]),axis=1)
+        if backend=='jax':from .crop import run_crop_jax as crop_step
+        else:from .cuda.crop import run_crop_cuda as crop_step
+        cd=crop_step(cs,phase,plant,cu,events,cp,plant_p)
+        managed_plant=cd['plant_state'];target=cd['target_lai'];growing=cd['growing']
+    elif crop_management is not None:raise ValueError('Crop management requires crop state arrays')
+    td=turnover(managed_plant,xp.stack((forcing[:,0],retention),axis=1),plant_p)
     live=td['state'];lai=_ratio(live[:,0]*plant_p[:,19],xp.maximum(site[:,1],xp.finfo(dtype).tiny),backend)
+    target_carbon=_ratio(target*site[:,1],plant_p[:,19],backend)
+    litter_c=td['litter_carbon_gc_m2'];litter_n=td['litter_nitrogen_gn_m2']
+    if cd is not None:
+        target_carbon=xp.where(cd['phase'][:,0]==3,xp.minimum(target_carbon,live[:,0]),target_carbon)
+        target=xp.where(cd['phase'][:,0]==3,_ratio(target_carbon*plant_p[:,19],site[:,1],backend),target)
+        litter_c=litter_c+cd['litter_carbon_gc_m2'];litter_n=litter_n+cd['litter_nitrogen_gn_m2']
     nf=xp.where(live[:,0]>0.,xp.minimum(1.,_ratio(live[:,3]*plant_p[:,3],
         xp.maximum(live[:,0],xp.finfo(dtype).tiny),backend)),0.)
     used_site=_set(_set(site,0,lai,backend),11,nf,backend)
@@ -148,10 +170,10 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,**kwargs):
     saturation=xp.clip(_ratio(liquid[:,0],((1000.*ng[:,0,2])*p[:,0]),backend),1e-4,1.)
     potential=bp[:,1]*xp.exp(-p[:,1]*xp.log(saturation))
     climate=xp.stack((out['diagnostics']['gpp_gcm2'],out['diagnostics']['leaf_respiration_umol_m2s']*12.0107e-6*forcing[:,0],
-        forcing[:,1],root_t,forcing[:,0],_ratio(target*site[:,1],plant_p[:,19],backend),growing.astype(dtype)),axis=1)
+        forcing[:,1],root_t,forcing[:,0],target_carbon,growing.astype(dtype)),axis=1)
     planned=plan(live,climate,plant_p)
     du=xp.concatenate((xp.stack((temperatures[:,0],potential,forcing[:,0],oxygen),axis=1),
-        td['litter_carbon_gc_m2'],td['litter_nitrogen_gn_m2'],nitrogen[:,None],planned[:,23:24]),axis=1)
+        litter_c,litter_n,nitrogen[:,None],planned[:,23:24]),axis=1)
     sd=decompose(soil,du,soil_p);ad=apply(planned,sd['plant_uptake_gn_m2'][:,None],plant_p)
     live=ad['state'];earth=sd['state'];gpp=climate[:,0];ra=ad['autotrophic_respiration_gc_m2'];rh=sd['heterotrophic_respiration_gc_m2']
     respiration=ra+rh;nee=respiration-gpp;mass_factor=12.0107e-6*forcing[:,0]
@@ -162,8 +184,15 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,**kwargs):
     oldn=((_sum_rows(plant[:,3:6],xp)+plant[:,7])+_sum_rows(soil[:,7:14],xp))+soil[:,14]
     newc=(_sum_rows(live[:,:3],xp)+live[:,6])+_sum_rows(earth[:,:7],xp)
     newn=((_sum_rows(live[:,3:6],xp)+live[:,7])+_sum_rows(earth[:,7:14],xp))+earth[:,14]
+    if cd is not None:
+        oldc=oldc+cs[:,3];oldn=oldn+cs[:,4];newc=newc+cd['state'][:,3];newn=newn+cd['state'][:,4]
     cr=(newc-oldc)+nee;nr=(newn-oldn)-nitrogen;eps=xp.finfo(dtype).eps
-    cb=128.*eps*xp.maximum(((newc+oldc)+gpp)+respiration,1.);nb=128.*eps*xp.maximum((newn+oldn)+nitrogen,1.)
+    cb_scale=((newc+oldc)+gpp)+respiration;nb_scale=(newn+oldn)+nitrogen
+    if cd is not None:
+        cr=(cr+cd['harvest_gc_m2'])-cd['seed_input_gc_m2'];nr=(nr+cd['harvest_gn_m2'])-cd['seed_input_gn_m2']
+        cb_scale=(cb_scale+cd['seed_input_gc_m2'])+cd['harvest_gc_m2'];nb_scale=(nb_scale+cd['seed_input_gn_m2'])+cd['harvest_gn_m2']
+        out.update(crop_state=cd['state'],crop_phase=cd['phase'],crop_parameters=cp,crop=cd)
+    cb=128.*eps*xp.maximum(cb_scale,1.);nb=128.*eps*xp.maximum(nb_scale,1.)
     if bool(xp.any((abs(cr)>cb)|(abs(nr)>nb))) or not all(bool(xp.all(xp.isfinite(v))) for v in (*exchange.values(),cr,nr,cb,nb)):
         raise RuntimeError('Native whole-column C/N budget exceeds numerical bound')
     final_lai=_ratio(live[:,0]*plant_p[:,19],xp.maximum(site[:,1],xp.finfo(dtype).tiny),backend)
