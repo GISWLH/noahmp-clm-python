@@ -15,6 +15,16 @@ strd 或 tp 时区域对照继续标“未测”，不以净辐射或降雨率�
 [逐目录摘要](v1-results/era5-inventory-summary.json)与
 [全部文件头档案](v1-results/era5-all-headers.json.gz)保留文件路径、单位、时间和聚合历史。
 
+**2026-10-16多年输入预核查：** 已读取既有CN-Cng原始FULLSET归档与完整HH文件，
+2007—2010年共70,128个半小时，首尾为2007-01-01至2011-01-01（右端不含），
+时间轴断档0。TA/PA/P/WS/SW_IN/LW_IN/VPD的填补产品及日/夜分解GPP、NEE字段
+均存在，但“字段完整”不等于原始观测完整。2007/2010年CO₂和土壤温湿分别
+缺6,048 / 3,650步；2007年NEE_VUT_REF的QC=0仅4,971步，必须保留QC分层。
+AUXMETEO仅提供ERA订正统计，未提供测高或土壤传感器深度；不能据此默认全部
+气温/湿度为2 m。后续需从站点一手元数据核实几何、土壤与植被，再锁定
+spinup、校准及留出划分。当前没有据模型评分挑选年份，也尚未执行v1多年模拟。
+[输入清单与逐年QC计数](v1-results/fluxnet-cng-inventory.json.gz)包含归档/CSV哈希。
+
 本轮 M4 使用 NAS `processed/site_csv/` 的 CN-Cng、CN-HaM、CN-Qia、CN-Cha
 四站各 30 天，不校准、不调参。完整输入来源、QC、逐步轨迹、JAX64 parity、
 M2 分档和 LE/H 观测指标集中在 [REAL_DATA_CHECKS.md](REAL_DATA_CHECKS.md)，
