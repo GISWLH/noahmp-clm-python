@@ -40,6 +40,7 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
     else:
         if phenology_environment is not None:raise ValueError('Phenology environment requires OptDynamicVeg=5')
         target_lai=p.maximum_lai
+    growing=bool(growing and state.fveg>0.)
     plant,fall=turnover_plant(old.plant,f.dt,leaf_retention=retention,parameters=p.plant)
     lai=plant_lai(plant,state.fveg,p.plant);nf=leaf_nitrogen_factor(plant,p.plant)
     # This temporary physical state has no unadvanced seasonal or C/N state.

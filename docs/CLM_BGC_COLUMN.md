@@ -1,10 +1,11 @@
-# 整柱生物地球化学连接（NumPy完成，原生整柱待同步）
+# 整柱生物地球化学连接（三后端接通，连续及观测验收待做）
 
 `CLMColumnState.with_biogeochemistry(BGCState, BGCParameters)`连接显式植物与
 土壤C/N库，要求分层冠层。LAI成为叶碳×SLA/植被覆盖度的只读派生量；
 选项5的GDD控制目标LAI和季节落叶比例，不能直接产生生物量。无季节控制
 时采用参数中的最大LAI。新增状态不进入v0.2旧ABI，旧设备打包入口明确
-拒绝BGC，避免静默丢失C/N。原生植物/分解组件已完成，整柱设备调度待做。
+拒绝BGC，避免静默丢失C/N。原生植物/分解组件及新的整柱设备调度已实现，
+通过下述扩展入口继续验证。
 
 每步先用第三土层旧温度更新GDD，计算叶保留比例并将背景/季节凋落实际
 C/N送到凋落物。用剩余叶碳的实际LAI及叶N因子求完整冠层—雪—土壤水热；
@@ -38,8 +39,71 @@ GPP/H/LE/径流及土壤水焓逐项一致。最大C/N残差
 这些是耦合/预算验证，不是FLUXNET或官方输出验收。饥饿时未满足呼吸、
 简化PFT分配/氮获取及柱聚合分解等限制见[植物组件](CLM_PLANT_CN.md)
 和[分解组件](CLM_DECOMPOSITION.md)。完整反馈spinup、多站多年GPP/NEE、
-原生整柱同步和默认入口切换继续待做。
+原生整柱验证和默认入口切换继续待做。
 
 证据：[Linux目标](v1-results/p4-bgc-column-numpy-a-target.log.gz)、
 [Windows目标](v1-results/p4-bgc-column-local.log.gz)、
 [冻结哈希](v1-results/p4-bgc-column-numpy-a-build.json)。
+
+## 原生整柱与失败定位（2026-10-16）
+
+新增`gpu.clm_bgc_column`及`gpu.cuda.clm_bgc_column`，16组数组完整携带
+水热、季节状态/整数标志、植物C/N、土壤C/N及参数。设备先完成真实落叶，
+用实际叶C/N重建LAI和氮因子，再调用完整物理柱；由该柱GPP/叶呼吸和更新后
+土温液水计算根呼吸、分解、N竞争与生长。未从host NumPy输入物理倾向。
+新植物/土壤库和LAI保留在设备供下一步使用；新增独立四库连续审计脚本。
+
+A目标为10 passed / 1 failed：NumPy参考重建时fveg为NumPy标量，产生
+`numpy.bool_`生长标志，被严格接口拒绝。生产驱动统一为Python bool，并
+增加暖季生长和裸地携储备两类标量回归，裸地不能凭储备长出植株。
+
+B目标为14 passed / 1 failed，324.62秒：JAX32/64对NumPy的8类柱连续
+两步科学比较和独立水/热/C/N预算已通过，同精度检查发现光合扩散残差
+2/80项超差，最大4.29153442e-6。逐阶段探针证明植物凋落后的库完全相同，
+最早差异只在传给物理柱的叶N因子，最大5.96046448e-8。CuPy默认精确除法
+产生1.0而JAX产生0.99999994，放大到光合根的残差。修复为与既有CUDA植物
+内核一致的`--prec-div=false`设备除法，不隐藏残差、不放宽1e-6门，也不改
+光合或土壤求解器。C第一步同精度通过，但第二步仍失败，见下。
+
+B已经测得float32最大土温差8.06404e-6 K、GPP差4.13800e-7 gC/m²/步、
+NEE差3.84071e-7 gC/m²/步。独立单步C/N残差最大0.000178888 gC/m² /
+4.70704e-5 gN/m²，对应最大数值界0.538652 / 0.0208039；水/热残差最大
+3.13232e-5 kg/m² / 5.86774 J/m²，对应最大界0.00466156 / 2207.83361。
+float64独立C/N残差最大4.68702e-12 / 1.38934e-13，最大数值界
+1.00332e-9 / 3.87502e-11。完整数字保留在失败日志，不能以这些部分结果
+宣称最终全量完成；修后同精度结论由E独立复验给出。
+
+连续审计C首次启动在导入诊断字段表时失败，尚未推进任何一步。D仅修正
+该导入；本地NumPy全返回结构及四预算预检已执行，生产源码与C相同。
+冻结D构建wheel的132个Python/CUDA/NPZ文件逐项哈希一致，版本仍0.2.0。
+
+
+C目标仍为14 passed / 1 failed，325.05秒。第二步冠层储热最大差0.32421875
+J/m²，逐阶段探针定位到传入物理柱的LAI最大差4.76837158e-7。季节保留比例
+的CuPy/JAX值分别为0.978723347187/0.978723406792；LAI除法也有同类舍入差。
+D连续审计在第2步因H差0.000183105 W/m²触发同精度门而中止，原始旧态和
+失败报告保留。E将新BGC接口中的保留比例、LAI、氮因子及其余耦合除法统一
+到同一设备运算方式；没有修改既有物理求解器、dtype或验收阈值。
+
+E定向回归 **1 passed / 0 skipped，124.11秒**。该测试包含8类柱×连续2步，
+实际设备状态传递，所有状态/诊断（包括逐叶、逐层和各C/N阶段）CUDA32/JAX32
+最大差**0**。E独立水/热/C/N残差最大值分别为3.13231722e-5 kg/m²、
+5.86773682 J/m²、0.000178888440 gC/m²、4.70703635e-5 gN/m²，最大数值界
+分别为0.00466156008、2207.833607、0.538652364、0.0208038772。
+E全量pytest和三柱四后端七天连续审计现已启动，尚无最终结果。
+
+证据：[C目标失败](v1-results/p4-bgc-column-gpu-c-target.log.gz)、
+[C逐阶段探针](v1-results/p4-bgc-column-gpu-c-probe.log.gz)、
+[D连续失败](v1-results/p4-bgc-column-gpu-d-seven-day-failed.json.gz)、
+[E同精度/预算](v1-results/p4-bgc-column-gpu-e-same.log.gz)。
+
+恢复工作时发现上次中断写入涉及的两个文件不能解码；全仓已跟踪文本扫描
+只有这两个异常。原始字节保存在本地outputs，使用SHA256一致的A快照恢复，
+随后重施上述标量修复；不能由此断言文件损坏原因。
+
+证据：[A失败](v1-results/p4-bgc-column-gpu-a-target.log.gz)、
+[B目标](v1-results/p4-bgc-column-gpu-b-target.log.gz)、
+[B逐阶段探针](v1-results/p4-bgc-column-gpu-b-probe.log.gz)、
+[A–E源码清单](v1-results/p4-bgc-column-gpu-builds.json)、
+[wheel核验](v1-results/p4-bgc-column-gpu-d-wheel.json)、
+[文件恢复哈希](v1-results/interrupted-write-recovery-20261016.json)。

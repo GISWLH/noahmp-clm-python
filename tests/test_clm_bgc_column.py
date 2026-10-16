@@ -94,3 +94,22 @@ def test_bgc_cannot_be_silently_lost_in_old_gpu_abi_or_overridden():
     with pytest.raises(NotImplementedError,match='BGC'):pack_clm_layered_columns([old])
     with pytest.raises(ValueError,match='nitrogen_factor'):step_clm_enthalpy_column(old,f,nitrogen_factor=.5,phenology_environment=e)
     with pytest.raises(ValueError,match='BGC'):replace(old,bgc_parameters=None)
+
+
+@pytest.mark.parametrize('fraction_type',[float,np.float64])
+def test_bare_ground_cannot_grow_tissue_from_a_carried_reserve(fraction_type):
+    old,f,_=case(None)
+    plant=PlantState(np.zeros(3),np.zeros(3),20.,.1)
+    old=replace(old,fveg=fraction_type(0.),bgc_state=replace(old.bgc_state,plant=plant))
+    new,d=step_clm_enthalpy_column(old,f)
+    np.testing.assert_array_equal(new.bgc_state.plant.carbon,np.zeros(3))
+    assert new.bgc_state.plant.reserve_carbon==20. and new.lai==0. and d['gpp_gcm2']==0.
+    budgets(old,new,f,d,0.)
+
+
+def test_numpy_scalar_site_fraction_can_grow():
+    old,f,_=case(None)
+    old=replace(old,fveg=np.float64(old.fveg))
+    new,d=step_clm_enthalpy_column(old,f)
+    assert d['gpp_gcm2']>0. and new.bgc_state.plant.carbon[0]>old.bgc_state.plant.carbon[0]
+    budgets(old,new,f,d,0.)

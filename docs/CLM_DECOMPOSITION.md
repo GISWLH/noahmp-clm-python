@@ -58,5 +58,10 @@ float32相对NumPy的最大状态绝对差0.000993339 g/m²，异养呼吸差
 [B完整目标](v1-results/p4-decomposition-b-target.log.gz)、
 [结构化结果](v1-results/p4-decomposition-b-summary.json)。
 
-当前分解组件已完成；与植物分配、真实凋落物、氮限制Vcmax、整柱NEE及
-FLUXNET的连接仍待做。冻结B的全量pytest已启动，尚无全量结论。
+分解与植物分配、真实凋落物、叶N容量及整柱NEE已在后续
+[NumPy整柱连接](CLM_BGC_COLUMN.md)中接通；FLUXNET验收待完成。
+冻结B全量现已结束：**662 passed / 0 skipped，2 warnings，4866.91秒**。
+两个警告来自既有高密度低温雪黏度指数上溢；测试未失败。这是分解检查点的
+全量结论，不包含后续植物C/N及整柱BGC代码。
+[全量日志](v1-results/p4-decomposition-b-full.log.gz)和
+[源码清单](v1-results/p4-decomposition-b-full-summary.json)已归档。
