@@ -77,6 +77,7 @@ extern "C" __global__ void solve_glacier_surface(const float* cs,const float* gs
         for(int i=0;i<60&&fabsf(out[168])>tol&&bracketed&&right-left>resolution;++i) {
             width=right-left;float trial=left-(fl*width)/(fr!=fl?fr-fl:1.f);
             trial=fminf(right-.05f*width,fmaxf(left+.05f*width,trial));
+            if(trial<=left||trial>=right)trial=left+.5f*width;
             glacier_surface_evaluate(c,g,p,o,f,vel,q,reflected[row],trial,out);++evaluations;
             if(out[168]>0.f){left=trial;fl=out[168];}else {right=trial;fr=out[168];}
         }

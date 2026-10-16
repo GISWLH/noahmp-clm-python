@@ -63,7 +63,23 @@ def main():
                     a=list(arrays[name]);a[4]=np.asarray(a[4].get() if hasattr(a[4],'get') else a[4]).copy();a[4][:,4]=max(.05,solar);a=tuple(a)
                     ff=np.array([list(vars(f).values())],dtype);dd=dep[None,:].astype(dtype);oldstores[name]=stores(a)
                     fun=step_clm_glacier_columns_cuda if name=='cuda32' else step_clm_glacier_columns_jax
-                    result=fun(*a,ff,deposition=dd);out=host(result);budgets(a,ff,dd,out)
+                    try:
+                        result=fun(*a,ff,deposition=dd);out=host(result);budgets(a,ff,dd,out)
+                    except Exception as exc:
+                        # Preserve the actual failed old state, not just a day
+                        # number; replay must not require another long spinup.
+                        failed={key:np.asarray(v.get() if hasattr(v,'get') else v) for key,v in zip(('c','g','p','o','site'),a)}
+                        failed.update(forcing=ff,deposition=dd);trace=exc.__traceback__
+                        while trace:
+                            loc=trace.tb_frame.f_locals
+                            if 'raw' in loc and 'prep' in loc:
+                                failed['surface']=np.asarray(loc['raw'].get() if hasattr(loc['raw'],'get') else loc['raw'])
+                                break
+                            trace=trace.tb_next
+                        failure=args.output.with_suffix('.failure.npz');failure.parent.mkdir(parents=True,exist_ok=True)
+                        np.savez(failure,**failed);report['failure_context']=dict(backend=name,day=day+1,step_in_day=hour+1,
+                            path=str(failure),sha256=hashlib.sha256(failure.read_bytes()).hexdigest())
+                        raise
                     if name=='cuda32':assert isinstance(result['ice_cells'],cp.ndarray)
                     else:assert next(iter(result['ice_cells'].devices())).platform=='gpu'
                     arrays[name]=next_glacier_arrays(a,result);newstores[name]=stores(arrays[name]);results[name]=out

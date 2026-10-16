@@ -131,6 +131,9 @@ def glacier_surface_kernel_jax(c,g,p,o,f,vel,q,reflected):
     def step(v):
         k,left,right,fl,fr,old,count=v;width=s(right-left)
         trial=s(left-s(fl*width)/j.where(fr!=fl,s(fr-fl),1.));trial=j.clip(trial,s(left+s(.05*width)),s(right-s(.05*width)))
+        # The 5% safeguard itself can round back to an endpoint when the
+        # remaining bracket spans only a few float32 temperatures.
+        trial=j.where((trial>left)&(trial<right),trial,s(left+s(.5*width)))
         out=evaluate(trial);value=out[168]
         return k+1,j.where(value>0.,trial,left),j.where(value>0.,right,trial),j.where(value>0.,value,fl),j.where(value>0.,fr,value),out,count+1
     _,left,right,_,_,candidate,count=lax.while_loop(lambda v:(v[0]<60)&(j.abs(v[5][168])>tol)&bracketed&(s(v[2]-v[1])>resolution),

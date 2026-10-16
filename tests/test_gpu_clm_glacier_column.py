@@ -83,6 +83,25 @@ def compare_reference(out,states,diagnostics,dtype):
     return errors
 
 
+def test_glacier_surface_secant_progress_regression():
+    import json
+    from pathlib import Path
+    pytest.importorskip('cupy');pytest.importorskip('jax')
+    from noahmp_clm.gpu.clm_glacier_column import step_clm_glacier_columns_jax
+    from noahmp_clm.gpu.cuda.clm_glacier_column import step_clm_glacier_columns_cuda
+    fixture=json.loads((Path(__file__).parent/'fixtures/glacier_surface_secant_stagnation.json').read_text())
+    a=tuple(np.asarray(fixture[k],np.int32 if k=='o' else np.float32) for k in ('c','g','p','o','site'))
+    f,dep=(np.asarray(fixture[k],np.float32) for k in ('f','dep'))
+    ja=host(step_clm_glacier_columns_jax(*a,f,deposition=dep));cu=host(step_clm_glacier_columns_cuda(*a,f,deposition=dep))
+    same=compare_same(ja,cu);res,bound=budgets(a,f,dep,ja)
+    state=unpack_states(a)[0];new,d=step_clm_glacier_column(state,Forcing(*f[0].astype(float)),
+        deposition_rates=dep[0].astype(float),cosine_zenith=float(a[4][0,4]),diffuse_fraction=float(a[4][0,5]))
+    errors=compare_reference(ja,[new],[d],np.float32)
+    print('glacier actual annual secant regression',dict(same_precision=same,reference_errors=errors,
+        residual_k=float(ja['surface'][0,168]),evaluations=float(ja['surface'][0,184]),
+        bracket_k=ja['surface'][0,185:187].tolist(),water_heat_residual=res.tolist(),bounds=bound.tolist()),flush=True)
+
+
 @pytest.mark.parametrize('drag',[2,1])
 @pytest.mark.parametrize('dtype',[np.float64,np.float32])
 def test_glacier_column_jax_reference_state_carry(dtype,drag):
