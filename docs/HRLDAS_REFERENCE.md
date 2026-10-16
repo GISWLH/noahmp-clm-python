@@ -1,0 +1,74 @@
+# 官方HRLDAS独立参考：构建与单点输出链路
+
+2026-10-16已完成官方源码编译及Bondville一天示例。**尚未完成3—5站点与
+本项目的日ET/H/土壤温湿对照**，本页不能作为10%科学验收结论。
+
+## 源码和构建身份
+
+使用已有干净上游检出：
+[NCAR/hrldas cd96df4](https://github.com/NCAR/hrldas/tree/cd96df470220f7d7133cdbccd5f9c5355cf173e2)，
+其锁定的[Noah-MP子模块17751dc](https://github.com/NCAR/noahmp/tree/17751dcd7a2442a3c57138f530f523daf08dc1c5)。
+源包只含405个Git跟踪文件和来源清单，编译前后逐项SHA256核验一致；
+没有把上游物理例程复制进Python模型，也没有修改其物理源码。
+Windows检出中Git mode 120000是路径文本，源包保留该表示；运行目录单独
+恢复7个参数表/SNICAR链接，目标文件哈希见运行清单。这一点不能隐去。
+
+独立远程目录为`/home/lhwang/work/noahmp-v1/p6-hrldas-reference-20261016`。
+GNU Fortran 11.5.0，已有netCDF-C 4.9.2；在该目录安装
+[netCDF-Fortran 4.6.1](https://github.com/Unidata/netcdf-fortran/releases/tag/v4.6.1)，
+上游自检共 **60 passed / 0 skipped / 0 failed / 0 errors**。
+静态链接Fortran接口，实际运行库为`libgfortran.so.5`。
+
+先前失败全部保留：A/B构建误选Anaconda的旧`libgfortran.so.4`，C显式加5
+仍加载4和5、F90示例失败；D用专用链接目录只暴露`libnetcdf.so`，让编译器
+选择正确Fortran ABI，未修改公共Anaconda或系统库。HRLDAS初次配置的
+`.SUFFIXES`覆盖上游规则导致编译失败，删除该生成配置项后成功。
+只构建官方主程序所需模块；urban是上游静态链接依赖，示例设置
+`SF_URBAN_PHYSICS=0`，没有扩展本项目范围。未构建GRIB/Jasper预处理程序。
+
+| 对象 | SHA256 |
+|---|---|
+| HRLDAS/Noah-MP源包 | `664c40f255612ef7222cea592cf0a615bc7e86133aa9c6506cf292108154a4da` |
+| netCDF-Fortran下载包 | `b50b0c72b8b16b140201a020936aa8aeda5c79cf265c55160986cd637807a37a` |
+| `hrldas.exe` | `f27debbaaabf0a956d9a86f317fd772581c14696e6dbcc75faed7c8fff5e51a0` |
+| 生成的编译配置 | `2edf9d41a242abd45bae5aab2d4b7bd8ba2b6090aa43aba228fe9996162c91d4` |
+
+[证据清单](v1-results/hrldas-reference-a/manifest.json)包括各次完整日志、成功
+构建脚本、编译器/动态库信息和哈希。未将编译二进制或完整上游源码加入本仓库。
+
+## Bondville单点检查
+
+用上游`create_point_data.f90`生成输入，原始`bondville.dat`首日是1998-01-02，
+而示例namelist写1998-01-01。本次只更正运行目录中的起始日、路径和时长，
+使用原数据前97条半小时记录、运行一天，数值不改。SWE按输入及NetCDF元数据
+为1 mm；生成器开头的m注释不准确。生成器虽分配`soil_liquid`，但不读取使用
+或输出该数组；官方初始化模块根据总土水/土温计算液水，不使用未初始化数组。
+
+A运行因上述链接文本导致参数表EOF，退出码2；保留日志。B恢复运行目录链接后
+退出码0，生成 **49个LDASOUT + 2个restart**。ITIME=0仅为初态，实际48个
+1800秒物理步；输出时间标记区间右端，最后一条属于1月2日的末半小时。
+不能把初态通量占位值纳入日积分，也不能把累计径流字段逐步直接相加。
+
+新增`benchmarks/audit_hrldas_point_output.py`严格读取官方classic-NetCDF单点：
+核验时间连续/文件名一致、变量单位、单网格和有限非缺测数据；ET由
+`ECAN+ETRAN+EDIR`的mm/s积分，H/LE积分为J/m²，径流取累计计数差。
+土温/总土水/液土水/SWE保留各时刻及末态，日均注明为区间末态均值。
+计数回退、缺时间、单位不符直接报错，不静默拼接restart。
+独立日界线/初态/累计账/坏输入测试 **5 passed，1.02秒**。
+
+| 官方一天结果 | 实际数值 |
+|---|---:|
+| ET（带符号，净凝结） | −0.104200213 mm |
+| H积分 / 等效均值 | −4,943,402.8396 J/m² / −57.2153106 W/m² |
+| LE积分 / 等效均值 | −289,587.0260 J/m² / −3.35170169 W/m² |
+| 总径流增量 | 0.0151701020 mm |
+| 表层土温区间末态日均 / 最终 | 272.8527934 K / 277.4736633 K |
+| 表层总土水日均 / 最终 | 0.300923588 / 0.301417470 m³/m³ |
+| SWE区间末态日均 / 最终 | 0.447261096 / 0 mm |
+
+这是官方示例的运行结果，**没有Python−官方偏差数字**，未完成站点科学比较。
+冻结输出和完整逐步量位于[输出归档](v1-results/hrldas-reference-a/bondville-smoke-b-output.tar.gz)、
+[审计结果](v1-results/hrldas-reference-a/bondville-smoke-b--audit.json.gz)；
+[运行清单](v1-results/hrldas-reference-a/bondville-smoke-b--setup-manifest.json.gz)
+记录输入、namelist及链接目标哈希。后续真实站点须共享同一强迫时间约定、
+明确初态/土壤/PFT/测高与spinup，不能用本例替代多站对照。
