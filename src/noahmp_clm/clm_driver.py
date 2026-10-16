@@ -43,6 +43,8 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
             crop_management=crop_management,irrigation_input=irrigation_input)
     if state.options.OptWetlandModel!=0:
         raise NotImplementedError('Wetland requires an extensive CLMColumnState with BGC')
+    if state.options.OptTileDrainage!=0:
+        raise NotImplementedError('Tile drainage requires an extensive CLMColumnState')
     if irrigation_input is not None or state.options.OptIrrigation!=0:
         raise NotImplementedError('Irrigation requires an extensive CLMColumnState')
     if crop_management is not None or state.options.OptCropModel!=0:

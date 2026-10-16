@@ -31,7 +31,7 @@ def cases(dtype):
     return pack_clm_bgc_columns(states,dtype=dtype),np.asarray(forcings,dtype),np.zeros((8,5),dtype),env,cal
 
 
-def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None):
+def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None,tile_parameters=None):
     state=state_from_row(row[:7]);cc=np.asarray(row[7],float)
     state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     ps,flags,pp,plant,plant_p,soil,soil_p,bp=row[8:]
@@ -58,6 +58,9 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,ir
         from noahmp_clm.physics.wetland import WetlandState,WetlandParameters
         ws,wp=wetland_data
         state=state.with_wetland(WetlandParameters(*np.asarray(wp,float)),WetlandState(float(ws[0])))
+    if tile_parameters is not None:
+        from noahmp_clm.physics.tile_drainage import TileDrainageParameters
+        state=state.with_tile_drainage(TileDrainageParameters(*np.asarray(tile_parameters,float)))
     # CLMColumnState normalizes the quantized root weights on reconstruction;
     # no reference host tendency is supplied to the native implementation.
     site=np.asarray(row[4],float);kwargs=dict(zip(SITE_NAMES[7:-1],site[7:-1]))

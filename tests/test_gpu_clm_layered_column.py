@@ -23,7 +23,7 @@ def irrigated_reference_state(state,data):
     return state,IrrigationInput(bool(check[0]),*np.asarray(inputs,float))
 
 
-def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None,irrigation_data=None):
+def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None,irrigation_data=None,tile_parameters=None):
     state=state_from_row(row[:7]);roots=state.root_frac
     cc=np.asarray(row[7],float);state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     if phenology is not None:
@@ -33,6 +33,9 @@ def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,ph
             PhenologyState(*np.asarray(ps,float),int(flags[0]),bool(flags[1])))
     irrigation_input=None
     if irrigation_data is not None:state,irrigation_input=irrigated_reference_state(state,irrigation_data)
+    if tile_parameters is not None:
+        from noahmp_clm.physics.tile_drainage import TileDrainageParameters
+        state=state.with_tile_drainage(TileDrainageParameters(*np.asarray(tile_parameters,float)))
     object.__setattr__(state,'root_frac',roots);site=np.asarray(row[4],float)
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),
         **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry,vic_parameters=vic_parameters,

@@ -12,6 +12,7 @@ from .physics.biogeochemistry import BGCState,BGCParameters
 from .physics.crop import CropState,CropParameters,CropPhase
 from .physics.irrigation import IrrigationState,IrrigationParameters
 from .physics.wetland import WetlandState,WetlandParameters
+from .physics.tile_drainage import TileDrainageParameters
 
 
 def clm_options():
@@ -50,6 +51,7 @@ class CLMColumnState:
     irrigation_parameters: IrrigationParameters | None=None
     wetland_state: WetlandState | None=None
     wetland_parameters: WetlandParameters | None=None
+    tile_drainage_parameters: TileDrainageParameters | None=None
 
     def __post_init__(self):
         if self.options.OptDynamicVeg==5:
@@ -94,6 +96,14 @@ class CLMColumnState:
                 raise ValueError('Wetland donor Q10 must match actual decomposition')
         elif self.wetland_state is not None or self.wetland_parameters is not None:
             raise ValueError('Wetland state/parameters require OptWetlandModel=1')
+        if self.options.OptTileDrainage!=0:
+            if self.options.OptTileDrainage!=1 or not isinstance(self.tile_drainage_parameters,TileDrainageParameters):
+                raise ValueError('Tile drainage requires option 1 and explicit parameters')
+            if self.tile_drainage_parameters.field_capacity>self.ground.params.smcmax:
+                raise ValueError('Tile field capacity exceeds soil porosity')
+            if self.tile_drainage_parameters.tube_depth_m>float(self.ground.dz.sum()):
+                raise ValueError('Tile depth exceeds the soil column')
+        elif self.tile_drainage_parameters is not None:raise ValueError('Tile parameters require OptTileDrainage=1')
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -198,6 +208,11 @@ class CLMColumnState:
         if parameters is None:parameters=WetlandParameters(donor_q10=self.bgc_parameters.decomposition.q10)
         return replace(self,options=replace(self.options,OptWetlandModel=1),
             wetland_state=WetlandState() if initial is None else initial,wetland_parameters=parameters)
+
+    def with_tile_drainage(self,parameters=None):
+        """Enable the simple actual-soil outlet at an explicitly modeled depth."""
+        if parameters is None:parameters=TileDrainageParameters(field_capacity=self.ground.params.smcref)
+        return replace(self,options=replace(self.options,OptTileDrainage=1),tile_drainage_parameters=parameters)
 
     @property
     def carbon_gc_m2(self):

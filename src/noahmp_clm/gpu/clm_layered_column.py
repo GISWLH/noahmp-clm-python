@@ -114,7 +114,7 @@ def _stages(vic=False,external=False):
 
 
 def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
-                               irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None):
+                               irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
@@ -140,4 +140,5 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     result=unpack_column(*out[:6],surface=surface if return_surface else None)
     result.update(condensate=out[6],canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(out[7]))
     if most_geometry is not None:result['most']=surface['most']
-    return attach_column_irrigation(result,irrigation)
+    from .tile_drainage import finish_column_tile
+    return finish_column_tile(attach_column_irrigation(result,irrigation),arrays[2],arrays[3],forcing,tile_parameters,'jax')

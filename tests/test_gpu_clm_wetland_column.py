@@ -27,7 +27,7 @@ def cases(kind,dtype):
     return pack_clm_wetland_columns(states,dtype=dtype),np.asarray(forcing,dtype),kwargs
 
 
-def check_reference(arrays,f,kwargs,got,dtype):
+def check_reference(arrays,f,kwargs,got,dtype,*,tile_parameters=None):
     maximum={};count=len(arrays)-2
     for k,row in enumerate(zip(*arrays)):
         crop_data=(*row[16:19],kwargs['management'][k]) if count in (19,21) else None
@@ -35,7 +35,7 @@ def check_reference(arrays,f,kwargs,got,dtype):
         env=kwargs['environment'][k] if 'environment' in kwargs else np.zeros(2)
         cal=kwargs['calendar'][k] if 'calendar' in kwargs else np.zeros(2,int)
         ref=reference(row[:16],f[k],np.zeros(5),env,cal,.0001,1.,crop_data=crop_data,
-            irrigation_data=irrigation_data,wetland_data=row[-2:])
+            irrigation_data=irrigation_data,wetland_data=row[-2:],tile_parameters=None if tile_parameters is None else tile_parameters[k])
         one={key:({a:b[k] for a,b in value.items()} if key=='diagnostics' else value[k]) for key,value in got.items()
             if key in ('snow_cells','soil_cells','options','storage','diagnostics','impurity_output_kgm2','condensate')}
         err=science(one,ref,dtype)

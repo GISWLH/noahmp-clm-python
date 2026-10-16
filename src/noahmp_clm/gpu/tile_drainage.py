@@ -91,3 +91,32 @@ def _step_soil(c,p,o,dt,parameters,backend):
 
 def step_tile_soil_jax(c,p,o,dt,parameters):
     return _step_soil(c,p,o,dt,parameters,'jax')
+
+
+def finish_column_tile(result,p,o,forcing,parameters,backend):
+    """Drain before BGC climate diagnosis and append an explicit deep outlet."""
+    if parameters is None:return result
+    if backend=='jax':
+        import jax.numpy as xp
+        from .enthalpy import run_soil_thermodynamics_jax as inverse
+    else:
+        import cupy as xp
+        from .cuda.enthalpy import run_soil_thermodynamics_cuda as inverse
+    from .clm_bgc_column import _sum_rows,_set
+    old=result['soil_cells'];n=len(old)
+    options=xp.stack((xp.ones(n,xp.int32),o[:,1],o[:,8]),axis=1)
+    tile=_step_soil(old,p[:,:4],options,forcing[:,:1],parameters,backend)
+    new=tile['cells'];mass=tile['drained_kgm2'];heat=tile['drained_enthalpy_jm2'];d=result['diagnostics']
+    # Retain the real transfer roundoff in the extensive ledger. The full
+    # independent verification separately sums all old/new stores in float64.
+    dm=_sum_rows(new[:,:,0]-old[:,:,0],xp);dh=_sum_rows(new[:,:,1]-old[:,:,1],xp)
+    d['water_residual_kgm2']=(d['water_residual_kgm2']+dm)+mass
+    d['energy_residual_jm2']=(d['energy_residual_jm2']+dh)+heat
+    d['runoff_mm']=d['runoff_mm']+mass;d['runoff_deep_mm']=d['runoff_deep_mm']+mass
+    d['runoff_enthalpy_jm2']=d['runoff_enthalpy_jm2']+heat
+    t=inverse(xp.concatenate((new[:,0,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
+    ts=xp.where(result['options'][:,0]>0,result['storage'][:,2],t)
+    result['storage']=_set(result['storage'],2,ts,backend);d['ts']=ts
+    d.update(tile_drainage_mm=mass,tile_drainage_enthalpy_jm2=heat)
+    result.update(soil_cells=new,tile_drainage=tile,tile_parameters=xp.asarray(parameters,old.dtype))
+    return result

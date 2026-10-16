@@ -21,7 +21,7 @@ def _stages():
 
 
 def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
-                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None):
+                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None):
     import cupy as cp
     if cp.asarray(o).dtype.kind not in 'iu':raise ValueError('CLM options must be integers')
     c,g,p,site,storage,roots,condensate,forcing=[cp.ascontiguousarray(cp.asarray(x,cp.float32)) for x in (c,g,p,site,storage,roots,condensate,forcing)]
@@ -63,4 +63,5 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     result=unpack_column(nc,ng,no,ns,diag,impurity,surface=surface if return_surface else None)
     result.update(condensate=cc,canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(post))
     if most_geometry is not None:result['most']=surface['most']
-    return attach_column_irrigation(result,irrigation)
+    from ..tile_drainage import finish_column_tile
+    return finish_column_tile(attach_column_irrigation(result,irrigation),p,o,forcing,tile_parameters,'cuda')

@@ -52,7 +52,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         raise ValueError('Explicit MOST geometry requires OptSurfaceDrag=1')
     supported={'OptRainSnowPartition','OptSoilWaterTranspiration','OptGroundResistanceEvap',
         'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen','OptDynamicVeg',
-        'OptIrrigation','OptIrrigationMethod'}
+        'OptIrrigation','OptIrrigationMethod','OptTileDrainage'}
     baseline=clm_options()
     for item in fields(opt):
         if item.name not in supported and getattr(opt,item.name)!=getattr(baseline,item.name):
@@ -180,6 +180,11 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen,
         bottom_parameters=vic_parameters if vic_bottom else None)
     runoff+=drain['bottom_mass_kgm2'];runoff_heat+=drain['bottom_enthalpy_jm2']
+    routing_ground=ground;tile=None;tile_mass=0.
+    if state.tile_drainage_parameters is not None:
+        from .physics.tile_drainage import step_tile_drainage
+        ground,tile=step_tile_drainage(ground,f.dt,state.tile_drainage_parameters)
+        tile_mass=tile['drained_kgm2'];runoff_heat+=tile['drained_enthalpy_jm2']
     if deposition_rates is not None:
         snow,bare=deposit_impurities(snow,deposition_rates,f.dt);impurity_out+=bare
     # Melting/drainage can remove the layer that supplied this step's flux
@@ -190,7 +195,10 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if vic_surface or vic_bottom:
         # These are physical outlets, already removed from the state with heat.
         deep=drain['bottom_mass_kgm2']/1000.;surface=(runoff-drain['bottom_mass_kgm2'])/1000.
-    else:surface,deep=route_runoff(runoff/1000.,final.parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
+    else:surface,deep=route_runoff(runoff/1000.,replace(final,ground=routing_ground).parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
+    # Tile flow is a known subsurface outlet, never repartitioned as overland
+    # runoff by the legacy diagnostic routing fractions.
+    deep+=tile_mass/1000.;runoff+=tile_mass
     d.update(ts=final.surface_temperature,h=float(d['h']),le=float(d['le']),g=float(d['ground_heat']),
         et_mm=d['et_kgm2'],prcp_mm=rain+snowfall,runoff_mm=runoff,runoff_kgm2=runoff,
         runoff_surface_mm=surface*1000.,runoff_deep_mm=deep*1000.,
@@ -205,4 +213,6 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if phenology is not None:d['phenology']=phenology
     if irrigation is not None:
         d.update(irrigation=irrigation,irrigation_mm=irrigation_mass,irrigation_enthalpy_jm2=irrigation_heat)
+    if tile is not None:
+        d.update(tile_drainage=tile,tile_drainage_mm=tile_mass,tile_drainage_enthalpy_jm2=tile['drained_enthalpy_jm2'])
     return final,d

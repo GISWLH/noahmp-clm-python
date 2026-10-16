@@ -105,9 +105,13 @@ NumPy与实际设备相变专项 **24 passed / 0 skipped，108.29秒**；新失�
 9次迭代、1次补救，NumPy最大层残差4.98236e-11 W/m²、水残差3.08998e-18 kg/m²。
 23个设备工况CUDA32/JAX32全部字段差0，JAX32对NumPy最大叶温/H/LE差
 0.000255001 K / 0.00165679 / 0.00195315 W/m²。
-C的NumPy七天与四后端七天已启动；NumPy第1天完成并越过失败点，
-累计水/焓/C/N残差最大4.83169e-13 kg/m² / 0.000458147 J/m² /
-1.06550e-11 gC/m² / 3.07046e-13 gN/m²。整段连续验证仍待完成。
+C的NumPy七天三柱已完成336步，1543.43秒，管理事件包含第0步收获、
+48步播种、269步出苗。独立累计水/焓/C/N残差最大1.02318e-12 kg/m² /
+0.001322702 J/m² / 3.72360e-11 gC/m² / 1.69886e-12 gN/m²；
+对应累计数值界3.16933e-9 / 0.01341094 / 3.37350e-7 / 1.30204e-8。
+四后端七天仍在运行，第1天同精度差0，不能提前计为整段通过。
+证据：[NumPy七天报告](v1-results/p5-managed-numpy-seven-day-c.json.gz)、
+[日志](v1-results/p5-managed-numpy-seven-day-c.log.gz)。
 旧B四后端任务因已独立复现相同源中的NumPy失败而主动停止，不能计为通过。
 证据：[原失败报告](v1-results/p5-managed-numpy-seven-day-a.json.gz)、
 [原失败日志](v1-results/p5-managed-numpy-seven-day-a.log.gz)、
