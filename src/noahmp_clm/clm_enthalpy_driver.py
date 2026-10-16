@@ -25,7 +25,7 @@ from .physics.canopy_interception import intercept_precipitation
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
                             deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
-                            nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None):
+                            nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     if state.bgc_state is not None:
         from .clm_bgc_driver import step_clm_bgc_column
@@ -33,7 +33,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,
             deposition_rates=deposition_rates,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
-            crop_management=crop_management)
+            crop_management=crop_management,irrigation_input=irrigation_input)
     if crop_management is not None:raise ValueError('Crop management requires an annual crop BGC column')
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
@@ -51,7 +51,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if most_geometry is not None and opt.OptSurfaceDrag!=1:
         raise ValueError('Explicit MOST geometry requires OptSurfaceDrag=1')
     supported={'OptRainSnowPartition','OptSoilWaterTranspiration','OptGroundResistanceEvap',
-        'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen','OptDynamicVeg'}
+        'OptSurfaceDrag','OptSoilSupercoolWater','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen','OptDynamicVeg',
+        'OptIrrigation','OptIrrigationMethod'}
     baseline=clm_options()
     for item in fields(opt):
         if item.name not in supported and getattr(opt,item.name)!=getattr(baseline,item.name):
@@ -71,6 +72,21 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         phenology.update(lai_before=old_lai)
     elif phenology_environment is not None:
         raise ValueError('Phenology environment requires OptDynamicVeg=5')
+    irrigation=None;irrigation_state=state.irrigation_state;irrigation_mass=irrigation_heat=0.
+    if opt.OptIrrigation==1:
+        from .physics.irrigation import IrrigationInput,step_irrigation
+        request=IrrigationInput() if irrigation_input is None else irrigation_input
+        if not isinstance(request,IrrigationInput):raise ValueError('Expected IrrigationInput')
+        # Reconstruct phase diagnostics within the unchanged total store.
+        # Volume-to-mass round trips can otherwise report -3e-15 kg ice in
+        # a warm layer. Warm soil is exactly liquid; no stored M/H is clipped.
+        irrigation_liquid=np.where(state.ground.temperature>=TF,state.ground.water,
+            np.clip(state.ground.liquid,0.,state.ground.water))
+        irrigation_state,irrigation=step_irrigation(irrigation_state,irrigation_liquid,state.ground.water-irrigation_liquid,state.ground.dz,
+            f.dt,state.lai,check=request.check,supply_kgm2=request.supply_kgm2,supply_temperature_k=request.supply_temperature_k,
+            parameters=state.irrigation_parameters)
+        irrigation_mass=irrigation['applied_kgm2'];irrigation_heat=irrigation['applied_enthalpy_jm2']
+    elif irrigation_input is not None:raise ValueError('Irrigation input requires OptIrrigation=1')
     rain,snowfall=partition_precipitation(f.prcp,f.dt,f.tair,opt.OptRainSnowPartition,qair=f.qair,pressure=f.ps)
     rain*=1000.;snowfall*=1000.
     rain_heat=LF+CW*(f.tair-TF);ice_heat=CI*(min(f.tair,TF)-TF)
@@ -111,6 +127,11 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             density,radius=fresh_snow_properties(f.tair,f.wind)
             snow=add_snowfall(snow,snowfall,min(f.tair,TF),float(density),float(radius))
         snow,ground,out,oh=route_water(snow,ground,rain-intercepted,(rain-intercepted)*rain_heat)
+        runoff+=out;runoff_heat+=oh
+    # Surface irrigation bypasses leaves but traverses any snow and the
+    # actual infiltration/runoff operator, retaining the supplied enthalpy.
+    if irrigation_mass:
+        snow,ground,out,oh=route_water(snow,ground,irrigation_mass,irrigation_heat)
         runoff+=out;runoff_heat+=oh
     work=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,canopy_condensate=condensate)
     view=work.parameter_view();view.smc=ground.liquid/(1000.*ground.dz)
@@ -165,7 +186,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     # temperature. The next step's drag must see the surviving surface.
     final_temperature=float(snow.temperature[0] if len(snow.mass) else ground.temperature[0])
     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
-        surface_temperature=final_temperature,canopy_condensate=condensate)
+        surface_temperature=final_temperature,canopy_condensate=condensate,irrigation_state=irrigation_state)
     if vic_surface or vic_bottom:
         # These are physical outlets, already removed from the state with heat.
         deep=drain['bottom_mass_kgm2']/1000.;surface=(runoff-drain['bottom_mass_kgm2'])/1000.
@@ -178,8 +199,10 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         swe=final.swe,canw=final.canw,tsoil=final.tsoil,smc=final.smc,
         gpp_umol_m2s=d['gpp'],gpp_gcm2=d['gpp']*12.0107e-6*f.dt,
         precipitation_enthalpy_jm2=precipitation_heat,runoff_enthalpy_jm2=runoff_heat,
-        water_residual_kgm2=final.water_kgm2-state.water_kgm2-rain-snowfall+d['et_kgm2']+runoff,
-        energy_residual_jm2=final.enthalpy_jm2-state.enthalpy_jm2-precipitation_heat-d['atmospheric_energy_jm2']+d['advected_enthalpy_jm2']+runoff_heat,
+        water_residual_kgm2=final.water_kgm2-state.water_kgm2-rain-snowfall-irrigation_mass+d['et_kgm2']+runoff,
+        energy_residual_jm2=final.enthalpy_jm2-state.enthalpy_jm2-precipitation_heat-irrigation_heat-d['atmospheric_energy_jm2']+d['advected_enthalpy_jm2']+runoff_heat,
         impurity_output_kgm2=impurity_out,canopy_water_after_kgm2=canopy,canopy_enthalpy_after_jm2=canopy_heat)
     if phenology is not None:d['phenology']=phenology
+    if irrigation is not None:
+        d.update(irrigation=irrigation,irrigation_mm=irrigation_mass,irrigation_enthalpy_jm2=irrigation_heat)
     return final,d

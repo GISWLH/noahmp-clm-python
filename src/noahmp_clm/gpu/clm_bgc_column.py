@@ -17,6 +17,8 @@ from ..physics.plant_cn import leaf_nitrogen_factor
 
 def pack_clm_bgc_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.irrigation_state is not None for s in states):
+        raise NotImplementedError('Irrigation requires a native entry retaining requests and external water/heat')
     if any(s.crop_state is not None or s.options.OptCropModel!=0 for s in states):
         raise NotImplementedError('Crop needs its extended state ABI; the sixteen-array BGC ABI cannot carry seed or management')
     if any(s.bgc_state is None for s in states):raise ValueError('Every BGC column needs explicit plant/soil C/N stores')

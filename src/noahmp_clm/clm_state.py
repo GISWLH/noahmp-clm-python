@@ -10,6 +10,7 @@ from .physics.canopy_interception import CanopyCondensate
 from .physics.phenology import PhenologyState,PhenologyParameters
 from .physics.biogeochemistry import BGCState,BGCParameters
 from .physics.crop import CropState,CropParameters,CropPhase
+from .physics.irrigation import IrrigationState,IrrigationParameters
 
 
 def clm_options():
@@ -44,6 +45,8 @@ class CLMColumnState:
     bgc_parameters: BGCParameters | None=None
     crop_state: CropState | None=None
     crop_parameters: CropParameters | None=None
+    irrigation_state: IrrigationState | None=None
+    irrigation_parameters: IrrigationParameters | None=None
 
     def __post_init__(self):
         if self.options.OptDynamicVeg==5:
@@ -70,6 +73,14 @@ class CLMColumnState:
                 raise ValueError('Fallow/unemerged crop cannot carry live or reserve plant biomass')
         elif self.crop_state is not None or self.crop_parameters is not None:
             raise ValueError('Crop state/parameters require OptCropModel=1')
+        if self.options.OptIrrigation!=0:
+            if (self.options.OptIrrigation!=1 or self.options.OptIrrigationMethod!=3
+                or not isinstance(self.irrigation_state,IrrigationState) or not isinstance(self.irrigation_parameters,IrrigationParameters)):
+                raise ValueError('Irrigation requires option 1, surface method 3 and explicit state/parameters')
+            if self.irrigation_parameters.target_theta>self.ground.params.smcmax:
+                raise ValueError('Irrigation target exceeds soil porosity')
+        elif self.irrigation_state is not None or self.irrigation_parameters is not None or self.options.OptIrrigationMethod!=0:
+            raise ValueError('Irrigation state, parameters and method require OptIrrigation=1')
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -160,6 +171,13 @@ class CLMColumnState:
         return replace(self,options=replace(self.options,OptCropModel=1),
             crop_state=CropState() if initial is None else initial,
             crop_parameters=CropParameters() if parameters is None else parameters)
+
+    def with_irrigation(self,parameters=None,initial=None):
+        """Enable moisture-triggered surface application from explicit supply."""
+        if parameters is None:
+            parameters=IrrigationParameters(target_theta=self.ground.params.smcref,wilting_theta=self.ground.params.smcwlt)
+        return replace(self,options=replace(self.options,OptIrrigation=1,OptIrrigationMethod=3),
+            irrigation_state=IrrigationState() if initial is None else initial,irrigation_parameters=parameters)
 
     @property
     def carbon_gc_m2(self):

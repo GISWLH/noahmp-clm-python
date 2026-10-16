@@ -38,6 +38,19 @@ class IrrigationState:
             raise ValueError('Invalid pending irrigation request')
 
 
+@dataclass(frozen=True)
+class IrrigationInput:
+    """One-step available external water and an explicit daily check event."""
+    check: bool=False
+    supply_kgm2: float=0.
+    supply_temperature_k: float=285.
+
+    def __post_init__(self):
+        if (not isinstance(self.check,(bool,np.bool_)) or not math.isfinite(self.supply_kgm2) or self.supply_kgm2<0.
+            or not math.isfinite(self.supply_temperature_k) or not TF<=self.supply_temperature_k<=350.):
+            raise ValueError('Invalid irrigation input')
+
+
 def step_irrigation(state,liquid_kgm2,ice_kgm2,dz,dt,lai,*,check=False,supply_kgm2=0.,
                     supply_temperature_k=285.,parameters=IrrigationParameters()):
     """Return a pending request and liquid mass/enthalpy to the ground surface.

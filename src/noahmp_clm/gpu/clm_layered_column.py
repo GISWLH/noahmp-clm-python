@@ -19,6 +19,8 @@ from .canopy_phase_surface import run_canopy_phase_surface_jax
 
 def pack_clm_layered_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.irrigation_state is not None for s in states):
+        raise NotImplementedError('Irrigation requires a native entry retaining requests and external water/heat')
     if any(s.bgc_state is not None for s in states):
         raise NotImplementedError('BGC requires an extended native entry retaining all plant/soil C/N stores')
     if any(s.options.OptDynamicVeg!=4 for s in states):

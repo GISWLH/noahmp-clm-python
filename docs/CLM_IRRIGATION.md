@@ -1,7 +1,8 @@
-# 简化灌溉：NumPy组件开发中
+# 简化灌溉：三后端组件与NumPy整柱，设备整柱待接入
 
-`physics.irrigation`实现土壤水触发和限供水下的定时施水。尚未启用整柱
-`OptIrrigation`，原生JAX/CUDA及站点验证待做，不能标作功能完成。
+`physics.irrigation`实现土壤水触发和限供水下的定时施水，已有原生JAX/CUDA。
+NumPy整柱已启用`OptIrrigation=1`与地表施水`OptIrrigationMethod=3`；
+设备整柱及站点验证待做，不能标作功能完成。方法0/1/2与触发选项2/3不支持。
 
 依据[CLM5灌溉说明](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Crop_Irrigation/CLM50_Tech_Note_Crop_Irrigation.html#the-irrigation-model)
 式2.26.13–17，以根区目标和萎蔫储水量构造触发阈值，缺额为阈值减实际液水。
@@ -24,3 +25,31 @@ NumPy **6 passed，0.25秒**：90组独立Decimal根区缺额对照最大差0 kg
 水残差0 kg/m²、焓残差−3.72529e-9 J/m²。每步限供1 kg/m²时实际12 kg/m²、
 未满足36 kg/m²；冻土/收获取消请求不删除物理水量。
 证据：[NumPy日志](v1-results/p5-irrigation-numpy-a.log.gz)。
+
+原生组件冻结A：350文件，清单SHA256
+`8498b43c170cefe95d727fee9ed06a6132fbd8140813f1c1e0852a3c5eefe0c9`；
+**10 passed / 0 skipped，14.32秒**。512组量化输入，CUDA32/JAX32全部
+字段差0。JAX32对NumPy64最大施水差5.68412e-6 kg/m²、输入焓差2.33620 J/m²；
+独立float32请求残差最大1.52588e-5 kg/m²，数值界最大0.0142681；
+热量舍入差最大0.391329 J/m²，界30.7285。float64字段差0，请求独立重算
+残差5.68434e-14 kg/m²、界2.65764e-11。
+8柱×96步两条原生路径连续请求同精度门通过，累计请求残差4.31538e-5 kg/m²、
+界0.0330005；土壤为外部给定，不能冒充已接入实际土壤的GPU轨迹。
+证据：[设备组件](v1-results/p5-irrigation-gpu-a.log.gz)。
+
+`CLMColumnState.with_irrigation`保留待施水请求，默认阈值取实际土质
+`smcref/smcwlt`；目标不许超过孔隙度。`IrrigationInput`显式提供一步供水、
+水温和每日检查事件。NumPy真实地表路由接在降水/冠层排出之后；灌溉单独
+记入`irrigation_mm/irrigation_enthalpy_jm2`，不混入降水观测量。
+接入BGC/作物时用管理和周转后的实际LAI判定；收获会取消未完成请求。
+
+整柱相关 **25 passed，51.42秒**。7类灌溉柱各连续两步，含无BGC、BGC、作物、
+积雪、限供、冻土、收获；首步最大水/焓残差4.95090e-14 kg/m² /
+3.18983e-5 J/m²。干土施水5 kg/m²携带2022165 J/m²，限供时1 kg/m²；
+收获/冻土取消20 kg/m²未填请求，物理输入均0。独立先入渗再运行物理柱，
+与地表灌溉得到相同土壤和通量；C/N账也检查。
+首轮第二步发现暖土体积转质量舍入产生−3.55e-15 kg冰诊断，严格输入检查
+拒绝了它。灌溉适配器现在将暖土诊断为全液态、冻土液水限制在实际总水内；
+只重构诊断，不改变任何物理水/焓储量。外部负冰输入仍拒绝。
+证据：[首次](v1-results/p5-irrigation-column-numpy-a.log.gz)、
+[完成](v1-results/p5-irrigation-column-numpy-b.log.gz)。
