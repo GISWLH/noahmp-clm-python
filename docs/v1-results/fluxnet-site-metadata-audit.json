@@ -1,0 +1,191 @@
+{
+  "audit_date": "2026-10-16",
+  "status": "incomplete metadata audit, not executable model configuration",
+  "scope": "Original four historical sites; no calibration or holdout selection by model score",
+  "sites": [
+    {
+      "site": "CN-Cng",
+      "source": "https://fluxnet.org/sites/siteinfo/CN-Cng",
+      "data_doi": "https://doi.org/10.18140/FLX/1440209",
+      "reported_latitude": 44.5934,
+      "reported_longitude": 123.5092,
+      "igbp": "GRA",
+      "fluxnet2015_years": [
+        2007,
+        2010
+      ],
+      "measurement_height_mapping": null,
+      "soil_sensor_depth_mapping": null,
+      "unresolved": [
+        "Actual meteorological heights by year and field",
+        "Soil sensor depth for TS_F_MDS_1 and SWC_F_MDS_1",
+        "CO2 gaps at period edges"
+      ],
+      "additional_sources": [
+        {
+          "url": "https://doi.org/10.1016/j.envres.2015.09.004",
+          "author_posted_full_text": "https://www.researchgate.net/publication/285417564_Heat_waves_reduce_ecosystem_carbon_sink_strength_in_a_Eurasian_meadow_steppe",
+          "reported_ec_height_m": 2.0,
+          "reported_temperature_humidity_levels_m": [
+            2.0,
+            4.0,
+            6.0
+          ],
+          "reported_radiometer_height_m": 2.0,
+          "reported_par_rain_height_m": 6.0,
+          "reported_soil_temperature_depths_m": [
+            0.05,
+            0.1,
+            0.3
+          ],
+          "reported_soil_water_depth_methods_m": 0.1,
+          "reported_soil_water_depth_figure_m": 0.05,
+          "notes": "Original site study. Paper has a 0.10 m methods versus 0.05 m figure moisture-depth inconsistency. Multiple air levels do not uniquely assign FULLSET fields; keep the ambiguity visible."
+        }
+      ]
+    },
+    {
+      "site": "CN-Qia",
+      "source": "https://fluxnet.org/sites/siteinfo/CN-Qia",
+      "data_doi": "https://doi.org/10.18140/FLX/1440141",
+      "reported_latitude": 26.7414,
+      "reported_longitude": 115.0581,
+      "igbp": "ENF",
+      "fluxnet2015_years": [
+        2003,
+        2005
+      ],
+      "measurement_height_mapping": null,
+      "soil_sensor_depth_mapping": null,
+      "additional_sources": [
+        {
+          "url": "https://asiaflux.net/index.php?page_id=1177",
+          "page_update": "2014-08-11",
+          "reported_canopy_height_m": 13,
+          "reported_ec_levels_m": [
+            23,
+            39
+          ],
+          "reported_radiation_height_m": 41,
+          "reported_soil_water_depths_m": [
+            0.05,
+            0.2,
+            0.5
+          ],
+          "notes": "Several meteorological levels and two soil temperature depth lists are reported. One level is printed as 23mm; not silently corrected or mapped to a CSV field. A 2014 site description does not by itself establish a 2003-2005 field mapping."
+        },
+        {
+          "url": "https://html.rhhz.net/qxxb_en/html/2015-4-654.htm",
+          "reported_year": 2003,
+          "reported_ec_levels_m": [
+            23.6,
+            39.6
+          ],
+          "reported_canopy_height_m": 12,
+          "notes": "Two simultaneous EC levels; does not identify the level used for each FULLSET meteorological field."
+        }
+      ],
+      "unresolved": [
+        "Which level supplies each archived forcing field",
+        "Time-valid canopy height and soil sensor assignment",
+        "Evergreen phenology configuration rather than temperate deciduous GDD default",
+        "CO2_F_MDS missing for all 2003-2005 rows; define and cite external atmospheric CO2 forcing before BGC runs"
+      ],
+      "input_inventory": "fluxnet-qia-inventory.json.gz"
+    },
+    {
+      "site": "CN-Cha",
+      "source": "https://fluxnet.org/sites/siteinfo/CN-Cha",
+      "data_doi": "https://doi.org/10.18140/FLX/1440137",
+      "reported_latitude": 42.4025,
+      "reported_longitude": 128.0958,
+      "igbp": "MF",
+      "fluxnet2015_years": [
+        2003,
+        2005
+      ],
+      "measurement_height_mapping": null,
+      "soil_sensor_depth_mapping": null,
+      "unresolved": [
+        "Actual meteorological heights by year and field",
+        "Soil temperature and water sensor depths",
+        "Mixed forest plant-functional composition",
+        "CO2_F_MDS missing for all 2003-2005 rows; define and cite external atmospheric CO2 forcing before BGC runs"
+      ],
+      "input_inventory": "fluxnet-cha-inventory.json.gz"
+    },
+    {
+      "site": "CN-HaM",
+      "source": "https://fluxnet.org/sites/siteinfo/CN-HaM",
+      "data_doi": "https://doi.org/10.18140/FLX/1440190",
+      "reported_latitude": 37.37,
+      "reported_longitude": 101.18,
+      "igbp": "GRA",
+      "fluxnet2015_years": [
+        2002,
+        2004
+      ],
+      "measurement_height_mapping": {
+        "TA_F": 2.2,
+        "VPD_F": 2.2,
+        "WS_F": 2.2,
+        "CO2_F_MDS": 2.2,
+        "H_F_MDS": 2.2,
+        "LE_F_MDS": 2.2,
+        "metadata_date": "20010801",
+        "unit": "m above ground",
+        "source": "Original JPF BIFVARINFO_HH, same archive as series"
+      },
+      "soil_sensor_depth_mapping": {
+        "TS_F_MDS_1": 0.025,
+        "SWC_F_MDS_1": 0.05,
+        "unit": "m below ground",
+        "metadata_date": "20010801",
+        "source": "Original JPF BIFVARINFO_HH; negative reported height converted to positive depth"
+      },
+      "local_catalog_conflict": {
+        "source": "outputs/k6/sites_index.json, generated 2026-06-07",
+        "latitude": 37.607432,
+        "longitude": 101.332,
+        "years": [
+          2001,
+          2014
+        ],
+        "archive": "ICOS_CN-HaM_FLUXNET_2001-2014_322158204.zip",
+        "status": "Resolved for the downloaded product using its original BIF: JPF data, EUDB_ICOS processing center; retain FLUXNET2015 metadata as a separate release."
+      },
+      "unresolved": [
+        "Soil hydraulic and thermal parameters",
+        "Explicit model-depth sampling operator",
+        "Source unit strings include damaged characters; use documented FLUXNET units with preserved raw metadata",
+        "One 2001 VPD/Tetens-derived vapor pressure is out of physical range; audit exact row before choosing a preprocessing rule"
+      ],
+      "selected_product_metadata": {
+        "source": "fluxnet-ham-archive-metadata.json",
+        "product_name": "JPF_CN-HaM_FLUXNET_2001-2014_v1.3_r1.zip",
+        "archive_sha256": "787c4233819f9375a8fb2035b329b9941468c4314967c0421b68d3411bf9635f",
+        "latitude": 37.607432,
+        "longitude": 101.332,
+        "elevation_m": 3250.0,
+        "utc_offset_hours": 8,
+        "canopy_height_m": 0.3,
+        "canopy_height_date": "20010820",
+        "maximum_lai": 3.0,
+        "maximum_lai_date": "20010820",
+        "notes": "Maximum LAI is a dated observation, not a constant forcing or a calibrated target.",
+        "pid": "https://hdl.handle.net/11676/eHxCM4Gfk3Wo-yA1sym5lBRo",
+        "official_catalogue_sha256_verified": true
+      },
+      "input_inventory": "fluxnet-ham-inventory.json.gz",
+      "additional_sources": [
+        {
+          "url": "https://ads.nipr.ac.jp/data/meta/A20241022-014",
+          "source_product": "JapanFlux2024 CN-HaM Qinghai Flux Research Site, version 2.00",
+          "reported_soil_texture": "clay loam",
+          "reported_average_soil_thickness_m": 0.65,
+          "notes": "Original network site description; texture alone does not provide measured hydraulic/thermal coefficients. Distinct processing product from the ONEFlux archive."
+        }
+      ]
+    }
+  ]
+}

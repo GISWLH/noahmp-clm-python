@@ -25,6 +25,50 @@ AUXMETEO仅提供ERA订正统计，未提供测高或土壤传感器深度；不
 spinup、校准及留出划分。当前没有据模型评分挑选年份，也尚未执行v1多年模拟。
 [输入清单与逐年QC计数](v1-results/fluxnet-cng-inventory.json.gz)包含归档/CSV哈希。
 
+四站一手站点页已核查并记录到[元数据审计](v1-results/fluxnet-site-metadata-audit.json)。
+千烟洲存在多个气象层与两套通量测高，尚须确认FULLSET各字段采用的层；
+不能把通量仪高度直接赋给气温/湿度。
+[AsiaFlux站点页](https://asiaflux.net/index.php?page_id=1177)列出的是2014更新说明，
+需要核实与2003—2005归档的对应关系。
+海北本地目录的2001—2014产品及坐标与
+[FLUXNET2015站点页](https://fluxnet.org/sites/siteinfo/CN-HaM)列出的2002—2004产品
+及坐标不同；先追溯原始归档身份，当前不混用两套元数据。
+
+海北随后已核实原始ZIP内BIF：实际产品是
+`JPF_CN-HaM_FLUXNET_2001-2014_v1.3_r1`，JPF来源、EUDB_ICOS处理中心，
+处理日2026-01-13，坐标37.607432°N / 101.332°E、海拔3250 m、UTC+8。
+同包BIFVARINFO明确TA/VPD/WS及通量测高2.2 m，土温第1探头深0.025 m、
+土水第1探头深0.05 m（元数据日期2001-08-01）；采用该产品时有据可映射，
+仍不把FLUXNET2015旧坐标覆盖进去。冠高0.3 m、LAI最大值3对应2001-08-20，
+最大LAI不能当作全年固定LAI。[原始元数据摘录与哈希](v1-results/fluxnet-ham-archive-metadata.json)
+保留产品身份和字段单位；部分单位字符原文损坏，后续按FLUXNET标准核对单位，
+不静默猜测编码。官方ICOS目录返回的完整SHA256与本地ZIP逐字节一致，
+对应[Du等（2026）海北归档](https://hdl.handle.net/11676/eHxCM4Gfk3Wo-yA1sym5lBRo)，
+不能用FLUXNET2015的旧DOI代替此产品引用。
+
+新增只读入口`benchmarks/inventory_fluxnet_archive.py`，从ZIP中原始HH文件审计
+时间轴、各变量自己的QC及非缺测样本；不裁剪湿度、不填补、不运行模型。
+与既有loader共 **10 passed，0.31秒**；QC缺失不视作0，GPP分解产品不虚构
+“实测QC”。新增三站审计结果为：
+
+| 原始归档 | 半小时条数 | 时间轴异常 | 本次确认的输入/评价限制 |
+|---|---:|---:|---|
+| [海北2001—2014](v1-results/fluxnet-ham-inventory.json.gz) | 245424 | 0 | 2001年CO₂有效7681条；2007/2011/2012年夜间GPP均全缺，日间产品另报；2001年1条VPD转换得到非法水汽压 |
+| [千烟洲2003—2005](v1-results/fluxnet-qia-inventory.json.gz) | 52608 | 0 | 全期CO₂浓度缺失；LE的QC=0逐年13734 / 14066 / 13738条 |
+| [长白山2003—2005](v1-results/fluxnet-cha-inventory.json.gz) | 52608 | 0 | 全期CO₂浓度缺失；2005年5条VPD转换得到非法水汽压；LE的QC=0逐年14035 / 12597 / 13140条 |
+
+三站七项主要气象填补产品全期有值，但BGC所需外部CO₂来源及上述异常行处理
+尚待预先固定。海北土壤在[原网络站点说明](https://ads.nipr.ac.jp/data/meta/A20241022-014)
+中为黏壤土、平均厚0.65 m；仍须说明土壤系数来源和模型深度取样。
+长岭[原站点论文](https://doi.org/10.1016/j.envres.2015.09.004)给出EC为2 m、温湿
+有2/4/6 m三层，土温深5/10/30 cm；土水深度在方法与图注为10/5 cm，存在
+冲突，不能据一张汇总表宣称各FULLSET字段测高已唯一核实。
+
+海北数据由NAS门户于2026-10-16取得，实际来源版本与PID已在上述元数据归档。
+引用JapanFlux处理背景：[Ueyama等（2025）](https://doi.org/10.5194/essd-17-3807-2025)；
+ZIP许可说明中该论文年份写作2005，与DOI出版年2025不一致，引用以正式论文为准。
+这些审计不构成v1多年模拟、校准或物理验收结果。
+
 本轮 M4 使用 NAS `processed/site_csv/` 的 CN-Cng、CN-HaM、CN-Qia、CN-Cha
 四站各 30 天，不校准、不调参。完整输入来源、QC、逐步轨迹、JAX64 parity、
 M2 分档和 LE/H 观测指标集中在 [REAL_DATA_CHECKS.md](REAL_DATA_CHECKS.md)，
