@@ -1,7 +1,7 @@
 # P2 光合参考模块（开发中）
 
-已实现 NumPy、JAX64/JAX32、CUDA32 单叶组件，尚未接入柱驱动；不能
-把它计为已完成多层冠层或已通过 FLUXNET GPP 验证。
+当前NumPy、JAX64/JAX32、CUDA32单叶组件已接入分层冠层和完整BGC柱；
+实际FLUXNET GPP与下列未达标单叶曲线仍须独立评价。早期组件检查按日期保留。
 
 方程来源为 [CLM5 技术手册 2.9 节](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Photosynthesis/CLM50_Tech_Note_Photosynthesis.html)，
 参考 [PhotosynthesisMod](https://github.com/ESCOMP/CTSM/blob/release-clm5.0/src/biogeophys/PhotosynthesisMod.F90)
@@ -73,3 +73,43 @@ JAX32对同量化输入NumPy64的最大净光合差为**2.237390e-5 µmol/m²/s*
 逐位相同。新增[NumPy叶温/温湿/水量联立与无雪柱连接](CLM_CANOPY_ENERGY.md)，
 该连接尚待JAX/CUDA和冬季同步。数学方程核对、后端核对、叶片观测和
 FLUXNET观测验证分别报告，不互相替代。
+
+
+## 零光照解析扩散与真实输入耗时（2026-10-16）
+
+Bondville固定LAI/MOST首日执行暴露出多层求解嵌套的CPU开销。对保持运行的
+Linux原实现做15秒、20 Hz的py-spy采样，共299个有效样本、采样错误0；
+单叶气体交换占240/299（80.27%）含子调用样本，冠层相态求解占295/299。
+这是执行热点，不能仅凭采样推断物理不收敛。GDB首次采样因缺少Python调试
+辅助命令未取得Python栈，随后用独立目录的py-spy 0.4.1取得栈与speedscope文件。
+
+NumPy现在仅在整批PAR精确为0时使用扩散方程的闭式解：零电子输送使GPP=0，
+净同化为−Rd，Ball–Berry返回最小导度；以原浮点表达式得到的gs计算
+`ci = ca + Rd × (1.4/gb + 1.6/gs)`。保留所有12项输出及实际扩散残差，
+混合明暗/非零光照继续原48次括区迭代。没有改白天方程、参数、守恒或收敛门；
+JAX/CUDA原生迭代保留，作为独立数值对照。
+
+对修改前提交25e8b52的不可变源码比较12,288个随机黑暗工况：GPP、净同化、
+gs、叶面RH逐位一致；ci最大差5.00222e-12 ppm，Rubisco限制差5.68434e-14，
+扩散残差差2.50483e-13 µmol/m²/s。10层黑暗叶100次调用、重复5轮，本机
+中位时间0.120065→0.0161771秒（7.42倍）；这是叶组件计时，不冒充完整柱加速比。
+
+NumPy新增解析/混合批次独立检查在本机15项通过。冻结B（407源文件）Linux
+单叶、实际JAX/CUDA及冠层相态目标 **39 passed / 0 skipped，141.57秒**。
+1215纯黑暗输入的CUDA32/JAX32最大差0；JAX32对NumPy解析解最大净同化差
+4.55919e-7 µmol/m²/s、ci差0.000395068 ppm、gs差9.49949e-11 mol/m²/s；
+JAX64 ci差2.27374e-12 ppm、净同化差0。原6075格点及2048随机输入也仍满足门。
+完整柱修改前F与修改后G均保留隔离快照运行，尚未据部分轨迹宣布全天性能或
+官方偏差验收。[采样、逐字段数字、原生日志及源码身份](v1-results/dark-leaf-b/manifest.json)。
+
+本次性能核查的文件改动：
+
+| 文件 | 类型 | 用途 |
+|---|---|---|
+| `outputs/v1/profile_output/compare_dark_leaf.py` | 新建独立测量脚本 | 加载旧提交比较12项输出并重复计时 |
+| `outputs/v1/profile_output/bondville-15s.json`、`bondville-python-stack.txt` | 采样输出 | 对原Linux进程只读采样；没有在生产循环插入计时 |
+| `src/noahmp_clm/physics/photosynthesis.py` | 数值等价优化 | 仅零光照解析扩散分支，不是临时插桩 |
+| `tests/test_photosynthesis.py`、`tests/test_gpu_photosynthesis.py` | 新增回归 | 解析关系、原迭代对照及原生精度门 |
+
+测量脚本和原始采样存放在忽略的输出目录，压缩证据单独归档；生产代码没有
+待清理的计时或调试插桩。

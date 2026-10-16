@@ -63,3 +63,25 @@ def test_cuda_leaf_matches_jax_same_precision(randomized):
           dict(zip(LEAF_OUTPUTS, np.max(abs(actual-expected),axis=0).tolist())), flush=True)
     np.testing.assert_allclose(actual, expected, rtol=1e-6, atol=1e-6)
     np.testing.assert_array_equal(run_leaves_cuda(u[:0]).shape, (0,12))
+
+
+@pytest.mark.parametrize("dtype",[np.float32,np.float64])
+def test_dark_analytic_numpy_against_native_iterative_leaf(dtype):
+    jax=pytest.importorskip('jax')
+    if dtype is np.float64 and not jax.config.x64_enabled:
+        pytest.skip('JAX_ENABLE_X64=true required')
+    from noahmp_clm.gpu.photosynthesis import run_leaves_jax
+    all_inputs=leaf_cases(dtype);u=all_inputs[all_inputs[:,0]==0.]
+    p=LeafParameters(vcmax25=80.,respiration25=1.,minimum_conductance=.002)
+    expected=ordinary(u,p);actual=np.asarray(run_leaves_jax(u,p))
+    np.testing.assert_allclose(actual,expected,rtol=.1 if dtype is np.float32 else 1e-9,
+                               atol=1e-3 if dtype is np.float32 else 1e-9)
+    same=None
+    if dtype is np.float32:
+        cp=pytest.importorskip('cupy')
+        from noahmp_clm.gpu.cuda.photosynthesis import run_leaves_cuda
+        cuda=cp.asnumpy(run_leaves_cuda(u,p))
+        np.testing.assert_allclose(cuda,actual,rtol=1e-6,atol=1e-6)
+        same=float(np.max(abs(cuda-actual)))
+    print('dark analytic',dtype,'cases',len(u),'same_precision',same,
+          'max_abs_by_output',dict(zip(LEAF_OUTPUTS,np.max(abs(actual-expected),axis=0).tolist())),flush=True)

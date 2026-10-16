@@ -154,12 +154,22 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
         residual = rates["net"] - (ca-ci) / (1.4/gb + 1.6/gs)
         return rates, cs, gs, residual
 
-    for _ in range(48):
+    if np.all(par == 0.0):
+        # In darkness electron transport and gross uptake are exactly zero.
+        # Net uptake is -Rd, independent of ci, and Ball--Berry reduces to
+        # its minimum conductance. Retain the ordinary floating-point gs
+        # calculation, then invert the same diffusion equation analytically.
+        # This avoids 48 identical biochemical evaluations at every canopy
+        # Jacobian and nested surface/MOST trial; no tolerance is changed.
+        _, _, gs, _ = evaluate(ca)
+        ci = ca + rd * (1.4 / gb + 1.6 / gs)
+    else:
+        for _ in range(48):
+            ci = .5 * (lo+hi)
+            _, _, _, residual = evaluate(ci)
+            lo = np.where(residual < 0.0, ci, lo)
+            hi = np.where(residual >= 0.0, ci, hi)
         ci = .5 * (lo+hi)
-        _, _, _, residual = evaluate(ci)
-        lo = np.where(residual < 0.0, ci, lo)
-        hi = np.where(residual >= 0.0, ci, hi)
-    ci = .5 * (lo+hi)
     rates, cs, gs, residual = evaluate(ci)
     return {**rates, "ci_ppm": ci, "cs_ppm": cs, "gs_mol": gs,
         "surface_relative_humidity": (gb * np.minimum(rh, 1.0) + gs) / (gb+gs),
