@@ -144,6 +144,19 @@ __device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,
             phase_evaluate(v,trial,rr,nullptr);
             if(!accepted&&ca_dot(rr,rr,12)<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;}
         }
+        if(!accepted) {
+            float low[12],high[12],mid[12],rl[12],rh[12],rr[12];
+            for(int i=0;i<12;++i){low[i]=x[i];high[i]=x[i];}
+            low[11]=lower[11];high[11]=upper[11];phase_evaluate(v,low,rl,nullptr);phase_evaluate(v,high,rh,nullptr);
+            if(rl[11]>=0.f&&rh[11]<=0.f) {
+                for(int k=0;k<32;++k){
+                    for(int i=0;i<12;++i)mid[i]=.5f*(low[i]+high[i]);phase_evaluate(v,mid,rr,nullptr);
+                    for(int i=0;i<12;++i){if(rr[11]>0.f)low[i]=mid[i];else high[i]=mid[i];}
+                }
+                for(int i=0;i<12;++i)mid[i]=.5f*(low[i]+high[i]);phase_evaluate(v,mid,rr,nullptr);
+                if(ca_dot(rr,rr,12)<norm){for(int i=0;i<12;++i)chosen[i]=mid[i];accepted=true;++restarts;}
+            }
+        }
         bool retry=!accepted&&available;
         for(int i=0;i<12;++i)x[i]=retry?alternative[i]:chosen[i];
         if(retry){available=false;++restarts;}failed=!(accepted||retry);++iteration;

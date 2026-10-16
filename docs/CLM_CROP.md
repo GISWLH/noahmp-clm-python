@@ -105,6 +105,13 @@ N账相应包含沉降、种子输入和收获。NEE仅为大气RA+RH−GPP。
 71537.5706降至3010.37692，给后续Newton一个有效起点。局部修复仅在原线搜索
 失败时启用，并要求完整残差下降；仍须满足原联立收敛/守恒门。
 NumPy原工况9次迭代、1次重启，最大能量残差1.76855e-9 W/m²，
-水残差2.60209e-18 kg/m²。原生修复和连续复验在新冻结C进行，尚未收齐。
+水残差2.60209e-18 kg/m²。冻结C（346文件，清单SHA256
+`5bad1f790532c8f3d4b2637d68449d73b164821c5cebd861b860b60ed498bb9f`）
+包含原生修复，**33 passed / 0 skipped，729.22秒**，覆盖新边界、原冠层
+独立方程、灌溉NumPy组件及作物设备整柱；冠层和作物整柱同精度全字段差0。
+修后JAX32与NumPy64作物整柱最大土温/GPP/NEE差为4.65170e-5 K /
+3.37049e-6 / 2.71832e-6 gC/m²/步，实际守恒残差及数值界未放宽。
+七天四后端和90天NumPy复验正在运行；90天轨迹已越过原失败点，但尚未完成。
 证据：[失败日志](v1-results/p5-crop-numpy-90day-b.log.gz)、
-[探针](v1-results/probe_crop_stall_b.log.gz)、[NumPy复现修复](v1-results/p5-crop-humidity-numpy-a.log.gz)。
+[探针](v1-results/probe_crop_stall_b.log.gz)、[NumPy复现修复](v1-results/p5-crop-humidity-numpy-a.log.gz)、
+[冻结C回归](v1-results/p5-crop-column-gpu-c.log.gz)。

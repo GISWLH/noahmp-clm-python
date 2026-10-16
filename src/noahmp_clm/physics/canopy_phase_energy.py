@@ -224,6 +224,22 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             r=evaluate(trial)
             if r@r<norm:x=trial;accepted=True;break
         if not accepted:
+            # A Newton humidity direction can point outside the physical
+            # interval. Projection then destroys the descent direction.
+            # At fixed leaf/ground temperatures, bracket the air-water
+            # balance inside the same admissible interval, and accept only
+            # if the complete coupled residual decreases. This is a new
+            # starting point, never a relaxed convergence criterion.
+            lo=x.copy();hi=x.copy();lo[-1]=lower[-1];hi[-1]=upper[-1]
+            if evaluate(lo)[-1]>=0. and evaluate(hi)[-1]<=0.:
+                for _ in range(32):
+                    mid=.5*(lo+hi)
+                    if evaluate(mid)[-1]>0.:lo=mid
+                    else:hi=mid
+                trial=.5*(lo+hi);rr=evaluate(trial)
+                if rr@rr<norm:
+                    x=trial;restarts+=1
+                    continue
             if restart_available:
                 # Lowest initial residual need not select the right side of
                 # the latent plateau. Retry the other physical initial guess

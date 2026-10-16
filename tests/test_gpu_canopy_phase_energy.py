@@ -9,7 +9,7 @@ from noahmp_clm.gpu.canopy_phase_energy import pack_canopy_phase,run_canopy_phas
 from noahmp_clm.physics.canopy_phase_energy import solve_canopy_phase_energy
 
 
-def reference(row):
+def reference(row,**solver_controls):
     from noahmp_clm.physics.canopy_energy import CanopyExchange
     from noahmp_clm.physics.canopy_interception import CanopyCondensate
     from noahmp_clm.physics.soil_uptake import SoilWaterSupply
@@ -26,14 +26,28 @@ def reference(row):
         nitrogen_factor=f[:,0],water_stress=f[:,1],fixed_ground_temperature=b[1] if b[0]>0. else None,
         ground_is_ice=bool(b[2]),ground_shares_soil=bool(b[3]),snowpack=pack,
         leaf_parameters=LeafParameters(*pack_leaf_parameters(dtype=dtype).astype(float)))
-    return solve_canopy_phase_energy(a,u[11],u[12],CanopyExchange(*u[:11]),CanopyCondensate(c[:,0],c[:,1]),b[4],**kw)
+    return solve_canopy_phase_energy(a,u[11],u[12],CanopyExchange(*u[:11]),CanopyCondensate(c[:,0],c[:,1]),b[4],**kw,**solver_controls)
 
 
 def batch(dtype):
     rows=[pack_canopy_phase(a,sw,lw,e,c,1800.,dtype=dtype,**kw) for _,a,sw,lw,e,c,kw in cases()]
     saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_native_regressions.json').read_text())
     rows.extend(tuple(np.asarray(v,np.int32 if k==8 else dtype) for k,v in enumerate(row['arrays'])) for row in saved['cases'])
+    saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_humidity_bound.json').read_text())
+    rows.append(tuple(np.asarray(v,np.int32 if k==8 else dtype) for k,v in enumerate(saved['arrays'])))
     return tuple(np.stack([r[k] for r in rows]) for k in range(9))
+
+
+def test_humidity_bound_restart_closes_original_coupled_equations():
+    saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_humidity_bound.json').read_text())
+    arrays=tuple(np.asarray(v,np.int32 if k==8 else np.float64) for k,v in enumerate(saved['arrays']))
+    result=reference(arrays,tolerance=1e-7)
+    assert result['restarts']>0 and 0.<result['canopy_humidity']<.19
+    assert abs(result['layer_residual']).max()<=1.01e-7
+    assert abs(result['solver_residual']).max()<=1e-7
+    assert abs(result['canopy_water_residual'])<1e-12
+    print('humidity-bound restart',result['iterations'],result['restarts'],result['canopy_humidity'],
+        abs(result['layer_residual']).max(),result['canopy_water_residual'],flush=True)
 
 
 def host(value,convert=np.asarray):

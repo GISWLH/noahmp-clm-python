@@ -169,8 +169,22 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             trial=j.clip(s(x+s(delta*fraction)),lower,upper);rr,_=evaluate(trial)
             good=(~accepted)&(_dot(rr,rr)<norm);return j.where(good,trial,chosen),accepted|good
         trial,accepted=lax.fori_loop(0,24,backtrack,(x,j.asarray(False)))
+        def humidity_restart(_):
+            lo=x.at[11].set(lower[11]);hi=x.at[11].set(upper[11])
+            rl,_=evaluate(lo);rh,_=evaluate(hi);bracket=(rl[11]>=0.)&(rh[11]<=0.)
+            def bisect(state):
+                k,low,high=state;mid=s(.5*s(low+high));rm,_=evaluate(mid)
+                return k+1,j.where(rm[11]>0.,mid,low),j.where(rm[11]>0.,high,mid)
+            # A dynamic loop avoids 32 extra gas-exchange evaluations in
+            # batches where every Newton line search already succeeded.
+            _,lo,hi=lax.while_loop(lambda state:(state[0]<32)&(~accepted)&bracket,bisect,(j.asarray(0,j.int32),lo,hi))
+            candidate=s(.5*s(lo+hi));rr,_=evaluate(candidate)
+            good=bracket&(_dot(rr,rr)<norm)
+            return j.where(good,candidate,trial),good
+        trial,rescued=lax.cond(accepted,lambda _:(trial,j.asarray(False)),humidity_restart,operand=None)
+        accepted=accepted|rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,alternative,trial),restarts+retry.astype(j.int32),avail&(~retry),~(accepted|retry)
+        return iteration+1,j.where(retry,alternative,trial),restarts+(retry|rescued).astype(j.int32),avail&(~retry),~(accepted|retry)
     def condition(state):
         it,x,_,_,failed=state;r,_=evaluate(x)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)
