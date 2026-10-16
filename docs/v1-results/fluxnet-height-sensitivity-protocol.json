@@ -1,0 +1,86 @@
+{
+  "status": "predeclared literature assumptions; not measured FULLSET assignments",
+  "locked_utc": "2026-10-16T16:35:23.351726+00:00",
+  "authorization": "Wang: no additional height records; use literature assumptions and height sensitivity analysis",
+  "policy": [
+    "Report every scenario, never select by observed flux skill.",
+    "Temperature and humidity remain co-located; independently vary their common height and wind height.",
+    "Meteorology values are reinterpreted at each candidate height; do not apply a second height correction.",
+    "Hold initial state, roughness, PFT, soil, parameters, forcing and numerical criteria fixed across height scenarios.",
+    "Full-column H/LE/GPP/NEE and state responses remain necessary; transfer-coefficient sensitivity alone is not flux validation."
+  ],
+  "roughness_assumption": {
+    "displacement_over_canopy_height": 0.6666666666666666,
+    "momentum_roughness_over_canopy_height": 0.1,
+    "heat_water_roughness_over_momentum": 0.1,
+    "note": "Explicit provisional site geometry, not independently measured roughness; fixed within the height analysis."
+  },
+  "sites": {
+    "CN-Cng": {
+      "canopy_height_m": 0.43,
+      "canopy_date": "20070815",
+      "temperature_humidity_candidates_m": [
+        2.0,
+        4.0,
+        6.0
+      ],
+      "wind_candidates_m": [
+        2.0,
+        4.0,
+        6.0
+      ],
+      "baseline": {
+        "temperature_height": 6.0,
+        "humidity_height": 6.0,
+        "wind_height": 2.0
+      },
+      "source": "https://doi.org/10.1016/j.envres.2015.09.004",
+      "assumption": "Highest reported T/RH layer as baseline; 2 m EC wind as provisional forcing wind. Wind 4/6 m are explicit mast-height sensitivity scenarios, not verified wind sensor records."
+    },
+    "CN-Qia": {
+      "canopy_height_m": 11.0,
+      "canopy_date": "2003-2005 annual BIF records",
+      "temperature_humidity_candidates_m": [
+        23.6,
+        31.6,
+        39.6
+      ],
+      "wind_candidates_m": [
+        23.6,
+        31.6,
+        39.6
+      ],
+      "baseline": {
+        "temperature_height": 39.6,
+        "humidity_height": 39.6,
+        "wind_height": 39.6
+      },
+      "source": "https://doi.org/10.1175/JAMC-D-11-0243.1",
+      "additional_source": "https://doi.org/10.1371/journal.pone.0085593",
+      "assumption": "Highest reported meteorological level as baseline; alternative above-canopy levels are not claims about actual consolidated forcing fields."
+    },
+    "CN-Cha": {
+      "canopy_height_m": 32.0,
+      "canopy_date": "2003-2005 annual BIF records",
+      "temperature_humidity_candidates_m": [
+        32.0,
+        49.8,
+        61.8
+      ],
+      "wind_candidates_m": [
+        32.0,
+        49.8,
+        61.8
+      ],
+      "baseline": {
+        "temperature_height": 61.8,
+        "humidity_height": 61.8,
+        "wind_height": 61.8
+      },
+      "source": "https://doi.org/10.1175/JAMC-D-11-0243.1",
+      "assumption": "Highest reported meteorological level as baseline; 32 m coincides with BIF canopy top and probes the limitations of a MOST roughness-layer approximation."
+    }
+  },
+  "canopy_source": "fluxnet-2015-bif-three-sites.json.gz",
+  "initial_sensitivity_scope": "Fixed recorded canopy heights; annual/seasonal canopy-height change is a separate uncertainty."
+}

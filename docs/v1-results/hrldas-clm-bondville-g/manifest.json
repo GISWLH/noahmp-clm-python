@@ -1,0 +1,64 @@
+{
+  "scope": "Complete uncalibrated cold-start one-day CLM comparison against official fixed-LAI profile C; failed H daily bias and H/LE instantaneous correlation, not release acceptance",
+  "commit": "c816ef3",
+  "snapshot_directory": "/home/lhwang/work/noahmp-v1/p6-dark-leaf-b",
+  "snapshot_manifest_sha256": "51d5032cd2026890f02cb3bf3e0af56b4f0793430fbd3fa4e990be3ac13ef74c",
+  "reference": "../hrldas-fixed-lai-c/manifest.json",
+  "files": {
+    "bondville-clm-core-g.json.gz": {
+      "source": "outputs/v1/bondville-clm-core-g.json",
+      "bytes": 79363,
+      "sha256": "79e49dbe0a835ee234119aa8aa00b850aa505f3dfcdb3cee2651eae6bd67bd00",
+      "gzip_sha256": "487c1a7f5ff666d1f05212910d6a00dd03ff17fc62f49712c9bb6ac63ae5ffe9"
+    },
+    "bondville-clm-core-g.log.gz": {
+      "source": "outputs/v1/bondville-clm-core-g.log",
+      "bytes": 510,
+      "sha256": "9337566770678b4a7e773bb2fdb60ad018d73a124045461ed45fda88fa67a8e3",
+      "gzip_sha256": "6b2c820febb5a7362628317e6565121c127fd7abc0024b3d53e9b5629d273cd7"
+    },
+    "bondville-comparison-g.json.gz": {
+      "source": "outputs/v1/bondville-comparison-g.json",
+      "bytes": 9635,
+      "sha256": "fd6b1e71369f3b9d2d64198d980b66b9430831b595503e9ecb56a806320e15ba",
+      "gzip_sha256": "c96d908c108620f313747c3f759a1b603ff3683596e6c2c52be12727aa1f2c3f"
+    },
+    "run_bondville_clm_core.py.gz": {
+      "source": "outputs/v1/run_bondville_clm_core.py",
+      "bytes": 7542,
+      "sha256": "41209221773407e191c7be8e4129495b45abee40a0fc3f78b1de53666c38eae6",
+      "gzip_sha256": "128a12d554f16bcbf4f8a4caacf1f338309ade79410898f59b28d36b0b765b3b"
+    },
+    "compare_hrldas_column.py.gz": {
+      "source": "benchmarks/compare_hrldas_column.py",
+      "bytes": 4306,
+      "sha256": "a05ec4ee574ffb30cc20623d2664c60a570494d5e009737a8456721dd81aaa73",
+      "gzip_sha256": "fb542c850c8b8775e245eaa3eda3b583e26d4ec20fc3f042d96b2667bd3fa107"
+    },
+    "bondville-clm-core-f.json.gz": {
+      "source": "outputs\\v1\\bondville-clm-core-f.json",
+      "bytes": 79363,
+      "sha256": "8db4343fe5e35217674d6f25da82cc56bd761615101489d59c76ab5746ec0322",
+      "gzip_sha256": "d675213c01cfbc0c2fe1f5e807a2b4ec1809e4800fb7b0ab344bfa6564005fe6"
+    },
+    "bondville-clm-core-f.log.gz": {
+      "source": "outputs\\v1\\bondville-clm-core-f.log",
+      "bytes": 509,
+      "sha256": "b78c5baa4601e5fd4e1bb5974bf0e7802222e7df48904a0d6e07a27370f9e77e",
+      "gzip_sha256": "60bd2c81f5387605b3b381fd92d9e9fb3fef7f07b4a4113aa7a13a89474e3daa"
+    }
+  },
+  "unchanged_physics_check": {
+    "original_source_snapshot": "p6-fluxnet-preflight-a",
+    "original_source_manifest_sha256": "97f56432089eda1e5f0d785eb1ac81a1d4311d5a3f36c0527a91a54e81bf4f72",
+    "only_model_source_change": "src/noahmp_clm/physics/photosynthesis.py",
+    "all_intervals_identical": true,
+    "final_state_identical": true,
+    "forcing_identical": true,
+    "instrument_identical": true,
+    "original_seconds": 2992.650602117181,
+    "candidate_seconds": 1171.454383149743,
+    "single_run_time_ratio": 2.554645443445014,
+    "timing_limitation": "Different start times on shared server; one complete run each, not a repeated controlled performance benchmark."
+  }
+}

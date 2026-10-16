@@ -1,0 +1,2530 @@
+{
+  "scope": "Prescribed-wind, prescribed-Obukhov-length transfer sensitivity only; not coupled H/LE or observation acceptance",
+  "protocol_sha256": "5a8c67d71efe85735cceab567516b81884208c482e2ff3eabbe6cbc375cb2ac8",
+  "effective_wind_ms": 2.0,
+  "plant_area": 3.0,
+  "inverse_obukhov_lengths_m_inverse": [
+    -0.01,
+    0.0,
+    0.01
+  ],
+  "sites": {
+    "CN-Cng": [
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.22078961951679357,
+          "heat_velocity": 0.015062929060705523,
+          "water_velocity": 0.015062929060705523,
+          "leaf_velocity": 0.023494127964067614,
+          "ground_velocity": 0.004417371358796545,
+          "momentum_integral": 3.6233587509722165,
+          "heat_integral": 5.863125787208671,
+          "water_integral": 5.863125787208671
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.16685585243473303,
+          "water_velocity": 0.16685585243473303,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.18462194658148867,
+          "heat_velocity": 0.012595462098682612,
+          "water_velocity": 0.012595462098682612,
+          "leaf_velocity": 0.021483828021414658,
+          "ground_velocity": 0.003944594751009,
+          "momentum_integral": 4.3331793148811535,
+          "heat_integral": 5.863125787208671,
+          "water_integral": 5.863125787208671
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.16381056779054748,
+          "heat_velocity": -0.024287467282323963,
+          "water_velocity": -0.024287467282323963,
+          "leaf_velocity": -0.08556605913305437,
+          "ground_velocity": -0.10702668383224796
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.16991073998421866,
+          "heat_velocity": 0.011591819527727384,
+          "water_velocity": 0.011591819527727384,
+          "leaf_velocity": 0.02061011523404337,
+          "ground_velocity": 0.003743907565096945,
+          "momentum_integral": 4.708354516461433,
+          "heat_integral": 5.863125787208671,
+          "water_integral": 5.863125787208671
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.23044054174252063,
+          "heat_velocity": -0.10203504233575764,
+          "water_velocity": -0.10203504233575764,
+          "leaf_velocity": -0.12275461913015502,
+          "ground_velocity": -0.15245804325653906
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.22078961951679357,
+          "heat_velocity": 0.013556419783132637,
+          "water_velocity": 0.013556419783132637,
+          "leaf_velocity": 0.023494127964067614,
+          "ground_velocity": 0.004417371358796545,
+          "momentum_integral": 3.6233587509722165,
+          "heat_integral": 6.514688186080151,
+          "water_integral": 6.514688186080151
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.050153505885886705,
+          "water_velocity": 0.050153505885886705,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.18462194658148867,
+          "heat_velocity": 0.011335734961250668,
+          "water_velocity": 0.011335734961250668,
+          "leaf_velocity": 0.021483828021414658,
+          "ground_velocity": 0.003944594751009,
+          "momentum_integral": 4.3331793148811535,
+          "heat_integral": 6.514688186080151,
+          "water_integral": 6.514688186080151
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.16381056779054748,
+          "heat_velocity": -0.12187273618051456,
+          "water_velocity": -0.12187273618051456,
+          "leaf_velocity": -0.08556605913305437,
+          "ground_velocity": -0.10702668383224796
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.16991073998421866,
+          "heat_velocity": 0.010432471064218527,
+          "water_velocity": 0.010432471064218527,
+          "leaf_velocity": 0.02061011523404337,
+          "ground_velocity": 0.003743907565096945,
+          "momentum_integral": 4.708354516461433,
+          "heat_integral": 6.514688186080151,
+          "water_integral": 6.514688186080151
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.23044054174252063,
+          "heat_velocity": -0.19184443692326444,
+          "water_velocity": -0.19184443692326444,
+          "leaf_velocity": -0.12275461913015502,
+          "ground_velocity": -0.15245804325653906
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.22078961951679357,
+          "heat_velocity": 0.012908988740362044,
+          "water_velocity": 0.012908988740362044,
+          "leaf_velocity": 0.023494127964067614,
+          "ground_velocity": 0.004417371358796545,
+          "momentum_integral": 3.6233587509722165,
+          "heat_integral": 6.841422638365438,
+          "water_integral": 6.841422638365438
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.18462194658148867,
+          "heat_velocity": 0.010794359965201552,
+          "water_velocity": 0.010794359965201552,
+          "leaf_velocity": 0.021483828021414658,
+          "ground_velocity": 0.003944594751009,
+          "momentum_integral": 4.3331793148811535,
+          "heat_integral": 6.841422638365438,
+          "water_integral": 6.841422638365438
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.16381056779054748,
+          "heat_velocity": -0.16381056779054756,
+          "water_velocity": -0.16381056779054756,
+          "leaf_velocity": -0.08556605913305437,
+          "ground_velocity": -0.10702668383224796
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.16991073998421866,
+          "heat_velocity": 0.009934234381684915,
+          "water_velocity": 0.009934234381684915,
+          "leaf_velocity": 0.02061011523404337,
+          "ground_velocity": 0.003743907565096945,
+          "momentum_integral": 4.708354516461433,
+          "heat_integral": 6.841422638365438,
+          "water_integral": 6.841422638365438
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.23044054174252063,
+          "heat_velocity": -0.2304405417425207,
+          "water_velocity": -0.2304405417425207,
+          "leaf_velocity": -0.12275461913015502,
+          "ground_velocity": -0.15245804325653906
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2170965748585448,
+          "heat_velocity": 0.014503123926104363,
+          "water_velocity": 0.014503123926104363,
+          "leaf_velocity": 0.023296811737797126,
+          "ground_velocity": 0.00437029192270185,
+          "momentum_integral": 3.6849959540875385,
+          "heat_integral": 5.987581047081584,
+          "water_integral": 5.987581047081584
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.2011433038204268,
+          "water_velocity": 0.2011433038204268,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.17943314386396425,
+          "heat_velocity": 0.011987020631740564,
+          "water_velocity": 0.011987020631740564,
+          "leaf_velocity": 0.02117977477830939,
+          "ground_velocity": 0.0038744239462276727,
+          "momentum_integral": 4.458485109119603,
+          "heat_integral": 5.987581047081584,
+          "water_integral": 5.987581047081584
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.17348698854010566,
+          "heat_velocity": -0.007239430764492188,
+          "water_velocity": -0.007239430764492188,
+          "leaf_velocity": -0.09087238989243407,
+          "ground_velocity": -0.11346335330561082
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.1636206705915023,
+          "heat_velocity": 0.01093066928396755,
+          "water_velocity": 0.01093066928396755,
+          "leaf_velocity": 0.02022502599451372,
+          "ground_velocity": 0.003656384706773303,
+          "momentum_integral": 4.889357787790098,
+          "heat_integral": 5.987581047081584,
+          "water_integral": 5.987581047081584
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.24632311358153025,
+          "heat_velocity": -0.09472605463422663,
+          "water_velocity": -0.09472605463422663,
+          "leaf_velocity": -0.13185434032158538,
+          "ground_velocity": -0.16335458329913746
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2170965748585448,
+          "heat_velocity": 0.012843917804058653,
+          "water_velocity": 0.012843917804058653,
+          "leaf_velocity": 0.023296811737797126,
+          "ground_velocity": 0.00437029192270185,
+          "momentum_integral": 3.6849959540875385,
+          "heat_integral": 6.761070202113649,
+          "water_integral": 6.761070202113649
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.06372847282901978,
+          "water_velocity": 0.06372847282901978,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.17943314386396425,
+          "heat_velocity": 0.01061566518317587,
+          "water_velocity": 0.01061566518317587,
+          "leaf_velocity": 0.02117977477830939,
+          "ground_velocity": 0.0038744239462276727,
+          "momentum_integral": 4.458485109119603,
+          "heat_integral": 6.761070202113649,
+          "water_integral": 6.761070202113649
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.17348698854010566,
+          "heat_velocity": -0.12081457654645249,
+          "water_velocity": -0.12081457654645249,
+          "leaf_velocity": -0.09087238989243407,
+          "ground_velocity": -0.11346335330561082
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.1636206705915023,
+          "heat_velocity": 0.009680163979977676,
+          "water_velocity": 0.009680163979977676,
+          "leaf_velocity": 0.02022502599451372,
+          "ground_velocity": 0.003656384706773303,
+          "momentum_integral": 4.889357787790098,
+          "heat_integral": 6.761070202113649,
+          "water_integral": 6.761070202113649
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.24632311358153025,
+          "heat_velocity": -0.1982924366035505,
+          "water_velocity": -0.1982924366035505,
+          "leaf_velocity": -0.13185434032158538,
+          "ground_velocity": -0.16335458329913746
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2170965748585448,
+          "heat_velocity": 0.01207443265093755,
+          "water_velocity": 0.01207443265093755,
+          "leaf_velocity": 0.023296811737797126,
+          "ground_velocity": 0.00437029192270185,
+          "momentum_integral": 3.6849959540875385,
+          "heat_integral": 7.1919428807841435,
+          "water_integral": 7.1919428807841435
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.17943314386396425,
+          "heat_velocity": 0.00997967569199607,
+          "water_velocity": 0.00997967569199607,
+          "leaf_velocity": 0.02117977477830939,
+          "ground_velocity": 0.0038744239462276727,
+          "momentum_integral": 4.458485109119603,
+          "heat_integral": 7.1919428807841435,
+          "water_integral": 7.1919428807841435
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.17348698854010566,
+          "heat_velocity": -0.1734869885401056,
+          "water_velocity": -0.1734869885401056,
+          "leaf_velocity": -0.09087238989243407,
+          "ground_velocity": -0.11346335330561082
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.1636206705915023,
+          "heat_velocity": 0.009100220805628122,
+          "water_velocity": 0.009100220805628122,
+          "leaf_velocity": 0.02022502599451372,
+          "ground_velocity": 0.003656384706773303,
+          "momentum_integral": 4.889357787790098,
+          "heat_integral": 7.1919428807841435,
+          "water_integral": 7.1919428807841435
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.24632311358153025,
+          "heat_velocity": -0.24632311358153025,
+          "water_velocity": -0.24632311358153025,
+          "leaf_velocity": -0.13185434032158538,
+          "ground_velocity": -0.16335458329913746
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.21228534451342593,
+          "heat_velocity": 0.013982163740554217,
+          "water_velocity": 0.013982163740554217,
+          "leaf_velocity": 0.02303721687364958,
+          "ground_velocity": 0.004308575848621868,
+          "momentum_integral": 3.7685126207542052,
+          "heat_integral": 6.073032713748251,
+          "water_integral": 6.073032713748251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.23124555718650042,
+          "water_velocity": 0.23124555718650042,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.17233944290434805,
+          "heat_velocity": 0.011351128902316144,
+          "water_velocity": 0.011351128902316144,
+          "leaf_velocity": 0.020756893005959978,
+          "ground_velocity": 0.0037774172444542467,
+          "momentum_integral": 4.6420017757862695,
+          "heat_integral": 6.073032713748251,
+          "water_integral": 6.073032713748251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.1881707929515196,
+          "heat_velocity": -0.00043889562731902823,
+          "water_velocity": -0.00043889562731902823,
+          "leaf_velocity": -0.09898434694591432,
+          "ground_velocity": -0.12327939041331183
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 2.0,
+          "humidity_height": 2.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.15465289309520133,
+          "heat_velocity": 0.010186205171929674,
+          "water_velocity": 0.010186205171929674,
+          "leaf_velocity": 0.01966296602087293,
+          "ground_velocity": 0.0035296671980176446,
+          "momentum_integral": 5.172874454456766,
+          "heat_integral": 6.073032713748251,
+          "water_integral": 6.073032713748251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.2714857756682287,
+          "heat_velocity": -0.10302009794433707,
+          "water_velocity": -0.10302009794433707,
+          "leaf_velocity": -0.14646955277988394,
+          "ground_velocity": -0.1807810000265781
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.21228534451342593,
+          "heat_velocity": 0.012223979051588271,
+          "water_velocity": 0.012223979051588271,
+          "leaf_velocity": 0.02303721687364958,
+          "ground_velocity": 0.004308575848621868,
+          "momentum_integral": 3.7685126207542052,
+          "heat_integral": 6.946521868780315,
+          "water_integral": 6.946521868780315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.07642280391520702,
+          "water_velocity": 0.07642280391520702,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.17233944290434805,
+          "heat_velocity": 0.009923783220428141,
+          "water_velocity": 0.009923783220428141,
+          "leaf_velocity": 0.020756893005959978,
+          "ground_velocity": 0.0037774172444542467,
+          "momentum_integral": 4.6420017757862695,
+          "heat_integral": 6.946521868780315,
+          "water_integral": 6.946521868780315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.1881707929515196,
+          "heat_velocity": -0.12612852864861562,
+          "water_velocity": -0.12612852864861562,
+          "leaf_velocity": -0.09898434694591432,
+          "ground_velocity": -0.12327939041331183
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 4.0,
+          "humidity_height": 4.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.15465289309520133,
+          "heat_velocity": 0.00890534261701565,
+          "water_velocity": 0.00890534261701565,
+          "leaf_velocity": 0.01966296602087293,
+          "ground_velocity": 0.0035296671980176446,
+          "momentum_integral": 5.172874454456766,
+          "heat_integral": 6.946521868780315,
+          "water_integral": 6.946521868780315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.2714857756682287,
+          "heat_velocity": -0.21581067595268263,
+          "water_velocity": -0.21581067595268263,
+          "leaf_velocity": -0.14646955277988394,
+          "ground_velocity": -0.1807810000265781
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 2.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.21228534451342593,
+          "heat_velocity": 0.011356113050677427,
+          "water_velocity": 0.011356113050677427,
+          "leaf_velocity": 0.02303721687364958,
+          "ground_velocity": 0.004308575848621868,
+          "momentum_integral": 3.7685126207542052,
+          "heat_integral": 7.47739454745081,
+          "water_integral": 7.47739454745081
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 4.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.17233944290434805,
+          "heat_velocity": 0.009219224253084355,
+          "water_velocity": 0.009219224253084355,
+          "leaf_velocity": 0.020756893005959978,
+          "ground_velocity": 0.0037774172444542467,
+          "momentum_integral": 4.6420017757862695,
+          "heat_integral": 7.47739454745081,
+          "water_integral": 7.47739454745081
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.1881707929515196,
+          "heat_velocity": -0.1881707929515196,
+          "water_velocity": -0.1881707929515196,
+          "leaf_velocity": -0.09898434694591432,
+          "ground_velocity": -0.12327939041331183
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 6.0,
+          "temperature_height": 6.0,
+          "humidity_height": 6.0,
+          "displacement": 0.2866666666666667,
+          "momentum_roughness": 0.043000000000000003,
+          "heat_roughness": 0.0043,
+          "water_roughness": 0.0043,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.15465289309520133,
+          "heat_velocity": 0.00827308989053817,
+          "water_velocity": 0.00827308989053817,
+          "leaf_velocity": 0.01966296602087293,
+          "ground_velocity": 0.0035296671980176446,
+          "momentum_integral": 5.172874454456766,
+          "heat_integral": 7.47739454745081,
+          "water_integral": 7.47739454745081
+        },
+        "relative_to_baseline": {
+          "friction_velocity": -0.2714857756682287,
+          "heat_velocity": -0.27148577566822873,
+          "water_velocity": -0.27148577566822873,
+          "leaf_velocity": -0.14646955277988394,
+          "ground_velocity": -0.1807810000265781
+        }
+      }
+    ],
+    "CN-Qia": [
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3427917056128023,
+          "heat_velocity": 0.03216179599244668,
+          "water_velocity": 0.03216179599244668,
+          "leaf_velocity": 0.029274208170879803,
+          "ground_velocity": 0.005860549991403372,
+          "momentum_integral": 2.3337787551476925,
+          "heat_integral": 4.263340339492338,
+          "water_integral": 4.263340339492338
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.19967330652906465,
+          "heat_velocity": 0.2890215486496004,
+          "water_velocity": 0.2890215486496004,
+          "leaf_velocity": 0.09529599037386463,
+          "ground_velocity": 0.12498358868492968
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3061009055073436,
+          "heat_velocity": 0.02871934972414545,
+          "water_velocity": 0.02871934972414545,
+          "leaf_velocity": 0.027663193303889538,
+          "ground_velocity": 0.005445968078885697,
+          "momentum_integral": 2.6135172605061356,
+          "heat_integral": 4.263340339492338,
+          "water_integral": 4.263340339492338
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.07126595955716433,
+          "heat_velocity": 0.1510507891512556,
+          "water_velocity": 0.1510507891512556,
+          "leaf_velocity": 0.03501978703653996,
+          "ground_velocity": 0.04540098151800207
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.28573754516934186,
+          "heat_velocity": 0.02680879520900425,
+          "water_velocity": 0.02680879520900425,
+          "leaf_velocity": 0.026727212030500946,
+          "ground_velocity": 0.0052094537647915115,
+          "momentum_integral": 2.7997720758953166,
+          "heat_integral": 4.263340339492338,
+          "water_integral": 4.263340339492338
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0744771444311293,
+          "water_velocity": 0.0744771444311293,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3427917056128023,
+          "heat_velocity": 0.03075002398832242,
+          "water_velocity": 0.03075002398832242,
+          "leaf_velocity": 0.029274208170879803,
+          "ground_velocity": 0.005860549991403372,
+          "momentum_integral": 2.3337787551476925,
+          "heat_integral": 4.459075618841538,
+          "water_integral": 4.459075618841538
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.19967330652906465,
+          "heat_velocity": 0.23243874663432132,
+          "water_velocity": 0.23243874663432132,
+          "leaf_velocity": 0.09529599037386463,
+          "ground_velocity": 0.12498358868492968
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3061009055073436,
+          "heat_velocity": 0.027458687106711878,
+          "water_velocity": 0.027458687106711878,
+          "leaf_velocity": 0.027663193303889538,
+          "ground_velocity": 0.005445968078885697,
+          "momentum_integral": 2.6135172605061356,
+          "heat_integral": 4.459075618841538,
+          "water_integral": 4.459075618841538
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.07126595955716433,
+          "heat_velocity": 0.10052434218820279,
+          "water_velocity": 0.10052434218820279,
+          "leaf_velocity": 0.03501978703653996,
+          "ground_velocity": 0.04540098151800207
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.28573754516934186,
+          "heat_velocity": 0.025631998162307556,
+          "water_velocity": 0.025631998162307556,
+          "leaf_velocity": 0.026727212030500946,
+          "ground_velocity": 0.0052094537647915115,
+          "momentum_integral": 2.7997720758953166,
+          "heat_integral": 4.459075618841538,
+          "water_integral": 4.459075618841538
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.027311968955994005,
+          "water_velocity": 0.027311968955994005,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3427917056128023,
+          "heat_velocity": 0.029932508252164272,
+          "water_velocity": 0.029932508252164272,
+          "leaf_velocity": 0.029274208170879803,
+          "ground_velocity": 0.005860549991403372,
+          "momentum_integral": 2.3337787551476925,
+          "heat_integral": 4.5808617537157685,
+          "water_integral": 4.5808617537157685
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.19967330652906465,
+          "heat_velocity": 0.19967330652906476,
+          "water_velocity": 0.19967330652906476,
+          "leaf_velocity": 0.09529599037386463,
+          "ground_velocity": 0.12498358868492968
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.3061009055073436,
+          "heat_velocity": 0.026728674381762314,
+          "water_velocity": 0.026728674381762314,
+          "leaf_velocity": 0.027663193303889538,
+          "ground_velocity": 0.005445968078885697,
+          "momentum_integral": 2.6135172605061356,
+          "heat_integral": 4.5808617537157685,
+          "water_integral": 4.5808617537157685
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.07126595955716433,
+          "heat_velocity": 0.07126595955716439,
+          "water_velocity": 0.07126595955716439,
+          "leaf_velocity": 0.03501978703653996,
+          "ground_velocity": 0.04540098151800207
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.28573754516934186,
+          "heat_velocity": 0.024950549528159473,
+          "water_velocity": 0.024950549528159473,
+          "leaf_velocity": 0.026727212030500946,
+          "ground_velocity": 0.0052094537647915115,
+          "momentum_integral": 2.7997720758953166,
+          "heat_integral": 4.5808617537157685,
+          "water_integral": 4.5808617537157685
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.29697738154079284,
+          "heat_velocity": 0.023775342352995877,
+          "water_velocity": 0.023775342352995877,
+          "leaf_velocity": 0.027247815579454843,
+          "ground_velocity": 0.005340609424302483,
+          "momentum_integral": 2.6938078443866673,
+          "heat_integral": 4.996392937380713,
+          "water_integral": 4.996392937380713
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2542559532784244,
+          "heat_velocity": 0.4261921552428336,
+          "water_velocity": 0.4261921552428336,
+          "leaf_velocity": 0.11993569158163023,
+          "ground_velocity": 0.1563814422112523
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.25858222387219215,
+          "heat_velocity": 0.020701512239968075,
+          "water_velocity": 0.020701512239968075,
+          "leaf_velocity": 0.02542549035280304,
+          "ground_velocity": 0.004885877402603236,
+          "momentum_integral": 3.093793486730206,
+          "heat_integral": 4.996392937380713,
+          "water_integral": 4.996392937380713
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0920976271693659,
+          "heat_velocity": 0.2418048043201226,
+          "water_velocity": 0.2418048043201226,
+          "leaf_velocity": 0.04503474926404528,
+          "ground_velocity": 0.057920081476022546
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2367757400429645,
+          "heat_velocity": 0.018955734107421168,
+          "water_velocity": 0.018955734107421168,
+          "leaf_velocity": 0.02432980374165421,
+          "ground_velocity": 0.004618380431711252,
+          "momentum_integral": 3.378724525810097,
+          "heat_integral": 4.996392937380713,
+          "water_integral": 4.996392937380713
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.13708222912157253,
+          "water_velocity": 0.13708222912157253,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.29697738154079284,
+          "heat_velocity": 0.02201308726979404,
+          "water_velocity": 0.02201308726979404,
+          "leaf_velocity": 0.027247815579454843,
+          "ground_velocity": 0.005340609424302483,
+          "momentum_integral": 2.6938078443866673,
+          "heat_integral": 5.396378579724251,
+          "water_integral": 5.396378579724251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2542559532784244,
+          "heat_velocity": 0.3204811905852596,
+          "water_velocity": 0.3204811905852596,
+          "leaf_velocity": 0.11993569158163023,
+          "ground_velocity": 0.1563814422112523
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.25858222387219215,
+          "heat_velocity": 0.01916709289772664,
+          "water_velocity": 0.01916709289772664,
+          "leaf_velocity": 0.02542549035280304,
+          "ground_velocity": 0.004885877402603236,
+          "momentum_integral": 3.093793486730206,
+          "heat_integral": 5.396378579724251,
+          "water_integral": 5.396378579724251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0920976271693659,
+          "heat_velocity": 0.14976083724421418,
+          "water_velocity": 0.14976083724421418,
+          "leaf_velocity": 0.04503474926404528,
+          "ground_velocity": 0.057920081476022546
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2367757400429645,
+          "heat_velocity": 0.017550713801481547,
+          "water_velocity": 0.017550713801481547,
+          "leaf_velocity": 0.02432980374165421,
+          "ground_velocity": 0.004618380431711252,
+          "momentum_integral": 3.378724525810097,
+          "heat_integral": 5.396378579724251,
+          "water_integral": 5.396378579724251
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.05280041695933988,
+          "water_velocity": 0.05280041695933988,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.29697738154079284,
+          "heat_velocity": 0.020909079171312867,
+          "water_velocity": 0.020909079171312867,
+          "leaf_velocity": 0.027247815579454843,
+          "ground_velocity": 0.005340609424302483,
+          "momentum_integral": 2.6938078443866673,
+          "heat_integral": 5.681309618804143,
+          "water_integral": 5.681309618804143
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2542559532784244,
+          "heat_velocity": 0.25425595327842426,
+          "water_velocity": 0.25425595327842426,
+          "leaf_velocity": 0.11993569158163023,
+          "ground_velocity": 0.1563814422112523
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.25858222387219215,
+          "heat_velocity": 0.018205818110411033,
+          "water_velocity": 0.018205818110411033,
+          "leaf_velocity": 0.02542549035280304,
+          "ground_velocity": 0.004885877402603236,
+          "momentum_integral": 3.093793486730206,
+          "heat_integral": 5.681309618804143,
+          "water_integral": 5.681309618804143
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0920976271693659,
+          "heat_velocity": 0.09209762716936579,
+          "water_velocity": 0.09209762716936579,
+          "leaf_velocity": 0.04503474926404528,
+          "ground_velocity": 0.057920081476022546
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.2367757400429645,
+          "heat_velocity": 0.016670504227354777,
+          "water_velocity": 0.016670504227354777,
+          "leaf_velocity": 0.02432980374165421,
+          "ground_velocity": 0.004618380431711252,
+          "momentum_integral": 3.378724525810097,
+          "heat_integral": 5.681309618804143,
+          "water_integral": 5.681309618804143
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.23174023274690278,
+          "heat_velocity": 0.01597044787286652,
+          "water_velocity": 0.01597044787286652,
+          "leaf_velocity": 0.02406970257122545,
+          "ground_velocity": 0.0045555370173967265,
+          "momentum_integral": 3.4521411777200006,
+          "heat_integral": 5.804226270714047,
+          "water_integral": 5.804226270714047
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.4301436717035299,
+          "heat_velocity": 0.7960226185081778,
+          "water_velocity": 0.7960226185081778,
+          "leaf_velocity": 0.19588614495842802,
+          "ground_velocity": 0.2535130144330441
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18814114297466925,
+          "heat_velocity": 0.012965803481780789,
+          "water_velocity": 0.012965803481780789,
+          "leaf_velocity": 0.02168761991175318,
+          "ground_velocity": 0.003991824177484255,
+          "momentum_integral": 4.252126820063539,
+          "heat_integral": 5.804226270714047,
+          "water_integral": 5.804226270714047
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16107963568914807,
+          "heat_velocity": 0.4581229346720031,
+          "water_velocity": 0.4581229346720031,
+          "leaf_velocity": 0.07753405314595418,
+          "ground_velocity": 0.09840037271048938
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 23.6,
+          "humidity_height": 23.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.16203982671955125,
+          "heat_velocity": 0.011167023417894203,
+          "water_velocity": 0.011167023417894203,
+          "leaf_velocity": 0.02012708540248384,
+          "ground_velocity": 0.0036342159713891498,
+          "momentum_integral": 4.9370578591434295,
+          "heat_integral": 5.804226270714047,
+          "water_integral": 5.804226270714047
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.255833699819003,
+          "water_velocity": 0.255833699819003,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.23174023274690278,
+          "heat_velocity": 0.014035905316043248,
+          "water_velocity": 0.014035905316043248,
+          "leaf_velocity": 0.02406970257122545,
+          "ground_velocity": 0.0045555370173967265,
+          "momentum_integral": 3.4521411777200006,
+          "heat_integral": 6.604211913057585,
+          "water_integral": 6.604211913057585
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.4301436717035299,
+          "heat_velocity": 0.5784656522803041,
+          "water_velocity": 0.5784656522803041,
+          "leaf_velocity": 0.19588614495842802,
+          "ground_velocity": 0.2535130144330441
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18814114297466925,
+          "heat_velocity": 0.011395221440589092,
+          "water_velocity": 0.011395221440589092,
+          "leaf_velocity": 0.02168761991175318,
+          "ground_velocity": 0.003991824177484255,
+          "momentum_integral": 4.252126820063539,
+          "heat_integral": 6.604211913057585,
+          "water_integral": 6.604211913057585
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16107963568914807,
+          "heat_velocity": 0.28149665013332614,
+          "water_velocity": 0.28149665013332614,
+          "leaf_velocity": 0.07753405314595418,
+          "ground_velocity": 0.09840037271048938
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 31.6,
+          "humidity_height": 31.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.16203982671955125,
+          "heat_velocity": 0.009814332359576322,
+          "water_velocity": 0.009814332359576322,
+          "leaf_velocity": 0.02012708540248384,
+          "ground_velocity": 0.0036342159713891498,
+          "momentum_integral": 4.9370578591434295,
+          "heat_integral": 6.604211913057585,
+          "water_integral": 6.604211913057585
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.10371124489898217,
+          "water_velocity": 0.10371124489898217,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 23.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.23174023274690278,
+          "heat_velocity": 0.012717008530005413,
+          "water_velocity": 0.012717008530005413,
+          "leaf_velocity": 0.02406970257122545,
+          "ground_velocity": 0.0045555370173967265,
+          "momentum_integral": 3.4521411777200006,
+          "heat_integral": 7.2891429521374755,
+          "water_integral": 7.2891429521374755
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.4301436717035299,
+          "heat_velocity": 0.4301436717035299,
+          "water_velocity": 0.4301436717035299,
+          "leaf_velocity": 0.19588614495842802,
+          "ground_velocity": 0.2535130144330441
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 31.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18814114297466925,
+          "heat_velocity": 0.010324458949978396,
+          "water_velocity": 0.010324458949978396,
+          "leaf_velocity": 0.02168761991175318,
+          "ground_velocity": 0.003991824177484255,
+          "momentum_integral": 4.252126820063539,
+          "heat_integral": 7.2891429521374755,
+          "water_integral": 7.2891429521374755
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16107963568914807,
+          "heat_velocity": 0.16107963568914818,
+          "water_velocity": 0.16107963568914818,
+          "leaf_velocity": 0.07753405314595418,
+          "ground_velocity": 0.09840037271048938
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 39.6,
+          "temperature_height": 39.6,
+          "humidity_height": 39.6,
+          "displacement": 7.333333333333333,
+          "momentum_roughness": 1.1,
+          "heat_roughness": 0.11,
+          "water_roughness": 0.11,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.16203982671955125,
+          "heat_velocity": 0.008892119569257976,
+          "water_velocity": 0.008892119569257976,
+          "leaf_velocity": 0.02012708540248384,
+          "ground_velocity": 0.0036342159713891498,
+          "momentum_integral": 4.9370578591434295,
+          "heat_integral": 7.2891429521374755,
+          "water_integral": 7.2891429521374755
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      }
+    ],
+    "CN-Cha": [
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.78590463265168,
+          "heat_velocity": 0.10575726620072819,
+          "water_velocity": 0.10575726620072819,
+          "leaf_velocity": 0.044325631203956925,
+          "ground_velocity": 0.010180398757821344,
+          "momentum_integral": 1.017935213463193,
+          "heat_integral": 2.9724846750861595,
+          "water_integral": 2.9724846750861595
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.9078122020528218,
+          "heat_velocity": 1.3210783718188204,
+          "water_velocity": 1.3210783718188204,
+          "leaf_velocity": 0.38123575180083635,
+          "ground_velocity": 0.5405997762012389
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.46481078071575,
+          "heat_velocity": 0.06254845108020982,
+          "water_velocity": 0.06254845108020982,
+          "leaf_velocity": 0.0340885164210673,
+          "ground_velocity": 0.007155279575040249,
+          "momentum_integral": 1.7211304754336827,
+          "heat_integral": 2.9724846750861595,
+          "water_integral": 2.9724846750861595
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.12834514806611588,
+          "heat_velocity": 0.37276484357575906,
+          "water_velocity": 0.37276484357575906,
+          "leaf_velocity": 0.06223591921291934,
+          "ground_velocity": 0.0828084807086055
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.4119402485244827,
+          "heat_velocity": 0.055433792742772325,
+          "water_velocity": 0.055433792742772325,
+          "leaf_velocity": 0.0320912857534753,
+          "ground_velocity": 0.006608074929702925,
+          "momentum_integral": 1.942029221144323,
+          "heat_integral": 2.9724846750861595,
+          "water_integral": 2.9724846750861595
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.21661784599203274,
+          "water_velocity": 0.21661784599203274,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.78590463265168,
+          "heat_velocity": 0.09039652235290836,
+          "water_velocity": 0.09039652235290836,
+          "leaf_velocity": 0.044325631203956925,
+          "ground_velocity": 0.010180398757821344,
+          "momentum_integral": 1.017935213463193,
+          "heat_integral": 3.4775879080104666,
+          "water_integral": 3.4775879080104666
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.9078122020528218,
+          "heat_velocity": 0.9839526914655389,
+          "water_velocity": 0.9839526914655389,
+          "leaf_velocity": 0.38123575180083635,
+          "ground_velocity": 0.5405997762012389
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.46481078071575,
+          "heat_velocity": 0.053463583726534064,
+          "water_velocity": 0.053463583726534064,
+          "leaf_velocity": 0.0340885164210673,
+          "ground_velocity": 0.007155279575040249,
+          "momentum_integral": 1.7211304754336827,
+          "heat_integral": 3.4775879080104666,
+          "water_integral": 3.4775879080104666
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.12834514806611588,
+          "heat_velocity": 0.17337722811454853,
+          "water_velocity": 0.17337722811454853,
+          "leaf_velocity": 0.06223591921291934,
+          "ground_velocity": 0.0828084807086055
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.4119402485244827,
+          "heat_velocity": 0.04738229593858398,
+          "water_velocity": 0.04738229593858398,
+          "leaf_velocity": 0.0320912857534753,
+          "ground_velocity": 0.006608074929702925,
+          "momentum_integral": 1.942029221144323,
+          "heat_integral": 3.4775879080104666,
+          "water_integral": 3.4775879080104666
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.039909845073215065,
+          "water_velocity": 0.039909845073215065,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.78590463265168,
+          "heat_velocity": 0.08692726853311403,
+          "water_velocity": 0.08692726853311403,
+          "leaf_velocity": 0.044325631203956925,
+          "ground_velocity": 0.010180398757821344,
+          "momentum_integral": 1.017935213463193,
+          "heat_integral": 3.6163779026476504,
+          "water_integral": 3.6163779026476504
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.9078122020528218,
+          "heat_velocity": 0.9078122020528216,
+          "water_velocity": 0.9078122020528216,
+          "leaf_velocity": 0.38123575180083635,
+          "ground_velocity": 0.5405997762012389
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.46481078071575,
+          "heat_velocity": 0.0514117487970988,
+          "water_velocity": 0.0514117487970988,
+          "leaf_velocity": 0.0340885164210673,
+          "ground_velocity": 0.007155279575040249,
+          "momentum_integral": 1.7211304754336827,
+          "heat_integral": 3.6163779026476504,
+          "water_integral": 3.6163779026476504
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.12834514806611588,
+          "heat_velocity": 0.12834514806611588,
+          "water_velocity": 0.12834514806611588,
+          "leaf_velocity": 0.06223591921291934,
+          "ground_velocity": 0.0828084807086055
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": -0.01,
+        "coefficients": {
+          "friction_velocity": 0.4119402485244827,
+          "heat_velocity": 0.04556384975396403,
+          "water_velocity": 0.04556384975396403,
+          "leaf_velocity": 0.0320912857534753,
+          "ground_velocity": 0.006608074929702925,
+          "momentum_integral": 1.942029221144323,
+          "heat_integral": 3.6163779026476504,
+          "water_integral": 3.6163779026476504
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.6644668360660299,
+          "heat_velocity": 0.07579704719250448,
+          "water_velocity": 0.07579704719250448,
+          "leaf_velocity": 0.04075741760913067,
+          "ground_velocity": 0.009084493849729926,
+          "momentum_integral": 1.2039728043259361,
+          "heat_integral": 3.506557897319982,
+          "water_integral": 3.506557897319982
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.107462702674727,
+          "heat_velocity": 1.9088171828405929,
+          "water_velocity": 1.9088171828405929,
+          "leaf_velocity": 0.45171026815777776,
+          "ground_velocity": 0.636504105271673
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3660350575340906,
+          "heat_velocity": 0.04175434351890742,
+          "water_velocity": 0.04175434351890742,
+          "leaf_velocity": 0.030250415597727356,
+          "ground_velocity": 0.006116352935076599,
+          "momentum_integral": 2.185583002320733,
+          "heat_integral": 3.506557897319982,
+          "water_integral": 3.506557897319982
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16093864998830001,
+          "heat_velocity": 0.602381047609429,
+          "water_velocity": 0.602381047609429,
+          "leaf_velocity": 0.07746863062842815,
+          "ground_velocity": 0.10181556101123586
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3152923348169858,
+          "heat_velocity": 0.03596602070172117,
+          "water_velocity": 0.03596602070172117,
+          "leaf_velocity": 0.028075449008741864,
+          "ground_velocity": 0.0055511586072201306,
+          "momentum_integral": 2.5373277801516076,
+          "heat_integral": 3.506557897319982,
+          "water_integral": 3.506557897319982
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.38024610312145085,
+          "water_velocity": 0.38024610312145085,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.6644668360660299,
+          "heat_velocity": 0.05921942511553166,
+          "water_velocity": 0.05921942511553166,
+          "leaf_velocity": 0.04075741760913067,
+          "ground_velocity": 0.009084493849729926,
+          "momentum_integral": 1.2039728043259361,
+          "heat_integral": 4.488168095314779,
+          "water_integral": 4.488168095314779
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.107462702674727,
+          "heat_velocity": 1.2726278623560257,
+          "water_velocity": 1.2726278623560257,
+          "leaf_velocity": 0.45171026815777776,
+          "ground_velocity": 0.636504105271673
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3660350575340906,
+          "heat_velocity": 0.032622223567445825,
+          "water_velocity": 0.032622223567445825,
+          "leaf_velocity": 0.030250415597727356,
+          "ground_velocity": 0.006116352935076599,
+          "momentum_integral": 2.185583002320733,
+          "heat_integral": 4.488168095314779,
+          "water_integral": 4.488168095314779
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16093864998830001,
+          "heat_velocity": 0.2519232340865856,
+          "water_velocity": 0.2519232340865856,
+          "leaf_velocity": 0.07746863062842815,
+          "ground_velocity": 0.10181556101123586
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3152923348169858,
+          "heat_velocity": 0.02809986864316611,
+          "water_velocity": 0.02809986864316611,
+          "leaf_velocity": 0.028075449008741864,
+          "ground_velocity": 0.0055511586072201306,
+          "momentum_integral": 2.5373277801516076,
+          "heat_integral": 4.488168095314779,
+          "water_integral": 4.488168095314779
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.07837156950473022,
+          "water_velocity": 0.07837156950473022,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.6644668360660299,
+          "heat_velocity": 0.05491560310953831,
+          "water_velocity": 0.05491560310953831,
+          "leaf_velocity": 0.04075741760913067,
+          "ground_velocity": 0.009084493849729926,
+          "momentum_integral": 1.2039728043259361,
+          "heat_integral": 4.8399128731456535,
+          "water_integral": 4.8399128731456535
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.107462702674727,
+          "heat_velocity": 1.1074627026747272,
+          "water_velocity": 1.1074627026747272,
+          "leaf_velocity": 0.45171026815777776,
+          "ground_velocity": 0.636504105271673
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3660350575340906,
+          "heat_velocity": 0.03025137576876996,
+          "water_velocity": 0.03025137576876996,
+          "leaf_velocity": 0.030250415597727356,
+          "ground_velocity": 0.006116352935076599,
+          "momentum_integral": 2.185583002320733,
+          "heat_integral": 4.8399128731456535,
+          "water_integral": 4.8399128731456535
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.16093864998830001,
+          "heat_velocity": 0.16093864998830001,
+          "water_velocity": 0.16093864998830001,
+          "leaf_velocity": 0.07746863062842815,
+          "ground_velocity": 0.10181556101123586
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.0,
+        "coefficients": {
+          "friction_velocity": 0.3152923348169858,
+          "heat_velocity": 0.026057686828735382,
+          "water_velocity": 0.026057686828735382,
+          "leaf_velocity": 0.028075449008741864,
+          "ground_velocity": 0.0055511586072201306,
+          "momentum_integral": 2.5373277801516076,
+          "heat_integral": 4.8399128731456535,
+          "water_integral": 4.8399128731456535
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.5071938673789758,
+          "heat_velocity": 0.05041824823844737,
+          "water_velocity": 0.05041824823844737,
+          "leaf_velocity": 0.03560877235243359,
+          "ground_velocity": 0.007581302010962434,
+          "momentum_integral": 1.5773061376592694,
+          "heat_integral": 4.023891230653315,
+          "water_integral": 4.023891230653315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.7899854114658718,
+          "heat_velocity": 3.7475729163011557,
+          "water_velocity": 3.7475729163011557,
+          "leaf_velocity": 0.6703249418798343,
+          "ground_velocity": 0.9407443031330306
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.2319569169393275,
+          "heat_velocity": 0.023057970868826612,
+          "water_velocity": 0.023057970868826612,
+          "leaf_velocity": 0.024080952895355258,
+          "ground_velocity": 0.004558249994420949,
+          "momentum_integral": 3.4489163356540664,
+          "heat_integral": 4.023891230653315,
+          "water_integral": 4.023891230653315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2759547304734438,
+          "heat_velocity": 1.171225733269811,
+          "water_velocity": 1.171225733269811,
+          "leaf_velocity": 0.12958166171084962,
+          "ground_velocity": 0.16687050537452325
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 32.0,
+          "humidity_height": 32.0,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18179086718324225,
+          "heat_velocity": 0.018071151207904482,
+          "water_velocity": 0.018071151207904482,
+          "leaf_velocity": 0.02131847011298197,
+          "ground_velocity": 0.0039063889038466314,
+          "momentum_integral": 4.400661113484942,
+          "heat_integral": 4.023891230653315,
+          "water_integral": 4.023891230653315
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.7016479357885812,
+          "water_velocity": 0.7016479357885812,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.5071938673789758,
+          "heat_velocity": 0.03441226321577058,
+          "water_velocity": 0.03441226321577058,
+          "leaf_velocity": 0.03560877235243359,
+          "ground_velocity": 0.007581302010962434,
+          "momentum_integral": 1.5773061376592694,
+          "heat_integral": 5.895501428648112,
+          "water_integral": 5.895501428648112
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.7899854114658718,
+          "heat_velocity": 2.2403888381674175,
+          "water_velocity": 2.2403888381674175,
+          "leaf_velocity": 0.6703249418798343,
+          "ground_velocity": 0.9407443031330306
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.2319569169393275,
+          "heat_velocity": 0.015737892340229126,
+          "water_velocity": 0.015737892340229126,
+          "leaf_velocity": 0.024080952895355258,
+          "ground_velocity": 0.004558249994420949,
+          "momentum_integral": 3.4489163356540664,
+          "heat_integral": 5.895501428648112,
+          "water_integral": 5.895501428648112
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2759547304734438,
+          "heat_velocity": 0.4819394573324057,
+          "water_velocity": 0.4819394573324057,
+          "leaf_velocity": 0.12958166171084962,
+          "ground_velocity": 0.16687050537452325
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 49.8,
+          "humidity_height": 49.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18179086718324225,
+          "heat_velocity": 0.012334209015698835,
+          "water_velocity": 0.012334209015698835,
+          "leaf_velocity": 0.02131847011298197,
+          "ground_velocity": 0.0039063889038466314,
+          "momentum_integral": 4.400661113484942,
+          "heat_integral": 5.895501428648112,
+          "water_integral": 5.895501428648112
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.16143576409057336,
+          "water_velocity": 0.16143576409057336,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 32.0,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.5071938673789758,
+          "heat_velocity": 0.029629071430150117,
+          "water_velocity": 0.029629071430150117,
+          "leaf_velocity": 0.03560877235243359,
+          "ground_velocity": 0.007581302010962434,
+          "momentum_integral": 1.5773061376592694,
+          "heat_integral": 6.847246206478987,
+          "water_integral": 6.847246206478987
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 1.7899854114658718,
+          "heat_velocity": 1.7899854114658718,
+          "water_velocity": 1.7899854114658718,
+          "leaf_velocity": 0.6703249418798343,
+          "ground_velocity": 0.9407443031330306
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 49.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.2319569169393275,
+          "heat_velocity": 0.013550376892821275,
+          "water_velocity": 0.013550376892821275,
+          "leaf_velocity": 0.024080952895355258,
+          "ground_velocity": 0.004558249994420949,
+          "momentum_integral": 3.4489163356540664,
+          "heat_integral": 6.847246206478987,
+          "water_integral": 6.847246206478987
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.2759547304734438,
+          "heat_velocity": 0.2759547304734437,
+          "water_velocity": 0.2759547304734437,
+          "leaf_velocity": 0.12958166171084962,
+          "ground_velocity": 0.16687050537452325
+        }
+      },
+      {
+        "geometry": {
+          "wind_height": 61.8,
+          "temperature_height": 61.8,
+          "humidity_height": 61.8,
+          "displacement": 21.333333333333332,
+          "momentum_roughness": 3.2,
+          "heat_roughness": 0.32,
+          "water_roughness": 0.32,
+          "boundary_layer_height": 1000.0,
+          "ground_roughness": 0.01
+        },
+        "inverse_obukhov_length": 0.01,
+        "coefficients": {
+          "friction_velocity": 0.18179086718324225,
+          "heat_velocity": 0.010619794393327261,
+          "water_velocity": 0.010619794393327261,
+          "leaf_velocity": 0.02131847011298197,
+          "ground_velocity": 0.0039063889038466314,
+          "momentum_integral": 4.400661113484942,
+          "heat_integral": 6.847246206478987,
+          "water_integral": 6.847246206478987
+        },
+        "relative_to_baseline": {
+          "friction_velocity": 0.0,
+          "heat_velocity": 0.0,
+          "water_velocity": 0.0,
+          "leaf_velocity": 0.0,
+          "ground_velocity": 0.0
+        }
+      }
+    ]
+  }
+}
