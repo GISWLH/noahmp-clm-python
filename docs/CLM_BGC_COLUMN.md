@@ -90,7 +90,7 @@ E定向回归 **1 passed / 0 skipped，124.11秒**。该测试包含8类柱×连
 最大差**0**。E独立水/热/C/N残差最大值分别为3.13231722e-5 kg/m²、
 5.86773682 J/m²、0.000178888440 gC/m²、4.70703635e-5 gN/m²，最大数值界
 分别为0.00466156008、2207.833607、0.538652364、0.0208038772。
-E全量pytest和三柱四后端七天连续审计现已启动，尚无最终结果。
+E全量pytest已完成700项，结果见下；三柱四后端七天连续审计仍在运行。
 
 证据：[C目标失败](v1-results/p4-bgc-column-gpu-c-target.log.gz)、
 [C逐阶段探针](v1-results/p4-bgc-column-gpu-c-probe.log.gz)、
@@ -107,3 +107,9 @@ E全量pytest和三柱四后端七天连续审计现已启动，尚无最终结�
 [A–E源码清单](v1-results/p4-bgc-column-gpu-builds.json)、
 [wheel核验](v1-results/p4-bgc-column-gpu-d-wheel.json)、
 [文件恢复哈希](v1-results/interrupted-write-recovery-20261016.json)。
+
+冻结E全量已完成：**700 passed / 0 skipped，4010.29秒**；清单334文件，
+SHA256 `ffc20139a96797e9c11c78993aa3cd61b80e09fd62e76bd8b043f9bd5a07e487`。
+该检查点不含后续作物、灌溉及冠层湿度边界修复，不能代表当前分支全量验收。
+两条已记录的雪压实指数溢出警告仍保留；七天四后端审计另行等待完整报告。
+证据：[Linux全量日志](v1-results/p4-bgc-column-full-e.log.gz)。
