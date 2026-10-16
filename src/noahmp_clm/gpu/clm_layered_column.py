@@ -67,7 +67,7 @@ def layered_interception_jax(condensate,site,forcing,rain,snow):
     return canopy_water_kernel_jax(condensate,area,u,j.zeros_like(condensate),j.asarray(0))
 
 
-def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None):
+def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None,ground_input=None):
     import jax.numpy as j
     from jax import lax
     from . import jax_core as core
@@ -77,10 +77,14 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None):
     intercepted=layered_interception_jax(condensate,site,forcing,rain,snow)
     cc=intercepted[:20].reshape(10,2);ledger=intercepted[170:182]
     c,g,n,out,valid=route_layer_outlets_jax(c,g,o[0],p,o[1],forcing,ledger,vic)
+    if ground_input is not None:
+        c,g,extra,good=route_water_jax(c,g,n,p,o[1],forcing[0],ground_input[0],ground_input[1],vic)
+        out=s(out+extra);valid=valid&good
     empty=storage.at[:2].set(0.);dry=forcing.at[7].set(0.)
     pc,pg,po,a,u,f,v,prep,good=prepare_column_jax(c,g,p,o.at[0].set(n),site,empty,roots,dry)
     v=v.at[1].set(_sum(cc[:,0])).at[2].set(_sum(cc[:,1]))
     prep=j.concatenate((row(s(rain+snow),ledger[8]),out,row(0.)))
+    if ground_input is not None:prep=prep.at[:2].set(s(prep[:2]+ground_input))
     old=storage.at[0].set(_sum(condensate[:,0])).at[1].set(_sum(condensate[:,1]))
     return pc,pg,po,a,u,f,v,prep,valid&good,cc,intercepted,old
 
@@ -102,21 +106,25 @@ def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,
     return (*out,cc,post,valid)
 
 
-@lru_cache(maxsize=2)
-def _stages(vic=False):
+@lru_cache(maxsize=4)
+def _stages(vic=False,external=False):
     import jax
-    return (jax.jit(jax.vmap(prepare_layered_jax,in_axes=(0,)*9+(0 if vic else None,))),
+    return (jax.jit(jax.vmap(prepare_layered_jax,in_axes=(0,)*9+(0 if vic else None,0 if external else None))),
             jax.jit(jax.vmap(finish_layered_jax,in_axes=(0,)*15+(0 if vic else None,))))
 
 
-def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None):
+def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
+                               irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
     from .vic import column_vic
     validate_layered_column(arrays,forcing,deposition,j)
-    vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None)
-    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing,vic)
+    from .irrigation import prepare_column_irrigation,attach_column_irrigation
+    ground_input,irrigation=prepare_column_irrigation(arrays[1],arrays[2],arrays[3],arrays[4],forcing,
+        irrigation_state,irrigation_parameters,irrigation_input,irrigation_check,'jax')
+    vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None,ground_input is not None)
+    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing,vic,ground_input)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
     if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic)
@@ -132,4 +140,4 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     result=unpack_column(*out[:6],surface=surface if return_surface else None)
     result.update(condensate=out[6],canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(out[7]))
     if most_geometry is not None:result['most']=surface['most']
-    return result
+    return attach_column_irrigation(result,irrigation)

@@ -77,3 +77,46 @@ def run_irrigation_jax(state,layers,climate,flags,parameters):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(state,layers,climate,flags,parameters)));validate_irrigation(*arrays,j)
     return unpack_irrigation(_compiled()(*arrays),j)
+
+
+def prepare_column_irrigation(g,p,o,site,forcing,state,parameters,inputs,checks,backend):
+    """Diagnose old soil phases and current managed LAI entirely on device."""
+    if state is None:
+        if any(v is not None for v in (parameters,inputs,checks)):raise ValueError('Irrigation inputs require request state and parameters')
+        return None,None
+    if parameters is None:raise ValueError('Irrigation request state requires parameters')
+    if backend=='jax':
+        import jax.numpy as xp
+        from .enthalpy import run_soil_thermodynamics_jax as inverse
+        run=run_irrigation_jax
+    else:
+        import cupy as xp
+        from .cuda.enthalpy import run_soil_thermodynamics_cuda as inverse
+        from .cuda.irrigation import run_irrigation_cuda as run
+    n=len(g);dtype=g.dtype;state=xp.asarray(state,dtype);parameters=xp.asarray(parameters,dtype)
+    inputs=xp.broadcast_to(xp.asarray([0.,285.],dtype),(n,2)) if inputs is None else xp.asarray(inputs,dtype)
+    checks=xp.zeros((n,1),xp.int32) if checks is None else xp.asarray(checks)
+    if inputs.shape!=(n,2):raise ValueError('Irrigation supply/temperature inputs require shape (n,2)')
+    si=xp.concatenate((g,xp.broadcast_to(p[:,None,:2],(n,4,2))),axis=2).reshape(-1,5)
+    therm=inverse(si,xp.repeat(o[:,1],4),inverse=True)
+    temperature=therm['temperature_k'].reshape(n,4);raw=therm['liquid_kgm2'].reshape(n,4)
+    liquid=xp.where(temperature>=273.15,g[:,:,0],xp.clip(raw,0.,g[:,:,0]))
+    layers=xp.stack((liquid,g[:,:,0]-liquid,g[:,:,2]),axis=2)
+    climate=xp.stack((forcing[:,0],site[:,0],inputs[:,0],inputs[:,1]),axis=1)
+    out=run(state,layers,climate,checks,parameters)
+    if bool(xp.any(parameters[:,1]>p[:,0])):raise ValueError('Irrigation target exceeds soil porosity')
+    out['parameters']=parameters
+    return xp.stack((out['applied_kgm2'],out['applied_enthalpy_jm2']),axis=1),out
+
+
+def attach_column_irrigation(result,irrigation):
+    if irrigation is None:return result
+    # The physical closure stage received total external M/H. Restore the
+    # separately measured precipitation from the untouched interception
+    # ledger; do not subtract two large nearly equal water/heat amounts.
+    pre=result['canopy_interception']['ledger'];d=result['diagnostics']
+    d['prcp_mm']=(pre['intercepted_rain_kgm2']+pre['through_rain_kgm2'])+(pre['intercepted_snow_kgm2']+pre['through_snow_kgm2'])
+    d['precipitation_enthalpy_jm2']=pre['precipitation_enthalpy_jm2']
+    d['irrigation_mm']=irrigation['applied_kgm2'];d['irrigation_enthalpy_jm2']=irrigation['applied_enthalpy_jm2']
+    result.update(irrigation=irrigation,irrigation_state=irrigation['state'],irrigation_parameters=irrigation['parameters'])
+    return result

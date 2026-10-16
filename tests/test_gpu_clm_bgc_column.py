@@ -31,7 +31,7 @@ def cases(dtype):
     return pack_clm_bgc_columns(states,dtype=dtype),np.asarray(forcings,dtype),np.zeros((8,5),dtype),env,cal
 
 
-def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None):
+def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None):
     state=state_from_row(row[:7]);cc=np.asarray(row[7],float)
     state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     ps,flags,pp,plant,plant_p,soil,soil_p,bp=row[8:]
@@ -50,11 +50,19 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None):
         cs,phase,cp,events=crop_data;cs=np.asarray(cs,float)
         state=state.with_crop(CropParameters(*np.asarray(cp,float)),CropState(*cs[:3],int(phase[0]),*cs[3:]))
         crop_management=CropManagement(bool(events[0]),bool(events[1]))
+    irrigation_input=None
+    if irrigation_data is not None:
+        from test_gpu_clm_layered_column import irrigated_reference_state
+        state,irrigation_input=irrigated_reference_state(state,irrigation_data)
+    if wetland_data is not None:
+        from noahmp_clm.physics.wetland import WetlandState,WetlandParameters
+        ws,wp=wetland_data
+        state=state.with_wetland(WetlandParameters(*np.asarray(wp,float)),WetlandState(float(ws[0])))
     # CLMColumnState normalizes the quantized root weights on reconstruction;
     # no reference host tendency is supplied to the native implementation.
     site=np.asarray(row[4],float);kwargs=dict(zip(SITE_NAMES[7:-1],site[7:-1]))
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),**kwargs,deposition_rates=np.asarray(deposition,float),
-        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management)
+        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management,irrigation_input=irrigation_input)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
@@ -75,6 +83,10 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None):
         cs=final.crop_state
         result.update(crop_state=np.array([cs.air_degree_days,cs.soil_degree_days,cs.age_days,cs.seed_carbon,cs.seed_nitrogen]),
             crop_phase=np.array([cs.phase]),crop=d['crop'])
+    if irrigation_data is not None:
+        result.update(irrigation=d['irrigation'],irrigation_state=np.array([final.irrigation_state.pending_kgm2,final.irrigation_state.remaining_seconds]))
+    if wetland_data is not None:
+        result.update(wetland=d['wetland'],wetland_state=np.array([final.wetland_state.methane_gc_m2]))
     return result
 
 

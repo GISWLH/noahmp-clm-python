@@ -79,3 +79,22 @@ def run_wetland_jax(state,inputs,parameters):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(state,inputs,parameters)));validate_wetland(*arrays,j)
     return unpack_wetland(_compiled()(*arrays),j)
+
+
+def column_wetland_environment(g,soil_parameters,temperatures,liquid,pressure,parameters,backend):
+    """Depth-average actual device soil; no host physical tendencies."""
+    from .clm_bgc_column import _ratio,_sum_rows
+    if backend=='jax':import jax.numpy as xp
+    else:import cupy as xp
+    n=len(g);depth=parameters[:,0];top=xp.zeros(n,g.dtype);thickness=[]
+    for k in range(4):
+        thickness.append(xp.minimum(g[:,k,2],xp.maximum(depth-top,0.)));top=top+g[:,k,2]
+    dz=xp.stack(thickness,axis=1);weights=_ratio(dz,g[:,:,2],backend)
+    phase=xp.where(temperatures>=273.15,g[:,:,0],xp.clip(liquid,0.,g[:,:,0]))
+    lt=_ratio(_sum_rows(phase*weights,xp),1000.*depth,backend)
+    it=_ratio(_sum_rows((g[:,:,0]-phase)*weights,xp),1000.*depth,backend)
+    t=_ratio(_sum_rows(temperatures*dz,xp),depth,backend)
+    saturation=xp.minimum(_ratio(lt,soil_parameters[:,0],backend),1.)
+    fraction=xp.where(lt>=soil_parameters[:,0],1.,xp.maximum(_ratio(saturation-parameters[:,1],1.-parameters[:,1],backend),0.))
+    return dict(temperature_k=t,liquid_theta=lt,ice_theta=it,porosity=soil_parameters[:,0],pressure_pa=pressure,
+        anaerobic_fraction=fraction,oxygen_factor=1.-.8*fraction)

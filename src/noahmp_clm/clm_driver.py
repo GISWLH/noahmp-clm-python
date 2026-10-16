@@ -41,6 +41,8 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
             leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
             crop_management=crop_management,irrigation_input=irrigation_input)
+    if state.options.OptWetlandModel!=0:
+        raise NotImplementedError('Wetland requires an extensive CLMColumnState with BGC')
     if irrigation_input is not None or state.options.OptIrrigation!=0:
         raise NotImplementedError('Irrigation requires an extensive CLMColumnState')
     if crop_management is not None or state.options.OptCropModel!=0:

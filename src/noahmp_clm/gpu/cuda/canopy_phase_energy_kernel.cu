@@ -137,16 +137,17 @@ __device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,
         for(int i=0;i<12;++i)rhs[i]=-r[i];phase_linear(jac,rhs,delta);
         float scale=1.f;for(int i=0;i<12;++i)scale=fmaxf(scale,fabsf(delta[i])/(i<10?20.f:5.f));
         for(int i=0;i<12;++i)delta[i]/=scale;
-        float norm=ca_dot(r,r,12),chosen[12];bool accepted=false;
+        float norm=ca_dot(r,r,12),chosen_norm=norm,chosen[12];bool accepted=false;
         for(int i=0;i<12;++i)chosen[i]=x[i];
         for(int k=0;k<24;++k) {
             float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+delta[i]*ldexpf(1.f,-k)));
             phase_evaluate(v,trial,rr,nullptr);
-            if(!accepted&&ca_dot(rr,rr,12)<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;}
+            float trial_norm=ca_dot(rr,rr,12);
+            if(!accepted&&trial_norm<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=trial_norm;}
         }
-        if(!accepted) {
+        if(!accepted||chosen_norm>.999f*norm) {
             float low[12],high[12],mid[12],rl[12],rh[12],rr[12];
-            for(int i=0;i<12;++i){low[i]=x[i];high[i]=x[i];}
+            for(int i=0;i<12;++i){low[i]=chosen[i];high[i]=chosen[i];}
             low[11]=lower[11];high[11]=upper[11];phase_evaluate(v,low,rl,nullptr);phase_evaluate(v,high,rh,nullptr);
             if(rl[11]>=0.f&&rh[11]<=0.f) {
                 for(int k=0;k<32;++k){
@@ -154,7 +155,7 @@ __device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,
                     for(int i=0;i<12;++i){if(rr[11]>0.f)low[i]=mid[i];else high[i]=mid[i];}
                 }
                 for(int i=0;i<12;++i)mid[i]=.5f*(low[i]+high[i]);phase_evaluate(v,mid,rr,nullptr);
-                if(ca_dot(rr,rr,12)<norm){for(int i=0;i<12;++i)chosen[i]=mid[i];accepted=true;++restarts;}
+                if(ca_dot(rr,rr,12)<chosen_norm){for(int i=0;i<12;++i)chosen[i]=mid[i];accepted=true;++restarts;}
             }
         }
         bool retry=!accepted&&available;

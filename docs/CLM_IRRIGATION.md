@@ -1,8 +1,8 @@
-# 简化灌溉：三后端组件与NumPy整柱，设备整柱待接入
+# 简化灌溉：三后端整柱，修后设备目标复验中
 
 `physics.irrigation`实现土壤水触发和限供水下的定时施水，已有原生JAX/CUDA。
 NumPy整柱已启用`OptIrrigation=1`与地表施水`OptIrrigationMethod=3`；
-设备整柱及站点验证待做，不能标作功能完成。方法0/1/2与触发选项2/3不支持。
+设备整柱已接通，修后目标复验及站点验证待完成。方法0/1/2与触发选项2/3不支持。
 
 依据[CLM5灌溉说明](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Crop_Irrigation/CLM50_Tech_Note_Crop_Irrigation.html#the-irrigation-model)
 式2.26.13–17，以根区目标和萎蔫储水量构造触发阈值，缺额为阈值减实际液水。
@@ -53,3 +53,23 @@ NumPy **6 passed，0.25秒**：90组独立Decimal根区缺额对照最大差0 kg
 只重构诊断，不改变任何物理水/焓储量。外部负冰输入仍拒绝。
 证据：[首次](v1-results/p5-irrigation-column-numpy-a.log.gz)、
 [完成](v1-results/p5-irrigation-column-numpy-b.log.gz)。
+
+原生整柱通过`gpu.clm_irrigation_column`在原有8/11/16/19数组状态后附加
+请求和参数；分别支持分层、季节、BGC、作物。当前管理/物候LAI完成后在
+设备诊断旧土壤液/冰，再调用原生灌溉算子。供水绕过冠层，经实际雪/土壤/VIC
+路由；原生闭合账计外部总水/焓，降水诊断从原始截留账恢复，避免相消。
+
+首次A冻结354文件，清单SHA256
+`68b3b3205f62576550042c7b89ca5c4eceaa0e75936ebabe6d72a800be7b1602`：
+**25 passed / 1 failed，1558.11秒**。四种ABI各连续两步的CUDA32/JAX32
+全部输出差0，设备状态直接携带。独立float32水/焓/C/N最大残差为
+1.62721e-5 kg/m²、21.7658081 J/m²、0.000606805 gC/m²、2.78875e-5 gN/m²；
+对应最大数值界0.00691223、3209.28330、0.538648、0.0208039。
+
+唯一失败在float32饱和柱的NumPy参考重建：450 kg/m²大于量化孔隙度
+0.449999988乘深度所得容量，严格双精度状态拒绝。测试改为二进制可精确
+表示的0.5孔隙度与[0.125,0.375,0.5,1] m层厚，保留真实饱和产流场景；
+不放宽状态约束。该修正已在B的分层float32两步参考和预算检查中通过，
+整套B目标仍在执行。B使用湿地组件冻结B源码（清单见湿地报告），尚未包含
+后来湿地整柱连接。证据：[A全部结果](v1-results/p5-irrigation-column-gpu-a.log.gz)、
+[A首个失败](v1-results/p5-irrigation-column-gpu-a-first.log.gz)。

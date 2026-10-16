@@ -16,7 +16,14 @@ def cases(dtype=np.float64):
     return (*arrays,condensate),f,dep
 
 
-def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None):
+def irrigated_reference_state(state,data):
+    from noahmp_clm.physics.irrigation import IrrigationState,IrrigationParameters,IrrigationInput
+    request,parameters,inputs,check=data
+    state=state.with_irrigation(IrrigationParameters(*np.asarray(parameters,float)),IrrigationState(*np.asarray(request,float)))
+    return state,IrrigationInput(bool(check[0]),*np.asarray(inputs,float))
+
+
+def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None,irrigation_data=None):
     state=state_from_row(row[:7]);roots=state.root_frac
     cc=np.asarray(row[7],float);state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     if phenology is not None:
@@ -24,27 +31,32 @@ def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,ph
         ps,flags,parameters=phenology
         state=state.with_phenology(PhenologyParameters(*np.asarray(parameters,float)),
             PhenologyState(*np.asarray(ps,float),int(flags[0]),bool(flags[1])))
+    irrigation_input=None
+    if irrigation_data is not None:state,irrigation_input=irrigated_reference_state(state,irrigation_data)
     object.__setattr__(state,'root_frac',roots);site=np.asarray(row[4],float)
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),
         **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry,vic_parameters=vic_parameters,
-        phenology_environment=phenology_environment)
+        phenology_environment=phenology_environment,irrigation_input=irrigation_input)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
     d['thermal_layer_tolerance']=np.zeros(9)
     d['thermal_layer_tolerance'][:len(d['thermal']['layer_residual_jm2'])]=d['thermal']['convergence_tolerance_jm2']
-    return dict(snow_cells=cells,soil_cells=np.column_stack((final.ground.water,final.ground.enthalpy,final.ground.dz)),
+    result=dict(snow_cells=cells,soil_cells=np.column_stack((final.ground.water,final.ground.enthalpy,final.ground.dz)),
         options=options,storage=np.array([final.canopy_water_kgm2,final.canopy_enthalpy_jm2,final.surface_temperature]),
         diagnostics=d,impurity_output_kgm2=d['impurity_output_kgm2'],surface=d,
         condensate=np.column_stack((final.canopy_condensate.mass,final.canopy_condensate.enthalpy)),
         soil_temperature=final.ground.temperature,soil_parameters=final.ground.params,freezing_option=final.ground.freezing_option)
+    if irrigation_data is not None:
+        result.update(irrigation=d['irrigation'],irrigation_state=np.array([final.irrigation_state.pending_kgm2,final.irrigation_state.remaining_seconds]))
+    return result
 
 
-def budgets(arrays,f,dep,got):
+def budgets(arrays,f,dep,got,*,external_input=None):
     base=list(arrays[:7]);base[5]=base[5].astype(float);base[5][:,:2]=arrays[7].astype(float).sum(1)
     corrected=dict(got);corrected['storage']=got['storage'].astype(float).copy()
     corrected['storage'][:,:2]=got['condensate'].astype(float).sum(1)
-    result=base_budgets(base,f,dep,corrected)
+    result=base_budgets(base,f,dep,corrected,external_input=external_input)
     eps=np.finfo(arrays[0].dtype).eps
     for key in ('canopy_interception','canopy_post_interception'):
         if key not in got:continue # NumPy trajectory audits its global M/H; component ledgers have separate independent tests.

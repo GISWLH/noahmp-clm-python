@@ -162,26 +162,28 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         delta=_linear_solve(jac,-r);scale=j.maximum(1.,j.max(abs(delta)/j.concatenate((j.full(10,20.,u.dtype),j.asarray([5.,5.],u.dtype)))))
         delta=delta/scale;norm=_dot(r,r)
         def backtrack(k,carry):
-            chosen,accepted=carry
+            chosen,accepted,chosen_norm=carry
             # exp2 is lowered through an approximate exponential by XLA;
             # these exact binary half-steps must not depend on that lowering.
             fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
             trial=j.clip(s(x+s(delta*fraction)),lower,upper);rr,_=evaluate(trial)
-            good=(~accepted)&(_dot(rr,rr)<norm);return j.where(good,trial,chosen),accepted|good
-        trial,accepted=lax.fori_loop(0,24,backtrack,(x,j.asarray(False)))
+            trial_norm=_dot(rr,rr);good=(~accepted)&(trial_norm<norm)
+            return j.where(good,trial,chosen),accepted|good,j.where(good,trial_norm,chosen_norm)
+        trial,accepted,chosen_norm=lax.fori_loop(0,24,backtrack,(x,j.asarray(False),norm))
+        slow=(~accepted)|(chosen_norm>s(.999*norm))
         def humidity_restart(_):
-            lo=x.at[11].set(lower[11]);hi=x.at[11].set(upper[11])
+            lo=trial.at[11].set(lower[11]);hi=trial.at[11].set(upper[11])
             rl,_=evaluate(lo);rh,_=evaluate(hi);bracket=(rl[11]>=0.)&(rh[11]<=0.)
             def bisect(state):
                 k,low,high=state;mid=s(.5*s(low+high));rm,_=evaluate(mid)
                 return k+1,j.where(rm[11]>0.,mid,low),j.where(rm[11]>0.,high,mid)
             # A dynamic loop avoids 32 extra gas-exchange evaluations in
-            # batches where every Newton line search already succeeded.
-            _,lo,hi=lax.while_loop(lambda state:(state[0]<32)&(~accepted)&bracket,bisect,(j.asarray(0,j.int32),lo,hi))
+            # batches where every Newton step made sufficient progress.
+            _,lo,hi=lax.while_loop(lambda state:(state[0]<32)&slow&bracket,bisect,(j.asarray(0,j.int32),lo,hi))
             candidate=s(.5*s(lo+hi));rr,_=evaluate(candidate)
-            good=bracket&(_dot(rr,rr)<norm)
+            good=bracket&(_dot(rr,rr)<chosen_norm)
             return j.where(good,candidate,trial),good
-        trial,rescued=lax.cond(accepted,lambda _:(trial,j.asarray(False)),humidity_restart,operand=None)
+        trial,rescued=lax.cond(slow,humidity_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|rescued
         retry=(~accepted)&avail
         return iteration+1,j.where(retry,alternative,trial),restarts+(retry|rescued).astype(j.int32),avail&(~retry),~(accepted|retry)

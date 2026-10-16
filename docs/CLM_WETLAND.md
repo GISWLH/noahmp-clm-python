@@ -1,7 +1,7 @@
-# 简化湿地甲烷：三后端组件，整柱连接待做
+# 简化湿地甲烷：三后端组件与NumPy整柱，设备整柱验证中
 
-`physics.wetland`保留一个柱聚合CH4-C库，单位gC/m²。当前仅组件完成，
-尚未启用整柱`OptWetlandModel`；不能标作湿地功能或观测验收完成。
+`physics.wetland`保留一个柱聚合CH4-C库，单位gC/m²。NumPy整柱已启用
+`OptWetlandModel=1`；设备整柱正在验证，真实湿地观测验收未完成。
 
 参考[CTSM甲烷说明](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Methane/CLM50_Tech_Note_Methane.html)
 2.25.1–2、2.25.5–7、2.25.13–14的过程与量纲：生产、氧化、扩散、冒泡和
@@ -38,8 +38,8 @@ NumPy **6 passed，7.98秒**。54组独立DOP853浓度/通量ODE积分对照：
 这是规定温湿下的分解—甲烷组件试验，尚非完整水热植被反馈轨迹。
 证据：[NumPy日志](v1-results/p5-wetland-numpy-a.log.gz)。
 
-独立官方输出/湿地CH₄观测、完整柱的CO₂-NEE与总碳通量分账及
-连续验证均待做；上述解析/ODE对照不能替代真实站点科学验收。
+独立官方输出/湿地CH₄观测和完整柱连续验证仍待做；上述解析/ODE对照不能
+替代真实站点科学验收。
 
 原生组件冻结B：360文件，清单SHA256
 `a2bcd3d233449c59771cb2a8d4534516dbd735ff21ef840ba7ac47d5ad379cf6`；
@@ -56,3 +56,61 @@ JAX64最大储量差7.10543e-15 gC/m²，独立碳残差7.75118e-15，界5.65741
 强制厌氧比例为1；增加严格端点测试，没有调整数值门。
 证据：[首次失败](v1-results/p5-wetland-gpu-a.log.gz)、
 [修后设备目标](v1-results/p5-wetland-gpu-b.log.gz)。
+
+整柱通过`CLMColumnState.with_wetland`保留甲烷库；要求真实BGC供碳，
+禁止无BGC启用或在旧设备打包器中丢弃CH₄。活跃深度不能超过实际土柱，
+供碳Q10必须等于分解器Q10。每步物理求解后，用部分底层的实际厚度对
+土温和液/冰体积积分；厌氧比例同时将实际分解氧限制从1降到0.2。
+启用湿地时不接受另加的外部氧乘数。全部植物N竞争仍使用真实受限分解结果。
+
+实际有机碳分解额保留为`decomposed_carbon_gc_m2`；RH/土壤呼吸/NEE计CO₂，
+`methane_emission_gc_m2`另列CH₄，`total_atmospheric_carbon_gc_m2`为NEE加CH₄。
+总碳库包含植物、土壤、作物种子和CH₄，收获产品与种子输入继续单列。
+独立重算`ΔC + NEE_CO2 + CH4 + harvest - seed = 0`，不将分流碳再发一次CO₂。
+水/焓均沿原有物理路径，湿地气体模块不直接改动水热储量。
+
+NumPy整柱及BGC/作物相关目标 **32 passed，83.35秒**。8类工况各两步，
+最大水/焓/C/N残差为2.30926e-13 kg/m²、0.000124107 J/m²、
+7.30326e-12 gC/m²、2.52476e-13 gN/m²。湿土首步从5 gC/m²旧CH₄库释放
+4.62467531 gC/m²；温度/干湿/积雪、收获、灌溉、季节物候均保留真实状态。
+另补BGC加灌溉工况与扩展打包合同：2项本地通过，3项设备用例因本机无JAX/CUDA
+跳过；设备结果由服务器冻结独立报告，不能以本地跳过算验证。
+证据：[NumPy整柱](v1-results/p5-wetland-column-numpy-a.log.gz)、
+[补充合同/组合](v1-results/p5-wetland-column-contract-b.log.gz)。
+
+设备整柱A（364文件，清单SHA256
+`63e886daaaa0607bc527fa8a626be600638ff1779661714630c954d88c05db5d`）：
+13项原生整柱和11项NumPy目标 **24 passed / 0 skipped，1641.05秒**。
+四种BGC/作物/灌溉组合各两步，CUDA32/JAX32全部状态/诊断差0。
+JAX32对NumPy最大土温差8.87953e-6 K、CH₄库差1.02105e-6 gC/m²、
+CH₄外排差1.37626e-6 gC/m²、NEE差3.17772e-7 gC/m²，H/LE差
+0.000322180 / 0.00436371 W/m²。独立float32最大水/焓/C/N残差
+1.60486e-5 kg/m² / 12.2071533 J/m² / 0.000613703 gC/m² / 3.49937e-5 gN/m²，
+对应最大数值界0.00693512 / 3187.87976 / 0.538800 / 0.0208039。
+证据：[原生完整柱目标](v1-results/p5-wetland-column-gpu-a.log.gz)。
+A尚未包含随后慢下降修正；该修正另有C专项与连续轨迹，不混为同一冻结源。
+B只增加联合连续审计脚本，
+365文件，清单SHA256
+`e9d5ae333d85db3eb6581fe9e329790ceee4a4b2316a5a996a9289f38829e7e6`。
+B的NumPy轨迹在第18步第1号柱失败，原始耦合残差269.6593 W/m²；
+失败状态已保存，并提取为`canopy_phase_humidity_slow.json`。24级回溯每次仅有
+极小下降，80次迭代未触发原有湿度补救。现在当下降不足0.1%时也尝试同一
+物理区间内的湿度二分，且只有完整耦合残差优于已接受牛顿候选才采用；
+物理方程和收敛阈值均未改变。固定温度湿度求根将残差平方和从78557.8193
+降至862.206856，是定位证据，不作为最终收敛证据。
+
+修后冻结C：366文件，清单SHA256
+`c365517ffd327985eff31d5b55ee28ceab9f68c552103221483b539630579c2e`。
+NumPy与实际设备相变专项 **24 passed / 0 skipped，108.29秒**；新失败边界
+9次迭代、1次补救，NumPy最大层残差4.98236e-11 W/m²、水残差3.08998e-18 kg/m²。
+23个设备工况CUDA32/JAX32全部字段差0，JAX32对NumPy最大叶温/H/LE差
+0.000255001 K / 0.00165679 / 0.00195315 W/m²。
+C的NumPy七天与四后端七天已启动；NumPy第1天完成并越过失败点，
+累计水/焓/C/N残差最大4.83169e-13 kg/m² / 0.000458147 J/m² /
+1.06550e-11 gC/m² / 3.07046e-13 gN/m²。整段连续验证仍待完成。
+旧B四后端任务因已独立复现相同源中的NumPy失败而主动停止，不能计为通过。
+证据：[原失败报告](v1-results/p5-managed-numpy-seven-day-a.json.gz)、
+[原失败日志](v1-results/p5-managed-numpy-seven-day-a.log.gz)、
+[修后专项](v1-results/p5-managed-phase-energy-c.log.gz)。
+
+包含本次完整连接、慢下降修复和瓦片排水组件的冻结`p5-tile-gpu-a`已启动Linux全量pytest；当前没有最终结论，不能用此前BGC的700项替代本次全量。

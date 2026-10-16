@@ -17,6 +17,8 @@ from ..physics.plant_cn import leaf_nitrogen_factor
 
 def pack_clm_bgc_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.wetland_state is not None for s in states):
+        raise NotImplementedError('Wetland requires a native entry retaining methane carbon')
     if any(s.irrigation_state is not None for s in states):
         raise NotImplementedError('Irrigation requires a native entry retaining requests and external water/heat')
     if any(s.crop_state is not None or s.options.OptCropModel!=0 for s in states):
@@ -97,7 +99,8 @@ def _ratio(numerator,denominator,backend):
     return _division()(numerator,denominator)
 
 
-def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arrays=None,crop_management=None,**kwargs):
+def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arrays=None,crop_management=None,
+          wetland_state=None,wetland_parameters=None,**kwargs):
     if backend=='jax':
         import jax.numpy as xp
         from .enthalpy import run_soil_thermodynamics_jax as inverse
@@ -126,6 +129,17 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
     nitrogen=xp.broadcast_to(xp.asarray(nitrogen,dtype),(n,));oxygen=xp.broadcast_to(xp.asarray(oxygen,dtype),(n,))
     validate_bgc_column(arrays,forcing,environment,calendar,nitrogen,oxygen,xp)
     c,g,p,o,site,storage,roots,condensate,ps,flags,pp,plant,plant_p,soil,soil_p,bp=arrays
+    ws=wp=None
+    if wetland_state is not None:
+        from .wetland import validate_wetland,column_wetland_environment
+        if wetland_parameters is None:raise ValueError('Wetland requires parameters and carbon store')
+        ws=xp.asarray(wetland_state,dtype);wp=xp.asarray(wetland_parameters,dtype)
+        dummy=xp.stack((xp.zeros(n,dtype),forcing[:,1],xp.zeros(n,dtype),xp.zeros(n,dtype),p[:,0],forcing[:,4],forcing[:,0]),axis=1)
+        validate_wetland(ws,dummy,wp,xp)
+        if bool(xp.any(oxygen!=1.)):raise ValueError('Wetland derives oxygen limitation from actual soil phases')
+        if bool(xp.any(wp[:,0]>_sum_rows(g[:,:,2],xp))):raise ValueError('Wetland active depth exceeds the soil column')
+        if bool(xp.any(wp[:,4]!=soil_p[:,12])):raise ValueError('Wetland donor Q10 must match actual decomposition')
+    elif wetland_parameters is not None:raise ValueError('Wetland parameters require a carbon store')
     seasonal=flags[:,2]==5
     temperature=inverse(xp.concatenate((g[:,2,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
     ph=phenology(ps,flags[:,:2],xp.stack((temperature,environment[:,0],forcing[:,0]),axis=1),calendar,pp)
@@ -166,6 +180,10 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
     ng=out['soil_cells'];si=xp.concatenate((ng,xp.broadcast_to(p[:,None,:2],(n,4,2))),axis=2).reshape(-1,5)
     therm=inverse(si,xp.repeat(o[:,1],4),inverse=True)
     temperatures=therm['temperature_k'].reshape(n,4);liquid=therm['liquid_kgm2'].reshape(n,4)
+    wd=we=None
+    if ws is not None:
+        we=column_wetland_environment(ng,p,temperatures,liquid,forcing[:,4],wp,backend)
+        oxygen=we['oxygen_factor']
     logq=xp.log(plant_p[:,14]);qweights=xp.exp(_ratio(logq[:,None]*(temperatures-293.15),10.,backend))*roots
     qfactor=_sum_rows(qweights,xp)
     root_t=xp.where(logq==0.,_sum_rows(roots*temperatures,xp),293.15+_ratio(10.*xp.log(qfactor),xp.where(logq==0.,1.,logq),backend))
@@ -178,6 +196,11 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
         litter_c,litter_n,nitrogen[:,None],planned[:,23:24]),axis=1)
     sd=decompose(soil,du,soil_p);ad=apply(planned,sd['plant_uptake_gn_m2'][:,None],plant_p)
     live=ad['state'];earth=sd['state'];gpp=climate[:,0];ra=ad['autotrophic_respiration_gc_m2'];rh=sd['heterotrophic_respiration_gc_m2']
+    if ws is not None:
+        if backend=='jax':from .wetland import run_wetland_jax as wetland_step
+        else:from .cuda.wetland import run_wetland_cuda as wetland_step
+        wu=xp.stack((rh,we['temperature_k'],we['liquid_theta'],we['ice_theta'],we['porosity'],we['pressure_pa'],forcing[:,0]),axis=1)
+        wd=wetland_step(ws,wu,wp);rh=wd['co2_gc_m2']
     respiration=ra+rh;nee=respiration-gpp;mass_factor=12.0107e-6*forcing[:,0]
     exchange=dict(gpp_gc_m2=gpp,npp_gc_m2=gpp-ra,nee_gc_m2=nee,autotrophic_respiration_gc_m2=ra,
         heterotrophic_respiration_gc_m2=rh,ecosystem_respiration_gc_m2=respiration,
@@ -188,8 +211,15 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
     newn=((_sum_rows(live[:,3:6],xp)+live[:,7])+_sum_rows(earth[:,7:14],xp))+earth[:,14]
     if cd is not None:
         oldc=oldc+cs[:,3];oldn=oldn+cs[:,4];newc=newc+cd['state'][:,3];newn=newn+cd['state'][:,4]
+    if wd is not None:oldc=oldc+ws[:,0];newc=newc+wd['state'][:,0]
     cr=(newc-oldc)+nee;nr=(newn-oldn)-nitrogen;eps=xp.finfo(dtype).eps
     cb_scale=((newc+oldc)+gpp)+respiration;nb_scale=(newn+oldn)+nitrogen
+    if wd is not None:
+        cr=cr+wd['methane_emission_gc_m2'];cb_scale=cb_scale+wd['methane_emission_gc_m2']
+        exchange.update(decomposed_carbon_gc_m2=sd['heterotrophic_respiration_gc_m2'],methane_emission_gc_m2=wd['methane_emission_gc_m2'],
+            methane_emission_mgch4_m2=wd['methane_emission_mgch4_m2'],total_atmospheric_carbon_gc_m2=nee+wd['methane_emission_gc_m2'])
+        wd['environment']=we
+        out.update(wetland=wd,wetland_state=wd['state'],wetland_parameters=wp)
     if cd is not None:
         cr=(cr+cd['harvest_gc_m2'])-cd['seed_input_gc_m2'];nr=(nr+cd['harvest_gn_m2'])-cd['seed_input_gn_m2']
         cb_scale=(cb_scale+cd['seed_input_gc_m2'])+cd['harvest_gc_m2'];nb_scale=(nb_scale+cd['seed_input_gn_m2'])+cd['harvest_gn_m2']

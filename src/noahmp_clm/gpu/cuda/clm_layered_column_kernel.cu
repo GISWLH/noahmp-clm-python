@@ -17,7 +17,7 @@ __device__ bool lc_route(float* c,float* g,int& n,const float* p,int phase,const
 extern "C" __global__ void prepare_layered_transfer(const float* old_c,const float* old_g,const float* params,
     const int* options,const float* sites,const float* storage,const float* condensate,const float* forcing,
     float* snow_out,float* soil_out,int* options_out,float* canopy_out,float* totals,float* prepared,
-    float* ledger_out,float* old_storage,int* validity,const float* vic_parameters,int size) {
+    float* ledger_out,float* old_storage,int* validity,const float* vic_parameters,const float* ground_input,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
         const float* p=params+6*row;const int* o=options+9*row;const float* site=sites+12*row;
         const float* f=forcing+8*row;const float* cc=condensate+20*row;
@@ -25,11 +25,14 @@ extern "C" __global__ void prepare_layered_transfer(const float* old_c,const flo
         float* intercepted=ledger_out+182*row;lc_interception(cc,site,f,rain,snow,intercepted);
         float c[45],g[12],runoff[2];for(int k=0;k<45;++k)c[k]=old_c[row*45+k];for(int k=0;k<12;++k)g[k]=old_g[row*12+k];
         int n=o[0];bool valid=lc_route(c,g,n,p,o[1],f,intercepted+170,runoff,vic_parameters?vic_parameters+8*row:nullptr);
+        if(ground_input){float extra[2];bool good=ec_route_water(c,g,n,p,o[1],f[0],ground_input[2*row],ground_input[2*row+1],extra,vic_parameters?vic_parameters+8*row:nullptr);
+            runoff[0]+=extra[0];runoff[1]+=extra[1];valid=valid&&good;}
         for(int k=0;k<45;++k)snow_out[row*45+k]=c[k];for(int k=0;k<12;++k)soil_out[row*12+k]=g[k];
         for(int k=0;k<9;++k)options_out[row*9+k]=k==0?n:o[k];
         for(int k=0;k<20;++k)canopy_out[row*20+k]=intercepted[k];
         totals[row*2]=ec_sum(intercepted,10,2);totals[row*2+1]=ec_sum(intercepted+1,10,2);
         float* prep=prepared+row*5;prep[0]=rain+snow;prep[1]=intercepted[178];prep[2]=runoff[0];prep[3]=runoff[1];prep[4]=0.f;
+        if(ground_input){prep[0]+=ground_input[2*row];prep[1]+=ground_input[2*row+1];}
         old_storage[row*3]=ec_sum(cc,10,2);old_storage[row*3+1]=ec_sum(cc+1,10,2);old_storage[row*3+2]=storage[row*3+2];
         validity[row]=valid?1:0;
     }

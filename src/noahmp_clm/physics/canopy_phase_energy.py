@@ -215,17 +215,18 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         # Preserve the Newton direction while limiting the largest component;
         # separate clipping of humidity and enthalpy can reverse descent.
         delta/=max(1.,float(np.max(abs(delta)/np.r_[np.full(n,20.),5.,5.])))
-        norm=float(residual@residual);accepted=False
+        norm=float(residual@residual);accepted=False;chosen_norm=norm
         # Near a latent-plateau edge, the Newton step can be much larger than
         # the distance to the kink. Keep sub-Jacobian steps available rather
         # than falsely declaring a nonsmooth but solvable state stalled.
         for backtrack in range(24):
             trial=np.clip(x+delta*2.**(-backtrack),lower,upper)
             r=evaluate(trial)
-            if r@r<norm:x=trial;accepted=True;break
-        if not accepted:
+            trial_norm=float(r@r)
+            if trial_norm<norm:x=trial;accepted=True;chosen_norm=trial_norm;break
+        if not accepted or chosen_norm>.999*norm:
             # A Newton humidity direction can point outside the physical
-            # interval. Projection then destroys the descent direction.
+            # interval, or make negligible accepted progress near a bound.
             # At fixed leaf/ground temperatures, bracket the air-water
             # balance inside the same admissible interval, and accept only
             # if the complete coupled residual decreases. This is a new
@@ -237,9 +238,10 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
                     if evaluate(mid)[-1]>0.:lo=mid
                     else:hi=mid
                 trial=.5*(lo+hi);rr=evaluate(trial)
-                if rr@rr<norm:
+                if rr@rr<chosen_norm:
                     x=trial;restarts+=1
                     continue
+            if accepted:continue
             if restart_available:
                 # Lowest initial residual need not select the right side of
                 # the latent plateau. Retry the other physical initial guess

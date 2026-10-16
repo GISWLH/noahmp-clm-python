@@ -126,7 +126,7 @@ def science(got,ref,dtype):
     return maximum
 
 
-def budgets(arrays,forcing,deposition,got):
+def budgets(arrays,forcing,deposition,got,*,external_input=None):
     from noahmp_clm.physics.precip import partition_precipitation
     c,g,p,o,site,store,roots=arrays;dt=forcing[:,0].astype(float);d=got['diagnostics'];sf=got['surface']
     snow=np.asarray(got['snow_cells'],float);soil=np.asarray(got['soil_cells'],float);storage=np.asarray(got['storage'],float)
@@ -143,13 +143,14 @@ def budgets(arrays,forcing,deposition,got):
         np.asarray(sf['outgoing_longwave'],float)-np.asarray(d['h'],float)-np.asarray(d['le'],float))*dt
     et=np.asarray(d['et_mm'],float);runoff=np.asarray(d['runoff_mm'],float)
     adv=np.asarray(d['advected_enthalpy_jm2'],float);runh=np.asarray(d['runoff_enthalpy_jm2'],float)
-    water=newm-oldm-precipitation+et+runoff;heat=newh-oldh-ph-atmo+adv+runh
+    external_water,external_heat=(0.,0.) if external_input is None else external_input
+    water=newm-oldm-precipitation-external_water+et+runoff;heat=newh-oldh-ph-external_heat-atmo+adv+runh
     eps=np.finfo(c.dtype).eps
-    massbound=32.*eps*np.maximum(abs(oldm)+abs(newm)+abs(precipitation)+abs(et)+abs(runoff),1.)
+    massbound=32.*eps*np.maximum(abs(oldm)+abs(newm)+abs(precipitation)+abs(external_water)+abs(et)+abs(runoff),1.)
     magnitudes=(abs(c[:,:,1].astype(float)).sum(1)+abs(g[:,:,1].astype(float)).sum(1)+abs(store[:,1])+
         abs(snow[:,:,1]).sum(1)+abs(soil[:,:,1]).sum(1)+abs(storage[:,1]))
     bound=np.asarray(sf['thermal_layer_tolerance'],float).sum(1)+dt*np.abs(np.asarray(sf['layer_residual'],float)).sum(1)
-    bound+=32.*eps*np.maximum(magnitudes+abs(ph)+abs(atmo)+abs(adv)+abs(runh),1.)+1e-5
+    bound+=32.*eps*np.maximum(magnitudes+abs(ph)+abs(external_heat)+abs(atmo)+abs(adv)+abs(runh),1.)+1e-5
     assert np.all(abs(water)<=massbound),(water,massbound)
     assert np.all(abs(heat)<=bound),(heat,bound)
     tracer=snow[:,:,4:].sum(1)-c[:,:,4:].astype(float).sum(1)-deposition.astype(float)*dt[:,None]+np.asarray(got['impurity_output_kgm2'],float)

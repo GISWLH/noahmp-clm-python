@@ -33,20 +33,22 @@ def batch(dtype):
     rows=[pack_canopy_phase(a,sw,lw,e,c,1800.,dtype=dtype,**kw) for _,a,sw,lw,e,c,kw in cases()]
     saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_native_regressions.json').read_text())
     rows.extend(tuple(np.asarray(v,np.int32 if k==8 else dtype) for k,v in enumerate(row['arrays'])) for row in saved['cases'])
-    saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_humidity_bound.json').read_text())
-    rows.append(tuple(np.asarray(v,np.int32 if k==8 else dtype) for k,v in enumerate(saved['arrays'])))
+    for name in ('canopy_phase_humidity_bound.json','canopy_phase_humidity_slow.json'):
+        saved=json.loads((Path(__file__).parent/'fixtures'/name).read_text())
+        rows.append(tuple(np.asarray(v,np.int32 if k==8 else dtype) for k,v in enumerate(saved['arrays'])))
     return tuple(np.stack([r[k] for r in rows]) for k in range(9))
 
 
-def test_humidity_bound_restart_closes_original_coupled_equations():
-    saved=json.loads((Path(__file__).parent/'fixtures/canopy_phase_humidity_bound.json').read_text())
+@pytest.mark.parametrize('fixture',['canopy_phase_humidity_bound.json','canopy_phase_humidity_slow.json'])
+def test_humidity_bound_restart_closes_original_coupled_equations(fixture):
+    saved=json.loads((Path(__file__).parent/'fixtures'/fixture).read_text())
     arrays=tuple(np.asarray(v,np.int32 if k==8 else np.float64) for k,v in enumerate(saved['arrays']))
     result=reference(arrays,tolerance=1e-7)
     assert result['restarts']>0 and 0.<result['canopy_humidity']<.19
     assert abs(result['layer_residual']).max()<=1.01e-7
     assert abs(result['solver_residual']).max()<=1e-7
     assert abs(result['canopy_water_residual'])<1e-12
-    print('humidity-bound restart',result['iterations'],result['restarts'],result['canopy_humidity'],
+    print('humidity restart',fixture,result['iterations'],result['restarts'],result['canopy_humidity'],
         abs(result['layer_residual']).max(),result['canopy_water_residual'],flush=True)
 
 

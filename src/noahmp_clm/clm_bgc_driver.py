@@ -29,6 +29,8 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
     if (not math.isfinite(nitrogen_deposition_gn_m2) or nitrogen_deposition_gn_m2<0.
         or not math.isfinite(oxygen_factor) or not 0.<=oxygen_factor<=1.):
         raise ValueError('Invalid BGC nitrogen deposition or oxygen factor')
+    if state.wetland_state is not None and oxygen_factor!=1.:
+        raise ValueError('Wetland derives oxygen limitation from actual soil phases')
     old=state.bgc_state;p=state.bgc_parameters;f=forcing;season=state.phenology_state;pd=None;retention=1.;growing=True
     crop=state.crop_state;cd=None;managed_plant=old.plant
     if crop is not None:
@@ -67,9 +69,15 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
     # This temporary physical state has no unadvanced seasonal or C/N state.
     # The outer step retains and returns both; M/H is copied without loss.
     physical=replace(state,bgc_state=None,bgc_parameters=None,phenology_state=None,phenology_parameters=None,
-        crop_state=None,crop_parameters=None,options=replace(state.options,OptDynamicVeg=4,OptCropModel=0),lai=lai)
+        crop_state=None,crop_parameters=None,wetland_state=None,wetland_parameters=None,
+        options=replace(state.options,OptDynamicVeg=4,OptCropModel=0,OptWetlandModel=0),lai=lai)
     next_physical,d=step_clm_enthalpy_column(physical,f,nitrogen_factor=nf,**physical_options)
     environment=soil_environment(next_physical.ground,state.root_frac,p)
+    methane=state.wetland_state;wetland_environment=wd=None;ch4_emission=0.
+    if methane is not None:
+        from .physics.wetland import column_wetland_environment,step_wetland
+        wetland_environment=column_wetland_environment(next_physical.ground,f.ps,state.wetland_parameters)
+        oxygen_factor=wetland_environment['oxygen_factor']
     plan=plan_plant_allocation(plant,d['gpp_gcm2'],d['leaf_respiration']*GC_PER_UMOL*f.dt,f.tair,
         environment['root_temperature'],f.dt,target_leaf_carbon=target_leaf_carbon,
         growing=growing,parameters=p.plant)
@@ -78,20 +86,27 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
         mineral_n_input=nitrogen_deposition_gn_m2,plant_n_demand=plan.soil_n_demand,oxygen_factor=oxygen_factor,parameters=p.decomposition)
     plant,ad=apply_plant_allocation(plan,sd['plant_uptake_gn_m2'])
     new=BGCState(plant,soil)
+    respired_co2=sd['heterotrophic_respiration_gc_m2']
+    if methane is not None:
+        w=wetland_environment
+        methane,wd=step_wetland(methane,respired_co2,w['temperature_k'],w['liquid_theta'],w['ice_theta'],
+            w['porosity'],w['pressure_pa'],f.dt,parameters=state.wetland_parameters)
+        respired_co2=wd['co2_gc_m2'];ch4_emission=wd['methane_emission_gc_m2']
     exchange=carbon_exchange_diagnostics(d['gpp_gcm2'],ad['autotrophic_respiration_gc_m2'],
-        sd['heterotrophic_respiration_gc_m2'],ad['root_respiration_gc_m2'],f.dt)
-    new_c=new.total_carbon+(crop.seed_carbon if crop is not None else 0.)
+        respired_co2,ad['root_respiration_gc_m2'],f.dt)
+    new_c=new.total_carbon+(crop.seed_carbon if crop is not None else 0.)+(methane.methane_gc_m2 if methane is not None else 0.)
     new_n=new.total_nitrogen+(crop.seed_nitrogen if crop is not None else 0.)
     seed_c=cd['seed_input_gc_m2'] if cd is not None else 0.;seed_n=cd['seed_input_gn_m2'] if cd is not None else 0.
     export_c=cd['harvest_gc_m2'] if cd is not None else 0.;export_n=cd['harvest_gn_m2'] if cd is not None else 0.
-    cr=new_c-state.carbon_gc_m2+exchange['nee_gc_m2']+export_c-seed_c
+    cr=new_c-state.carbon_gc_m2+exchange['nee_gc_m2']+ch4_emission+export_c-seed_c
     nr=new_n-state.nitrogen_gn_m2-nitrogen_deposition_gn_m2+export_n-seed_n
     eps=np.finfo(float).eps
-    cb=128.*eps*max(new_c+state.carbon_gc_m2+exchange['gpp_gc_m2']+exchange['ecosystem_respiration_gc_m2']+seed_c+export_c,1.)
+    cb=128.*eps*max(new_c+state.carbon_gc_m2+exchange['gpp_gc_m2']+exchange['ecosystem_respiration_gc_m2']+ch4_emission+seed_c+export_c,1.)
     nb=128.*eps*max(new_n+state.nitrogen_gn_m2+nitrogen_deposition_gn_m2+seed_n+export_n,1.)
     if abs(cr)>cb or abs(nr)>nb:raise RuntimeError('Whole-column C/N budget exceeds numerical bound')
     final=replace(next_physical,options=state.options,phenology_state=season,phenology_parameters=state.phenology_parameters,
-        bgc_state=new,bgc_parameters=p,crop_state=crop,crop_parameters=state.crop_parameters)
+        bgc_state=new,bgc_parameters=p,crop_state=crop,crop_parameters=state.crop_parameters,
+        wetland_state=methane,wetland_parameters=state.wetland_parameters)
     d.update(exchange)
     d['biogeochemistry']=dict(turnover=fall,allocation=ad,decomposition=sd,environment=environment,
         lai_before=state.lai,lai_used=lai,lai_after=final.lai,target_lai=target_lai,nitrogen_factor_used=nf,
@@ -99,4 +114,8 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
         carbon_bound_gc_m2=cb,nitrogen_bound_gn_m2=nb,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2)
     if pd is not None:d['phenology']=dict(pd,lai_before=state.lai,lai_used=lai,lai_after=final.lai)
     if cd is not None:d['crop']=cd
+    if wd is not None:
+        d['wetland']=dict(wd,environment=wetland_environment)
+        d.update(decomposed_carbon_gc_m2=sd['heterotrophic_respiration_gc_m2'],methane_emission_gc_m2=ch4_emission,
+            methane_emission_mgch4_m2=wd['methane_emission_mgch4_m2'],total_atmospheric_carbon_gc_m2=exchange['nee_gc_m2']+ch4_emission)
     return final,d

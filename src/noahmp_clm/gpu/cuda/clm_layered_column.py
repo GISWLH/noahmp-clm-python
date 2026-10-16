@@ -20,13 +20,17 @@ def _stages():
     return tuple(module.get_function(n) for n in exports)
 
 
-def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None):
+def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
+                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None):
     import cupy as cp
     if cp.asarray(o).dtype.kind not in 'iu':raise ValueError('CLM options must be integers')
     c,g,p,site,storage,roots,condensate,forcing=[cp.ascontiguousarray(cp.asarray(x,cp.float32)) for x in (c,g,p,site,storage,roots,condensate,forcing)]
     o=cp.ascontiguousarray(cp.asarray(o,cp.int32));n=len(c)
     deposition=cp.zeros((n,5),cp.float32) if deposition is None else cp.ascontiguousarray(cp.asarray(deposition,cp.float32))
     validate_layered_column((c,g,p,o,site,storage,roots,condensate),forcing,deposition,cp)
+    from ..irrigation import prepare_column_irrigation,attach_column_irrigation
+    ground_input,irrigation=prepare_column_irrigation(g,p,o,site,forcing,irrigation_state,irrigation_parameters,irrigation_input,irrigation_check,'cuda')
+    ground_arg=np.uint64(0) if ground_input is None else cp.ascontiguousarray(ground_input)
     from ..vic import column_vic
     vic=column_vic(o,c.dtype,cp,vic_parameters);vic_arg=np.uint64(0) if vic is None else cp.ascontiguousarray(vic)
     new=lambda *shape:cp.empty((n,*shape),cp.float32)
@@ -35,7 +39,7 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     launch=((min((n+31)//32,4096),),(32,))
     if n:
         prepare,finish=_stages();base_prepare,base_finish=_column_stages()
-        prepare(*launch,(c,g,p,o,site,storage,condensate,forcing,pc0,pg0,po0,cc,totals,prep,pre,old,good,vic_arg,np.int32(n)))
+        prepare(*launch,(c,g,p,o,site,storage,condensate,forcing,pc0,pg0,po0,cc,totals,prep,pre,old,good,vic_arg,ground_arg,np.int32(n)))
         empty=storage.copy();empty[:,:2]=0.;dry=forcing.copy();dry[:,7]=0.
         base_prepare(*launch,(pc0,pg0,p,po0,site,empty,roots,dry,pc,pg,po,a,u,f,v,unused,valid,np.int32(n)))
         v[:,1:3]=totals
@@ -59,4 +63,4 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     result=unpack_column(nc,ng,no,ns,diag,impurity,surface=surface if return_surface else None)
     result.update(condensate=cc,canopy_interception=unpack_canopy_water(pre),canopy_post_interception=unpack_canopy_water(post))
     if most_geometry is not None:result['most']=surface['most']
-    return result
+    return attach_column_irrigation(result,irrigation)

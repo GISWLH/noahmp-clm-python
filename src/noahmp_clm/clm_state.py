@@ -11,6 +11,7 @@ from .physics.phenology import PhenologyState,PhenologyParameters
 from .physics.biogeochemistry import BGCState,BGCParameters
 from .physics.crop import CropState,CropParameters,CropPhase
 from .physics.irrigation import IrrigationState,IrrigationParameters
+from .physics.wetland import WetlandState,WetlandParameters
 
 
 def clm_options():
@@ -47,6 +48,8 @@ class CLMColumnState:
     crop_parameters: CropParameters | None=None
     irrigation_state: IrrigationState | None=None
     irrigation_parameters: IrrigationParameters | None=None
+    wetland_state: WetlandState | None=None
+    wetland_parameters: WetlandParameters | None=None
 
     def __post_init__(self):
         if self.options.OptDynamicVeg==5:
@@ -81,6 +84,16 @@ class CLMColumnState:
                 raise ValueError('Irrigation target exceeds soil porosity')
         elif self.irrigation_state is not None or self.irrigation_parameters is not None or self.options.OptIrrigationMethod!=0:
             raise ValueError('Irrigation state, parameters and method require OptIrrigation=1')
+        if self.options.OptWetlandModel!=0:
+            if (self.options.OptWetlandModel!=1 or not isinstance(self.wetland_state,WetlandState)
+                or not isinstance(self.wetland_parameters,WetlandParameters) or self.bgc_state is None):
+                raise ValueError('Wetland option 1 requires a methane store, parameters and BGC')
+            if self.wetland_parameters.active_depth_m>float(self.ground.dz.sum()):
+                raise ValueError('Wetland active depth exceeds the soil column')
+            if self.wetland_parameters.donor_q10!=self.bgc_parameters.decomposition.q10:
+                raise ValueError('Wetland donor Q10 must match actual decomposition')
+        elif self.wetland_state is not None or self.wetland_parameters is not None:
+            raise ValueError('Wetland state/parameters require OptWetlandModel=1')
         # When present, layer M/H are authoritative. Scalar fields remain
         # read-only aggregate aliases for diagnostics and parameter adapters.
         if self.canopy_condensate is not None:
@@ -179,10 +192,18 @@ class CLMColumnState:
         return replace(self,options=replace(self.options,OptIrrigation=1,OptIrrigationMethod=3),
             irrigation_state=IrrigationState() if initial is None else initial,irrigation_parameters=parameters)
 
+    def with_wetland(self,parameters=None,initial=None):
+        """Add a conserved methane-C pool to the actual BGC column."""
+        if self.bgc_state is None:raise ValueError('Wetland requires explicit BGC carbon donors')
+        if parameters is None:parameters=WetlandParameters(donor_q10=self.bgc_parameters.decomposition.q10)
+        return replace(self,options=replace(self.options,OptWetlandModel=1),
+            wetland_state=WetlandState() if initial is None else initial,wetland_parameters=parameters)
+
     @property
     def carbon_gc_m2(self):
         if self.bgc_state is None:raise ValueError('Total carbon requires BGC')
-        return self.bgc_state.total_carbon+(self.crop_state.seed_carbon if self.crop_state is not None else 0.)
+        return (self.bgc_state.total_carbon+(self.crop_state.seed_carbon if self.crop_state is not None else 0.)
+            +(self.wetland_state.methane_gc_m2 if self.wetland_state is not None else 0.))
 
     @property
     def nitrogen_gn_m2(self):

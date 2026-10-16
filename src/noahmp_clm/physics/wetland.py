@@ -107,3 +107,25 @@ def step_wetland(state,respired_carbon_gc_m2,temperature,liquid_theta,ice_theta,
         diffused_gc_m2=diffused,ebullition_gc_m2=ebullition,co2_gc_m2=co2,
         methane_emission_gc_m2=emitted,methane_emission_mgch4_m2=emitted*(16000./12.),
         carbon_residual_gc_m2=residual,methane_residual_gc_m2=methane_residual,carbon_bound_gc_m2=bound)
+
+
+def column_wetland_environment(ground,pressure,parameters):
+    """Map the actual post-transport soil to one depth-averaged active volume.
+
+    Partial bottom layers contribute their actual thickness. The simplified
+    anoxic decomposition multiplier is 0.2 at full liquid saturation, one
+    below the anaerobic threshold; the same fraction drives CH4 partition.
+    """
+    depth=parameters.active_depth_m
+    if depth>float(ground.dz.sum()):raise ValueError('Wetland active depth exceeds the soil column')
+    top=np.r_[0.,np.cumsum(ground.dz)[:-1]];thickness=np.minimum(ground.dz,np.maximum(depth-top,0.))
+    t=ground.temperature
+    liquid=np.where(t>=273.15,ground.water,np.clip(ground.liquid,0.,ground.water))
+    weights=thickness/ground.dz
+    lt=float(np.sum(liquid*weights)/(1000.*depth))
+    it=float(np.sum((ground.water-liquid)*weights)/(1000.*depth))
+    temperature=float(np.sum(t*thickness)/depth)
+    rates=wetland_rates(temperature,lt,it,ground.params.smcmax,pressure,parameters)
+    return dict(temperature_k=temperature,liquid_theta=lt,ice_theta=it,porosity=ground.params.smcmax,
+        pressure_pa=pressure,anaerobic_fraction=rates['anaerobic_fraction'],
+        oxygen_factor=1.-.8*rates['anaerobic_fraction'])
