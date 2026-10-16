@@ -8,7 +8,7 @@ docs/CLM_GLACIER.md for the finite-reservoir convention and limitations.
 from dataclasses import dataclass,replace
 import math
 import numpy as np
-from .snowpack import Snowpack,TF,CI,LF,RHO_ICE,drain_liquid,equilibrium
+from .snowpack import Snowpack,TF,CI,CW,LF,RHO_ICE,drain_liquid,equilibrium
 from .snow_heat import heat_step,conductivity as snow_conductivity
 
 
@@ -93,7 +93,8 @@ def add_glacier_surface_water(ice,mass_kgm2,enthalpy_jm2,impurities=None):
     """
     a=np.zeros(5) if impurities is None else np.asarray(impurities,float)
     if (not isinstance(ice,GlacierIce) or not math.isfinite(mass_kgm2) or not math.isfinite(enthalpy_jm2)
-        or mass_kgm2<0. or enthalpy_jm2<LF*mass_kgm2 or (mass_kgm2==0. and enthalpy_jm2!=0.)
+        or mass_kgm2<0. or enthalpy_jm2<(LF+CW*(200.-TF))*mass_kgm2
+        or (mass_kgm2==0. and enthalpy_jm2!=0.)
         or a.shape!=(5,) or not np.all(np.isfinite(a)) or np.any(a<0.)):
         raise ValueError('Invalid glacier surface liquid parcel')
     m=ice.mass.copy();h=ice.enthalpy.copy();tracer=ice.impurities.copy()
@@ -109,6 +110,41 @@ def add_glacier_surface_water(ice,mass_kgm2,enthalpy_jm2,impurities=None):
     final=GlacierIce(m[first:],h[first:],tracer[first:])
     return final,dict(runoff_kgm2=incoming,runoff_enthalpy_jm2=energy,runoff_impurities_kgm2=carried,
         net_ice_formation_kgm2=float(final.mass.sum()-ice.mass.sum()))
+
+
+def exchange_glacier_vapor(ice,amount_kgm2,temperature):
+    """Signed outward sublimation or frost/dew, with condensed-phase heat.
+
+    Sublimation is limited by the exposed top ice store by the caller. Frost
+    enters that ice; dew mixes and may freeze, with an explicit liquid outlet.
+    Impurities do not evaporate; a vanished ice layer exposes its residue.
+    """
+    amount=float(amount_kgm2)
+    if (not len(ice.mass) or not math.isfinite(amount) or not math.isfinite(temperature)
+        or not 200.<=temperature<=350.):raise ValueError('Invalid glacier vapor boundary')
+    runoff=runoff_heat=0.;residue=np.zeros(5)
+    if amount>0.:
+        tol=64.*np.finfo(float).eps*max(amount,float(ice.mass[0]))
+        if amount>ice.mass[0]+tol:raise ValueError('Glacier vapor exceeds exposed ice supply')
+        if abs(amount-ice.mass[0])<=tol:amount=float(ice.mass[0])
+        fraction=amount/ice.mass[0];heat=fraction*ice.enthalpy[0];latent=(2.5e6+LF)*amount
+        m,h,a=ice.mass.copy(),ice.enthalpy.copy(),ice.impurities.copy();m[0]-=amount;h[0]-=heat
+        if m[0]==0.:
+            if len(m)>1:a[1]+=a[0]
+            else:residue=a[0].copy()
+        keep=m>0.;ice=GlacierIce(m[keep],h[keep],a[keep])
+    elif amount<0.:
+        if temperature<TF:
+            heat=amount*CI*(temperature-TF);latent=(2.5e6+LF)*amount
+            m,h=ice.mass.copy(),ice.enthalpy.copy();m[0]-=amount;h[0]-=heat
+            ice=GlacierIce(m,h,ice.impurities)
+        else:
+            heat=amount*(LF+CW*(temperature-TF));latent=2.5e6*amount
+            ice,d=add_glacier_surface_water(ice,-amount,-heat)
+            runoff=d['runoff_kgm2'];runoff_heat=d['runoff_enthalpy_jm2'];residue=d['runoff_impurities_kgm2']
+    else:heat=latent=0.
+    return ice,dict(mass_kgm2=amount,advected_enthalpy_jm2=float(heat),latent_energy_jm2=float(latent),
+        runoff_kgm2=float(runoff),runoff_enthalpy_jm2=float(runoff_heat),residue_kgm2=residue)
 
 
 def glacier_heat_step(snow,ice,dt,top_flux,*,snow_absorbed=None,ice_absorbed=None,

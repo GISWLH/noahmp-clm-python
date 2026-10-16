@@ -222,4 +222,4 @@ Windows历史JAX编译问题不代表Linux CUDA实测；环境可达性与未测
 [ENV_TESTS](ENV_TESTS.md)。真实强迫smoke、缺测/QC与ERA5变量缺口见
 [REAL_DATA_CHECKS](REAL_DATA_CHECKS.md)，完整站点验证/校准方案见[FLUXNET_PLAN](FLUXNET_PLAN.md)。
 
-[冰川](CLM_GLACIER.md)目前完成有限冰储量的热/融水组件及设备365日规定热通量验证，未完成气象驱动完整柱和官方对照；无冰盖动力学、海拔分级、隐含替换冰源或裸冰杂质光学反馈。
+[冰川](CLM_GLACIER.md)目前完成有限冰储量的热/融水组件及设备365日规定热通量验证，新增NumPy气象驱动完整柱及年度守恒已完成，完整设备时间步和官方对照待完成；无冰盖动力学、海拔分级、隐含替换冰源或裸冰杂质光学反馈。
