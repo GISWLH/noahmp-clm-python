@@ -1,0 +1,35 @@
+{
+  "scope": "Station forcing geometry/decomposition check only; not observed diffuse radiation or land-model validation",
+  "pvlib_version": "0.13.1",
+  "solar_cases": 6912,
+  "erbs_cases": 288,
+  "predeclared_zenith_tolerance_degrees": 1.0,
+  "predeclared_erbs_fraction_tolerance": 1e-12,
+  "zenith_max_absolute_degrees": 0.4531011810851453,
+  "zenith_signed_mean_degrees": -0.014352665075847015,
+  "zenith_rmse_degrees": 0.1723004153635332,
+  "worst_geometry_case": {
+    "local_time": "2004-10-15T01:15:00",
+    "latitude": 37.607432,
+    "longitude": 101.332,
+    "utc_offset": 8,
+    "reference_zenith_degrees": 150.66792295996336,
+    "actual_zenith_degrees": 150.21482177887822,
+    "signed_difference_degrees": -0.4531011810851453
+  },
+  "erbs_fraction_max_absolute": 1.1102230246251565e-16,
+  "shortwave_closure_max_wm2": 0.0,
+  "extraterrestrial_normal_max_absolute_wm2": 0.0,
+  "sources": {
+    "NOAA": "https://www.gml.noaa.gov/grad/solcalc/solareqns.PDF",
+    "Erbs": "https://pvpmc.sandia.gov/modeling-guide/1-weather-design-inputs/irradiance-insolation/direct-normal-irradiance/piecewise-decomposition-models/",
+    "independent_position": "https://pvlib-python.readthedocs.io/en/v0.13.1/reference/generated/pvlib.solarposition.spa_python.html"
+  },
+  "instrument_sha256": "ab8d7290282269652f7f7569bfe999f83ba0a3a3757ec21f808088bc34210599",
+  "implementation_sha256": "b117d69f185896928b29dc2c8d5bd369d177ce52bcc7fa44f05b36f6cf597fff",
+  "reference_source_sha256": {
+    "spa.py": "ad7762ccca5fd9611ef9e2a9b1e37f95fe4c5b31628616b2ad3e84ea1e5f9202",
+    "solarposition.py": "a91ec411f89826e153108e845b7fa0a8cd2302b8c87bd46cb4caebaa353f2521",
+    "irradiance.py": "57ab40dfbe624bd85c3b9f7168922ba96ef572ddd58c5fbf05d34184dbc6998c"
+  }
+}

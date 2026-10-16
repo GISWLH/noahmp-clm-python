@@ -96,6 +96,34 @@ v0.2已有四站2007/2003年7月短期结果，见历史表；上述保留评价
 解释成CSV小数舍入。均没有可用RH替代，当前未裁剪或填补，连续模拟的明确
 修补规则及敏感性对照待实现；不能把原严格loader失败静默吞掉。
 
+### 站点太阳几何与短波分解（2026-10-16）
+
+新增`benchmarks/fluxnet_solar.py`供各后端共享预处理输入。显式传入当地标准时、
+固定UTC偏移及经纬度；实际驱动应使用每个强迫区间中点。按
+[NOAA简化谐波公式](https://www.gml.noaa.gov/grad/solcalc/solareqns.PDF)计算几何
+太阳天顶角，年内相位统一用UTC，支持闰年和跨年时区换算。昼长以几何地平线
+为准，不混用包含折射的日出/日落。此处不依赖模型后端的默认cosine=0.5。
+
+无实测散射短波时用[Erbs分段关系](https://pvpmc.sandia.gov/modeling-guide/1-weather-design-inputs/irradiance-insolation/direct-normal-irradiance/piecewise-decomposition-models/)
+估算比例。该经验关系原为小时尺度，应用到半小时是明确近似，尚无本地散射
+辐射观测验收。轨道距离按Spencer公式、太阳常数1366.1 W/m²；低太阳高度
+保护取天顶角87°，与[pvlib说明](https://pvlib-python.readthedocs.io/en/v0.10.3/reference/generated/pvlib.irradiance.erbs.html)
+一致。低太阳高度或夜间的正短波全部记作散射且返回标志，保留总能量，不静默
+将观测归零；原始晴空指数和限制到1的公式输入分别保留。还需站点全时段统计
+夜间正短波和敏感性，当前未据此运行站点评分。
+
+4项单元测试覆盖跨时区/跨年同一时刻、赤道/极地昼长及独立多项式算例。
+首轮赤道昼长精确等号因7.3e-12秒浮点舍入失败，测试改用预期数值误差1e-9秒；
+没有修改太阳公式。参考检查在运行前固定角度绝对门1°、分解比例门1e-12。
+独立[NREL SPA/pvlib 0.13.1](https://pvlib-python.readthedocs.io/en/v0.13.1/reference/generated/pvlib.solarposition.spa_python.html)
+比较2003/2004年12个月、6处纬度/经度、48个日内时刻，共6912工况：
+天顶角最大差 **0.453101°**，有符号均差 **−0.0143527°**，RMSE **0.172300°**。
+288个Erbs参考工况比例最大差 **1.11022e-16**，直射+散射闭合最大差 **0 W/m²**，
+大气外法向辐射差0。pvlib只安装在忽略的参考工具目录，未增加模型运行依赖。
+[数字及参考代码哈希](v1-results/fluxnet-solar-reference.json)、
+[独立检查脚本](v1-results/fluxnet-solar-reference-instrument.py.gz)已固定；这些是
+输入计算核验，不能替代FLUXNET陆面物理评价。
+
 本轮 M4 使用 NAS `processed/site_csv/` 的 CN-Cng、CN-HaM、CN-Qia、CN-Cha
 四站各 30 天，不校准、不调参。完整输入来源、QC、逐步轨迹、JAX64 parity、
 M2 分档和 LE/H 观测指标集中在 [REAL_DATA_CHECKS.md](REAL_DATA_CHECKS.md)，
