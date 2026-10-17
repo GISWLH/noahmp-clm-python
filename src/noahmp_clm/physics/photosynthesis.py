@@ -2,9 +2,9 @@
 
 Original implementation of published equations, not a translation of CTSM.
 References and scope: docs/CLM_PHOTOSYNTHESIS.md. Rates are micromol CO2 per
-m² leaf per second; CO2 is ppm (micromol/mol), PAR is absorbed micromol photons
-per m² leaf per second, conductance is mol H2O per m² leaf per second.
-This leaf component is not yet connected to the column driver.
+m虏 leaf per second; CO2 is ppm (micromol/mol), PAR is absorbed micromol photons
+per m虏 leaf per second, conductance is mol H2O per m虏 leaf per second.
+Used by the multilayer canopy energy and biogeochemistry column paths.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -127,9 +127,10 @@ def _ball_berry(a,cs,rh,gb,stress,p):
 def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
                       relative_humidity=0.7, boundary_conductance=1.0,
                       parameters=None, nitrogen_factor=1.0, water_stress=1.0):
-    """Solve biochemical demand = diffusive supply for ci with a fixed bracket.
+    """Solve biochemical demand = diffusive supply with safeguarded Newton steps.
 
-    The night-time bracket allows ci above ambient (outward respiration).
+    The fixed bracket allows ci above ambient (outward respiration).
+    Newton steps stay inside it; unresolved entries retain a bisection fallback.
     Return the actual diffusion residual, not a convergence flag alone.
     """
     p = parameters or LeafParameters()
@@ -164,12 +165,50 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
         _, _, gs, _ = evaluate(ca)
         ci = ca + rd * (1.4 / gb + 1.6 / gs)
     else:
-        for _ in range(48):
-            ci = .5 * (lo+hi)
-            _, _, _, residual = evaluate(ci)
-            lo = np.where(residual < 0.0, ci, lo)
-            hi = np.where(residual >= 0.0, ci, hi)
-        ci = .5 * (lo+hi)
+        # Differentiate the active biochemical branch and the implicit
+        # Ball--Berry quadratic. This saves repeated ci evaluations inside
+        # the canopy energy Jacobian without changing the physical equations.
+        ci = np.clip(.7*ca,lo,hi)
+        done = np.zeros_like(ca,dtype=bool)
+        vcmax,michaelis,gamma,tpu,_,electron = coefficients
+        eps = np.finfo(float).eps
+        for _ in range(16):
+            rates,cs,gs,residual = evaluate(ci)
+            d_rubisco = vcmax*(michaelis+gamma)/(ci+michaelis)**2
+            d_rubp = 12.*electron*gamma/(4.*ci+8.*gamma)**2
+            da = np.where(rates['rubisco'] <= rates['rubp'],d_rubisco,d_rubp)
+            da = np.where((ci<=gamma)|(rates['gross']==rates['tpu']),0.,da)
+            a = rates['net']
+            cs_slope = np.where(ca-1.4*a/gb>1e-9,-1.4/gb,0.)
+            x = p.ball_berry_slope*np.maximum(a,0.)*stress/cs
+            dx = p.ball_berry_slope*stress*(cs-a*cs_slope)/(cs*cs)
+            dx = np.where(a>0.,dx,0.)
+            dg = (gs+gb*np.minimum(rh,1.))/(2.*gs+gb-p.minimum_conductance-x)*dx*da
+            resistance = 1.4/gb+1.6/gs
+            derivative = da+1./resistance-(ca-ci)*1.6*dg/(gs*gs*resistance*resistance)
+            delta = np.divide(residual,derivative,out=np.full_like(residual,np.inf),where=derivative>0.)
+            # Require both the ci correction and diffusion residual to reach
+            # rounding scale. Near compensation, subtraction of ca and ci
+            # contributes more roundoff than the small assimilation itself.
+            residual_roundoff = 16.*eps*(rates['gross']+rd+(np.abs(ca)+np.abs(ci))/resistance+1.)
+            done = done | ((np.abs(delta) <= 8.*eps*np.maximum(np.abs(ci),1.)) &
+                           (np.abs(residual)<=residual_roundoff))
+            if np.all(done): break
+            lo=np.where((residual<0.) & ~done,ci,lo)
+            hi=np.where((residual>=0.) & ~done,ci,hi)
+            proposal=ci-delta
+            valid=np.isfinite(proposal)&(proposal>lo)&(proposal<hi)
+            proposal=np.where(valid,proposal,.5*(lo+hi))
+            ci=np.where(done,ci,proposal)
+        if not np.all(done):
+            # Finish unresolved entries with the original bisection; preserve
+            # roots which already converged. No leaf is silently dropped.
+            for _ in range(48):
+                mid=.5*(lo+hi)
+                _,_,_,residual=evaluate(mid)
+                lo=np.where(residual<0.,mid,lo)
+                hi=np.where(residual>=0.,mid,hi)
+            ci=np.where(done,ci,.5*(lo+hi))
     rates, cs, gs, residual = evaluate(ci)
     return {**rates, "ci_ppm": ci, "cs_ppm": cs, "gs_mol": gs,
         "surface_relative_humidity": (gb * np.minimum(rh, 1.0) + gs) / (gb+gs),
