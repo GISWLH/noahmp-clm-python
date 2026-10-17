@@ -1,0 +1,2277 @@
+{
+  "scope": "Fixed first January I1488 diagnostics; original running/annual-request identities retained, no complete report fabricated.",
+  "pbs_job": "64.manager",
+  "node": "compute002",
+  "scientific_acceptance_claim": false,
+  "official": {
+    "CN-Qia": {
+      "month": "2003-01",
+      "original_status": "running",
+      "original_steps_requested": 17520,
+      "monthly": {
+        "et_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.3533153059707212,
+          "model_mean": 0.639913677479208,
+          "bias": 0.2865983715084868,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.8140912395268756,
+          "bias_pass": false,
+          "r": 0.8779259509733893,
+          "correlation_pass": true
+        },
+        "runoff_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.3934744481117495,
+          "model_mean": 0.9728769177811281,
+          "bias": 0.5794024696693786,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.8103409982639028,
+          "bias_pass": false,
+          "r": 0.8785523224395259,
+          "correlation_pass": true
+        },
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 28.78084161702383,
+          "model_mean": 10.823391640498754,
+          "bias": -17.957449976525076,
+          "relative_bias": -0.6239376254342496,
+          "near_zero": false,
+          "rmse": 52.79903200798365,
+          "bias_pass": false,
+          "r": 0.9399626849095585,
+          "correlation_pass": true
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 10.061572289582521,
+          "model_mean": 18.412415756793912,
+          "bias": 8.35084346721139,
+          "relative_bias": 0.8299740067322905,
+          "near_zero": false,
+          "rmse": 23.475854680518072,
+          "bias_pass": false,
+          "r": 0.8790901390876612,
+          "correlation_pass": true
+        },
+        "swe_m": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.00020126895262758136,
+          "model_mean": 1.119885821289439e-05,
+          "bias": -0.00019007009441468698,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.0006841038415995042,
+          "bias_pass": false,
+          "r": 0.31688589296014236,
+          "correlation_pass": false
+        },
+        "tsoil_c_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 3.795278065179007,
+          "model_mean": 5.454533226259316,
+          "bias": 1.659255161080309,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 2.201541110333141,
+          "bias_pass": false,
+          "r": 0.8944763819922729,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 3.969915603309572,
+          "model_mean": 5.29018852069816,
+          "bias": 1.3202729173885879,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 1.4866147922428568,
+          "bias_pass": false,
+          "r": 0.9239955189415918,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 4.346718909150834,
+          "model_mean": 5.182515101279004,
+          "bias": 0.8357961921281705,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.9483160249756907,
+          "bias_pass": false,
+          "r": 0.8407955742112647,
+          "correlation_pass": false
+        },
+        "tsoil_c_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 4.8518457187119575,
+          "model_mean": 5.2392706799251005,
+          "bias": 0.38742496121314307,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.4869631981119657,
+          "bias_pass": true,
+          "r": 0.7969346431504946,
+          "correlation_pass": false
+        },
+        "smc_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.28795696192130604,
+          "model_mean": 0.2778254053032266,
+          "bias": -0.010131556618079463,
+          "relative_bias": -0.0351842738945421,
+          "near_zero": false,
+          "rmse": 0.015873349946591994,
+          "bias_pass": true,
+          "r": 0.8163450771721513,
+          "correlation_pass": false
+        },
+        "smc_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.28825160324253063,
+          "model_mean": 0.2847989851914402,
+          "bias": -0.003452618051090428,
+          "relative_bias": -0.011977793053887879,
+          "near_zero": false,
+          "rmse": 0.005674959849744386,
+          "bias_pass": true,
+          "r": 0.8823732733261002,
+          "correlation_pass": true
+        },
+        "smc_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.28786273342707464,
+          "model_mean": 0.28240549183929664,
+          "bias": -0.0054572415877779945,
+          "relative_bias": -0.01895779117639935,
+          "near_zero": false,
+          "rmse": 0.0064510884411126896,
+          "bias_pass": true,
+          "r": 0.8116684273125827,
+          "correlation_pass": false
+        },
+        "smc_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.28967400976727087,
+          "model_mean": 0.28224938060391336,
+          "bias": -0.00742462916335751,
+          "relative_bias": -0.02563098142398963,
+          "near_zero": false,
+          "rmse": 0.008885847909947625,
+          "bias_pass": true,
+          "r": 0.47082028481939064,
+          "correlation_pass": false
+        }
+      },
+      "instantaneous": {
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 28.78084161702383,
+          "model_mean": 10.823391640498754,
+          "bias": -17.957449976525076,
+          "relative_bias": -0.6239376254342496,
+          "near_zero": false,
+          "rmse": 52.79903200798365,
+          "bias_pass": false,
+          "r": 0.9399626849095585,
+          "correlation_pass": true
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 10.061572289582521,
+          "model_mean": 18.412415756793912,
+          "bias": 8.35084346721139,
+          "relative_bias": 0.8299740067322905,
+          "near_zero": false,
+          "rmse": 23.475854680518072,
+          "bias_pass": false,
+          "r": 0.8790901390876612,
+          "correlation_pass": true
+        }
+      },
+      "daily_bias_criteria": false,
+      "monthly_bias_criteria": false,
+      "instantaneous_criteria": true
+    },
+    "CN-Cha": {
+      "month": "2003-01",
+      "original_status": "running",
+      "original_steps_requested": 17520,
+      "monthly": {
+        "et_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.006032492912755003,
+          "model_mean": 0.0021128683513936927,
+          "bias": -0.00391962456136131,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.011791999829667107,
+          "bias_pass": true,
+          "r": 0.730234149001604,
+          "correlation_pass": false
+        },
+        "runoff_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.07399246000474499,
+          "model_mean": 0.2882908353912494,
+          "bias": 0.2142983753865044,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.21513767339921247,
+          "bias_pass": false,
+          "r": -0.8801739562689306,
+          "correlation_pass": false
+        },
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 28.417936099202482,
+          "model_mean": 21.24955440935258,
+          "bias": -7.168381689849902,
+          "relative_bias": -0.2522484977384081,
+          "near_zero": false,
+          "rmse": 67.22798347610461,
+          "bias_pass": false,
+          "r": 0.647262295966825,
+          "correlation_pass": false
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.1738701642718434,
+          "model_mean": 0.0606956182226078,
+          "bias": -0.1131745460492356,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.3916979082550534,
+          "bias_pass": true,
+          "r": 0.7286151657850619,
+          "correlation_pass": false
+        },
+        "swe_m": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.0,
+          "model_mean": 0.0,
+          "bias": 0.0,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.0,
+          "bias_pass": true,
+          "r": null,
+          "correlation_pass": null
+        },
+        "tsoil_c_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -13.42033725861578,
+          "model_mean": -14.61947835081365,
+          "bias": -1.1991410921978698,
+          "relative_bias": -0.08935253034926735,
+          "near_zero": false,
+          "rmse": 3.3422321963395185,
+          "bias_pass": true,
+          "r": 0.9242968992297056,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -11.479688061950005,
+          "model_mean": -12.182657879655057,
+          "bias": -0.7029698177050516,
+          "relative_bias": -0.06123596860049533,
+          "near_zero": false,
+          "rmse": 1.098448531245981,
+          "bias_pass": true,
+          "r": 0.9579335102359728,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -8.085837612357167,
+          "model_mean": -8.151191272530482,
+          "bias": -0.06535366017331512,
+          "relative_bias": -0.00808248487125669,
+          "near_zero": false,
+          "rmse": 0.19009799952660503,
+          "bias_pass": true,
+          "r": 0.9964412214694945,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -4.76284118570305,
+          "model_mean": -4.909491746143606,
+          "bias": -0.14665056044055547,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.17654638391055252,
+          "bias_pass": true,
+          "r": 0.9987299874665732,
+          "correlation_pass": true
+        },
+        "smc_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.2709505331692516,
+          "model_mean": 0.2796675511443035,
+          "bias": 0.008717017975051866,
+          "relative_bias": 0.03217199048509237,
+          "near_zero": false,
+          "rmse": 0.009019940241347129,
+          "bias_pass": true,
+          "r": 0.9063611359560746,
+          "correlation_pass": true
+        },
+        "smc_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.27307264885354426,
+          "model_mean": 0.2799999888738,
+          "bias": 0.006927340020255746,
+          "relative_bias": 0.025368121081840944,
+          "near_zero": false,
+          "rmse": 0.007339841127258133,
+          "bias_pass": true,
+          "r": null,
+          "correlation_pass": null
+        },
+        "smc_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.27705388758531824,
+          "model_mean": 0.2799999888738,
+          "bias": 0.0029461012884817728,
+          "relative_bias": 0.010633676048218332,
+          "near_zero": false,
+          "rmse": 0.0032675180531237065,
+          "bias_pass": true,
+          "r": null,
+          "correlation_pass": null
+        },
+        "smc_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.28353204439964985,
+          "model_mean": 0.2753877684685492,
+          "bias": -0.008144275931100675,
+          "relative_bias": -0.028724357941076282,
+          "near_zero": false,
+          "rmse": 0.00891893883049255,
+          "bias_pass": true,
+          "r": -0.8755427966972721,
+          "correlation_pass": false
+        }
+      },
+      "instantaneous": {
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 28.417936099202482,
+          "model_mean": 21.24955440935258,
+          "bias": -7.168381689849902,
+          "relative_bias": -0.2522484977384081,
+          "near_zero": false,
+          "rmse": 67.22798347610461,
+          "bias_pass": false,
+          "r": 0.647262295966825,
+          "correlation_pass": false
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.1738701642718434,
+          "model_mean": 0.0606956182226078,
+          "bias": -0.1131745460492356,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.3916979082550534,
+          "bias_pass": true,
+          "r": 0.7286151657850619,
+          "correlation_pass": false
+        }
+      },
+      "daily_bias_criteria": false,
+      "monthly_bias_criteria": false,
+      "instantaneous_criteria": false
+    },
+    "CN-HaM": {
+      "month": "2001-01",
+      "original_status": "running",
+      "original_steps_requested": 17520,
+      "monthly": {
+        "et_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.29608684048676503,
+          "model_mean": 0.24895618877047626,
+          "bias": -0.047130651716288774,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.35795232523625314,
+          "bias_pass": true,
+          "r": 0.7257889427976619,
+          "correlation_pass": false
+        },
+        "runoff_mm_day": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.3407315145577154,
+          "model_mean": 0.38531318955844446,
+          "bias": 0.04458167500072907,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 0.10851702054531881,
+          "bias_pass": true,
+          "r": -0.8435016294291422,
+          "correlation_pass": false
+        },
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 3.8048861678890002,
+          "model_mean": 0.5048144958886414,
+          "bias": -3.300071672000359,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 41.62045530810598,
+          "bias_pass": false,
+          "r": 0.5974067424916527,
+          "correlation_pass": false
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 9.759462608722423,
+          "model_mean": 8.116419081899128,
+          "bias": -1.6430435268232948,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 11.717053465121488,
+          "bias_pass": false,
+          "r": 0.7298060383743784,
+          "correlation_pass": false
+        },
+        "swe_m": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.00202078634296409,
+          "model_mean": 0.002366216623350122,
+          "bias": 0.00034543028038603197,
+          "relative_bias": 0.17093854656566748,
+          "near_zero": false,
+          "rmse": 0.0007553878572753724,
+          "bias_pass": false,
+          "r": 0.9972779427753738,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -10.988451990517216,
+          "model_mean": -10.311104120233987,
+          "bias": 0.6773478702832296,
+          "relative_bias": 0.06164179184363416,
+          "near_zero": false,
+          "rmse": 1.9283880321958962,
+          "bias_pass": true,
+          "r": 0.9667272750420408,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -11.04160088569885,
+          "model_mean": -10.66235968066798,
+          "bias": 0.3792412050308709,
+          "relative_bias": 0.03434657790629495,
+          "near_zero": false,
+          "rmse": 1.0275881652335723,
+          "bias_pass": true,
+          "r": 0.8966792707176255,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -11.127869915705833,
+          "model_mean": -11.165134339691468,
+          "bias": -0.037264423985634565,
+          "relative_bias": -0.003348747268607058,
+          "near_zero": false,
+          "rmse": 0.7063897101645038,
+          "bias_pass": true,
+          "r": 0.8888695673958176,
+          "correlation_pass": true
+        },
+        "tsoil_c_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": -11.18162004614387,
+          "model_mean": -11.656900910408245,
+          "bias": -0.4752808642643753,
+          "relative_bias": -0.042505545914009325,
+          "near_zero": false,
+          "rmse": 0.7803828863437704,
+          "bias_pass": true,
+          "r": 0.9036658588872718,
+          "correlation_pass": true
+        },
+        "smc_layer_1": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.36505475209685423,
+          "model_mean": 0.37711892388968377,
+          "bias": 0.012064171792829537,
+          "relative_bias": 0.03304756813473487,
+          "near_zero": false,
+          "rmse": 0.012170018767982568,
+          "bias_pass": true,
+          "r": 0.9715285952996038,
+          "correlation_pass": true
+        },
+        "smc_layer_2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.3673918014892968,
+          "model_mean": 0.38199997973442157,
+          "bias": 0.014608178245124781,
+          "relative_bias": 0.039761851478197344,
+          "near_zero": false,
+          "rmse": 0.015255878188830388,
+          "bias_pass": true,
+          "r": null,
+          "correlation_pass": null
+        },
+        "smc_layer_3": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.3715377667498204,
+          "model_mean": 0.38200000193715095,
+          "bias": 0.010462235187330526,
+          "relative_bias": 0.028159277800621014,
+          "near_zero": false,
+          "rmse": 0.01147304786935656,
+          "bias_pass": true,
+          "r": null,
+          "correlation_pass": null
+        },
+        "smc_layer_4": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 0.37724602522869266,
+          "model_mean": 0.358295366041122,
+          "bias": -0.018950659187570662,
+          "relative_bias": -0.05023421830907951,
+          "near_zero": false,
+          "rmse": 0.020818913458331673,
+          "bias_pass": true,
+          "r": 0.9912668819521245,
+          "correlation_pass": true
+        }
+      },
+      "instantaneous": {
+        "h_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 3.8048861678890002,
+          "model_mean": 0.5048144958886414,
+          "bias": -3.300071672000359,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 41.62045530810598,
+          "bias_pass": false,
+          "r": 0.5974067424916527,
+          "correlation_pass": false
+        },
+        "le_wm2": {
+          "status": "measured",
+          "n": 1488,
+          "reference_mean": 9.759462608722423,
+          "model_mean": 8.116419081899128,
+          "bias": -1.6430435268232948,
+          "relative_bias": null,
+          "near_zero": true,
+          "rmse": 11.717053465121488,
+          "bias_pass": false,
+          "r": 0.7298060383743784,
+          "correlation_pass": false
+        }
+      },
+      "daily_bias_criteria": false,
+      "monthly_bias_criteria": false,
+      "instantaneous_criteria": false
+    }
+  },
+  "observational": {
+    "CN-Cng": {
+      "month": "2007-01",
+      "monthly": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 44.764604059139785,
+            "model_mean": 3.8931600294771895,
+            "bias": -40.8714440296626,
+            "relative_bias": -0.9130303928448954,
+            "near_zero": false,
+            "rmse": 94.20136824463705,
+            "bias_pass": false,
+            "r": 0.22378894154024595,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 10427439.822951704,
+          "reference_integral": 119897515.51200001,
+          "integral_units": "J/m2"
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 20.644724830645163,
+            "model_mean": 2.038876961402351,
+            "bias": -18.60584786924281,
+            "relative_bias": -0.9012398092913387,
+            "near_zero": false,
+            "rmse": 31.97339450883617,
+            "bias_pass": false,
+            "r": 0.1101748285915852,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 5460928.0534200575,
+          "reference_integral": 55294830.9864,
+          "integral_units": "J/m2"
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 56.6832297782258,
+            "model_mean": 3.8931600294771895,
+            "bias": -52.790069748748614,
+            "relative_bias": -0.9313172512450464,
+            "near_zero": false,
+            "rmse": 119.08572873544419,
+            "bias_pass": false,
+            "r": 0.22604298621704705,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 10427439.822951704,
+          "reference_integral": 151820362.63799998,
+          "integral_units": "J/m2"
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 26.07464526142473,
+            "model_mean": 2.038876961402351,
+            "bias": -24.03576830002238,
+            "relative_bias": -0.9218061476595157,
+            "near_zero": false,
+            "rmse": 40.151263885862704,
+            "bias_pass": false,
+            "r": 0.10205525790555313,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 5460928.0534200575,
+          "reference_integral": 69838329.8682,
+          "integral_units": "J/m2"
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": -0.12262805383381548,
+            "model_mean": 0.0,
+            "bias": 0.12262805383381548,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.5525427548918234,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 0.0,
+          "reference_integral": -3.8014696688482794,
+          "integral_units": "g C/m2"
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.3754922064463742,
+            "model_mean": 0.0,
+            "bias": -0.3754922064463742,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.6446564851079604,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 0.0,
+          "reference_integral": 11.6402583998376,
+          "integral_units": "g C/m2"
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.24254447351379604,
+            "model_mean": 0.21336080382517988,
+            "bias": -0.02918366968861616,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.5285981779299785,
+            "bias_pass": true,
+            "r": -0.14707197181511944,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 6.614184918580577,
+          "reference_integral": 7.518878678927678,
+          "integral_units": "g C/m2"
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        }
+      },
+      "instantaneous": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": -0.12262805383381548,
+            "model_mean": 0.0,
+            "bias": 0.12262805383381548,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.5525427548918234,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.3754922064463742,
+            "model_mean": 0.0,
+            "bias": -0.3754922064463742,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.6446564851079604,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        }
+      }
+    },
+    "CN-Qia": {
+      "month": "2003-01",
+      "monthly": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 18.65683982392473,
+            "model_mean": 10.823391640498754,
+            "bias": -7.833448183425977,
+            "relative_bias": -0.4198700453750318,
+            "near_zero": false,
+            "rmse": 33.63767050169307,
+            "bias_pass": false,
+            "r": 0.7676535677570597,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 28989372.16991186,
+          "reference_integral": 49970479.78439999,
+          "integral_units": "J/m2"
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 19.86144028185484,
+            "model_mean": 18.412415756793912,
+            "bias": -1.4490245250609277,
+            "relative_bias": -0.07295666902791224,
+            "near_zero": false,
+            "rmse": 25.493665025370106,
+            "bias_pass": true,
+            "r": 0.7598629279686712,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 49315814.36299682,
+          "reference_integral": 53196881.650919996,
+          "integral_units": "J/m2"
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 2.5251842047517883,
+            "model_mean": 5.4257819314000315,
+            "bias": 2.9005977266482432,
+            "relative_bias": 1.148667776865552,
+            "near_zero": false,
+            "rmse": 5.984853194607068,
+            "bias_pass": false,
+            "r": 0.8880984914189085,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 168.19923987340098,
+          "reference_integral": 78.28071034730543,
+          "integral_units": "g C/m2"
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 2.285912765743595,
+            "model_mean": 5.4257819314000315,
+            "bias": 3.1398691656564366,
+            "relative_bias": 1.373573485703447,
+            "near_zero": false,
+            "rmse": 6.066510286661991,
+            "bias_pass": false,
+            "r": 0.952222746974614,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 168.19923987340098,
+          "reference_integral": 70.86329573805143,
+          "integral_units": "g C/m2"
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": -1.3508497279085554,
+            "model_mean": 0.22014347355692618,
+            "bias": 1.5709932014654815,
+            "relative_bias": 1.1629666638773817,
+            "near_zero": false,
+            "rmse": 4.587032737880845,
+            "bias_pass": false,
+            "r": 0.8883954254597718,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 6.824447680264711,
+          "reference_integral": -41.87634156516521,
+          "integral_units": "g C/m2"
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 6.0891216397849455,
+            "model_mean": 5.453621190697516,
+            "bias": -0.6355004490874299,
+            "relative_bias": -0.10436652224767748,
+            "near_zero": false,
+            "rmse": 1.7584508019944525,
+            "bias_pass": false,
+            "r": 0.8780239383306063,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.2817305107526882,
+            "model_mean": 0.27745054118048434,
+            "bias": -0.0042799695722038344,
+            "relative_bias": -0.015191714808485635,
+            "near_zero": false,
+            "rmse": 0.00955735423100675,
+            "bias_pass": true,
+            "r": 0.9160394438247262,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.2817305107526882,
+            "model_mean": 0.27782950202012835,
+            "bias": -0.0039010087325598297,
+            "relative_bias": -0.01384659660090652,
+            "near_zero": false,
+            "rmse": 0.008479410732744773,
+            "bias_pass": true,
+            "r": 0.9357653958740935,
+            "correlation_pass": true
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        }
+      },
+      "instantaneous": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1151,
+            "reference_mean": 19.100061017376195,
+            "model_mean": 8.969474625577107,
+            "bias": -10.130586391799088,
+            "relative_bias": -0.5303954988721152,
+            "near_zero": false,
+            "rmse": 34.6721333728711,
+            "bias_pass": false,
+            "r": 0.7697415363552933,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1101,
+            "reference_mean": 21.539354799273386,
+            "model_mean": 19.038117190269748,
+            "bias": -2.5012376090036383,
+            "relative_bias": -0.11612407299628194,
+            "near_zero": false,
+            "rmse": 25.939429432110757,
+            "bias_pass": false,
+            "r": 0.7647743823644942,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 2.5251842047517883,
+            "model_mean": 5.4257819314000315,
+            "bias": 2.9005977266482432,
+            "relative_bias": 1.148667776865552,
+            "near_zero": false,
+            "rmse": 5.984853194607068,
+            "bias_pass": false,
+            "r": 0.8880984914189085,
+            "correlation_pass": true
+          },
+          "available_reference_intervals": 1488
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 2.285912765743595,
+            "model_mean": 5.4257819314000315,
+            "bias": 3.1398691656564366,
+            "relative_bias": 1.373573485703447,
+            "near_zero": false,
+            "rmse": 6.066510286661991,
+            "bias_pass": false,
+            "r": 0.952222746974614,
+            "correlation_pass": true
+          },
+          "available_reference_intervals": 1488
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 274,
+            "reference_mean": -4.850882545588766,
+            "model_mean": -7.556904433417494,
+            "bias": -2.7060218878287285,
+            "relative_bias": -0.5578411479555399,
+            "near_zero": false,
+            "rmse": 6.340693268035293,
+            "bias_pass": false,
+            "r": 0.7692335394952585,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 6.0891216397849455,
+            "model_mean": 5.453621190697516,
+            "bias": -0.6355004490874299,
+            "relative_bias": -0.10436652224767748,
+            "near_zero": false,
+            "rmse": 1.7584508019944525,
+            "bias_pass": false,
+            "r": 0.8780239383306063,
+            "correlation_pass": true
+          },
+          "available_reference_intervals": 1488
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.2817305107526882,
+            "model_mean": 0.27745054118048434,
+            "bias": -0.0042799695722038344,
+            "relative_bias": -0.015191714808485635,
+            "near_zero": false,
+            "rmse": 0.00955735423100675,
+            "bias_pass": true,
+            "r": 0.9160394438247262,
+            "correlation_pass": true
+          },
+          "available_reference_intervals": 1488
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.2817305107526882,
+            "model_mean": 0.27782950202012835,
+            "bias": -0.0039010087325598297,
+            "relative_bias": -0.01384659660090652,
+            "near_zero": false,
+            "rmse": 0.008479410732744773,
+            "bias_pass": true,
+            "r": 0.9357653958740935,
+            "correlation_pass": true
+          },
+          "available_reference_intervals": 1488
+        }
+      }
+    },
+    "CN-Cha": {
+      "month": "2003-01",
+      "monthly": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 10.89262274798387,
+            "model_mean": 21.24955440935258,
+            "bias": 10.35693166136871,
+            "relative_bias": 0.9508207436345566,
+            "near_zero": false,
+            "rmse": 66.87808007338354,
+            "bias_pass": false,
+            "r": 0.5582579707902018,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 56914806.530009955,
+          "reference_integral": 29174800.7682,
+          "integral_units": "J/m2"
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 2.901487867204301,
+            "model_mean": 0.0606956182226078,
+            "bias": -2.8407922489816935,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 7.312426133337508,
+            "bias_pass": false,
+            "r": 0.36945162669971615,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 162567.14384743272,
+          "reference_integral": 7771345.10352,
+          "integral_units": "J/m2"
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.3790434774527826,
+            "model_mean": 0.0,
+            "bias": -0.3790434774527826,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.9811127129183096,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 0.0,
+          "reference_integral": 11.75034780103626,
+          "integral_units": "g C/m2"
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.35738343655446775,
+            "model_mean": 0.0,
+            "bias": -0.35738343655446775,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.6817051320820338,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 0.0,
+          "reference_integral": 11.078886533188498,
+          "integral_units": "g C/m2"
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.10016629016275666,
+            "model_mean": 1.3421645166292306,
+            "bias": 1.241998226466474,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 1.4142301588666244,
+            "bias_pass": false,
+            "r": -0.14738586297582512,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": 41.60710001550615,
+          "reference_integral": 3.1051549950454564,
+          "integral_units": "g C/m2"
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": -2.754951612903226,
+            "model_mean": -14.613716189830964,
+            "bias": -11.858764576927737,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 13.339418161334578,
+            "bias_pass": false,
+            "r": 0.5021403348108591,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.11001075268817206,
+            "model_mean": 0.09777929753747387,
+            "bias": -0.012231455150698192,
+            "relative_bias": -0.1111841783808945,
+            "near_zero": false,
+            "rmse": 0.01652462065595659,
+            "bias_pass": false,
+            "r": 0.3116764430682687,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.11001075268817206,
+            "model_mean": 0.27975082561503023,
+            "bias": 0.16974007292685817,
+            "relative_bias": 1.5429407469648917,
+            "near_zero": false,
+            "rmse": 0.1697556494137418,
+            "bias_pass": false,
+            "r": 0.44872314965858334,
+            "correlation_pass": false
+          },
+          "finite_reference_intervals": 1488,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        }
+      },
+      "instantaneous": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1472,
+            "reference_mean": 10.789839384510868,
+            "model_mean": 21.23775192918813,
+            "bias": 10.44791254467726,
+            "relative_bias": 0.9683102938191597,
+            "near_zero": false,
+            "rmse": 67.10039923192963,
+            "bias_pass": false,
+            "r": 0.5566455056369027,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "measured",
+            "n": 1374,
+            "reference_mean": 3.0431324745269284,
+            "model_mean": 0.062496711350549586,
+            "bias": -2.980635763176379,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 7.524449243300074,
+            "bias_pass": false,
+            "r": 0.36538898007499127,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.3790434774527826,
+            "model_mean": 0.0,
+            "bias": -0.3790434774527826,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.9811127129183096,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.35738343655446775,
+            "model_mean": 0.0,
+            "bias": -0.35738343655446775,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 0.6817051320820338,
+            "bias_pass": false,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 1488
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "measured",
+            "n": 58,
+            "reference_mean": 0.15129919145952,
+            "model_mean": 1.5323749426110038,
+            "bias": 1.3810757511514837,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 1.8120895127085868,
+            "bias_pass": false,
+            "r": -0.2971641260852317,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": -2.754951612903226,
+            "model_mean": -14.613716189830964,
+            "bias": -11.858764576927737,
+            "relative_bias": null,
+            "near_zero": true,
+            "rmse": 13.339418161334578,
+            "bias_pass": false,
+            "r": 0.5021403348108591,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.11001075268817206,
+            "model_mean": 0.09777929753747387,
+            "bias": -0.012231455150698192,
+            "relative_bias": -0.1111841783808945,
+            "near_zero": false,
+            "rmse": 0.01652462065595659,
+            "bias_pass": false,
+            "r": 0.3116764430682687,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "measured",
+            "n": 1488,
+            "reference_mean": 0.11001075268817206,
+            "model_mean": 0.27975082561503023,
+            "bias": 0.16974007292685817,
+            "relative_bias": 1.5429407469648917,
+            "near_zero": false,
+            "rmse": 0.1697556494137418,
+            "bias_pass": false,
+            "r": 0.44872314965858334,
+            "correlation_pass": false
+          },
+          "available_reference_intervals": 1488
+        }
+      }
+    },
+    "CN-HaM": {
+      "month": "2001-01",
+      "monthly": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": null,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "finite_reference_intervals": 0,
+          "expected_intervals": 1488,
+          "model_integral": null,
+          "reference_integral": null,
+          "integral_units": null
+        }
+      },
+      "instantaneous": {
+        "H_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "LE_F_MDS": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "H_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "LE_CORR": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "GPP_NT_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "GPP_DT_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "NEE_VUT_REF": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "TS_F_MDS_1": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "SWC_F_MDS_1_liquid": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        },
+        "SWC_F_MDS_1_total": {
+          "metrics": {
+            "status": "unmeasured",
+            "n": 0,
+            "reference_mean": null,
+            "model_mean": null,
+            "bias": null,
+            "relative_bias": null,
+            "near_zero": null,
+            "rmse": null,
+            "bias_pass": null,
+            "r": null,
+            "correlation_pass": null
+          },
+          "available_reference_intervals": 0
+        }
+      }
+    }
+  },
+  "stored_independent_ledgers": {
+    "CN-Cng": {
+      "ledger": {
+        "scope": "Checks original stored independent ledger residuals against original step and carried cumulative numerical bounds; conservation has no 10-percent waiver.",
+        "starting_bounds_m_h_c_n": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_step_residual_m_h_c_n": [
+          2.7753434551414102e-05,
+          1.3791015148162842,
+          0.00010528345592319965,
+          2.7544032491277903e-05
+        ],
+        "maximum_cumulative_residual_m_h_c_n": [
+          0.0017353194182874176,
+          21.821049010846764,
+          0.0002441876276861876,
+          0.0001579665986355394
+        ],
+        "final_bounds_m_h_c_n": [
+          6.31372681954746,
+          327774.19594263536,
+          313.17926353954755,
+          27.393336197493483
+        ]
+      },
+      "checkpoint": {
+        "checkpoint_sha256": "6d7c48dfb6a4ec0d15863caa9e1082b97b8c212ef34805a09de19689a2018368",
+        "extensive_storage_m_h_c_n": [
+          552.3030471801758,
+          24871691.6875,
+          6893.385856628418,
+          603.2922971248627
+        ],
+        "residual_m_h_c_n": [
+          -0.00042126955563048796,
+          -11.037576015107334,
+          4.1547202272340655e-05,
+          0.00015086366329342127
+        ]
+      }
+    },
+    "CN-Qia": {
+      "ledger": {
+        "scope": "Checks original stored independent ledger residuals against original step and carried cumulative numerical bounds; conservation has no 10-percent waiver.",
+        "starting_bounds_m_h_c_n": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_step_residual_m_h_c_n": [
+          5.528301699087024e-05,
+          41.09280204772949,
+          0.0007462389767169952,
+          7.086564437486231e-05
+        ],
+        "maximum_cumulative_residual_m_h_c_n": [
+          0.0019472585981930024,
+          366.7017337875441,
+          0.050359022612610715,
+          0.015194650739431381
+        ],
+        "final_bounds_m_h_c_n": [
+          6.414847725849926,
+          2722094.8357048105,
+          685.3871242653581,
+          29.026968371075338
+        ]
+      },
+      "checkpoint": {
+        "checkpoint_sha256": "6d7c48dfb6a4ec0d15863caa9e1082b97b8c212ef34805a09de19689a2018368",
+        "extensive_storage_m_h_c_n": [
+          567.6054391972721,
+          218036653.14819336,
+          15093.135387420654,
+          639.2653496861458
+        ],
+        "residual_m_h_c_n": [
+          0.0019472585981930024,
+          190.43938318174332,
+          -0.04016514409249794,
+          0.011266094166785479
+        ]
+      }
+    },
+    "CN-Cha": {
+      "ledger": {
+        "scope": "Checks original stored independent ledger residuals against original step and carried cumulative numerical bounds; conservation has no 10-percent waiver.",
+        "starting_bounds_m_h_c_n": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_step_residual_m_h_c_n": [
+          1.6196649085031822e-05,
+          4.512525767087936,
+          0.0002535097301006317,
+          5.449711170513183e-05
+        ],
+        "maximum_cumulative_residual_m_h_c_n": [
+          0.0004781500674653216,
+          58.92989697307348,
+          0.09223032754380256,
+          0.0006054190453141928
+        ],
+        "final_bounds_m_h_c_n": [
+          6.304752639280418,
+          588585.3780657605,
+          684.7486433610236,
+          29.02644971501799
+        ]
+      },
+      "checkpoint": {
+        "checkpoint_sha256": "6d7c48dfb6a4ec0d15863caa9e1082b97b8c212ef34805a09de19689a2018368",
+        "extensive_storage_m_h_c_n": [
+          550.9971332550049,
+          29010923.4375,
+          15058.485130310059,
+          639.2481109052896
+        ],
+        "residual_m_h_c_n": [
+          -0.00035192897318125915,
+          -33.228813737630844,
+          0.09223032754380256,
+          0.0006054190453141928
+        ]
+      }
+    },
+    "CN-HaM": {
+      "ledger": {
+        "scope": "Checks original stored independent ledger residuals against original step and carried cumulative numerical bounds; conservation has no 10-percent waiver.",
+        "starting_bounds_m_h_c_n": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_step_residual_m_h_c_n": [
+          4.746500053443015e-06,
+          1.20977783203125,
+          0.0003623794764280319,
+          4.288455602363683e-05
+        ],
+        "maximum_cumulative_residual_m_h_c_n": [
+          0.00011464044393960648,
+          9.650375665165484,
+          0.0015844999343244126,
+          0.00024833594216033816
+        ],
+        "final_bounds_m_h_c_n": [
+          2.775800588894614,
+          253180.38308828592,
+          310.89632478462926,
+          27.3012921066035
+        ]
+      },
+      "checkpoint": {
+        "checkpoint_sha256": "6d7c48dfb6a4ec0d15863caa9e1082b97b8c212ef34805a09de19689a2018368",
+        "extensive_storage_m_h_c_n": [
+          246.9756374359131,
+          22867453.5078125,
+          6842.638862609863,
+          601.2384136915207
+        ],
+        "residual_m_h_c_n": [
+          -1.2910861727277734e-05,
+          -2.77566459774971,
+          -0.0012194979376545234,
+          -2.1255749743431807e-05
+        ]
+      }
+    }
+  }
+}

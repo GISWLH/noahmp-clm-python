@@ -15,10 +15,21 @@ from noahmp_clm.validation import compare_series
 
 def compare_columns(model,reference):
     if model.get('status')!='complete':raise ValueError('Model trajectory must be complete')
-    a,b=model['intervals'],reference['intervals']
+    if len(model['intervals'])!=model['steps_completed']:raise ValueError('Complete model length disagrees with report')
+    return compare_interval_rows(model['intervals'],reference)
+
+
+def compare_interval_rows(a,reference):
+    """Score already scoped data rows; makes no claim about a run's status.
+
+    Callers must separately validate original reports and declare whether the
+    rows cover a full run or an incomplete-year diagnostic. This avoids ever
+    fabricating a complete report for an incomplete original trajectory.
+    """
+    b=reference['intervals']
     dt=reference['timestep_seconds']
     if dt<=0 or 86400%dt:raise ValueError('Require a timestep dividing a day')
-    if len(a)!=len(b) or len(a)!=model['steps_completed'] or not a:
+    if len(a)!=len(b) or not a:
         raise ValueError('Both trajectories must have exactly matching lengths')
     initial=datetime.fromisoformat(reference['initial_time'])
     for i,(x,y) in enumerate(zip(a,b)):

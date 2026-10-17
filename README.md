@@ -8,6 +8,11 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 瞬时通量 r >0.85、近零绝对容差、收支守恒独立硬要求。旧 H4/K3/M4 门已退役，
 下述 v0.2.0 数字是保留的历史记录，不是本阶段合并条件。
 
+最新[固定首个1月诊断](docs/CLM_FIRST_MONTH_RESULTS.md)已在EHPC完成：94项完整性/
+评价检查通过，但三站官方对照仍未整体达标。Qia H月偏差−62.3938%、LE
++82.9974%；对FLUXNET的LE月偏差−7.29567%，瞬时r仍为0.764774。原年度保持
+运行中，未用首月代替年度、spinup或观测验收。
+
 连续验证记录：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
 [联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
 后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，该检查点EHPC完整CPU部分
