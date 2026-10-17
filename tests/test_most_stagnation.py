@@ -1,0 +1,62 @@
+"""A representationally exhausted bracket is not an accepted fixed point."""
+from pathlib import Path
+import sys
+import numpy as np
+import pytest
+
+
+def qia_case(dtype=np.float32):
+    with np.load(Path(__file__).parent/'fixtures/qia_most_float32_stagnation.npz') as z:
+        values={k:(v.astype(dtype) if v.dtype.kind=='f' else v.copy()) for k,v in z.items()}
+    return tuple(values[f'a{k}'] for k in range(16)), values
+
+
+@pytest.mark.parametrize('has_root',[True,False])
+def test_native_schedule_recovers_only_if_original_residual_converges(monkeypatch,has_root):
+    # Execute the scheduling arithmetic with float32 host arrays, and a
+    # manufactured discontinuous inner map. This is not a GPU physics test.
+    monkeypatch.setitem(sys.modules,'cupy',np)
+    import noahmp_clm.gpu.cuda.canopy_most as coefficients_module
+    import noahmp_clm.gpu.cuda.canopy_phase_surface as surface_module
+    from noahmp_clm.gpu.canopy_most_surface import run_most_surface
+    names=('friction_velocity','heat_velocity','water_velocity','leaf_velocity','ground_velocity')
+    def coefficients(geometry,atmosphere,state):
+        zeta=state[:,0]
+        target=zeta+np.where(zeta<np.float32(1.875),np.float32(.01),np.float32(-.01))
+        if has_root:
+            target=np.where(abs(zeta-np.float32(1.87))<np.float32(1e-6),np.float32(1.87),target)
+        return dict(**{k:np.float32(1)/(np.float32(1)+zeta) for k in names},
+            zeta=target,raw_zeta=target,effective_wind=np.ones(len(zeta),np.float32),
+            potential_temperature=atmosphere[:,0],buoyancy=np.zeros(len(zeta),np.float32),
+            convective_wind=np.zeros(len(zeta),np.float32))
+    def surface(*args,**kwargs):
+        return dict(h=np.zeros(1,np.float32),et_kgm2=np.zeros(1,np.float32),
+                    leaf_temperature=np.zeros((1,10),np.float32))
+    monkeypatch.setattr(coefficients_module,'run_canopy_most_cuda',coefficients)
+    monkeypatch.setattr(surface_module,'run_canopy_phase_surface_cuda',surface)
+    arrays=[np.zeros((1,1),np.float32) for _ in range(9)]
+    arrays[5]=np.array([[280.,.005,100000.]+[1.]*20],np.float32);arrays[7][:]=1800.
+    def run():
+        return run_most_surface(arrays,np.zeros((1,9),np.float32),np.ones(1,np.float32),.04,3.,backend='cuda')
+    if not has_root:
+        with pytest.raises(RuntimeError,match='50 iterations'):run()
+    else:
+        most=run()['most']
+        assert most['bisection_restarts'][0]==1 and most['iterations'][0]==27
+        assert most['coefficient_residual'][0]==0.
+        assert most['used_zeta'][0]==np.float32(1.87)
+
+
+def test_failed_float32_state_has_a_converged_numpy_reference():
+    from test_gpu_clm_bgc_column import reference
+    from noahmp_clm.physics.canopy_most import MOSTGeometry
+    a,v=qia_case()
+    ref=reference(tuple(x[0] for x in a),v['forcing'][0],np.zeros(5),v['environment'][0],
+        v['calendar'][0],0.,1.,most_geometry=MOSTGeometry(*map(float,v['geometry'][0])))
+    d=ref['diagnostics'];m=d['most']
+    assert m['coefficient_residual']<=1e-4 and m['iterations']<=50
+    assert abs(d['h']-(-.488049424337917))<1e-8
+    assert abs(d['le']-3.732525052048051)<1e-8
+    assert m['bisection_restarts']==0
+    print('Qia same-state NumPy',dict(h=d['h'],le=d['le'],iterations=m['iterations'],
+        coefficient_residual=m['coefficient_residual']),flush=True)

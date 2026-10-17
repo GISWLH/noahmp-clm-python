@@ -136,7 +136,7 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
         raise ValueError('MOST requires at least two surface solves')
     if not math.isfinite(time_step) or time_step<=0:raise ValueError('Positive MOST time step required')
     zeta=0.;effective=max(1.,float(wind));previous=None;history=[]
-    stable_bracket=False;lower=0.;upper=2.
+    stable_bracket=False;lower=0.;upper=2.;bisection_restarts=0
     theta=exchange.air_temperature+.0098*geometry.temperature_height
     for iteration in range(1,max_iterations+1):
         velocities=canopy_exchange(zeta,effective,geometry,leaf_dimension=leaf_dimension,plant_area=plant_area)
@@ -161,6 +161,7 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
                 d['most']=dict(**velocities,**target,used_zeta=zeta,used_effective_wind=effective,
                     iterations=iteration,coefficient_residual=mismatch,heat_change_wm2=float(dh),
                     vapor_change_kgm2s=float(de),leaf_temperature_change_k=dt,history=history)
+                d['most']['bisection_restarts']=bisection_restarts
                 return result
         previous=dict(h=float(d['h']),vapor=vapor,temperature=np.array(d['leaf_temperature'],copy=True))
         if stable_bracket:
@@ -171,8 +172,14 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
             # strongly stable columns. Every bracket trial retains old M/H.
             if target['zeta']>=zeta:lower=zeta
             else:upper=zeta
-            zeta=.5*(lower+upper)
-        else:
+            midpoint=.5*(lower+upper)
+            if midpoint==zeta:
+                # An inner-solver discontinuity may exhaust the representable
+                # bracket. Resume damped feedback; all acceptance tests above
+                # and the original iteration budget still apply.
+                stable_bracket=False;bisection_restarts+=1
+            else:zeta=midpoint
+        if not stable_bracket:
             zeta=.5*(zeta+target['zeta']);effective=.5*(effective+target['effective_wind'])
     raise RuntimeError(f'MOST flux feedback did not converge in {max_iterations} iterations; '
                        f'coefficient residual={mismatch:.9g}, zeta={zeta:.9g}')

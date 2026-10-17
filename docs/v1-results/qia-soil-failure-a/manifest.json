@@ -1,0 +1,335 @@
+{
+  "scope": "Retained incomplete four-case exploratory week, exact failed-state replay and uncommitted solver probe; no complete-week acceptance",
+  "archive_sha256": "e36effebe698898a627927bdad655c901710868787ace2b9a3507ccbac3b5b6a",
+  "artifacts": [
+    {
+      "source": "batch.json",
+      "path": "batch.json.gz",
+      "source_sha256": "d61b7dc8028fc21cb4f715a8df5e6be32a118a8630072e3d062bf119f3890e9c",
+      "stored_sha256": "954d13a4e7b25b0aa293865b5d93048f732c2bbe2d704d5dac9b428a7ea393b5",
+      "bytes": 248
+    },
+    {
+      "source": "cases.json",
+      "path": "cases.json.gz",
+      "source_sha256": "aba98061ffb406c6e81e1e69f642ba487c28dd9431190e8247c47e1a856e2ac2",
+      "stored_sha256": "68d98c284d37423b11317ecc08149fd6f5de3938de7951abf7df8d8976446d9e",
+      "bytes": 574
+    },
+    {
+      "source": "protocol.json",
+      "path": "protocol.json.gz",
+      "source_sha256": "03cc1aae76d6d360ba3b6cfacdd6f59eee8af26976f071906795d586aedba146",
+      "stored_sha256": "7a57fed01f7e7dea858dafe3f467389f2ef5503c654c6fbdca72dd411dc0a959",
+      "bytes": 1545
+    },
+    {
+      "source": "native.log",
+      "path": "native.log.gz",
+      "source_sha256": "de61ec8c94aa0d290862ea742ace577e585b356d49e3bbdc5757356ad798b7ad",
+      "stored_sha256": "7be6a5f018e62f74e91678ddc5caf632be493047918befd1bb397ab587a91c20",
+      "bytes": 1026
+    },
+    {
+      "source": "diagnose-step.py",
+      "path": "diagnose-step.py.gz",
+      "source_sha256": "59879fff38221b949aaa3cf68e790db14aa25cfefd19e59cd127271c75b58b60",
+      "stored_sha256": "aa82c2a5e32cbb315c0799b62f2d235c41f17257510a21b5cbb563b8fdac753f",
+      "bytes": 1600
+    },
+    {
+      "source": "diagnose-step.log",
+      "path": "diagnose-step.log.gz",
+      "source_sha256": "e4cac94108420379dcb96ed4ec88f9235e6776943f6e854f3e4f4ae5850f14db",
+      "stored_sha256": "b610f08298a81019a966f66d6b2d132cecf1b10efe0f672d561400529bdb70da",
+      "bytes": 974
+    },
+    {
+      "source": "probe-map.py",
+      "path": "probe-map.py.gz",
+      "source_sha256": "77210b104197230259f31e0dedf4756e4f305c0dbddec18ee6ed6285099d1238",
+      "stored_sha256": "c1fb25ea5410877a667e5ef10ecb6acd75bd397a11ca2d6c729db5fe08d6a363",
+      "bytes": 1290
+    },
+    {
+      "source": "probe-map.log",
+      "path": "probe-map.log.gz",
+      "source_sha256": "619e41388ffa92ac1e646bc6b2764d4ff44e324ff0db1888a214e8a8446900e2",
+      "stored_sha256": "2e0b01852615ebfd01316dd735303b58eb82b5a24fe3b478522fa46d19648c3d",
+      "bytes": 1061
+    },
+    {
+      "source": "probe-restart.py",
+      "path": "probe-restart.py.gz",
+      "source_sha256": "16043ffc8f21b19c9a016529bcb63b4b31cbb4ab84d1e08110b30aca72205126",
+      "stored_sha256": "bce05cfa7d1176b98a8a668afca21676bfd9664f0f42f78489175de805b24385",
+      "bytes": 1111
+    },
+    {
+      "source": "probe-restart.log",
+      "path": "probe-restart.log.gz",
+      "source_sha256": "b17c1f25c59efa2db5ecf7854b3bcaf6bbcbb7fa73c3c7e7b4d966f8b1be69c2",
+      "stored_sha256": "2828fa0208af094c20680f63258832eb4db9eb8b7a13ab9fb7dbc594cf4d6cd8",
+      "bytes": 643
+    },
+    {
+      "source": "probe-restart-b.py",
+      "path": "probe-restart-b.py.gz",
+      "source_sha256": "f435c6e6206ed6d7802984a49738ed47c186362aac95f98c820c9b8f737de5f1",
+      "stored_sha256": "0ea5d1aa03be975d34a293cc7b69284456ab45ce7f2d35d67a5e193461c92715",
+      "bytes": 1144
+    },
+    {
+      "source": "probe-restart-b.log",
+      "path": "probe-restart-b.log.gz",
+      "source_sha256": "82837afb76c3bef9d1338b5dfd0f8c7f2025d6c679b6a91089b43efc775bcf40",
+      "stored_sha256": "4f1adf131a180d0c29338325600ec2e5447bb21ff605933614acf7e87a089d34",
+      "bytes": 737
+    },
+    {
+      "source": "configs/qia-nominal-deep-fc.json",
+      "path": "configs/qia-nominal-deep-fc.json.gz",
+      "source_sha256": "422f1ae153c6875c6aa148f20d6bb975234cd39fdd82011f416220c46f249533",
+      "stored_sha256": "494091856b860c5b5d110cd3674ac881ea323e001b04d17d3121996ee5848362",
+      "bytes": 2169
+    },
+    {
+      "source": "configs/qia-nominal-uniform.json",
+      "path": "configs/qia-nominal-uniform.json.gz",
+      "source_sha256": "f51bf5187ebb276a535d110d8452d97392f59c06cfde893cfd12a14e5705545e",
+      "stored_sha256": "c37960ef0e6ebec942a58ad588b7a799c8f608e10e043ca81e229d956ec9527b",
+      "bytes": 2166
+    },
+    {
+      "source": "configs/qia-stas4-deep-fc.json",
+      "path": "configs/qia-stas4-deep-fc.json.gz",
+      "source_sha256": "a73e627a2bd39a0bbafb99c942def73a4af41903534e34ab59b18ed3fa145b57",
+      "stored_sha256": "d707c0a26fdc20278839b4f4abf09165fff9eaeb879768d1bc46b17da0eb30e5",
+      "bytes": 2182
+    },
+    {
+      "source": "configs/qia-stas4-uniform.json",
+      "path": "configs/qia-stas4-uniform.json.gz",
+      "source_sha256": "857ba7ab1518a1eff1fd6b7d5c1d3e1db7160a64c270e4489dfc4eed3b02e7a8",
+      "stored_sha256": "b47278dd5b4dc6b6ae5bf7ebd6dc36246975fbde2063369bd8ebf0049422252f",
+      "bytes": 2181
+    },
+    {
+      "source": "failure-replay/most-map-a.json",
+      "path": "failure-replay/most-map-a.json.gz",
+      "source_sha256": "619e41388ffa92ac1e646bc6b2764d4ff44e324ff0db1888a214e8a8446900e2",
+      "stored_sha256": "2e0b01852615ebfd01316dd735303b58eb82b5a24fe3b478522fa46d19648c3d",
+      "bytes": 1061
+    },
+    {
+      "source": "failure-replay/most-map-a.npz",
+      "path": "failure-replay/most-map-a.npz",
+      "source_sha256": "c33b182bc8102a6ab5a8e4ed531fc1231fc9ddcf4873e410d795303a7d2075a3",
+      "stored_sha256": "c33b182bc8102a6ab5a8e4ed531fc1231fc9ddcf4873e410d795303a7d2075a3",
+      "bytes": 8150
+    },
+    {
+      "source": "failure-replay/most-restart-a.json",
+      "path": "failure-replay/most-restart-a.json.gz",
+      "source_sha256": "086607f8d4e40400d744f76c5ecdb86e685140cc4ff6f27254ca9de75fcc894e",
+      "stored_sha256": "0cd7df21820549223606a404b434bb71af32fa5e3f0b2f497d915869eca6c0c1",
+      "bytes": 728
+    },
+    {
+      "source": "failure-replay/most-restart-b.json",
+      "path": "failure-replay/most-restart-b.json.gz",
+      "source_sha256": "0dfb83d4ecd93330b394adae7363d76f2269eff6db9b0eca08ee843f90d947d5",
+      "stored_sha256": "041fac085bd08a3737110a3754d8562851dc5956c79aaedc4f29863f97d445d6",
+      "bytes": 864
+    },
+    {
+      "source": "failure-replay/most-restart-candidate-a.py",
+      "path": "failure-replay/most-restart-candidate-a.py.gz",
+      "source_sha256": "704699ae10abfe60c4c7530513b1aabfa634936de2488f5ceeab4da89f53cb2c",
+      "stored_sha256": "2fc1623b28f920a9e56f18604125a6cb7ca3516c849098459efddf1728872f9e",
+      "bytes": 1474
+    },
+    {
+      "source": "failure-replay/most-restart-candidate-b.py",
+      "path": "failure-replay/most-restart-candidate-b.py.gz",
+      "source_sha256": "704699ae10abfe60c4c7530513b1aabfa634936de2488f5ceeab4da89f53cb2c",
+      "stored_sha256": "2fc1623b28f920a9e56f18604125a6cb7ca3516c849098459efddf1728872f9e",
+      "bytes": 1474
+    },
+    {
+      "source": "failure-replay/qia-nominal-deep-fc-oldstate.npz",
+      "path": "failure-replay/qia-nominal-deep-fc-oldstate.npz",
+      "source_sha256": "830e8dae47d51122b9823ec19e2015f3199f4d6489b373a2a41376cb1a3f2b26",
+      "stored_sha256": "830e8dae47d51122b9823ec19e2015f3199f4d6489b373a2a41376cb1a3f2b26",
+      "bytes": 4157
+    },
+    {
+      "source": "failure-replay/qia-nominal-deep-fc-surface.npz",
+      "path": "failure-replay/qia-nominal-deep-fc-surface.npz",
+      "source_sha256": "8cdc5e5ef9e8fe463cd56a24e90233fc9ceecd81584df4403cbd98e75d169936",
+      "stored_sha256": "8cdc5e5ef9e8fe463cd56a24e90233fc9ceecd81584df4403cbd98e75d169936",
+      "bytes": 2645
+    },
+    {
+      "source": "failure-replay/qia-nominal-deep-fc.json",
+      "path": "failure-replay/qia-nominal-deep-fc.json.gz",
+      "source_sha256": "a0efabffd0f513249336da59c28f885d40f7c77b5159e8c832ac6cd080f65395",
+      "stored_sha256": "0a51d27f12b964c7dbcfa43f66510eb83352f169017b254a500d9f21a0ee1b5b",
+      "bytes": 8816
+    },
+    {
+      "source": "failure-replay/qia-nominal-uniform-oldstate.npz",
+      "path": "failure-replay/qia-nominal-uniform-oldstate.npz",
+      "source_sha256": "4ac19512b3b8beac2e785f87f9f8fd428db266b34dd946eb89794b4120cab304",
+      "stored_sha256": "4ac19512b3b8beac2e785f87f9f8fd428db266b34dd946eb89794b4120cab304",
+      "bytes": 4166
+    },
+    {
+      "source": "failure-replay/qia-nominal-uniform-surface.npz",
+      "path": "failure-replay/qia-nominal-uniform-surface.npz",
+      "source_sha256": "4527aa586b664b3a8511046b04d59c02a6f5498d17312aaa42b3ea71c9da72fe",
+      "stored_sha256": "4527aa586b664b3a8511046b04d59c02a6f5498d17312aaa42b3ea71c9da72fe",
+      "bytes": 2648
+    },
+    {
+      "source": "failure-replay/qia-nominal-uniform.json",
+      "path": "failure-replay/qia-nominal-uniform.json.gz",
+      "source_sha256": "c0d59277138c6c9c8f4a53b0b16ef2964c65611ce5b3c2c9dc750de3c52604ce",
+      "stored_sha256": "731ec1b942038c50066b2d26095ceb1592e7a4cc2c374c32e8d71179e51dab99",
+      "bytes": 4957
+    },
+    {
+      "source": "failure-replay/qia-stas4-deep-fc-oldstate.npz",
+      "path": "failure-replay/qia-stas4-deep-fc-oldstate.npz",
+      "source_sha256": "1c5f86fc3b39fe8c694246a85b20ebfc9edb1abe650b0fc73aefa5f9d08ea19a",
+      "stored_sha256": "1c5f86fc3b39fe8c694246a85b20ebfc9edb1abe650b0fc73aefa5f9d08ea19a",
+      "bytes": 4153
+    },
+    {
+      "source": "failure-replay/qia-stas4-deep-fc-surface.npz",
+      "path": "failure-replay/qia-stas4-deep-fc-surface.npz",
+      "source_sha256": "fe92dfd79c0e9f0cd0d6cbda10c1245a7174dcb8f7942c007ad30c9a844187df",
+      "stored_sha256": "fe92dfd79c0e9f0cd0d6cbda10c1245a7174dcb8f7942c007ad30c9a844187df",
+      "bytes": 2646
+    },
+    {
+      "source": "failure-replay/qia-stas4-deep-fc.json",
+      "path": "failure-replay/qia-stas4-deep-fc.json.gz",
+      "source_sha256": "409951d2999447a0d6c52410dce06d4da3339cb82deac79bc16a55143394db36",
+      "stored_sha256": "75493f94dcbb339999bd888366adedc53d6e5f24394ebfe73ce31d8917af6a9d",
+      "bytes": 4842
+    },
+    {
+      "source": "failure-replay/qia-stas4-uniform-oldstate.npz",
+      "path": "failure-replay/qia-stas4-uniform-oldstate.npz",
+      "source_sha256": "110c75bbfb460828635ade35c31d6286e6fad4875cbb954d5418c111771b0446",
+      "stored_sha256": "110c75bbfb460828635ade35c31d6286e6fad4875cbb954d5418c111771b0446",
+      "bytes": 4154
+    },
+    {
+      "source": "failure-replay/qia-stas4-uniform-surface.npz",
+      "path": "failure-replay/qia-stas4-uniform-surface.npz",
+      "source_sha256": "ebbff6dd23e39476cfc4aff5efefaf5965c5d7fb69b4bbf4f5dc8f91a407a254",
+      "stored_sha256": "ebbff6dd23e39476cfc4aff5efefaf5965c5d7fb69b4bbf4f5dc8f91a407a254",
+      "bytes": 2645
+    },
+    {
+      "source": "failure-replay/qia-stas4-uniform.json",
+      "path": "failure-replay/qia-stas4-uniform.json.gz",
+      "source_sha256": "38a3da1e96bb777d2bce443e3d6ce0d8e39a41c6db0552ad836080bf9629352f",
+      "stored_sha256": "ab92d9271d9644619cb2eacb80b30caeb4bdb2fb05c520c457f14e3638bd9957",
+      "bytes": 5256
+    },
+    {
+      "source": "failure-replay/summary.json",
+      "path": "failure-replay/summary.json.gz",
+      "source_sha256": "c9364589fb162d2ac7ad45a503fb757f01d4ece98b89437ca482ec78eb84a257",
+      "stored_sha256": "11697d7381474717db98e97e600938a0c4dc93303a1fbde05702de8edd7f2b40",
+      "bytes": 1005
+    },
+    {
+      "source": "native-run/batch.json",
+      "path": "native-run/batch.json.gz",
+      "source_sha256": "cc0aeed9b453ec909c8bbd836f1b767a7c966bac792784659244eab82acc2bca",
+      "stored_sha256": "a01bc733dd301769aac2906298e421f7891aab47974c3db11a4f4aa3896a97a5",
+      "bytes": 9510
+    },
+    {
+      "source": "native-run/state-0000326.npz",
+      "path": "native-run/state-0000326.npz",
+      "source_sha256": "dd088dfb2310dcec21c5becba1a485a4bbc24473dbed925d51ccb8f6685d779c",
+      "stored_sha256": "dd088dfb2310dcec21c5becba1a485a4bbc24473dbed925d51ccb8f6685d779c",
+      "bytes": 5580
+    },
+    {
+      "source": "native-run/qia-nominal-uniform/report.json",
+      "path": "native-run/qia-nominal-uniform/report.json.gz",
+      "source_sha256": "10d48e49c087b1b5f3b036e5d733d765da28e4a3d1130bea72e7f39351cd6e3f",
+      "stored_sha256": "a0201ed7672255833311a4a7f4dc50a8666246743d9d0aa1e167e9541663e5a3",
+      "bytes": 11136
+    },
+    {
+      "source": "native-run/qia-nominal-uniform/trace-0000326.npz",
+      "path": "native-run/qia-nominal-uniform/trace-0000326.npz",
+      "source_sha256": "c7346f769f0101e62021b8b20b8b6ddd97d4af3fca3c295aa4439462047927a4",
+      "stored_sha256": "c7346f769f0101e62021b8b20b8b6ddd97d4af3fca3c295aa4439462047927a4",
+      "bytes": 52098
+    },
+    {
+      "source": "native-run/qia-stas4-uniform/report.json",
+      "path": "native-run/qia-stas4-uniform/report.json.gz",
+      "source_sha256": "f7ad3ba6a0d7ccbab8bcaa3cf00278df8512c8eecb856cf7f558e9cd392ba975",
+      "stored_sha256": "96183a523ad7957b333227ce3b7cd443fcf56aa7175defc1434b5bb98a428977",
+      "bytes": 11154
+    },
+    {
+      "source": "native-run/qia-stas4-uniform/trace-0000326.npz",
+      "path": "native-run/qia-stas4-uniform/trace-0000326.npz",
+      "source_sha256": "cd31976f2a11a1b7807c240414c873ee00a2bf08e1b5d4774a0bb7bd7e8e4f31",
+      "stored_sha256": "cd31976f2a11a1b7807c240414c873ee00a2bf08e1b5d4774a0bb7bd7e8e4f31",
+      "bytes": 51439
+    },
+    {
+      "source": "native-run/qia-nominal-deep-fc/report.json",
+      "path": "native-run/qia-nominal-deep-fc/report.json.gz",
+      "source_sha256": "82b3709d34a6973772a3c987a3ae94a139b0b17cfb3cf34a9a7d91dde74394b6",
+      "stored_sha256": "f026921f4a3e10dba92dcc7e211ed647f126748eb4730141ba7b0626c3843f47",
+      "bytes": 11116
+    },
+    {
+      "source": "native-run/qia-nominal-deep-fc/trace-0000326.npz",
+      "path": "native-run/qia-nominal-deep-fc/trace-0000326.npz",
+      "source_sha256": "a6cc0fadd7d8652f2d084ef6625ce98799c03a889dd8a4580b275df3c6e5734f",
+      "stored_sha256": "a6cc0fadd7d8652f2d084ef6625ce98799c03a889dd8a4580b275df3c6e5734f",
+      "bytes": 52072
+    },
+    {
+      "source": "native-run/qia-stas4-deep-fc/report.json",
+      "path": "native-run/qia-stas4-deep-fc/report.json.gz",
+      "source_sha256": "527057d2e976863229db3f0056c0e3da6d64242a2595f3ee8eb490112f8128f5",
+      "stored_sha256": "aa70bd3b20012f2dd7e41e983992240cb8f5dae19de45d9fee29dfb6fb2a907f",
+      "bytes": 11138
+    },
+    {
+      "source": "native-run/qia-stas4-deep-fc/trace-0000326.npz",
+      "path": "native-run/qia-stas4-deep-fc/trace-0000326.npz",
+      "source_sha256": "2a002e77fd77a0bd1fbbf91665acc4fa96c9cc1aa1263a5189790e74da5e25ae",
+      "stored_sha256": "2a002e77fd77a0bd1fbbf91665acc4fa96c9cc1aa1263a5189790e74da5e25ae",
+      "bytes": 51637
+    },
+    {
+      "source": "failure-evidence-manifest.json",
+      "path": "failure-evidence-manifest.json.gz",
+      "source_sha256": "d35eee43d24c674ce054f473e642cb9ad5d5046211634907ba9f2f2385c0da9a",
+      "stored_sha256": "e83cdcd596e706018d30b5ece1926e9d7c9ea55bbe9fe321ecb7e5846a1b9d22",
+      "bytes": 2150
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "def451f1029d900b17ffd5f9807bfa5401512914a35906436425d3e8e8f131f2",
+      "stored_sha256": "59acf18a1e7b5af1b5c1ccd91ec7424375b861f3440ec9a60fdf01bad0a55ee6",
+      "bytes": 19427
+    }
+  ]
+}

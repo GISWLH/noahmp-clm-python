@@ -22,6 +22,7 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
     plant_area=xp.broadcast_to(xp.asarray(plant_area,dtype),(n,))
     zero=xp.zeros(n,dtype);zeta=zero;effective=xp.maximum(1.,wind)
     done=xp.zeros(n,bool);iterations=xp.zeros(n,xp.int32);previous=None
+    bisection_restarts=xp.zeros(n,xp.int32)
     lower=zero;upper=zero+2.;stable_bracket=xp.zeros(n,bool)
     atmosphere=xp.stack((u[:,0],u[:,1],u[:,2],wind,zero,zero,zero+.2),axis=1)
     state=xp.stack((zeta,effective,leaf_dimension,plant_area),axis=1)
@@ -46,11 +47,19 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
             if bool(xp.all(done)):
                 surface['most']={**current,**{k:feedback[k] for k in ('zeta','raw_zeta','buoyancy','convective_wind','effective_wind')},
                     'used_zeta':zeta,'used_effective_wind':effective,'iterations':iterations,
+                    'bisection_restarts':bisection_restarts,
                     'coefficient_residual':mismatch,'heat_change_wm2':dh,'vapor_change_kgm2s':de,'leaf_temperature_change_k':dt}
                 return surface
         previous=(surface['h'],vapor,surface['leaf_temperature'])
         lower=xp.where(stable_bracket&(~done)&(feedback['zeta']>=zeta),zeta,lower)
         upper=xp.where(stable_bracket&(~done)&(feedback['zeta']<zeta),zeta,upper)
+        # A finite-accuracy inner solve can make the outer map discontinuous
+        # between adjacent representable states. If bisection cannot move,
+        # release that bracket and resume damped feedback from the same old
+        # stores. This is a new trial, not permission to accept its residual.
+        stalled=stable_bracket&(~done)&(.5*(lower+upper)==zeta)
+        bisection_restarts=bisection_restarts+stalled.astype(xp.int32)
+        stable_bracket=stable_bracket&(~stalled)
         next_zeta=xp.where(stable_bracket,.5*(lower+upper),.5*(zeta+feedback['zeta']))
         zeta=xp.where(done,zeta,next_zeta)
         effective=xp.where(done|stable_bracket,effective,.5*(effective+feedback['effective_wind']))
