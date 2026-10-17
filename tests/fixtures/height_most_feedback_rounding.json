@@ -1,0 +1,14 @@
+{
+  "scope": "All 27 actual independent height trajectories immediately before the failed step; CUDA/JAX carried states were bitwise identical",
+  "fixture": "height_most_feedback_rounding.npz",
+  "sha256": "d2887df4b81150e8608353b4a78a1902a761a56418a1b49419603c3aeaae66f2",
+  "step_zero_based": 13,
+  "failure_column": 24,
+  "failure_case": "CN-Cha-tq61.8-w32",
+  "local_interval_start": "2003-07-01T06:30:00",
+  "original_source_manifest_sha256": "def451f1029d900b17ffd5f9807bfa5401512914a35906436425d3e8e8f131f2",
+  "dtype": "float32",
+  "forcing_update": "Replace site array a4 columns 7:10 with forcing_environment before stepping; geometry, phenology environment/calendar and all sixteen authoritative arrays remain explicit",
+  "original_failure": "Native MOST vapor ET/dt rounded differently by one float32 ulp before the first feedback, resulting in acceptance at iterations 9/10 and H difference 8.58306884765625e-5 W/m2",
+  "acceptance": "Original rtol=atol=1e-6 on every returned floating field, exact flags/integers, independent per-column M/H/C/N budgets"
+}
