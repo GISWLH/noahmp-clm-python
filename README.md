@@ -20,6 +20,11 @@ NumPy目标21项及完整CPU780项完成，xuanze实态核心3项完成，同精
 原J48前缀被明确拒绝作为完整循环。当前804个CPU节点有同源分布式覆盖记录；
 设备325项仍在执行，实际气候spinup和多站多年验收未完成。
 
+[条件季节碳库初始化原型](docs/CLM_SPINUP_ACCELERATION.md)在EHPC两例对独立
+连续参考偏差0.131%/0.137%，缺氮负对照不适用，尚未采用为站点初态。
+xuanze[稳定Qia三项](docs/CLM_GPU_READONLY_PROFILE.md)完成、同精度差0；重复
+定向剩余项交由完整GPU队列执行，GPU0年度/GPU1回归继续，未计完整通过。
+
 连续验证记录：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
 [联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
 后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，该检查点EHPC完整CPU部分

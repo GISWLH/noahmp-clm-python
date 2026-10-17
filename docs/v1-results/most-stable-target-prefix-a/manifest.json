@@ -1,0 +1,120 @@
+{
+  "scope": "Current frozen six completed MOST GPU targets, stable Qia values, and explicit scheduling delegation of remaining three files to canonical full GPU325. Partial/interrupted output is not credited as passed.",
+  "archive_sha256": "dfd3619d0a8f0b03f5215a652029998a55a7d92d705d4044ec6a238431775c81",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "58601b495d578d21f35ff85ed8571d913af32a266f1a155872cbea48e57974b9",
+      "stored_sha256": "1d15e55afadcc978a905f7fbd91a3d7f556205b23429809b70286b18d748915a"
+    },
+    {
+      "source": "gpu-target-launch.json",
+      "path": "gpu-target-launch.json.gz",
+      "source_sha256": "0695ccdc12794ff0248b6ef4b5fe8a4d220cdd0426ef6dcbce8f2369419c4413",
+      "stored_sha256": "6af806b6eb32bdbb5cf90ad8a0dd5909504b1301fb7145017413318f1215f60d"
+    },
+    {
+      "source": "run_most_oscillation_gpu_a.py",
+      "path": "run_most_oscillation_gpu_a.py.gz",
+      "source_sha256": "948dfad3f1500b728826a61764009ec6e82d1c4a179a503e5fee063b730ca5d3",
+      "stored_sha256": "b5b427b302e8aa72ee22b9a7f8e27e86eeb60166c620c19bb9944bd0814cd8c9"
+    },
+    {
+      "source": "launch_most_oscillation_gpu_a.py",
+      "path": "launch_most_oscillation_gpu_a.py.gz",
+      "source_sha256": "dc8ee63640b5d20cdb09c9dabe59dc572d17bee7e0b704bac150371ba32ba055",
+      "stored_sha256": "67a9722de9c0225e3fb78c32970f91e04a712e7da78755e8903505f9b69caa6d"
+    },
+    {
+      "source": "target-before-delegation-a.json",
+      "path": "target-before-delegation-a.json.gz",
+      "source_sha256": "357896a8056a1bba1a23abba9e67cf789008f5fe7938841e61e8e0494fb276a5",
+      "stored_sha256": "571044a937ab56d00712d7ce24fc0d7b4b6cefd9d1e05fae521be4544ee97bec"
+    },
+    {
+      "source": "full-before-target-delegation-a.json",
+      "path": "full-before-target-delegation-a.json.gz",
+      "source_sha256": "9f771d3ff357abe4664ea0e63936b4d245deac4f421d9f75e0b72ed71104f2f0",
+      "stored_sha256": "92116a6ee2ddaeab7e4eb2590a22119a863f53a9e31aea3d92b12a554fc6913b"
+    },
+    {
+      "source": "target-delegated-to-full-a.json",
+      "path": "target-delegated-to-full-a.json.gz",
+      "source_sha256": "02eedfb243a77cd59f016d43cc62fd02adfd74dbef75b8608f2498e34dd59231",
+      "stored_sha256": "c660af51188677c603ac74e597a20d2e3a0f55ae7bf0144f8d4bf430ae5fa8ac"
+    },
+    {
+      "source": "delegate_most_target_to_full_a.py",
+      "path": "delegate_most_target_to_full_a.py.gz",
+      "source_sha256": "dcf7f797bbf126c4e9c3bb4e22ca83a7e9726936421bb72649a27d286eafa684",
+      "stored_sha256": "842da5517c15654ee82ed1affa1a9c156a3c0c2bf1a0cd03c8e044e9d8fd05f1"
+    },
+    {
+      "source": "gpu-target-progress.json",
+      "path": "gpu-target-progress.json.gz",
+      "source_sha256": "357896a8056a1bba1a23abba9e67cf789008f5fe7938841e61e8e0494fb276a5",
+      "stored_sha256": "571044a937ab56d00712d7ce24fc0d7b4b6cefd9d1e05fae521be4544ee97bec"
+    },
+    {
+      "source": "gpu-target-controller.log",
+      "path": "gpu-target-controller.log.gz",
+      "source_sha256": "6d656d790fa95a0773e984f11e7326e9702804728626bfda9793989523986505",
+      "stored_sha256": "24e5fa2e7c20493f36e92d815df379c8c49dc0db3abd7ddfd8635e7fbc3e8f0a"
+    },
+    {
+      "source": "test_gpu_most_oscillation.log",
+      "path": "test_gpu_most_oscillation.log.gz",
+      "source_sha256": "86d754d5060a7716120f51a693f4b0816e99fc1e482bfa7f9bdbe26373d698b9",
+      "stored_sha256": "2c76d0daec1fa794fbf4acdf92ed664f9453c269330118b66d88d727f907fd1f"
+    },
+    {
+      "source": "test_gpu_most_oscillation.xml",
+      "path": "test_gpu_most_oscillation.xml.gz",
+      "source_sha256": "4532fe03441e05088ad7edfe7ecfe2f4e284e05abd6bd390160861511ad3e841",
+      "stored_sha256": "4fc083fbd46995c46fa212936dddd307eb8d638c4ae121ddf6f295e484f1accd"
+    },
+    {
+      "source": "test_gpu_most_stagnation.log",
+      "path": "test_gpu_most_stagnation.log.gz",
+      "source_sha256": "025c7746ef10d59e1bdd56b13cb78b4e906c4e6c32b0a1d2d35954ae691b5344",
+      "stored_sha256": "d65aa7b19375d1b46df22055c664f25586ae43a9bdd7087265b79d5c0857912c"
+    },
+    {
+      "source": "test_gpu_most_stagnation.xml",
+      "path": "test_gpu_most_stagnation.xml.gz",
+      "source_sha256": "9c38a2724f84e9e82f741ea9231d0c130af74e0edf2a1d8343d23578ebdedc1a",
+      "stored_sha256": "7f105d49ea09daf0354b8a9ad866f0af89bf5059172b6325b7ad3e9dc82221de"
+    },
+    {
+      "source": "test_gpu_most_feedback_rounding.log",
+      "path": "test_gpu_most_feedback_rounding.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "tests/test_most_stagnation.py",
+      "path": "tests/test_most_stagnation.py.gz",
+      "source_sha256": "659c0c6fbbdbe530ae978758b28f45c80aa6c3b1be067d8963e69e1a2b9984a3",
+      "stored_sha256": "d08737d7cb5f63e65f5c78ca035d72cd5fc68e7ba06807c6fe29574b0e10167d"
+    },
+    {
+      "source": "tests/test_gpu_most_stagnation.py",
+      "path": "tests/test_gpu_most_stagnation.py.gz",
+      "source_sha256": "24a941645abca54dc2d5b86665e848b9c3fd23912eb14f07d504f73a6c4ac087",
+      "stored_sha256": "e060c825ebf66a104d934be34588b25c19dd465ad3fc5170c4443abfaed6c0de"
+    },
+    {
+      "source": "full-by-file-a/selection.json",
+      "path": "full-by-file-a/selection.json.gz",
+      "source_sha256": "6313c5532210bc196ce8452367d5d3225595aa5532441f2c4db58a94ae808659",
+      "stored_sha256": "3758c08e54eb6c3d0797940f01bcdff8b37593a6cf2a4ae81a19e7bc5ea3263e"
+    },
+    {
+      "source": "archive_most_stable_profile_a.py",
+      "path": "archive_most_stable_profile_a.py.gz",
+      "source_sha256": "98ee74984ec1e5a4efda1e17390a4a9c41b2f630ca9cacc696ef0cd43336505a",
+      "stored_sha256": "fc2f10c528d09f90a4bee10e0c23a1a17f43325838c4f0d09e41d3812d22e4f7"
+    }
+  ]
+}
