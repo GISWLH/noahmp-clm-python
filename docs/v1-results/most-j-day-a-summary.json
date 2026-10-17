@@ -1,0 +1,104 @@
+{
+  "scope": "Organized recorded remote first48 metrics only; no model/evaluation runs locally, no annual/spinup/observation claim.",
+  "original_status": "running",
+  "steps_requested": 17520,
+  "steps_completed": 48,
+  "checkpoint_sha256": "83acc66aa8091ece7b8ecd4035cb8503f8a32390ab0d1bb788456ad9a2ca1502",
+  "all_18_trace_and_23_checkpoint_fields_bitwise_equal_original_i48": true,
+  "metrics": {
+    "h_wm2": {
+      "comparison_units": "W/m2",
+      "maximum_absolute_bias": 9.495247805091367e-05,
+      "maximum_relative_bias_percent_non_near_zero": 0.0007001858762325246,
+      "maximum_instantaneous_absolute_difference": 0.004619879442401498,
+      "minimum_defined_r": 0.9999999996368922,
+      "undefined_r_count": 0
+    },
+    "le_wm2": {
+      "comparison_units": "W/m2",
+      "maximum_absolute_bias": 0.00010428672941031891,
+      "maximum_relative_bias_percent_non_near_zero": 0.0009363989214627355,
+      "maximum_instantaneous_absolute_difference": 0.004733688937883063,
+      "minimum_defined_r": 0.9999999984868647,
+      "undefined_r_count": 0
+    },
+    "et_mm": {
+      "comparison_units": "mm/day",
+      "maximum_absolute_bias": 3.1289428434333466e-06,
+      "maximum_relative_bias_percent_non_near_zero": null,
+      "maximum_instantaneous_absolute_difference": 0.00016360214584958122,
+      "minimum_defined_r": 0.9999999985504253,
+      "undefined_r_count": 0
+    },
+    "runoff_mm": {
+      "comparison_units": "mm/day",
+      "maximum_absolute_bias": 8.320567612685181e-08,
+      "maximum_relative_bias_percent_non_near_zero": 3.343145728513304e-06,
+      "maximum_instantaneous_absolute_difference": 2.451843903461537e-07,
+      "minimum_defined_r": 0.9999998520905247,
+      "undefined_r_count": 0
+    },
+    "gpp_gc_m2": {
+      "comparison_units": "gC/m2/day",
+      "maximum_absolute_bias": 1.0052332490850802e-05,
+      "maximum_relative_bias_percent_non_near_zero": 0.00022915348744444538,
+      "maximum_instantaneous_absolute_difference": 0.00017604460835762836,
+      "minimum_defined_r": 0.9999999999912227,
+      "undefined_r_count": 3
+    },
+    "nee_gc_m2": {
+      "comparison_units": "gC/m2/day",
+      "maximum_absolute_bias": 5.415659696916819e-06,
+      "maximum_relative_bias_percent_non_near_zero": 0.0005368926886309479,
+      "maximum_instantaneous_absolute_difference": 0.0001507601601673514,
+      "minimum_defined_r": 0.9999999999667227,
+      "undefined_r_count": 0
+    },
+    "swe_m": {
+      "comparison_units": "m water equivalent",
+      "maximum_absolute_bias": 1.2864797873839536e-11,
+      "maximum_relative_bias_percent_non_near_zero": null,
+      "maximum_instantaneous_absolute_difference": 8.483012017452903e-11,
+      "minimum_defined_r": 0.9999999996435954,
+      "undefined_r_count": 3
+    },
+    "tsoil_k": {
+      "comparison_units": "deg C",
+      "maximum_absolute_bias": 8.927015151982687e-06,
+      "maximum_relative_bias_percent_non_near_zero": 0.00016079988523665174,
+      "maximum_instantaneous_absolute_difference": 3.052932760283511e-05,
+      "minimum_defined_r": 0.9994280988778464,
+      "undefined_r_count": 0
+    },
+    "smc_m3m3": {
+      "comparison_units": "m3/m3",
+      "maximum_absolute_bias": 6.87149629974293e-08,
+      "maximum_relative_bias_percent_non_near_zero": 2.4555149591805788e-05,
+      "maximum_instantaneous_absolute_difference": 3.4045901076140694e-07,
+      "minimum_defined_r": 0.9999988312172686,
+      "undefined_r_count": 6
+    },
+    "liquid_m3m3": {
+      "comparison_units": "m3/m3",
+      "maximum_absolute_bias": 3.0610160794974917e-08,
+      "maximum_relative_bias_percent_non_near_zero": 2.2007765198970605e-05,
+      "maximum_instantaneous_absolute_difference": 1.2622328326994392e-07,
+      "minimum_defined_r": 0.999999799738504,
+      "undefined_r_count": 0
+    }
+  },
+  "maximum_cumulative_m_h_c_n": {
+    "cuda32": [
+      0.0003408567671954188,
+      71.55597758293152,
+      0.003922482952475548,
+      0.0006463979370892048
+    ],
+    "numpy64": [
+      2.2244706077145793e-13,
+      0.00012632994912564754,
+      4.84884354889914e-12,
+      5.870412662922764e-13
+    ]
+  }
+}
