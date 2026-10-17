@@ -1,0 +1,66 @@
+{
+  "scope": "Corrected standalone explicit-suction component:3 GPU tests pass0skip2.55s, each JAX precision8000 cases, CUDA32/JAX32 all three outputs maximum0. Sole CUDA source change removes unnecessary host header, physics/gates/cases unchanged. Not coupled heat/annual integration.",
+  "archive_sha256": "beed51361a9b4bb9c537d5598856c6939fc3ed02286029c49e4ffe0727c012a7",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "8a4b8303d7e0f1ac00cef680b645b8889446e0023e59291805f4043068084f31",
+      "stored_sha256": "900f125d8104f131e7fec213e74b66e86b9ab8455aea6baff575bc0c8eba5545"
+    },
+    {
+      "source": "source-unchanged.json",
+      "path": "source-unchanged.json.gz",
+      "source_sha256": "9d9cff95871202468c55b1625c38575a477f341dedd9d515b039e75e238f2f66",
+      "stored_sha256": "9b13d705ffced75f6c15fde4bd65780a6fee62bbac5ecf5265b73d803c6b92d8"
+    },
+    {
+      "source": "freezing-target.log",
+      "path": "freezing-target.log.gz",
+      "source_sha256": "461213809eef24018a592907cb33f1cf22b441496e84dd6c33e6042eddb9877f",
+      "stored_sha256": "c4e9f7f10069573f80e06f44a7c445756c471c879b1189ab297776cc83a36544"
+    },
+    {
+      "source": "freezing-target.xml",
+      "path": "freezing-target.xml.gz",
+      "source_sha256": "737a66ccffacea5d524f040f40def54e46a8623da2ead1320ee1fec1c9cde658",
+      "stored_sha256": "42830ee7036d40b2c62e045bba0ee0d96eda59638b9b769071cfbef5eb559e81"
+    },
+    {
+      "source": "freezing-target-launch.json",
+      "path": "freezing-target-launch.json.gz",
+      "source_sha256": "9d53e319920bef63245bf9a21354f566134412b01aad3f7175be077c11e3de87",
+      "stored_sha256": "5359a79c3e021ad6abf6bda09f74e7a5f54ec40abc3289525c0d226677a02107"
+    },
+    {
+      "source": "src/noahmp_clm/physics/clm_freezing.py",
+      "path": "src/noahmp_clm/physics/clm_freezing.py.gz",
+      "source_sha256": "376294c39528690b25097bed1ad21fd67961edb986b3b6657b4d73f5a16a0e5a",
+      "stored_sha256": "bfd0afca7935a0faa3f8a561f51121faee89e2ef57dbc9e06133985fa1605c57"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/clm_freezing.py",
+      "path": "src/noahmp_clm/gpu/clm_freezing.py.gz",
+      "source_sha256": "74c19db088cbd7ada5e72f303d1c065f2063b38c69761153b5ab53d5cc41ed4e",
+      "stored_sha256": "a77db70c9da0d98816d13763f889999e518d57497f8b3964fc881d9cf15e24ed"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/clm_freezing.py",
+      "path": "src/noahmp_clm/gpu/cuda/clm_freezing.py.gz",
+      "source_sha256": "2935b8e219927c0c7ed3e27db6448368c59dddd3202b9936098fffe5633348f7",
+      "stored_sha256": "da253eeba1a6d0d7328eca300d19f728c5efbbf015008ae6b12ec2e2dae43d33"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/clm_freezing_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/clm_freezing_kernel.cu",
+      "source_sha256": "c7f26901570522111f1c41dc1ca17d1ffb1a8dae334b21eaf513739c6e138773",
+      "stored_sha256": "c7f26901570522111f1c41dc1ca17d1ffb1a8dae334b21eaf513739c6e138773"
+    },
+    {
+      "source": "tests/test_gpu_clm_freezing.py",
+      "path": "tests/test_gpu_clm_freezing.py.gz",
+      "source_sha256": "a649fed8e35dd5dd77396174a789fd996a0d496f2f87599a36f65ad7dfd94ec6",
+      "stored_sha256": "fc0fd3c92e8f2da7bd0c32a2bf3010332a7cf40b00d8b69eac3df97938c0f91d"
+    }
+  ]
+}

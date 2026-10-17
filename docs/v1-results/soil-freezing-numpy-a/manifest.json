@@ -1,0 +1,78 @@
+{
+  "scope": "EHPC PBS41 standalone explicit-suction CLM5 freezing law,10 unit tests plus8080 independent equation points. Maximum reference bias0.953774%; old sand/loam/clay-loam errors148.829%/18.821%/15.897%. All464 frozen source files unchanged. Component only, not yet integrated into enthalpy states or annual simulation.",
+  "archive_sha256": "4311ffbaf206872c0167679d1a88af4ffd5724af553c75df7f7b0a542ffbde83",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "a690791cb93469644b4e4ae80b085cb6dad5beb78ec21179fc1625715ec08315",
+      "stored_sha256": "c3978d9e1e6e32351044418a5ad24001cbf98ff70112d6f4d201c1e398cb902b"
+    },
+    {
+      "source": "source-unchanged.json",
+      "path": "source-unchanged.json.gz",
+      "source_sha256": "246154d1bc2ab1325ff6429a5f654d42795bf910d04003393c6a099254b525de",
+      "stored_sha256": "744b1467fb598563860a2162d4198ac0e39310a29e62189404963013f924e134"
+    },
+    {
+      "source": "node.txt",
+      "path": "node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "tests.log",
+      "path": "tests.log.gz",
+      "source_sha256": "888880abb417da29eeff2cdfa840145bb53fee737a477a9a11a825df0e4f131d",
+      "stored_sha256": "a4c87515e3b73cd48ff2f6094e6ef8a8f1918b94ad8c70c34d1f132724690db3"
+    },
+    {
+      "source": "target.xml",
+      "path": "target.xml.gz",
+      "source_sha256": "5ea583a22a42d4d7647307a8deb3a3c227d266d77548855f7ee070f750b825a4",
+      "stored_sha256": "95c0dfda041f52c420333f8e7d128b02893dc4b36e24705ab120a9c38b1df871"
+    },
+    {
+      "source": "reference.json",
+      "path": "reference.json.gz",
+      "source_sha256": "8573247ffb31c4d81a6ab2bf7828a920f28ff5f03db1a19ea77f240559215842",
+      "stored_sha256": "433a7ce875381ae16404496599507594b45143ae91b25c7344b9a032c0d2caab"
+    },
+    {
+      "source": "reference.log",
+      "path": "reference.log.gz",
+      "source_sha256": "265d4ac963fa04d8aca64a662515fc7983e5e90e8291abf7249ac82213c06b48",
+      "stored_sha256": "a7cef7bc39a2f4ed564b4920fa421190fb79e1013c9c9ef707f5586043ca8537"
+    },
+    {
+      "source": "soil_freezing_numpy_a.pbs",
+      "path": "soil_freezing_numpy_a.pbs.gz",
+      "source_sha256": "1828886b4a7b14e99709a5055126c7641ac94a4136cb7a85dd02b468f263e5fb",
+      "stored_sha256": "c1f1afae167bd434dd7d010fcd5f11b48d1200ba58a049fd2c94ea498e1efce0"
+    },
+    {
+      "source": "src/noahmp_clm/physics/clm_freezing.py",
+      "path": "src/noahmp_clm/physics/clm_freezing.py.gz",
+      "source_sha256": "376294c39528690b25097bed1ad21fd67961edb986b3b6657b4d73f5a16a0e5a",
+      "stored_sha256": "bfd0afca7935a0faa3f8a561f51121faee89e2ef57dbc9e06133985fa1605c57"
+    },
+    {
+      "source": "tests/test_clm_freezing.py",
+      "path": "tests/test_clm_freezing.py.gz",
+      "source_sha256": "3aa4087db63f04272eb9bdb503de068b321a3737957362e1577d1044af966114",
+      "stored_sha256": "196b523c6288417bcf209c8c80bdaec5a07be1dd96b735e339bf6f9d255dd097"
+    },
+    {
+      "source": "benchmarks/audit_clm_freezing_reference.py",
+      "path": "benchmarks/audit_clm_freezing_reference.py.gz",
+      "source_sha256": "aed780299baa945f16e711c1166a4db6461d1f81e05eb8e86c176f0d5d1dd15a",
+      "stored_sha256": "ecdbc42b4d3d42d7708b0346886054a744e743a7cfa37246d5f1ec54aee74612"
+    }
+  ]
+}

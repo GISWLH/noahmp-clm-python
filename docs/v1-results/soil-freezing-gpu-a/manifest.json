@@ -1,0 +1,66 @@
+{
+  "scope": "Initial native explicit-suction target: two JAX reference tests pass, CUDA fails before numerical execution because NVRTC cannot find unnecessary host math.h. Full failed log/JUnit and all468 source hashes retained; not a passing CUDA result.",
+  "archive_sha256": "0e02357d5f36d9d11c80dcee24466cd50d0b859973a84ea80139ace3c01db04e",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "1091dd60d0a1a80337998394514940c4f199aa39ba795fa8daa958f1d3e291a6",
+      "stored_sha256": "946e2ffda9e98b29e4cfa1dada001ff75cdf6beb19320ab2f61ba764b90920db"
+    },
+    {
+      "source": "source-unchanged.json",
+      "path": "source-unchanged.json.gz",
+      "source_sha256": "99952f8c8026d5a37719206fd05a5454fcad0b4d8c0d11d69052c6c8662d33d4",
+      "stored_sha256": "75173a73880d5a85fc49b1202ccdfd37cda77eb461c855b7bb9e70b6e5b1a2a7"
+    },
+    {
+      "source": "freezing-target.log",
+      "path": "freezing-target.log.gz",
+      "source_sha256": "092d4a4d8a45432aed7eddbcf49a446f8347ed908614dbf8b487d28abfd75a94",
+      "stored_sha256": "2da2e9b232ee12ed13760617f57a07faf342f99fef6a5cdd96a908bf2d3ba876"
+    },
+    {
+      "source": "freezing-target.xml",
+      "path": "freezing-target.xml.gz",
+      "source_sha256": "1c0d3be336ac9f1f5ba1f8151077802c0e8fae4c7b6f518e1bf040d09a36d364",
+      "stored_sha256": "fe00be75ef250b04facc533f355476ba9c389e0ffc2dd583a7b941469d745755"
+    },
+    {
+      "source": "freezing-target-launch.json",
+      "path": "freezing-target-launch.json.gz",
+      "source_sha256": "40b906c5c6d553ab91d64b5786b229bb2843b5547c1e1320c39448e44fa0374f",
+      "stored_sha256": "8f54c4949c1b15afd2810c885b58f75452c14085341995d12f47f63c44c51bde"
+    },
+    {
+      "source": "src/noahmp_clm/physics/clm_freezing.py",
+      "path": "src/noahmp_clm/physics/clm_freezing.py.gz",
+      "source_sha256": "376294c39528690b25097bed1ad21fd67961edb986b3b6657b4d73f5a16a0e5a",
+      "stored_sha256": "bfd0afca7935a0faa3f8a561f51121faee89e2ef57dbc9e06133985fa1605c57"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/clm_freezing.py",
+      "path": "src/noahmp_clm/gpu/clm_freezing.py.gz",
+      "source_sha256": "74c19db088cbd7ada5e72f303d1c065f2063b38c69761153b5ab53d5cc41ed4e",
+      "stored_sha256": "a77db70c9da0d98816d13763f889999e518d57497f8b3964fc881d9cf15e24ed"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/clm_freezing.py",
+      "path": "src/noahmp_clm/gpu/cuda/clm_freezing.py.gz",
+      "source_sha256": "2935b8e219927c0c7ed3e27db6448368c59dddd3202b9936098fffe5633348f7",
+      "stored_sha256": "da253eeba1a6d0d7328eca300d19f728c5efbbf015008ae6b12ec2e2dae43d33"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/clm_freezing_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/clm_freezing_kernel.cu",
+      "source_sha256": "79786683f77c8789c5a08ece972eefc4b983a57e9a1de7ae49d979d955ad0f1e",
+      "stored_sha256": "79786683f77c8789c5a08ece972eefc4b983a57e9a1de7ae49d979d955ad0f1e"
+    },
+    {
+      "source": "tests/test_gpu_clm_freezing.py",
+      "path": "tests/test_gpu_clm_freezing.py.gz",
+      "source_sha256": "a649fed8e35dd5dd77396174a789fd996a0d496f2f87599a36f65ad7dfd94ec6",
+      "stored_sha256": "fc0fd3c92e8f2da7bd0c32a2bf3010332a7cf40b00d8b69eac3df97938c0f91d"
+    }
+  ]
+}
