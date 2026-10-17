@@ -203,3 +203,11 @@ Leafweb前三条留出光响应曲线的形状误差仍未达标。
 | `compare_newton_leaf.py`、`photosynthesis_newton_candidate.py` | 新建离线随机对照与候选原型，保留初版 |
 | `compare_newton_column.py`、`compare_newton_one_day.py` | 新建同旧态完整柱及日轨迹对照，函数替换仅发生在单步测量进程内 |
 | `summer-noon-cprofile.*`、`newton-*-comparison.*`、`newton-leaf-random.*` | 采样、数值和计时输出，压缩副本归档 |
+
+
+为确定多年驱动的可行执行路径，另用原生CUDA BGC/MOST公共入口对同一海北旧态
+进行预热后6次重复计时，输入常驻设备且每次同步计时终点：单柱中位0.753974秒，
+16个相同柱的整批中位0.759990秒；每次H/LE/GPP/NEE均完全一致。两个初次调用
+分别4.46423 /3.08081秒，单独记录。这是同一已验证工况的API延迟，不能据此
+声称已有全年速度或多站观测结果。`measure_native_bgc_api.py`是新增独立测量脚本，
+对应JSON和日志一并归档，生产源码未加入计时。
