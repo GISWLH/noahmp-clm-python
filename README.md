@@ -1,3 +1,7 @@
+<!-- readme-visual-refresh:banner -->
+![noahmp-clm-python — hand-drawn project banner](assets/readme/banner.svg)
+<!-- /readme-visual-refresh:banner -->
+
 # noahmp-clm-python
 
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
@@ -80,3 +84,7 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 - **格点独立**：批量跑 N 个柱的结果 ≡ 逐个单柱跑的结果（bit 级一致）
 
 与 Noah-MP v5.0 离线参考运行的定量对标尚未开始（ROADMAP 阶段 1）。
+
+<!-- readme-visual-refresh:artwork-source -->
+[Editable banner artwork · Excalidraw](assets/readme/banner.excalidraw)
+<!-- /readme-visual-refresh:artwork-source -->
