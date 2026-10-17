@@ -1,0 +1,26 @@
+{
+  "scope": "Static byte audit only. Runtime equivalence is explicitly source-bound; no local physics or new numerical acceptance.",
+  "current_runtime_files": 174,
+  "core_test_files_unchanged": [
+    "tests/test_gpu_clm_freezing.py",
+    "tests/test_gpu_enthalpy.py",
+    "tests/test_gpu_soil_transport.py",
+    "tests/test_gpu_column_heat.py",
+    "tests/test_gpu_vic.py"
+  ],
+  "current_source_test_benchmark_files": 466,
+  "all_recorded_artifacts_verified": 3414,
+  "changes_b_to_c": [
+    "benchmarks/check_canopy_surface_gpu.py",
+    "benchmarks/check_clm_bgc_column_gpu.py",
+    "benchmarks/check_clm_crop_column_gpu.py",
+    "benchmarks/check_clm_enthalpy_column_gpu.py",
+    "benchmarks/check_clm_managed_wetland_gpu.py",
+    "benchmarks/run_fluxnet_native.py",
+    "tests/test_fluxnet_soil_operator.py"
+  ],
+  "changes_c_to_d": [
+    "tests/test_canopy_phase_column.py",
+    "tests/test_most_stagnation.py"
+  ]
+}

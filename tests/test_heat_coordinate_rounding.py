@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib,json
 import numpy as np
 from test_gpu_column_heat import numpy_reference
+from clm_soil_oracle import fixture_suction
 
 def saved(dtype=np.float32):
     path=Path(__file__).with_name('fixtures')/'qia_heat_coordinate_inputs.npz'
@@ -11,6 +12,7 @@ def saved(dtype=np.float32):
     with np.load(path,allow_pickle=False) as z:
         a=tuple(z[k].astype(np.int32 if k=='options' else dtype) for k in ['cells','props','options','boundary'])
         original=z['original']
+    a=(a[0],fixture_suction(a[1],.355),*a[2:])
     assert not original[0,75] and np.max(abs(original[0,45:54])/original[0,62:71])>1.
     return a,reference
 

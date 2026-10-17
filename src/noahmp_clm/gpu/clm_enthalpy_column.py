@@ -9,7 +9,7 @@ import numpy as np
 from .canopy_energy import _sum
 from .canopy_surface import pack_canopy_surface,run_canopy_surface_jax
 from .snow_mass import validate_snow_transfer,snow_transfer_kernel_jax,snow_phase_jax
-from .soil_transport import validate_soil_transport,soil_transport_kernel_jax
+from .soil_transport import validate_soil_transport,soil_transport_kernel_jax,compact_soil_parameters
 from .snow_evolution import fresh_snow_jax
 from .enthalpy import invert_soil_enthalpy_jax
 
@@ -56,13 +56,13 @@ def pack_clm_enthalpy_columns(states,*,dtype=np.float64,co2_ppm=420.,cosine_zeni
         storage=np.asarray([state.canopy_water_kgm2,state.canopy_enthalpy_jm2,state.surface_temperature],dtype)
         rows.append((c,g,p,o,site,storage,np.asarray(state.root_frac,dtype)))
     if not rows:return tuple(np.empty((0,*shape),np.int32 if k==3 else dtype) for k,shape in
-        enumerate(((5,9),(4,3),(6,),(9,),(12,),(3,),(4,))))
+        enumerate(((5,9),(4,3),(7,),(9,),(12,),(3,),(4,))))
     return tuple(np.stack([row[k] for row in rows]) for k in range(7))
 
 
 def validate_column(arrays,forcing,deposition,xp,*,allow_vic=False):
     c,g,p,o,site,storage,roots=arrays;n=len(c)
-    if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,6) or o.shape!=(n,9)
+    if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,7) or o.shape!=(n,9)
         or site.shape!=(n,12) or storage.shape!=(n,3) or roots.shape!=(n,4)
         or forcing.shape!=(n,8) or deposition.shape!=(n,5)):raise ValueError('Invalid extensive CLM batch shapes')
     if o.dtype.kind not in 'iu' or any(x.dtype!=c.dtype for x in (g,p,site,storage,roots,forcing,deposition)):
@@ -73,7 +73,7 @@ def validate_column(arrays,forcing,deposition,xp,*,allow_vic=False):
     validate_snow_transfer(c,o[:,0],zero,xp.zeros((n,16),dtype=c.dtype),xp)
     soil_options=xp.stack((zero,o[:,1],o[:,8]),axis=1)
     soil_inputs=xp.concatenate((xp.zeros((n,2),dtype=c.dtype),forcing[:,:1],xp.zeros((n,4),dtype=c.dtype)),axis=1)
-    validate_soil_transport(g,p[:,:4],soil_options,soil_inputs,xp)
+    validate_soil_transport(g,compact_soil_parameters(p,xp),soil_options,soil_inputs,xp)
     maxopt=xp.asarray([5,2,5,3,4,2,6 if allow_vic else 4,6 if allow_vic else 4,2])
     if bool(xp.any((o<xp.asarray([0,1,1,1,1,1,1,1,1]))|(o>maxopt))) or bool(xp.any(o[:,2]==4)):
         raise NotImplementedError('Unsupported CLM column option')
@@ -102,7 +102,7 @@ def route_water_jax(c,g,n,p,phase,dt,mass,heat,vic=None):
         return pack,g,j.zeros(2,c.dtype),j.asarray(True)
     def into_soil():
         u=j.concatenate((j.stack((mass,heat,dt)),j.zeros(4,c.dtype)))
-        out=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
+        out=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
         return c,out[:12].reshape(4,3),out[26:28],out[46]>0.
     return lax.cond(mass>0.,lambda:lax.cond(n>0,into_snow,into_soil),
         lambda:(c,g,j.zeros(2,c.dtype),j.asarray(True)))
@@ -117,7 +117,7 @@ def collapse_molten_snow_jax(c,g,n,p,phase,dt,vic=None):
         mass=_sum(c[:,0]);heat=_sum(c[:,1])
         tracers=j.stack([_sum(c[:,k]) for k in range(4,9)])
         u=j.concatenate((j.stack((mass,heat,dt)),j.zeros(4,c.dtype)))
-        out=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
+        out=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
         empty=j.zeros_like(c).at[:,3].set(54.5)
         return empty,out[:12].reshape(4,3),j.asarray(0,j.int32),out[26:28],tracers,out[46]>0.
     molten=(n>0)&j.all(j.where(j.arange(5)<n,c[:,1]>=s(334000.*c[:,0]),True))
@@ -148,7 +148,7 @@ def prepare_column_jax(c,g,p,o,site,storage,roots,forcing,vic=None):
     c,g,flow,good=route_water_jax(c,g,n,p,phase,dt,through,s(through*rain_h));runoff=s(runoff+flow);valid=valid&good
     c,g,n,flow,impurity,good=collapse_molten_snow_jax(c,g,n,p,phase,dt,vic)
     runoff=s(runoff+flow);valid=valid&good
-    inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],phase)
+    inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],p[6],phase)
     liquid=inv[3]/s(1000.*g[:,2])
     stress,_=core._soil_stress(liquid,roots,p[0],p[5],p[2],p[1],o[3])
     velocity=core._exchange_velocity(wind,tair,qair,ps,site[2],storage[2],o[5])
@@ -196,12 +196,12 @@ def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g
         pack,soil,out,ok=route_water_jax(c,g,n,p,phase,dt,drip,drip_h,vic)
         drained=snow_transfer_kernel_jax(pack,n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
         u=j.concatenate((row(drained[53],drained[54],dt),j.zeros(4,c.dtype)))
-        admitted=soil_transport_kernel_jax(soil,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
+        admitted=soil_transport_kernel_jax(soil,compact_soil_parameters(p,j),j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
         out=s(s(out+drained[60:62])+admitted[26:28]);tracer=s(drained[62:67]+drained[55:60])
         return drained[:45].reshape(5,9),admitted[:12].reshape(4,3),drained[45].astype(j.int32),out,tracer,ok&(admitted[46]>0.)
     c,g,n,out,tracer,valid=lax.cond(drip>0.,overflow,lambda:(c,g,n,j.zeros(2,c.dtype),j.zeros(5,c.dtype),valid))
     runoff=s(runoff+out);impurity=s(impurity+tracer)
-    drained=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(2),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))),vic)
+    drained=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(2),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))),vic)
     g=drained[:12].reshape(4,3);runoff=s(runoff+drained[44:46]);valid=valid&(drained[46]>0.)
     addition=s(deposition*dt);c=c.at[0,4:].set(j.where(n>0,s(c[0,4:]+addition),c[0,4:]));impurity=s(impurity+j.where(n==0,addition,0.))
     temp=s(j.where(n>0,snow_phase_jax(c[0,0],c[0,1])[0],drained[12])+273.15)

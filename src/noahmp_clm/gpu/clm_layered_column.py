@@ -13,7 +13,7 @@ from .canopy_interception import canopy_water_kernel_jax,validate_canopy_water,u
 from .canopy_energy import _sum
 from .snow_evolution import fresh_snow_jax
 from .snow_mass import snow_transfer_kernel_jax
-from .soil_transport import soil_transport_kernel_jax
+from .soil_transport import soil_transport_kernel_jax,compact_soil_parameters
 from .canopy_phase_surface import run_canopy_phase_surface_jax
 
 
@@ -97,7 +97,7 @@ def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,
     post=layered_interception_jax(condensate,site,forcing,j.asarray(0.,c.dtype),j.asarray(0.,c.dtype))
     cc=post[:20].reshape(10,2);c,g,n,runoff,valid=route_layer_outlets_jax(c,g,n,p,o[1],forcing,post[170:182],vic)
     drained=snow_transfer_kernel_jax(c,n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
-    admit=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),o[1],j.asarray(1))),
+    admit=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(0),o[1],j.asarray(1))),
         j.concatenate((row(drained[53],drained[54],forcing[0]),j.zeros(4,c.dtype))),vic)
     runoff=s(s(runoff+drained[60:62])+admit[26:28]);valid=valid&(admit[46]>0.)
     impurity=s(impurity+s(drained[62:67]+drained[55:60]))

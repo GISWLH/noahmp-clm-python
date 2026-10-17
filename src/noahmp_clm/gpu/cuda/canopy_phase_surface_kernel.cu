@@ -37,7 +37,7 @@ extern "C" __global__ void run_canopy_phase_surface_extended(const float* c,cons
         float v[7];for(int i=0;i<7;++i)v[i]=input[7*row+i];v[1]=0.f;v[2]=0.f;
         for(int i=0;i<10;++i){v[1]+=condensate[20*row+2*i];v[2]+=condensate[20*row+2*i+1];}
         PhaseSurfaceCanopy solver{a+10*row,f+20*row,leaf,radiation+584*row,v,condensate+20*row,extension+2*row};
-        surface_device(c+45*row,g+12*row,p+6*row,o+2*row,a+10*row,u+23*row,f+20*row,v,
+        surface_device(c+45*row,g+12*row,p+7*row,o+2*row,a+10*row,u+23*row,f+20*row,v,
             radiation+584*row,leaf,aging,out+741*row,solver);
     }
 }
@@ -46,7 +46,7 @@ extern "C" __global__ void run_canopy_phase_surface(const float* c,const float* 
     const float* a,const float* u,const float* f,const float* v,const float* condensate,const float* radiation,
     const float* leaf,const float* aging,float* out,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
-        canopy_phase_surface_device(c+45*row,g+12*row,p+6*row,o+2*row,a+10*row,u+23*row,f+20*row,v+7*row,
+        canopy_phase_surface_device(c+45*row,g+12*row,p+7*row,o+2*row,a+10*row,u+23*row,f+20*row,v+7*row,
             condensate+20*row,radiation+584*row,leaf,aging,out+741*row);
 }
 
@@ -58,7 +58,7 @@ extern "C" __global__ void run_canopy_phase_surface_vic(const float* c,const flo
         for(int i=0;i<10;++i){v[1]+=condensate[20*row+2*i];v[2]+=condensate[20*row+2*i+1];}
         PhaseSurfaceCanopy solver{a+10*row,f+20*row,leaf,radiation+584*row,v,condensate+20*row,
             extension?extension+2*row:nullptr};
-        surface_device(c+45*row,g+12*row,p+6*row,o+2*row,a+10*row,u+23*row,f+20*row,v,
+        surface_device(c+45*row,g+12*row,p+7*row,o+2*row,a+10*row,u+23*row,f+20*row,v,
             radiation+584*row,leaf,aging,out+741*row,solver,vic+8*row);
     }
 }

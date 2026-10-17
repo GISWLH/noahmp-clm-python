@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import numpy as np
 import pytest
+from clm_soil_oracle import fixture_suction
 
 
 def qia_case(dtype=np.float32):
@@ -21,6 +22,7 @@ def qia_case(dtype=np.float32):
         site[:,0]=plant[:,0]*p[:,19]/site[:,1]
         site[:,11]=np.minimum(1.,plant[:,3]*p[:,3]/plant[:,0])
         values['a5'][:,:2]=values['a7'].sum(1)
+    values['a2']=fixture_suction(values['a2'],.355)
     return tuple(values[f'a{k}'] for k in range(16)), values
 
 
@@ -32,7 +34,8 @@ def test_fixture_precision_has_valid_parameters_without_changing_stores(dtype):
     with np.load(Path(__file__).parent/'fixtures/qia_most_float32_stagnation.npz') as z:
         for k in (0,1,7,11,13):np.testing.assert_array_equal(a[k],z[f'a{k}'].astype(dtype))
         if dtype is np.float32:
-            for k in range(16):np.testing.assert_array_equal(a[k],z[f'a{k}'])
+            for k in range(16):np.testing.assert_array_equal(a[k][:,:6] if k==2 else a[k],z[f'a{k}'])
+            np.testing.assert_array_equal(a[2][:,6],np.full(len(a[2]),.355,dtype))
 
 
 @pytest.mark.parametrize('has_root',[True,False])

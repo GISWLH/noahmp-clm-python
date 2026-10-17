@@ -4,6 +4,7 @@ import json,hashlib
 import numpy as np
 import pytest
 from noahmp_clm.validation import compare_series
+from clm_soil_oracle import fixture_suction
 
 FIXTURES=Path(__file__).with_name('fixtures')
 
@@ -12,7 +13,8 @@ def saved(label):
     metadata=json.loads(path.with_suffix('.json').read_text())
     assert hashlib.sha256(path.read_bytes()).hexdigest()==metadata['fixture_sha256']
     with np.load(path,allow_pickle=False) as z:
-        return tuple(z[f'{label}_a{k}'] for k in range(16)),{k.removeprefix(label+'_'):z[k] for k in z if k.startswith(label+'_') and not k.startswith(label+'_a')}
+        a=tuple(fixture_suction(z[f'{label}_a{k}'],.355) if k==2 else z[f'{label}_a{k}'] for k in range(16))
+        return a,{k.removeprefix(label+'_'):z[k] for k in z if k.startswith(label+'_') and not k.startswith(label+'_a')}
 
 def solve(backend,label):
     from run_fluxnet_native import Backend,audit_step

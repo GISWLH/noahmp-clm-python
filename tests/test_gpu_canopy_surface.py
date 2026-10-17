@@ -40,7 +40,7 @@ def cases(dtype=np.float64,random_count=0):
 def reference(row):
     c,g,p,o,a,u,f,v=row;n=int(o[0]);c,g,p,a,u,f,v=[np.asarray(x,float) for x in (c,g,p,a,u,f,v)]
     pack=Snowpack(c[:n,0],c[:n,1],c[:n,2],c[:n,3],c[:n,4:])
-    props=SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3],quartz=p[4],smcwlt=p[5])
+    props=SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3],quartz=p[4],smcwlt=p[5],saturated_suction_m=p[6])
     soil=SoilEnthalpyState(g[:,0],g[:,1],g[:,2],props,int(o[1]))
     pack,soil,water,d=surface_step(pack,soil,v[0],a,u[11],u[12],CanopyExchange(*u[:11]),
         canopy_water_kgm2=v[1],canopy_enthalpy_jm2=v[2],root_weights=v[3:],wet_fraction=u[14],

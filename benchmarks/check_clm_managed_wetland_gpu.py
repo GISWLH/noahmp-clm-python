@@ -100,7 +100,7 @@ def main():
                     for k in np.flatnonzero(crop[key]):management[name].append([step,int(k),key])
                 obs={key:d[key] for key in ('et_mm','runoff_mm','h','le','swe','irrigation_mm','methane_emission_gc_m2','total_atmospheric_carbon_gc_m2',*CARBON)}
                 obs.update(lai=r['site'][:,0],water=r['soil_cells'][:,:,0]/(1000.*r['soil_cells'][:,:,2]),methane_storage=r['wetland_state'][:,0])
-                obs['temperature']=np.stack([soil_temperature(after[1][k],SoilParams(smcmax=float(after[2][k,0]),bexp=float(after[2][k,1])),int(after[3][k,1]),dtype) for k in range(3)])
+                obs['temperature']=np.stack([soil_temperature(after[1][k],SoilParams(smcmax=float(after[2][k,0]),bexp=float(after[2][k,1]),saturated_suction_m=float(after[2][k,6])),int(after[3][k,1]),dtype) for k in range(3)])
                 sums=daily[name].setdefault(step//48,{k:np.zeros_like(v,dtype=float) for k,v in obs.items()})
                 amounts=('et_mm','runoff_mm','irrigation_mm','methane_emission_gc_m2','total_atmospheric_carbon_gc_m2',*CARBON)
                 for key,value in obs.items():sums[key]+=value.astype(float) if key in amounts else value.astype(float)/48.

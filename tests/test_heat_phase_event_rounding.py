@@ -4,6 +4,7 @@ import hashlib,json
 import numpy as np
 import pytest
 from test_gpu_column_heat import numpy_reference
+from clm_soil_oracle import fixture_suction
 
 def saved(dtype=np.float32):
     path=Path(__file__).with_name('fixtures')/'qia_heat_phase_event.npz'
@@ -13,6 +14,7 @@ def saved(dtype=np.float32):
     assert not np.any(x['original'][:,75])
     assert np.all(np.max(abs(x['original'][:,45:54])/x['original'][:,62:71],axis=1)>1.)
     inputs=tuple(x[k].astype(np.int32 if k=='options' else dtype) for k in ['cells','props','options','boundary'])
+    inputs=(inputs[0],fixture_suction(inputs[1],.355),*inputs[2:])
     return inputs,x
 
 @pytest.mark.parametrize('case',range(3))

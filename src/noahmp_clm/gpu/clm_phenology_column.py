@@ -70,7 +70,7 @@ def _step(arrays,forcing,environment,calendar,backend,**kwargs):
     calendar=xp.asarray(calendar)
     validate_seasonal_column(arrays,forcing,environment,calendar,xp)
     c,g,p,o,site,storage,roots,condensate,ps,flags,parameters=arrays
-    soil=xp.concatenate((g[:,2,:],p[:,:2]),axis=1)
+    soil=xp.concatenate((g[:,2,:],p[:,xp.asarray([0,1,6])]),axis=1)
     temperature=inverse(soil,o[:,1],inverse=True)['temperature_k']
     climate=xp.stack((temperature,environment[:,0],forcing[:,0]),axis=1)
     result=phenology(ps,flags,climate,calendar,parameters)

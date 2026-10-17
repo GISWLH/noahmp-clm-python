@@ -24,12 +24,12 @@ __device__ float vic_baseflow(float liquid,float capacity,float dt,const float* 
 __device__ __noinline__ void soil_transport_device(const float* cells,const float* p,const int* option,
                                       const float* u,float* out,const float* vic=nullptr) {
     float water[4],heat[4],z[4],offset[4],liquid[4];bool valid=true;
-    float por=p[0],b=p[1],field=p[2],satdk=p[3];int mode=option[0],phase=option[1],permeability=option[2];
+    float por=p[0],b=p[1],field=p[2],satdk=p[3],psi=p[4];int mode=option[0],phase=option[1],permeability=option[2];
     for(int j=0;j<47;++j)out[j]=0.f;
     for(int j=0;j<4;++j) {
         water[j]=cells[j*3];heat[j]=cells[j*3+1];z[j]=cells[j*3+2];
         float h,c,count;
-        valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,phase,offset[j],h,c,liquid[j],count)&&valid;
+        valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,psi,phase,offset[j],h,c,liquid[j],count)&&valid;
     }
     if(mode==0) {
         float specific=u[1]/(u[0]>0.f?u[0]:1.f),left=u[0],surface=0.f;
@@ -53,7 +53,7 @@ __device__ __noinline__ void soil_transport_device(const float* cells,const floa
     } else {
         for(int j=0;j<4;++j) {
             float offset,h,c,liquid,count;
-            valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,phase,offset,h,c,liquid,count)&&valid;
+            valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,psi,phase,offset,h,c,liquid,count)&&valid;
             float ice=water[j]-liquid,capacity=(1000.f*por)*z[j];
             float wet=fminf(1.f,fmaxf(0.f,water[j]/capacity));
             float frozen=permeability==1?1.f:expf((-7.f*ice)/capacity);
@@ -71,7 +71,7 @@ __device__ __noinline__ void soil_transport_device(const float* cells,const floa
     }
     for(int j=0;j<4;++j) {
         float h,c,count;
-        valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,phase,offset[j],h,c,liquid[j],count)&&valid;
+        valid=invert_soil_enthalpy(water[j],heat[j],z[j],por,b,psi,phase,offset[j],h,c,liquid[j],count)&&valid;
         valid=valid&&water[j]>=0.f;
         out[j*3]=water[j];out[j*3+1]=heat[j];out[j*3+2]=z[j];
         out[12+j]=offset[j];out[16+j]=liquid[j];out[20+j]=water[j]-liquid[j];
@@ -79,14 +79,20 @@ __device__ __noinline__ void soil_transport_device(const float* cells,const floa
     out[46]=valid?1.f:0.f;
 }
 
+__device__ void column_soil_transport_device(const float* cells,const float* full,const int* options,
+        const float* inputs,float* output,const float* vic=nullptr) {
+    float compact[5]={full[0],full[1],full[2],full[3],full[6]};
+    soil_transport_device(cells,compact,options,inputs,output,vic);
+}
+
 extern "C" __global__ void run_vic_transport(const float* cells,const float* p,const int* options,
                                              const float* inputs,const float* vic,float* output,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
-        soil_transport_device(cells+row*12,p+row*4,options+row*3,inputs+row*7,output+row*47,vic+row*8);
+        soil_transport_device(cells+row*12,p+row*5,options+row*3,inputs+row*7,output+row*47,vic+row*8);
 }
 
 extern "C" __global__ void run_soil_transport(const float* cells,const float* p,const int* options,
                                              const float* inputs,float* output,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
-        soil_transport_device(cells+row*12,p+row*4,options+row*3,inputs+row*7,output+row*47);
+        soil_transport_device(cells+row*12,p+row*5,options+row*3,inputs+row*7,output+row*47);
 }

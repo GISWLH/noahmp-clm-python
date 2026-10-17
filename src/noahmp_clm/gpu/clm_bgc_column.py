@@ -141,7 +141,8 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
         if bool(xp.any(wp[:,4]!=soil_p[:,12])):raise ValueError('Wetland donor Q10 must match actual decomposition')
     elif wetland_parameters is not None:raise ValueError('Wetland parameters require a carbon store')
     seasonal=flags[:,2]==5
-    temperature=inverse(xp.concatenate((g[:,2,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
+    thermodynamic_parameters=p[:,xp.asarray([0,1,6])]
+    temperature=inverse(xp.concatenate((g[:,2,:],thermodynamic_parameters),axis=1),o[:,1],inverse=True)['temperature_k']
     ph=phenology(ps,flags[:,:2],xp.stack((temperature,environment[:,0],forcing[:,0]),axis=1),calendar,pp)
     next_ps=xp.where(seasonal[:,None],ph['state'],ps)
     next_flags=xp.concatenate((xp.where(seasonal[:,None],ph['flags'],flags[:,:2]),flags[:,2:3]),axis=1)
@@ -156,7 +157,7 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
         if xp.asarray(crop_arrays[1]).dtype.kind not in 'iu':raise ValueError('Crop phase must be integer')
         cs,phase,cp=tuple(xp.asarray(v,xp.int32 if k==1 else dtype) for k,v in enumerate(crop_arrays))
         events=xp.zeros((n,2),xp.int32) if crop_management is None else xp.asarray(crop_management)
-        top_t=inverse(xp.concatenate((g[:,0,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
+        top_t=inverse(xp.concatenate((g[:,0,:],thermodynamic_parameters),axis=1),o[:,1],inverse=True)['temperature_k']
         cu=xp.stack((forcing[:,1],top_t,forcing[:,0],site[:,1]),axis=1)
         if backend=='jax':from .crop import run_crop_jax as crop_step
         else:from .cuda.crop import run_crop_cuda as crop_step
@@ -177,7 +178,7 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
     out=column(c,g,p,o,used_site,storage,roots,condensate,forcing,**kwargs)
     # Invert the actual post-physical soil enthalpy on device for both root
     # maintenance and topsoil decomposition, including frozen liquid water.
-    ng=out['soil_cells'];si=xp.concatenate((ng,xp.broadcast_to(p[:,None,:2],(n,4,2))),axis=2).reshape(-1,5)
+    ng=out['soil_cells'];si=xp.concatenate((ng,xp.broadcast_to(thermodynamic_parameters[:,None,:],(n,4,3))),axis=2).reshape(-1,6)
     therm=inverse(si,xp.repeat(o[:,1],4),inverse=True)
     temperatures=therm['temperature_k'].reshape(n,4);liquid=therm['liquid_kgm2'].reshape(n,4)
     wd=we=None

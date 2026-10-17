@@ -73,10 +73,11 @@ def _step_soil(c,p,o,dt,parameters,backend):
         from .cuda.tile_drainage import run_tile_drainage_cuda as run
     c,p,o=map(xp.asarray,(c,p,o));dtype=c.dtype;n=len(c)
     dt=xp.asarray(dt,dtype);parameters=xp.asarray(parameters,dtype)
-    if c.shape!=(n,4,3) or p.shape!=(n,4) or o.shape!=(n,3) or dt.shape!=(n,1) or parameters.shape!=(n,3):
+    if c.shape!=(n,4,3) or p.shape!=(n,5) or o.shape!=(n,3) or dt.shape!=(n,1) or parameters.shape!=(n,3):
         raise ValueError('Tile soil arrays require native four-layer shapes')
     if bool(xp.any(parameters[:,1]>p[:,0])):raise ValueError('Tile field capacity exceeds soil porosity')
-    therm=inverse(xp.concatenate((c,xp.broadcast_to(p[:,None,:2],(n,4,2))),axis=2).reshape(-1,5),xp.repeat(o[:,1],4),inverse=True)
+    thermodynamic_parameters=p[:,xp.asarray([0,1,4])]
+    therm=inverse(xp.concatenate((c,xp.broadcast_to(thermodynamic_parameters[:,None,:],(n,4,3))),axis=2).reshape(-1,6),xp.repeat(o[:,1],4),inverse=True)
     t=therm['temperature_k'].reshape(n,4);liquid=xp.where(t>=273.15,c[:,:,0],xp.clip(therm['liquid_kgm2'].reshape(n,4),0.,c[:,:,0]))
     out=run(xp.stack((liquid,c[:,:,0]-liquid,c[:,:,2],t),axis=2),dt,parameters)
     options=xp.stack((xp.ones(n,xp.int32),o[:,1],o[:,2]),axis=1)
@@ -103,9 +104,10 @@ def finish_column_tile(result,p,o,forcing,parameters,backend):
         import cupy as xp
         from .cuda.enthalpy import run_soil_thermodynamics_cuda as inverse
     from .clm_bgc_column import _sum_rows,_set
+    from .soil_transport import compact_soil_parameters
     old=result['soil_cells'];n=len(old)
     options=xp.stack((xp.ones(n,xp.int32),o[:,1],o[:,8]),axis=1)
-    tile=_step_soil(old,p[:,:4],options,forcing[:,:1],parameters,backend)
+    tile=_step_soil(old,compact_soil_parameters(p,xp),options,forcing[:,:1],parameters,backend)
     new=tile['cells'];mass=tile['drained_kgm2'];heat=tile['drained_enthalpy_jm2'];d=result['diagnostics']
     # Retain the real transfer roundoff in the extensive ledger. The full
     # independent verification separately sums all old/new stores in float64.
@@ -114,7 +116,7 @@ def finish_column_tile(result,p,o,forcing,parameters,backend):
     d['energy_residual_jm2']=(d['energy_residual_jm2']+dh)+heat
     d['runoff_mm']=d['runoff_mm']+mass;d['runoff_deep_mm']=d['runoff_deep_mm']+mass
     d['runoff_enthalpy_jm2']=d['runoff_enthalpy_jm2']+heat
-    t=inverse(xp.concatenate((new[:,0,:],p[:,:2]),axis=1),o[:,1],inverse=True)['temperature_k']
+    t=inverse(xp.concatenate((new[:,0,:],p[:,xp.asarray([0,1,6])]),axis=1),o[:,1],inverse=True)['temperature_k']
     ts=xp.where(result['options'][:,0]>0,result['storage'][:,2],t)
     result['storage']=_set(result['storage'],2,ts,backend);d['ts']=ts
     d.update(tile_drainage_mm=mass,tile_drainage_enthalpy_jm2=heat)

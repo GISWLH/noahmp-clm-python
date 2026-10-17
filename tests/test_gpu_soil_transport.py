@@ -11,7 +11,8 @@ from test_gpu_snicar import assert_science_close
 def soil_state(dtype,texture='loam',temperature=280.,wetness=.7,option=1,dz=(.1,.3,.6,1.)):
     p0=default_soil_params(texture)
     p=SoilParams(smcmax=float(dtype(p0.smcmax)),bexp=float(dtype(p0.bexp)),
-        smcref=float(dtype(p0.smcref)),satdk=float(dtype(p0.satdk)))
+        smcref=float(dtype(p0.smcref)),satdk=float(dtype(p0.satdk)),
+        saturated_suction_m=float(dtype(p0.saturated_suction_m)))
     z=np.asarray(dz,dtype).astype(float);capacity=1000.*p.smcmax*z
     w=np.asarray(capacity*wetness,dtype)
     # Choose representable input states within the *quantized* pore capacity.
@@ -48,7 +49,7 @@ def cases(dtype=np.float64,random_count=90):
 
 def reference(c,p,o,u):
     c,p,u=[np.asarray(v,float) for v in (c,p,u)]
-    params=SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3])
+    params=SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3],saturated_suction_m=p[4])
     state=SoilEnthalpyState(c[:,0],c[:,1],c[:,2],params,int(o[1]))
     enter=np.zeros(2);runoff=np.zeros(2);take=np.zeros(4);takeh=np.zeros(4)
     flow=np.zeros(4);flowh=np.zeros(4);bottom=np.zeros(2)

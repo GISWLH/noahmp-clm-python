@@ -8,7 +8,7 @@ physical energy ledger, not a rewrite of the released Thomas solver in delta T.
 from dataclasses import dataclass
 import numpy as np
 from .snowpack import TF,CI,CW,LF
-from .frozen_soil import GAS_CONSTANT_WATER
+from .clm_freezing import _freezing_potential
 
 
 def _cap_partials(total,potential):
@@ -25,18 +25,14 @@ def _cap_partials(total,potential):
 def liquid_and_derivative(theta,temperature,params,option=1):
     """Liquid water equivalent volume and d(liquid)/dT, m3/m3 and K-1.
 
-    The liquid curve matches ``frozen_soil.unfrozen_water_content`` including
-    its compact smooth cap and option-2 fixed iterations. Only the derivative
-    is new; no old physical parameter or accepted precision gate is retuned.
+    CLM5Eq2.6.52 uses the explicit positive saturated suction head. Its compact
+    smooth cap is retained. Option2 retains the historical simplified iteration;
+    it is not an independently validated implementation of full Koren1999.
     """
     theta,t=np.broadcast_arrays(np.asarray(theta,float),np.asarray(temperature,float))
     if option not in (1,2): raise ValueError('Unknown soil unfrozen-water option')
-    under=np.maximum(TF-t,0.)
-    clausius=LF/GAS_CONSTANT_WATER/(TF*TF)
-    suction=np.maximum(clausius*under,1e-8)
     b=max(params.bexp,1e-6)
-    potential=params.smcmax*(suction/5e-5)**(-1./b)
-    dp=np.where(clausius*under>1e-8,potential*clausius/(b*suction),0.)
+    potential,dp=_freezing_potential(t,params.smcmax,b,params.saturated_suction_m)
     liquid,_,dpot=_cap_partials(theta,potential)
     deriv=dpot*dp
     if option==2:

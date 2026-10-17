@@ -65,6 +65,8 @@ def test_phase_edge_backtracking_reaches_conservative_surface_root():
     from test_gpu_canopy_phase_surface import reference
     data=json.loads(Path(__file__).with_name('fixtures').joinpath('canopy_phase_surface_regression.json').read_text())
     row=tuple(np.asarray(x,np.int32 if k==3 else float) for k,x in enumerate(data))
+    from clm_soil_oracle import fixture_suction
+    row=(*row[:2],fixture_suction(row[2],.355),*row[3:])
     result=reference(row)
     assert abs(result['energy_residual_jm2'])<.01
     assert abs(result['water_residual_kgm2'])<2e-10

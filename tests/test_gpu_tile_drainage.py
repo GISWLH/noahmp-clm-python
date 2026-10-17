@@ -71,7 +71,7 @@ def test_actual_soil_native_drainage_continuous_mass_heat_and_numpy_reference():
     c,p,o,_=(np.stack([row[k] for row in packed]) for k in range(4))
     # Rebuild the NumPy reference from the same quantized extensive inputs.
     states=[SoilEnthalpyState(c[k,:,0],c[k,:,1],c[k,:,2],SoilParams(smcmax=float(p[k,0]),
-        bexp=float(p[k,1]),smcref=float(p[k,2]),satdk=float(p[k,3])),int(o[k,1])) for k in range(4)]
+        bexp=float(p[k,1]),smcref=float(p[k,2]),satdk=float(p[k,3]),saturated_suction_m=float(p[k,4])),int(o[k,1])) for k in range(4)]
     params=np.tile(np.asarray(astuple(TileDrainageParameters(.8,.28,10.)),np.float32),(4,1));dt=np.full((4,1),1800.,np.float32)
     a=b=c;initial=c.astype(float);total=np.zeros((4,2));maxstep=np.zeros(2);maxsame=0.;maxscience=np.zeros(3)
     for step in range(480):

@@ -8,7 +8,7 @@ __device__ bool ec_route_water(float* snow,float* soil,int n,const float* p,int 
     if(mass<=0.f)return true;
     if(n>0){snow[0]+=mass;snow[1]+=heat;return true;}
     int opt[3]={0,phase,1};float u[7]={mass,heat,dt,0.f,0.f,0.f,0.f},out[47];
-    soil_transport_device(soil,p,opt,u,out,vic);for(int k=0;k<12;++k)soil[k]=out[k];
+    column_soil_transport_device(soil,p,opt,u,out,vic);for(int k=0;k<12;++k)soil[k]=out[k];
     runoff[0]=out[26];runoff[1]=out[27];return out[46]>0.f;
 }
 
@@ -20,7 +20,7 @@ __device__ bool ec_collapse_molten_snow(float* c,float* g,int& n,const float* p,
     float mass=ec_sum(c,5,9),heat=ec_sum(c+1,5,9);
     for(int k=0;k<5;++k)impurity[k]=ec_sum(c+4+k,5,9);
     float u[7]={mass,heat,dt,0.f,0.f,0.f,0.f},out[47];int opt[3]={0,phase,1};
-    soil_transport_device(g,p,opt,u,out,vic);
+    column_soil_transport_device(g,p,opt,u,out,vic);
     for(int k=0;k<45;++k)c[k]=0.f;for(int k=0;k<5;++k)c[k*9+3]=54.5f;n=0;
     for(int k=0;k<12;++k)g[k]=out[k];runoff[0]=out[26];runoff[1]=out[27];return out[46]>0.f;
 }
@@ -41,7 +41,7 @@ extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const f
     float* snow_out,float* soil_out,int* surface_options,float* areas,float* inputs,float* factors,
     float* surface_storage,float* prepared,int* validity,float* pre_impurity,const float* vic_parameters,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
-        const float* p=params+row*6;const int* o=options+row*9;const float* site=sites+row*12;
+        const float* p=params+row*7;const int* o=options+row*9;const float* site=sites+row*12;
         const float* store=storage+row*3;const float* roots=roots_in+row*4;const float* f=forcing+row*8;
         float c[45],g[12];for(int k=0;k<45;++k)c[k]=snow_in[row*45+k];for(int k=0;k<12;++k)g[k]=soil_in[row*12+k];
         int n=o[0],phase=o[1];float dt=f[0],tair=f[1],capacity=(.5f*site[1])*site[0],mass=store[0],heat=store[1];
@@ -62,7 +62,7 @@ extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const f
         runoff[0]+=flow[0];runoff[1]+=flow[1];valid=valid&&good;
         float liq[4],t[4],weighted[4],view[70]={0.f};view[39]=p[0];view[40]=p[5];view[41]=p[2];view[42]=p[3];view[43]=p[1];view[44]=p[4];
         for(int k=0;k<4;++k) {
-            float reconstructed,cap,count,liquid;valid=invert_soil_enthalpy(g[k*3],g[k*3+1],g[k*3+2],p[0],p[1],phase,t[k],reconstructed,cap,liquid,count)&&valid;
+            float reconstructed,cap,count,liquid;valid=invert_soil_enthalpy(g[k*3],g[k*3+1],g[k*3+2],p[0],p[1],p[6],phase,t[k],reconstructed,cap,liquid,count)&&valid;
             liq[k]=liquid/(1000.f*g[k*3+2]);weighted[k]=roots[k]*beta(liq[k],view,o[3]);
         }
         float stress=clip((weighted[0]+weighted[2])+(weighted[1]+weighted[3]),0.f,1.f);
@@ -104,7 +104,7 @@ extern "C" __global__ void finish_enthalpy_columns(const float* old_snow,const f
     const float* flux_in,const float* surface_impurity,float* snow_out,float* soil_out,int* options_out,
     float* storage_out,float* diag_out,float* impurity_out,const float* vic_parameters,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
-        const float* p=params+row*6;const int* o=options+row*9;const float* site=sites+row*12;const float* old_store=old_storage+row*3;
+        const float* p=params+row*7;const int* o=options+row*9;const float* site=sites+row*12;const float* old_store=old_storage+row*3;
         const float* prep=prep_in+row*5;const float* flux=flux_in+row*15;float dt=forcing[row*8];int phase=o[1],n=counts[row];
         const float* vic=vic_parameters?vic_parameters+row*8:nullptr;
         float c[45],g[12],impurity[5];for(int k=0;k<45;++k)c[k]=surface_snow[row*45+k];for(int k=0;k<12;++k)g[k]=surface_soil[row*12+k];
@@ -116,12 +116,12 @@ extern "C" __global__ void finish_enthalpy_columns(const float* old_snow,const f
             float u[16]={0.f,0.f,100.f,54.5f,.033f,.05f,.2f,.02f,.02f,.01f,.01f,0.f,0.f,0.f,0.f,0.f},drained[74];
             snow_transfer_device(c,n,3,u,drained);for(int k=0;k<45;++k)c[k]=drained[k];n=(int)drained[45];
             float su[7]={drained[53],drained[54],dt,0.f,0.f,0.f,0.f},admitted[47];int so[3]={0,phase,1};
-            soil_transport_device(g,p,so,su,admitted,vic);for(int k=0;k<12;++k)g[k]=admitted[k];valid=valid&&admitted[46]>0.f;
+            column_soil_transport_device(g,p,so,su,admitted,vic);for(int k=0;k<12;++k)g[k]=admitted[k];valid=valid&&admitted[46]>0.f;
             runoff[0]+=(flow[0]+drained[60])+admitted[26];runoff[1]+=(flow[1]+drained[61])+admitted[27];
             for(int k=0;k<5;++k)impurity[k]+=drained[62+k]+drained[55+k];
         }
         float su[7]={0.f,0.f,dt,0.f,0.f,0.f,0.f},drained[47];int so[3]={2,phase,o[8]};
-        soil_transport_device(g,p,so,su,drained,vic);for(int k=0;k<12;++k)g[k]=drained[k];valid=valid&&drained[46]>0.f;
+        column_soil_transport_device(g,p,so,su,drained,vic);for(int k=0;k<12;++k)g[k]=drained[k];valid=valid&&drained[46]>0.f;
         runoff[0]+=drained[44];runoff[1]+=drained[45];
         for(int k=0;k<5;++k){float addition=deposition[row*5+k]*dt;if(n>0)c[4+k]+=addition;else impurity[k]+=addition;}
         float offset=drained[12];if(n>0){float ice,liq;snow_mass_phase(c[0],c[1],offset,ice,liq);}float temp=offset+273.15f;

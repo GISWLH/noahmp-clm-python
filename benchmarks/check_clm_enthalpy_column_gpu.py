@@ -96,7 +96,7 @@ def trajectory(steps,cp):
             maxima(errors[name],dict(step=[b['water_kgm2'],b['heat_jm2']],cumulative=np.max(abs(cumulative),axis=0)))
             obs={key:diag[key] for key in ('et_mm','runoff_mm','gpp_gcm2','h','le','swe')}
             obs['temperature']=np.stack([check.soil_temperature(after[1][k],
-                check.SoilParams(smcmax=float(after[2][k,0]),bexp=float(after[2][k,1])),int(after[3][k,1]),dtype) for k in range(3)])
+                check.SoilParams(smcmax=float(after[2][k,0]),bexp=float(after[2][k,1]),saturated_suction_m=float(after[2][k,6])),int(after[3][k,1]),dtype) for k in range(3)])
             obs['water']=r['soil_cells'][:,:,0]/(1000.*r['soil_cells'][:,:,2])
             accum=daily[name].setdefault(step//48,{k:np.zeros_like(v,dtype=float) for k,v in obs.items()})
             for key,value in obs.items():accum[key]+=value.astype(float) if key in ('et_mm','runoff_mm','gpp_gcm2') else value.astype(float)/48.

@@ -75,7 +75,10 @@ def one(task):
     for i,row in enumerate(original['intervals'][:336]):
         for name in ['time_start','time_end']:
             assert datetime.strptime(str(model[name][i]),'%Y%m%d%H%M')==datetime.fromisoformat(row[name])+timedelta(hours=prepared['utc_offset_hours'])
-    ground=model_report['initial_state']['ground'].copy();ground['params']=SoilParams(**ground['params'])
+    ground=model_report['initial_state']['ground'].copy()
+    if 'saturated_suction_m' not in ground['params']:
+        raise ValueError('Historical soil enthalpy must be diagnosed using its original frozen source')
+    ground['params']=SoilParams(**ground['params'])
     for key in ['water','enthalpy','dz']:ground[key]=np.asarray(ground[key],float)
     state=SoilEnthalpyState(**ground)
     result=dict(site=str(site),original_model_status=model_report['status'],original_model_steps_requested=17520,

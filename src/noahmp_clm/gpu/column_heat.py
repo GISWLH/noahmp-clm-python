@@ -10,7 +10,7 @@ def pack_joint_heat_case(snow,soil,dt,top_flux,*,snow_absorbed=None,soil_absorbe
 
     Cell columns are mass, H, dz, k, absorbed SW. Active snow precedes four
     soil cells; inactive trailing cells have dz/k=1 and zero mass/energy.
-    Properties are porosity/exponent/quartz; options are snow count/phase
+    Properties are porosity/exponent/quartz/suction m; options are snow count/phase
     option; boundaries are dt/top flux/air temperature offset/top conductance.
     """
     ns=len(snow.mass);n=ns+4
@@ -23,7 +23,7 @@ def pack_joint_heat_case(snow,soil,dt,top_flux,*,snow_absorbed=None,soil_absorbe
     cells[ns:n,4]=0. if soil_absorbed is None else soil_absorbed
     if top_temperature is None and top_conductance!=0.: raise ValueError('Top conductance requires a temperature')
     p=soil.params
-    properties=np.array([p.smcmax,p.bexp,p.quartz],dtype)
+    properties=np.array([p.smcmax,p.bexp,p.quartz,p.saturated_suction_m],dtype)
     # Independently rounding a saturated water mass, depth and porosity may
     # place that mass one ULP outside the rounded pore volume. Round only
     # such boundary masses toward the interior; keep the conserved H input.
@@ -37,15 +37,15 @@ def pack_joint_heat_case(snow,soil,dt,top_flux,*,snow_absorbed=None,soil_absorbe
 
 def validate_joint_heat(cells,props,options,boundary,xp):
     n=len(cells)
-    if cells.shape!=(n,9,5) or props.shape!=(n,3) or options.shape!=(n,2) or boundary.shape!=(n,4):
-        raise ValueError('Joint heat shapes must be (n,9,5), (n,3), (n,2), (n,4)')
+    if cells.shape!=(n,9,5) or props.shape!=(n,4) or options.shape!=(n,2) or boundary.shape!=(n,4):
+        raise ValueError('Joint heat shapes must be (n,9,5), (n,4) including suction, (n,2), (n,4)')
     if cells.dtype not in (xp.float32,xp.float64) or props.dtype!=cells.dtype or boundary.dtype!=cells.dtype or options.dtype.kind not in 'iu':
         raise ValueError('Heat arrays require matching float32/float64 and integer options')
     if not all(bool(xp.all(xp.isfinite(v))) for v in (cells,props,boundary)):
         raise ValueError('Nonfinite joint heat input')
-    ns,phase=options.T;por,b,quartz=props.T
+    ns,phase=options.T;por,b,quartz,psi=props.T
     if bool(xp.any((ns<0)|(ns>5)|((phase!=1)&(phase!=2))|(por<=0)|(por>=1)|(b<=0)|(quartz<0)|(quartz>1)|
-        (boundary[:,0]<=0)|(boundary[:,3]<0))): raise ValueError('Invalid joint heat properties or options')
+        (psi<1e-12)|(psi>1e6)|(boundary[:,0]<=0)|(boundary[:,3]<0))): raise ValueError('Invalid joint heat properties or options')
     index=xp.arange(9)[None,:];active=index<ns[:,None]+4;is_snow=index<ns[:,None]
     w,h,z,k,q=[cells[:,:,i] for i in range(5)]
     if bool(xp.any((w<0)|(z<=0)|(k<0)|(is_snow&(w<=0))|
@@ -57,7 +57,7 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
     import jax.numpy as j
     from jax import lax
     stop=lax.optimization_barrier
-    mass,h0,z,user_k,solar=cells.T;por,b,quartz=props;ns,phase=options
+    mass,h0,z,user_k,solar=cells.T;por,b,quartz,psi=props;ns,phase=options
     dt,qtop,air,exchange=boundary;index=j.arange(9);active=index<ns+4;snow=index<ns
     rho=j.minimum(mass/z,917.)
     ks=stop(.023+stop(stop(stop(7.75e-5*rho)+stop(stop(1.105e-6*rho)*rho))*j.asarray(2.29-.023,cells.dtype)))
@@ -72,7 +72,7 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
         upper=stop(334000.*safe_mass)
         ts=j.where(h<0.,h/stop(2100.*safe_mass),j.where(h>upper,stop(h-upper)/stop(4180.*safe_mass),0.))
         ds=j.where(h<0.,1./stop(2100.*safe_mass),j.where(h>upper,1./stop(4180.*safe_mass),0.))
-        t,reconstructed,c,liq,ok,_=invert_soil_enthalpy_jax(j.where(snow,0.,mass),j.where(snow,0.,h),z,por,b,phase)
+        t,reconstructed,c,liq,ok,_=invert_soil_enthalpy_jax(j.where(snow,0.,mass),j.where(snow,0.,h),z,por,b,psi,phase)
         eps=j.finfo(cells.dtype).eps
         snow_error=stop(stop(eps*stop(j.abs(h)+j.where(h>upper,upper,0.)))*ds)+stop(2.*eps*j.abs(ts))
         soil_error=stop(j.abs(stop(reconstructed-h))/c)+stop(2.*eps*j.abs(t))

@@ -82,6 +82,15 @@ def test_initial_soil_uses_extensive_state_including_frozen_liquid_water():
     np.testing.assert_allclose(actual['liquid_m3m3'],original.liquid/(1000*original.dz))
     assert np.all(actual['liquid_m3m3']<actual['smc_m3m3'])
 
+
+def test_historical_enthalpy_without_suction_cannot_be_silently_reinterpreted():
+    from noahmp_clm.column import ColumnState
+    from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
+    ground=asdict(SoilEnthalpyState.from_column(ColumnState(tsoil=np.full(4,270.))))
+    del ground['params']['saturated_suction_m']
+    with pytest.raises(ValueError,match='original frozen source'):
+        initial_soil_from_manifest({'initial_state':{'ground':ground}})
+
 @pytest.mark.parametrize('fault',[None,'site','length','source_changed'])
 def test_soil_cli_binds_complete_trace_operator_and_instrument_hashes(tmp_path,fault):
     import hashlib,json,subprocess

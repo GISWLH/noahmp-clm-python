@@ -24,7 +24,7 @@ def reference(c,p,o,u,v):
     c,p,u,v=[np.asarray(a,float) for a in (c,p,u,v)]
     answer=old_reference(c,p,o,u)
     if o[0]==1 or (o[0]==0 and v[0]==0.) or (o[0]==2 and v[1]==0.):return answer
-    state=SoilEnthalpyState(c[:,0],c[:,1],c[:,2],SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3]),int(o[1]))
+    state=SoilEnthalpyState(c[:,0],c[:,1],c[:,2],SoilParams(smcmax=p[0],bexp=p[1],smcref=p[2],satdk=p[3],saturated_suction_m=p[4]),int(o[1]))
     param=VICParameters(*v[2:])
     if o[0]==0:
         new,m,h=infiltrate_vic(state,u[0],u[1],param);answer['runoff']=np.array([m,h])

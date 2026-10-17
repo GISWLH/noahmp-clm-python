@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json
 import numpy as np
 from noahmp_clm.column import SoilParams
-from noahmp_clm.physics.soil_enthalpy import liquid_and_derivative
+from noahmp_clm.physics.frozen_soil import unfrozen_water_content
 from noahmp_clm.physics.clm_freezing import equilibrium_liquid_water
 
 def main():
@@ -19,7 +19,7 @@ def main():
         reference=np.minimum(total,sat*np.power(9.80616*np.minimum(t,273.15)*psi/
             (334000.*np.maximum(273.15-t,1e-12)),1./b))
         reference=np.where(t>=273.15,total,reference)
-        old=liquid_and_derivative(total,t,SoilParams(smcmax=sat,bexp=b))[0]
+        old=unfrozen_water_content(total,t,SoilParams(smcmax=sat,bexp=b))
         new=equilibrium_liquid_water(total,t,sat,b,psi)['liquid']
         measured=reference>=1e-5
         error=float(np.max(abs(new[measured]-reference[measured])/reference[measured]))

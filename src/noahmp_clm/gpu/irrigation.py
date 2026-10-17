@@ -97,7 +97,8 @@ def prepare_column_irrigation(g,p,o,site,forcing,state,parameters,inputs,checks,
     inputs=xp.broadcast_to(xp.asarray([0.,285.],dtype),(n,2)) if inputs is None else xp.asarray(inputs,dtype)
     checks=xp.zeros((n,1),xp.int32) if checks is None else xp.asarray(checks)
     if inputs.shape!=(n,2):raise ValueError('Irrigation supply/temperature inputs require shape (n,2)')
-    si=xp.concatenate((g,xp.broadcast_to(p[:,None,:2],(n,4,2))),axis=2).reshape(-1,5)
+    thermodynamic_parameters=p[:,xp.asarray([0,1,6])]
+    si=xp.concatenate((g,xp.broadcast_to(thermodynamic_parameters[:,None,:],(n,4,3))),axis=2).reshape(-1,6)
     therm=inverse(si,xp.repeat(o[:,1],4),inverse=True)
     temperature=therm['temperature_k'].reshape(n,4);raw=therm['liquid_kgm2'].reshape(n,4)
     liquid=xp.where(temperature>=273.15,g[:,:,0],xp.clip(raw,0.,g[:,:,0]))

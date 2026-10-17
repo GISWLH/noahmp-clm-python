@@ -25,16 +25,21 @@ class SoilParams:
     satdk: float = 1.0e-5  # 饱和导水率 (m/s)
     bexp: float = 5.5      # Clapp-Hornberger 指数 b
     quartz: float = 0.5    # 石英含量（热传导用）
+    saturated_suction_m: float = 0.355  # 正饱和基质吸力头 (m)，CLM焓曲线使用
+
+    def __post_init__(self):
+        if not np.isfinite(self.saturated_suction_m) or not 1e-12<=self.saturated_suction_m<=1e6:
+            raise ValueError('Saturated suction must be a finite positive head in metres')
 
 
 def default_soil_params(name: str = "loam") -> SoilParams:
     table = {
         "sand": dict(smcmax=0.40, smcwlt=0.06, smcref=0.18,
-                     satdk=5.0e-5, bexp=4.0, quartz=0.9),
+                     satdk=5.0e-5, bexp=4.0, quartz=0.9,saturated_suction_m=.069),
         "loam": dict(smcmax=0.45, smcwlt=0.12, smcref=0.28,
-                     satdk=1.0e-5, bexp=5.5, quartz=0.5),
+                     satdk=1.0e-5, bexp=5.5, quartz=0.5,saturated_suction_m=.355),
         "clay": dict(smcmax=0.50, smcwlt=0.25, smcref=0.40,
-                     satdk=1.0e-6, bexp=9.0, quartz=0.2),
+                     satdk=1.0e-6, bexp=9.0, quartz=0.2,saturated_suction_m=.468),
     }
     if name not in table:
         raise ValueError(f"unknown soil texture '{name}', choose from {list(table)}")

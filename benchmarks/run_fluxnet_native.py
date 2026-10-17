@@ -149,7 +149,7 @@ def load_batch(path):
 def initial_ground(arrays, column):
     g, p, o = (arrays[k][column] for k in (1, 2, 3))
     p = np.asarray(p, float)
-    params = SoilParams(smcmax=p[0], bexp=p[1], smcref=p[2], satdk=p[3], quartz=p[4], smcwlt=p[5])
+    params = SoilParams(smcmax=p[0], bexp=p[1], smcref=p[2], satdk=p[3], quartz=p[4], smcwlt=p[5], saturated_suction_m=p[6])
     return asdict(SoilEnthalpyState(g[:, 0].astype(float), g[:, 1].astype(float),
                                   g[:, 2].astype(float), params, int(o[1])))
 
@@ -187,7 +187,8 @@ class Backend:
 
     def soil(self, arrays):
         xp = self.xp; g, p, o = arrays[1:4]; n = len(g)
-        inputs = xp.concatenate((g, xp.broadcast_to(p[:, None, :2], (n, 4, 2))), axis=2).reshape(-1, 5)
+        thermodynamic_parameters = p[:, xp.asarray([0, 1, 6])]
+        inputs = xp.concatenate((g, xp.broadcast_to(thermodynamic_parameters[:, None, :], (n, 4, 3))), axis=2).reshape(-1, 6)
         out = self.inverse(inputs, xp.repeat(o[:, 1], 4), inverse=True)
         return self.host(out['temperature_k']).reshape(n, 4), self.host(out['liquid_kgm2']).reshape(n, 4)
 

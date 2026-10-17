@@ -6,7 +6,7 @@ from noahmp_clm.column import ColumnState
 from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState,infiltrate,enthalpy_and_capacity
 from noahmp_clm.physics.snowpack import Snowpack,TF,LF,drain_liquid
 from noahmp_clm.physics.column_heat import coupled_heat_step
-from noahmp_clm.physics.frozen_soil import unfrozen_water_content
+from clm_soil_oracle import reference_liquid as unfrozen_water_content
 
 
 def soil(temperature):

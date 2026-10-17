@@ -19,7 +19,7 @@ extern "C" __global__ void prepare_layered_transfer(const float* old_c,const flo
     float* snow_out,float* soil_out,int* options_out,float* canopy_out,float* totals,float* prepared,
     float* ledger_out,float* old_storage,int* validity,const float* vic_parameters,const float* ground_input,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
-        const float* p=params+6*row;const int* o=options+9*row;const float* site=sites+12*row;
+        const float* p=params+7*row;const int* o=options+9*row;const float* site=sites+12*row;
         const float* f=forcing+8*row;const float* cc=condensate+20*row;
         float total=f[7]*f[0],sm=total*snow_fraction(f[1],o[2],f[2],f[4]),rain=(total-sm)*1000.f,snow=sm*1000.f;
         float* intercepted=ledger_out+182*row;lc_interception(cc,site,f,rain,snow,intercepted);
@@ -43,7 +43,7 @@ extern "C" __global__ void finish_layered_transfer(const float* snow,const float
     const float* condensate,const float* impurity_in,float* snow_out,float* soil_out,int* counts_out,
     float* canopy_out,float* totals,float* prep_out,float* impurity_out,float* ledger_out,int* validity,const float* vic_parameters,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
-        const float* p=params+row*6;const int* o=options+row*9;const float* f=forcing+row*8;
+        const float* p=params+row*7;const int* o=options+row*9;const float* f=forcing+row*8;
         const float* vic=vic_parameters?vic_parameters+8*row:nullptr;
         float* post=ledger_out+row*182;lc_interception(condensate+row*20,sites+row*12,f,0.f,0.f,post);
         float c[45],g[12],runoff[2];for(int k=0;k<45;++k)c[k]=snow[row*45+k];for(int k=0;k<12;++k)g[k]=soil[row*12+k];
@@ -51,7 +51,7 @@ extern "C" __global__ void finish_layered_transfer(const float* snow,const float
         float u[16]={0.f,0.f,100.f,54.5f,.033f,.05f,.2f,.02f,.02f,.01f,.01f,0.f,0.f,0.f,0.f,0.f},drained[74];
         snow_transfer_device(c,n,3,u,drained);
         float su[7]={drained[53],drained[54],f[0],0.f,0.f,0.f,0.f},admit[47];int so[3]={0,o[1],1};
-        soil_transport_device(g,p,so,su,admit,vic);valid=valid&&admit[46]>0.f;
+        column_soil_transport_device(g,p,so,su,admit,vic);valid=valid&&admit[46]>0.f;
         runoff[0]=(runoff[0]+drained[60])+admit[26];runoff[1]=(runoff[1]+drained[61])+admit[27];
         for(int k=0;k<5;++k)impurity_out[row*5+k]=impurity_in[row*5+k]+(drained[62+k]+drained[55+k]);
         for(int k=0;k<45;++k)snow_out[row*45+k]=drained[k];for(int k=0;k<12;++k)soil_out[row*12+k]=admit[k];

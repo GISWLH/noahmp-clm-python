@@ -1,7 +1,7 @@
 """Preserve original convergence and precision gates on an actual narrow bracket."""
 import numpy as np
 import pytest
-from test_surface_secant_rounding import saved_case,reference_case
+from test_surface_secant_rounding import saved_case,numpy_reference
 from test_gpu_canopy_phase_surface import budgets
 from noahmp_clm.validation import compare_series
 
@@ -21,7 +21,7 @@ def test_actual_cng_secant_rounding_same_precision_and_budgets():
             else:
                 np.testing.assert_allclose(a,b,rtol=1e-6,atol=1e-6,err_msg=str((key,field)))
                 maximum=max(maximum,float(np.max(abs(a.astype(float)-b.astype(float)),initial=0.)))
-    ref=reference_case()
+    _,_,_,ref=numpy_reference(arrays,extension,vic)
     flat={k:cp.asnumpy(v) for k,v in cuda.items() if not isinstance(v,dict)}
     assert np.all(flat['converged']) and np.all(flat['surface_evaluations']<60)
     tol=2*np.finfo(np.float32).eps*273.15

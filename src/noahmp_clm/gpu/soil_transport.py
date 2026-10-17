@@ -9,12 +9,16 @@ from functools import lru_cache
 import numpy as np
 from .enthalpy import invert_soil_enthalpy_jax
 
+def compact_soil_parameters(properties,xp):
+    """Seven-field full soil properties -> porosity/B/field/Ksat/suction."""
+    return properties[...,xp.asarray([0,1,2,3,6])]
+
 
 def pack_soil_transport(state,mode,*,mass=0.,enthalpy=0.,dt=1800.,demand=None,
                         permeability_option=1,dtype=np.float64):
     if len(state.water)!=4:raise ValueError('Soil transport requires four layers')
     c=np.column_stack((state.water,state.enthalpy,state.dz)).astype(dtype)
-    p=np.asarray([state.params.smcmax,state.params.bexp,state.params.smcref,state.params.satdk],dtype)
+    p=np.asarray([state.params.smcmax,state.params.bexp,state.params.smcref,state.params.satdk,state.params.saturated_suction_m],dtype)
     o=np.asarray([mode,state.freezing_option,permeability_option],np.int32)
     u=np.asarray([mass,enthalpy,dt,*([0.]*4 if demand is None else demand)],dtype)
     return c,p,o,u
@@ -22,8 +26,8 @@ def pack_soil_transport(state,mode,*,mass=0.,enthalpy=0.,dt=1800.,demand=None,
 
 def validate_soil_transport(c,p,o,u,xp):
     n=len(c)
-    if c.shape!=(n,4,3) or p.shape!=(n,4) or o.shape!=(n,3) or u.shape!=(n,7):
-        raise ValueError('Soil transfer shapes require (n,4,3), (n,4), (n,3), (n,7)')
+    if c.shape!=(n,4,3) or p.shape!=(n,5) or o.shape!=(n,3) or u.shape!=(n,7):
+        raise ValueError('Soil transfer shapes require (n,4,3), (n,5) including suction, (n,3), (n,7)')
     if c.dtype not in (xp.float32,xp.float64) or p.dtype!=c.dtype or u.dtype!=c.dtype or o.dtype.kind not in 'iu':
         raise ValueError('Soil transfers require matching float32/float64 and integer options')
     if not all(bool(xp.all(xp.isfinite(v))) for v in (c,p,u)):
@@ -31,7 +35,7 @@ def validate_soil_transport(c,p,o,u,xp):
     capacity=1000.*p[:,:1]*c[:,:,2]
     rounding=8.*xp.finfo(c.dtype).eps*xp.maximum(1.,capacity)
     if (bool(xp.any((c[:,:,0]<0.)|(c[:,:,2]<=0.)|(c[:,:,0]>capacity+rounding)))
-            or bool(xp.any((p[:,0]<=0.)|(p[:,0]>=1.)|(p[:,1]<=0.)|(p[:,2]<0.)|(p[:,2]>p[:,0])|(p[:,3]<0.)))
+            or bool(xp.any((p[:,0]<=0.)|(p[:,0]>=1.)|(p[:,1]<=0.)|(p[:,2]<0.)|(p[:,2]>p[:,0])|(p[:,3]<0.)|(p[:,4]<1e-12)|(p[:,4]>1e6)))
             or bool(xp.any((o[:,0]<0)|(o[:,0]>2)|(o[:,1]<1)|(o[:,1]>2)|(o[:,2]<1)|(o[:,2]>2)))
             or bool(xp.any((u[:,0]<0.)|(u[:,2]<=0.)|((u[:,0]==0.)&(u[:,1]!=0.))))
             or bool(xp.any(u[:,3:]<0.))):
@@ -50,9 +54,9 @@ def soil_transport_kernel_jax(c,p,o,u,vic=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier
-    por,b,field,satdk=p;mode,phase,permeability=o
+    por,b,field,satdk,psi=p;mode,phase,permeability=o
     w,h,z=c.T
-    initial=invert_soil_enthalpy_jax(w,h,z,por,b,phase)
+    initial=invert_soil_enthalpy_jax(w,h,z,por,b,psi,phase)
     ok=j.all(initial[4])
     zeros=j.zeros((4,),c.dtype);pair=j.zeros((2,),c.dtype)
     def admission(_):
@@ -81,7 +85,7 @@ def soil_transport_kernel_jax(c,p,o,u,vic=None):
     def drainage(_):
         def transfer(k,carry):
             water,heat,moved,carried,valid=carry
-            inv=invert_soil_enthalpy_jax(water[k],heat[k],z[k],por,b,phase)
+            inv=invert_soil_enthalpy_jax(water[k],heat[k],z[k],por,b,psi,phase)
             liquid=inv[3];ice=s(water[k]-liquid)
             capacity=s(s(1000.*por)*z[k])
             wet=j.clip(water[k]/capacity,0.,1.)
@@ -103,7 +107,7 @@ def soil_transport_kernel_jax(c,p,o,u,vic=None):
         nw,nh,mass,heat,valid=lax.fori_loop(0,4,transfer,(w,h,zeros,zeros,ok))
         return nw,nh,pair,pair,zeros,zeros,mass,heat,j.stack((mass[3],heat[3])),valid
     nw,nh,enter,runoff,take,takeh,flow,flowh,bottom,valid=lax.switch(mode,(admission,withdrawal,drainage),None)
-    final=invert_soil_enthalpy_jax(nw,nh,z,por,b,phase)
+    final=invert_soil_enthalpy_jax(nw,nh,z,por,b,psi,phase)
     valid=valid&j.all(final[4])&j.all(nw>=0.)
     cells=j.stack((nw,nh,z),axis=1)
     return j.concatenate((cells.ravel(),final[0],final[3],s(nw-final[3]),enter,runoff,take,takeh,flow,flowh,bottom,j.asarray([valid],c.dtype)))

@@ -8,7 +8,7 @@ import numpy as np
 from .canopy_energy import pack_canopy_case,validate_canopy_batch,_sum,canopy_energy_kernel_jax
 from .canopy_boundary import unpack_boundary,radiation_inputs
 from .snow_mass import pack_snow_transfer,validate_snow_transfer,snow_phase_jax,snow_transfer_kernel_jax
-from .soil_transport import validate_soil_transport,soil_transport_kernel_jax
+from .soil_transport import validate_soil_transport,soil_transport_kernel_jax,compact_soil_parameters
 from .enthalpy import invert_soil_enthalpy_jax
 from .column_heat import joint_heat_kernel_jax
 from .snow_vapor import snow_vapor_kernel_jax
@@ -29,7 +29,7 @@ def pack_canopy_surface(snow,soil,dt,area,swdown,lwdown,exchange,*,canopy_water_
     c,n,_,_=pack_snow_transfer(snow,0,dtype=dtype)
     g=np.column_stack((soil.water,soil.enthalpy,soil.dz)).astype(dtype)
     p=np.asarray([soil.params.smcmax,soil.params.bexp,soil.params.smcref,soil.params.satdk,
-                  soil.params.quartz,soil.params.smcwlt],dtype)
+                  soil.params.quartz,soil.params.smcwlt,soil.params.saturated_suction_m],dtype)
     o=np.asarray([n,soil.freezing_option],np.int32)
     h=canopy_water_kgm2*(334000.+4180.*(exchange.air_temperature-273.15)) if canopy_enthalpy_jm2 is None else canopy_enthalpy_jm2
     v=np.asarray([dt,canopy_water_kgm2,h,*([0.]*4 if root_weights is None else root_weights)],dtype)
@@ -38,7 +38,7 @@ def pack_canopy_surface(snow,soil,dt,area,swdown,lwdown,exchange,*,canopy_water_
 
 def validate_surface(arrays,xp):
     c,g,p,o,a,u,f,v=arrays;n=len(c)
-    if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,6) or o.shape!=(n,2)
+    if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,7) or o.shape!=(n,2)
             or v.shape!=(n,7)):raise ValueError('Invalid surface state/parameter shapes')
     if any(x.dtype!=c.dtype for x in (g,p,a,u,f,v)) or o.dtype.kind not in 'iu':
         raise ValueError('Surface requires matching floats and integer options')
@@ -48,7 +48,7 @@ def validate_surface(arrays,xp):
     so=xp.stack((zero,o[:,1],zero+1),axis=1)
     # Immutable JAX arrays are supported by constructing, not assigning.
     gu=xp.concatenate((xp.zeros((n,2),dtype=c.dtype),v[:,:1],xp.zeros((n,4),dtype=c.dtype)),axis=1)
-    validate_soil_transport(g,p[:,:4],so,gu,xp)
+    validate_soil_transport(g,compact_soil_parameters(p,xp),so,gu,xp)
     supply=xp.zeros((n,10),dtype=c.dtype)
     initial=xp.broadcast_to(u[:,:1],(n,11))
     validate_canopy_batch(a,u,f,supply,initial,xp)
@@ -65,7 +65,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
     s=lax.optimization_barrier;dtype=c.dtype;zero=j.zeros((),dtype);dt=v[0];n=o[0];phase=o[1]
     row=lambda *x:j.asarray(x,dtype)
     if condensate is not None:v=v.at[1].set(_sum(condensate[:,0])).at[2].set(_sum(condensate[:,1]))
-    inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],phase)
+    inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],p[6],phase)
     root_h=s(334000.+s(4180.*inv[0]))
     supply=j.concatenate((row(1.),j.maximum(0.,s(inv[3]-s(s(p[5]*1000.)*g[:,2])))/dt,v[3:7],row(inv[3][0]/dt)))
     u=u.at[15].set(v[1]/dt).at[17].set(j.where(n>0,c[0,0]/dt,j.inf))
@@ -85,7 +85,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
                 row(_sum(extra[195:205]),_sum(extra[205:215])),extra[286:288]))
         roots=s(canopy[51:55]*dt);gm=s(canopy[50]*dt);wet=s(_sum(canopy[30:40])*dt)
         demand=roots.at[0].add(j.where((n==0)&(gm>0.),gm,0.))
-        tr=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(1),phase,j.asarray(1))),j.concatenate((row(0.,0.,dt),demand)))
+        tr=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(1),phase,j.asarray(1))),j.concatenate((row(0.,0.,dt),demand)))
         ground=tr[:12].reshape(4,3);gh=s(_sum(tr[32:36])-_sum(s(roots*root_h)))
         sw=canopy[196:201];soil_sw=canopy[201]
         def snowy():
@@ -98,7 +98,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
             offset=s(temp-273.15)
             heat=j.where(gm<0.,s(gm*j.where(temp<273.15,s(2100.*offset),s(334000.+s(4180.*offset)))),gh)
             latent=s(j.where((gm<0.)&(temp<273.15),2834000.,2500000.)*gm)/dt
-            added=soil_transport_kernel_jax(ground,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),
+            added=soil_transport_kernel_jax(ground,compact_soil_parameters(p,j),j.stack((j.asarray(0),phase,j.asarray(1))),
                 j.concatenate((row(j.maximum(-gm,0.),j.where(gm<0.,-heat,0.),dt),j.zeros(4,dtype))))
             return c,n,added[:12].reshape(4,3),gm,heat,latent,added[26],added[27],j.zeros(5,dtype),sw,soil_sw,(tr[46]>0.)&(added[46]>0.)
         pack,nn,ground,gm,gh,latent,runoff,runoff_h,residue,sw,soil_sw,valid=lax.cond(n>0,snowy,bare)
@@ -113,7 +113,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
                 j.where(snow,sw[sk],j.where(k==nn,soil_sw,0.))))
             return cells.at[k].set(value)
         cells=lax.fori_loop(0,9,cell,cells)
-        heat=j.concatenate(joint_heat_kernel_jax(cells,p[j.array([0,1,4])],j.stack((nn,phase)),row(dt,top,0.,0.)))
+        heat=j.concatenate(joint_heat_kernel_jax(cells,p[j.array([0,1,4,6])],j.stack((nn,phase)),row(dt,top,0.,0.)))
         pack=pack.at[:,1].set(j.where(j.arange(5)<nn,heat[:5],0.))
         ground=ground.at[:,1].set(heat[nn+j.arange(4)])
         residual=s(heat[18]-s(temp-273.15))
@@ -202,7 +202,7 @@ def surface_finish_jax(old_snow,old_soil,v,d,count,converged,aging,p,phase,phase
         j.concatenate((row(dt),gradient,d[343:348],refrozen,j.zeros(5,dtype),row(0.,0.))),aging)
     drain=snow_transfer_kernel_jax(ev[:45].reshape(5,9),n,j.asarray(3),row(0.,0.,100.,54.5,.033,.05,.2,.02,.02,.01,.01,0.,0.,0.,0.,0.))
     pack=drain[:45].reshape(5,9);nn=drain[45]
-    admission=soil_transport_kernel_jax(ground,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),
+    admission=soil_transport_kernel_jax(ground,compact_soil_parameters(p,j),j.stack((j.asarray(0),phase,j.asarray(1))),
         j.concatenate((row(drain[53],drain[54],dt),j.zeros(4,dtype))),vic)
     ground=admission[:12].reshape(4,3)
     runoff=s(s(d[353]+drain[60])+admission[26]);runoff_h=s(s(d[354]+drain[61])+admission[27])

@@ -29,6 +29,8 @@ def initial_soil_from_manifest(manifest):
     from noahmp_clm.column import SoilParams
     from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
     raw = manifest['initial_state']['ground'].copy()
+    if 'saturated_suction_m' not in raw['params']:
+        raise ValueError('Historical soil enthalpy requires its original frozen source; saturated_suction_m is absent')
     raw['params'] = SoilParams(**raw['params'])
     state = SoilEnthalpyState(**raw)
     return {'dz': state.dz, 'tsoil_k': state.temperature,

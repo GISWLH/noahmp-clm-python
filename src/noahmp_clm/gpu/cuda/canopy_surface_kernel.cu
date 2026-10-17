@@ -20,7 +20,7 @@ template<class Solver> __device__ void surface_evaluate(const float* c,const flo
     float gm=canopy[50]*dt,wet=ca_sum(canopy+30,10)*dt;
     for(int i=0;i<4;++i){roots[i]=canopy[51+i]*dt;carried[i]=roots[i]*root_h[i];demand[3+i]=roots[i];}
     if(n==0&&gm>0.f)demand[3]+=gm;
-    soil_transport_device(g,p,operation,demand,tr);
+    column_soil_transport_device(g,p,operation,demand,tr);
     float ground[12];for(int i=0;i<12;++i)ground[i]=tr[i];
     float gh=ca_sum(tr+32,4)-ca_sum(carried,4),latent,runoff=0.f,runoff_h=0.f,residue[5]={0.f};
     float sw[5],soil_sw=canopy[201];for(int i=0;i<5;++i)sw[i]=canopy[196+i];
@@ -37,13 +37,13 @@ template<class Solver> __device__ void surface_evaluate(const float* c,const flo
         if(gm<0.f)gh=gm*(temp<273.15f?2100.f*offset:334000.f+4180.f*offset);
         latent=((gm<0.f&&temp<273.15f)?2834000.f:2500000.f)*gm/dt;
         float args[7]={fmaxf(-gm,0.f),gm<0.f?-gh:0.f,dt,0.f,0.f,0.f,0.f};operation[0]=0;
-        soil_transport_device(ground,p,operation,args,tr);valid=valid&&tr[46]>0.f;
+        column_soil_transport_device(ground,p,operation,args,tr);valid=valid&&tr[46]>0.f;
         for(int i=0;i<12;++i)ground[i]=tr[i];runoff=tr[26];runoff_h=tr[27];
     }
     out[45]=(float)nn;
     for(int i=0;i<5;++i){float t,liquid;snow_mass_phase(out[9*i],out[9*i+1],t,out[343+i],liquid);}
     float top=(canopy[195]+canopy[202]*canopy[50])-latent;
-    float cells[45]={0.f},props[3]={p[0],p[1],p[4]},bc[4]={dt,top,0.f,0.f};int options[2]={nn,phase};
+    float cells[45]={0.f},props[4]={p[0],p[1],p[4],p[6]},bc[4]={dt,top,0.f,0.f};int options[2]={nn,phase};
     for(int k=0;k<9;++k) {
         if(k<nn){cells[k*5]=out[k*9];cells[k*5+1]=out[k*9+1];cells[k*5+2]=out[k*9+2];cells[k*5+4]=sw[k];}
         else if(k<nn+4){int j=k-nn;for(int i=0;i<3;++i)cells[k*5+i]=ground[j*3+i];if(j==0)cells[k*5+4]=soil_sw;}
@@ -76,7 +76,7 @@ template<class Solver> __device__ void surface_finish(const float* old_snow,cons
     snow_transfer_device(evolved,n,3,drainargs,drain);
     for(int i=0;i<45;++i)out[363+i]=drain[i];out[408]=drain[45];
     float admitargs[7]={drain[53],drain[54],dt,0.f,0.f,0.f,0.f},admission[47];int so[3]={0,phase,1};
-    soil_transport_device(d+46,p,so,admitargs,admission,vic);for(int i=0;i<12;++i)out[409+i]=admission[i];
+    column_soil_transport_device(d+46,p,so,admitargs,admission,vic);for(int i=0;i<12;++i)out[409+i]=admission[i];
     float runoff=(d[353]+drain[60])+admission[26],runoff_h=(d[354]+drain[61])+admission[27];
     float advected=d[349]+dt*(canopy[206]+canopy[207]),et=(d[352]+d[348])+d[351];
     float le=solver.latent(out);
@@ -100,7 +100,7 @@ template<class Solver> __device__ void surface_device(const float* c,const float
     int n=o[0],phase=o[1];float u[23],supply[10],root_h[4],offset0=0.f;bool inverse_ok=true;
     for(int i=0;i<23;++i)u[i]=input[i];u[15]=v[1]/v[0];u[17]=n>0?c[0]/v[0]:__int_as_float(0x7f800000);supply[0]=1.f;
     for(int i=0;i<4;++i) {
-        float offset,h,cap,liquid,count;inverse_ok=invert_soil_enthalpy(g[i*3],g[i*3+1],g[i*3+2],p[0],p[1],phase,offset,h,cap,liquid,count)&&inverse_ok;
+        float offset,h,cap,liquid,count;inverse_ok=invert_soil_enthalpy(g[i*3],g[i*3+1],g[i*3+2],p[0],p[1],p[6],phase,offset,h,cap,liquid,count)&&inverse_ok;
         root_h[i]=334000.f+4180.f*offset;supply[1+i]=fmaxf(0.f,liquid-(p[5]*1000.f)*g[i*3+2])/v[0];supply[5+i]=v[3+i];
         if(i==0){supply[9]=liquid/v[0];offset0=offset;}
     }
@@ -160,6 +160,6 @@ extern "C" __global__ void run_canopy_surface(const float* c,const float* g,cons
     const float* a,const float* u,const float* f,const float* v,const float* radiation,
     const float* leaf,const float* aging,float* out,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
-        canopy_surface_device(c+45*row,g+12*row,p+6*row,o+2*row,a+10*row,u+23*row,f+20*row,v+7*row,
+        canopy_surface_device(c+45*row,g+12*row,p+7*row,o+2*row,a+10*row,u+23*row,f+20*row,v+7*row,
             radiation+584*row,leaf,aging,out+441*row);
 }

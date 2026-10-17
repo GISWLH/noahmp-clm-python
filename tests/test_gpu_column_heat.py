@@ -7,6 +7,7 @@ from noahmp_clm.physics.snowpack import Snowpack,TF,LF
 from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
 from noahmp_clm.physics.column_heat import coupled_heat_step
 from noahmp_clm.gpu.column_heat import pack_joint_heat_case,validate_joint_heat
+from clm_soil_oracle import fixture_suction
 
 
 def cases(dtype):
@@ -35,14 +36,14 @@ def cases(dtype):
     for row in failures['cases']:
         c,p,o,b=(np.asarray(row[key],np.int32 if key=='options' else dtype)
                  for key in ('cells','props','options','boundary'))
-        rows.append((c,p,o,b))
+        rows.append((c,fixture_suction(p,.355),o,b))
     return tuple(np.stack([row[i] for row in rows]) for i in range(4))
 
 
 def numpy_reference(c,p,o,b):
     ns=int(o[0]);n=ns+4;c,p,b=c.astype(float),p.astype(float),b.astype(float)
     snow=Snowpack(c[:ns,0],c[:ns,1],c[:ns,2]) if ns else Snowpack.empty()
-    earth=SoilEnthalpyState(c[ns:n,0],c[ns:n,1],c[ns:n,2],SoilParams(smcmax=p[0],bexp=p[1],quartz=p[2]),int(o[1]))
+    earth=SoilEnthalpyState(c[ns:n,0],c[ns:n,1],c[ns:n,2],SoilParams(smcmax=p[0],bexp=p[1],quartz=p[2],saturated_suction_m=p[3]),int(o[1]))
     from noahmp_clm.physics.snow_heat import conductivity
     from noahmp_clm.physics.soil import thermal_conductivity
     native_k=np.r_[conductivity(snow),thermal_conductivity(earth.water/(1000.*earth.dz),earth.params)]

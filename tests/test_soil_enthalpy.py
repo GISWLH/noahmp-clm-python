@@ -2,15 +2,31 @@
 import numpy as np
 import pytest
 from noahmp_clm.column import ColumnState,default_soil_params
-from noahmp_clm.physics.frozen_soil import unfrozen_water_content
+from clm_soil_oracle import reference_liquid as unfrozen_water_content
 from noahmp_clm.physics.soil_enthalpy import (liquid_and_derivative,enthalpy_and_capacity,
     temperature_from_enthalpy,SoilEnthalpyState,infiltrate,withdraw_liquid)
 from noahmp_clm.physics.snowpack import TF,LF,CW
 
+@pytest.mark.parametrize('total,t,sat,b,psi,official',[
+    (.28,270.259,.439,5.25,.355,.11723104119300842),
+    (.382,260.1010416666666,.465,8.17,.263,.15881063044071198),
+])
+def test_extensive_soil_state_uses_independent_official_suction(total,t,sat,b,psi,official):
+    from noahmp_clm.column import SoilParams
+    p=SoilParams(smcmax=sat,bexp=b,saturated_suction_m=psi)
+    old=SoilEnthalpyState.from_column(ColumnState(soil=p,tsoil=np.full(4,t),smc=np.full(4,total)))
+    np.testing.assert_allclose(old.liquid/(1000*old.dz),official,rtol=.01,atol=2e-5)
+    np.testing.assert_allclose(old.temperature,t,rtol=0.,atol=2e-10)
+    # Changing a constitutive parameter changes latent storage at the same T;
+    # this catches a parameter that is serialized but never reaches the curve.
+    other=SoilEnthalpyState.from_column(ColumnState(soil=SoilParams(smcmax=sat,bexp=b,saturated_suction_m=psi*2),
+        tsoil=np.full(4,t),smc=np.full(4,total)))
+    assert np.all(other.liquid>old.liquid) and np.all(other.enthalpy>old.enthalpy)
+
 
 @pytest.mark.parametrize('texture',['sand','loam','clay'])
 @pytest.mark.parametrize('option',[1,2])
-def test_liquid_curve_matches_retained_options_and_derivative(texture,option):
+def test_liquid_curve_matches_pressure_head_reference_and_derivative(texture,option):
     p=default_soil_params(texture);rng=np.random.default_rng(151)
     t=np.r_[np.linspace(243.,275.,400),TF-np.logspace(-5,1,400)]
     theta=rng.uniform(.001,p.smcmax,t.size)
@@ -18,7 +34,7 @@ def test_liquid_curve_matches_retained_options_and_derivative(texture,option):
     expected=unfrozen_water_content(theta,t,p,option)
     np.testing.assert_allclose(got,expected,rtol=3e-14,atol=1e-15)
     # Narrow enough not to straddle successive option-2 smooth-cap regions.
-    eps=1e-6
+    eps=1e-7
     reference=(unfrozen_water_content(theta,t+eps,p,option)-unfrozen_water_content(theta,t-eps,p,option))/(2*eps)
     np.testing.assert_allclose(d,reference,rtol=2e-5,atol=1e-7)
     assert np.all(d>=0.)

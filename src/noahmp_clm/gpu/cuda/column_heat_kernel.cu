@@ -14,7 +14,7 @@ __device__ bool heat_evaluate(const float* h,const float* old,const float* mass,
                 (2.f*1.1920928955078125e-7f)*fabsf(t[i]);
         } else if(i<ns+4) {
             float reconstructed,capacity,count;
-            bool ok=invert_soil_enthalpy(mass[i],h[i],z[i],props[0],props[1],phase,t[i],reconstructed,capacity,liquid[i],count);
+            bool ok=invert_soil_enthalpy(mass[i],h[i],z[i],props[0],props[1],props[3],phase,t[i],reconstructed,capacity,liquid[i],count);
             derivative[i]=1.f/capacity;valid=valid&&ok;
             rounding[i]=fabsf(reconstructed-h[i])/capacity+(2.f*1.1920928955078125e-7f)*fabsf(t[i]);
         }
@@ -169,5 +169,5 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
 extern "C" __global__ void run_joint_heat(const float* cells,const float* props,const int* options,
                                           const float* boundary,float* out,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
-        joint_heat_device(cells+45*row,props+3*row,options+2*row,boundary+4*row,out+77*row);
+        joint_heat_device(cells+45*row,props+4*row,options+2*row,boundary+4*row,out+77*row);
 }

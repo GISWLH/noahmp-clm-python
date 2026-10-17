@@ -4,7 +4,7 @@ import pytest
 from noahmp_clm.column import ColumnState,default_soil_params
 from noahmp_clm.physics.snowpack import Snowpack,TF
 from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
-from noahmp_clm.physics.frozen_soil import unfrozen_water_content
+from clm_soil_oracle import reference_liquid as unfrozen_water_content
 from noahmp_clm.physics.canopy_energy import CanopyExchange
 from noahmp_clm.physics.canopy_column import surface_step
 from noahmp_clm.physics.snicar import snow_shortwave

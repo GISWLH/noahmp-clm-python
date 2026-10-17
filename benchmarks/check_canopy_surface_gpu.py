@@ -46,7 +46,7 @@ def advance(arrays,result):
 
 def diagnostics(r,arrays):
     p=arrays[2];g=r['soil_cells'];o=arrays[3]
-    t=np.stack([SoilEnthalpyState(g[k,:,0],g[k,:,1],g[k,:,2],SoilParams(smcmax=p[k,0],bexp=p[k,1]),int(o[k,1])).temperature for k in range(len(p))])
+    t=np.stack([SoilEnthalpyState(g[k,:,0],g[k,:,1],g[k,:,2],SoilParams(smcmax=p[k,0],bexp=p[k,1],saturated_suction_m=p[k,6]),int(o[k,1])).temperature for k in range(len(p))])
     return dict(et=r['et_kgm2'],h=r['h'],le=r['le'],gpp=r['gpp']*12e-6*arrays[7][:,0],
         runoff=r['runoff_kgm2'],swe=r['snow_cells'][:,:,0].sum(1)/1000.,temperature=t,
         water=g[:,:,0]/(1000.*g[:,:,2]))

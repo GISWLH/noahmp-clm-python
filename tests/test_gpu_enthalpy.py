@@ -13,7 +13,8 @@ def cases(dtype=np.float32,inverse=False):
     offset=np.r_[rng.uniform(-120.,120.,n//2),-np.logspace(-7,1.5,n//2)]
     offset[:7]=[-123.15,-60.,-1.,0.,.001,80.,126.85];water[7:10]=0.
     options=(1+np.arange(n)%2).astype(np.int32)
-    u=np.column_stack((water,offset,z,por,b)).astype(dtype)
+    psi=np.array([.069,.355,.468])[np.arange(n)%3]
+    u=np.column_stack((water,offset,z,por,b,psi)).astype(dtype)
     if inverse:
         # Interior energy values remain inside the physical bracket after
         # independent host float64-to-device float32 quantization.
@@ -24,10 +25,10 @@ def cases(dtype=np.float32,inverse=False):
 
 def reference(u,options,inverse):
     u=u.astype(float);out={k:np.empty(len(u)) for k in ('temperature_offset_k','temperature_k','liquid_kgm2','ice_kgm2','enthalpy_jm2','capacity_jm2k')}
-    for por,b in np.unique(u[:,3:5],axis=0):
-        p=SoilParams(smcmax=por,bexp=b)
+    for por,b,psi in np.unique(u[:,3:6],axis=0):
+        p=SoilParams(smcmax=por,bexp=b,saturated_suction_m=psi)
         for option in (1,2):
-            mask=(u[:,3]==por)&(u[:,4]==b)&(options==option)
+            mask=(u[:,3]==por)&(u[:,4]==b)&(u[:,5]==psi)&(options==option)
             w,q,z=u[mask,:3].T
             t=temperature_from_enthalpy(w,q,z,p,option) if inverse else q+273.15
             h,c=enthalpy_and_capacity(w,t,z,p,option)
@@ -76,7 +77,7 @@ def test_thermodynamics_input_contract():
     validate_soil_thermodynamics(u,o,False,np)
     for bad in (o.astype(float),np.full(len(o),3,np.int32)):
         with pytest.raises(ValueError):validate_soil_thermodynamics(u,bad,False,np)
-    for field,value in ((0,-1.),(1,150.),(2,0.),(3,1.),(4,0.)):
+    for field,value in ((0,-1.),(1,150.),(2,0.),(3,1.),(4,0.),(5,0.)):
         bad=u.copy();bad[0,field]=value
         with pytest.raises(ValueError):validate_soil_thermodynamics(bad,o,False,np)
 
@@ -90,4 +91,4 @@ def test_gpu_inverse_domain_error_is_not_clipped(backend):
         pytest.importorskip('cupy')
         from noahmp_clm.gpu.cuda.enthalpy import run_soil_thermodynamics_cuda as run
     with pytest.raises(ValueError,match='physical domain'):
-        run(np.array([[10.,1e30,.1,.4,4.]],np.float32),np.array([1],np.int32),inverse=True)
+        run(np.array([[10.,1e30,.1,.4,4.,.355]],np.float32),np.array([1],np.int32),inverse=True)
