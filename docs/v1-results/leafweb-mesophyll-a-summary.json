@@ -1,0 +1,411 @@
+{
+  "scope": "Summary of remote PBS56 computed conditional diagnostics and prior read-only measured metadata, no local physics execution or light-response score.",
+  "seconds": 0.2795034049777314,
+  "node": "compute002",
+  "pbs_job": "56.manager",
+  "diagnostic_sha256": "9d3a4b0bd7853a73f0ac731941dfbe6fecf701062668ebf2fd8616785a4e198e",
+  "rows": [
+    {
+      "file": "Dichanthelium_clandestinum1.csv",
+      "original_n": 13,
+      "base": {
+        "optical_electron_product": 0.42,
+        "rd_factor": 1.0,
+        "gamma_factor": 1.0,
+        "selected_n": 5,
+        "positive_gm_n": 5,
+        "invalid_or_nonpositive_n": 0,
+        "positive_gm_min": 0.1156189506076468,
+        "positive_gm_median": 0.38962435489169406,
+        "positive_gm_max": 0.6040052743382907,
+        "harley_conditioned_n": 4,
+        "constant_fit": {
+          "status": "finite_conditional_fit",
+          "inverse_gm": 2.5401400448156397,
+          "gm_mol_m2_s": 0.39367908160850196,
+          "j_rmse": 4.62141915513596,
+          "j_relative_rmse": 0.05496824364932496,
+          "selected_n": 5,
+          "at_upper_endpoint": false
+        }
+      },
+      "optical_sensitivity": [
+        {
+          "product": 0.35,
+          "positive_n": 0,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.09161464309867341
+        },
+        {
+          "product": 0.385,
+          "positive_n": 3,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 3.6162090620236094,
+          "j_relative_rmse": 0.02922539227521817
+        },
+        {
+          "product": 0.42,
+          "positive_n": 5,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.39367908160850196,
+          "j_relative_rmse": 0.05496824364932496
+        },
+        {
+          "product": 0.455,
+          "positive_n": 5,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.24289465220486248,
+          "j_relative_rmse": 0.08615462894188695
+        },
+        {
+          "product": 0.49,
+          "positive_n": 5,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.18939285038787368,
+          "j_relative_rmse": 0.11599429649594077
+        }
+      ],
+      "total_scenarios": 45,
+      "infinite_gm_endpoint_scenarios": 13,
+      "brent_max_cc_difference_ppm": 1.7848833522293717e-11
+    },
+    {
+      "file": "Dichanthelium_clandestinum2.csv",
+      "original_n": 14,
+      "base": {
+        "optical_electron_product": 0.42,
+        "rd_factor": 1.0,
+        "gamma_factor": 1.0,
+        "selected_n": 8,
+        "positive_gm_n": 7,
+        "invalid_or_nonpositive_n": 1,
+        "positive_gm_min": 0.04874873140570974,
+        "positive_gm_median": 0.15038522582760727,
+        "positive_gm_max": 1.4508621584822414,
+        "harley_conditioned_n": 8,
+        "constant_fit": {
+          "status": "finite_conditional_fit",
+          "inverse_gm": 1.7111542947386909,
+          "gm_mol_m2_s": 0.5844008357836072,
+          "j_rmse": 13.919366827324051,
+          "j_relative_rmse": 0.15762981907967552,
+          "selected_n": 8,
+          "at_upper_endpoint": false
+        }
+      },
+      "optical_sensitivity": [
+        {
+          "product": 0.35,
+          "positive_n": 5,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.09105066252731597
+        },
+        {
+          "product": 0.385,
+          "positive_n": 6,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 3.654936808143537,
+          "j_relative_rmse": 0.11182148422637764
+        },
+        {
+          "product": 0.42,
+          "positive_n": 7,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.5844008357836072,
+          "j_relative_rmse": 0.15762981907967552
+        },
+        {
+          "product": 0.455,
+          "positive_n": 8,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.3635890953577226,
+          "j_relative_rmse": 0.19985044566409718
+        },
+        {
+          "product": 0.49,
+          "positive_n": 8,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.2824408079151776,
+          "j_relative_rmse": 0.23813108021462656
+        }
+      ],
+      "total_scenarios": 45,
+      "infinite_gm_endpoint_scenarios": 12,
+      "brent_max_cc_difference_ppm": 1.6541434888495132e-11
+    },
+    {
+      "file": "Dichanthelium_clandestinum3.csv",
+      "original_n": 14,
+      "base": {
+        "optical_electron_product": 0.42,
+        "rd_factor": 1.0,
+        "gamma_factor": 1.0,
+        "selected_n": 7,
+        "positive_gm_n": 5,
+        "invalid_or_nonpositive_n": 2,
+        "positive_gm_min": 0.1306057482612597,
+        "positive_gm_median": 0.2137297635815139,
+        "positive_gm_max": 0.6537222132805579,
+        "harley_conditioned_n": 6,
+        "constant_fit": {
+          "status": "finite_conditional_fit",
+          "inverse_gm": 0.10313806890436522,
+          "gm_mol_m2_s": 9.695740967646486,
+          "j_rmse": 13.55903065998912,
+          "j_relative_rmse": 0.13164813824649016,
+          "selected_n": 7,
+          "at_upper_endpoint": false
+        }
+      },
+      "optical_sensitivity": [
+        {
+          "product": 0.35,
+          "positive_n": 1,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.1758936641676501
+        },
+        {
+          "product": 0.385,
+          "positive_n": 4,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.121641949297459
+        },
+        {
+          "product": 0.42,
+          "positive_n": 5,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 9.695740967646486,
+          "j_relative_rmse": 0.13164813824649016
+        },
+        {
+          "product": 0.455,
+          "positive_n": 6,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.865095048279442,
+          "j_relative_rmse": 0.16532732154231972
+        },
+        {
+          "product": 0.49,
+          "positive_n": 6,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.5223610500942848,
+          "j_relative_rmse": 0.19976856448250122
+        }
+      ],
+      "total_scenarios": 45,
+      "infinite_gm_endpoint_scenarios": 22,
+      "brent_max_cc_difference_ppm": 2.0975221559638157e-11
+    },
+    {
+      "file": "Dichanthelium_clandestinum4.csv",
+      "original_n": 13,
+      "base": {
+        "optical_electron_product": 0.42,
+        "rd_factor": 1.0,
+        "gamma_factor": 1.0,
+        "selected_n": 6,
+        "positive_gm_n": 0,
+        "invalid_or_nonpositive_n": 6,
+        "positive_gm_min": null,
+        "positive_gm_median": null,
+        "positive_gm_max": null,
+        "harley_conditioned_n": 4,
+        "constant_fit": {
+          "status": "infinite_gm_endpoint",
+          "inverse_gm": 0.0,
+          "gm_mol_m2_s": null,
+          "j_rmse": 12.717548436604073,
+          "j_relative_rmse": 0.11720826245134296,
+          "selected_n": 6,
+          "at_upper_endpoint": false
+        }
+      },
+      "optical_sensitivity": [
+        {
+          "product": 0.35,
+          "positive_n": 0,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.3025226136391216
+        },
+        {
+          "product": 0.385,
+          "positive_n": 0,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.19411405493960346
+        },
+        {
+          "product": 0.42,
+          "positive_n": 0,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.11720826245134296
+        },
+        {
+          "product": 0.455,
+          "positive_n": 5,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.09130144078850633
+        },
+        {
+          "product": 0.49,
+          "positive_n": 5,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 2.8859512828293745,
+          "j_relative_rmse": 0.11918643359813745
+        }
+      ],
+      "total_scenarios": 45,
+      "infinite_gm_endpoint_scenarios": 36,
+      "brent_max_cc_difference_ppm": 2.148681232938543e-11
+    },
+    {
+      "file": "Dichanthelium_clandestinum5.csv",
+      "original_n": 14,
+      "base": {
+        "optical_electron_product": 0.42,
+        "rd_factor": 1.0,
+        "gamma_factor": 1.0,
+        "selected_n": 9,
+        "positive_gm_n": 8,
+        "invalid_or_nonpositive_n": 1,
+        "positive_gm_min": 0.028657241653225654,
+        "positive_gm_median": 0.13807448982120313,
+        "positive_gm_max": 0.3343136064869242,
+        "harley_conditioned_n": 6,
+        "constant_fit": {
+          "status": "finite_conditional_fit",
+          "inverse_gm": 0.3235703580721942,
+          "gm_mol_m2_s": 3.0905179508961154,
+          "j_rmse": 13.28228404067064,
+          "j_relative_rmse": 0.1527840857565353,
+          "selected_n": 9,
+          "at_upper_endpoint": false
+        }
+      },
+      "optical_sensitivity": [
+        {
+          "product": 0.35,
+          "positive_n": 3,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.12646187606018405
+        },
+        {
+          "product": 0.385,
+          "positive_n": 7,
+          "constant_status": "infinite_gm_endpoint",
+          "constant_gm": null,
+          "j_relative_rmse": 0.11069676576725321
+        },
+        {
+          "product": 0.42,
+          "positive_n": 8,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 3.0905179508961154,
+          "j_relative_rmse": 0.1527840857565353
+        },
+        {
+          "product": 0.455,
+          "positive_n": 8,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.6518010725390928,
+          "j_relative_rmse": 0.2004806401402563
+        },
+        {
+          "product": 0.49,
+          "positive_n": 9,
+          "constant_status": "finite_conditional_fit",
+          "constant_gm": 0.4142011514607884,
+          "j_relative_rmse": 0.24372479254253235
+        }
+      ],
+      "total_scenarios": 45,
+      "infinite_gm_endpoint_scenarios": 21,
+      "brent_max_cc_difference_ppm": 2.1884716261411086e-11
+    }
+  ],
+  "oxygen_metadata": [
+    {
+      "file": "Dichanthelium_clandestinum1.csv",
+      "oxygen": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "unit": "%"
+      },
+      "pressure": {
+        "min": 99.05,
+        "max": 99.07,
+        "mean": 99.06153846153846,
+        "unit": "kPa"
+      }
+    },
+    {
+      "file": "Dichanthelium_clandestinum2.csv",
+      "oxygen": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "unit": "%"
+      },
+      "pressure": {
+        "min": 99.07,
+        "max": 99.1,
+        "mean": 99.08,
+        "unit": "kPa"
+      }
+    },
+    {
+      "file": "Dichanthelium_clandestinum3.csv",
+      "oxygen": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "unit": "%"
+      },
+      "pressure": {
+        "min": 98.99,
+        "max": 99.02,
+        "mean": 99.00714285714285,
+        "unit": "kPa"
+      }
+    },
+    {
+      "file": "Dichanthelium_clandestinum4.csv",
+      "oxygen": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "unit": "%"
+      },
+      "pressure": {
+        "min": 98.98,
+        "max": 99.0,
+        "mean": 98.99076923076922,
+        "unit": "kPa"
+      }
+    },
+    {
+      "file": "Dichanthelium_clandestinum5.csv",
+      "oxygen": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "unit": "%"
+      },
+      "pressure": {
+        "min": 98.93,
+        "max": 98.96,
+        "mean": 98.94285714285715,
+        "unit": "kPa"
+      }
+    }
+  ]
+}

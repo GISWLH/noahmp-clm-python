@@ -35,6 +35,10 @@ xuanze定向9项通过，原23组/实际G614全部300字段与改动前逐位一
 每站17,520步。CLM首周科学诊断尚未整体达标，例如Qia H周均偏差−35.42%、
 LE瞬时r=0.5749；官方输出完整不代表配对全年或v1.0验收完成。
 
+[单叶测量假设核验](docs/CLM_PHOTOSYNTHESIS.md)在EHPC完成：原68个A–Ci点与
+每叶45组敏感性均保留，条件叶肉导度不能唯一确定生产参数；前三条留出光响应
+NRMSE仍为17.44%/13.77%/33.34%，未作为已验收光合模型。
+
 开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入
