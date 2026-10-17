@@ -88,3 +88,14 @@ ROADMAP.md           # 分阶段移植计划：Noah-MP 对标 → CLM 柱子集 
 <!-- readme-visual-refresh:artwork-source -->
 [Editable banner artwork · Excalidraw](assets/readme/banner.excalidraw)
 <!-- /readme-visual-refresh:artwork-source -->
+
+
+<!-- readme-visual-refresh:execution -->
+## Demonstration captured on EHPC · 17 October 2026
+
+![New plot of the existing CN-Cng 30-day NumPy flux-output CSV. This is a historical model diagnostic, not a new model run: physical_validation=false and the recorded x32 parity check failed.](assets/readme/execution-result.png)
+
+New plot of the existing CN-Cng 30-day NumPy flux-output CSV. This is a historical model diagnostic, not a new model run: physical_validation=false and the recorded x32 parity check failed.
+
+[Execution record and checksums](assets/readme/execution-record.json).
+<!-- /readme-visual-refresh:execution -->

@@ -1,0 +1,44 @@
+{
+  "repo": "GISWLH/noahmp-clm-python",
+  "environment": "EHPC PBS",
+  "execution_scope": "New plot of the existing CN-Cng 30-day NumPy flux-output CSV. This is a historical model diagnostic, not a new model run: physical_validation=false and the recorded x32 parity check failed.",
+  "exit_code": 0,
+  "output": {
+    "path": "assets/readme/execution-result.png",
+    "sha256": "8e59f1252e0f67c6e44b8b13ca63d1682a16cbc575f841f2e86881dd84c45fc2"
+  },
+  "python": "3.11.9 (main, Apr 19 2024, 16:48:06) [GCC 11.2.0]",
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "matplotlib": "3.9.4",
+    "scipy": "1.13.1",
+    "scikit-learn": "1.5.2",
+    "seaborn": "0.13.2",
+    "shap": "0.46.0",
+    "numba": "0.60.0",
+    "xgboost": "1.7.6"
+  },
+  "started_at_utc": "2026-10-17T17:36:07.608027+00:00",
+  "finished_at_utc": "2026-10-17T17:36:08.523839+00:00",
+  "elapsed_seconds": 0.9158178369980305,
+  "source_files": [
+    {
+      "path": "source/run_demo.py",
+      "sha256": "2efbeedc20566545db4514e994360a31bc9cdbb9cb74751434ecbe63b7bf8a83",
+      "bytes": 2122
+    }
+  ],
+  "input_files": [
+    {
+      "path": "manifest.json",
+      "sha256": "9cb3072ef5819436e2e6ca25b5358de9e480c11037232455315448f5c292c05f",
+      "bytes": 1231
+    },
+    {
+      "path": "source/numpy-series.csv",
+      "sha256": "a621a2c8cd76d46345d9cd47541946b5426650759e277a949d577fd1156d40f2",
+      "bytes": 274863
+    }
+  ]
+}
