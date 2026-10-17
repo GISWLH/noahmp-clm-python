@@ -14,6 +14,7 @@ from pathlib import Path
 import re
 import time
 import traceback
+from uuid import uuid4
 import numpy as np
 
 from run_fluxnet_column import (ROOT, TRACE, sha, atomic_json, build_state,
@@ -199,10 +200,82 @@ def write_npz(path, **arrays):
     os.replace(temporary, path)
 
 
-def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=False, stop_after=None):
+def read_generation(folder):
+    """Read the generation committed by batch.json, never mutable aliases.
+
+    A crash while writing the next generation leaves this pointer intact.
+    Older outputs without generation reports remain readable but retain their
+    original strict mixed-generation rejection, rather than guessing a state.
+    """
+    folder = Path(folder)
+    report = json.loads((folder/'batch.json').read_text(encoding='utf-8'))
+    checkpoint = folder/report['checkpoint_file']
+    if checkpoint.parent != folder or sha(checkpoint) != report['checkpoint_sha256']:
+        raise ValueError('Native checkpoint hash mismatch')
+    with np.load(checkpoint, allow_pickle=False) as z: state = dict(z)
+    index = report['steps_completed']
+    if int(state['index']) != index: raise ValueError('Native checkpoint generation mismatch')
+    cases = []
+    for identity in report['identity']['cases']:
+        name = identity['case']
+        if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', name):
+            raise ValueError('Unsafe checkpoint case name')
+        cp = folder/name
+        descriptor = report.get('case_reports', {}).get(name)
+        p = cp/descriptor['file'] if descriptor else cp/'report.json'
+        if p.parent != cp or (descriptor and sha(p) != descriptor['sha256']):
+            raise ValueError('Native case report hash mismatch')
+        r = json.loads(p.read_text(encoding='utf-8')); trace = cp/r['model_npz']
+        if (r['steps_completed'] != index or trace.parent != cp or sha(trace) != r['model_npz_sha256']
+                or r['batch_checkpoint_sha256'] != report['checkpoint_sha256']):
+            raise ValueError('Native trace generation/hash mismatch')
+        with np.load(trace, allow_pickle=False) as z: data = dict(z)
+        if any(len(v) != index for v in data.values()): raise ValueError('Native trace length mismatch')
+        cases.append((r, data))
+    return report, state, cases
+
+
+def carry_generation(folder, mode, cases, identity):
+    """Carry every state and the original conservation ledger across segments.
+
+    Configuration and source hashes must be identical. Continuing requires
+    contiguous dates. Cycling permits only the identical full-calendar-year
+    forcing block. Neither operation asserts that spinup has converged.
+    """
+    if mode not in ('continue', 'cycle'): raise ValueError('Initial mode must be continue or cycle')
+    report, state, previous = read_generation(folder)
+    if report['status'] != 'complete' or report['steps_completed'] != report['steps_requested']:
+        raise ValueError('Initial run must be complete')
+    old = report['identity']
+    for key in ('backend', 'compare_jax32', 'source_sha256'):
+        if old[key] != identity[key]: raise ValueError(f'Initial run identity mismatch: {key}')
+    if len(old['cases']) != len(cases): raise ValueError('Initial run column count mismatch')
+    for c, new, former, (_, data) in zip(cases, identity['cases'], old['cases'], previous):
+        for key in ('case', 'configuration_sha256'):
+            if former[key] != new[key]: raise ValueError(f'Initial run identity mismatch: {key}')
+        if mode == 'continue':
+            if str(data['time_end'][-1]) != str(c['data']['time_start'][0]):
+                raise ValueError('Continuation forcing must be contiguous')
+        else:
+            for key in ('forcing_npz_sha256', 'forcing_manifest_sha256'):
+                if former[key] != new[key]: raise ValueError('Cycle requires identical forcing')
+            start, end = str(data['time_start'][0]), str(data['time_end'][-1])
+            if start[4:] != '01010000' or end[4:] != '01010000' or int(end[:4]) <= int(start[:4]):
+                raise ValueError('Cycle requires complete calendar years')
+    link = dict(mode=mode, batch_report_sha256=sha(Path(folder)/'batch.json'),
+                checkpoint_sha256=report['checkpoint_sha256'],
+                previous_ledger_steps=report.get('ledger_steps', report['steps_completed']),
+                previous_segments=report.get('ledger_segments', 1))
+    return link, report, state
+
+
+def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=False, stop_after=None,
+        initial_run=None, initial_mode=None):
     batch_path, output = Path(batch_path), Path(output)
     if compare_jax32 and backend != 'cuda32': raise ValueError('JAX32 shadow requires CUDA32 primary')
     if stop_after is not None and stop_after <= 0: raise ValueError('stop_after must be positive')
+    if (initial_run is None) != (initial_mode is None):
+        raise ValueError('Supply both initial_run and initial_mode')
     cases = load_batch(batch_path); count = len(cases); n = len(cases[0]['stamps'])
     dtype = np.float64 if backend == 'jax64' else np.float32
     sources = source_hashes()
@@ -210,6 +283,12 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         forcing_manifest_sha256=sha(c['paths']['input_manifest']), configuration_sha256=sha(c['paths']['configuration'])) for c in cases]
     identity = dict(batch_sha256=sha(batch_path), cases=identities, source_sha256=sources,
                     backend=backend, compare_jax32=compare_jax32)
+    carried = None
+    if initial_run is not None:
+        link, previous_report, carried = carry_generation(initial_run, initial_mode, cases, identity)
+        identity['initial_run'] = link
+    previous_steps = identity.get('initial_run', {}).get('previous_ledger_steps', 0)
+    previous_segments = identity.get('initial_run', {}).get('previous_segments', 0)
     leaf = LeafParameters(**cases[0]['config']['leaf_parameters'])
     geometry = np.asarray([astuple(MOSTGeometry(**c['config']['most_geometry'])) for c in cases], dtype)
     deposition = np.asarray([c['config']['aerosol_deposition_kg_m2_s'] for c in cases], dtype)
@@ -217,37 +296,35 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     output.mkdir(parents=True, exist_ok=True); path = output/'batch.json'
     records = []; reports = []; elapsed = 0.; started = time.monotonic()
     if resume:
-        report = json.loads(path.read_text(encoding='utf-8'))
+        report, saved, prior_cases = read_generation(output)
         if report['identity'] != identity: raise ValueError('Native resume identity mismatch')
         if report['status'] == 'complete': return report
-        checkpoint = output/report['checkpoint_file']
-        if checkpoint.parent != output or sha(checkpoint) != report['checkpoint_sha256']:
-            raise ValueError('Native checkpoint hash mismatch')
-        with np.load(checkpoint, allow_pickle=False) as z:
-            a = tuple(z[f'a{k}'] for k in range(16))
-            shadow = tuple(z[f'shadow{k}'] for k in range(16)) if compare_jax32 else None
-            initial, net, bounds, maximum, stepmax, tracermax = (z[k] for k in ('initial', 'net', 'bounds', 'maximum', 'stepmax', 'tracermax'))
-            index = int(z['index'])
-        if index != report['steps_completed']: raise ValueError('Native checkpoint generation mismatch')
+        a = tuple(saved[f'a{k}'] for k in range(16))
+        shadow = tuple(saved[f'shadow{k}'] for k in range(16)) if compare_jax32 else None
+        initial, net, bounds, maximum, stepmax, tracermax = (saved[k] for k in
+            ('initial', 'net', 'bounds', 'maximum', 'stepmax', 'tracermax'))
+        index = int(saved['index'])
         same = report['same_precision_max_absolute'] or 0.; elapsed = report['seconds']
-        for c in cases:
-            cp = output/c['case']; r = json.loads((cp/'report.json').read_text(encoding='utf-8'))
-            p = cp/r['model_npz']
-            if r['steps_completed'] != index or p.parent != cp or sha(p) != r['model_npz_sha256']:
-                raise ValueError('Native trace generation/hash mismatch')
-            with np.load(p, allow_pickle=False) as z:
-                values = {k: list(v) for k, v in z.items() if k not in ('time_start', 'time_end')}
-            if any(len(v) != index for v in values.values()): raise ValueError('Native trace length mismatch')
+        for r, data in prior_cases:
+            values = {k: list(v) for k, v in data.items() if k not in ('time_start', 'time_end')}
             records.append(values); reports.append(r)
     else:
         if any(output.iterdir()): raise ValueError('Use an empty output directory or --resume')
-        states = [build_state(c['config']) for c in cases]
-        env = np.asarray([c['data']['environment'][0] for c in cases], dtype)
-        a = pack_clm_bgc_columns(states, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
-            diffuse_fraction=env[:, 2], leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in cases], dtype))
-        shadow = tuple(v.copy() for v in a) if compare_jax32 else None
-        initial = totals(a); net = np.zeros((count, 4)); bounds = net.copy()
-        maximum = net.copy(); stepmax = net.copy(); tracermax = np.zeros((count, 5)); index = 0; same = 0.
+        if carried is None:
+            states = [build_state(c['config']) for c in cases]
+            env = np.asarray([c['data']['environment'][0] for c in cases], dtype)
+            a = pack_clm_bgc_columns(states, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
+                diffuse_fraction=env[:, 2], leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in cases], dtype))
+            shadow = tuple(v.copy() for v in a) if compare_jax32 else None
+            initial = totals(a); net = np.zeros((count, 4)); bounds = net.copy()
+            maximum = net.copy(); stepmax = net.copy(); tracermax = np.zeros((count, 5)); same = 0.
+        else:
+            a = tuple(carried[f'a{k}'] for k in range(16))
+            shadow = tuple(carried[f'shadow{k}'] for k in range(16)) if compare_jax32 else None
+            initial, net, bounds, maximum, stepmax, tracermax = (carried[k] for k in
+                ('initial', 'net', 'bounds', 'maximum', 'stepmax', 'tracermax'))
+            same = previous_report['same_precision_max_absolute'] or 0.
+        index = 0
         report = dict(identity=identity, steps_requested=n, columns=count)
         for k, c in enumerate(cases):
             records.append({key: [] for key in (*TRACE, 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
@@ -261,10 +338,10 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     engine = Backend(backend); checker = Backend('jax32') if compare_jax32 else None
     # This shadow has its own carried state and cumulative accounting. It is
     # not reset to the CUDA output at each step.
-    if checker and resume:
-        with np.load(checkpoint, allow_pickle=False) as z:
-            shadow_net, shadow_bounds, shadow_maximum = (z[k] for k in
-                ('shadow_net', 'shadow_bounds', 'shadow_maximum'))
+    if checker and (resume or carried is not None):
+        saved_shadow = saved if resume else carried
+        shadow_net, shadow_bounds, shadow_maximum = (saved_shadow[k] for k in
+            ('shadow_net', 'shadow_bounds', 'shadow_maximum'))
     elif checker:
         shadow_net = np.zeros_like(net); shadow_bounds = np.zeros_like(bounds)
         shadow_maximum = np.zeros_like(maximum)
@@ -273,7 +350,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
 
     def save(status):
         if source_hashes() != sources: raise RuntimeError('Native model/instrument source changed during run')
-        generation = f'{index:07d}'; state_path = output/f'state-{generation}.npz'
+        generation = f'{index:07d}-{uuid4().hex}'; state_path = output/f'state-{generation}.npz'
         state = {f'a{k}': v for k, v in enumerate(a)}
         if checker:
             state.update({f'shadow{k}': v for k, v in enumerate(shadow)})
@@ -281,6 +358,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         write_npz(state_path, **state, index=np.array(index), initial=initial, net=net, bounds=bounds,
                   maximum=maximum, stepmax=stepmax, tracermax=tracermax)
         state_sha = sha(state_path)
+        descriptors = {}
         for k, c in enumerate(cases):
             folder = output/c['case']; folder.mkdir(exist_ok=True); trace = folder/f'trace-{generation}.npz'
             values = {key: np.asarray(value) for key, value in records[k].items()}
@@ -290,16 +368,25 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
                 batch_checkpoint_file='../'+state_path.name, batch_checkpoint_sha256=state_sha,
                 maximum_cumulative_residual_m_h_c_n=maximum[k], maximum_step_residual_m_h_c_n=stepmax[k],
                 cumulative_numerical_bounds_m_h_c_n=bounds[k], maximum_step_impurity_residual_kgm2=tracermax[k],
-                same_precision_max_absolute=same if checker else None)
-            atomic_json(folder/'report.json', reports[k])
+                same_precision_max_absolute=same if checker else None,
+                initial_run=identity.get('initial_run'), ledger_steps=previous_steps+index,
+                ledger_segments=previous_segments+1)
+            generation_report = folder/f'report-{generation}.json'
+            atomic_json(generation_report, reports[k])
+            descriptors[c['case']] = dict(file=generation_report.name, sha256=sha(generation_report))
         report.update(status=status, steps_completed=index, seconds=elapsed+time.monotonic()-started,
             checkpoint_file=state_path.name, checkpoint_sha256=state_sha, source_unchanged=True,
             maximum_cumulative_residual_m_h_c_n=maximum, cumulative_numerical_bounds_m_h_c_n=bounds,
-            same_precision_max_absolute=same if checker else None)
+            same_precision_max_absolute=same if checker else None, case_reports=descriptors,
+            ledger_steps=previous_steps+index, ledger_segments=previous_segments+1)
         if checker:
             report.update(shadow_maximum_cumulative_residual_m_h_c_n=shadow_maximum,
                           shadow_cumulative_numerical_bounds_m_h_c_n=shadow_bounds)
         atomic_json(path, report)
+        # Convenience aliases are published only after the transaction commits.
+        # Resume uses the immutable descriptors above, even if alias publication
+        # is interrupted. Scientific evaluation must bind the chosen report hash.
+        for k, c in enumerate(cases): atomic_json(output/c['case']/'report.json', reports[k])
     save('running')
     end = n if stop_after is None else min(n, index+stop_after)
     try:
@@ -370,6 +457,8 @@ if __name__ == '__main__':
     parser.add_argument('--compare-jax32', action='store_true')
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--stop-after', type=int)
+    parser.add_argument('--initial-run', type=Path, help='Completed native run whose full state/ledger is carried')
+    parser.add_argument('--initial-mode', choices=('continue', 'cycle'))
     args = parser.parse_args()
     run(args.batch, args.output, backend=args.backend, compare_jax32=args.compare_jax32,
-        resume=args.resume, stop_after=args.stop_after)
+        resume=args.resume, stop_after=args.stop_after, initial_run=args.initial_run, initial_mode=args.initial_mode)
