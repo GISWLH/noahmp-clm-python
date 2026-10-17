@@ -7,6 +7,12 @@
 旧 H4/K3/M4 数值门已退役为已接受限制，历史复验结论保留在下方。
 本阶段排除城市模型、土地利用变化、整机耦合、河道和侧向地下水。
 
+当前完整1129清单使用[独立工作进程](docs/PYTEST_WORKER_LIFECYCLE.md)继续：
+CPU804及GPU104节点有原始终态证据，余下GPU221/43文件运行。大文件13项
+原收敛/守恒/同精度门全部保留，CUDA/JAX全字段差0；完整回归仍未勾选。
+
+- [ ] P6 [官方CTSM单柱参考](docs/CTSM_REFERENCE_PREPARATION.md)：锁定上游源码和87包依赖，EHPC PBS108重定位/原生编译/NetCDF跨接口读写完成；机器配置、输入映射、实际模型构建/运行及配对偏差未完成。此处仅构建独立参考，不开发整机耦合或河道。
+
 2026-10-17连续验证修订：[薄雪分支括区](docs/CLM_SNOW_BRANCH.md)和
 [联合热量局部舍入](docs/CLM_HEAT_COORDINATE.md)已进入三后端开发路径，当前
 另已修订[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)，EHPC当前完整CPU部分

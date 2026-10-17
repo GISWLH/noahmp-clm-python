@@ -8,6 +8,12 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 瞬时通量 r >0.85、近零绝对容差、收支守恒独立硬要求。旧 H4/K3/M4 门已退役，
 下述 v0.2.0 数字是保留的历史记录，不是本阶段合并条件。
 
+[官方CTSM参考准备](docs/CTSM_REFERENCE_PREPARATION.md)已在EHPC验证可移植
+编译器及NetCDF跨接口精确读写；源码版本固定，官方单柱编译/输出仍待完成。
+当前[独立测试工作进程](docs/PYTEST_WORKER_LIFECYCLE.md)已完成单叶6项与整柱
+灌溉13项，CUDA/JAX全字段差0；完整1129清单从已核验CPU804+GPU104节点
+续跑余下221个GPU节点，原清理进程状态与未完成科学验收均保留。
+
 最新[固定首个1月诊断](docs/CLM_FIRST_MONTH_RESULTS.md)已在EHPC完成：94项完整性/
 评价检查通过，但三站官方对照仍未整体达标。Qia H月偏差−62.3938%、LE
 +82.9974%；对FLUXNET的LE月偏差−7.29567%，瞬时r仍为0.764774。原I年度随后

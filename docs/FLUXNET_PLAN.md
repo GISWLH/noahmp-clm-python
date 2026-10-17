@@ -2,6 +2,14 @@
 
 ## v1.0 当前任务
 
+[当前完整回归调度](PYTEST_WORKER_LIFECYCLE.md)已绕行JAX解释器清理等待：
+原17文件85节点及新单叶6/灌溉13均有真实终态，CPU804+GPU104已核验，
+余下221设备节点继续；物理源码与当前年度身份不变，不代替科学验收。
+
+[官方CTSM单柱参考准备](CTSM_REFERENCE_PREPARATION.md)已固定来源，EHPC
+PBS108实际C/Fortran/Python NetCDF交叉读写完成；模型构建/强迫映射/输出及
+配对验收待完成。现有HRLDAS/FLUXNET的原始科学失败与校准/留出界限保持。
+
 [完整气候循环核对入口](CLM_SPINUP_ASSESSMENT.md)已在EHPC PBS99完成79项，
 原J48不改身份/请求而被拒绝作为完整循环。两次水热端点阈值沿用已锁定协议，
 七库C与SOC三库绝对变化、年度速率折算和真实100循环变化分别报告，不据短期折算宣称
