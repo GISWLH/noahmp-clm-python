@@ -233,5 +233,7 @@ Windows历史JAX编译问题不代表Linux CUDA实测；环境可达性与未测
 2026-10-17真实海北年度预检未完成：第6948步发生暖季全融液水雪单元导致的
 MOST振荡；已定位并完成NumPy全液态包水热/杂质路由修订，11项回归通过。
 真实旧态11次收敛，单步热残差1.20926e-8 J/m²；原累计残差和失败仍保留于
-[证据](v1-results/ham-year-failure-a/manifest.json)。设备同步目标、修后年度和
-多站测高完整柱结果仍待收齐，不能提前称此缺口已完成全部后端验证。
+[证据](v1-results/ham-year-failure-a/manifest.json)。设备专项4项随后已完成，
+真实BGC/MOST与两层全液态包CUDA32/JAX32输出差0，真实工况JAX32对参考H/LE差
+0.000465564 /0.000162718 W/m²；见[原生目标](v1-results/newton-leaf-a/newton-gpu-target.log.gz)。
+更广原生回归、当前全量、修后年度及多站测高完整柱结果仍待收齐。
