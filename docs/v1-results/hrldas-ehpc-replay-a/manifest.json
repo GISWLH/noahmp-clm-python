@@ -1,0 +1,384 @@
+{
+  "scope": "Official unchanged HRLDAS binary and original Bondville C inputs replayed on EHPC PBS35 compute002. All49 LDASOUT bytes and audited numerical fields identical to xuanze; private matching loader/runtime retained remotely only. CPU portability proof, not new-site or CLM science acceptance.",
+  "archive_sha256": "797f81ba2c45d8e7027c65193205eb9544e6ff931477f991d4eca3c6e8a5f7c5",
+  "artifacts": [
+    {
+      "source": "MANIFEST.json",
+      "path": "MANIFEST.json.gz",
+      "source_sha256": "c23fb5568d74170c20ff683cb042e9003c50248d5f6743b5c3ba8a9ab2981e73",
+      "stored_sha256": "1b3028039906ff5f378c62ac951997cd12b76e9a85161f2987eb6a2089c6a3a9"
+    },
+    {
+      "source": "loader-preflight.json",
+      "path": "loader-preflight.json.gz",
+      "source_sha256": "d8b9be9ce2c8aea1a5ac7ecbdf7096876a6a55dcd3cb9b0db3e0e43b9f68d3e7",
+      "stored_sha256": "ff42db544e358d5e4f8d0bced5eb95d561330f96f43625a7d6a739f9d2537e03"
+    },
+    {
+      "source": "loader-preflight.log",
+      "path": "loader-preflight.log.gz",
+      "source_sha256": "c60ed291d7d4faae9ef42961a0e33f5169b933fa01a88fe865c9cd090c13a0e1",
+      "stored_sha256": "975c0b7ab714ca18f22ca7a3e07937696d4f83aef6b8450151346872a6620f10"
+    },
+    {
+      "source": "run-receipt.json",
+      "path": "run-receipt.json.gz",
+      "source_sha256": "42b762e6ce1c8589e937cde0628fb8c123045b2d29ca7b7dece8ab3a9f611843",
+      "stored_sha256": "b69eee7903e5f794dca06ecea9bf1cb872314b632e2d2d08e7e2eebd916047ec"
+    },
+    {
+      "source": "replay-comparison.json",
+      "path": "replay-comparison.json.gz",
+      "source_sha256": "c36e74ed75ae0175624c218c3118a253cd644989d5810383156f1c053e92e4c2",
+      "stored_sha256": "da2bb47406365dcf028228d095d3e7896db16f0713025a59a834be84c621daed"
+    },
+    {
+      "source": "audit.json",
+      "path": "audit.json.gz",
+      "source_sha256": "5157cbeb824b049f9c985ce66d312a76b0a13655b881a4cf80ea5559ae1c7d30",
+      "stored_sha256": "aa706d3147ec0428f8a1766c50842fe93f4788b2d223f9368c6c1d456c6f500c"
+    },
+    {
+      "source": "controller.log",
+      "path": "controller.log.gz",
+      "source_sha256": "ad0b9f9148d88aaa745047571693e89fb1ec83e7290d93ea88a3ba0f347de8ba",
+      "stored_sha256": "05e9195626fd7e5c04498dd3ecd40a2861c0f3c3e34befe35ba7c77af13fdd66"
+    },
+    {
+      "source": "hrldas-replay.log",
+      "path": "hrldas-replay.log.gz",
+      "source_sha256": "afc0d5cc46f1c80de3df5c669ca47f6b8f702de383f0722a42a852f0e078fccd",
+      "stored_sha256": "e0074f2312ecfcb6f94d77d21b0b5220bc93fffd507582c3e356e77cd8a903b7"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "pbs-node.txt",
+      "path": "pbs-node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "run_portable_hrldas_reference.py",
+      "path": "run_portable_hrldas_reference.py.gz",
+      "source_sha256": "ae9bfd74623e5cc64c685a7aea65318220a2d21204f97830c4d51c6bbc9803c7",
+      "stored_sha256": "43f2a856b28c8a1afcc1bc67c5bb2df04ec9c989b0d6bb9ec0af1a88140994ee"
+    },
+    {
+      "source": "hrldas_portable_a.pbs",
+      "path": "hrldas_portable_a.pbs.gz",
+      "source_sha256": "f0b1ab355b4477f5d6ef779a76d636789549878a4db0ef596d2f146951374b37",
+      "stored_sha256": "7cf5b05443246ca4f351bc533d569e96d3aadf8da00c394cd9d52a772e690260"
+    },
+    {
+      "source": "audit_hrldas_point_output.py",
+      "path": "audit_hrldas_point_output.py.gz",
+      "source_sha256": "a9a8d24dcafed079225555da513bca52e95571510cb34a9c30ad3d4df107ce69",
+      "stored_sha256": "6e434445f416bc7ebd40b9ecfb8ed1ce5730e93b407e34ae6ad78c656cfe904a"
+    },
+    {
+      "source": "bondville/namelist.hrldas",
+      "path": "bondville/namelist.hrldas",
+      "source_sha256": "053744c68516827068edfa59eb73fa20a045adde913a076723d2beace61ced60",
+      "stored_sha256": "053744c68516827068edfa59eb73fa20a045adde913a076723d2beace61ced60"
+    },
+    {
+      "source": "bondville/output/199801020000.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020000.LDASOUT_DOMAIN1",
+      "source_sha256": "f821576c68732148bd28678c26b60e682869bc20fb44e99ebe7526c057e9d47a",
+      "stored_sha256": "f821576c68732148bd28678c26b60e682869bc20fb44e99ebe7526c057e9d47a"
+    },
+    {
+      "source": "bondville/output/199801020030.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020030.LDASOUT_DOMAIN1",
+      "source_sha256": "d204d58987404f5052bcc925036383416117aa8009c8e3d0ad393c2d9a2654c7",
+      "stored_sha256": "d204d58987404f5052bcc925036383416117aa8009c8e3d0ad393c2d9a2654c7"
+    },
+    {
+      "source": "bondville/output/199801020100.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020100.LDASOUT_DOMAIN1",
+      "source_sha256": "1b54a96c7404396b08d6cf7e9e1f5f0697faeda5760e3dfe9d4a6dd0740b05b8",
+      "stored_sha256": "1b54a96c7404396b08d6cf7e9e1f5f0697faeda5760e3dfe9d4a6dd0740b05b8"
+    },
+    {
+      "source": "bondville/output/199801020130.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020130.LDASOUT_DOMAIN1",
+      "source_sha256": "8b31ff06f99908a4252112f0325e6a9d9d4f5bfab45548853499a91b930cd9a7",
+      "stored_sha256": "8b31ff06f99908a4252112f0325e6a9d9d4f5bfab45548853499a91b930cd9a7"
+    },
+    {
+      "source": "bondville/output/199801020200.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020200.LDASOUT_DOMAIN1",
+      "source_sha256": "23299180ccbfe6a74b066bd353314bd46ef0becd6b93fa7c963198c199c03e30",
+      "stored_sha256": "23299180ccbfe6a74b066bd353314bd46ef0becd6b93fa7c963198c199c03e30"
+    },
+    {
+      "source": "bondville/output/199801020230.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020230.LDASOUT_DOMAIN1",
+      "source_sha256": "338c0160f9bde6011228b5f8f8ba5129d2534dc21ea4418f6f570852eea60ad7",
+      "stored_sha256": "338c0160f9bde6011228b5f8f8ba5129d2534dc21ea4418f6f570852eea60ad7"
+    },
+    {
+      "source": "bondville/output/199801020300.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020300.LDASOUT_DOMAIN1",
+      "source_sha256": "deab22088488da9ebc28a33dc2ad5e01179c3dff4be4c1ac676aa823dc40e5fb",
+      "stored_sha256": "deab22088488da9ebc28a33dc2ad5e01179c3dff4be4c1ac676aa823dc40e5fb"
+    },
+    {
+      "source": "bondville/output/199801020330.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020330.LDASOUT_DOMAIN1",
+      "source_sha256": "bd700a15c205ebddd30b4e473186628c65fa7e96307d4e659293e1ab17b8c536",
+      "stored_sha256": "bd700a15c205ebddd30b4e473186628c65fa7e96307d4e659293e1ab17b8c536"
+    },
+    {
+      "source": "bondville/output/199801020400.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020400.LDASOUT_DOMAIN1",
+      "source_sha256": "87c4e775326f3573eb24cfd59fd56013ba4a0293b081733550198f33b1b71e7e",
+      "stored_sha256": "87c4e775326f3573eb24cfd59fd56013ba4a0293b081733550198f33b1b71e7e"
+    },
+    {
+      "source": "bondville/output/199801020430.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020430.LDASOUT_DOMAIN1",
+      "source_sha256": "d8ed1c3f80d3d3f0f446b6c6447cbe23aa6a6af85e42b46a37e3e36b2c46392e",
+      "stored_sha256": "d8ed1c3f80d3d3f0f446b6c6447cbe23aa6a6af85e42b46a37e3e36b2c46392e"
+    },
+    {
+      "source": "bondville/output/199801020500.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020500.LDASOUT_DOMAIN1",
+      "source_sha256": "90c6277dd35f5c3a2615e3e230b1a7241aff3db6a1cec43f25450bb8a47eff29",
+      "stored_sha256": "90c6277dd35f5c3a2615e3e230b1a7241aff3db6a1cec43f25450bb8a47eff29"
+    },
+    {
+      "source": "bondville/output/199801020530.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020530.LDASOUT_DOMAIN1",
+      "source_sha256": "055763f72d995ac446f5494f3ab4fa85ff032e5762c8c07de9119d88a63802ba",
+      "stored_sha256": "055763f72d995ac446f5494f3ab4fa85ff032e5762c8c07de9119d88a63802ba"
+    },
+    {
+      "source": "bondville/output/199801020600.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020600.LDASOUT_DOMAIN1",
+      "source_sha256": "1639a5ed167f21e4e628f2d5c293f09bb77cb376310849a4450412cd991d537c",
+      "stored_sha256": "1639a5ed167f21e4e628f2d5c293f09bb77cb376310849a4450412cd991d537c"
+    },
+    {
+      "source": "bondville/output/199801020630.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020630.LDASOUT_DOMAIN1",
+      "source_sha256": "b27502ba064ef84f28d5a11141c5da38cd25f3af03dcbd2d1e04e97ec7733e42",
+      "stored_sha256": "b27502ba064ef84f28d5a11141c5da38cd25f3af03dcbd2d1e04e97ec7733e42"
+    },
+    {
+      "source": "bondville/output/199801020700.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020700.LDASOUT_DOMAIN1",
+      "source_sha256": "8d37128f43086174f2caf75c93ddf8d1bbe427704cc537dba5535cae278e8959",
+      "stored_sha256": "8d37128f43086174f2caf75c93ddf8d1bbe427704cc537dba5535cae278e8959"
+    },
+    {
+      "source": "bondville/output/199801020730.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020730.LDASOUT_DOMAIN1",
+      "source_sha256": "338a3078ee2bc8779d4dae5ae2850647f3599bc8ef979823745b33feb8139e73",
+      "stored_sha256": "338a3078ee2bc8779d4dae5ae2850647f3599bc8ef979823745b33feb8139e73"
+    },
+    {
+      "source": "bondville/output/199801020800.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020800.LDASOUT_DOMAIN1",
+      "source_sha256": "85f82869ffa3a4eb4e756c59d612042f409404a235c062ae714a63ef10ba8ad6",
+      "stored_sha256": "85f82869ffa3a4eb4e756c59d612042f409404a235c062ae714a63ef10ba8ad6"
+    },
+    {
+      "source": "bondville/output/199801020830.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020830.LDASOUT_DOMAIN1",
+      "source_sha256": "672203ae4b3efd9d35abafe55cfe3f3f19024888646ff538824937b3a359c06a",
+      "stored_sha256": "672203ae4b3efd9d35abafe55cfe3f3f19024888646ff538824937b3a359c06a"
+    },
+    {
+      "source": "bondville/output/199801020900.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020900.LDASOUT_DOMAIN1",
+      "source_sha256": "40944419de1d3aa6053429b508295084aa24321f2a8e43553341cdad34aa9c7d",
+      "stored_sha256": "40944419de1d3aa6053429b508295084aa24321f2a8e43553341cdad34aa9c7d"
+    },
+    {
+      "source": "bondville/output/199801020930.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801020930.LDASOUT_DOMAIN1",
+      "source_sha256": "87433d6606143cd55a7be7a82abdfba3b1265b14f6a03465af86dfb3cd9c3f2c",
+      "stored_sha256": "87433d6606143cd55a7be7a82abdfba3b1265b14f6a03465af86dfb3cd9c3f2c"
+    },
+    {
+      "source": "bondville/output/199801021000.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021000.LDASOUT_DOMAIN1",
+      "source_sha256": "2aeae140639b7e6e26a40979731bc8a14e225c8f866e7e456ce07760cd5168c3",
+      "stored_sha256": "2aeae140639b7e6e26a40979731bc8a14e225c8f866e7e456ce07760cd5168c3"
+    },
+    {
+      "source": "bondville/output/199801021030.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021030.LDASOUT_DOMAIN1",
+      "source_sha256": "4ee5eb0cf3d7a2e7baf95c7d8926a178caf5ed955d4d3d148646d275de8d461a",
+      "stored_sha256": "4ee5eb0cf3d7a2e7baf95c7d8926a178caf5ed955d4d3d148646d275de8d461a"
+    },
+    {
+      "source": "bondville/output/199801021100.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021100.LDASOUT_DOMAIN1",
+      "source_sha256": "8809dd21581389ee4a89b31879afdae62a6241c4d1c1e2d9703e0a1adad40728",
+      "stored_sha256": "8809dd21581389ee4a89b31879afdae62a6241c4d1c1e2d9703e0a1adad40728"
+    },
+    {
+      "source": "bondville/output/199801021130.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021130.LDASOUT_DOMAIN1",
+      "source_sha256": "bf02c0f8bb60c618ad65dc8dd96b32cc45316a67b75fe88a4eff3d30acb7eb3c",
+      "stored_sha256": "bf02c0f8bb60c618ad65dc8dd96b32cc45316a67b75fe88a4eff3d30acb7eb3c"
+    },
+    {
+      "source": "bondville/output/199801021200.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021200.LDASOUT_DOMAIN1",
+      "source_sha256": "7ec80a47bfa2074256d232213d1869d6487dd7af9012dff03aebad2fd5d37bc6",
+      "stored_sha256": "7ec80a47bfa2074256d232213d1869d6487dd7af9012dff03aebad2fd5d37bc6"
+    },
+    {
+      "source": "bondville/output/199801021230.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021230.LDASOUT_DOMAIN1",
+      "source_sha256": "4193bccc23ab0050da5c27316820c9bd56226ff0d24058e5190b0d76a1c664e4",
+      "stored_sha256": "4193bccc23ab0050da5c27316820c9bd56226ff0d24058e5190b0d76a1c664e4"
+    },
+    {
+      "source": "bondville/output/199801021300.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021300.LDASOUT_DOMAIN1",
+      "source_sha256": "e705ab8e65424eb586bc75eaba8dd809b143ed81d825a0a61b133b5e7419adda",
+      "stored_sha256": "e705ab8e65424eb586bc75eaba8dd809b143ed81d825a0a61b133b5e7419adda"
+    },
+    {
+      "source": "bondville/output/199801021330.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021330.LDASOUT_DOMAIN1",
+      "source_sha256": "a4eacf6850b51d84a5ad200cb5b354ad612704e79b620d23e4580a2992a7e262",
+      "stored_sha256": "a4eacf6850b51d84a5ad200cb5b354ad612704e79b620d23e4580a2992a7e262"
+    },
+    {
+      "source": "bondville/output/199801021400.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021400.LDASOUT_DOMAIN1",
+      "source_sha256": "01f09e085abcb4f2713d1b028b297e2082cdf3f384599bcb40da9099f4ec8177",
+      "stored_sha256": "01f09e085abcb4f2713d1b028b297e2082cdf3f384599bcb40da9099f4ec8177"
+    },
+    {
+      "source": "bondville/output/199801021430.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021430.LDASOUT_DOMAIN1",
+      "source_sha256": "e94989031f4df79c9948ce8e3e53ee6a024ba25f39def5b0248505ffcf418eb2",
+      "stored_sha256": "e94989031f4df79c9948ce8e3e53ee6a024ba25f39def5b0248505ffcf418eb2"
+    },
+    {
+      "source": "bondville/output/199801021500.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021500.LDASOUT_DOMAIN1",
+      "source_sha256": "e393a3c11fba988fbd4a0289ab12ab1e051019941987e27af3dad67c158d415f",
+      "stored_sha256": "e393a3c11fba988fbd4a0289ab12ab1e051019941987e27af3dad67c158d415f"
+    },
+    {
+      "source": "bondville/output/199801021530.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021530.LDASOUT_DOMAIN1",
+      "source_sha256": "84ce803b0355778ec92f2ad47be96fe40493721ea8fc2808a8658c93809c5262",
+      "stored_sha256": "84ce803b0355778ec92f2ad47be96fe40493721ea8fc2808a8658c93809c5262"
+    },
+    {
+      "source": "bondville/output/199801021600.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021600.LDASOUT_DOMAIN1",
+      "source_sha256": "b978f2951123bb02edeed330d36b185eba0d64ec542ef13c260e4b0593c03511",
+      "stored_sha256": "b978f2951123bb02edeed330d36b185eba0d64ec542ef13c260e4b0593c03511"
+    },
+    {
+      "source": "bondville/output/199801021630.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021630.LDASOUT_DOMAIN1",
+      "source_sha256": "717ba2069f65235828775d33169ca87cc45e1742848d0c13d6196ba64b37004f",
+      "stored_sha256": "717ba2069f65235828775d33169ca87cc45e1742848d0c13d6196ba64b37004f"
+    },
+    {
+      "source": "bondville/output/199801021700.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021700.LDASOUT_DOMAIN1",
+      "source_sha256": "70f2c4db588f0c5748548c00df82a2a6b943b8b581e6327fe45352c94de56264",
+      "stored_sha256": "70f2c4db588f0c5748548c00df82a2a6b943b8b581e6327fe45352c94de56264"
+    },
+    {
+      "source": "bondville/output/199801021730.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021730.LDASOUT_DOMAIN1",
+      "source_sha256": "268077a5cbc5fa31f6ddcceafb8fe861da747f9372e948b40a97ddf5fbb1a3d1",
+      "stored_sha256": "268077a5cbc5fa31f6ddcceafb8fe861da747f9372e948b40a97ddf5fbb1a3d1"
+    },
+    {
+      "source": "bondville/output/199801021800.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021800.LDASOUT_DOMAIN1",
+      "source_sha256": "08941dd6b9148af7fcc89503f2869a0406d845c851695045fe8009dd08f82512",
+      "stored_sha256": "08941dd6b9148af7fcc89503f2869a0406d845c851695045fe8009dd08f82512"
+    },
+    {
+      "source": "bondville/output/199801021830.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021830.LDASOUT_DOMAIN1",
+      "source_sha256": "b681d8a8d7e8181113968a20b394bcbda527aaf38f1cbf242e923192f7e882c9",
+      "stored_sha256": "b681d8a8d7e8181113968a20b394bcbda527aaf38f1cbf242e923192f7e882c9"
+    },
+    {
+      "source": "bondville/output/199801021900.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021900.LDASOUT_DOMAIN1",
+      "source_sha256": "2b0f52fe37f6802e8d3b0a118e39d9f5c846ada6a288312a2d7c09fb803bc2bd",
+      "stored_sha256": "2b0f52fe37f6802e8d3b0a118e39d9f5c846ada6a288312a2d7c09fb803bc2bd"
+    },
+    {
+      "source": "bondville/output/199801021930.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801021930.LDASOUT_DOMAIN1",
+      "source_sha256": "a22cb879a110298de5029ec3f4bb6be8528799aecf1da7235a53a23678c7dcc8",
+      "stored_sha256": "a22cb879a110298de5029ec3f4bb6be8528799aecf1da7235a53a23678c7dcc8"
+    },
+    {
+      "source": "bondville/output/199801022000.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022000.LDASOUT_DOMAIN1",
+      "source_sha256": "12235afd0769e07ecc4b33e6208d9045e12c3792e62fa878593294d89002b01b",
+      "stored_sha256": "12235afd0769e07ecc4b33e6208d9045e12c3792e62fa878593294d89002b01b"
+    },
+    {
+      "source": "bondville/output/199801022030.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022030.LDASOUT_DOMAIN1",
+      "source_sha256": "8907ac9bfa329b32c291efa8fcfb8630ddf6fbadf74133d2ae92e8f9620a6c2f",
+      "stored_sha256": "8907ac9bfa329b32c291efa8fcfb8630ddf6fbadf74133d2ae92e8f9620a6c2f"
+    },
+    {
+      "source": "bondville/output/199801022100.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022100.LDASOUT_DOMAIN1",
+      "source_sha256": "e049309e10c36332f370409662194dbf6be1abea5500a56997fcc10dee1b51ee",
+      "stored_sha256": "e049309e10c36332f370409662194dbf6be1abea5500a56997fcc10dee1b51ee"
+    },
+    {
+      "source": "bondville/output/199801022130.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022130.LDASOUT_DOMAIN1",
+      "source_sha256": "b9a1c0a514cbf59e31361c49d6e8928a8382fa67d8063ccd6c5e9dbcc302a20a",
+      "stored_sha256": "b9a1c0a514cbf59e31361c49d6e8928a8382fa67d8063ccd6c5e9dbcc302a20a"
+    },
+    {
+      "source": "bondville/output/199801022200.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022200.LDASOUT_DOMAIN1",
+      "source_sha256": "fb0676f7c7e8c69b0e21f5d8894d167b246f4357f005149180f171d6e480a9cb",
+      "stored_sha256": "fb0676f7c7e8c69b0e21f5d8894d167b246f4357f005149180f171d6e480a9cb"
+    },
+    {
+      "source": "bondville/output/199801022230.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022230.LDASOUT_DOMAIN1",
+      "source_sha256": "e9cced21a493835fe65997bd7076736a11430103ab4253595b8b375c4de27831",
+      "stored_sha256": "e9cced21a493835fe65997bd7076736a11430103ab4253595b8b375c4de27831"
+    },
+    {
+      "source": "bondville/output/199801022300.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022300.LDASOUT_DOMAIN1",
+      "source_sha256": "adb24f3212c28cd41aba3e7f847eb07ea3d63674160132a62471b59ef470c5d0",
+      "stored_sha256": "adb24f3212c28cd41aba3e7f847eb07ea3d63674160132a62471b59ef470c5d0"
+    },
+    {
+      "source": "bondville/output/199801022330.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801022330.LDASOUT_DOMAIN1",
+      "source_sha256": "3bce803fa86d0683414271b3d8983ff07840fbbdbe5642ce4da8382c72b2c615",
+      "stored_sha256": "3bce803fa86d0683414271b3d8983ff07840fbbdbe5642ce4da8382c72b2c615"
+    },
+    {
+      "source": "bondville/output/199801030000.LDASOUT_DOMAIN1",
+      "path": "bondville/output/199801030000.LDASOUT_DOMAIN1",
+      "source_sha256": "188c7ad084068eb0d4f30f42b897ef20ff4d39c479a1bfe6a7ecbaf371e3b486",
+      "stored_sha256": "188c7ad084068eb0d4f30f42b897ef20ff4d39c479a1bfe6a7ecbaf371e3b486"
+    }
+  ]
+}

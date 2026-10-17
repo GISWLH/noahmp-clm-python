@@ -36,6 +36,27 @@ GNU Fortran 11.5.0，已有netCDF-C 4.9.2；在该目录安装
 [证据清单](v1-results/hrldas-reference-a/manifest.json)包括各次完整日志、成功
 构建脚本、编译器/动态库信息和哈希。未将编译二进制或完整上游源码加入本仓库。
 
+## 官方参考迁至EHPC计算节点（2026-10-17）
+
+后续CPU物理模拟按Wang要求使用EHPC PBS计算节点。原二进制构建主机xuanze
+使用glibc2.34，EHPC主机为2.17；直接复制不能保证ABI兼容。本次保留原二进制
+SHA256 `f27debbaaabf0a956d9a86f317fd772581c14696e6dbcc75faed7c8fff5e51a0`，
+将其30份已解析依赖及匹配的私有动态加载器一起放入独立运行目录，以显式加载器
+和私有library-path执行；未改系统库或公共环境。189份冻结输入/运行库首尾哈希
+相同，namelist仅更换路径，原Bondville C物理配置和强迫不变。
+
+PBS35在compute002完成，官方执行耗时0.160997秒，退出码0；49个LDASOUT与
+原xuanze C逐字节相同，所有审计字段最大数值差0。这是相同算例的CPU迁移
+核验，**不是新增站点，也不能代替CLM与官方的三至五站科学比较**。
+[输入清单、加载器预检、完整日志、审计和49份输出](v1-results/hrldas-ehpc-replay-a/manifest.json)
+已归档；85MB私有运行包和上游二进制不加入仓库。
+
+随后[三站首个气候年协议](HRLDAS_CLIMATE_PROTOCOL.md)在输出前固定，PBS36
+提交Qia2003、Cha2003、HaM2001的全年官方参考。36在物理前遇到home inode
+上限，已保存全部失败并释放本次临时文件，37在节点/tmp继续同配置。
+相同原始强迫、UTC转换及
+共同初态明列，标准土壤/PFT/月表物候与CLM的差异单列；未完成的运行不记通过。
+
 ## Bondville单点检查
 
 用上游`create_point_data.f90`生成输入，原始`bondville.dat`首日是1998-01-02，

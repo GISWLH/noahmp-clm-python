@@ -1,0 +1,66 @@
+{
+  "scope": "EHPC PBS33 predeclared fixed-budget Aci-only differential evolution and least-squares diagnostic, followed by separate fixed light-response scoring. All five curves retain original best training parameters; no heldout tuning, global-optimum proof or passing leaf claim.",
+  "archive_sha256": "bcb5e26f6ecd373d3ada69e995e6c9ff559650822ce1f352151938a702eaae66",
+  "artifacts": [
+    {
+      "source": "calibration.json",
+      "path": "calibration.json.gz",
+      "source_sha256": "da4031be950f854eae338f579ab838bc5f4f979d7bb5b29305dcc727a268d9eb",
+      "stored_sha256": "d8132c9d09a738e15d97ade1a3de0649d54cecea9d1e35296ddac1c999b30a6d"
+    },
+    {
+      "source": "evaluation.json",
+      "path": "evaluation.json.gz",
+      "source_sha256": "fff469dde1651389bf98d618c12466048cac43563e27becbdb594ed697dbe53a",
+      "stored_sha256": "974a72cef2976753759f10eef77cb7efb721ea422d61a38622ff0633bbbb97ca"
+    },
+    {
+      "source": "calibration.log",
+      "path": "calibration.log.gz",
+      "source_sha256": "6f394f975b487c66ef2f0515270cce5116e0e9917596d23bec3889b80ab1f6c0",
+      "stored_sha256": "62995c84cee89e891a71e65bb724f48339afbaa421566ca45659525d9dfb5760"
+    },
+    {
+      "source": "evaluation.log",
+      "path": "evaluation.log.gz",
+      "source_sha256": "75b3ca079b6ca6af775bbb21cda6aadb37f136eb5795359a97e9835531ee3485",
+      "stored_sha256": "740912db3178b0b37970f4cadcb4fed3bc495c2e0a86b8923ec1b7982c1edc88"
+    },
+    {
+      "source": "calibration-exit.txt",
+      "path": "calibration-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "evaluation-exit.txt",
+      "path": "evaluation-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "frozen-calibration-sha256.txt",
+      "path": "frozen-calibration-sha256.txt.gz",
+      "source_sha256": "2bc21a4be32b98d0e9ccd46c575253ab7f963884f0485af7de0afb6a94d09ad3",
+      "stored_sha256": "5d43e1d37f61c59097990fb0b7b44e2725a62d30e3123019d34d972fdf912809"
+    },
+    {
+      "source": "node.txt",
+      "path": "node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "leafweb_global_a.pbs",
+      "path": "leafweb_global_a.pbs.gz",
+      "source_sha256": "22c41e78a2523a80a30d0030f9c4b8d61e62b204867bf2c6f4d82e1c5fa47724",
+      "stored_sha256": "6dfc46ede366fc26d45b69da972153e01ac3abd86d592a0bc866e1e631ea31e6"
+    },
+    {
+      "source": "diagnose_leafweb_capacity.py",
+      "path": "diagnose_leafweb_capacity.py.gz",
+      "source_sha256": "f042d3923c42f6bc0708e9fa47a50e41f69c4c833092e5c82e6510ac6c5c4833",
+      "stored_sha256": "09bf184f21e7583562cc66d77047635d8f512e45d9fd4a5069a2ce5d34510515"
+    }
+  ]
+}
