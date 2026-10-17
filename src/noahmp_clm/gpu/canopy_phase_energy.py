@@ -89,15 +89,16 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
     lower=j.concatenate((j.where(mass>0.,j.full(10,(200.-273.15)*2100./4180.,u.dtype),j.full(10,200.-273.15,u.dtype)),j.asarray([200.,0.],u.dtype)))
     upper=j.concatenate((j.where(mass>0.,plateau+350.-273.15,350.-273.15),j.asarray([350.,190.],u.dtype)))
 
-    def evaluate(z):
+    def evaluate(z,phase_active):
         x=z[:10];q=s(z[11]*.001)
-        tleaf=j.where(mass>0.,s(273.15+s(s(s(j.minimum(x,0.)*4180.)/2100.)+j.maximum(s(x-plateau),0.))),s(273.15+x))
+        tleaf=j.where(phase_active,s(273.15+s(s(s(j.minimum(x,0.)*4180.)/2100.)+j.maximum(s(x-plateau),0.))),s(273.15+x))
         t=j.concatenate((tleaf,z[10:11]));thermal=s(s(mass*4180.)*x)
         tc=s(t-273.15);es=s(611.2*j.exp(s(s(17.67*tc)/s(tc+243.5))))
         qliq=s(.622*es)/s(u[2]-s(.378*es))
         esi=j.exp(s(s(s(9.550426-5723.265/t)+s(3.53068*j.log(t)))-s(.00728332*t)))
         qice=s(.622*esi)/s(u[2]-s(.378*esi))
-        frac=j.where(mass>0.,j.clip(thermal/334000.,0.,mass)/j.where(mass>0.,mass,1.),j.asarray(tleaf>273.15,u.dtype))
+        dry_fraction=j.where(phase_active,j.clip(s(x*4180.)/334000.,0.,1.),j.asarray(tleaf>273.15,u.dtype))
+        frac=j.where(mass>0.,j.clip(thermal/334000.,0.,mass)/j.where(mass>0.,mass,1.),dry_fraction)
         qs=s(s(frac*qliq[:10])+s(s(1.-frac)*qice[:10]))
         rh=s(q*u[2])/s(.622+s(.378*q))/es[:10]
         leaf_input=j.stack((par,tleaf,j.full(10,u[8]),rh,j.full(10,s(u[5]*mol)),s(f[:,0]*j.where(trlimit>0.,f[:,1],0.)),f[:,1]),axis=1)
@@ -146,18 +147,27 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
     # initial enthalpy by one ulp. Preserve both native float32 operations.
     ambient=old.at[:10].set(j.where(mass>0.,j.where(u[0]<273.15,s(s(s(u[0]-273.15)*2100.)/4180.),s(plateau+s(u[0]-273.15))),s(u[0]-273.15)))
     ambient=j.where(u[0]==j.asarray(273.15,u.dtype),old,ambient)
-    r0,_=evaluate(old);ra,_=evaluate(ambient);choose=_dot(ra,ra)<_dot(r0,r0)
+    r0,_=evaluate(old,mass>0.);ra,_=evaluate(ambient,mass>0.);choose=_dot(ra,ra)<_dot(r0,r0)
     initial=j.where(choose,ambient,old);alternative=j.where(choose,old,ambient)
     available=j.any(initial!=alternative)
     step_size=j.asarray(.02 if u.dtype==j.float32 else 1e-4,u.dtype);qstep=j.asarray(.002 if u.dtype==j.float32 else 1e-5,u.dtype)
     def body(state):
-        iteration,x,restarts,avail,failed=state
-        r,out=evaluate(x);depleted=(mass>0.)&(out[195:205]==0.)&(x[:10]>0.)&(x[:10]<plateau)&(abs(r[:10])>tolerance)
-        x=x.at[:10].set(j.where(depleted,j.where(r[:10]>0.,plateau,0.),x[:10]));r,_=evaluate(x)
+        iteration,x,restarts,avail,failed,phase_active=state
+        r,out=evaluate(x,phase_active)
+        fresh=(~phase_active)&active&(abs(x[:10])<=.05)&(out[30:40]<0.)
+        phase_active=phase_active|fresh
+        x=x.at[:10].set(j.where(fresh,j.where(x[:10]<0.,s(s(x[:10]*2100.)/4180.),s(plateau+x[:10])),x[:10]))
+        lo_bound=lower.at[:10].set(j.where(phase_active,j.full(10,(200.-273.15)*2100./4180.,u.dtype),lower[:10]))
+        hi_bound=upper.at[:10].set(j.where(phase_active,s(s(plateau+350.)-273.15),upper[:10]))
+        converted=alternative.at[:10].set(j.where(phase_active&(mass==0.),
+            j.where(alternative[:10]<0.,s(s(alternative[:10]*2100.)/4180.),s(plateau+alternative[:10])),alternative[:10]))
+        r,out=evaluate(x,phase_active)
+        depleted=phase_active&(out[195:205]==0.)&(x[:10]>0.)&(x[:10]<plateau)&(abs(r[:10])>tolerance)
+        x=x.at[:10].set(j.where(depleted,j.where(r[:10]>0.,plateau,0.),x[:10]));r,_=evaluate(x,phase_active)
         def column(k):
             step=j.where(k==11,qstep,step_size)
-            lo=x.at[k].set(j.maximum(lower[k],s(x[k]-step)));hi=x.at[k].set(j.minimum(upper[k],s(x[k]+step)))
-            a,_=evaluate(lo);d,_=evaluate(hi);return s(d-a)/s(hi[k]-lo[k])
+            lo=x.at[k].set(j.maximum(lo_bound[k],s(x[k]-step)));hi=x.at[k].set(j.minimum(hi_bound[k],s(x[k]+step)))
+            a,_=evaluate(lo,phase_active);d,_=evaluate(hi,phase_active);return s(d-a)/s(hi[k]-lo[k])
         jac=jax.vmap(column)(j.arange(12)).T
         delta=_linear_solve(jac,-r);scale=j.maximum(1.,j.max(abs(delta)/j.concatenate((j.full(10,20.,u.dtype),j.asarray([5.,5.],u.dtype)))))
         delta=delta/scale;norm=_dot(r,r)
@@ -166,32 +176,32 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             # exp2 is lowered through an approximate exponential by XLA;
             # these exact binary half-steps must not depend on that lowering.
             fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
-            trial=j.clip(s(x+s(delta*fraction)),lower,upper);rr,_=evaluate(trial)
+            trial=j.clip(s(x+s(delta*fraction)),lo_bound,hi_bound);rr,_=evaluate(trial,phase_active)
             trial_norm=_dot(rr,rr);good=(~accepted)&(trial_norm<norm)
             return j.where(good,trial,chosen),accepted|good,j.where(good,trial_norm,chosen_norm)
         trial,accepted,chosen_norm=lax.fori_loop(0,24,backtrack,(x,j.asarray(False),norm))
         slow=(~accepted)|(chosen_norm>s(.999*norm))
         def humidity_restart(_):
-            lo=trial.at[11].set(lower[11]);hi=trial.at[11].set(upper[11])
-            rl,_=evaluate(lo);rh,_=evaluate(hi);bracket=(rl[11]>=0.)&(rh[11]<=0.)
+            lo=trial.at[11].set(lo_bound[11]);hi=trial.at[11].set(hi_bound[11])
+            rl,_=evaluate(lo,phase_active);rh,_=evaluate(hi,phase_active);bracket=(rl[11]>=0.)&(rh[11]<=0.)
             def bisect(state):
-                k,low,high=state;mid=s(.5*s(low+high));rm,_=evaluate(mid)
+                k,low,high=state;mid=s(.5*s(low+high));rm,_=evaluate(mid,phase_active)
                 return k+1,j.where(rm[11]>0.,mid,low),j.where(rm[11]>0.,high,mid)
             # A dynamic loop avoids 32 extra gas-exchange evaluations in
             # batches where every Newton step made sufficient progress.
             _,lo,hi=lax.while_loop(lambda state:(state[0]<32)&slow&bracket,bisect,(j.asarray(0,j.int32),lo,hi))
-            candidate=s(.5*s(lo+hi));rr,_=evaluate(candidate)
+            candidate=s(.5*s(lo+hi));rr,_=evaluate(candidate,phase_active)
             good=bracket&(_dot(rr,rr)<chosen_norm)
             return j.where(good,candidate,trial),good
         trial,rescued=lax.cond(slow,humidity_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,alternative,trial),restarts+(retry|rescued).astype(j.int32),avail&(~retry),~(accepted|retry)
+        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
     def condition(state):
-        it,x,_,_,failed=state;r,_=evaluate(x)
+        it,x,_,_,failed,phase_active=state;r,_=evaluate(x,phase_active)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)
-    it,x,restarts,_,failed=lax.while_loop(condition,body,(j.asarray(0,j.int32),initial,j.asarray(0,j.int32),available,j.asarray(False)))
-    r,out=evaluate(x);good=(~failed)&(j.max(abs(r))<=tolerance)&(j.max(abs(out[55:66]))<=tolerance*1.05)
+    it,x,restarts,_,failed,phase_active=lax.while_loop(condition,body,(j.asarray(0,j.int32),initial,j.asarray(0,j.int32),available,j.asarray(False),mass>0.))
+    r,out=evaluate(x,phase_active);good=(~failed)&(j.max(abs(r))<=tolerance)&(j.max(abs(out[55:66]))<=tolerance*1.05)
     return out.at[67].set(it+1).at[68].set(good.astype(u.dtype)).at[291].set(restarts)
 
 

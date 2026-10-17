@@ -4,8 +4,9 @@
 `solve_canopy_phase_energy`。逐层截留冰水的热状态现已进入辐射、Farquhar/
 Ball–Berry、叶—气感热、水汽、共享根水和诊断空气温湿的同一方程系统。
 可接固定雪面及五层雪短波边界。后续[原生JAX/CUDA入口](CLM_GPU_CANOPY_PHASE_ENERGY.md)
-已完成75工况同精度对照；**尚未连接完整柱驱动**；
-当前原生完整柱仍使用之前的共享液水状态，不能以本组件替代整柱冬季验收。
+已完成75工况同精度对照，随后已接入完整分层焓柱及BGC/MOST路径；下文保存
+对应组件开发检查点。真实冷启动新增的[干叶新凝结相变修复](CLM_DRY_DEPOSITION.md)
+已完成解析和原生组件验证，完整站点冬季及全年验收仍须独立完成。
 
 空气交换网络依据 [CLM5 技术说明 §2.5](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Fluxes/CLM50_Tech_Note_Fluxes.html)，
 沿用已经独立验证的辐射、气体交换和土壤供水组件。新增焓离散与混合相交换

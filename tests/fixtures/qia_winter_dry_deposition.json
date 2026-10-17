@@ -1,0 +1,117 @@
+{
+  "scope": "Exact failed CN-Qia 2003-01-01 inner trial at 276.722 K, including MOST measurement-height extensions",
+  "parent_config_sha256": "771a51a3d49ef7c66b4717fddff86e4d933f7ca3d0ea248b1b5673e524f27353",
+  "leaf": [
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402,
+    0.2999942922917402
+  ],
+  "swdown": 0.0,
+  "lwdown": 238.2,
+  "exchange": {
+    "air_temperature": 276.462,
+    "specific_humidity": 0.004298027080349489,
+    "pressure": 101400.0,
+    "atmosphere_velocity": 0.01183605800142189,
+    "ground_velocity": 0.003719145800408066,
+    "leaf_velocity": 0.020500657027916494,
+    "soil_temperature": 278.722,
+    "soil_conductance": 0.0,
+    "co2_ppm": 374.94,
+    "ground_resistance": 4413.251825131244,
+    "soil_flux_offset": 0.0,
+    "atmosphere_water_velocity": 0.01183605800142189,
+    "potential_temperature": 276.85008
+  },
+  "condensate": {
+    "mass": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "enthalpy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "dt": 1800.0,
+  "kwargs": {
+    "root_enthalpy": [
+      357290.96,
+      357290.96,
+      357290.96,
+      357290.96
+    ],
+    "fixed_ground_temperature": 276.722,
+    "ground_is_ice": false,
+    "ground_shares_soil": true,
+    "snowpack": {
+      "mass": [],
+      "enthalpy": [],
+      "thickness": [],
+      "radius_um": [],
+      "impurities": []
+    },
+    "ground_evaporation_limit": Infinity,
+    "soil_supply": {
+      "roots": [
+        0.008888888888888889,
+        0.02666666666666667,
+        0.05333333333333334,
+        0.08888888888888889
+      ],
+      "weights": [
+        0.3999999999999999,
+        0.3,
+        0.19999999999999996,
+        0.09999999999999998
+      ],
+      "surface": 0.015555555555555555
+    },
+    "tolerance": 1e-07,
+    "water_stress": 0.9999999999999999,
+    "vegetated_fraction": 1.0,
+    "nitrogen_factor": 1.0,
+    "leaf_parameters": {
+      "vcmax25": 60.0,
+      "jmax25": 100.0,
+      "tpu25": 10.0,
+      "respiration25": 0.9,
+      "quantum_yield_psii": 0.85,
+      "curvature": 0.7,
+      "ball_berry_slope": 9.0,
+      "minimum_conductance": 0.01,
+      "growth_temperature": 298.15,
+      "oxygen_ppm": 210000.0
+    },
+    "ground_albedo": [
+      0.2,
+      0.2
+    ],
+    "ground_emissivity": 0.97,
+    "cosine_zenith": 0.001,
+    "diffuse_fraction": 1.0
+  }
+}

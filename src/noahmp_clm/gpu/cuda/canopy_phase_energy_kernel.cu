@@ -4,6 +4,7 @@ struct PhaseContext {
     const float *leaf,*u,*f,*soil,*c,*b,*p,*rad;
     float area[10],fw[10],dry[10],vc[10],weights[11],sw[11],lw[132];
     float fv,rho,mol,atm,bare,hden,trlimit,lg,water_velocity,heat_temperature;
+    bool phase_active[10];
 };
 __device__ void phase_prepare(const float* leaf,const float* u,const float* f,const float* soil,
     const float* stem,const float* c,const float* b,const float* p,const float* rad,PhaseContext& v) {
@@ -13,6 +14,7 @@ __device__ void phase_prepare(const float* leaf,const float* u,const float* f,co
     v.fv=ca_sum(v.area,10)>0.f?u[13]:0.f;v.rho=u[2]/((287.f*u[0])*(1.f+.61f*u[1]));v.mol=u[2]/(8.314462618f*u[0]);
     v.atm=((v.rho*1004.f)*v.fv)*u[3];v.bare=((v.rho*1004.f)*(1.f-v.fv))*u[3];
     for(int i=0;i<10;++i) {
+        v.phase_active[i]=c[2*i]>0.f;
         v.weights[i]=(v.rho*1004.f)*((v.fv*v.area[i])*u[5]);v.vc[i]=((v.rho*v.fv)*v.area[i])*u[5];
         float cap=(.1f*v.fv)*v.area[i];v.fw[i]=cap>0.f?fminf(1.f,powf(c[2*i]/cap,2.f/3.f)):0.f;
         v.dry[i]=(1.f-v.fw[i])*(leaf[i]/(v.area[i]>0.f?v.area[i]:1.f));v.sw[i]=rad[i];
@@ -27,7 +29,7 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
     float mass[10],heat[10],adv[10],vapor[10],iv[10],liq[10],wetle[10],unmet[10],wet[10],tr[10],take[4];
     const float plateau=79.90430622009569f;float q=z[11]*.001f;
     for(int i=0;i<10;++i) {
-        t[i]=c[2*i]>0.f?273.15f+((fminf(z[i],0.f)*4180.f/2100.f)+fmaxf(z[i]-plateau,0.f)):273.15f+z[i];
+        t[i]=v.phase_active[i]?273.15f+((fminf(z[i],0.f)*4180.f/2100.f)+fmaxf(z[i]-plateau,0.f)):273.15f+z[i];
         thermal[i]=(c[2*i]*4180.f)*z[i];
     }
     t[10]=z[10];
@@ -36,7 +38,8 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
         float esi=expf(((9.550426f-5723.265f/t[i])+3.53068f*logf(t[i]))-.00728332f*t[i]);qi[i]=(.622f*esi)/(u[2]-.378f*esi);
     }
     for(int i=0;i<10;++i) {
-        float m=c[2*i],frac=m>0.f?fminf(m,fmaxf(0.f,thermal[i]/334000.f))/m:(t[i]>273.15f?1.f:0.f);
+        float dry_fraction=v.phase_active[i]?fminf(1.f,fmaxf(0.f,(z[i]*4180.f)/334000.f)):(t[i]>273.15f?1.f:0.f);
+        float m=c[2*i],frac=m>0.f?fminf(m,fmaxf(0.f,thermal[i]/334000.f))/m:dry_fraction;
         float sat=frac*qs[i]+(1.f-frac)*qi[i],rh=((q*u[2])/(.622f+.378f*q))/es[i];
         float input[7]={v.rad[10+i],t[i],u[8],rh,u[5]*v.mol,v.f[2*i]*(v.trlimit>0.f?v.f[2*i+1]:0.f),v.f[2*i+1]};
         leaf_gas_exchange_device(input,v.p,gas+12*i);
@@ -110,7 +113,7 @@ __device__ void phase_linear(float* a,float* b,float* x) {
 }
 __device__ float phase_max(const float* v,int n){float x=0.f;for(int i=0;i<n;++i)x=fmaxf(x,fabsf(v[i]));return x;}
 
-__device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,float tolerance) {
+__device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float tolerance) {
     float x[12],ambient[12],alternative[12],lower[12],upper[12],r[12],ra[12];const float plateau=79.90430622009569f;
     for(int i=0;i<10;++i) {
         float mass=v.c[2*i];x[i]=mass>0.f?v.c[2*i+1]/(mass*4180.f):v.u[0]-273.15f;
@@ -125,7 +128,14 @@ __device__ void phase_solve(const PhaseContext& v,float* out,int max_iterations,
     int iteration=0,restarts=0;bool failed=false;
     while(iteration<max_iterations&&!failed) {
         phase_evaluate(v,x,r,out);if(phase_max(r,12)<=tolerance)break;
-        for(int i=0;i<10;++i)if(v.c[2*i]>0.f&&out[195+i]==0.f&&x[i]>0.f&&x[i]<plateau&&fabsf(r[i])>tolerance)x[i]=r[i]>0.f?plateau:0.f;
+        for(int i=0;i<10;++i)if(!v.phase_active[i]&&v.fv*v.area[i]>0.f&&fabsf(x[i])<=.05f&&out[30+i]<0.f){
+            v.phase_active[i]=true;
+            x[i]=x[i]<0.f?(x[i]*2100.f)/4180.f:plateau+x[i];
+            alternative[i]=alternative[i]<0.f?(alternative[i]*2100.f)/4180.f:plateau+alternative[i];
+            lower[i]=-36.75f;upper[i]=(plateau+350.f)-273.15f;
+        }
+        phase_evaluate(v,x,r,out);
+        for(int i=0;i<10;++i)if(v.phase_active[i]&&out[195+i]==0.f&&x[i]>0.f&&x[i]<plateau&&fabsf(r[i])>tolerance)x[i]=r[i]>0.f?plateau:0.f;
         phase_evaluate(v,x,r,nullptr);float jac[144],delta[12],rhs[12];
         for(int k=0;k<12;++k) {
             float lo[12],hi[12],rl[12],rh[12],step=k==11?.002f:.02f;

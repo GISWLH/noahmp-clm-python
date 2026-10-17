@@ -16,14 +16,14 @@ from .snowpack import TF, CI, CW, LF
 from .energy import RD, CP, LV, SIGMA
 
 
-def _decode(coordinate, mass):
+def _decode(coordinate, mass, phase_active=None):
     """Scaled specific enthalpy for wet layers; temperature offset for dry ones."""
     x=np.asarray(coordinate)
     t=TF+np.minimum(x,0.)*CW/CI+np.maximum(x-LF/CW,0.)
-    return np.where(mass>0.,t,TF+x),mass*CW*x
+    return np.where(mass>0. if phase_active is None else phase_active,t,TF+x),mass*CW*x
 
 
-def _equilibrium_vapor(state, amount, temperature):
+def _equilibrium_vapor(state, amount, temperature, liquid_fraction=None):
     """Conservative mixed-phase extension for the implicit thermal solve.
 
     Existing liquid/ice proportions approximate the exposed wet areas at
@@ -33,7 +33,8 @@ def _equilibrium_vapor(state, amount, temperature):
     heat equation discontinuous. No phase mass can be overdrawn.
     """
     mass=state.mass;heat=state.enthalpy
-    fraction=np.divide(state.liquid,mass,out=np.asarray(temperature>TF,dtype=float),where=mass>0.)
+    fraction=(np.divide(state.liquid,mass,out=np.asarray(temperature>TF,dtype=float),where=mass>0.)
+        if liquid_fraction is None else liquid_fraction)
     loss=np.minimum(np.maximum(amount,0.),mass);deposit=np.maximum(-amount,0.)
     remaining=mass-loss;retained=np.divide(remaining,mass,out=np.zeros_like(mass),where=mass>0.)*heat
     liquid=(loss-deposit)*fraction;ice=(loss-deposit)-liquid
@@ -119,19 +120,21 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
     upper=np.r_[np.where(mass>0.,LF/CW+350.-TF,350.-TF),350.,190.]
     x=np.r_[np.divide(condensate.enthalpy,mass*CW,out=np.full(n,e.air_temperature-TF),where=mass>0.),
         fixed_ground_temperature if fixed_ground_temperature is not None else e.air_temperature,e.specific_humidity*1000.]
+    phase_active=mass>0.
 
     def evaluate(z,details=False):
-        leaf_t,thermal_h=_decode(z[:n],mass);t=np.r_[leaf_t,z[n]];qc=z[n+1]*.001
+        leaf_t,thermal_h=_decode(z[:n],mass,phase_active);t=np.r_[leaf_t,z[n]];qc=z[n+1]*.001
         heated=CanopyCondensate(mass,thermal_h)
         qliq,_,es=_saturation(t,e.pressure);qice=_ice_saturation(t,e.pressure)[0]
-        liquid_area=np.divide(heated.liquid,mass,out=np.asarray(leaf_t>TF,dtype=float),where=mass>0.)
+        liquid_area=np.divide(heated.liquid,mass,
+            out=np.where(phase_active,np.clip(z[:n]*CW/LF,0.,1.),np.asarray(leaf_t>TF,dtype=float)),where=mass>0.)
         wet_sat=liquid_area*qliq[:-1]+(1.-liquid_area)*qice[:-1];ground_sat=qice[-1] if ground_is_ice else qliq[-1]
         gas=leaf_gas_exchange(sw['absorbed_par'],leaf_t,co2_ppm=e.co2_ppm,
             relative_humidity=qc*e.pressure/(.622+.378*qc)/es[:-1],boundary_conductance=e.leaf_velocity*mol,
             parameters=leaf_parameters,water_stress=water_stress,nitrogen_factor=nitrogen_factor*biochemical)
         wet_area=np.where(wet_sat>qc,fractions['wet_fraction'],1.)
         wet_demand=vapor_conductance*wet_area*(wet_sat-qc)
-        final,parcel=_equilibrium_vapor(heated,dt*wet_demand,leaf_t)
+        final,parcel=_equilibrium_vapor(heated,dt*wet_demand,leaf_t,liquid_area)
         wet=parcel['mass_kgm2']/dt
         # Leaves transpire liquid water; stem area contributes boundary/heat
         # exchange but has no stomata. Root and soil surface supply are shared.
@@ -198,7 +201,19 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         residual=evaluate(x)
         if np.max(abs(residual))<=tolerance:break
         detail=evaluate(x,True)
-        depleted=(mass>0.)&(detail['condensate'].mass==0.)&(x[:n]>0.)&(x[:n]<LF/CW)&(abs(residual[:n])>tolerance)
+        fresh=(~phase_active)&active&(abs(x[:n])<=.05)&(detail['wet_evaporation']<0.)
+        if np.any(fresh):
+            # A previously dry leaf can receive both ice and liquid at Tf.
+            # Activate a phase coordinate without adding initial water/heat.
+            # The .05 K neighborhood changes coordinates only: the latent
+            # plateau remains exactly Tf, with no temperature smoothing.
+            phase_active|=fresh
+            x[:n]=np.where(fresh,np.where(x[:n]<0.,x[:n]*CI/CW,LF/CW+x[:n]),x[:n])
+            alternative[:n]=np.where(fresh,np.where(alternative[:n]<0.,alternative[:n]*CI/CW,LF/CW+alternative[:n]),alternative[:n])
+            lower[:n]=np.where(fresh,(200.-TF)*CI/CW,lower[:n])
+            upper[:n]=np.where(fresh,LF/CW+350.-TF,upper[:n])
+            residual=evaluate(x);detail=evaluate(x,True)
+        depleted=phase_active&(detail['condensate'].mass==0.)&(x[:n]>0.)&(x[:n]<LF/CW)&(abs(residual[:n])>tolerance)
         if np.any(depleted):
             # With no condensate left, storage plus vapour enthalpy is
             # independent of the arbitrary plateau fraction. Move that
