@@ -1,0 +1,43 @@
+{
+  "site": "CN-Cng",
+  "locked_utc": "2026-10-17T03:48:10.929443+00:00",
+  "source": "docs/v1-results/fluxnet-2015-bif-three-sites.json.gz",
+  "source_sha256": "27415add76db0d0593ccca19afa7c073093af33147b4752df1f0d12e1aec71a5",
+  "temperature_depth_m": 0.05,
+  "water_depth_m": 0.1,
+  "source_record_dates": {
+    "temperature": "200705070000",
+    "water": "200705070000"
+  },
+  "source_records": {
+    "TS_F_MDS_1": {
+      "group_id": 40055810,
+      "variable_group": "GRP_VAR_INFO",
+      "values": {
+        "VAR_INFO_VARNAME": "TS_F_MDS_1",
+        "VAR_INFO_HEIGHT": "-0.05",
+        "VAR_INFO_UNIT": "deg C",
+        "VAR_INFO_DATE": "200705070000"
+      }
+    },
+    "SWC_F_MDS_1": {
+      "group_id": 40055812,
+      "variable_group": "GRP_VAR_INFO",
+      "values": {
+        "VAR_INFO_VARNAME": "SWC_F_MDS_1",
+        "VAR_INFO_HEIGHT": "-0.1",
+        "VAR_INFO_UNIT": "%",
+        "VAR_INFO_DATE": "200705070000"
+      }
+    }
+  },
+  "spatial_method": "linear_centres_constant_outer_half_cell",
+  "temporal_method": "trapezoid_endpoints",
+  "assumptions": [
+    "Reported depths used for the available soil records; no undocumented depth change inferred.",
+    "Both model liquid and total water are reported; sensor phase sensitivity is not inferred by choosing the better score.",
+    "Point values are interpolated from model layer-centre states. Outer half cells are constant. No depths outside model soil are allowed.",
+    "Model interval means are trapezoidal endpoint estimates, including the initial state. Sub-interval variation is unresolved."
+  ],
+  "unit_reference": "https://fluxnet.org/data/fluxnet2015-dataset/fullset-data-product/"
+}
