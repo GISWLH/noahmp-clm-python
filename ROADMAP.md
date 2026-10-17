@@ -9,7 +9,8 @@
 
 2026-10-17连续验证修订：[薄雪分支括区](docs/CLM_SNOW_BRANCH.md)和
 [联合热量局部舍入](docs/CLM_HEAT_COORDINATE.md)已进入三后端开发路径，当前
-EHPC完整CPU部分685项通过；xuanze完整GPU回归及四站气候年仍未完成。
+另已修订[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)，EHPC当前完整CPU部分
+688项通过；xuanze当前热量10项通过，完整GPU回归及四站气候年仍未完成。
 这些修订不勾选观测、气候spinup或发布待办。
 
 - [x] P1指定的融尽余热路由、AHC平滑和厚雪均温漂移修复及365天复验。

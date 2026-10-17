@@ -10,7 +10,8 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 
 最新连续验证：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
 [联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
-EHPC完整CPU部分685项通过，xuanze实态热量3项通过、CUDA32/JAX32全字段差0。
+后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，EHPC完整CPU部分
+688项、xuanze热量10项通过，CUDA32/JAX32全字段差0。
 完整GPU回归、四站气候年和观测验收仍在推进。CPU物理运行使用EHPC计算节点，
 GPU使用xuanze；本机用于编辑和结果整理。
 

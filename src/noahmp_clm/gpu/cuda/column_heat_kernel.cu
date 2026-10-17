@@ -112,7 +112,11 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
             bool good=heat_evaluate(candidate,old,mass,z,solar,conduct,ns,props,bc,phase,
                 trial_r,trial_t,trial_d,trial_liq,trial_f,trial_top,trial_rounding);
             float trial_merit=0.f;for(int i=0;i<9;++i)trial_merit+=fabsf(trial_r[i])/weights[i];
-            accepted=good&&(trial_merit<merit||heat_norm(trial_r,candidate,tolerance,trial_rounding,conduct,bc)<=1.f);
+            // A tiny exact phase-event move can round to the same merit.
+            // Admit that represented endpoint; the final bound still holds.
+            bool exact_event=false;
+            for(int i=0;i<ns;++i)exact_event=exact_event||(ev0[i]&&step==f0[i])||(ev1[i]&&step==f1[i]);
+            accepted=good&&(trial_merit<merit||(exact_event&&trial_merit==merit)||heat_norm(trial_r,candidate,tolerance,trial_rounding,conduct,bc)<=1.f);
             if(accepted)for(int i=0;i<9;++i)h[i]=candidate[i];
             step*=.5f;
         }
@@ -140,7 +144,8 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
                 bool good=heat_evaluate(candidate,old,mass,z,solar,conduct,ns,props,bc,phase,
                     trial_r,trial_t,trial_d,trial_liq,trial_f,trial_top,trial_rounding);
                 float trial_merit=0.f;for(int i=0;i<9;++i)trial_merit+=fabsf(trial_r[i])/weights[i];
-                accepted=good&&(trial_merit<merit||heat_norm(trial_r,candidate,tolerance,trial_rounding,conduct,bc)<=1.f);
+                bool exact_event=(land0&&scalar_step==e0)||(land1&&scalar_step==e1);
+                accepted=good&&(trial_merit<merit||(exact_event&&trial_merit==merit)||heat_norm(trial_r,candidate,tolerance,trial_rounding,conduct,bc)<=1.f);
                 if(accepted)for(int i=0;i<9;++i)h[i]=candidate[i];
                 scalar_step*=.5f;
             }

@@ -142,7 +142,11 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
             trial=stop(h+stop(scale*delta))
             trial=j.where(event0&(scale==fraction0),0.,j.where(event1&(scale==fraction1),upper,trial))
             r,_,_,_,good,_,_,rounding=evaluate(trial)
-            take=good&((merit_of(r,weights)<merit)|(norm_of(r,trial,rounding)<=1.))
+            # A represented move to an exact phase endpoint can have equal
+            # rounded merit. It is progress to the next active phase.
+            trial_merit=merit_of(r,weights)
+            exact_event=j.any((event0&(scale==fraction0))|(event1&(scale==fraction1)))
+            take=good&((trial_merit<merit)|(exact_event&(trial_merit==merit))|(norm_of(r,trial,rounding)<=1.))
             return tries+1,scale*.5,j.where(take,trial,candidate),take
         _,_,trial,accepted=lax.while_loop(lambda s:(s[0]<40)&~s[3],search,
             (j.asarray(0),scale,h,j.asarray(False)))
@@ -170,7 +174,9 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
                 value=j.where(land0&(scale==f0),0.,j.where(land1&(scale==f1),upper[worst],value))
                 scalar_trial=h.at[worst].set(value)
                 r,_,_,_,good,_,_,rounding=evaluate(scalar_trial)
-                take=good&((merit_of(r,weights)<merit)|(norm_of(r,scalar_trial,rounding)<=1.))
+                trial_merit=merit_of(r,weights)
+                exact_event=(land0&(scale==f0))|(land1&(scale==f1))
+                take=good&((trial_merit<merit)|(exact_event&(trial_merit==merit))|(norm_of(r,scalar_trial,rounding)<=1.))
                 return tries+1,scale*.5,j.where(take,scalar_trial,candidate),take
             result=lax.while_loop(lambda x:(x[0]<40)&~x[3],scalar_step,
                 (j.asarray(0),scalar_scale,h,j.asarray(False)))
