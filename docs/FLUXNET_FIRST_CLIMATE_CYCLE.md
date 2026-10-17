@@ -105,6 +105,13 @@ E气候年在325个完整步后、千烟洲2003-01-07 18:30遇到
 [F首日CUDA不可变证据](v1-results/first-climate-day-f-native/manifest.json)已在任何
 年度续跑之前保存，首日独立NumPy比较将另存。
 
+F的原48步CUDA状态/原累计收支已于10:33 UTC在xuanze启动年度续跑，PID3364861；
+启动前再次严格核对全部运行时源码身份和检查点哈希。独立首日配对仍等待EHPC
+PBS25，不将年度数值执行称为首日或科学验收通过。当前源码NumPy首周PBS26
+以`afterok:25.manager`依赖排队，只在首日任务退出码0后从自身48步续288步。
+[实际启动收据、PBS依赖及控制脚本](v1-results/first-climate-cycle-f-launch/manifest.json)
+保留；队列等待和进程存在都不算完成。
+
 原B四站NumPy首周和新热量独立参考的[原始证据](v1-results/heat-coordinate-reference-and-cold-week/manifest.json)
 及E年度失败/诊断的[原始证据](v1-results/heat-coordinate-diagnosis-and-target/manifest.json)
 均包含各自的源码、输入与报告哈希。

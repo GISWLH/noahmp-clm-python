@@ -31,6 +31,8 @@ CPU使用EHPC PBS24收据，58个GPU文件各用xuanze新pytest进程，仍在�
 这是一轮分布执行的完整覆盖检查，不能称未筛选单进程全量已通过；27组独立
 CUDA/JAX影子仍在运行。[新四站F](FLUXNET_FIRST_CLIMATE_CYCLE.md)从当前源码初态
 另跑，CUDA四站首日已完成，独立EHPC NumPy及后续年度仍待收齐。
+F已从自身48步状态在xuanze启动年度续跑，首日独立配对仍待EHPC PBS25；
+当前源码NumPy首周PBS26设置`afterok:25.manager`依赖，未提前改记完成。
 原B NumPy四站首周在EHPC PBS12已各完成336步；PBS11导入前失败仍保留。
 这些进展不改变多站多年、真实气候spinup、留出校准和官方3—5站验收的待办状态。
 本地Git元数据曾回退且应用检查点引用含41字节零值；备份400个工作区文件并核对
