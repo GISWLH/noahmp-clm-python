@@ -136,6 +136,7 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
         raise ValueError('MOST requires at least two surface solves')
     if not math.isfinite(time_step) or time_step<=0:raise ValueError('Positive MOST time step required')
     zeta=0.;effective=max(1.,float(wind));previous=None;history=[]
+    relaxation=.5;previous_stability_residual=None;previous_mismatch=None
     stable_bracket=False;lower=0.;upper=2.;bisection_restarts=0
     theta=exchange.air_temperature+.0098*geometry.temperature_height
     for iteration in range(1,max_iterations+1):
@@ -163,6 +164,14 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
                     vapor_change_kgm2s=float(de),leaf_temperature_change_k=dt,history=history)
                 d['most']['bisection_restarts']=bisection_restarts
                 return result
+        stability_residual=target['zeta']-zeta
+        if previous_stability_residual is not None and not stable_bracket and mismatch>1e-4:
+            if stability_residual*previous_stability_residual<0. and mismatch>previous_mismatch:
+                # A growing sign-alternating fixed-point map can cycle even
+                # with half relaxation. Reduce the trial gain, keeping the
+                # same old stores, residual tests and iteration budget.
+                relaxation=max(.0625,.5*relaxation)
+        previous_stability_residual=stability_residual;previous_mismatch=mismatch
         previous=dict(h=float(d['h']),vapor=vapor,temperature=np.array(d['leaf_temperature'],copy=True))
         if stable_bracket:
             # At the neutral trial F=target-zeta > 0; at zeta=2, F<=0
@@ -180,6 +189,8 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
                 stable_bracket=False;bisection_restarts+=1
             else:zeta=midpoint
         if not stable_bracket:
-            zeta=.5*(zeta+target['zeta']);effective=.5*(effective+target['effective_wind'])
+            # Preserve the original rounding sequence at the ordinary gain.
+            zeta=(.5*(zeta+target['zeta']) if relaxation==.5 else zeta+relaxation*(target['zeta']-zeta))
+            effective=(.5*(effective+target['effective_wind']) if relaxation==.5 else effective+relaxation*(target['effective_wind']-effective))
     raise RuntimeError(f'MOST flux feedback did not converge in {max_iterations} iterations; '
                        f'coefficient residual={mismatch:.9g}, zeta={zeta:.9g}')

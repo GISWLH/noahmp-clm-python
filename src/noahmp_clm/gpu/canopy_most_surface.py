@@ -22,6 +22,7 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
     plant_area=xp.broadcast_to(xp.asarray(plant_area,dtype),(n,))
     zero=xp.zeros(n,dtype);zeta=zero;effective=xp.maximum(1.,wind)
     done=xp.zeros(n,bool);iterations=xp.zeros(n,xp.int32);previous=None
+    relaxation=zero+.5;previous_stability_residual=None;previous_mismatch=None
     bisection_restarts=xp.zeros(n,xp.int32)
     lower=zero;upper=zero+2.;stable_bracket=xp.zeros(n,bool)
     atmosphere=xp.stack((u[:,0],u[:,1],u[:,2],wind,zero,zero,zero+.2),axis=1)
@@ -53,6 +54,12 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
                     'bisection_restarts':bisection_restarts,
                     'coefficient_residual':mismatch,'heat_change_wm2':dh,'vapor_change_kgm2s':de,'leaf_temperature_change_k':dt}
                 return surface
+        stability_residual=feedback['zeta']-zeta
+        if previous_stability_residual is not None:
+            growing_oscillation=((stability_residual*previous_stability_residual<0.)&
+                (mismatch>previous_mismatch)&(~stable_bracket)&(~done)&(mismatch>1e-4))
+            relaxation=xp.where(growing_oscillation,xp.maximum(.0625,.5*relaxation),relaxation)
+        previous_stability_residual=stability_residual;previous_mismatch=mismatch
         previous=(surface['h'],vapor,surface['leaf_temperature'])
         lower=xp.where(stable_bracket&(~done)&(feedback['zeta']>=zeta),zeta,lower)
         upper=xp.where(stable_bracket&(~done)&(feedback['zeta']<zeta),zeta,upper)
@@ -63,9 +70,13 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
         stalled=stable_bracket&(~done)&(.5*(lower+upper)==zeta)
         bisection_restarts=bisection_restarts+stalled.astype(xp.int32)
         stable_bracket=stable_bracket&(~stalled)
-        next_zeta=xp.where(stable_bracket,.5*(lower+upper),.5*(zeta+feedback['zeta']))
+        # Reduce only a growing oscillation; preserve ordinary half-step
+        # rounding and all physical acceptance tests on both device paths.
+        damped_zeta=xp.where(relaxation==.5,.5*(zeta+feedback['zeta']),zeta+relaxation*(feedback['zeta']-zeta))
+        next_zeta=xp.where(stable_bracket,.5*(lower+upper),damped_zeta)
         zeta=xp.where(done,zeta,next_zeta)
-        effective=xp.where(done|stable_bracket,effective,.5*(effective+feedback['effective_wind']))
+        damped_wind=xp.where(relaxation==.5,.5*(effective+feedback['effective_wind']),effective+relaxation*(feedback['effective_wind']-effective))
+        effective=xp.where(done|stable_bracket,effective,damped_wind)
         state=xp.stack((zeta,effective,leaf_dimension,plant_area),axis=1)
         current=coefficients(geometry,atmosphere,state)
     raise RuntimeError('Native MOST flux feedback did not converge in 50 iterations')

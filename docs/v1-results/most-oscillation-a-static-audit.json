@@ -1,0 +1,45 @@
+{
+  "scope": "Static byte/AST and recorded remote provenance audit only; no model/evaluation runs locally.",
+  "source_files": 486,
+  "source_code_test_benchmark_files": 483,
+  "runtime_differences_from_failed_i": [
+    "src/noahmp_clm/__init__.py",
+    "src/noahmp_clm/driver.py",
+    "src/noahmp_clm/gpu/canopy_most_surface.py",
+    "src/noahmp_clm/physics/canopy_most.py"
+  ],
+  "cpu": {
+    "returncode": 0,
+    "seconds": 360.0604906559456,
+    "counts": {
+      "tests": 780,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_files": 486,
+    "source_unchanged": true,
+    "pbs_job": "95.manager",
+    "node": "compute002"
+  },
+  "target": {
+    "returncode": 0,
+    "seconds": 86.70992051297799,
+    "counts": {
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_files": 486,
+    "source_unchanged": true,
+    "pbs_job": "94.manager",
+    "node": "compute002"
+  },
+  "original_i_failed_steps": 4016,
+  "original_i_source_and_four_report_trace_checkpoint_hashes_preserved": true,
+  "fixture_matches_original_raw_whole_inputs": true,
+  "original_day_respiration_trace_and_state_bitwise_proof_preserved": true,
+  "all_public_artifacts_hash_verified_and_git_tracked": 4248,
+  "annual_spinup_observational_acceptance": false
+}

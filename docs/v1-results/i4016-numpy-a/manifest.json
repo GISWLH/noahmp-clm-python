@@ -1,0 +1,96 @@
+{
+  "scope": "EHPC PBS89 original NumPy failure and PBS91 isolated adaptive candidate, source unchanged and original iteration/convergence criteria retained. Diagnostic, not annual validation.",
+  "archive_sha256": "2859599c04b9cc398cd66d217a645ad9202ea9ceebf80e9dd22248376935eaff",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "ad71abbc08edd41cdd719ec1213dfcb30e51e2080c89bb12d7b1051c42b05b4f",
+      "stored_sha256": "f25cdfce9172eca56d452c7989ae6d281bb4fce324e70ad079cb1c94fa282a34"
+    },
+    {
+      "source": "i4016-whole-inputs.npz",
+      "path": "i4016-whole-inputs.npz",
+      "source_sha256": "f7ddec083458d4b4ca88effc7b00c0aed8714b2276cb559498118db027b774f3",
+      "stored_sha256": "f7ddec083458d4b4ca88effc7b00c0aed8714b2276cb559498118db027b774f3"
+    },
+    {
+      "source": "probe_i4016_numpy.py",
+      "path": "probe_i4016_numpy.py.gz",
+      "source_sha256": "8061acd802228c10aa8c21adb0814bb1429a00be78037ae49b64eda20e7f5959",
+      "stored_sha256": "4bdc63daa13664668061fd536586dde20e8e2fda9a07e6df3f61f79e1df36a24"
+    },
+    {
+      "source": "probe_i4016_numpy_adaptive.py",
+      "path": "probe_i4016_numpy_adaptive.py.gz",
+      "source_sha256": "28f0a145d4cfc648303a87c470e695cc84f307a22bbd6b156758599d0fa5b00e",
+      "stored_sha256": "8eb0343bd9d6f0cd7bef65102381516d92e19b84a9118492e583153e8d262b71"
+    },
+    {
+      "source": "numpy-adaptive-candidate.py",
+      "path": "numpy-adaptive-candidate.py.gz",
+      "source_sha256": "f63c6d11c7f84cf2f1df9889a8d15330d1993251259945bedc10ec41dffb73d6",
+      "stored_sha256": "12369f6f9e2f9d9c4daded5e90f8c9e558f5bd168db157509a4270fe2fed2ff4"
+    },
+    {
+      "source": "i4016_numpy_baseline.pbs",
+      "path": "i4016_numpy_baseline.pbs.gz",
+      "source_sha256": "5dbf20dc9460610f251711e621a585d545bb821b412ceffa4968261619e15c3f",
+      "stored_sha256": "ef006791cc65f567d2751e8ed9127cab0ef2d6afbd456cb50d9836a8942ec404"
+    },
+    {
+      "source": "i4016_numpy_adaptive.pbs",
+      "path": "i4016_numpy_adaptive.pbs.gz",
+      "source_sha256": "9933c3c44fd6d0d91ecf58cf5363f8a96216751d2abd866ff74f1093469c485e",
+      "stored_sha256": "20b045f3e09e4b60daac71cc400c67445095ca50e6039a0af4c4a96688d09316"
+    },
+    {
+      "source": "i4016-numpy-baseline.json",
+      "path": "i4016-numpy-baseline.json.gz",
+      "source_sha256": "ebeb4a9aaab96d874c55318bacf4f3c3f474bb64280c5d47c6ea084ef5dc431d",
+      "stored_sha256": "c6ce8d6cc8660cac63314f54b0ba7ff20e8f6390e267c4e3f7403902b5250a4f"
+    },
+    {
+      "source": "i4016-numpy-adaptive.json",
+      "path": "i4016-numpy-adaptive.json.gz",
+      "source_sha256": "99adc0dc5cb97315f92431721b5b88058096b04d43c0c20917be4d68fe5becaf",
+      "stored_sha256": "ff3011e34e1cfb363f1ff80b2acf9f184370a102c872f6ece12f2051c9791f31"
+    },
+    {
+      "source": "i4016-numpy-baseline.log",
+      "path": "i4016-numpy-baseline.log.gz",
+      "source_sha256": "4d56b4be5e3b177d33d9c89a16f2632560702f4606e059ff5e82451b2694479e",
+      "stored_sha256": "d482c1999e5d29da7676f61555a5bbd65c6aa5954cb4befda73d84db70b801c7"
+    },
+    {
+      "source": "i4016-numpy-adaptive.log",
+      "path": "i4016-numpy-adaptive.log.gz",
+      "source_sha256": "54c801f8a66002424cff3de740a74bbbb5e4f3a5ef6159cffe27e89a80539db1",
+      "stored_sha256": "afc38e0c807164f5065adbd01f681b2bff83354af1e7775216fb9c7519a2fbbe"
+    },
+    {
+      "source": "i4016-numpy-baseline-exit.txt",
+      "path": "i4016-numpy-baseline-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "i4016-numpy-adaptive-exit.txt",
+      "path": "i4016-numpy-adaptive-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_most.py",
+      "path": "src/noahmp_clm/physics/canopy_most.py.gz",
+      "source_sha256": "1ce77d87a5b8220f44a2cfa5ee2d3e0acce01a4544723504ad8daca7b8a0e891",
+      "stored_sha256": "0e8d5ea65d6ef39b5fb64d67deb86e2a85339573713b8755164e2299538ab3ec"
+    },
+    {
+      "source": "tests/test_gpu_clm_bgc_column.py",
+      "path": "tests/test_gpu_clm_bgc_column.py.gz",
+      "source_sha256": "c005fc807738298dda9a539a6da2eacbd797c8e1248ed9ddcfd1e7add05f43f7",
+      "stored_sha256": "a31674b0f13a226b0ab74cfd394f7a8882d3a18a96ee0e75915c3e8dde1b3503"
+    }
+  ]
+}
