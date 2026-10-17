@@ -1,0 +1,85 @@
+{
+  "scope": "Organization of already computed EHPC cold-prefix scores. Old G and new I are different physical/numerical snapshots, not an isolated causal ablation or final scientific acceptance.",
+  "new_comparison_sha256": "5fba3aea1a8eedf54d6405ce2a459b82d5720499b39c538024337e1976102209",
+  "old_comparison_stored_sha256": "a2eb7d0b5647914e2a974332252233c3c302f42a35e114f7863acae14a37df91",
+  "rows": {
+    "CN-Qia": {
+      "old_g": {
+        "h_relative_bias": -0.3541642561662444,
+        "h_absolute_bias_wm2": -8.5263717108007,
+        "h_r": 0.9448143985864748,
+        "le_r": 0.5749037887669074,
+        "et_max_daily_absolute_bias_mm_day": 0.17618057110907692,
+        "topsoil_temperature_rmse_k": 0.9235411003903206,
+        "topsoil_max_daily_absolute_temperature_bias_k": 1.1975682576497397,
+        "topsoil_relative_water_bias": 0.0036663471821937843,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      },
+      "new_i": {
+        "h_relative_bias": -0.35413942637625634,
+        "h_absolute_bias_wm2": -8.525773942914038,
+        "h_r": 0.9448146319693386,
+        "le_r": 0.5749002450316035,
+        "et_max_daily_absolute_bias_mm_day": 0.17618057110907692,
+        "topsoil_temperature_rmse_k": 0.9234582303999361,
+        "topsoil_max_daily_absolute_temperature_bias_k": 1.1975682576497397,
+        "topsoil_relative_water_bias": 0.0036663391527445677,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      }
+    },
+    "CN-Cha": {
+      "old_g": {
+        "h_relative_bias": -0.04040503915418335,
+        "h_absolute_bias_wm2": -2.05322056875697,
+        "h_r": 0.6020844668505432,
+        "le_r": 0.7938615345828278,
+        "et_max_daily_absolute_bias_mm_day": 0.011417735919837746,
+        "topsoil_temperature_rmse_k": 4.995321879992156,
+        "topsoil_max_daily_absolute_temperature_bias_k": 7.771526654561361,
+        "topsoil_relative_water_bias": 0.018350671773068858,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      },
+      "new_i": {
+        "h_relative_bias": -0.05310196613204694,
+        "h_absolute_bias_wm2": -2.698427012722405,
+        "h_r": 0.6152284747805147,
+        "le_r": 0.7968181353128113,
+        "et_max_daily_absolute_bias_mm_day": 0.011585966881045628,
+        "topsoil_temperature_rmse_k": 5.019279587637231,
+        "topsoil_max_daily_absolute_temperature_bias_k": 7.793104171752928,
+        "topsoil_relative_water_bias": 0.018366284025857223,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      }
+    },
+    "CN-HaM": {
+      "old_g": {
+        "h_relative_bias": null,
+        "h_absolute_bias_wm2": 2.2311184410327334,
+        "h_r": 0.6889298815469029,
+        "le_r": 0.6832247597982882,
+        "et_max_daily_absolute_bias_mm_day": 0.19493364257799772,
+        "topsoil_temperature_rmse_k": 1.5827304677585745,
+        "topsoil_max_daily_absolute_temperature_bias_k": 0.28519248962402344,
+        "topsoil_relative_water_bias": 0.0261268805383484,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      },
+      "new_i": {
+        "h_relative_bias": null,
+        "h_absolute_bias_wm2": 2.4571466764,
+        "h_r": 0.7052285545753344,
+        "le_r": 0.6880047410837412,
+        "et_max_daily_absolute_bias_mm_day": 0.19421607654952755,
+        "topsoil_temperature_rmse_k": 1.6162555361119924,
+        "topsoil_max_daily_absolute_temperature_bias_k": 0.2891982396443673,
+        "topsoil_relative_water_bias": 0.026628360058864275,
+        "daily_bias_criteria": false,
+        "flux_r_criteria": false
+      }
+    }
+  }
+}

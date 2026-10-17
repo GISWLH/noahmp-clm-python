@@ -22,13 +22,23 @@ def read_json(path):
 
 def compare_prefix(trace,model_report,reference,prepared):
     """Only the predeclared first336 intervals; require exact source/time identity."""
-    if model_report['steps_completed']!=STEPS or model_report['steps_requested']!=17520:
-        raise ValueError('Require original first336 prefix of the unchanged17520 request')
-    if model_report['status']!='running':raise ValueError('This diagnostic expects an explicitly incomplete original model year')
     identity=prepared['inputs_sha256']
     for suffix,key in [('.npz','forcing_npz_sha256'),('-config.json','configuration_sha256')]:
         hashes=[v for k,v in identity.items() if k.endswith(suffix)]
         if hashes!=[model_report[key]]:raise ValueError('Original forcing/configuration identities disagree')
+    return _compare_aligned_prefix(trace,model_report,reference,prepared)
+
+
+def _compare_aligned_prefix(trace,model_report,reference,prepared):
+    """Shared scoring after a caller has proved its explicit input binding.
+
+    The original compare_prefix guard remains unchanged. A separate derived
+    binding can reuse the identical official reference without rewriting its
+    original prepared/configuration identities.
+    """
+    if model_report['steps_completed']!=STEPS or model_report['steps_requested']!=17520:
+        raise ValueError('Require original first336 prefix of the unchanged17520 request')
+    if model_report['status']!='running':raise ValueError('This diagnostic expects an explicitly incomplete original model year')
     if reference['physical_intervals']!=17520 or len(reference['intervals'])!=17520 or reference['file_count']!=17521:
         raise ValueError('Official full first-climate-year integrity required')
     dt=reference['timestep_seconds']
