@@ -10,6 +10,7 @@
   "native_state_arrays": 16,
   "original_failure": "50 MOST iterations; stable bracket exhausted representable float32 midpoints while coefficient residual remained 0.0005544027663",
   "provenance": "qia-soil-diagnostic-20261017-a/native-run/state-0000326.npz; column 2, forcing index 326; forcing CO2/mu/diffuse fields updated exactly as at step entry",
+  "float64_test_interpretation": "Normalize serialized root and plant allocation/litter fractions and rebuild LAI, leaf-N and canopy aggregate aliases in float64. Preserve all authoritative snow/soil/canopy M/H and plant/soil C/N values exactly. The float32 fixture remains unchanged; this is not an original float64 trajectory checkpoint.",
   "array_keys": {
     "a0..a15": "Full BGC native ABI; floating dtype float32, integer flags retained",
     "forcing": "Eight input columns",

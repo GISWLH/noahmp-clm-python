@@ -8,7 +8,31 @@ import pytest
 def qia_case(dtype=np.float32):
     with np.load(Path(__file__).parent/'fixtures/qia_most_float32_stagnation.npz') as z:
         values={k:(v.astype(dtype) if v.dtype.kind=='f' else v.copy()) for k,v in z.items()}
+    if dtype is np.float64:
+        # This is a float64 interpretation, not a bitwise float32 checkpoint.
+        # Normalize rounded probability vectors and rebuild derived aliases
+        # at destination precision. All authoritative M/H/C/N stores stay
+        # exactly equal to their recorded float32 values.
+        values['a6']/=values['a6'].sum(1,keepdims=True)
+        p=values['a12']
+        p[:,:3]/=p[:,:3].sum(1,keepdims=True)
+        p[:,9:12]/=p[:,9:12].sum(1,keepdims=True)
+        plant,site=values['a11'],values['a4']
+        site[:,0]=plant[:,0]*p[:,19]/site[:,1]
+        site[:,11]=np.minimum(1.,plant[:,3]*p[:,3]/plant[:,0])
+        values['a5'][:,:2]=values['a7'].sum(1)
     return tuple(values[f'a{k}'] for k in range(16)), values
+
+
+@pytest.mark.parametrize('dtype',[np.float32,np.float64])
+def test_fixture_precision_has_valid_parameters_without_changing_stores(dtype):
+    from noahmp_clm.gpu.clm_bgc_column import validate_bgc_column
+    a,v=qia_case(dtype)
+    validate_bgc_column(a,v['forcing'],v['environment'],v['calendar'],np.zeros(1,dtype),np.ones(1,dtype),np)
+    with np.load(Path(__file__).parent/'fixtures/qia_most_float32_stagnation.npz') as z:
+        for k in (0,1,7,11,13):np.testing.assert_array_equal(a[k],z[f'a{k}'].astype(dtype))
+        if dtype is np.float32:
+            for k in range(16):np.testing.assert_array_equal(a[k],z[f'a{k}'])
 
 
 @pytest.mark.parametrize('has_root',[True,False])
