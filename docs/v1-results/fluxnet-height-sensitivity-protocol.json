@@ -82,5 +82,37 @@
     }
   },
   "canopy_source": "fluxnet-2015-bif-three-sites.json.gz",
-  "initial_sensitivity_scope": "Fixed recorded canopy heights; annual/seasonal canopy-height change is a separate uncertainty."
+  "initial_sensitivity_scope": "Fixed recorded canopy heights; annual/seasonal canopy-height change is a separate uncertainty.",
+  "execution_plan": {
+    "locked_utc": "2026-10-16T16:44:14.909959+00:00",
+    "duration_days": 7,
+    "windows": {
+      "CN-Cng": [
+        "2007-07-01",
+        "2007-07-08"
+      ],
+      "CN-Qia": [
+        "2003-07-01",
+        "2003-07-08"
+      ],
+      "CN-Cha": [
+        "2003-07-01",
+        "2003-07-08"
+      ]
+    },
+    "scope": "Initial complete-column height sensitivity on fixed warm-season calibration/initialization windows; cold start, not site acceptance or equilibrium spinup.",
+    "parameter_policy": "Explicit nominal soil/plant parameters are held fixed; the initial sensitivity isolates height uncertainty and does not claim measured site hydraulics or biomass. All 27 cases retained including any failures.",
+    "initial_conditions": "First-window shallow TS/SWC extended uniformly to the common 2 m column; SWE and canopy water zero; identical within each site. Active summer initial deciduous leaves are an assumption, not spinup.",
+    "outputs": [
+      "interval H/LE/GPP/NEE/ET/runoff",
+      "end-interval soil temperature/water/SWE/LAI",
+      "independent step/cumulative M/H/C/N ledgers",
+      "all scenarios minus predeclared baseline with near-zero absolute differences"
+    ],
+    "final_evaluation_pending": [
+      "site-specific parameter evidence",
+      "full seasonal and spinup-conditioned sensitivity",
+      "calibration/holdout multi-year evaluation"
+    ]
+  }
 }

@@ -1,0 +1,262 @@
+{
+  "state": {
+    "ground": {
+      "water": [
+        19.068294894826444,
+        57.3,
+        88.21323525415092,
+        116.04166666666667
+      ],
+      "enthalpy": [
+        8635706.629724361,
+        24709782.709462963,
+        34526991.791506365,
+        44715340.3056789
+      ],
+      "dz": [
+        0.05,
+        0.15,
+        0.2,
+        0.25
+      ],
+      "params": {
+        "name": "STAS-9-clay-loam",
+        "smcmax": 0.465,
+        "smcwlt": 0.103,
+        "smcref": 0.382,
+        "satdk": 2.45e-06,
+        "bexp": 8.17,
+        "quartz": 0.35
+      },
+      "freezing_option": 1
+    },
+    "snow": {
+      "mass": [],
+      "enthalpy": [],
+      "thickness": [],
+      "radius_um": [],
+      "impurities": []
+    },
+    "canopy_water_kgm2": 0.0,
+    "canopy_enthalpy_jm2": 0.0,
+    "lai": 0.17595514975042842,
+    "fveg": 1.0,
+    "z0m": 0.03,
+    "albedo": 0.2,
+    "emiss": 0.97,
+    "surface_temperature": 290.16804054726856,
+    "root_frac": [
+      0.4162879533331757,
+      0.3083937008795173,
+      0.1824319480922134,
+      0.09288639769509358
+    ],
+    "options": {
+      "OptDynamicVeg": 5,
+      "OptRainSnowPartition": 5,
+      "OptSoilWaterTranspiration": 1,
+      "OptGroundResistanceEvap": 4,
+      "OptSurfaceDrag": 1,
+      "OptStomataResistance": 1,
+      "OptSnowAlbedo": 3,
+      "OptCanopyRadiationTransfer": 3,
+      "OptSnowSoilTempTime": 3,
+      "OptSnowThermConduct": 1,
+      "OptSoilTemperatureBottom": 1,
+      "OptSoilSupercoolWater": 1,
+      "OptRunoffSurface": 6,
+      "OptRunoffSubsurface": 6,
+      "OptSoilPermeabilityFrozen": 1,
+      "OptDynVicInfiltration": 1,
+      "OptTileDrainage": 0,
+      "OptIrrigation": 0,
+      "OptIrrigationMethod": 0,
+      "OptCropModel": 0,
+      "OptSoilProperty": 1,
+      "OptPedotransfer": 1,
+      "OptGlacierTreatment": 1,
+      "OptSnowCompaction": 2,
+      "OptSnowCoverGround": 1,
+      "OptWetlandModel": 0,
+      "OptSnicarSnowShape": 1,
+      "OptSnicarRTSolver": 1,
+      "OptSnicarBandNum": 1,
+      "OptSnicarSolarSpec": 1,
+      "OptSnicarSnwOptic": 1,
+      "OptSnicarDustOptic": 1
+    },
+    "terrain_index": 0.0,
+    "groundwater_depth": 2.0,
+    "canopy_condensate": {
+      "mass": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enthalpy": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "phenology_state": {
+      "gdd": 0.0,
+      "leaf_fraction": 0.1743055555555556,
+      "remaining_seconds": 2140200.0,
+      "phase": 1,
+      "armed": false
+    },
+    "phenology_parameters": {
+      "gdd_threshold": 103.1795480142556,
+      "onset_days": 30.0,
+      "offset_days": 15.0,
+      "offset_daylength_seconds": 39300.0,
+      "lai_minimum": 0.0,
+      "lai_maximum": 3.0
+    },
+    "bgc_state": {
+      "plant": {
+        "carbon": [
+          8.797757487521421,
+          0.0,
+          109.6906971834865
+        ],
+        "nitrogen": [
+          0.35191029950085684,
+          0.0,
+          2.611683266273493
+        ],
+        "reserve_carbon": 98.8161841232156,
+        "reserve_nitrogen": 5.435424834074872
+      },
+      "soil": {
+        "carbon": [
+          37.0220649891983,
+          105.22773583785825,
+          96.61372618777013,
+          0.0,
+          265.6023737473608,
+          3024.1578396463306,
+          3000.3951214499675
+        ],
+        "nitrogen": [
+          0.9616696042813693,
+          2.7507778599946504,
+          2.545646534072985,
+          0.0,
+          33.2002967184201,
+          274.92343996784945,
+          272.76319285909057
+        ],
+        "mineral_nitrogen": 5.648598749084146
+      }
+    },
+    "bgc_parameters": {
+      "plant": {
+        "allocation": [
+          0.5,
+          0.0,
+          0.5
+        ],
+        "target_cn": [
+          25.0,
+          263.1578947368421,
+          42.0
+        ],
+        "turnover_days": [
+          365.0,
+          365.0,
+          365.0
+        ],
+        "litter_fractions": [
+          0.3,
+          0.45,
+          0.25
+        ],
+        "growth_respiration_ratio": 0.11,
+        "maintenance_base": 2.525e-06,
+        "maintenance_q10": 1.5,
+        "stem_live_n_fraction": 0.0,
+        "maximum_cn_multiplier": 2.0,
+        "new_carbon_storage_fraction": 0.1,
+        "reserve_release_days": 30.0,
+        "specific_leaf_area": 0.02,
+        "litter_min_cn_multiplier": 1.5
+      },
+      "decomposition": {
+        "turnover_years": [
+          0.066,
+          0.25,
+          0.25,
+          4.1,
+          0.17,
+          6.1,
+          270.0
+        ],
+        "soil_cn": [
+          8.0,
+          11.0,
+          11.0
+        ],
+        "sand_fraction": 0.4,
+        "wood_cellulose_fraction": 0.76,
+        "q10": 1.5,
+        "reference_temperature": 298.15,
+        "dry_potential_mpa": -2.5,
+        "wet_potential_mpa": -0.002
+      },
+      "maximum_lai": 3.0,
+      "saturated_potential_mpa": -0.00258003
+    },
+    "crop_state": null,
+    "crop_parameters": null,
+    "irrigation_state": null,
+    "irrigation_parameters": null,
+    "wetland_state": null,
+    "wetland_parameters": null,
+    "tile_drainage_parameters": null
+  },
+  "forcing": {
+    "dt": 1800.0,
+    "tair": 282.298,
+    "qair": 0.004786838482714335,
+    "wind": 4.755,
+    "ps": 69655.0,
+    "swdown": 413.97,
+    "lwdown": 245.69,
+    "prcp": 1.1555555555555555e-07
+  },
+  "environment": {
+    "daylength_seconds": 51342.34150350271,
+    "increasing_daylength": true,
+    "winter_solstice": false,
+    "latitude_degrees": 37.607432
+  },
+  "co2": 373.71,
+  "mu": 0.396555886913059,
+  "diffuse": 0.16523702263858997,
+  "source": "CN-HaM JPF 2002 uncalibrated cold-start execution, zero-based step 6948, 2002-05-25 18:00 local; old MOST enters a persistent two-cycle.",
+  "most_geometry": {
+    "wind_height": 2.2,
+    "temperature_height": 2.2,
+    "humidity_height": 2.2,
+    "displacement": 0.2,
+    "momentum_roughness": 0.03,
+    "heat_roughness": 0.003,
+    "water_roughness": 0.003
+  }
+}

@@ -12,6 +12,19 @@ __device__ bool ec_route_water(float* snow,float* soil,int n,const float* p,int 
     runoff[0]=out[26];runoff[1]=out[27];return out[46]>0.f;
 }
 
+__device__ bool ec_collapse_molten_snow(float* c,float* g,int& n,const float* p,int phase,float dt,
+                                       float* runoff,float* impurity,const float* vic=nullptr) {
+    runoff[0]=runoff[1]=0.f;for(int k=0;k<5;++k)impurity[k]=0.f;
+    bool molten=n>0;for(int k=0;k<n;++k)molten=molten&&(c[k*9+1]>=334000.f*c[k*9]);
+    if(!molten)return true;
+    float mass=ec_sum(c,5,9),heat=ec_sum(c+1,5,9);
+    for(int k=0;k<5;++k)impurity[k]=ec_sum(c+4+k,5,9);
+    float u[7]={mass,heat,dt,0.f,0.f,0.f,0.f},out[47];int opt[3]={0,phase,1};
+    soil_transport_device(g,p,opt,u,out,vic);
+    for(int k=0;k<45;++k)c[k]=0.f;for(int k=0;k<5;++k)c[k*9+3]=54.5f;n=0;
+    for(int k=0;k<12;++k)g[k]=out[k];runoff[0]=out[26];runoff[1]=out[27];return out[46]>0.f;
+}
+
 __device__ float ec_ground_resistance(float liquid,float dz,const float* p,int option,bool snow) {
     if(option==4&&snow)return 1.f;
     float sat=fmaxf(p[0],1e-6f),ratio=fmaxf(0.f,liquid/sat);
@@ -26,7 +39,7 @@ __device__ float ec_ground_resistance(float liquid,float dz,const float* p,int o
 extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const float* soil_in,const float* params,
     const int* options,const float* sites,const float* storage,const float* roots_in,const float* forcing,
     float* snow_out,float* soil_out,int* surface_options,float* areas,float* inputs,float* factors,
-    float* surface_storage,float* prepared,int* validity,int size) {
+    float* surface_storage,float* prepared,int* validity,float* pre_impurity,const float* vic_parameters,int size) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<size;row+=blockDim.x*gridDim.x) {
         const float* p=params+row*6;const int* o=options+row*9;const float* site=sites+row*12;
         const float* store=storage+row*3;const float* roots=roots_in+row*4;const float* f=forcing+row*8;
@@ -45,6 +58,8 @@ extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const f
         }
         float through=rain-interception,flow[2];valid=ec_route_water(c,g,n,p,phase,dt,through,through*rain_h,flow)&&valid;
         runoff[0]+=flow[0];runoff[1]+=flow[1];
+        bool good=ec_collapse_molten_snow(c,g,n,p,phase,dt,flow,pre_impurity+row*5,vic_parameters?vic_parameters+row*8:nullptr);
+        runoff[0]+=flow[0];runoff[1]+=flow[1];valid=valid&&good;
         float liq[4],t[4],weighted[4],view[70]={0.f};view[39]=p[0];view[40]=p[5];view[41]=p[2];view[42]=p[3];view[43]=p[1];view[44]=p[4];
         for(int k=0;k<4;++k) {
             float reconstructed,cap,count,liquid;valid=invert_soil_enthalpy(g[k*3],g[k*3+1],g[k*3+2],p[0],p[1],phase,t[k],reconstructed,cap,liquid,count)&&valid;

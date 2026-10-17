@@ -108,7 +108,23 @@ def route_water_jax(c,g,n,p,phase,dt,mass,heat,vic=None):
         lambda:(c,g,j.zeros(2,c.dtype),j.asarray(True)))
 
 
-def prepare_column_jax(c,g,p,o,site,storage,roots,forcing):
+def collapse_molten_snow_jax(c,g,n,p,phase,dt,vic=None):
+    """Route a wholly liquid pack to soil, retaining authoritative M/H/tracers."""
+    import jax.numpy as j
+    from jax import lax
+    s=lax.optimization_barrier
+    def collapse():
+        mass=_sum(c[:,0]);heat=_sum(c[:,1])
+        tracers=j.stack([_sum(c[:,k]) for k in range(4,9)])
+        u=j.concatenate((j.stack((mass,heat,dt)),j.zeros(4,c.dtype)))
+        out=soil_transport_kernel_jax(g,p[:4],j.stack((j.asarray(0),phase,j.asarray(1))),u,vic)
+        empty=j.zeros_like(c).at[:,3].set(54.5)
+        return empty,out[:12].reshape(4,3),j.asarray(0,j.int32),out[26:28],tracers,out[46]>0.
+    molten=(n>0)&j.all(j.where(j.arange(5)<n,c[:,1]>=s(334000.*c[:,0]),True))
+    return lax.cond(molten,collapse,lambda:(c,g,n,j.zeros(2,c.dtype),j.zeros(5,c.dtype),j.asarray(True)))
+
+
+def prepare_column_jax(c,g,p,o,site,storage,roots,forcing,vic=None):
     import jax.numpy as j
     from jax import lax
     from . import jax_core as core
@@ -130,6 +146,8 @@ def prepare_column_jax(c,g,p,o,site,storage,roots,forcing):
     c,n=lax.cond(snowfall>0.,snow,lambda:(c,n))
     through=s(rain-interception)
     c,g,flow,good=route_water_jax(c,g,n,p,phase,dt,through,s(through*rain_h));runoff=s(runoff+flow);valid=valid&good
+    c,g,n,flow,impurity,good=collapse_molten_snow_jax(c,g,n,p,phase,dt,vic)
+    runoff=s(runoff+flow);valid=valid&good
     inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],phase)
     liquid=inv[3]/s(1000.*g[:,2])
     stress,_=core._soil_stress(liquid,roots,p[0],p[5],p[2],p[1],o[3])
@@ -145,7 +163,7 @@ def prepare_column_jax(c,g,p,o,site,storage,roots,forcing):
         sw,lw,site[1],wet,mass/dt,j.inf,j.inf,site[4],site[3],site[3],site[9],site[8])
     area=j.full(10,site[0]/10.,c.dtype);factors=j.broadcast_to(j.stack((site[11],stress)),(10,2))
     v=j.concatenate((row(dt,mass,heat),roots));prep=j.concatenate((row(s(rain+snowfall),precipitation_h),runoff,row(capacity)))
-    return c,g,j.stack((n,phase)),area,u,factors,v,prep,valid&j.all(inv[4])
+    return c,g,j.stack((n,phase)),area,u,factors,v,prep,valid&j.all(inv[4]),impurity
 
 
 def runoff_jax(incoming,g,p,site,surface_option,subsurface_option):
@@ -225,13 +243,13 @@ def step_clm_enthalpy_columns_jax(c,g,p,o,site,storage,roots,forcing,*,depositio
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
     validate_column(arrays,forcing,deposition,j);prepare,finish=_stages()
-    pc,pg,po,a,u,f,v,prep,valid=prepare(*arrays,forcing)
+    pc,pg,po,a,u,f,v,prep,valid,pre_impurity=prepare(*arrays,forcing)
     if not bool(j.all(valid)):raise RuntimeError('CLM precipitation preparation failed')
     surface=run_canopy_surface_jax(pc,pg,arrays[2],po,a,u,f,v,parameters=leaf_parameters)
     flux=j.stack([surface[key] for key in SURFACE_FIELDS],axis=1)
     canopy=j.stack((surface['canopy_water_after_kgm2'],surface['canopy_enthalpy_after_jm2']),axis=1)
     out=finish(arrays[0],arrays[1],arrays[2],arrays[3],arrays[4],arrays[5],forcing,deposition,prep,
-        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],canopy,flux,surface['impurity_output_kgm2'])
+        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],canopy,flux,surface['impurity_output_kgm2']+pre_impurity)
     if not bool(j.all(out[4][:,25]>0.)) or not all(bool(j.all(j.isfinite(x))) for x in out):
         raise RuntimeError('CLM post-surface water/heat transfer failed')
     return unpack_column(*out,surface=surface if return_surface else None)

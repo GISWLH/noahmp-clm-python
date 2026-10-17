@@ -81,12 +81,13 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None,g
         c,g,extra,good=route_water_jax(c,g,n,p,o[1],forcing[0],ground_input[0],ground_input[1],vic)
         out=s(out+extra);valid=valid&good
     empty=storage.at[:2].set(0.);dry=forcing.at[7].set(0.)
-    pc,pg,po,a,u,f,v,prep,good=prepare_column_jax(c,g,p,o.at[0].set(n),site,empty,roots,dry)
+    pc,pg,po,a,u,f,v,base_prep,good,pre_impurity=prepare_column_jax(c,g,p,o.at[0].set(n),site,empty,roots,dry,vic)
+    out=s(out+base_prep[2:4])
     v=v.at[1].set(_sum(cc[:,0])).at[2].set(_sum(cc[:,1]))
     prep=j.concatenate((row(s(rain+snow),ledger[8]),out,row(0.)))
     if ground_input is not None:prep=prep.at[:2].set(s(prep[:2]+ground_input))
     old=storage.at[0].set(_sum(condensate[:,0])).at[1].set(_sum(condensate[:,1]))
-    return pc,pg,po,a,u,f,v,prep,valid&good,cc,intercepted,old
+    return pc,pg,po,a,u,f,v,prep,valid&good,cc,intercepted,old,pre_impurity
 
 
 def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,condensate,flux,impurity,vic=None):
@@ -124,7 +125,7 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     ground_input,irrigation=prepare_column_irrigation(arrays[1],arrays[2],arrays[3],arrays[4],forcing,
         irrigation_state,irrigation_parameters,irrigation_input,irrigation_check,'jax')
     vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None,ground_input is not None)
-    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old=prepare(*arrays,forcing,vic,ground_input)
+    pc,pg,po,a,u,f,v,prep,valid,cc,pre,old,pre_impurity=prepare(*arrays,forcing,vic,ground_input)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
     if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic)
@@ -134,7 +135,7 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
         surface=run_most_surface(surface_arrays,most_geometry,forcing[:,3],arrays[4][:,10],arrays[4][:,0],backend='jax',parameters=leaf_parameters,vic=vic)
     flux=j.stack([surface[key] for key in SURFACE_FIELDS],axis=1)
     out=finish(arrays[0],arrays[1],arrays[2],arrays[3],arrays[4],old,forcing,deposition,prep,
-        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],surface['condensate'],flux,surface['impurity_output_kgm2'],vic)
+        surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],surface['condensate'],flux,surface['impurity_output_kgm2']+pre_impurity,vic)
     if not bool(j.all(out[-1])) or not bool(j.all(out[4][:,25]>0.)) or not all(bool(j.all(j.isfinite(x))) for x in out):
         raise RuntimeError('Layered canopy post-surface transfer failed')
     result=unpack_column(*out[:6],surface=surface if return_surface else None)

@@ -1,0 +1,50 @@
+{
+  "scope": "Incomplete real-forcing annual preflight, exact failure replay and NumPy route repair targets; not year/site acceptance",
+  "original_annual_source_manifest_sha256": "97f56432089eda1e5f0d785eb1ac81a1d4311d5a3f36c0527a91a54e81bf4f72",
+  "dark_leaf_replay_source_manifest_sha256": "51d5032cd2026890f02cb3bf3e0af56b4f0793430fbd3fa4e990be3ac13ef74c",
+  "numpy_c_snapshot_archive_sha256": "1409c72bdd4708151845c74ba08df22cdb5d48f2bfed966234685230ef8de93b",
+  "numpy_c_tested_driver_sha256": "66f8d300f8ee2fda6a99a980d2bac0d7565fcf8e955248815286321b1b0c5c7b",
+  "gpu_validation": "running in p6-molten-snow-gpu-a, not claimed passed",
+  "files": [
+    {
+      "file": "ham-one-year.json.gz",
+      "uncompressed_sha256": "1a1b9155f864083cbf081ec677a42c0e677c33f4f8cfc0ba356d3976f4d066aa"
+    },
+    {
+      "file": "ham-one-year.log.gz",
+      "uncompressed_sha256": "35eb89659a57761026aec3613bc723493ed3e2ab023807bb5fbb3999f938297e"
+    },
+    {
+      "file": "ham-one-year.failure.json.gz",
+      "uncompressed_sha256": "dcb0eb03da5744446e37dcb40f521af44763f9f4bec6032406a70a1eb1b9edd7"
+    },
+    {
+      "file": "ham-most-replay-a.json.gz",
+      "uncompressed_sha256": "9d3f943c3c87ea0f2976a6371a8fdd0f662872768d07b414ac89db70233a639b"
+    },
+    {
+      "file": "ham-most-replay-a.log.gz",
+      "uncompressed_sha256": "b685274b24eeb1695a222cf4c9a9d3bef1c0f51916390eb7c3ab1824c658ce1c"
+    },
+    {
+      "file": "ham-most-detail-a.json.gz",
+      "uncompressed_sha256": "510f6e92f552eb995d083d3e4a3a867223d2dd463af4e37950bdf3e639ffa9a1"
+    },
+    {
+      "file": "ham-most-detail-a.log.gz",
+      "uncompressed_sha256": "dc1889538bc8f57cea96c7a5638c3ec5557874aa34d7546f2b26b246bfef353d"
+    },
+    {
+      "file": "replay_ham_most.py.gz",
+      "uncompressed_sha256": "8588b36c18808a12ef366e7d8dbade2e4d5231de7be8fa3a4d5669c8d0dbac50"
+    },
+    {
+      "file": "replay_ham_most_detail.py.gz",
+      "uncompressed_sha256": "0043e696626e60536ecfcd0a3024bdb4e17bd883a5091289ddcddf5b656ac859"
+    },
+    {
+      "file": "numpy-c-target.log.gz",
+      "uncompressed_sha256": "0a048088199f4249167ce5267a23e59f1cb07fac0d089e8b7a648d49183de824"
+    }
+  ]
+}

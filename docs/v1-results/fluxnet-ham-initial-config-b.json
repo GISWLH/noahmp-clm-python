@@ -1,0 +1,234 @@
+{
+  "site": "CN-HaM",
+  "case": "annual-2002-route-b",
+  "latitude": 37.607432,
+  "longitude": 101.332,
+  "utc_offset_hours": 8,
+  "scope": "CN-HaM 2002 uncalibrated cold-start execution after wholly molten-pack routing repair; not equilibrium spinup or observational acceptance",
+  "column": {
+    "soil": {
+      "name": "STAS-9-clay-loam",
+      "smcmax": 0.465,
+      "smcwlt": 0.103,
+      "smcref": 0.382,
+      "satdk": 2.45e-06,
+      "bexp": 8.17,
+      "quartz": 0.35
+    },
+    "dz": [
+      0.05,
+      0.15,
+      0.2,
+      0.25
+    ],
+    "tsoil": [
+      265.59099999999995,
+      265.59099999999995,
+      265.59099999999995,
+      265.59099999999995
+    ],
+    "smc": [
+      0.14347,
+      0.14347,
+      0.14347,
+      0.14347
+    ],
+    "ts": 265.59099999999995,
+    "lai": 0.0,
+    "fveg": 1.0,
+    "z0m": 0.03,
+    "root_frac": [
+      0.4162879533331757,
+      0.3083937008795173,
+      0.1824319480922134,
+      0.09288639769509358
+    ],
+    "options": {
+      "OptDynamicVeg": 4,
+      "OptRainSnowPartition": 5,
+      "OptSoilWaterTranspiration": 1,
+      "OptGroundResistanceEvap": 4,
+      "OptSurfaceDrag": 1,
+      "OptStomataResistance": 1,
+      "OptSnowAlbedo": 3,
+      "OptCanopyRadiationTransfer": 3,
+      "OptSnowSoilTempTime": 3,
+      "OptSnowThermConduct": 1,
+      "OptSoilTemperatureBottom": 1,
+      "OptSoilSupercoolWater": 1,
+      "OptRunoffSurface": 6,
+      "OptRunoffSubsurface": 6,
+      "OptSoilPermeabilityFrozen": 1,
+      "OptDynVicInfiltration": 1,
+      "OptTileDrainage": 0,
+      "OptIrrigation": 0,
+      "OptIrrigationMethod": 0,
+      "OptCropModel": 0,
+      "OptSoilProperty": 1,
+      "OptPedotransfer": 1,
+      "OptGlacierTreatment": 1,
+      "OptSnowCompaction": 2,
+      "OptSnowCoverGround": 1,
+      "OptWetlandModel": 0,
+      "OptSnicarSnowShape": 1,
+      "OptSnicarRTSolver": 1,
+      "OptSnicarBandNum": 1,
+      "OptSnicarSolarSpec": 1,
+      "OptSnicarSnwOptic": 1,
+      "OptSnicarDustOptic": 1
+    },
+    "canw": 0.0,
+    "swe": 0.0,
+    "albedo": 0.2,
+    "emiss": 0.97
+  },
+  "phenology": {
+    "initial": {
+      "gdd": 0.0,
+      "leaf_fraction": 0.0,
+      "remaining_seconds": 0.0,
+      "phase": 0,
+      "armed": true
+    },
+    "parameters": {
+      "gdd_threshold": 103.1795480142556,
+      "onset_days": 30.0,
+      "offset_days": 15.0,
+      "offset_daylength_seconds": 39300.0,
+      "lai_minimum": 0.0,
+      "lai_maximum": 3.0
+    }
+  },
+  "biogeochemistry": {
+    "plant_state": {
+      "carbon": [
+        0.0,
+        0.0,
+        150.0
+      ],
+      "nitrogen": [
+        0.0,
+        0.0,
+        3.5714285714285716
+      ],
+      "reserve_carbon": 150.0,
+      "reserve_nitrogen": 6.0
+    },
+    "soil_state": {
+      "carbon": [
+        50.0,
+        100.0,
+        100.0,
+        0.0,
+        300.0,
+        3000.0,
+        3000.0
+      ],
+      "nitrogen": [
+        1.3333333333333333,
+        2.6666666666666665,
+        2.6666666666666665,
+        0.0,
+        37.5,
+        272.72727272727275,
+        272.72727272727275
+      ],
+      "mineral_nitrogen": 2.0
+    },
+    "plant_parameters": {
+      "allocation": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "target_cn": [
+        25.0,
+        263.1578947368421,
+        42.0
+      ],
+      "turnover_days": [
+        365.0,
+        365.0,
+        365.0
+      ],
+      "litter_fractions": [
+        0.3,
+        0.45,
+        0.25
+      ],
+      "growth_respiration_ratio": 0.11,
+      "maintenance_base": 2.525e-06,
+      "maintenance_q10": 1.5,
+      "stem_live_n_fraction": 0.0,
+      "maximum_cn_multiplier": 2.0,
+      "new_carbon_storage_fraction": 0.1,
+      "reserve_release_days": 30.0,
+      "specific_leaf_area": 0.02,
+      "litter_min_cn_multiplier": 1.5
+    },
+    "decomposition_parameters": {
+      "turnover_years": [
+        0.066,
+        0.25,
+        0.25,
+        4.1,
+        0.17,
+        6.1,
+        270.0
+      ],
+      "soil_cn": [
+        8.0,
+        11.0,
+        11.0
+      ],
+      "sand_fraction": 0.4,
+      "wood_cellulose_fraction": 0.76,
+      "q10": 1.5,
+      "reference_temperature": 298.15,
+      "dry_potential_mpa": -2.5,
+      "wet_potential_mpa": -0.002
+    },
+    "maximum_lai": 3.0,
+    "saturated_potential_mpa": -0.00258003
+  },
+  "most_geometry": {
+    "wind_height": 2.2,
+    "temperature_height": 2.2,
+    "humidity_height": 2.2,
+    "displacement": 0.2,
+    "momentum_roughness": 0.03,
+    "heat_roughness": 0.003,
+    "water_roughness": 0.003,
+    "boundary_layer_height": 1000.0,
+    "ground_roughness": 0.01
+  },
+  "leaf_parameters": {
+    "vcmax25": 60.0,
+    "jmax25": 100.0,
+    "tpu25": 10.0,
+    "respiration25": 0.9,
+    "quantum_yield_psii": 0.85,
+    "curvature": 0.7,
+    "ball_berry_slope": 9.0,
+    "minimum_conductance": 0.01,
+    "growth_temperature": 298.15,
+    "oxygen_ppm": 210000.0
+  },
+  "leaf_dimension_m": 0.04,
+  "nitrogen_deposition_gn_m2_s": 0.0,
+  "aerosol_deposition_kg_m2_s": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "assumptions": [
+    "0.65 m column thickness, clay loam, 2.2 m forcing heights from station metadata; STAS-9 hydraulic values from official table.",
+    "Initial shallow observed temperature/water are extended uniformly solely as a spinup seed; SWE=0 is unknown initial snow.",
+    "Single grass PFT, fveg=1, d=2/3 canopy height and z0m=0.1 height, heat/water z0=0.1 z0m are provisional geometry assumptions.",
+    "Leaf/root allocation 0.5/0.5, SLA and physiological defaults, initial carbon/nitrogen stocks are uncalibrated scenarios.",
+    "Aerosol and N deposition zero for execution check only; climatological deposition required for final evaluation.",
+    "P_F 2002 is entirely ERA-filled and totals 2620.564 mm; retain original product, investigate before observational acceptance."
+  ]
+}

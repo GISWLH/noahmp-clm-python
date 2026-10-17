@@ -31,7 +31,7 @@ def cases(dtype):
     return pack_clm_bgc_columns(states,dtype=dtype),np.asarray(forcings,dtype),np.zeros((8,5),dtype),env,cal
 
 
-def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None,tile_parameters=None):
+def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None,tile_parameters=None,most_geometry=None):
     state=state_from_row(row[:7]);cc=np.asarray(row[7],float)
     state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     ps,flags,pp,plant,plant_p,soil,soil_p,bp=row[8:]
@@ -65,7 +65,7 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,ir
     # no reference host tendency is supplied to the native implementation.
     site=np.asarray(row[4],float);kwargs=dict(zip(SITE_NAMES[7:-1],site[7:-1]))
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),**kwargs,deposition_rates=np.asarray(deposition,float),
-        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management,irrigation_input=irrigation_input)
+        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management,irrigation_input=irrigation_input,most_geometry=most_geometry)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.

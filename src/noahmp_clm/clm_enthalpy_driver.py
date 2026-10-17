@@ -8,7 +8,7 @@ heights. The released default driver is not switched by this development entry.
 from dataclasses import replace,fields
 import numpy as np
 from .clm_state import clm_options
-from .physics.snowpack import TF,CI,CW,LF,add_snowfall,add_rain,drain_liquid
+from .physics.snowpack import TF,CI,CW,LF,Snowpack,add_snowfall,add_rain,drain_liquid
 from .physics.snow_evolution import fresh_snow_properties,deposit_impurities
 from .physics.soil_enthalpy import infiltrate
 from .physics.soil_drainage import drain_soil
@@ -133,6 +133,16 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if irrigation_mass:
         snow,ground,out,oh=route_water(snow,ground,irrigation_mass,irrigation_heat)
         runoff+=out;runoff_heat+=oh
+    # A fully melted precipitation pack is liquid, not a snow thermal cell.
+    # Route its complete M/H and tracers before surface optics/evaporation.
+    # Otherwise an arbitrarily thin rain-filled cell disappears at its
+    # evaporation limit and makes the MOST surface response discontinuous.
+    pre_impurity_out=np.zeros(5)
+    if len(snow.mass) and np.all(snow.ice==0.):
+        ground,out,oh=admit(ground,float(snow.mass.sum()),float(snow.enthalpy.sum()))
+        runoff+=out;runoff_heat+=oh
+        pre_impurity_out=snow.impurities.sum(axis=0)
+        snow=Snowpack.empty()
     work=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,canopy_condensate=condensate)
     view=work.parameter_view();view.smc=ground.liquid/(1000.*ground.dz)
     stress=soil_water_stress(view,opt.OptSoilWaterTranspiration)
@@ -159,7 +169,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             leaf_dimension=leaf_dimension,plant_area=state.lai,time_step=f.dt)
     snow,ground,canopy,d=surface_result
     canopy_heat=d['canopy_enthalpy_after_jm2'];runoff+=d['runoff_kgm2'];runoff_heat+=d['runoff_enthalpy_jm2']
-    impurity_out=d['impurity_output_kgm2'].copy()
+    impurity_out=d['impurity_output_kgm2']+pre_impurity_out
     if condensate is not None:
         condensate,post=intercept_precipitation(d['canopy_condensate'],0.,0.,f.tair,f.dt/2.,area,vegetated_fraction=state.fveg,wind=f.wind)
         snow,ground,out,oh=route_canopy_outlets(snow,ground,post);runoff+=out;runoff_heat+=oh
