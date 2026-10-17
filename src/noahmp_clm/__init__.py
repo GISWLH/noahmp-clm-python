@@ -6,11 +6,13 @@
 
 from .column import ColumnState, Forcing, SoilParams, default_soil_params
 from .options import PhysicsOptions
+from .clm_state import CLMColumnState
+from .clm_glacier import GlacierColumnState
 from .driver import run_column, run_columns, step_column
 from .io import synthetic_forcing
 
 __all__ = [
-    "ColumnState", "Forcing", "SoilParams", "default_soil_params", "PhysicsOptions",
+    "ColumnState", "CLMColumnState", "GlacierColumnState", "Forcing", "SoilParams", "default_soil_params", "PhysicsOptions",
     "run_column", "run_columns", "step_column", "synthetic_forcing",
 ]
 

@@ -7,6 +7,7 @@ step_column 是纯函数（状态进、状态出，无原地修改、无全局�
 from __future__ import annotations
 
 import numpy as np
+from collections.abc import Mapping
 
 from .column import ColumnState, Forcing
 from .physics import energy as E
@@ -24,8 +25,25 @@ RHO_W = 1000.0
 SIGMA = E.SIGMA
 
 
-def step_column(state: ColumnState, f: Forcing):
-    """推进单个柱一个时间步。返回 (new_state, diag)。"""
+def step_column(state, f: Forcing, **physics):
+    """Advance one independent land column; return ``(new_state, diag)``.
+
+    CLMColumnState carries the complete extensive soil/snow/canopy and any
+    explicit C/N/management stores. GlacierColumnState advances finite ice.
+    Physics keywords are forwarded unchanged to the corresponding solver.
+    A released ColumnState selects the original v0.2 physics explicitly.
+    """
+    from .clm_state import CLMColumnState
+    from .clm_glacier import GlacierColumnState, step_clm_glacier_column
+    if isinstance(state, CLMColumnState):
+        from .clm_enthalpy_driver import step_clm_enthalpy_column
+        return step_clm_enthalpy_column(state, f, **physics)
+    if isinstance(state, GlacierColumnState):
+        return step_clm_glacier_column(state, f, **physics)
+    if not isinstance(state, ColumnState):
+        raise TypeError('Expected CLMColumnState, GlacierColumnState or legacy ColumnState')
+    if physics:
+        raise TypeError('Physics keywords require a CLMColumnState or GlacierColumnState')
     if state.options.OptDynamicVeg!=4:
         raise NotImplementedError('Dynamic vegetation requires the extensive CLM driver and phenology state')
     s = state.copy()
@@ -164,19 +182,48 @@ def step_column(state: ColumnState, f: Forcing):
     return s, diag
 
 
-def run_column(state: ColumnState, forcings: list[Forcing]):
-    """跑完一个柱的全部强迫序列。返回 (diags, final_state)。"""
+def _prepare_steps(forcings, step_options, physics):
+    """Validate explicit input lengths before any physical state advances."""
+    forcings = list(forcings)
+    options = [{} for _ in forcings] if step_options is None else list(step_options)
+    if len(forcings) != len(options):
+        raise ValueError('Each forcing interval requires exactly one step_options mapping')
+    if any(not isinstance(one, Mapping) for one in options):
+        raise TypeError('Each step_options entry must be a mapping')
+    return [(f, dict(physics, **one)) for f, one in zip(forcings, options)]
+
+
+def _run_prepared(state, steps):
     s = state
     diags = []
-    for f in forcings:
-        s, d = step_column(s, f)
+    for f, options in steps:
+        s, d = step_column(s, f, **options)
         diags.append(d)
     return diags, s
 
 
-def run_columns(states: list[ColumnState], forcings_list: list[list[Forcing]]):
-    """批量跑 N 个柱。循环体就是将来的 vmap/CUDA 轴。
+def run_column(state, forcings, *, step_options=None, **physics):
+    """Return ``(diags, final_state)`` after all forcing intervals.
 
-    每个柱的 forcings 可以不同（不同站点/情景），也可以是同一序列。
+    ``physics`` supplies fixed site/leaf assumptions. Optional step_options
+    supplies one mapping per interval, overriding fixed values explicitly;
+    use it for solar geometry, CO2, phenology, deposition and management.
+    Input lengths must match; no interval or management event is truncated.
     """
-    return [run_column(s, fs) for s, fs in zip(states, forcings_list)]
+    return _run_prepared(state, _prepare_steps(forcings, step_options, physics))
+
+
+def run_columns(states, forcings_list, *, step_options_list=None, **physics):
+    """Run independent columns, returning one ``(diags, final_state)`` each.
+
+    Both outer lists must match the number of states. Each column may have
+    its own interval count and step_options sequence; no column exchanges
+    state or management inputs with another column. This is a NumPy loop;
+    native JAX/CUDA batch entry points remain in ``noahmp_clm.gpu``.
+    """
+    states, forcings_list = list(states), list(forcings_list)
+    options = [None for _ in states] if step_options_list is None else list(step_options_list)
+    if len(states) != len(forcings_list) or len(states) != len(options):
+        raise ValueError('Each column requires one forcing sequence and optional step_options sequence')
+    prepared = [_prepare_steps(fs, one, physics) for fs, one in zip(forcings_list, options)]
+    return [_run_prepared(s, steps) for s, steps in zip(states, prepared)]

@@ -50,8 +50,12 @@ NRMSE仍为17.44%/13.77%/33.34%，未作为已验收光合模型。
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入
 NumPy和[原生JAX/CUDA无雪整柱步](docs/CLM_GPU_COLUMN.md)，并继续扩展到下述
-完整五层雪/冠层焓柱。稳定度连续回归与观测评价待完成，默认驱动仍是v0.2路径。
+完整五层雪/冠层焓柱。稳定度连续科学核验与观测评价待完成，公开驱动连接见下条。
 单叶实测仍有未达标曲线。
+公开`step_column/run_column/run_columns`现已按显式`CLMColumnState`接入完整
+雪/冠层/水热/C/N及管理状态，也支持`GlacierColumnState`；
+[公开驱动与数值核验](docs/CLM_PUBLIC_DRIVER.md)说明逐步输入和原生GPU入口；
+该当前源EHPC完整CPU回归759项、330.03秒全过。
 新增[NumPy五层雪组件](docs/CLM_SNOW_DESIGN.md)：质量/焓、压实、粒径老化、
 五波段SNICAR近似与气候态沉降映射。新增[雪—土壤联合焓及冬季冠层边界](docs/CLM_COLUMN_ENTHALPY.md)，
 联合热/质量转移365天累计焓残差最大1.878e-6 J/m²；
@@ -140,15 +144,15 @@ Wang明确接受这项已量化差异，见[验收记录](docs/GPU_ACCEPTANCE.md
    已实现降水相态 1–3、MOST/Chen97、Ball–Berry/Jarvis、Noah/CLM/SSiB
    胁迫、四种地面阻抗、BATS/CLASS 雪反照率、冻土相变、TOPMODEL/BATS/自由排水径流。
 
-阶段 1 仍不包含 SNICAR、湿球降水相态（OptRainSnowPartition=5）、完整 Farquhar
-光合、作物/灌溉/湿地/冰川和横向地下水；这些范围在 ROADMAP.md 中列为后续工作。
+上述是阶段1历史功能；v1开发路径的SNICAR、湿球相态、Farquhar、C/N及主要扩展
+进展见本页前部及ROADMAP。横向地下水不属于本阶段。
 
 ## 快速开始
 
 ```bash
 pip install -e ".[dev]"
-python examples/run_single_column.py     # 5 天合成强迫，打印逐日 ET/径流/地温
-pytest                                   # 能量闭合、水平衡、批量独立性测试
+python examples/run_clm_column.py        # 在EHPC PBS计算节点运行：显式完整CLM示意柱
+# CPU pytest也在EHPC PBS计算节点；GPU验证在xuanze，见下方环境说明。
 ```
 
 ## 阶段 3：GPU 迁移
@@ -214,7 +218,8 @@ EHPC脚本与环境变量说明见[EHPC README](benchmarks/ehpc/README.md)；
 HF ZeroGPU演示和客户端调用见[Space说明](examples/hf_zerogpu/README.md)。
 各环境的实测/未测边界、硬件、软件、耗时与checksum见[ENV_TESTS](docs/ENV_TESTS.md)。
 
-最小调用示例：
+完整CLM示例见[run_clm_column.py](examples/run_clm_column.py)，包含显式C/N初库、
+湿球/VIC/MOST及`run_column`公开调用。旧接口最小调用示例（v0.2状态）：
 
 ```python
 import numpy as np
@@ -224,7 +229,7 @@ from noahmp_clm.io import synthetic_forcing
 
 state = ColumnState(soil=default_soil_params("loam"))
 forcings = synthetic_forcing(n_days=3, dt=1800.0)
-diags = run_columns([state], [forcings])[0]
+(diags, final), = run_columns([state], [forcings])
 print("3 天总 ET (mm):", sum(d["et_mm"] for d in diags))
 ```
 
