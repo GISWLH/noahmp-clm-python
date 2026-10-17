@@ -8,3 +8,8 @@ dist/
 outputs/
 *.so
 profile_output/
+# Hashed evidence is versioned, including archived profiling subdirectories.
+!docs/v1-results/**/profile_output/
+!docs/v1-results/**/profile_output/**
+# These original Nsight binaries captured the server process environment.
+docs/v1-results/short-circuit-profile/**/phase-trace.nsys-rep

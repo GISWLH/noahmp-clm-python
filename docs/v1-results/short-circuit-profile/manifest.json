@@ -1,0 +1,240 @@
+{
+  "scope": "xuanze GPU1 controlled resident-input CUDA A/B timing B: alternating20pairs x5launches, all300fields bitwise equal; original23 median101.481573 to67.467163ms and actualG61435.399054 to25.607271ms. Nsight separate. Initial A retained with per-invocation8byte extension H2D; use corrected B for timing. Shared workloads; no whole-model speed or science claim. First memory-stats stale-export failure retained; supplement separate. PUBLICATION UPDATE: raw Nsight reports retained privately because they captured process environment credentials;2raw trace hashes listed under private_artifacts,37public artifacts retain original bytes. Original complete archive hash unchanged; no push-protection bypass.",
+  "archive_sha256": "22d0e252f0617bb3f2463a915b08bbe2f792d3d2e15a7ec34081108b91c5ac95",
+  "artifacts": [
+    {
+      "source": "baseline-SOURCE_SHA256.json",
+      "path": "baseline-SOURCE_SHA256.json.gz",
+      "source_sha256": "ae65657e2567a5a9dee2add70c88166f230272dfa8f165a4ca392a569dd07c4f",
+      "stored_sha256": "a8d266c8c18ab2d3d6b4783367583e58ea53948eb1a5aac53a34796f8b626cc0"
+    },
+    {
+      "source": "short-circuit-profile-metadata.json",
+      "path": "short-circuit-profile-metadata.json.gz",
+      "source_sha256": "ce4d51f38d40bcd5853cb305eec04289b69ddb1e500f578da0903a7b7bec85d1",
+      "stored_sha256": "eb3eed783d921964101aed3b636e7b78ca1d56962be9a3be78203fea438cb153"
+    },
+    {
+      "source": "a/controller.log",
+      "path": "a/controller.log.gz",
+      "source_sha256": "32c9618eb1a5632552f124a1d58671fd4cc5015f2322e2f115717c5f0948f219",
+      "stored_sha256": "f969a703778909d3f72c02267235f3fb2b6c82667b35429890f134cba7303925"
+    },
+    {
+      "source": "a/launch.json",
+      "path": "a/launch.json.gz",
+      "source_sha256": "63aae7081188252fd13f6a4349f275c10ea36468ffaaba57fe6a7937baea02b9",
+      "stored_sha256": "b27b96953cde28063247a9ec3c573fb04751a23756db38866620a655df7b408f"
+    },
+    {
+      "source": "a/launch_phase_short_circuit_profile.py",
+      "path": "a/launch_phase_short_circuit_profile.py.gz",
+      "source_sha256": "716a7827e2799b31d9d84020835a18dcbd0ffda5d2c296341e4507dc71967b9b",
+      "stored_sha256": "d4a0b4dfa31a9f5050adc04cdaa80cad09d592090db14000195037bc49bf8e1a"
+    },
+    {
+      "source": "a/profile_output/actual_g614-trace.npz",
+      "path": "a/profile_output/actual_g614-trace.npz",
+      "source_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe",
+      "stored_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe"
+    },
+    {
+      "source": "a/profile_output/actual_g614.npz",
+      "path": "a/profile_output/actual_g614.npz",
+      "source_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe",
+      "stored_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe"
+    },
+    {
+      "source": "a/profile_output/baseline.cu",
+      "path": "a/profile_output/baseline.cu.gz",
+      "source_sha256": "c73e34f51685075f5fdeb3d804893017c833c7b7b15d308ab5cef07c659b3745",
+      "stored_sha256": "97944d296912ba0d5485cd275ff4a1c904c9561c492e2e4379117b3c9f2da8a0"
+    },
+    {
+      "source": "a/profile_output/candidate.cu",
+      "path": "a/profile_output/candidate.cu.gz",
+      "source_sha256": "1e8560b1afc697572d5714a4a2151550104f666dca2cbbe5d05c45194d45e417",
+      "stored_sha256": "9ad369bd3a4c3688a19cd095cda914229ca70b0db8d93c543ec67b5fb2d9e639"
+    },
+    {
+      "source": "a/profile_output/controller.json",
+      "path": "a/profile_output/controller.json.gz",
+      "source_sha256": "e86f1f31b85ff604a6975b6cde037a5a816d18d3eb128a7bae332658ad9c34d4",
+      "stored_sha256": "f3b02369790c9ef9c4eaba2ee26e9aff1bd251abc96020db9d5a6a4ba35fb51c"
+    },
+    {
+      "source": "a/profile_output/nsys.log",
+      "path": "a/profile_output/nsys.log.gz",
+      "source_sha256": "b5887d9cb6e59b53537638f3b6ad8276e13cbe7875205feced3574baa183b43e",
+      "stored_sha256": "0c100574ad92dad33b3158f6bd3c1314ca08f153912f8a7cade2b2dfe9030260"
+    },
+    {
+      "source": "a/profile_output/original23-trace.npz",
+      "path": "a/profile_output/original23-trace.npz",
+      "source_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa",
+      "stored_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa"
+    },
+    {
+      "source": "a/profile_output/original23.npz",
+      "path": "a/profile_output/original23.npz",
+      "source_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa",
+      "stored_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa"
+    },
+    {
+      "source": "a/profile_output/stats.log",
+      "path": "a/profile_output/stats.log.gz",
+      "source_sha256": "aa6c58c52aa9e98b26d0bf48fed5216de35dbce541acf179f144216df3ae5def",
+      "stored_sha256": "a49370fbc08f50b1768ffe741b18598239d51e7185df33bbafdd15ce80e559cc"
+    },
+    {
+      "source": "a/profile_output/timing-result.json",
+      "path": "a/profile_output/timing-result.json.gz",
+      "source_sha256": "7f968761ed77240ad5ac7dd3a57f403e3d5781f1e583af4c0fb99b8ee3a7dcf4",
+      "stored_sha256": "795459958a7b9b4a0d298e6b25b317ed9e80a04bb89a0bb4bb6f20679d442603"
+    },
+    {
+      "source": "a/profile_output/timing.log",
+      "path": "a/profile_output/timing.log.gz",
+      "source_sha256": "b4127ab1cfa128948f1db8aabd4f7529aa967fd390c3434bba457ef20f457e72",
+      "stored_sha256": "3be11aa6ddb03a30b8b45bf042d30775f7a3abf70aad2bfadce8e88d1bf5219a"
+    },
+    {
+      "source": "a/profile_output/trace-result.json",
+      "path": "a/profile_output/trace-result.json.gz",
+      "source_sha256": "2ac4f1672b4cb1765e8ed2dab0dec7e73f6218dee479c6000f9ac5728ee3dc0a",
+      "stored_sha256": "273938fc03f9357315284c189958d2a5ecd2fe808ba19d6a18e92571e6b9e4ca"
+    },
+    {
+      "source": "a/profile_phase_short_circuit.py",
+      "path": "a/profile_phase_short_circuit.py.gz",
+      "source_sha256": "91406768dd5c1b7b5a72560bdac1244068c08662ecd79d5c0610f263314d9c1e",
+      "stored_sha256": "7729f3c4f1972712fb87330262f037f28c25e3b7e86d8d55a8fc547adc2ce651"
+    },
+    {
+      "source": "a/run_phase_short_circuit_profile.py",
+      "path": "a/run_phase_short_circuit_profile.py.gz",
+      "source_sha256": "ad19c7974a854b09c041c941b881bae903328f85cafd6ac314a922c33b06639d",
+      "stored_sha256": "7d85dae27e1fc465e1df893e89bf21ff42c9f8b84eb56ffb07dd6e70fb765447"
+    },
+    {
+      "source": "b/controller.log",
+      "path": "b/controller.log.gz",
+      "source_sha256": "3bdcbe37506a54d1ae1ef991e194d6aaa9315ef1d81e751f4a58dc4a8c3451e8",
+      "stored_sha256": "49fd82fb8b7ef01808f515dfa2bc369e7170eb75b2be73a96073127d0dbd93d8"
+    },
+    {
+      "source": "b/launch.json",
+      "path": "b/launch.json.gz",
+      "source_sha256": "056d2049d5d408889445b82baccf6c74e911d7e3ab92c7cfd53f6640e8a2b711",
+      "stored_sha256": "70e53358e27e09eea6d4938580942dac7fd5c99a8bc839f10a9094ff37fd5e0d"
+    },
+    {
+      "source": "b/launch_phase_short_circuit_profile_b.py",
+      "path": "b/launch_phase_short_circuit_profile_b.py.gz",
+      "source_sha256": "c37f79605d36af2e7baf74ec1717a857eafcd82223c52c991c027f2190b9cd27",
+      "stored_sha256": "0d7e2f240bfd0af619c5868497049c1b4620fa0cdf32ee9f0589d9a7437f32a7"
+    },
+    {
+      "source": "b/profile_output/actual_g614-trace.npz",
+      "path": "b/profile_output/actual_g614-trace.npz",
+      "source_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe",
+      "stored_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe"
+    },
+    {
+      "source": "b/profile_output/actual_g614.npz",
+      "path": "b/profile_output/actual_g614.npz",
+      "source_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe",
+      "stored_sha256": "4b89459c46596939113159f002ce4be5118bddd6d8aef23595315278b414fafe"
+    },
+    {
+      "source": "b/profile_output/baseline.cu",
+      "path": "b/profile_output/baseline.cu.gz",
+      "source_sha256": "c73e34f51685075f5fdeb3d804893017c833c7b7b15d308ab5cef07c659b3745",
+      "stored_sha256": "97944d296912ba0d5485cd275ff4a1c904c9561c492e2e4379117b3c9f2da8a0"
+    },
+    {
+      "source": "b/profile_output/candidate.cu",
+      "path": "b/profile_output/candidate.cu.gz",
+      "source_sha256": "1e8560b1afc697572d5714a4a2151550104f666dca2cbbe5d05c45194d45e417",
+      "stored_sha256": "9ad369bd3a4c3688a19cd095cda914229ca70b0db8d93c543ec67b5fb2d9e639"
+    },
+    {
+      "source": "b/profile_output/controller.json",
+      "path": "b/profile_output/controller.json.gz",
+      "source_sha256": "c1346ce6daad24034a1d0c93973afef079045375e9f5eed37ad811336b16dd4f",
+      "stored_sha256": "55d061c49875e488893957e1876d38e59208c8ff770af5772a1b92e392f6daef"
+    },
+    {
+      "source": "b/profile_output/memory-stats.log",
+      "path": "b/profile_output/memory-stats.log.gz",
+      "source_sha256": "2697c7938073d9e6cd63dd291857efcddb56cb287bef9f932b3032fbb8551146",
+      "stored_sha256": "675ca2250ac12a285820693f85fc02799e587c5288e192a4f4793d44613fef10"
+    },
+    {
+      "source": "b/profile_output/nsys.log",
+      "path": "b/profile_output/nsys.log.gz",
+      "source_sha256": "5fce1cdcb8adb320501df6859bd699532696823fd65fcba064f7be1a13540745",
+      "stored_sha256": "502fdcb5e5dc1ec1537a58d6ed0d77a2fb1482430ae8b7efbd821c6cc8e80dfa"
+    },
+    {
+      "source": "b/profile_output/original23-trace.npz",
+      "path": "b/profile_output/original23-trace.npz",
+      "source_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa",
+      "stored_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa"
+    },
+    {
+      "source": "b/profile_output/original23.npz",
+      "path": "b/profile_output/original23.npz",
+      "source_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa",
+      "stored_sha256": "d234e68f577986b9f593b8dc12a79f2049c8c5f2acfa39da9c60068a046e07aa"
+    },
+    {
+      "source": "b/profile_output/stats.log",
+      "path": "b/profile_output/stats.log.gz",
+      "source_sha256": "f5464a9c953e1f41b367383b0b8a249c48c4d193f908ac4c9d6d206d23cef3dc",
+      "stored_sha256": "459266af36d2df1ec7db925ff1c5fca138f7ab78366a748f76052850c05adf22"
+    },
+    {
+      "source": "b/profile_output/timing-result.json",
+      "path": "b/profile_output/timing-result.json.gz",
+      "source_sha256": "e5af468a05c6714d9bdd2d2cdd3526b2603ec31d84ce2e64d2633b1d2f675e4b",
+      "stored_sha256": "2bbdc909b2b4f08f16d04a3ce8ec5e15da2d4e1b7f3b5828ee59357810842169"
+    },
+    {
+      "source": "b/profile_output/timing.log",
+      "path": "b/profile_output/timing.log.gz",
+      "source_sha256": "3efa58ac594e4c360f2775bf8defa4b5eb604c7d14700be01686a4150313517b",
+      "stored_sha256": "28fa9d953de08a2f8ab8696dd0d445d4d1738265572c5a7ded5d16f301089ff6"
+    },
+    {
+      "source": "b/profile_output/trace-result.json",
+      "path": "b/profile_output/trace-result.json.gz",
+      "source_sha256": "41062129cadf6d1952f8c722f5add852297258367f86cfb4a86488a88be54d5c",
+      "stored_sha256": "4dd6bcbf137bf5f62766954b9550d6e3a0891db61337c3ee2b220ff892fea917"
+    },
+    {
+      "source": "b/profile_phase_short_circuit_b.py",
+      "path": "b/profile_phase_short_circuit_b.py.gz",
+      "source_sha256": "87ad98a072ed1ab33cd220681fcc7396e1f9a0192011ab7db495a4cbe33c0625",
+      "stored_sha256": "ad27a171a005348081bfe1cb2b9ebe105c32f96818270946d096b46a74483907"
+    },
+    {
+      "source": "b/run_phase_short_circuit_profile_b.py",
+      "path": "b/run_phase_short_circuit_profile_b.py.gz",
+      "source_sha256": "106d7c4ba302de9b74483b4e78ae72cdf924c98258c028fbb019b59dde0414c0",
+      "stored_sha256": "ff628be5437e0eae6e99e64070b9cdc3ec31b3b8371ee8e7313733a56039b519"
+    }
+  ],
+  "private_artifacts": [
+    {
+      "source": "a/profile_output/phase-trace.nsys-rep",
+      "source_sha256": "feea854733d25d5c8d1c0a4aa212f933b6438d71089f8b4358114a5424c74723",
+      "reason": "Original Nsight process environment contains credentials. Private remote/ignored archive only; excluded from Git. Not compressed or otherwise concealed for push."
+    },
+    {
+      "source": "b/profile_output/phase-trace.nsys-rep",
+      "source_sha256": "1f16c004cfc067c322ca92f8d7d8f17831fd2ea54c1f2615ffc3e17844f01993",
+      "reason": "Original Nsight process environment contains credentials. Private remote/ignored archive only; excluded from Git. Not compressed or otherwise concealed for push."
+    }
+  ]
+}

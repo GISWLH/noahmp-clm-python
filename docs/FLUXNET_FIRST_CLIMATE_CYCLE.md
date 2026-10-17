@@ -273,6 +273,27 @@ H/LE瞬时r最低0.999999999637/0.999999998487；休眠恒零GPP仍用绝对量�
 
 H于**14:36:54UTC**从自身已验证48步检查点续原17520步全年。启动前再次核对
 报告/状态/配置/源码身份，[启动绑定证据](v1-results/phase-jacobian-climate-h-annual-launch/manifest.json)
-关联的是上面原48步归档，没有改旧G检查点或伪造源哈希。当前仍在运行，尚无
+关联的是上面原48步归档，没有改旧G检查点或伪造源哈希。当时开始续跑，尚无
 完整年度/观测或完整H JAX轨迹验收。完整气候年之后仍须按原连续两次年末水热
 规则及单独土壤C长期规则验收。
+
+## 当前I：同一物理种子，设备回溯提前退出
+
+两处设备回溯按NumPy行为在选中第一个下降点时退出，
+[当前源9项及原四柱CUDA/JAX整步](CLM_CANOPY_PHASE_EARLY_EXIT.md)完成；两后端
+全部输出和下一状态各自对改动前逐位一致，CUDA/JAX输出最大差3.63798e-12。
+
+I仍使用上表H的物理初态、原forcing/配置字节、测高与沉降，没有校准或改动
+降水。新运行从物理种子另起，四站各48步564.367274秒完成（共享主机计时），
+全部18轨迹字段、23检查点/累计账数组与不可变H48逐位一致；独立NumPy首日
+后端指标仍为上表数字，原水/热/C/N逐步界保持。
+[原首日与逐位证据](v1-results/short-circuit-climate-i-day/manifest.json)先冻结，
+再于**15:28:54UTC**在GPU0从I自己的48步状态续17520步全年，
+[启动哈希绑定](v1-results/short-circuit-climate-i-annual-launch/manifest.json)保留。
+额外JAX整步影子启动时待完成，随后已完成；没有倒改启动状态。
+
+为释放自有资源，旧H主动SIGINT。运行器BaseException处理器保存的是
+**failed/KeyboardInterrupt、573个已接受步**，不是额外数值不收敛；
+[原报告/轨迹/状态、账及停止原因](v1-results/short-circuit-h-prefix-superseded/manifest.json)
+原样保存，没有改成完成。I没有读取H573或其他旧检查点。当前仍是首气候年，
+不是完整年、气候spinup、多站多年观测、留出集或v1.0验收完成。

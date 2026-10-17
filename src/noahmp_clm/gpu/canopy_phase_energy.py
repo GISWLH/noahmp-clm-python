@@ -179,7 +179,14 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             trial=j.clip(s(x+s(delta*fraction)),lo_bound,hi_bound);rr,_=evaluate(trial,phase_active)
             trial_norm=_dot(rr,rr);good=(~accepted)&(trial_norm<norm)
             return j.where(good,trial,chosen),accepted|good,j.where(good,trial_norm,chosen_norm)
-        trial,accepted,chosen_norm=lax.fori_loop(0,24,backtrack,(x,j.asarray(False),norm))
+        # The first strict descent is final. Match NumPy's early break and
+        # avoid evaluating the remaining fractions after it has been chosen.
+        def backtrack_step(state):
+            k,carry=state
+            return k+1,backtrack(k,carry)
+        _,(trial,accepted,chosen_norm)=lax.while_loop(
+            lambda state:(state[0]<24)&(~state[1][1]),backtrack_step,
+            (j.asarray(0,j.int32),(x,j.asarray(False),norm)))
         slow=(~accepted)|(chosen_norm>s(.999*norm))
         def humidity_restart(_):
             lo=trial.at[11].set(lo_bound[11]);hi=trial.at[11].set(hi_bound[11])
@@ -216,7 +223,12 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
                 candidate=j.clip(s(x+s(delta*fraction)),lo_bound,hi_bound);rr,_=evaluate(candidate,phase_active)
                 better=(~good)&(_dot(rr,rr)<norm)
                 return j.where(better,candidate,chosen),good|better
-            return lax.fori_loop(0,24,local_backtrack,(trial,j.asarray(False)))
+            def local_step(state):
+                k,carry=state
+                return k+1,local_backtrack(k,carry)
+            _,result=lax.while_loop(lambda state:(state[0]<24)&(~state[1][1]),
+                local_step,(j.asarray(0,j.int32),(trial,j.asarray(False))))
+            return result
         trial,phase_rescued=lax.cond(~accepted,interval_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|phase_rescued
         retry=(~accepted)&avail

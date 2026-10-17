@@ -1,5 +1,21 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1 P6后续：当前验证与旧队列替换（2026-10-17）
+
+[回溯提前退出](CLM_CANOPY_PHASE_EARLY_EXIT.md)在独立目录测量后同步设备，
+9项及原四柱CUDA/JAX整步完成，两后端对改动前输出/下一状态逐位一致。
+I首日全部18轨迹字段/23检查点数组与H48逐位一致后，从自身48步续17520步年；
+当前322项设备全清单已启动，守恒/收敛/同精度门未变。附加JAX整步在年度与
+全清单启动时仍计算，后续完成1246.104414秒；未把等待记作通过，也未串行
+阻塞其余CUDA计算。不是重试M1或旧1e-4差异。
+
+旧C6文件26项完成后主动停止，活动灌溉及其余5文件仍未完成；H主动停止时
+原运行器捕获SIGINT并保存failed/KeyboardInterrupt、573步。原报告状态保留。
+H停止归档器初先预期running而断言失败；随后只读核验真实failed代次、
+KeyboardInterrupt原因和全部状态/轨迹哈希，完成归档，没有改源/检查点身份。
+[H原记录](v1-results/short-circuit-h-prefix-superseded/manifest.json)、
+[C未完成前缀](v1-results/short-circuit-obsolete-suction-c/manifest.json)可追溯。
+
 ## v1 P6：G614千烟洲冠层能量求解（2026-10-17，局部修订已验证）
 
 后续补记：[分支导数恢复](CLM_CANOPY_PHASE_JACOBIAN.md)已完成：原中央

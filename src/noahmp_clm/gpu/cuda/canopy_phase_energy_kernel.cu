@@ -149,7 +149,8 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
         for(int i=0;i<12;++i)delta[i]/=scale;
         float norm=ca_dot(r,r,12),chosen_norm=norm,chosen[12];bool accepted=false;
         for(int i=0;i<12;++i)chosen[i]=x[i];
-        for(int k=0;k<24;++k) {
+        // The first strict descent is final, as in the NumPy reference.
+        for(int k=0;k<24&&!accepted;++k) {
             float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+delta[i]*ldexpf(1.f,-k)));
             phase_evaluate(v,trial,rr,nullptr);
             float trial_norm=ca_dot(rr,rr,12);
@@ -187,7 +188,7 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
             for(int i=0;i<12;++i)local_rhs[i]=-r[i];phase_linear(local_jac,local_rhs,local_delta);
             float local_scale=1.f;for(int i=0;i<12;++i)local_scale=fmaxf(local_scale,fabsf(local_delta[i])/(i<10?20.f:5.f));
             for(int i=0;i<12;++i)local_delta[i]/=local_scale;
-            for(int k=0;k<24;++k){
+            for(int k=0;k<24&&!accepted;++k){
                 float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+local_delta[i]*ldexpf(1.f,-k)));
                 phase_evaluate(v,trial,rr,nullptr);float candidate_norm=ca_dot(rr,rr,12);
                 if(!accepted&&candidate_norm<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=candidate_norm;++restarts;}

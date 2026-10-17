@@ -1,0 +1,132 @@
+{
+  "scope": "Current early-exit original old-soil G614 four-column CUDA/JAX whole-step both complete. CUDA112.387780s,JAX1246.104414s including shared/cold overhead, no whole-step speed claim. Each backend all outputs/16next-state arrays bitwise identical to its pre-change baseline. CUDA/JAX all outputs max3.63798e-12,nextstate0. Original independent M/H/C/N and5tracer gates met. Frozen174source bytes unchanged, only2device files changed.",
+  "archive_sha256": "957ff917b1255fe47b4e2b9e1b35d0c4d8840a6d4974b6a3ab722c724789f5e9",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "a8780a353ebe8307821ce52502fce4b13ebc65d16059689dc0b1478a236231e6",
+      "stored_sha256": "7a13deeeb1277a90b078773d75f795edc09b5ecdb6b7c88989a0ece0545dcf28"
+    },
+    {
+      "source": "controller.json",
+      "path": "controller.json.gz",
+      "source_sha256": "70e369aee4f14924cb502bd5ce95caa122da82ff135b0d2c418e84364f09e4f1",
+      "stored_sha256": "86293939716f1fc4e60b76e1e3f2d926617743e0fc6bc1dd5e1d7152b55970ba"
+    },
+    {
+      "source": "controller.log",
+      "path": "controller.log.gz",
+      "source_sha256": "c7d97f81e62003b06c9c71eabf29221f27b16e4ad78cd52403415a5074f5b21d",
+      "stored_sha256": "b6ca0f245fd94302cb9de76d77c2e5c39ce26cce3b638b0363c5622b3942f9bf"
+    },
+    {
+      "source": "cuda-next-state.npz",
+      "path": "cuda-next-state.npz",
+      "source_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5",
+      "stored_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5"
+    },
+    {
+      "source": "cuda-output.npz",
+      "path": "cuda-output.npz",
+      "source_sha256": "76689918b08e482db21de6778758d986987f6acd9377bf7566e9ce00136af08a",
+      "stored_sha256": "76689918b08e482db21de6778758d986987f6acd9377bf7566e9ce00136af08a"
+    },
+    {
+      "source": "cuda-replay.json",
+      "path": "cuda-replay.json.gz",
+      "source_sha256": "8015eab2e99af71f12f3acad39a3c78295931072cbbe87580266d63cdfc8a680",
+      "stored_sha256": "e7b4e6ae1fd21d47ad5101768e5884675ad06b16d15070d623ab7dff98f5a542"
+    },
+    {
+      "source": "cuda-replay.log",
+      "path": "cuda-replay.log.gz",
+      "source_sha256": "8c2c1363b5e7db3590116f177cd21ef35d189b5aca86c6be7873c84e7ef2c0e4",
+      "stored_sha256": "c5977bda194604d8a456cfc21deb3e43f64f1a0767eb085a84a0218cd57ea26a"
+    },
+    {
+      "source": "jax-next-state.npz",
+      "path": "jax-next-state.npz",
+      "source_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5",
+      "stored_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5"
+    },
+    {
+      "source": "jax-output.npz",
+      "path": "jax-output.npz",
+      "source_sha256": "cb353e28ff37968c305527661653a24af40c7ace969fe5dae02d8e232270328d",
+      "stored_sha256": "cb353e28ff37968c305527661653a24af40c7ace969fe5dae02d8e232270328d"
+    },
+    {
+      "source": "jax-replay.json",
+      "path": "jax-replay.json.gz",
+      "source_sha256": "c900980b8b4e024c3d07c87b2de01f1e80a23b9baa18fb6abaf7d6cbc78d0c03",
+      "stored_sha256": "4933f1cac1eb8722f29752a6f599441bb23b072ceb55cf3689c821bea67dbf34"
+    },
+    {
+      "source": "jax-replay.log",
+      "path": "jax-replay.log.gz",
+      "source_sha256": "0d82e7dc9c9ea2ef85074981e556324004a82a56d4356f81a9e88e8bd40a4977",
+      "stored_sha256": "61fbad22167044bd180980b466a2a18398c1c74ba9324cbe993dae881606c4d4"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "92e3764f96c25b608ebbb8c68d56552f1aefd21bfd9ecd24ee68158cf8e7b520",
+      "stored_sha256": "34acde6f3af5783d006915b8ee60d11418a7a817045641f6f0718df239cf35dd"
+    },
+    {
+      "source": "launch_short_circuit_legacy.py",
+      "path": "launch_short_circuit_legacy.py.gz",
+      "source_sha256": "659526c3ab208d617e1f56e017014875b6b87ebf96a03b580622570917b9b7d9",
+      "stored_sha256": "17b59c3df07b07768e566308a198555dee7c71ee7adfe26fdc6f39e513fc4d52"
+    },
+    {
+      "source": "original-source-sha256.json",
+      "path": "original-source-sha256.json.gz",
+      "source_sha256": "fe783dba40e9b302ec77d1d1adcdc1da84eaafdf1e4a57ad7f79f16b5c5261bc",
+      "stored_sha256": "8ba28ac4c9521138940d743a57b14566c91e3fcf6f4d69609e6c6da3002c1a6e"
+    },
+    {
+      "source": "replay_short_circuit_g614_cuda.py",
+      "path": "replay_short_circuit_g614_cuda.py.gz",
+      "source_sha256": "aecca296e0bbceed1a9b7b25a856e8971e0c3a3359f2e8c83d12dec6736a1803",
+      "stored_sha256": "457fbea5103a2695bd753d621d1fef2d92343c85602fc5c8f4fab4c15b0c1074"
+    },
+    {
+      "source": "replay_short_circuit_g614_jax.py",
+      "path": "replay_short_circuit_g614_jax.py.gz",
+      "source_sha256": "5374809edc1862bc05ab02a32987a8b133a20441372bf06ec087d34e954bdb8a",
+      "stored_sha256": "b990d08c4f2bb3442683a2810f0c22feff6b200028f44abc2e7074ed66f64146"
+    },
+    {
+      "source": "run_short_circuit_legacy.py",
+      "path": "run_short_circuit_legacy.py.gz",
+      "source_sha256": "6d5b7e098571988b655fd65658de8626916052819dcd7a3ba7293d6c60444d95",
+      "stored_sha256": "03e88542d5520e710de7e0212cda2c33d573e34df5580899b7ed2dbe50532d64"
+    },
+    {
+      "source": "source-differences.json",
+      "path": "source-differences.json.gz",
+      "source_sha256": "6fbeb1f354f176f2ca95a640ad5407dc59348c314c936611a78e1f1a1aadecec",
+      "stored_sha256": "ef16db157ab363d0e455588db4c95e213128c7e8233266cffd21267998aaed12"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "5e87a5518126172aa3ef3dd0ae28cb90fe2597f54ab829d49e9781c1928c8cd6",
+      "stored_sha256": "e9a606634609b6af9ad94c6f75e2e909944c40606d3672b0c1d4d926453f28ae"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "44935b2b6fb4cdfe1a6b75f1d1c9ead012945ea8d71811f2f76382af13ec9c61",
+      "stored_sha256": "b56776755718a72b55bd6eba68b26a4a1b2f4a88bb3d5cb229eb6d5d47148b3c"
+    },
+    {
+      "source": "prepare_short_circuit_legacy.py",
+      "path": "prepare_short_circuit_legacy.py.gz",
+      "source_sha256": "f04f57c2f873fe727d363642ca9c364631c0a71e3fb677558530a6c962e6f907",
+      "stored_sha256": "e2985a7665158a1dc44866a28af83c5782f24744a965da84c13aaf13b99486de"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Static byte/provenance and AST verification only; no local physics or science acceptance.",
+  "current_code_test_benchmark_files": 470,
+  "changed_from_cpu_b": [
+    "src/noahmp_clm/gpu/canopy_phase_energy.py",
+    "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu"
+  ],
+  "numpy_cpu_runtime_tests_unchanged": true,
+  "all_recorded_artifacts_verified": 3975,
+  "all_public_artifacts_git_tracked": true,
+  "public_profile_ignore_omissions_repaired": 26,
+  "raw_nsight_reports_private": 2,
+  "private_original_archive_hash_verified": true,
+  "target_counts": {
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "whole_g614_both_backends_bitwise_equal_to_pre_change": true,
+  "whole_g614_cuda_jax_maximum_absolute": 3.637978807091713e-12,
+  "full_collection_nodes": 1032,
+  "current_gpu_nodes": 322,
+  "current_gpu_files": 61,
+  "full_gpu_completion_pending": true,
+  "i48_exact_h48_and_independent_numpy": true,
+  "i_annual_launch_bound_to_own48": true,
+  "h_original_573_failed_keyboardinterrupt_supersession_preserved": true,
+  "c_incomplete_prefix_preserved": true
+}
