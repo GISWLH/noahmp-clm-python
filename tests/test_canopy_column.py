@@ -21,7 +21,11 @@ def test_coupled_surface_heat_water_and_phase(snow_mass,air,humidity,solar):
     assert abs(d['energy_residual_jm2'])<.01
     assert np.all(np.isfinite(ground.temperature)) and np.all(pack.mass>0.)
     assert np.all(ground.water>=0.) and canopy>=0.
-    assert d['surface_evaluations']<40
+    # Keep the original thermal-root budget and report all extra event work.
+    # Bisection over 200--350 K to 2e-7 K needs at most 30 trials + endpoint.
+    assert d['surface_evaluations']-d['surface_branch_evaluations']<40
+    assert d['surface_branch_evaluations']<=31
+    print('surface evaluation costs',snow_mass,d['surface_evaluations'],d['surface_branch_evaluations'],flush=True)
 
 
 def test_surface_complete_melt_energy_enters_real_soil():

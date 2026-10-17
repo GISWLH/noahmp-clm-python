@@ -19,8 +19,8 @@ from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.clm_enthalpy_driver import step_clm_enthalpy_column
 
 
-def ham_failure():
-    record=json.loads((Path(__file__).parent/'fixtures/ham_molten_snow.json').read_text())
+def ham_failure(fixture='ham_molten_snow.json'):
+    record=json.loads((Path(__file__).parent/'fixtures'/fixture).read_text())
     s=record['state']; g=s['ground']; g['params']=SoilParams(**g['params'])
     s['ground']=SoilEnthalpyState(**g);s['snow']=Snowpack.empty()
     s['options']=PhysicsOptions(**s['options']);s['root_frac']=np.array(s['root_frac'])

@@ -139,6 +139,24 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
     left,right,fl,fr,_,count=lax.cond(j.abs(candidate[361])>tol,
         lambda:lax.fori_loop(0,8,bracket,start),lambda:start)
     bracketed=(fl>=0.)&(fr<=0.)
+    # A bracket crossing snow-vapour cell removal can skip the nearer root
+    # connected to the initial thermal surface. Search that material event
+    # before the original secant; no residual or iteration gate changes.
+    def prefer_initial_branch():
+        endpoint=evaluate(right)
+        def search():
+            def event_step(carry):
+                k,lo,hi,bound,fb,count,found=carry
+                trial=s(lo+s(.5*s(hi-lo)));result=evaluate(trial)
+                retained=result[45]==n;found=retained&(result[361]<=0.)
+                return (k+1,j.where(retained&(~found),trial,lo),j.where(~retained,trial,hi),
+                    j.where(found,trial,bound),j.where(found,result[361],fb),count+1,found)
+            result=lax.while_loop(lambda x:(x[0]<60)&(~x[6])&(s(x[2]-x[1])>tol),event_step,
+                (j.asarray(0),center,right,right,fr,count+1,j.asarray(False)))
+            return result[3],result[4],result[5]
+        return lax.cond(endpoint[45]<n,search,lambda:(right,fr,count+1))
+    right,fr,count=lax.cond((n>0)&(candidate[45]==n)&(candidate[361]>0.)&bracketed,
+        prefer_initial_branch,lambda:(right,fr,count))
     def step(carry):
         k,left,right,fl,fr,details,count=carry
         width=s(right-left);trial=s(left-s(fl*width)/j.where(fr!=fl,s(fr-fl),1.))

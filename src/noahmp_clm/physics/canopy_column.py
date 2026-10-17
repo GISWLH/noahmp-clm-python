@@ -54,7 +54,7 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     storage=CanopyWaterStorage(canopy_water_kgm2,canopy_heat,dt,LF+CW*(soil.temperature-TF))
     original_mass=float(snow.mass.sum()+soil.water.sum()+canopy_water_kgm2)
     original_heat=float(snow.enthalpy.sum()+soil.enthalpy.sum()+canopy_heat)
-    ns=len(snow.mass);evaluations=0
+    ns=len(snow.mass);evaluations=0;branch_evaluations=0
     def evaluate(temperature):
         nonlocal evaluations
         evaluations+=1
@@ -135,6 +135,26 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
             if fl>=0. and fr<=0.: break
             width*=2.
         else: raise RuntimeError('Surface temperature is not bracketed in 200--350 K')
+        # Removing the last vapour-supply cell changes which thermal surface
+        # supplies the residual. An expanding bracket can skip a nearer root
+        # on the original snow branch and jump to the exposed-soil branch.
+        # Search the material event first; keep the original root criteria.
+        branch_start=evaluations
+        if ns and len(details['snow'].mass)==ns and fc>0. and fl>=0. and fr<=0.:
+            unused,endpoint=evaluate(right)
+            if len(endpoint['snow'].mass)<ns:
+                event_left=center;event_right=right
+                for _ in range(60):
+                    if event_right-event_left<=temperature_tolerance:break
+                    event_trial=event_left+.5*(event_right-event_left)
+                    event_value,event_details=evaluate(event_trial)
+                    if len(event_details['snow'].mass)==ns:
+                        if event_value<=0.:
+                            right,fr=event_trial,event_value
+                            break
+                        event_left=event_trial
+                    else:event_right=event_trial
+        branch_evaluations=evaluations-branch_start
         for iteration in range(60):
             trial=(left*fr-right*fl)/(fr-fl) if fr!=fl else .5*(left+right)
             trial=float(np.clip(trial,left+.05*(right-left),right-.05*(right-left)))
@@ -187,6 +207,7 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         ground_latent_heat=(details['ground_latent']*dt/details['ground_mass'] if details['ground_mass'] else result['ground_latent_heat']),
         ground_latent_energy_jm2=details['ground_latent']*dt,
         surface_temperature=details['temperature'],thermal=details['thermal'],surface_evaluations=evaluations,
+        surface_branch_evaluations=branch_evaluations,
         et_kgm2=et,runoff_kgm2=runoff,runoff_enthalpy_jm2=runoff_heat,
         advected_enthalpy_jm2=advected,atmospheric_energy_jm2=atmospheric,
         energy_residual_jm2=final_heat-original_heat-atmospheric+advected+runoff_heat,

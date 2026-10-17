@@ -8,6 +8,12 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 瞬时通量 r >0.85、近零绝对容差、收支守恒独立硬要求。旧 H4/K3/M4 门已退役，
 下述 v0.2.0 数字是保留的历史记录，不是本阶段合并条件。
 
+最新连续验证：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
+[联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
+EHPC完整CPU部分685项通过，xuanze实态热量3项通过、CUDA32/JAX32全字段差0。
+完整GPU回归、四站气候年和观测验收仍在推进。CPU物理运行使用EHPC计算节点，
+GPU使用xuanze；本机用于编辑和结果整理。
+
 开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入

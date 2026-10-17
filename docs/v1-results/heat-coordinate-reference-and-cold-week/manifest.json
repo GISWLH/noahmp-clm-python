@@ -1,0 +1,702 @@
+{
+  "scope": "EHPC PBS22/23 independent float64 saved-state surface/joint-heat references, plus PBS12 four-site336-step first-week CPU prefixes under original B physical source. Not current-source week comparison or climate spinup completion.",
+  "archive_sha256": "2430f145156e711aafbfe0f0bb869bf22eada965abc705c9ee77ba77f996393f",
+  "artifacts": [
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/clm-qia-joint.o23",
+      "path": "first-cycle-325-joint-heat-reference-a/clm-qia-joint.o23",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/inputs.npz",
+      "path": "first-cycle-325-joint-heat-reference-a/inputs.npz",
+      "source_sha256": "06e561e4b9c191e7a9cf2f852105a006236bb77928681c1298cd80d8f79b80ff",
+      "stored_sha256": "06e561e4b9c191e7a9cf2f852105a006236bb77928681c1298cd80d8f79b80ff"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/node.txt",
+      "path": "first-cycle-325-joint-heat-reference-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/numpy-reference.log",
+      "path": "first-cycle-325-joint-heat-reference-a/numpy-reference.log.gz",
+      "source_sha256": "1f5ed381925ed965ccf30be3d50230ba9266178a57eb64fc8e89ca66a5dcb7be",
+      "stored_sha256": "3b7c87a3e773c5fd7c74457a7b696048ace5dfc3416995cc20d5e31aaee4a332"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/pbs-exit.txt",
+      "path": "first-cycle-325-joint-heat-reference-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/qia-joint-heat-reference.pbs",
+      "path": "first-cycle-325-joint-heat-reference-a/qia-joint-heat-reference.pbs.gz",
+      "source_sha256": "281552abcf08c9943ae8ea85245a913527e3913d6d7149a756a8440480f1a1ab",
+      "stored_sha256": "8861ed6cfd68c774ab9aebffd8d19d1ff0334927ac78578c413becee9295639f"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/qia_heat_coordinate_reference.json",
+      "path": "first-cycle-325-joint-heat-reference-a/qia_heat_coordinate_reference.json.gz",
+      "source_sha256": "4746daa2656e18907a35c335a4304bb3973bddb95c721c9529176e49d4328c5d",
+      "stored_sha256": "c557dbcc38434b6404b8626e45d7207e6d23fa8785c4a6a481253d5ad73cfc37"
+    },
+    {
+      "source": "first-cycle-325-joint-heat-reference-a/reference_qia_joint_heat.py",
+      "path": "first-cycle-325-joint-heat-reference-a/reference_qia_joint_heat.py.gz",
+      "source_sha256": "8491a034e05443444a7c408be14c9b0fece966c8e94e90da5bae1d69c786e8ba",
+      "stored_sha256": "207697b5afa64cd64449f14e3bd3898be2c37b747b348940945e3c460ff7cef2"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/clm-qia-thermal.o22",
+      "path": "first-cycle-325-surface-reference-a/clm-qia-thermal.o22",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/failed-surface-325-inputs.npz",
+      "path": "first-cycle-325-surface-reference-a/failed-surface-325-inputs.npz",
+      "source_sha256": "1a397eca5e312e068f1a855662bfe700a5e9c446e5bf0b8a4c98694b76b43f2a",
+      "stored_sha256": "1a397eca5e312e068f1a855662bfe700a5e9c446e5bf0b8a4c98694b76b43f2a"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/node.txt",
+      "path": "first-cycle-325-surface-reference-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/numpy-reference.json",
+      "path": "first-cycle-325-surface-reference-a/numpy-reference.json.gz",
+      "source_sha256": "82caf897bc24adca42ccea42420f81baba865d7837ad5f90bec5f677692d5ca4",
+      "stored_sha256": "f01525ee779053474eec242cc1f7e19ac472e843cb2256179b8e4347ade64c0f"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/numpy-reference.log",
+      "path": "first-cycle-325-surface-reference-a/numpy-reference.log.gz",
+      "source_sha256": "7b8442a0aa86eef4723fb1d92b5a09eaa1dbbb87912d2fd8720420181156b359",
+      "stored_sha256": "9a2fc43ae2dba283f84dca96f46b497121432be7c4b1f7dcaf04cf3bf44a0a9f"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/pbs-exit.txt",
+      "path": "first-cycle-325-surface-reference-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/qia-325-reference.pbs",
+      "path": "first-cycle-325-surface-reference-a/qia-325-reference.pbs.gz",
+      "source_sha256": "f4ceb68d32fef74644459a64b1499974e61f416ce60c78979315019ae02a8181",
+      "stored_sha256": "9b2754df9b259ad0a6c735fab2230f4479a4b04094101100add5b39f9f71c06f"
+    },
+    {
+      "source": "first-cycle-325-surface-reference-a/reference_qia_325_surface.py",
+      "path": "first-cycle-325-surface-reference-a/reference_qia_325_surface.py.gz",
+      "source_sha256": "35640874f8027bccb049de682de2ed2617e33adc4212cd594208ca7bd797ff30",
+      "stored_sha256": "6d7b37a9a815c954a58ad6141ca0cc52c87bea5f5c58ed678271cb528f93733c"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Cha-initial-climate-cycle-week.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Cha-initial-climate-cycle-week.log.gz",
+      "source_sha256": "410320d79369b33b7c27304b2ab5739eff9ee09f10e1bb3e8451d6d7c081d4d7",
+      "stored_sha256": "aa37280903c33c2c99755f9ea493f093e05e4e1f78c6e4a50e147e4784f6f637"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Cha-initial-climate-cycle.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Cha-initial-climate-cycle.log.gz",
+      "source_sha256": "f9a14e62af4d8810ae03684c126c17bb2dbe9535d8af0183c807506634e24238",
+      "stored_sha256": "8bddd26274016f86fcf86a3554d398df47099e7e9315e93f6382f2785599a3ea"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Cng-initial-climate-cycle-week.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Cng-initial-climate-cycle-week.log.gz",
+      "source_sha256": "b22752a2d4a8d785ccbaa069463690ec32a6c9ce0f5e307b5b7b71654733e820",
+      "stored_sha256": "c494183134374d41192b597a8923265d8c861275f7c341352069adb71a06c7b6"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Cng-initial-climate-cycle.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Cng-initial-climate-cycle.log.gz",
+      "source_sha256": "d7f6184ff0cee8a6963f0f76fce412ed3a3c2a3bb8b265ae2f6f30894b21a8bd",
+      "stored_sha256": "d392797089bafa90da355cf17604f7b3625edbaaee252a68aacb5d322e2e6e8c"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-HaM-initial-climate-cycle-week.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-HaM-initial-climate-cycle-week.log.gz",
+      "source_sha256": "1121d50c81a467f511bcebb394287e0ed3cc5a7a552f57c7701f6633acd66d83",
+      "stored_sha256": "40010d6c51977cabfedefb7658e644e6084dfdf640c6caee0d7e77bea4bfb609"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-HaM-initial-climate-cycle.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-HaM-initial-climate-cycle.log.gz",
+      "source_sha256": "af7b8efda58c11510ef4245c4c99f720f133a97033517cfc5d6857d7a9b2b3a3",
+      "stored_sha256": "4cf8b28c13123b8581462c495ddd90dac9508196d5f9430924086cce1b6161f4"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Qia-initial-climate-cycle-week.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Qia-initial-climate-cycle-week.log.gz",
+      "source_sha256": "ff577a1f7981c04a684b5c4b812b00b05cbe634d79632de07a3be17987905212",
+      "stored_sha256": "d165dfc1e961c24ef153740b876799307b7bf846624b9c3e27bf21fc8c40bfad"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/CN-Qia-initial-climate-cycle.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/CN-Qia-initial-climate-cycle.log.gz",
+      "source_sha256": "1f807df51d6605e530ebf33131d7e047875d07a3ec18853c2066cb0232773715",
+      "stored_sha256": "c9dfc4ce49aa0f5175af0ccf6daa8c09fee53449b39326d8937d2895e267d223"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/batch.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/batch.json.gz",
+      "source_sha256": "aee2c476df288247d393c907749bab10c7c7456f3664eb146d766ca147d86f36",
+      "stored_sha256": "43e0ad191c31a6b60f26b436b4997d5d9efef9abbf6bb0827878a3786c113d01"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/clm-cold-week.o11",
+      "path": "fluxnet-first-climate-cycle-20261017-b/clm-cold-week.o11",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/clm-cold-week.o12",
+      "path": "fluxnet-first-climate-cycle-20261017-b/clm-cold-week.o12",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/clm-initial-days.o6",
+      "path": "fluxnet-first-climate-cycle-20261017-b/clm-initial-days.o6",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/continue_first_climate_week_ehpc.py",
+      "path": "fluxnet-first-climate-cycle-20261017-b/continue_first_climate_week_ehpc.py.gz",
+      "source_sha256": "5f166bf475b11fdb5fb4f1ccff47d8d512f72c9d98cce14b098f2964ab44189a",
+      "stored_sha256": "54f3973768954b2b14498a0ffdc887f88b0272db42768a51031ec65c446f683f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/continue_qia_checkpoints.py",
+      "path": "fluxnet-first-climate-cycle-20261017-b/continue_qia_checkpoints.py.gz",
+      "source_sha256": "c8911767e4c31db5879a5980faf59d211eb4f3f72754b6198f1045bdb3a6ae32",
+      "stored_sha256": "255e796b35096324a5b93e0c696f8346d2444cd9ebbed39db6f732ddf2536d4b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/controller.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/controller.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/exit.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/exit.json.gz",
+      "source_sha256": "ff28b75dc3fbdb730042e15ba21ca150d0f8f0f7c26a9ee0e1b924149e072fd5",
+      "stored_sha256": "37d212ed02eea808545ad38f403f6f906995d14a52da14d989790c029e03b219"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/first-climate-week-ehpc.pbs",
+      "path": "fluxnet-first-climate-cycle-20261017-b/first-climate-week-ehpc.pbs.gz",
+      "source_sha256": "1626dd969ee2cc89c72e2106f1d547330d23b6e353d3a6a15409999b2a0ee45b",
+      "stored_sha256": "a771ac3bb09e385118521c9a8f0b4492d084de6958756f50e91f0158d6c7b697"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/launch.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/launch.json.gz",
+      "source_sha256": "19875790f68386977ad1bd987ff987ce0d3c3d6167d6f521e86e54e787f4c9d7",
+      "stored_sha256": "ebab2e970098f2273acd50f0ed16721d2bd23f9b19af87a11c2bcc6358d5a65b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/node.txt",
+      "path": "fluxnet-first-climate-cycle-20261017-b/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/report.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/report.json.gz",
+      "source_sha256": "7700e8ba4947e61109b10e2238beee2b86a1a23739d24fe780f464f3cf9aa2d7",
+      "stored_sha256": "7ffe3386250c9c31ceb172bccab201d8b2f0a2b8d9c377b7548b631a6a7f2355"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000000.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000000.pkl",
+      "source_sha256": "164d219f6033ea30e5291ea65a1d9f60a9e71c00ecde71e25957aad189cb00a0",
+      "stored_sha256": "164d219f6033ea30e5291ea65a1d9f60a9e71c00ecde71e25957aad189cb00a0"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000048.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000048.pkl",
+      "source_sha256": "0348fcec72053ec7b765162dd8901e4f1cb0db4e7a1c69ef4d382ced82c389ea",
+      "stored_sha256": "0348fcec72053ec7b765162dd8901e4f1cb0db4e7a1c69ef4d382ced82c389ea"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000096.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000096.pkl",
+      "source_sha256": "c6c7827dafa1d0667bc4315994d498d76055997767f8038e4ef07b9cf26df3ce",
+      "stored_sha256": "c6c7827dafa1d0667bc4315994d498d76055997767f8038e4ef07b9cf26df3ce"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000144.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000144.pkl",
+      "source_sha256": "eccd65a471d9fe3231aec81ba65a0bda713c344994f1cdabd99a0d2f4364baa8",
+      "stored_sha256": "eccd65a471d9fe3231aec81ba65a0bda713c344994f1cdabd99a0d2f4364baa8"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000192.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000192.pkl",
+      "source_sha256": "c4bf3f289d656bbb3e2f18f919d569c96ccae91fada93345e032af0afe5af155",
+      "stored_sha256": "c4bf3f289d656bbb3e2f18f919d569c96ccae91fada93345e032af0afe5af155"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000240.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000240.pkl",
+      "source_sha256": "081e1e4651edffc994b19b0d3b89f4cc2b41c496c1332df4210d5a4f947ace9f",
+      "stored_sha256": "081e1e4651edffc994b19b0d3b89f4cc2b41c496c1332df4210d5a4f947ace9f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000288.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000288.pkl",
+      "source_sha256": "8a7c8a74cf62bb565ef1fffadc05affb23a362b80b1b44d3ce0bf17bca6a9543",
+      "stored_sha256": "8a7c8a74cf62bb565ef1fffadc05affb23a362b80b1b44d3ce0bf17bca6a9543"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000336.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/state-0000336.pkl",
+      "source_sha256": "c3259f3a2238ec6941a3dba1d53cef8b1c167687e78f479bdc194a388bd61cf7",
+      "stored_sha256": "c3259f3a2238ec6941a3dba1d53cef8b1c167687e78f479bdc194a388bd61cf7"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000000.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000048.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000048.npz",
+      "source_sha256": "ae74d63213834cc0c4a643170e9644c9e68095fc81e4299e06f7e9eb801f12ea",
+      "stored_sha256": "ae74d63213834cc0c4a643170e9644c9e68095fc81e4299e06f7e9eb801f12ea"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000096.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000096.npz",
+      "source_sha256": "024092b03fceda15198b0a61ca547046fc628a000d9f1828a9ee40efb6c02206",
+      "stored_sha256": "024092b03fceda15198b0a61ca547046fc628a000d9f1828a9ee40efb6c02206"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000144.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000144.npz",
+      "source_sha256": "5649ed9eaab57aad6e2d2907ab789208497e9e9f689f3007cb6a352187c80a7d",
+      "stored_sha256": "5649ed9eaab57aad6e2d2907ab789208497e9e9f689f3007cb6a352187c80a7d"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000192.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000192.npz",
+      "source_sha256": "5127c10525d264f62c4bc5c4b2e3e151bafdaf28960f4a383c09c8aed8fa8d4b",
+      "stored_sha256": "5127c10525d264f62c4bc5c4b2e3e151bafdaf28960f4a383c09c8aed8fa8d4b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000240.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000240.npz",
+      "source_sha256": "f892e77c85778dfb2ac030092ae59269f9154a0e538ce9351d3116f2136c0376",
+      "stored_sha256": "f892e77c85778dfb2ac030092ae59269f9154a0e538ce9351d3116f2136c0376"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000288.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000288.npz",
+      "source_sha256": "d5198e992f388d2141a66bdfb280dac12b78bb57ddc6f501bd744002754e68ba",
+      "stored_sha256": "d5198e992f388d2141a66bdfb280dac12b78bb57ddc6f501bd744002754e68ba"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000336.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cha-initial-climate-cycle/trace-0000336.npz",
+      "source_sha256": "e79377c2e0912475ed298737d222539f4caa40391f799d2c14f42e52935b9682",
+      "stored_sha256": "e79377c2e0912475ed298737d222539f4caa40391f799d2c14f42e52935b9682"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/report.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/report.json.gz",
+      "source_sha256": "fcfb3d92f4a81fdbf767f6149c295186dc71c5c74ec2cb927473bbac7efd6183",
+      "stored_sha256": "9304bef8de702ef3ed4e02e0b801971318ea4f9878ce18eb98838247e0fb9e42"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000000.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000000.pkl",
+      "source_sha256": "445e48ebd8d797749b7e021c081012bbf8e0d915a4513982e2d5e56fb4d01ca9",
+      "stored_sha256": "445e48ebd8d797749b7e021c081012bbf8e0d915a4513982e2d5e56fb4d01ca9"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000048.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000048.pkl",
+      "source_sha256": "12942e9eac63dcd99677754f0404af4800910a2ae0c0204f6df6e4f251880d81",
+      "stored_sha256": "12942e9eac63dcd99677754f0404af4800910a2ae0c0204f6df6e4f251880d81"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000096.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000096.pkl",
+      "source_sha256": "c3de700379bfbbc6a3c24f4675d7dc7125102a3877412001e17f5f8c9e52815f",
+      "stored_sha256": "c3de700379bfbbc6a3c24f4675d7dc7125102a3877412001e17f5f8c9e52815f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000144.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000144.pkl",
+      "source_sha256": "73e25bb1600a2a877f467277adfef184de2432705e301dd643a0516343bf1629",
+      "stored_sha256": "73e25bb1600a2a877f467277adfef184de2432705e301dd643a0516343bf1629"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000192.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000192.pkl",
+      "source_sha256": "9461f567a00dd5f1f218f577e50c728ec254b8ab22636919e248ad94420df436",
+      "stored_sha256": "9461f567a00dd5f1f218f577e50c728ec254b8ab22636919e248ad94420df436"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000240.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000240.pkl",
+      "source_sha256": "a0baaa950012ed6f807e86ea42b55ccaa6ddfa7dfd4fdda47509726f321d8055",
+      "stored_sha256": "a0baaa950012ed6f807e86ea42b55ccaa6ddfa7dfd4fdda47509726f321d8055"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000288.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000288.pkl",
+      "source_sha256": "6cedb6865c4f9551092bbb4d3aa922d1c2ad4190261ce83b5ac03433825aed8f",
+      "stored_sha256": "6cedb6865c4f9551092bbb4d3aa922d1c2ad4190261ce83b5ac03433825aed8f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000336.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/state-0000336.pkl",
+      "source_sha256": "8ba8026bb444c6573cfaf5fe9d98bf3c7a9c272f1d0e464ad486a9df8a961a0a",
+      "stored_sha256": "8ba8026bb444c6573cfaf5fe9d98bf3c7a9c272f1d0e464ad486a9df8a961a0a"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000000.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000048.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000048.npz",
+      "source_sha256": "16e7932e8d17c59c71ada377a6eabaed994f1fe2194aee811764b54c2751ad5e",
+      "stored_sha256": "16e7932e8d17c59c71ada377a6eabaed994f1fe2194aee811764b54c2751ad5e"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000096.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000096.npz",
+      "source_sha256": "20a0d975d8b15fe43add8ced84c18d046684afdc3f2e0f9d2bfdc66b22227606",
+      "stored_sha256": "20a0d975d8b15fe43add8ced84c18d046684afdc3f2e0f9d2bfdc66b22227606"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000144.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000144.npz",
+      "source_sha256": "8de9ddf7d2b45c2d20fe5f594fa96ea3dd241f6312add1cf2c71d8a61732d634",
+      "stored_sha256": "8de9ddf7d2b45c2d20fe5f594fa96ea3dd241f6312add1cf2c71d8a61732d634"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000192.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000192.npz",
+      "source_sha256": "6bce7fa5c598c965b42249f48be0375932d2a8f253152c7137a7090d03c04fe7",
+      "stored_sha256": "6bce7fa5c598c965b42249f48be0375932d2a8f253152c7137a7090d03c04fe7"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000240.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000240.npz",
+      "source_sha256": "1f5767b99833f81e3c51bd3d59baca35e50a3317367e5e5e840d292c9fa6b124",
+      "stored_sha256": "1f5767b99833f81e3c51bd3d59baca35e50a3317367e5e5e840d292c9fa6b124"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000288.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000288.npz",
+      "source_sha256": "14334e680266b54cb8a390485495ea92d99fd5ff24e1d2b21df01c9413b9ca6f",
+      "stored_sha256": "14334e680266b54cb8a390485495ea92d99fd5ff24e1d2b21df01c9413b9ca6f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000336.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Cng-initial-climate-cycle/trace-0000336.npz",
+      "source_sha256": "78597c9c17c8eb1befde1e18c6abc14cb2960ae339b565fd9ccb17fd3cf8cef2",
+      "stored_sha256": "78597c9c17c8eb1befde1e18c6abc14cb2960ae339b565fd9ccb17fd3cf8cef2"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/report.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/report.json.gz",
+      "source_sha256": "eefeff85be783c879ba324192c13a649035ba2ad10609f17414bcaf3021121c7",
+      "stored_sha256": "5c9fba674bb1c12bbceaa672b207fc97b3b0008f06bd89d9f134c5dcca5dce66"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000000.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000000.pkl",
+      "source_sha256": "8cd82cdf164b21d1262cf77d353c4a10519c38a5c86df558a92ae348c05ffa04",
+      "stored_sha256": "8cd82cdf164b21d1262cf77d353c4a10519c38a5c86df558a92ae348c05ffa04"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000048.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000048.pkl",
+      "source_sha256": "07f9ee03406b92d3f765e84621ceb20157c9ae5f58e947831def51d8f18a7b08",
+      "stored_sha256": "07f9ee03406b92d3f765e84621ceb20157c9ae5f58e947831def51d8f18a7b08"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000096.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000096.pkl",
+      "source_sha256": "1bf9d7d8895baa28da4d499f89dfafef1b1b171fde3d82a85abd684b54a134a4",
+      "stored_sha256": "1bf9d7d8895baa28da4d499f89dfafef1b1b171fde3d82a85abd684b54a134a4"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000144.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000144.pkl",
+      "source_sha256": "c3a8464cc36d9d7e9913a86e9d291ec70f66f61696985287729ae4fb4cb2b198",
+      "stored_sha256": "c3a8464cc36d9d7e9913a86e9d291ec70f66f61696985287729ae4fb4cb2b198"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000192.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000192.pkl",
+      "source_sha256": "d5497778b25f1a528e7ef4d6ca835119340017b064524f3885973ddaf8cdcfea",
+      "stored_sha256": "d5497778b25f1a528e7ef4d6ca835119340017b064524f3885973ddaf8cdcfea"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000240.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000240.pkl",
+      "source_sha256": "b98c2b901f4fc6c35d0b7095d706cc05f9e06dfcb374bbc98faea45c650175a1",
+      "stored_sha256": "b98c2b901f4fc6c35d0b7095d706cc05f9e06dfcb374bbc98faea45c650175a1"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000288.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000288.pkl",
+      "source_sha256": "2d8ead9f3260dee1bcbb4c9224d76e7b326155d43788fc8f662da9269f15998a",
+      "stored_sha256": "2d8ead9f3260dee1bcbb4c9224d76e7b326155d43788fc8f662da9269f15998a"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000336.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/state-0000336.pkl",
+      "source_sha256": "a57d234c20b41be1b4947634397fb2294c7ecbdf048c596352cf0f16a97cabb9",
+      "stored_sha256": "a57d234c20b41be1b4947634397fb2294c7ecbdf048c596352cf0f16a97cabb9"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000000.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000048.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000048.npz",
+      "source_sha256": "64f6e1a94d3776e355ab2111fb82a5173c994e70bc530309d37478480dc6f2f6",
+      "stored_sha256": "64f6e1a94d3776e355ab2111fb82a5173c994e70bc530309d37478480dc6f2f6"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000096.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000096.npz",
+      "source_sha256": "b6a14c280a2c4d7bfcf469e9e36c5aff3d9f09dd5b00daa7e3a9bd4887d3bc2f",
+      "stored_sha256": "b6a14c280a2c4d7bfcf469e9e36c5aff3d9f09dd5b00daa7e3a9bd4887d3bc2f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000144.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000144.npz",
+      "source_sha256": "9401efd67d26e74f6101582061f8e3094642cfee7f1892834dbc2fa59cfc1b52",
+      "stored_sha256": "9401efd67d26e74f6101582061f8e3094642cfee7f1892834dbc2fa59cfc1b52"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000192.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000192.npz",
+      "source_sha256": "16de6af679c738d4d6f7cf0a26aa20a02a895e6f796254af6253a6046d188256",
+      "stored_sha256": "16de6af679c738d4d6f7cf0a26aa20a02a895e6f796254af6253a6046d188256"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000240.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000240.npz",
+      "source_sha256": "bb927aa654653e5863b8f8b527f8c8c2e2d853242376aae6d768ab19a3bcca26",
+      "stored_sha256": "bb927aa654653e5863b8f8b527f8c8c2e2d853242376aae6d768ab19a3bcca26"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000288.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000288.npz",
+      "source_sha256": "769875f73bde344a1036fa72f8b6c8ec3c48629dff794764817e88998dfd18ab",
+      "stored_sha256": "769875f73bde344a1036fa72f8b6c8ec3c48629dff794764817e88998dfd18ab"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000336.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-HaM-initial-climate-cycle/trace-0000336.npz",
+      "source_sha256": "ab787c91e04ca93dfd0dbbeb083299b54b9c0119890163c44a5cef3c916fef4b",
+      "stored_sha256": "ab787c91e04ca93dfd0dbbeb083299b54b9c0119890163c44a5cef3c916fef4b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/report.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/report.json.gz",
+      "source_sha256": "4f920747b66d3f2dc486fefe2e360184fdac0072c35445451009281455e889fb",
+      "stored_sha256": "aae091a32fa8addb4c082db361ea076cee7d17b8380ae7bc541f9873a5d2fbd5"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000000.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000000.pkl",
+      "source_sha256": "b442c6e8ec861fee89b5f7dbf94a4060962a740f35c7370b49eeb4fa4697cbec",
+      "stored_sha256": "b442c6e8ec861fee89b5f7dbf94a4060962a740f35c7370b49eeb4fa4697cbec"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000048.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000048.pkl",
+      "source_sha256": "7d5cbdf8e9aeeeb6dd1e72bfac7cf170a2571a313d3b3044d05a5bf813ac0c24",
+      "stored_sha256": "7d5cbdf8e9aeeeb6dd1e72bfac7cf170a2571a313d3b3044d05a5bf813ac0c24"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000096.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000096.pkl",
+      "source_sha256": "c84a26d6722ab4fa2171be5b520c1b0531ff43f1fb8cd0a428c6beb443779d5c",
+      "stored_sha256": "c84a26d6722ab4fa2171be5b520c1b0531ff43f1fb8cd0a428c6beb443779d5c"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000144.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000144.pkl",
+      "source_sha256": "cd60b457e8fffeba099911c8468b1715c9e17331b989e55b0c789c99cf4a5ae1",
+      "stored_sha256": "cd60b457e8fffeba099911c8468b1715c9e17331b989e55b0c789c99cf4a5ae1"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000192.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000192.pkl",
+      "source_sha256": "5888252c7ad6d61074946bcdffe89b30e774f2172d12f931dc19338ada27c925",
+      "stored_sha256": "5888252c7ad6d61074946bcdffe89b30e774f2172d12f931dc19338ada27c925"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000240.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000240.pkl",
+      "source_sha256": "f824092097801647d3f1486b696cebd21bd06fb017f3ce51d3be58d593582d6b",
+      "stored_sha256": "f824092097801647d3f1486b696cebd21bd06fb017f3ce51d3be58d593582d6b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000288.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000288.pkl",
+      "source_sha256": "e3ebc9152dd2f18504bff72caa415b9f09d5030cda6c21d4febdf487c3de6fe9",
+      "stored_sha256": "e3ebc9152dd2f18504bff72caa415b9f09d5030cda6c21d4febdf487c3de6fe9"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000336.pkl",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/state-0000336.pkl",
+      "source_sha256": "9957469c04bc2e3552532ab9f13feac09982e6bd178e22978ec61bbea41aa258",
+      "stored_sha256": "9957469c04bc2e3552532ab9f13feac09982e6bd178e22978ec61bbea41aa258"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000000.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000048.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000048.npz",
+      "source_sha256": "ec003755349e9759bd1889198228c8ffbc8e3ef6e7367067434af642467e2ab0",
+      "stored_sha256": "ec003755349e9759bd1889198228c8ffbc8e3ef6e7367067434af642467e2ab0"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000096.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000096.npz",
+      "source_sha256": "edb9217b7c4e0aba091a8e4f7d646591057b1477819b02badaec474c672ee5e4",
+      "stored_sha256": "edb9217b7c4e0aba091a8e4f7d646591057b1477819b02badaec474c672ee5e4"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000144.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000144.npz",
+      "source_sha256": "a18f3be09a2f189766a6ca87777b416c8b5eef7258ebd3a2a7a78e1ecdee2d1d",
+      "stored_sha256": "a18f3be09a2f189766a6ca87777b416c8b5eef7258ebd3a2a7a78e1ecdee2d1d"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000192.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000192.npz",
+      "source_sha256": "3c0004fdbfb76defac29db4d75d8700e2212145d424a8477ef4dce013d5cd036",
+      "stored_sha256": "3c0004fdbfb76defac29db4d75d8700e2212145d424a8477ef4dce013d5cd036"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000240.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000240.npz",
+      "source_sha256": "03b8b95a58065ed4d62d57ddcd06f3c3c3c1a13fb3bb2df9d93e91fe05ffae75",
+      "stored_sha256": "03b8b95a58065ed4d62d57ddcd06f3c3c3c1a13fb3bb2df9d93e91fe05ffae75"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000288.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000288.npz",
+      "source_sha256": "9b2d2ba08d4ed17afeab4413aa066cb301caf2ae1adc868a162047f5a4345ddd",
+      "stored_sha256": "9b2d2ba08d4ed17afeab4413aa066cb301caf2ae1adc868a162047f5a4345ddd"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000336.npz",
+      "path": "fluxnet-first-climate-cycle-20261017-b/numpy-day/CN-Qia-initial-climate-cycle/trace-0000336.npz",
+      "source_sha256": "3f388bd4f3c99e8eef1f317399ec546a359fe47712ae87c7cb14214f7efd7b7f",
+      "stored_sha256": "3f388bd4f3c99e8eef1f317399ec546a359fe47712ae87c7cb14214f7efd7b7f"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/protocol.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/protocol.json.gz",
+      "source_sha256": "1b35765321b203d85947f56853928a3cfd64549343b1ea2b2b3b78e24d360b00",
+      "stored_sha256": "fec840e7a9de57db6af02cd84f670fb17e79d33dce42454d63bdb370b1394532"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/qia-checkpoint-submit.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/qia-checkpoint-submit.json.gz",
+      "source_sha256": "d3d18eb18a1ce0043b2de11ac1fff69dd0596add9705d3dbdbb5872ebdb76954",
+      "stored_sha256": "ff349a2b41b971a0a1e1aefbaa86c8581ae8d493373799abd3b3eea2e7740634"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/qia-checkpoint.pbs",
+      "path": "fluxnet-first-climate-cycle-20261017-b/qia-checkpoint.pbs.gz",
+      "source_sha256": "bc6abea3d6b10cba2a90362c66cdd267193fe57cf945880c8bd6f4a2988de4b4",
+      "stored_sha256": "825bc3adf084239321573ec379d6c3ba6981ed45ae53dfc9c8bb17c7c11dc114"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/qia-unused-dependent-cancel.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/qia-unused-dependent-cancel.json.gz",
+      "source_sha256": "ea06d38174fd0566cfc7d9438d27b3824d1b6a1e92633412549f9013141dd680",
+      "stored_sha256": "05e4061de45d4969932cf2333f434fe118f2ed281509075fb9ab2e2a2b5bc45b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/run.pbs",
+      "path": "fluxnet-first-climate-cycle-20261017-b/run.pbs.gz",
+      "source_sha256": "97810d112aa3a4dab72d33662696cb485b8ada3f708f397fd213c22eb7876641",
+      "stored_sha256": "73c567c15a0293487d7a22a404297ae107f1d36c58cd571100a5368127d7f99b"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/run.py",
+      "path": "fluxnet-first-climate-cycle-20261017-b/run.py.gz",
+      "source_sha256": "02c01648b6030517cbddb2d04b87d8d977d7924cae9cc7b9cd6b137f2a3e6c76",
+      "stored_sha256": "d128ff1fb0f0d547daf59d56406a192eb6b4e52f4f9074bd85619da9cb03d736"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/submit.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/submit.json.gz",
+      "source_sha256": "969f4f530ee75a8b148a75691ca360fb5d80a30abdfbfdf2640fb967a996efec",
+      "stored_sha256": "fcfac51c238f5fb21a316903c339299f7d233b001728798faea7f76d3ba30347"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/walltime-extension.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/walltime-extension.json.gz",
+      "source_sha256": "47bda4d15f62f9db40c48acb1dcc612225f2b9272b1d9b5c5e69dbb10d822faa",
+      "stored_sha256": "c612b07f2038222ff1365e04768e3a9409e3f72c93b2651585bebd22d97e2ea8"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/week-controller.log",
+      "path": "fluxnet-first-climate-cycle-20261017-b/week-controller.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/week-exit.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/week-exit.json.gz",
+      "source_sha256": "ff28b75dc3fbdb730042e15ba21ca150d0f8f0f7c26a9ee0e1b924149e072fd5",
+      "stored_sha256": "37d212ed02eea808545ad38f403f6f906995d14a52da14d989790c029e03b219"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/week-launch.json",
+      "path": "fluxnet-first-climate-cycle-20261017-b/week-launch.json.gz",
+      "source_sha256": "502ea477eb85dfe13a1ab6db4e3e51e221fc985a02dc4bf7995f458192b9d2a2",
+      "stored_sha256": "bee94fb7516a71271bf5795170db9eb814edaaa34591211269b37cdbcbf90518"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/week-node.txt",
+      "path": "fluxnet-first-climate-cycle-20261017-b/week-node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "fluxnet-first-climate-cycle-20261017-b/week-pbs-exit.txt",
+      "path": "fluxnet-first-climate-cycle-20261017-b/week-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    }
+  ]
+}

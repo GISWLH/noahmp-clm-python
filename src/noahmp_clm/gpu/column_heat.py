@@ -146,6 +146,36 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
             return tries+1,scale*.5,j.where(take,trial,candidate),take
         _,_,trial,accepted=lax.while_loop(lambda s:(s[0]<40)&~s[3],search,
             (j.asarray(0),scale,h,j.asarray(False)))
+        def coordinate_search():
+            # Rounding of a large neighbouring store can obstruct the coupled
+            # Newton direction. Correct its worst local equation with the
+            # same Jacobian diagonal and unchanged merit/convergence tests.
+            worst=j.argmax(j.where(active,j.abs(res)/weights,-1.))
+            derivative=deriv[worst]
+            derivative=j.where(at_lower[worst],j.where(res[worst]>0.,
+                1./stop(2100.*mass[worst]),0.),derivative)
+            derivative=j.where(at_upper[worst],j.where(res[worst]<0.,
+                1./stop(4180.*mass[worst]),0.),derivative)
+            diagonal=stop(1.+stop(stop(dt*stop(stop(up[worst]+down[worst])+
+                j.where(worst==0,exchange,0.)))*derivative))
+            correction=-res[worst]/diagonal
+            f0=-h[worst]/j.where(correction!=0.,correction,1.)
+            f1=stop(upper[worst]-h[worst])/j.where(correction!=0.,correction,1.)
+            land0=snow[worst]&~at_lower[worst]&(correction!=0.)&(f0>0.)&(f0<=1.)
+            land1=snow[worst]&~at_upper[worst]&(correction!=0.)&(f1>0.)&(f1<=1.)
+            scalar_scale=j.minimum(j.where(land0,f0,1.),j.where(land1,f1,1.))
+            def scalar_step(carry):
+                tries,scale,candidate,taken=carry
+                value=stop(h[worst]+stop(scale*correction))
+                value=j.where(land0&(scale==f0),0.,j.where(land1&(scale==f1),upper[worst],value))
+                scalar_trial=h.at[worst].set(value)
+                r,_,_,_,good,_,_,rounding=evaluate(scalar_trial)
+                take=good&((merit_of(r,weights)<merit)|(norm_of(r,scalar_trial,rounding)<=1.))
+                return tries+1,scale*.5,j.where(take,scalar_trial,candidate),take
+            result=lax.while_loop(lambda x:(x[0]<40)&~x[3],scalar_step,
+                (j.asarray(0),scalar_scale,h,j.asarray(False)))
+            return result[2],result[3]
+        trial,accepted=lax.cond(accepted,lambda:(trial,accepted),coordinate_search)
         next_h=j.where(norm<=1.,h,trial)
         next_result=evaluate(next_h)
         done=norm_of(next_result[0],next_h,next_result[7])<=1.

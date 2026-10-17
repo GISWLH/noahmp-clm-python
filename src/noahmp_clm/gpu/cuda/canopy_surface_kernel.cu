@@ -115,6 +115,22 @@ template<class Solver> __device__ void surface_device(const float* c,const float
         width*=2.f;
     }
     bool bracketed=fl>=0.f&&fr<=0.f;
+    // Stay on the continuous branch connected to the initial snow surface
+    // when the expanding bracket crosses removal of its vapour-supply cell.
+    if(n>0&&(int)out[45]==n&&out[361]>0.f&&bracketed) {
+        surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,right,unused,solver);++count;
+        if((int)unused[45]<n) {
+            float event_left=center,event_right=right;
+            for(int k=0;k<60&&(event_right-event_left)>tol;++k) {
+                float trial=event_left+.5f*(event_right-event_left);
+                surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,trial,unused,solver);++count;
+                if((int)unused[45]==n) {
+                    if(unused[361]<=0.f){right=trial;fr=unused[361];break;}
+                    event_left=trial;
+                }else event_right=trial;
+            }
+        }
+    }
     for(int k=0;k<60&&fabsf(out[361])>tol&&bracketed&&(right-left)>tol;++k) {
         float span=right-left,trial=left-(fl*span)/(fr!=fl?fr-fl:1.f);
         trial=fminf(right-.05f*span,fmaxf(left+.05f*span,trial));

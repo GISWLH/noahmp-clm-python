@@ -1,0 +1,2070 @@
+{
+  "scope": "EHPC PBS19 original CPU performance assertion failures retained; PBS20 all684 CPU nodes pass. PBS21 independent18 reference steps for nine perturbations and two quantized precisions. Not observation or annual acceptance.",
+  "archive_sha256": "a38394f39bcb4e40698cfb550c98c1942de272b7e4018639b4f06955dd2f95c1",
+  "artifacts": [
+    {
+      "source": "a/numpy-full-qstat.txt",
+      "path": "a/numpy-full-qstat.txt.gz",
+      "source_sha256": "b1179cfabcea2d2295ed204354dafd8d23d6bac17fde31cf1ffd19867f7a0faa",
+      "stored_sha256": "87535a0a2539092dc6974904e3967c366a58ede8491ed3c02d612e5e31f90c98"
+    },
+    {
+      "source": "a/numpy-full.pbs",
+      "path": "a/numpy-full.pbs.gz",
+      "source_sha256": "1b5d372d22eb06ba1addbb98a8312e45f706a9702c16fb9a5c90f116c9016180",
+      "stored_sha256": "0526cc1bdde36d4b76c46b2b1470bf698cc0cbd077e14aa01fbfa6d1513d3e70"
+    },
+    {
+      "source": "a/clm-numpy-full.o19",
+      "path": "a/clm-numpy-full.o19",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "a/run_numpy_full.py",
+      "path": "a/run_numpy_full.py.gz",
+      "source_sha256": "3fcea0493d9f3c8167a49b3c257a80fcdddd88f2137a25ea87dd05748d679e63",
+      "stored_sha256": "db24aaf0da4cf31d4f2249d097e2becf86d544ea24930a146088cacfa09b6fa8"
+    },
+    {
+      "source": "a/SOURCE_SHA256.json",
+      "path": "a/SOURCE_SHA256.json.gz",
+      "source_sha256": "20d891deee9a2d902ffe5b1f595010c6b0a7c7bd948d0c53e6b90cff725a4c54",
+      "stored_sha256": "9889dee8ce73fa8a0b48a18b1bf6782fbc2c0ab393204ed0db565ae875a9d044"
+    },
+    {
+      "source": "a/numpy-full-submit.json",
+      "path": "a/numpy-full-submit.json.gz",
+      "source_sha256": "a4bd162cce67eeffaf73f6c366c14399e2436166e482f46541842c34fa96ee2f",
+      "stored_sha256": "348742a7e7e6e5b7fcf9686558418afac45506629d568956d9c459a0f64e1057"
+    },
+    {
+      "source": "a/numpy-full-node.txt",
+      "path": "a/numpy-full-node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "a/numpy-full-controller.log",
+      "path": "a/numpy-full-controller.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "a/numpy-full/test_crop.log",
+      "path": "a/numpy-full/test_crop.log.gz",
+      "source_sha256": "092afb193e0565b502e8c29ec6c9f2e9ed67befee919192e41fe9bd294ef0cc2",
+      "stored_sha256": "f7ecc21ef9c54af0b968dea15fbedf22530b9b20e1d00549029f66dc05b11b6b"
+    },
+    {
+      "source": "a/numpy-full/test_column.log",
+      "path": "a/numpy-full/test_column.log.gz",
+      "source_sha256": "0c4cfbdb9fb54f6a1c803a9146dc0284bf9442554b6998932e0d011b9df13f70",
+      "stored_sha256": "d25b25e510f7d42d04de9eb62e81bfbb1890065cebbf115390760a54c8b906e2"
+    },
+    {
+      "source": "a/numpy-full/test_clm_phenology_column.xml",
+      "path": "a/numpy-full/test_clm_phenology_column.xml.gz",
+      "source_sha256": "7a03143ff12045fa91b9031683233f2b8f4f84bf64af07114c0fca0bedc3c72e",
+      "stored_sha256": "e1a8de0e54a922224d1a23e01f854117c476e6072c7d66400588bcb027dd661b"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_radiation.log",
+      "path": "a/numpy-full/test_canopy_radiation.log.gz",
+      "source_sha256": "8f815354b8ef8499cebc94bbfa952951ce76ca748bacd43cb48f8e8ca000a3e3",
+      "stored_sha256": "878a27e1288f0f015b6b8d9991d46d0b43759c7e8fa907be4621a21df36b3e02"
+    },
+    {
+      "source": "a/numpy-full/test_glacier.log",
+      "path": "a/numpy-full/test_glacier.log.gz",
+      "source_sha256": "4b08818924ebd60ded35d0879fdd3c76917acc70e7165c750d0228df5f006100",
+      "stored_sha256": "80c75e4eee8fc14a79aaa4d3f459a3798725792ef43bc42c431c9f2993d962ac"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_station_data.log",
+      "path": "a/numpy-full/test_fluxnet_station_data.log.gz",
+      "source_sha256": "bef8623b25b25ab880ba85efeef2d92c7d65627f885fe3b9c983593ce2c4795b",
+      "stored_sha256": "8073b02ac88b15cf1b365bf74b50f51f2cdb4505768cfa933ee1771eab6476df"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_most.log",
+      "path": "a/numpy-full/test_canopy_most.log.gz",
+      "source_sha256": "dc2ce22996f9b5e0b860ce189b6ae8c1abd3beb9e86dc6e5e1cc8afaa2e2ab3e",
+      "stored_sha256": "63afc19e8755109d8e8768208913a634499816cf73e1a3c1d92b7404d27cfa03"
+    },
+    {
+      "source": "a/numpy-full/test_snow_boundary_coupling.xml",
+      "path": "a/numpy-full/test_snow_boundary_coupling.xml.gz",
+      "source_sha256": "8f01c0a1418273948b48966ab238a603347b64c6b29a4e1b6001412ccca48641",
+      "stored_sha256": "81358ad390f54f2cb34167b6cfdc08fa8b1e44e9a50f95241ac5f1191207542e"
+    },
+    {
+      "source": "a/numpy-full/test_surface_independent.log",
+      "path": "a/numpy-full/test_surface_independent.log.gz",
+      "source_sha256": "d12aed8635e6d52d5462e973dd18321407f18e6304d146abeedd824086601275",
+      "stored_sha256": "3daca891531c799612e97dcc99303f806bf3a3879891c78896074417c5fe9085"
+    },
+    {
+      "source": "a/numpy-full/test_clm_bgc_column.log",
+      "path": "a/numpy-full/test_clm_bgc_column.log.gz",
+      "source_sha256": "005b5b4726d504ed73f8e7d403e8e46bfa89e151b29d803dbc4774957e865e26",
+      "stored_sha256": "d56ad2e72e72b05d48bee036932a1a5c4e878e85a4a9d4fafc20073b3a2ee4cc"
+    },
+    {
+      "source": "a/numpy-full/test_clm_glacier_column.xml",
+      "path": "a/numpy-full/test_clm_glacier_column.xml.gz",
+      "source_sha256": "5a3bd9c35d1167226448ff6d6b80a8970f7481fc0187c2818e36d8d08e2f49a0",
+      "stored_sha256": "0a8adc3de19dfa8f1692ab8c8c0da2c95939cfe59a50b99f01002d997d055ea2"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_phase_energy.xml",
+      "path": "a/numpy-full/test_canopy_phase_energy.xml.gz",
+      "source_sha256": "db95a3eee8d8c5cbe54f2f5c46df6812012d5852601a48974152354a119ab451",
+      "stored_sha256": "4ef9025f96ae6c552fec3500324a2ededed8b68149fd0b9d8e00ac5059576b4c"
+    },
+    {
+      "source": "a/numpy-full/test_phase_regularization.log",
+      "path": "a/numpy-full/test_phase_regularization.log.gz",
+      "source_sha256": "6b9ffd6b9a3baa1f0f65b43fd8e9939ac47909d796917593222ef0ccd5a23556",
+      "stored_sha256": "8d00473d66968ef7af2e1e98e9d22c89c2f28140bd19199b9e0ece3db8297b45"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_inventory.xml",
+      "path": "a/numpy-full/test_fluxnet_inventory.xml.gz",
+      "source_sha256": "bb4de2136ddd0225ada02d638a4494e59f28738737e909052bee46acdbb568c7",
+      "stored_sha256": "7ec854cf8cdb89a0ebd1091a99b993eb48c644637936da7ffbb26c3cd73d1aa8"
+    },
+    {
+      "source": "a/numpy-full/test_tile_drainage.xml",
+      "path": "a/numpy-full/test_tile_drainage.xml.gz",
+      "source_sha256": "0678c758ce51ea5b3bf38520283cd48d18a0fd4396424f2599b057920749ad74",
+      "stored_sha256": "b59b507813ffe7c8eb2c6ebdeef3a736f9b2f59349706068d34ff01575648b28"
+    },
+    {
+      "source": "a/numpy-full/test_snow_albedo.xml",
+      "path": "a/numpy-full/test_snow_albedo.xml.gz",
+      "source_sha256": "4c9d999490af546c6c87ae383310c080f30b10131224922e21ef577983a9971b",
+      "stored_sha256": "95373afbcf00f9e81192bc02f4daabd1d67e8580aa610aabe9e1f0b54c4a83cc"
+    },
+    {
+      "source": "a/numpy-full/test_snicar.xml",
+      "path": "a/numpy-full/test_snicar.xml.gz",
+      "source_sha256": "8d59849fe29ae787e7cde23bce41a726a83752e4de930e142cf319ab785d2cd4",
+      "stored_sha256": "c9aed7bbd9a694ad7d87b257b4070d056ff7d82cec114f81e80e44dae518a8d0"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_column.xml",
+      "path": "a/numpy-full/test_canopy_column.xml.gz",
+      "source_sha256": "de5efc624fe78829ccf875554d1fbc42422a75e803822b17d8644e61468d5b92",
+      "stored_sha256": "7fb540949fe2d30cd6277c6aa23d9dd26fcc78c2069943566c33446c6fde4cdb"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_phase_column.xml",
+      "path": "a/numpy-full/test_canopy_phase_column.xml.gz",
+      "source_sha256": "808096a4e10959a95d970b8b4a31f450b8c7c27560952a9a487f508611651188",
+      "stored_sha256": "0419ba50799797fc1c0e8cd1f659e76a9ecaffbe7a19ae3d77111fe41f1f1ed6"
+    },
+    {
+      "source": "a/numpy-full/test_snow_energy_routing.xml",
+      "path": "a/numpy-full/test_snow_energy_routing.xml.gz",
+      "source_sha256": "36f1313c9f09d121b54aa30d41f43b1c97809b983e7bb0453fa3dc160fc07549",
+      "stored_sha256": "53d646cc35ef8c3903cdbb4e118f6fd89c9ca6f6f0fd25e66dc78858b2bab823"
+    },
+    {
+      "source": "a/numpy-full/test_clm_crop_column.xml",
+      "path": "a/numpy-full/test_clm_crop_column.xml.gz",
+      "source_sha256": "0ee630816c9619abedc2106f2ed3dd6c6d3089b1ad35460b9e90b100f2bf8b78",
+      "stored_sha256": "1d7bd79e4d3d6e6929355944d094b6b5a4cc4628baf130663b4331b74732a9b5"
+    },
+    {
+      "source": "a/numpy-full/test_snow_vapor.xml",
+      "path": "a/numpy-full/test_snow_vapor.xml.gz",
+      "source_sha256": "cafe53cbd43252cb7c7b5b601e58f4c09af3c5f71e442d5ef23f689632303362",
+      "stored_sha256": "a91eccab47787b2b179a3656dc6128134f2fbd205d23ac80bf2a3081cb6283fd"
+    },
+    {
+      "source": "a/numpy-full/test_clm_irrigation_column.xml",
+      "path": "a/numpy-full/test_clm_irrigation_column.xml.gz",
+      "source_sha256": "9d8435b86c2f97cfe3039a394e1ae6722c19dcd664226414af80d2903b37d085",
+      "stored_sha256": "41fb099638c2ba39642e4bbfa0bd6de041839476aadeef3d1fcbcd0b07b66693"
+    },
+    {
+      "source": "a/numpy-full/test_clm_glacier_column.log",
+      "path": "a/numpy-full/test_clm_glacier_column.log.gz",
+      "source_sha256": "fdc6e14bfbd51164f7fb39c2d65c1b079f8e054e9f9425bf2655806e29f336aa",
+      "stored_sha256": "4890efb0eabad944d1350d7cc57f9d4f20a9fb54d04b49076cd23db81d1eb54a"
+    },
+    {
+      "source": "a/numpy-full/test_crop.xml",
+      "path": "a/numpy-full/test_crop.xml.gz",
+      "source_sha256": "5c701837c471d3674ec368fc5959030971f64dd74de4b338097208dff16d747b",
+      "stored_sha256": "2c68f5c3a199dce32eb5017b6f56d9915a7ecba337bf1140db6d5134b08c8281"
+    },
+    {
+      "source": "a/numpy-full/test_surface_drag.xml",
+      "path": "a/numpy-full/test_surface_drag.xml.gz",
+      "source_sha256": "feb1ba1cd5a6e63b563d15bbdfe49a8f8d5795faa4b73f4ecbac6f658182bcad",
+      "stored_sha256": "6cd30937583aeceb336c5282b8ca35b1832fac91ed5faf949a7b2b82831c079c"
+    },
+    {
+      "source": "a/numpy-full/test_hrldas_output_audit.xml",
+      "path": "a/numpy-full/test_hrldas_output_audit.xml.gz",
+      "source_sha256": "b12540f278a70d358a64c4e901b63fd1757fed5963200a0ffca1495ca2702c27",
+      "stored_sha256": "12ae308ca8e9ab53b538a32b9c80548d4862c8817c27b616dbee7958c4b03f74"
+    },
+    {
+      "source": "a/numpy-full/test_tile_drainage.log",
+      "path": "a/numpy-full/test_tile_drainage.log.gz",
+      "source_sha256": "752e1e2df154ba0ec296a925a71963b3cbd6e2803c0d7d7e7fa3d5c7d613a8cd",
+      "stored_sha256": "3d122864f18d82f75cf4fa301a39634b100f0a961cac03e5fd4f593af3c110c9"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_soil_operator.xml",
+      "path": "a/numpy-full/test_fluxnet_soil_operator.xml.gz",
+      "source_sha256": "a61858b27ed4dd9aa701008ff3479793704d0114a769024a5b077b25f890f80f",
+      "stored_sha256": "c7de2fba37d2399d18555eb53509cc0d6721b05f6d6506a676197d808b9b97d2"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_station_data.xml",
+      "path": "a/numpy-full/test_fluxnet_station_data.xml.gz",
+      "source_sha256": "e003e55692780ebc83911dee1bcd8f4035a019f784cdd59d2b0b8084a9b41918",
+      "stored_sha256": "7f17d0f6ada751ed675f0be954842495a550147ac16938e52a826765a9c4eed2"
+    },
+    {
+      "source": "a/numpy-full/test_snow_compaction.xml",
+      "path": "a/numpy-full/test_snow_compaction.xml.gz",
+      "source_sha256": "22ffc1887e3cce5a3b6953b2853393d0498009084cc351b905d507a5924ed793",
+      "stored_sha256": "1dec2dc1067c6377ea626d7b44dae7f93367617af4686b1c66a52b6c61ceaf44"
+    },
+    {
+      "source": "a/numpy-full/test_plant_cn.log",
+      "path": "a/numpy-full/test_plant_cn.log.gz",
+      "source_sha256": "4e076a5dd9af08ffbce09b682258c35b3b09da88ee729f6945af01689ea33212",
+      "stored_sha256": "0baae1534b7d8bd5522433cfc294a1185fe6fe3a0d2153f63a917041c548ed1c"
+    },
+    {
+      "source": "a/numpy-full/test_snow_thermal.xml",
+      "path": "a/numpy-full/test_snow_thermal.xml.gz",
+      "source_sha256": "63f76b900ac0b69c1d4b3ed1aa8c5d462c4547921c988184e9660a60241a46af",
+      "stored_sha256": "a4f139dce3bff3b926911ec77d812bf29248e53be569c95dd91116a5dbee96d9"
+    },
+    {
+      "source": "a/numpy-full/test_leaf_root.log",
+      "path": "a/numpy-full/test_leaf_root.log.gz",
+      "source_sha256": "01311baa852db076753814271165a33a7a35b7e0b63de979423ac3269388316e",
+      "stored_sha256": "3bb7845ef6275a215f50a92d272a6aa1dd922fb17025db03194a430ef142d2d2"
+    },
+    {
+      "source": "a/numpy-full/test_vic.xml",
+      "path": "a/numpy-full/test_vic.xml.gz",
+      "source_sha256": "4a8501de065bb021edb83f95b8b64bea7510f42da74309d4d497c15354b69247",
+      "stored_sha256": "03513e264c4e413f538bdfeec9408c5ea8c6a29bc92d53fc1b2e89348bde11d6"
+    },
+    {
+      "source": "a/numpy-full/test_multilayer_snow.log",
+      "path": "a/numpy-full/test_multilayer_snow.log.gz",
+      "source_sha256": "28f94f35a697eb110a559cd36372f2edb63dbb960fb282482e1dcc485cb9a73e",
+      "stored_sha256": "95e328a228e44741580c2874ead9dffbc49f37a5f9c5b898f7d3fe9072d92a7c"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_solar.log",
+      "path": "a/numpy-full/test_fluxnet_solar.log.gz",
+      "source_sha256": "988344a7589dd35ded61b8e784dcd5bc43cb64ba0f19a2bda1a7ec44b380abcb",
+      "stored_sha256": "14fe36a94d54f96e6b7cbcb6f2d7803a2bb4d56f33c78dcbe93f575c2f7f8ae6"
+    },
+    {
+      "source": "a/numpy-full/test_clm_most_column.xml",
+      "path": "a/numpy-full/test_clm_most_column.xml.gz",
+      "source_sha256": "cb1b803afca28667bf0ae6cb64da496dbcd7991f0c06fe436118d1051bfa4a02",
+      "stored_sha256": "e350f37fa0df89f0fe4fd634bccf3792978a51e837092da63394e0df11f910be"
+    },
+    {
+      "source": "a/numpy-full/test_runoff.log",
+      "path": "a/numpy-full/test_runoff.log.gz",
+      "source_sha256": "7256316818e0211d1c4dc30d19c5b69dd944b4f7c923e409b47993643d15fb98",
+      "stored_sha256": "c69bcabb23c095a354e2a5ae276f8431393e3b5548c55fe7e0488de758b64578"
+    },
+    {
+      "source": "a/numpy-full/test_photosynthesis.log",
+      "path": "a/numpy-full/test_photosynthesis.log.gz",
+      "source_sha256": "177c9598e7e121bdec86fd746a3d0016c25c137693f71115f4216db64edbb7fb",
+      "stored_sha256": "a33761c1b7bf322af7e9ff692b8820084940c16701f664579d784508c517553a"
+    },
+    {
+      "source": "a/numpy-full/test_photosynthesis.xml",
+      "path": "a/numpy-full/test_photosynthesis.xml.gz",
+      "source_sha256": "9694941dd05733e0a8508ac9bec148e31b7b6c183041fa420b1ffd252e823128",
+      "stored_sha256": "6b06b3f5c2dc886f68ae16634534dbef8bd0018fbb6b9905d56ec24e515bcb24"
+    },
+    {
+      "source": "a/numpy-full/test_clm_vic_column.xml",
+      "path": "a/numpy-full/test_clm_vic_column.xml.gz",
+      "source_sha256": "5931df5e75f034d4c0ff8de1200228a3a666bb80707bf89d16f967f27062ac5c",
+      "stored_sha256": "92eedc6251d52d024c3b4d9a6d4f727d2382fec09634f368aa9ba1683dbf1204"
+    },
+    {
+      "source": "a/numpy-full/test_most_stagnation.log",
+      "path": "a/numpy-full/test_most_stagnation.log.gz",
+      "source_sha256": "4ed8182c68f18af59dcc724bdfaa9c38aca413efcde828e9359896f38603ed44",
+      "stored_sha256": "b1ffe92648664815ecde5792376f3b1cfc720107dbd1c142af7c37dc10c341e0"
+    },
+    {
+      "source": "a/numpy-full/test_decomposition.log",
+      "path": "a/numpy-full/test_decomposition.log.gz",
+      "source_sha256": "91eb7251eeee51f87d2b3889fa1aad927177276f19509aa4bda0655657c3cf0c",
+      "stored_sha256": "247ab0e38cf96b793ef55eed767da73afb959c4ec82cae537573c389beecd501"
+    },
+    {
+      "source": "a/numpy-full/test_clm_most_column.log",
+      "path": "a/numpy-full/test_clm_most_column.log.gz",
+      "source_sha256": "21db4dff1335710db01a439eb1830d9dc8bfa1b9fe4b551a83c8635eeb87eb9e",
+      "stored_sha256": "27029223f8e710ea3c2ad3d92d2c51a77d5baaefa27084d859b719eb425bc71e"
+    },
+    {
+      "source": "a/numpy-full/test_clm_tile_column.log",
+      "path": "a/numpy-full/test_clm_tile_column.log.gz",
+      "source_sha256": "11f4e886493e3825f9d4b3b8cf3e13efd571048712bd01557e884aa5daaf9944",
+      "stored_sha256": "6c83f9380f8008fa5d53c67a01be5b39c3a7f6fa2efc12d881d330ec68fb1eb1"
+    },
+    {
+      "source": "a/numpy-full/test_column_heat.log",
+      "path": "a/numpy-full/test_column_heat.log.gz",
+      "source_sha256": "b67c1730ac030a19875f7e9a39083e34c74a41c6d96ca6e8e4d656dd167f33a8",
+      "stored_sha256": "7953b66bfe409a133ccec67e23f28e3d5f0ed3c28f8b58d85c87290c37d64516"
+    },
+    {
+      "source": "a/numpy-full/test_clm_enthalpy_driver.log",
+      "path": "a/numpy-full/test_clm_enthalpy_driver.log.gz",
+      "source_sha256": "048a8e4e7abdbc13b2d7a2d1fa81a46ed41d023ff4066470a79708bc1783fd1c",
+      "stored_sha256": "f7752210de43a0c4d54377ca6fd0b0fd5d491569dcc67378f1e972eb74819dc7"
+    },
+    {
+      "source": "a/numpy-full/test_surface_snow_branch.xml",
+      "path": "a/numpy-full/test_surface_snow_branch.xml.gz",
+      "source_sha256": "2e37c205bfe19fd1b3de22bc84443e9c2629ac411df1a7f493271b9ef95f65f4",
+      "stored_sha256": "17b2c7cee3aad49a1989fce8f61a297675493241719affeb4a59074e9a4d6c66"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_inventory.log",
+      "path": "a/numpy-full/test_fluxnet_inventory.log.gz",
+      "source_sha256": "86288ee89a493b657a4f02c2118272c4f6a9a7afa049f10741e60f3a564db934",
+      "stored_sha256": "8f9aa7fda55569d96500675d10bce255181d122bbac553e7f114b5ad3299d777"
+    },
+    {
+      "source": "a/numpy-full/test_validation.log",
+      "path": "a/numpy-full/test_validation.log.gz",
+      "source_sha256": "db7f09414dbfd608dbdbc9dc30246e56e6598dc0e7fbf509c46c3bdd43c83e32",
+      "stored_sha256": "5556e09740c6de4dbb2d814f7baec9abb1cc94868ff6929e96c983a6e08f2179"
+    },
+    {
+      "source": "a/numpy-full/test_options.xml",
+      "path": "a/numpy-full/test_options.xml.gz",
+      "source_sha256": "31edeb8338ee15dfd9ba5339a1cba7908f09dade5dfd72244820166b49b63253",
+      "stored_sha256": "fddcd8db9780f120a2726279eb101187f49a765782147de90fa433d31266e358"
+    },
+    {
+      "source": "a/numpy-full/test_ground_evap.xml",
+      "path": "a/numpy-full/test_ground_evap.xml.gz",
+      "source_sha256": "5727abd7c170176270ff909227fc4b421c07be48ada212073342bf4485f4f9c7",
+      "stored_sha256": "a32e95e673e7625a2a5b963d4346f3b7c0010e9389146b275213f5157bc7f701"
+    },
+    {
+      "source": "a/numpy-full/progress.json",
+      "path": "a/numpy-full/progress.json.gz",
+      "source_sha256": "58a87b64bf071c658adb730c98f1ba7e3569535a805d95db33a6fa2e443d16ae",
+      "stored_sha256": "d21fde3306503122cb303ff7be4b2e6cb9b3ac5cd22fe61aa93f06b16da5d4dc"
+    },
+    {
+      "source": "a/numpy-full/test_clm_wetbulb_column.xml",
+      "path": "a/numpy-full/test_clm_wetbulb_column.xml.gz",
+      "source_sha256": "87bb70830a91b6767f5c5daaf9109846196574d21b72f1affe9745f54e6aa2bb",
+      "stored_sha256": "8914b576936344863f9e6ab61b9df4be0a6d9b29d1d7f61f6d5d7a78881e5a82"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_evaluation.xml",
+      "path": "a/numpy-full/test_fluxnet_evaluation.xml.gz",
+      "source_sha256": "7ffacef2004209fc742457374c5b968fa215de2e081a61ffd5b426d00d6d8cc2",
+      "stored_sha256": "5aba229df9276eb34504ec59748053c4515764777880a8bf914f9cab7348053a"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_height_summary.xml",
+      "path": "a/numpy-full/test_fluxnet_height_summary.xml.gz",
+      "source_sha256": "b4f3771767d1e5ab7df959e7674b8d7c97508482d7e9a29bba7b198f6415067e",
+      "stored_sha256": "f886a9c2099e78fbe9d4740b6aec6557f10dc46fa6a608b24c6a99b292221ef6"
+    },
+    {
+      "source": "a/numpy-full/test_irrigation.xml",
+      "path": "a/numpy-full/test_irrigation.xml.gz",
+      "source_sha256": "5136d889b6711dc155ef4bfb4e9f96d48acdbfbf39be5582eadfd177844cacd0",
+      "stored_sha256": "7c4a0b0f1f6e1b07317100a82ead69ab5bbd9a56c08a2a24204368810eb3ab06"
+    },
+    {
+      "source": "a/numpy-full/test_clm_bgc_column.xml",
+      "path": "a/numpy-full/test_clm_bgc_column.xml.gz",
+      "source_sha256": "4b061f69d5f30e83c58b1dbbe30260db2ba5390e901fb754ea47d7e07281cc2a",
+      "stored_sha256": "f1a45d1b53a6f62405a5a5c0f35992b883d67005cdb9e8218e504092c8ca165a"
+    },
+    {
+      "source": "a/numpy-full/test_glacier.xml",
+      "path": "a/numpy-full/test_glacier.xml.gz",
+      "source_sha256": "946bdea07911484b7fab2160417011b19a0066e2fc0d158cca7fc40bc3481a51",
+      "stored_sha256": "1715b21f0e4353845aafd289103dd694c70aed577767bb7db76ec87194e4e50f"
+    },
+    {
+      "source": "a/numpy-full/test_clm_phenology_column.log",
+      "path": "a/numpy-full/test_clm_phenology_column.log.gz",
+      "source_sha256": "0dd9bfa2c1b38eff6cd0e67203a067d509a2419643be06f5c44133318e0bd163",
+      "stored_sha256": "4cd54b31f674cfe221dbdb73a9102c14afbd6083ea27bbe860bad62b59d37565"
+    },
+    {
+      "source": "a/numpy-full/test_snow_energy_routing.log",
+      "path": "a/numpy-full/test_snow_energy_routing.log.gz",
+      "source_sha256": "327daf92f9ddc2a79c674e8f508f3433cfb113427347bc256a22873f356de818",
+      "stored_sha256": "5fd33b4b0c30925fc52956a5e066822ee42ac4f45ac2d63675ff50cb2ebd6c42"
+    },
+    {
+      "source": "a/numpy-full/test_decomposition.xml",
+      "path": "a/numpy-full/test_decomposition.xml.gz",
+      "source_sha256": "fc0a4a7e1c58e96387eeb4cbcd25d20871ce98b40663d72a9c7b827c85141172",
+      "stored_sha256": "fdfd0d1a746ccf042e487a7dd3ab0318a7bd5af950cd11ef2f21a3cfbb029e51"
+    },
+    {
+      "source": "a/numpy-full/test_frozen_soil.log",
+      "path": "a/numpy-full/test_frozen_soil.log.gz",
+      "source_sha256": "0c15948e3e16483bedf87bc0f9680c9fc3067d50fcb935f6c932a701a875dec8",
+      "stored_sha256": "65018e5956435a37dc5d8bc3937d92542a1c2bd3b570b6f1efdfc821e00ce949"
+    },
+    {
+      "source": "a/numpy-full/test_multilayer_snow.xml",
+      "path": "a/numpy-full/test_multilayer_snow.xml.gz",
+      "source_sha256": "bcfee9d6199cbafe3a8d2b3e993bc6f664e067f21a744f283742b49b82e9d777",
+      "stored_sha256": "90d6106823b295e378d371293d464efb947a53a71998cab29677a932298fcfc3"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_solar.xml",
+      "path": "a/numpy-full/test_fluxnet_solar.xml.gz",
+      "source_sha256": "9b72d4f133452dbedd1c2cb6c8ec986ca1582dd1d9a9836d8412b0f2c645f102",
+      "stored_sha256": "1f973da1162ecc95bef6a8423c49d15ad961071be90b509ffb96361c692b8371"
+    },
+    {
+      "source": "a/numpy-full/test_surface_secant_rounding.xml",
+      "path": "a/numpy-full/test_surface_secant_rounding.xml.gz",
+      "source_sha256": "47cc5b605dcfadc1f3b228728202e52cb2094e7f9384236e4bd319f327aca3d9",
+      "stored_sha256": "802b5986f1f3225169f869ea9494c8e26a38a138ec2de1af1a4cdc5233c1d707"
+    },
+    {
+      "source": "a/numpy-full/test_clm_irrigation_column.log",
+      "path": "a/numpy-full/test_clm_irrigation_column.log.gz",
+      "source_sha256": "5aa6639c16df6a2554f48ea6ccf341f8df988d28d173549e7d6cbcef83a2976e",
+      "stored_sha256": "4ad987f23d553954483dd2b0675d23e76c176bd95d4ed41fcae51effad6eae61"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_stomata.xml",
+      "path": "a/numpy-full/test_canopy_stomata.xml.gz",
+      "source_sha256": "06c2fa7e91e5dcc4db6ddf3076a510ffc1f97aa4cb770c048851c01d12c5fcfe",
+      "stored_sha256": "c0b202c403add0280e0889e093e43f5d2ecf54461a10c218ff8412d76d9c7183"
+    },
+    {
+      "source": "a/numpy-full/test_hrldas_comparison.xml",
+      "path": "a/numpy-full/test_hrldas_comparison.xml.gz",
+      "source_sha256": "3ffcae1af6edf03c40ee19d7b77d6fd0978f02094d690e2756f6e0eb9d931986",
+      "stored_sha256": "ec80d390beaf9d5a15ff28bb6fd0de9f307c63e27626cb09337e4c65f2a556d0"
+    },
+    {
+      "source": "a/numpy-full/test_clm_tile_column.xml",
+      "path": "a/numpy-full/test_clm_tile_column.xml.gz",
+      "source_sha256": "c95bf365c615700291d4fc281173929cc27816bcc5205081cff30769e3a9e29e",
+      "stored_sha256": "30eba9d5ee0b65f0b3d932be4063cfe9da8758cfb0c9e52587d3f0cb6b8ca6c5"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_native_runner.log",
+      "path": "a/numpy-full/test_fluxnet_native_runner.log.gz",
+      "source_sha256": "50990d134123ff5a81f1956bd996caffb8c7d174606473eddc3fe991ebf65475",
+      "stored_sha256": "745d03a8db4e58c8947d18238450f58df680979b0cd588f7dd87649bce336fa0"
+    },
+    {
+      "source": "a/numpy-full/test_snow_forcing.xml",
+      "path": "a/numpy-full/test_snow_forcing.xml.gz",
+      "source_sha256": "1cda08eddd0466fda73d4131d2103f304fdcea0850bf1a3d1cd7410d9b44050e",
+      "stored_sha256": "aad1b35e128f1b50d6ebcd7ed1668b83e6d6d44c8a3799a05712fc80b0423458"
+    },
+    {
+      "source": "a/numpy-full/test_dry_condensation_phase.xml",
+      "path": "a/numpy-full/test_dry_condensation_phase.xml.gz",
+      "source_sha256": "fd8398f11f4df0cbb4ca0bdd77f5fbf3ac8dfd2fbc25774b64c00daa8729ba6d",
+      "stored_sha256": "bdb8c55154159f668fc9bca329bbfb241188edb83b2992f87bf8365de74e866d"
+    },
+    {
+      "source": "a/numpy-full/test_snow_evolution.xml",
+      "path": "a/numpy-full/test_snow_evolution.xml.gz",
+      "source_sha256": "a210a2525d7281eb30bea2429b4b5ebfc630eb97225fce872d44851047fabe4c",
+      "stored_sha256": "239e699981f062ada6e255114014f0b69a096298c2b5e5eefdaaf5aa7c11b52e"
+    },
+    {
+      "source": "a/numpy-full/test_snowpack.log",
+      "path": "a/numpy-full/test_snowpack.log.gz",
+      "source_sha256": "57c368fbf8b1e826a5f71165fee062631201cc2a6823f2af0dc1f73992012096",
+      "stored_sha256": "c28a5c9cb5d5a2d8c39f93df5a67b61dc8d24644a9be768f982130c408ec0591"
+    },
+    {
+      "source": "a/numpy-full/test_vic.log",
+      "path": "a/numpy-full/test_vic.log.gz",
+      "source_sha256": "07ac87eb87a4f71525b1af5908dfa76321c202efa37a22660d5638c32a78544e",
+      "stored_sha256": "4960a7de93f9b1b0b539cc34f3fddbbd8fcee715e1b8a814214262a23a6fff0f"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_energy.log",
+      "path": "a/numpy-full/test_canopy_energy.log.gz",
+      "source_sha256": "384636410ab558feed1afa673c8439591c2e8f1d15bab2a34f91c201bb3c30fe",
+      "stored_sha256": "173299eaadb8e1a84a4303f3d88ee8657de5cd7f6509746bdc6d5e3f6e6263ec"
+    },
+    {
+      "source": "a/numpy-full/test_soil_drainage.xml",
+      "path": "a/numpy-full/test_soil_drainage.xml.gz",
+      "source_sha256": "f3ef3c59edfe4547a127bf8c5b159c2716986e5481bfe188a8319b8ddee4cdce",
+      "stored_sha256": "d2633ab33b766eac6a1cf79358a3a1d24658a86538a858adfd7a027eafae39f1"
+    },
+    {
+      "source": "a/numpy-full/test_surface_secant_rounding.log",
+      "path": "a/numpy-full/test_surface_secant_rounding.log.gz",
+      "source_sha256": "c9bcb144c21494e85f380ae0032b056c0b060b27bbfcfada9bc048d41195af09",
+      "stored_sha256": "7fdc4c99cf4f72d6a2e3f8e7ec0b745ec875b5b7017541bfb88141625f6ef649"
+    },
+    {
+      "source": "a/numpy-full/test_soil_uptake.log",
+      "path": "a/numpy-full/test_soil_uptake.log.gz",
+      "source_sha256": "ed0d6c079627b8413ba6fa1e9b0419bf2bb3f2c7f1917b91d9f908f1f9a678d2",
+      "stored_sha256": "a40fec076fc4e20eaabf7217bc314c2064ea4ae55ea7e3743a591929566c52ab"
+    },
+    {
+      "source": "a/numpy-full/test_snow_vapor.log",
+      "path": "a/numpy-full/test_snow_vapor.log.gz",
+      "source_sha256": "38025b23df21b23d371cb04835992ad56739231045e0683deb6a80c6d699b19d",
+      "stored_sha256": "c54e7c86132d904bbf0d81185e6e6decaf70d22c79826efd1d35f59f37642b6d"
+    },
+    {
+      "source": "a/numpy-full/test_precip.log",
+      "path": "a/numpy-full/test_precip.log.gz",
+      "source_sha256": "7256316818e0211d1c4dc30d19c5b69dd944b4f7c923e409b47993643d15fb98",
+      "stored_sha256": "c69bcabb23c095a354e2a5ae276f8431393e3b5548c55fe7e0488de758b64578"
+    },
+    {
+      "source": "a/numpy-full/test_snow_forcing.log",
+      "path": "a/numpy-full/test_snow_forcing.log.gz",
+      "source_sha256": "28f94f35a697eb110a559cd36372f2edb63dbb960fb282482e1dcc485cb9a73e",
+      "stored_sha256": "95e328a228e44741580c2874ead9dffbc49f37a5f9c5b898f7d3fe9072d92a7c"
+    },
+    {
+      "source": "a/numpy-full/test_clm_wetland_column.xml",
+      "path": "a/numpy-full/test_clm_wetland_column.xml.gz",
+      "source_sha256": "6628da4c36635640efe9e64093e5feb199d0fd0aa1647bacf83598f0cbb942db",
+      "stored_sha256": "f393d4c7c0f18a7c7db3ef55f446743a048ff7e5d7e6459b52381e2f35d2e9ea"
+    },
+    {
+      "source": "a/numpy-full/test_clm_layered_canopy_driver.xml",
+      "path": "a/numpy-full/test_clm_layered_canopy_driver.xml.gz",
+      "source_sha256": "774123b9993c1523bbda7e6ecdc27074b6f98e0b31018fa6fc3d05352e84e336",
+      "stored_sha256": "eed066551709da9e397d1441c563b9f0bd63f863262e400923161e802062b9cd"
+    },
+    {
+      "source": "a/numpy-full/test_column_heat.xml",
+      "path": "a/numpy-full/test_column_heat.xml.gz",
+      "source_sha256": "fa765e73e390159e9e423fb32b390308f10334f2ff85cef77933ddb42998f9e0",
+      "stored_sha256": "b4dd77fdbf92997641bbb8cda1fe8a9373be27474c2abb929f183f09fd0ff208"
+    },
+    {
+      "source": "a/numpy-full/test_plant_cn.xml",
+      "path": "a/numpy-full/test_plant_cn.xml.gz",
+      "source_sha256": "2507d27dd882e5ffab1e505c910e4db628cc539db0f539bfb81145626f38dc64",
+      "stored_sha256": "d50a59a10c545b459de62daea65f025d40c72b98127afc517c01ce4691ee3a2e"
+    },
+    {
+      "source": "a/numpy-full/test_clm_driver.log",
+      "path": "a/numpy-full/test_clm_driver.log.gz",
+      "source_sha256": "39fb80446871d21dffd0fb45c7ab91991bf2807f361746bf7144187719152d0a",
+      "stored_sha256": "fe5c122b6f5baea0eff6b1049e458ccce67cfbd622d7a5c388086cc3682015b8"
+    },
+    {
+      "source": "a/numpy-full/test_snow_evolution.log",
+      "path": "a/numpy-full/test_snow_evolution.log.gz",
+      "source_sha256": "8f819b75940eb4b1dc61404cc16ea2a90c4db443899f846744ae5a24ffbdc6f6",
+      "stored_sha256": "6efdaef641099c103a4a2aaef3d5a5fc19cd5a2afb2f459079f5a9ff6908d52e"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_deposition.xml",
+      "path": "a/numpy-full/test_fluxnet_deposition.xml.gz",
+      "source_sha256": "89c1a3aee2ff8fa0ea19075a7415ddec35bdf5dea69f07bf8e112faade9fcd77",
+      "stored_sha256": "14f45b2ba7826510e779f433e6ce8ecd66671475d6a6b824beb67436ed9983ee"
+    },
+    {
+      "source": "a/numpy-full/test_molten_precipitation.xml",
+      "path": "a/numpy-full/test_molten_precipitation.xml.gz",
+      "source_sha256": "f21a709a4d491b52cf0dc2f86325c654c1088f1d3d58d013d3bde6039740cda2",
+      "stored_sha256": "033884c73d2b50e258aa527ad3dcde9fecdc4338e7df3c2cbfc2d4ef10af6149"
+    },
+    {
+      "source": "a/numpy-full/test_runoff.xml",
+      "path": "a/numpy-full/test_runoff.xml.gz",
+      "source_sha256": "3aee938b2627f2843b3a40bea3a89baa309ada13d6e50fe297a6a1c314cb1277",
+      "stored_sha256": "f7581bad9ec8144addd70731ab0f732e20e4adaafd3a4a521cd54624e23fa58a"
+    },
+    {
+      "source": "a/numpy-full/test_clm_vic_column.log",
+      "path": "a/numpy-full/test_clm_vic_column.log.gz",
+      "source_sha256": "fb8c74cc61124325468de5851cf6e25403d9fbf479309e8eccfe49a83699fbee",
+      "stored_sha256": "046dddeb70800444c44d74a852c4682f4fd3702f0d6029fbdb5960cce3bef93c"
+    },
+    {
+      "source": "a/numpy-full/verified-summary.json",
+      "path": "a/numpy-full/verified-summary.json.gz",
+      "source_sha256": "fc86f432902aa34441fa494d016f65836a84f664d683b67d8e8ea09771f9e6d2",
+      "stored_sha256": "874fc9d8b3979c826bcbbe510c29a390a09426d0e822c4e01f57850a63ec7007"
+    },
+    {
+      "source": "a/numpy-full/test_clm_layered_canopy_driver.log",
+      "path": "a/numpy-full/test_clm_layered_canopy_driver.log.gz",
+      "source_sha256": "e04f5841cd1a3373bfdad3cc4aafe2c8957bd5e763a4a3813b88a0aad0d757a8",
+      "stored_sha256": "645604ed1707bb6c095d6a877972b88bb20febf8b91941b77a1a3a0a89e8fb1a"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_interception.xml",
+      "path": "a/numpy-full/test_canopy_interception.xml.gz",
+      "source_sha256": "630b0bd24d0180b4c406ac470bb8d3fd1fe52a1aa0efee410b76074b1630c679",
+      "stored_sha256": "07c8edf167bf0a6fa702b7e9502af665ac31a2d71b797b464f702228d1fa640c"
+    },
+    {
+      "source": "a/numpy-full/test_numpy_benchmark_checksum.xml",
+      "path": "a/numpy-full/test_numpy_benchmark_checksum.xml.gz",
+      "source_sha256": "0804a58dfacd34d471b8df870a58403f034eba378a1fc546e3acd64a024e0b14",
+      "stored_sha256": "29fd9b9ab578fa1bcb56af8f03a866f3e1a0975337dbee63fd6f7ae1388f0049"
+    },
+    {
+      "source": "a/numpy-full/test_clm_wetbulb_column.log",
+      "path": "a/numpy-full/test_clm_wetbulb_column.log.gz",
+      "source_sha256": "b65771518c45d3baab3c3925f55dce93063d63fb8c5d5192e557a8d5d005905c",
+      "stored_sha256": "f8ca8ee3bfbdbb51c31c3e99e40ad726272aec9e7a71b93d45608b321fdf87b1"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_stomata.log",
+      "path": "a/numpy-full/test_canopy_stomata.log.gz",
+      "source_sha256": "19e95f03931508bcb63d5f1f276741db94fd3f8f0399d2690ed306a73c3ba6c7",
+      "stored_sha256": "b901aa8b1bcfb554e9c0003a2198cad92094dcfa81164008b220ae6d1f56a35d"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_evaluation.log",
+      "path": "a/numpy-full/test_fluxnet_evaluation.log.gz",
+      "source_sha256": "6cfb81cd439929e4e749485a362722144a59599ffda343ffee29b7b0f55e2467",
+      "stored_sha256": "7d09d1d058e6979f8ffeecb047987357c8d5d6e26653989fae84ec6e6b45b812"
+    },
+    {
+      "source": "a/numpy-full/test_soil_drainage.log",
+      "path": "a/numpy-full/test_soil_drainage.log.gz",
+      "source_sha256": "1bfeb2f8fd5829af6bb4d4ff93b5edcf85498fa9038edc950bee145590f2273a",
+      "stored_sha256": "c7cfda591d2413a105a1cf789ef7ad606814537716cacd072e3a822a21136a16"
+    },
+    {
+      "source": "a/numpy-full/test_snow_compaction.log",
+      "path": "a/numpy-full/test_snow_compaction.log.gz",
+      "source_sha256": "59907462a8d5fd93406cdf4c7d1eb2f7b7a96664ae85c4ec202693d419cd019e",
+      "stored_sha256": "7de09a36a84daa549965a7d22b65ec76ee8ccdbcd18694ae0d0889b18771df2e"
+    },
+    {
+      "source": "a/numpy-full/test_ground_evap.log",
+      "path": "a/numpy-full/test_ground_evap.log.gz",
+      "source_sha256": "19e95f03931508bcb63d5f1f276741db94fd3f8f0399d2690ed306a73c3ba6c7",
+      "stored_sha256": "b901aa8b1bcfb554e9c0003a2198cad92094dcfa81164008b220ae6d1f56a35d"
+    },
+    {
+      "source": "a/numpy-full/test_soil_enthalpy.xml",
+      "path": "a/numpy-full/test_soil_enthalpy.xml.gz",
+      "source_sha256": "745605eff605e72777ee3cdaeea02a25e7a31e208df9e3abf9e73c45122579a1",
+      "stored_sha256": "fcba125d7b11af474c5c97fc4c3377653113f59b17c0191166597f014b8add3c"
+    },
+    {
+      "source": "a/numpy-full/test_stress.log",
+      "path": "a/numpy-full/test_stress.log.gz",
+      "source_sha256": "f4c61c0ac8f55c6c9a2d6c593731bf5f8c4a6c5bebbe514284fd4f899818f9e0",
+      "stored_sha256": "fb86ddcf5fbf9280788886b991ce5ae796a2a846e50f79e6a5761135cfbe4172"
+    },
+    {
+      "source": "a/numpy-full/test_wetland.xml",
+      "path": "a/numpy-full/test_wetland.xml.gz",
+      "source_sha256": "f3144600c8c0d26394f1cb3647d9d2c2d9792137f2515b01accc12755160e436",
+      "stored_sha256": "36a30940bc3343a82fc8e67300b4df5ed9f31ba37406cbf66abee191b8c5f2bb"
+    },
+    {
+      "source": "a/numpy-full/test_soil_uptake.xml",
+      "path": "a/numpy-full/test_soil_uptake.xml.gz",
+      "source_sha256": "dccee3c67b404978966d6fa4882e0cb6bad02532435d723186b2bb4014678d59",
+      "stored_sha256": "a15a451e267c9e1d56888d92046b6edb9f91d7d3e5662172d33d330b3a73d0f7"
+    },
+    {
+      "source": "a/numpy-full/test_most_stagnation.xml",
+      "path": "a/numpy-full/test_most_stagnation.xml.gz",
+      "source_sha256": "6ec79a14b0e80bc307e30b1a061125b3ccd913004545a3d485821dd260778a45",
+      "stored_sha256": "c0219da90c2cf8156c949c73a9acff75a732d8344439ff0459455008407cd6a7"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_radiation.xml",
+      "path": "a/numpy-full/test_canopy_radiation.xml.gz",
+      "source_sha256": "9de31d6d10c5c1ffa1325ce358d84566142ba4c9722e5e74e5e0cbf3fac24254",
+      "stored_sha256": "7c2bc28e0436a9c3b96c6638045ec4b2f12693158f540d84bfc39e39892b3968"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_column.log",
+      "path": "a/numpy-full/test_canopy_column.log.gz",
+      "source_sha256": "540e6d946349fa24fc8a8189c7667ddffdff3d0a6bd1dd66c3ec983d4764277b",
+      "stored_sha256": "a8bdf45b72adbc8330d70e87e57ac7465a644b7298424731359aa11d803bf58b"
+    },
+    {
+      "source": "a/numpy-full/test_phenology.log",
+      "path": "a/numpy-full/test_phenology.log.gz",
+      "source_sha256": "2ae8f2817e9958cc181e54334e64cdb0f822408aefd258f49af7ed61b53a91ca",
+      "stored_sha256": "3d24af44e644d6bff6b0afb6643c5828eec4cb3ceb40f70999bb5b81bc3ca1a5"
+    },
+    {
+      "source": "a/numpy-full/test_soil_enthalpy.log",
+      "path": "a/numpy-full/test_soil_enthalpy.log.gz",
+      "source_sha256": "b09d241111e3b4c19eaefdf3ba4c3ee4cbc877351ea27fb901bdbf0c95b21be6",
+      "stored_sha256": "d7bba045ebe8a12f53da1ecb15a86a885608231ea72d0af0da6510969bddd705"
+    },
+    {
+      "source": "a/numpy-full/test_snowpack.xml",
+      "path": "a/numpy-full/test_snowpack.xml.gz",
+      "source_sha256": "1bb5efd2da146e39c05327c27a37336414a43525e3c6431755df3cb9b23f27a2",
+      "stored_sha256": "0ad587a5006af3bf133e46986add592dcee7c8a6d78fb897b2dc355381acbc81"
+    },
+    {
+      "source": "a/numpy-full/test_phase_regularization.xml",
+      "path": "a/numpy-full/test_phase_regularization.xml.gz",
+      "source_sha256": "dc2dc15fc9539ad97bcd61875896af4a5119bce4c6ae6e188c58ba26e1ea2d09",
+      "stored_sha256": "f0adf18ce5f0c73002819c85a53f36aa8cd864fabfc9f13e3e2a07be2ad7e66e"
+    },
+    {
+      "source": "a/numpy-full/selection.json",
+      "path": "a/numpy-full/selection.json.gz",
+      "source_sha256": "039b77365c3c7cc147862c5abad2f0f4fd3c465c7097c20bd2dda8477970a842",
+      "stored_sha256": "1c56c27412bec9fda1b4a5e23a3fd242c74ffd72419aaeb59d89fef605344102"
+    },
+    {
+      "source": "a/numpy-full/test_clm_enthalpy_driver.xml",
+      "path": "a/numpy-full/test_clm_enthalpy_driver.xml.gz",
+      "source_sha256": "f6822a1b84d1a2b4d08027834b737e0b18ea9dcb236e78f80e3e52159761c8c8",
+      "stored_sha256": "c3dff2e6b338beab9a952e6585a1fd37c68805de0317b825a64afd26531c7bd5"
+    },
+    {
+      "source": "a/numpy-full/test_clm_driver.xml",
+      "path": "a/numpy-full/test_clm_driver.xml.gz",
+      "source_sha256": "cbba42264306326f9803465abde19a10dc3cf1aebf40f75e87f5bb12b7f4a537",
+      "stored_sha256": "ad701a0f3ff96dae9e73893ef0e670a0b6573cda9c67594839ac9333ca9ee65e"
+    },
+    {
+      "source": "a/numpy-full/test_wetland.log",
+      "path": "a/numpy-full/test_wetland.log.gz",
+      "source_sha256": "e47c2b4a07710a12b6743639e2c35f4a5824af3a30c584242088525bc541c563",
+      "stored_sha256": "b42a6ba332374cda1c1a6677ebcb4a9f6551f57797f1cf395ae793a18edfef38"
+    },
+    {
+      "source": "a/numpy-full/test_hrldas_comparison.log",
+      "path": "a/numpy-full/test_hrldas_comparison.log.gz",
+      "source_sha256": "91e7809b3e27d7be1de9408076076bc6e6dd5b4dae4cd48d190cef0d8ffa906b",
+      "stored_sha256": "2089129c9fa6d03bbf2811d31465dce1a353ce9dffea503a5cc6cd9c3befd1a8"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_soil_operator.log",
+      "path": "a/numpy-full/test_fluxnet_soil_operator.log.gz",
+      "source_sha256": "8b058f6253219b25661b1196be4763babab3a3532c8375f3859a7e15eaf04012",
+      "stored_sha256": "fa721ae21dbb0082444fe4a3fc9472502b93941eb4e0d7ad7dcd8c49678b61cf"
+    },
+    {
+      "source": "a/numpy-full/test_frozen_soil.xml",
+      "path": "a/numpy-full/test_frozen_soil.xml.gz",
+      "source_sha256": "00a19b134bf8ba1919b0665a9b9fcb9c150f15052d892679a87b80bc5a3f0efd",
+      "stored_sha256": "a6f324623610dac981ead767f841f4c2d5c594b0b876c6fb74a670360a5be9c0"
+    },
+    {
+      "source": "a/numpy-full/test_surface_snow_branch.log",
+      "path": "a/numpy-full/test_surface_snow_branch.log.gz",
+      "source_sha256": "8b15c6f10b05ecc20372cbc6047c6a696babf72407b92cbd91b30af1b6f8c2be",
+      "stored_sha256": "6efc243b91a71ff60fe774ef19d959da2c5d79f07daf4e9ea71571dc410daef6"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_native_runner.xml",
+      "path": "a/numpy-full/test_fluxnet_native_runner.xml.gz",
+      "source_sha256": "93132909315fb37c6e3c6111fd98ddb7765b7250e4fd93761d3bfd99ee9898bb",
+      "stored_sha256": "f76140ec81a2506c474effc3f62b2e76270b994452d6cc451caf4e1cd3fa4b36"
+    },
+    {
+      "source": "a/numpy-full/test_surface_independent.xml",
+      "path": "a/numpy-full/test_surface_independent.xml.gz",
+      "source_sha256": "411a55eab7263461c3f09a7e36321b5b3d2278590a09aeb6d0ecfcd7c2245cbd",
+      "stored_sha256": "5ea853da960d69539bb997c9e06e6fd8260d47052de470750edd15f8a865699a"
+    },
+    {
+      "source": "a/numpy-full/test_precip.xml",
+      "path": "a/numpy-full/test_precip.xml.gz",
+      "source_sha256": "987b009dc441f5d3bdf6652a85f8ea81dc10720e590e769a8d0eb71e7c2aab88",
+      "stored_sha256": "a9e50cd6b0bac45b0657066dd1f55711c4d3d5014a6feaf09cd9b17d0b862e6a"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_height_summary.log",
+      "path": "a/numpy-full/test_fluxnet_height_summary.log.gz",
+      "source_sha256": "bef8623b25b25ab880ba85efeef2d92c7d65627f885fe3b9c983593ce2c4795b",
+      "stored_sha256": "8073b02ac88b15cf1b365bf74b50f51f2cdb4505768cfa933ee1771eab6476df"
+    },
+    {
+      "source": "a/numpy-full/test_numpy_benchmark_checksum.log",
+      "path": "a/numpy-full/test_numpy_benchmark_checksum.log.gz",
+      "source_sha256": "05d90f1b42234a898bc8c3511fd81afe39e578d31635335fadf9a77181c9110e",
+      "stored_sha256": "1fa40dbeb1446f6f3e3094857405f68d346fa09428ce4621163dfc8573b52e2b"
+    },
+    {
+      "source": "a/numpy-full/test_snicar.log",
+      "path": "a/numpy-full/test_snicar.log.gz",
+      "source_sha256": "7675afcbf0656da4d29291a330ffc7200eb716c466b0dd4338f6eecaa12bf6a4",
+      "stored_sha256": "4895724f42f675efe363ac9ad49e1d925b063ed02acce36e24bf84afc8d42321"
+    },
+    {
+      "source": "a/numpy-full/test_stress.xml",
+      "path": "a/numpy-full/test_stress.xml.gz",
+      "source_sha256": "2652ddeeb3a1666d0856cdfbab1826ffe9fc367f3db7d1378230c9a5da7fcef6",
+      "stored_sha256": "948aa5ec5f3da5bd6084411bfc23df61305055591223a5abd2c44e1bff3dcac9"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_phase_energy.log",
+      "path": "a/numpy-full/test_canopy_phase_energy.log.gz",
+      "source_sha256": "faacc97cdc25a0836d92d7dc4af133587800df448e899f4b6d88fe8401295a2f",
+      "stored_sha256": "95afcfeeea91723564161ab4a985864499a4d1a43bbc889264143c2581c510df"
+    },
+    {
+      "source": "a/numpy-full/test_clm_crop_column.log",
+      "path": "a/numpy-full/test_clm_crop_column.log.gz",
+      "source_sha256": "20a889025cc1ad19858dbf3b9662f4e7adef60493fd3a660e082dceb1815d98f",
+      "stored_sha256": "743b57a7f3be177fca968ab30f52f221b716e015c177e62bab67361f8c80139f"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_snow_radiation.xml",
+      "path": "a/numpy-full/test_canopy_snow_radiation.xml.gz",
+      "source_sha256": "7ed70e36ce9d68ed7d0140e34a6a549991dcbc28c5e2a9eaa4431342cbb3afe8",
+      "stored_sha256": "8c7681402addf64986e1b0468146b11380d767b5e41c54a1015ba85d2695474e"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_most.xml",
+      "path": "a/numpy-full/test_canopy_most.xml.gz",
+      "source_sha256": "fb1c50a7be22b18d3db447964904355deee182a73c0c37f48c9ae7fdd91fba40",
+      "stored_sha256": "77c067cf5d55433114fdd70f602e77ddbc6da870479edc720a26ebc774945eff"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_snow_radiation.log",
+      "path": "a/numpy-full/test_canopy_snow_radiation.log.gz",
+      "source_sha256": "8a172545199d60658b51895fbdbeae88d963398daceba8e03f3b7b88ecd83a66",
+      "stored_sha256": "2d28283d5dbefe4e979b11aaafc5aba910a6861470ab0d05b4d277bbe4eb02ae"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_interception.log",
+      "path": "a/numpy-full/test_canopy_interception.log.gz",
+      "source_sha256": "835e4d3579a93870acc3d4178e5a14c5290a425268a8b461388f05f208e25b8c",
+      "stored_sha256": "1f2a72df4c592368a2824c9d686179c87ed6f34e8ddd081b92af42c12c03d151"
+    },
+    {
+      "source": "a/numpy-full/test_snow_heat.xml",
+      "path": "a/numpy-full/test_snow_heat.xml.gz",
+      "source_sha256": "ca5c2c9b20c481d082feb65d9a16246eb190468fd43e5dc0b00aba6298adacb6",
+      "stored_sha256": "fc806046990586926de26787987aca98d0ae92968234dd5b4c0deb69111beee5"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_loader.xml",
+      "path": "a/numpy-full/test_fluxnet_loader.xml.gz",
+      "source_sha256": "84d97b0121cb24be2d1c989ad2e11cda857bb306ea26c81fdcfba85a654c11a1",
+      "stored_sha256": "ea18aa45bd33eb01c1bae3ad3719d298d8d3f6bca3bd9aef33b32ab1fc19b32b"
+    },
+    {
+      "source": "a/numpy-full/test_wetbulb.xml",
+      "path": "a/numpy-full/test_wetbulb.xml.gz",
+      "source_sha256": "d8bc0ae13c9c4e00c682a96e6255dc1e31a9157c32b40fff5c07a5c098a36e96",
+      "stored_sha256": "90c97ee2c5b27f5c66930f180df8b97f5fd1a39904fb6e8135830a8de6a4ae83"
+    },
+    {
+      "source": "a/numpy-full/test_dry_condensation_phase.log",
+      "path": "a/numpy-full/test_dry_condensation_phase.log.gz",
+      "source_sha256": "e4bc44d3c5f85cc9898efcc86c7ca16ae983811829513a75e6f3a364232aa1de",
+      "stored_sha256": "ebd6b569372ca7df5d2aac97dd56e397be781137f8e9711b633654ababbc7134"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_energy.xml",
+      "path": "a/numpy-full/test_canopy_energy.xml.gz",
+      "source_sha256": "dabfd02232230ac9cec6b25b7ea5149c825881cddcdde13f8a9b716acc615722",
+      "stored_sha256": "96677b1242e187ceb89e1827bd092d1499ff128e35630381eab1f07cb4bd0dbb"
+    },
+    {
+      "source": "a/numpy-full/test_options.log",
+      "path": "a/numpy-full/test_options.log.gz",
+      "source_sha256": "db7f09414dbfd608dbdbc9dc30246e56e6598dc0e7fbf509c46c3bdd43c83e32",
+      "stored_sha256": "5556e09740c6de4dbb2d814f7baec9abb1cc94868ff6929e96c983a6e08f2179"
+    },
+    {
+      "source": "a/numpy-full/test_leaf_root.xml",
+      "path": "a/numpy-full/test_leaf_root.xml.gz",
+      "source_sha256": "c6810f3a5e6477d995124fa59e9c66a161772a4050e2d81a01991effdd5b12da",
+      "stored_sha256": "47de1ebd0aeb43a96ad248b3c63e453a005f7ee79f2c09cb622cb48aef5c2c3b"
+    },
+    {
+      "source": "a/numpy-full/test_snow_heat.log",
+      "path": "a/numpy-full/test_snow_heat.log.gz",
+      "source_sha256": "1d4a967e99132fbcd2482f66d3283a827653f80cb000f49956a5b5ff1408d39c",
+      "stored_sha256": "02b77647a7d456dc0e4a880e08b9953b042d0d086ef7991b5aedc35781d93019"
+    },
+    {
+      "source": "a/numpy-full/test_validation.xml",
+      "path": "a/numpy-full/test_validation.xml.gz",
+      "source_sha256": "27cdbc0febb52bcfb62451b305cea3bc7e47775ef13da559069266af3cf02a91",
+      "stored_sha256": "6b6e44c680b64625a5bdc0350063157a2812b6c8353ad42e00b864d33570e4e1"
+    },
+    {
+      "source": "a/numpy-full/test_snow_thermal.log",
+      "path": "a/numpy-full/test_snow_thermal.log.gz",
+      "source_sha256": "f36c172e4affb02226dee29970eaff0f4e5b7d12ae8c6c385d17a13c7e711b4c",
+      "stored_sha256": "4fce10d43dbd9a29a4a92cc80c6334bb65ac4ed82cb187ba5cfeea3b47d4c855"
+    },
+    {
+      "source": "a/numpy-full/test_phenology.xml",
+      "path": "a/numpy-full/test_phenology.xml.gz",
+      "source_sha256": "ffdfa81106763dde16a2d3f01a522187a2482ae694fd92ec1e6a1bbbaec83698",
+      "stored_sha256": "2d4de3d79b26071e08c4a91a4e59db720412c8ee8d1af44a7ad89b41510031c6"
+    },
+    {
+      "source": "a/numpy-full/test_column.xml",
+      "path": "a/numpy-full/test_column.xml.gz",
+      "source_sha256": "b5f30cf4f5cda5325cc5ac5f7a3866946c9ef67f6b91a94293c0cf583e8f487c",
+      "stored_sha256": "159f816ed41fe5408c7efdec41106a7d819bf10c8f3be21446443f76482c719d"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_loader.log",
+      "path": "a/numpy-full/test_fluxnet_loader.log.gz",
+      "source_sha256": "caf56757b18b52a7c892a24609a6f4ec6e8900c554da434531b573fc2a87250b",
+      "stored_sha256": "3859616e271ea2a1cd14a0a3112054b4ebb378cc1b836f85f4ddf1b9ae07cc86"
+    },
+    {
+      "source": "a/numpy-full/summary.json",
+      "path": "a/numpy-full/summary.json.gz",
+      "source_sha256": "7d5d41f34e57b176c6c9119b54255c451afb7a6fda86a96d0c3bf19e9b9c0d60",
+      "stored_sha256": "68034397f4e7547f083e4e03c2ff48b67be777adc776b31a0f2cb9889a6ba7c5"
+    },
+    {
+      "source": "a/numpy-full/test_fluxnet_deposition.log",
+      "path": "a/numpy-full/test_fluxnet_deposition.log.gz",
+      "source_sha256": "a8499459c3449501a9554eac8ee286716ab4446a1e6c5d74db262b845e5ce3d8",
+      "stored_sha256": "a77ae2aa080adcd5d9cc5d0a5f16cf358400b9cd35bc7e35ad715909489e0572"
+    },
+    {
+      "source": "a/numpy-full/test_molten_precipitation.log",
+      "path": "a/numpy-full/test_molten_precipitation.log.gz",
+      "source_sha256": "b9e7782b01514f52aa212da6103818e19408ce7970643b02e91abac11535821c",
+      "stored_sha256": "2162fddbfc27a5d54ee915e61ab212ced4f245b63742ba4d974332f445bdb092"
+    },
+    {
+      "source": "a/numpy-full/test_wetbulb.log",
+      "path": "a/numpy-full/test_wetbulb.log.gz",
+      "source_sha256": "0d16a77e1e864d97e14ae2195796d95b327c649378aaefbb2afbd3fd17b71aa7",
+      "stored_sha256": "0f504bda99ad2369da351d002b4dc0772fe0088b2e475e11fbeaa2ff52d8a887"
+    },
+    {
+      "source": "a/numpy-full/test_irrigation.log",
+      "path": "a/numpy-full/test_irrigation.log.gz",
+      "source_sha256": "5707b7c226afa31cdf05b00ea6ace6139bf169b53d9f8ca5d16d7cc61b909f18",
+      "stored_sha256": "14e28acff323c9f8ce8cbd62b1d982b8422caa5c5ce6a0be1ecaeaa19f74ddc4"
+    },
+    {
+      "source": "a/numpy-full/test_clm_wetland_column.log",
+      "path": "a/numpy-full/test_clm_wetland_column.log.gz",
+      "source_sha256": "38e55c6a580aa9304a398d1ca7ea7e8717587300cdfffcd206a8801ae3cefc8b",
+      "stored_sha256": "a5cd14269268ace86f986ef07c769619a708eec75dffbd618499591f33835c74"
+    },
+    {
+      "source": "a/numpy-full/test_snow_albedo.log",
+      "path": "a/numpy-full/test_snow_albedo.log.gz",
+      "source_sha256": "19e95f03931508bcb63d5f1f276741db94fd3f8f0399d2690ed306a73c3ba6c7",
+      "stored_sha256": "b901aa8b1bcfb554e9c0003a2198cad92094dcfa81164008b220ae6d1f56a35d"
+    },
+    {
+      "source": "a/numpy-full/test_hrldas_output_audit.log",
+      "path": "a/numpy-full/test_hrldas_output_audit.log.gz",
+      "source_sha256": "5c9258a0de83f38243aa16ddbdf4932629810a56e692fb8852a52f3a6f665024",
+      "stored_sha256": "db3201d0078690262a3c7516870a0581da0783ba4b375936c61355ef40e70273"
+    },
+    {
+      "source": "a/numpy-full/test_surface_drag.log",
+      "path": "a/numpy-full/test_surface_drag.log.gz",
+      "source_sha256": "19e95f03931508bcb63d5f1f276741db94fd3f8f0399d2690ed306a73c3ba6c7",
+      "stored_sha256": "b901aa8b1bcfb554e9c0003a2198cad92094dcfa81164008b220ae6d1f56a35d"
+    },
+    {
+      "source": "a/numpy-full/test_snow_boundary_coupling.log",
+      "path": "a/numpy-full/test_snow_boundary_coupling.log.gz",
+      "source_sha256": "bef8623b25b25ab880ba85efeef2d92c7d65627f885fe3b9c983593ce2c4795b",
+      "stored_sha256": "8073b02ac88b15cf1b365bf74b50f51f2cdb4505768cfa933ee1771eab6476df"
+    },
+    {
+      "source": "a/numpy-full/test_canopy_phase_column.log",
+      "path": "a/numpy-full/test_canopy_phase_column.log.gz",
+      "source_sha256": "7a64ab40ad61273d14cf54c32ba6ca34d39ab42aa84d19eea7c718d0e283d50d",
+      "stored_sha256": "dfc6efb4286ab0bdc9112be4fc63c8b58d4f28cd48d8da370ffb5ebce2ee9a03"
+    },
+    {
+      "source": "b/numpy-full-qstat.txt",
+      "path": "b/numpy-full-qstat.txt.gz",
+      "source_sha256": "9481fb312c296ac3181971eff7190b4230d80dbef788e824a327650c1a55b056",
+      "stored_sha256": "1a5469561995222aa1954c7f2865655b5393874134e934e58b3a99760d8770a2"
+    },
+    {
+      "source": "b/numpy-full.pbs",
+      "path": "b/numpy-full.pbs.gz",
+      "source_sha256": "278cd8cf151c168c473b5ce0e9a6feb3bb7ad025d2ee60bc3188acaaa29d5940",
+      "stored_sha256": "42aebced9a9aa8934b87aed81ad45a33422693a49954d57a56a87aacadb5c7c4"
+    },
+    {
+      "source": "b/clm-numpy-full.o20",
+      "path": "b/clm-numpy-full.o20",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "b/run_numpy_full.py",
+      "path": "b/run_numpy_full.py.gz",
+      "source_sha256": "6bc68128dbdf8f255db26e0f819764c6bf5f645bab6d9d12bed29e655a019b79",
+      "stored_sha256": "f93b27de1bc0eb73a4b486e5af82df58d61b18b4380cc1e7f74b4386c0a53a68"
+    },
+    {
+      "source": "b/SOURCE_SHA256.json",
+      "path": "b/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0629a85eb9bdfc54ec1fbc76482f669d4125ae8f54c1f11f56e792a14998607",
+      "stored_sha256": "e60c4612a72ba3888a0d7f80864f4b0273362a7532cafd9c29e387c72779ca66"
+    },
+    {
+      "source": "b/numpy-full-submit.json",
+      "path": "b/numpy-full-submit.json.gz",
+      "source_sha256": "8d83f5ffc9ad55c0b15fc687647a13c2f69cce3266857fb5b067b069075416e2",
+      "stored_sha256": "458daff78ad843f7bc8f1fba4c76c7141011e6b4cf0c7680b280d7da6c42a7b9"
+    },
+    {
+      "source": "b/numpy-full-node.txt",
+      "path": "b/numpy-full-node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "b/numpy-full-controller.log",
+      "path": "b/numpy-full-controller.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "b/numpy-full/test_crop.log",
+      "path": "b/numpy-full/test_crop.log.gz",
+      "source_sha256": "f69200dd1d7d913067ec25cc74e7be85f1948423fd81ae7edbb2669b7166d965",
+      "stored_sha256": "d39dbf052ffedb876d77669bdea9c194bf092cd6785fb2678b12ae7e09866698"
+    },
+    {
+      "source": "b/numpy-full/test_column.log",
+      "path": "b/numpy-full/test_column.log.gz",
+      "source_sha256": "ce01992508120a265e60c51c31b6f7b099027a8e35a49a51be7f8cd49372c4dd",
+      "stored_sha256": "79239ac94ed295d704f6a157911e9473425d126fcf06b2e055e477f0410c2620"
+    },
+    {
+      "source": "b/numpy-full/test_clm_phenology_column.xml",
+      "path": "b/numpy-full/test_clm_phenology_column.xml.gz",
+      "source_sha256": "8d0f1e8eb0ac7c40d70436cf8e22769371db7f25700029c2fb7e47090b7fe001",
+      "stored_sha256": "21b9bc3dfdd96f2f42794a57847d65bfcffa03781f517b23079c39c22e4fa919"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_radiation.log",
+      "path": "b/numpy-full/test_canopy_radiation.log.gz",
+      "source_sha256": "acce76ebd94e63021cc20baef4d7384af253504cc2ae4a6e82263c6cf2bd8eb7",
+      "stored_sha256": "94a582eef12b0c8588424976434677b6b945605affc47223c7a2963d8ab69525"
+    },
+    {
+      "source": "b/numpy-full/test_glacier.log",
+      "path": "b/numpy-full/test_glacier.log.gz",
+      "source_sha256": "95f030bca6792185d5f5308ebbd73da9d95e223e5fa8462b43f2715f1b462034",
+      "stored_sha256": "3894cc81775df42cbb2c2cb64e30b5599f28cde5b5a962c5b4dc33acd12d26f6"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_station_data.log",
+      "path": "b/numpy-full/test_fluxnet_station_data.log.gz",
+      "source_sha256": "6263e579ecfeafbc498f2093d23fd060d095273518c5e97a98f9e2fe2f7dc376",
+      "stored_sha256": "36c78c2705e5ced61d2d4bdfd0ca04b4ce07dd277825b2aa4b0945fe15e4336e"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_most.log",
+      "path": "b/numpy-full/test_canopy_most.log.gz",
+      "source_sha256": "83a36a945dc7da21da9a0db22477b39265880547f2c7945723e5527bcab95b23",
+      "stored_sha256": "4d093683c8efaba7ad91d4517985ba379bc36681d9dabb8170a75bc63208d176"
+    },
+    {
+      "source": "b/numpy-full/test_snow_boundary_coupling.xml",
+      "path": "b/numpy-full/test_snow_boundary_coupling.xml.gz",
+      "source_sha256": "b5751104770bffe0b10e9f3691b2dce922b8a0945f917e656510d6b8ee9c0210",
+      "stored_sha256": "fbcf1365272ea33b1afbc3bafa46596efeff8797bfeff43097a4d598ac23ea4b"
+    },
+    {
+      "source": "b/numpy-full/test_surface_independent.log",
+      "path": "b/numpy-full/test_surface_independent.log.gz",
+      "source_sha256": "028670c540a8df11502dea3b1ceedd5a62e499738bbed654bd1e95c4c9863d85",
+      "stored_sha256": "22cce724d8f6b17b78edaf6e6c4946d491dfac98e0057d1df55cdd2de4c30604"
+    },
+    {
+      "source": "b/numpy-full/test_clm_bgc_column.log",
+      "path": "b/numpy-full/test_clm_bgc_column.log.gz",
+      "source_sha256": "f14f9a45aa99ad9f98328a58cb76748beafe5a125ab27bb5d421deb1ea20221b",
+      "stored_sha256": "8f1db5fd3dd792b9395edb7528ddf7d57e8582810b033000135b275f2dfc5a48"
+    },
+    {
+      "source": "b/numpy-full/test_clm_glacier_column.xml",
+      "path": "b/numpy-full/test_clm_glacier_column.xml.gz",
+      "source_sha256": "1b6a6d55f45c22f065e119725d3ead368cff69300390b5651ba9bc750137b644",
+      "stored_sha256": "2b75055b4aa9bde88f34a606c3c1645be5518b91b1a707472191ecf0764f7d36"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_phase_energy.xml",
+      "path": "b/numpy-full/test_canopy_phase_energy.xml.gz",
+      "source_sha256": "a2083c2d0daae0631885d03b24930985160f50cccd006f1a8c728d284cb86d2c",
+      "stored_sha256": "1dc2a1c71e46d2d5063d591d5221e56737e3b71390bf193e1f699c4b3004e50d"
+    },
+    {
+      "source": "b/numpy-full/test_phase_regularization.log",
+      "path": "b/numpy-full/test_phase_regularization.log.gz",
+      "source_sha256": "223e0fa88b3b8de4e2231524deed8c083f07aee2fc61da2a869d2df8c2b212a5",
+      "stored_sha256": "e228f80c48d8103ec5f844c8b7bc2a660c5b5ec7fa73bf2e8a3c14cf64cc7cd2"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_inventory.xml",
+      "path": "b/numpy-full/test_fluxnet_inventory.xml.gz",
+      "source_sha256": "84527d274ba6a128c52260d477ee8b04ee6443852802f259e7063bbb76022ae7",
+      "stored_sha256": "ee0deb2091a91b1e63a967b2eafcf5b4aa35ad661c345336ba15b72a42a25fea"
+    },
+    {
+      "source": "b/numpy-full/test_tile_drainage.xml",
+      "path": "b/numpy-full/test_tile_drainage.xml.gz",
+      "source_sha256": "348c121815410c212a7936fcbe5d35951010804b20dd7880d5e16a2b2483b048",
+      "stored_sha256": "6091f867e1e40fa5b7f01092db047f438fc0547f21bacc42256e0eaf246c6800"
+    },
+    {
+      "source": "b/numpy-full/test_snow_albedo.xml",
+      "path": "b/numpy-full/test_snow_albedo.xml.gz",
+      "source_sha256": "d00bac7fd79fa205a9a9786dc2ba6348f3daa62ccff810e16813e014d3f0ade3",
+      "stored_sha256": "e27249cd0e184a15e32eea61a4ef08fd93008e490c951f6b099e1c3ec1bbe251"
+    },
+    {
+      "source": "b/numpy-full/test_snicar.xml",
+      "path": "b/numpy-full/test_snicar.xml.gz",
+      "source_sha256": "7d4cb65336a536a0bc5cefc9a8efaa94ae4b9bdb5c0de7814ad42ec03c34c7a6",
+      "stored_sha256": "adb91b76fc72254a0899f763635862fc00f99167b0cb2f80669e6f7d161ae10b"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_column.xml",
+      "path": "b/numpy-full/test_canopy_column.xml.gz",
+      "source_sha256": "e59aa984770375ccdae24b05e7eb807a84143bf00fa95c52e033d5007c73e4fe",
+      "stored_sha256": "2b420dbd3fe4bac2eb7abd425c120b7a961c6d2233d3e84a08e3c5fae8ed6e19"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_phase_column.xml",
+      "path": "b/numpy-full/test_canopy_phase_column.xml.gz",
+      "source_sha256": "37f48f6bd61e2e35863385e8d8886df686216917efe6d0a301b839c068dbc700",
+      "stored_sha256": "a0e4549af52eb7ad626d7f5b60661672e613cd6948abce5d9d23c538f751a884"
+    },
+    {
+      "source": "b/numpy-full/test_snow_energy_routing.xml",
+      "path": "b/numpy-full/test_snow_energy_routing.xml.gz",
+      "source_sha256": "f220b32f48798590f155f8019a1d924899c2a874edee88ece80a25bd2e9b7e0b",
+      "stored_sha256": "c8ce5901b359381f4b40f36739348f07d9d597117611a47d1d19eb1d35ecb4c0"
+    },
+    {
+      "source": "b/numpy-full/test_clm_crop_column.xml",
+      "path": "b/numpy-full/test_clm_crop_column.xml.gz",
+      "source_sha256": "726ab7e67577911173bb0d2a772512d3bb30438a6cb8232b898f439044c8b286",
+      "stored_sha256": "42a50ce09a289e1456f780c7f420a9cc74cb5e85a6ec30d2d151218a821498a0"
+    },
+    {
+      "source": "b/numpy-full/test_snow_vapor.xml",
+      "path": "b/numpy-full/test_snow_vapor.xml.gz",
+      "source_sha256": "b11ca7834b247950f7848d7712f1299f127aee647acbe205c213755967f47e1b",
+      "stored_sha256": "b5a743cdf42b25bce3b58959fb215cbbc028e4719ccdb7be15e2e88f28b9f387"
+    },
+    {
+      "source": "b/numpy-full/test_clm_irrigation_column.xml",
+      "path": "b/numpy-full/test_clm_irrigation_column.xml.gz",
+      "source_sha256": "20ddcc6fcd4d31d74ac7a293401f9ec9ccf9cb675a2d05d21edba785a99ee258",
+      "stored_sha256": "4249db9ce7de9c640f87fc9ccec96ee742ff0d93d82153d51dc7b5d5270ead0a"
+    },
+    {
+      "source": "b/numpy-full/test_clm_glacier_column.log",
+      "path": "b/numpy-full/test_clm_glacier_column.log.gz",
+      "source_sha256": "d76d3cf5800fdfd5add5fc1010974c559fafc4aba2c617490b820583f2907f20",
+      "stored_sha256": "b5887f019f781cfd8af8ddd479e0afd0c2faa948821e0c6330bcfc8a6b7a90dd"
+    },
+    {
+      "source": "b/numpy-full/test_crop.xml",
+      "path": "b/numpy-full/test_crop.xml.gz",
+      "source_sha256": "cbaa922f1f0e67bf74d510c65df8ec63fd725d8ba1c9b717615cf67da2e69862",
+      "stored_sha256": "8495a622ddbcaf22bc979672302852aeec629c268846da117a4a1acc3c7293bc"
+    },
+    {
+      "source": "b/numpy-full/test_surface_drag.xml",
+      "path": "b/numpy-full/test_surface_drag.xml.gz",
+      "source_sha256": "e9e58eff96cab044fcef6127fe4d4bf8fcf4db69dd3afaccc7fafe45e6755566",
+      "stored_sha256": "235f626e6d39b2f96ca496f8d6e6824d4b7f6ea48c83d7a7a5d2213877d45910"
+    },
+    {
+      "source": "b/numpy-full/test_hrldas_output_audit.xml",
+      "path": "b/numpy-full/test_hrldas_output_audit.xml.gz",
+      "source_sha256": "27533158ab51041d5b51b83e510a3614c5d9658cf9932480a732680e8d6a7f74",
+      "stored_sha256": "3a8dd2f0f1dee4afa5791b39212ee70343d48df2bca6b9db64c399ce18df7804"
+    },
+    {
+      "source": "b/numpy-full/test_tile_drainage.log",
+      "path": "b/numpy-full/test_tile_drainage.log.gz",
+      "source_sha256": "c6c91b26ea06168893410c6aa6fcb334f2ddf24c835481098a73b646e9e839b9",
+      "stored_sha256": "8deabf14cfc56ca2c0af27188760378897e019d88ead18899a053238d200648e"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_soil_operator.xml",
+      "path": "b/numpy-full/test_fluxnet_soil_operator.xml.gz",
+      "source_sha256": "762e433c6ea06625841f3c754d471e5bf73f41bb3fe5bc7ea15b405db9c2e015",
+      "stored_sha256": "45e36fb86bbe19a3f8c52f6a4f1be1b51cce82609bacaceb0134b28b8c62294b"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_station_data.xml",
+      "path": "b/numpy-full/test_fluxnet_station_data.xml.gz",
+      "source_sha256": "8ad71caf6c710feee9ef9cef278c2f8eec1104579552c4bf3612ff4dcf762751",
+      "stored_sha256": "235427217acee27dd20beeec8592a8214cc3d01af9a10a9c2e87627def8a22aa"
+    },
+    {
+      "source": "b/numpy-full/test_snow_compaction.xml",
+      "path": "b/numpy-full/test_snow_compaction.xml.gz",
+      "source_sha256": "89e57d22ec76fa313c07b666e87793f11c1c0cbcd67fd5f452de683c6798380a",
+      "stored_sha256": "272fe325bfcef402a5c5b2a82fb3ef3a9d3dfb642446af62ae87bd766074c169"
+    },
+    {
+      "source": "b/numpy-full/test_plant_cn.log",
+      "path": "b/numpy-full/test_plant_cn.log.gz",
+      "source_sha256": "fb17806011ae7cd1f3fee9fdfa256d488185f02b98e66781eb89c783536596e3",
+      "stored_sha256": "df2fb4a86abbf2058e54a67c67da53d7e4307b504117eed9f985421d67ae47b4"
+    },
+    {
+      "source": "b/numpy-full/test_snow_thermal.xml",
+      "path": "b/numpy-full/test_snow_thermal.xml.gz",
+      "source_sha256": "aea0dafa1564363db22a9d81697d4c635187231bab00c20caed3995ed8d6df52",
+      "stored_sha256": "4552ee7608c7faf03080cea94ed0fe2f451b03d1fb3dd56e1f70a8079528ebd0"
+    },
+    {
+      "source": "b/numpy-full/test_leaf_root.log",
+      "path": "b/numpy-full/test_leaf_root.log.gz",
+      "source_sha256": "9132bdf08b54b8a1889aaf586bf4ad05dd29079968c50f70795ca1b7df14a5cd",
+      "stored_sha256": "afec063a4df231e2827f5120adc177d4bd14c085b83960f26f46c83c1e46dc3d"
+    },
+    {
+      "source": "b/numpy-full/test_vic.xml",
+      "path": "b/numpy-full/test_vic.xml.gz",
+      "source_sha256": "ae5a42557d1fbeb04b722b85e90c029db658160a8cd6e71ccb89f6e150729665",
+      "stored_sha256": "798f4d037c245864bc8d63dc8314edfd1d0fde984eae13c44ebc357f1c5a8287"
+    },
+    {
+      "source": "b/numpy-full/test_multilayer_snow.log",
+      "path": "b/numpy-full/test_multilayer_snow.log.gz",
+      "source_sha256": "87cba142dbf8910c1e726ba8faf7eaf402e92243ea8b62befeef3a498b882b35",
+      "stored_sha256": "c5663c5deca95d480f48d43874e567ce3e74758fbea9fb98e66b882993cfbfaa"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_solar.log",
+      "path": "b/numpy-full/test_fluxnet_solar.log.gz",
+      "source_sha256": "4eb8b743d6b97374a6c299c23870bca880140f49cfb357f3bbc5aafb3b99f946",
+      "stored_sha256": "42f548d23969f0331c60680084b3d7dbcbf0358e66058c0c5a128e1188610dca"
+    },
+    {
+      "source": "b/numpy-full/test_clm_most_column.xml",
+      "path": "b/numpy-full/test_clm_most_column.xml.gz",
+      "source_sha256": "300a4345f1b3fe2354112ff20c730b05689ac4658bdc9e089125564269aaba08",
+      "stored_sha256": "61745f54f6db24aacbd2d55dd04df028e7e37be241db30e3a1c0c7c86f121aaa"
+    },
+    {
+      "source": "b/numpy-full/test_runoff.log",
+      "path": "b/numpy-full/test_runoff.log.gz",
+      "source_sha256": "1c5136d699bf1098ac5690f8d28372ad07bfe47fd2103a95f9614b251f441421",
+      "stored_sha256": "8e56bd29e97f11550a9668aba188fe1bc942d3cbdccd6c4dbaff827ca9714065"
+    },
+    {
+      "source": "b/numpy-full/test_photosynthesis.log",
+      "path": "b/numpy-full/test_photosynthesis.log.gz",
+      "source_sha256": "1a6b1635439c79781d85e6d28ec9e901a88420134297e8afdac1122c08e6e6e9",
+      "stored_sha256": "c928cd11389764468c57880ee87b6331b9bd1087ee925214e87a1ba8f8a3d0ea"
+    },
+    {
+      "source": "b/numpy-full/test_photosynthesis.xml",
+      "path": "b/numpy-full/test_photosynthesis.xml.gz",
+      "source_sha256": "e4b0a5c7c0e9a2371d982d2e44cf74124ecf93d057c31b24b407e0ab2fb07cb4",
+      "stored_sha256": "1c24202af4c5452c4ced2dffb288e38155fe2698d642725a3542810a75638521"
+    },
+    {
+      "source": "b/numpy-full/test_clm_vic_column.xml",
+      "path": "b/numpy-full/test_clm_vic_column.xml.gz",
+      "source_sha256": "13ef49ff40faab6b6ec0eb7ed0951e5c95f37be0caee3308eac9dda0e4f15f9c",
+      "stored_sha256": "2d6992f79cec35bdf42e5c8903adc4ec67e03fcac5fd633e83c12b98f6d8f154"
+    },
+    {
+      "source": "b/numpy-full/test_most_stagnation.log",
+      "path": "b/numpy-full/test_most_stagnation.log.gz",
+      "source_sha256": "430a71939413f22776ed2988d5b92ae22f56a9992648d7f27cc1462c837cc437",
+      "stored_sha256": "86bd55ab5b3c612560753a806a1b114fb9d6774d420df706bf4c3d3ba10aa45a"
+    },
+    {
+      "source": "b/numpy-full/test_decomposition.log",
+      "path": "b/numpy-full/test_decomposition.log.gz",
+      "source_sha256": "993550b04219ed0bba0ffc3b1911703533796329d78e9ba5db5243f1e1f05e58",
+      "stored_sha256": "51d159132bcb345fb5f2f529a6963c0d93c3103c2dc136fd3808bb1f83dbdc8b"
+    },
+    {
+      "source": "b/numpy-full/test_clm_most_column.log",
+      "path": "b/numpy-full/test_clm_most_column.log.gz",
+      "source_sha256": "bc91c989c16a0311634986b63473af47c9767ee43bc41a4a56a9dc601f23125e",
+      "stored_sha256": "99d336c77f02da275642a5c4c2e15e5e0ed388578e421258049fa50909906ea3"
+    },
+    {
+      "source": "b/numpy-full/test_clm_tile_column.log",
+      "path": "b/numpy-full/test_clm_tile_column.log.gz",
+      "source_sha256": "97eaa8e78edfe2953866e2676f24174bdba1daf823d28216ab0709b38f634a4c",
+      "stored_sha256": "28161804e88cd3dd6d8118d5becca3e1bca562789c7d983309aff027bbb17733"
+    },
+    {
+      "source": "b/numpy-full/test_column_heat.log",
+      "path": "b/numpy-full/test_column_heat.log.gz",
+      "source_sha256": "25458e51f309da7c4e309415e6b9d5656732cda246df2336412c73757e37d07f",
+      "stored_sha256": "8692163223cbb87b013f30c561948ed1119a1807fc0e7bbb308df8387ae61b2d"
+    },
+    {
+      "source": "b/numpy-full/test_clm_enthalpy_driver.log",
+      "path": "b/numpy-full/test_clm_enthalpy_driver.log.gz",
+      "source_sha256": "4d86db71b67b04dc3ae9f892b6ca904e2daf7b522cfc0171d69cb8dad0636e84",
+      "stored_sha256": "1f697461c92dcb4f01b21a704731ca0e4e108bb9b9e31e65fef5b5eb2d09ba55"
+    },
+    {
+      "source": "b/numpy-full/test_surface_snow_branch.xml",
+      "path": "b/numpy-full/test_surface_snow_branch.xml.gz",
+      "source_sha256": "50ca1ca97fd79d1b6a280a4677c274eabb2ee2e6406540723980c9c9107e3777",
+      "stored_sha256": "8c2a88613cb53a21963f25cf8dde2fd679e0b4f6b50d66c567830457e8668384"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_inventory.log",
+      "path": "b/numpy-full/test_fluxnet_inventory.log.gz",
+      "source_sha256": "8e1c29c6054c0effa6059d76b03e9ed552569a06f0b9ed2e61e27b1f2e3048dd",
+      "stored_sha256": "0e71f5a37793effd14a2a5510534fc660bcf34d64bfdba238559651ad1e7af50"
+    },
+    {
+      "source": "b/numpy-full/test_validation.log",
+      "path": "b/numpy-full/test_validation.log.gz",
+      "source_sha256": "7b057b646193ebdb7df9aea472fbf9d074b1898523d4743fbdb92085bb1e93f6",
+      "stored_sha256": "04b43587c91491b3d72e03a293119c9b99c32cb8f8ba1f12281933b501c48298"
+    },
+    {
+      "source": "b/numpy-full/test_options.xml",
+      "path": "b/numpy-full/test_options.xml.gz",
+      "source_sha256": "c856eccdd4e18e155be516169c9fae56677173f917cd871fe0319e0e5759b54d",
+      "stored_sha256": "a8f95dd53ec3fbcdab1143429f0f2303279ad52deaef77788282339c3fbf9975"
+    },
+    {
+      "source": "b/numpy-full/test_ground_evap.xml",
+      "path": "b/numpy-full/test_ground_evap.xml.gz",
+      "source_sha256": "a79742d3df85ee9cfc6afe58e0a482e1a854a8f4f6d474a194e6fb397ac738aa",
+      "stored_sha256": "9f47867fca1ed52060185b1cc97351dd55d8a13cf3207491ed1d09abfff50409"
+    },
+    {
+      "source": "b/numpy-full/progress.json",
+      "path": "b/numpy-full/progress.json.gz",
+      "source_sha256": "d529067b90701c35831a8776410734a61a531d957345fa662267ced67648cb28",
+      "stored_sha256": "e92c940fc83fe6bb71962a2d96ce32585758a88b409666fe56996d9eccc2fe00"
+    },
+    {
+      "source": "b/numpy-full/test_clm_wetbulb_column.xml",
+      "path": "b/numpy-full/test_clm_wetbulb_column.xml.gz",
+      "source_sha256": "05576ab9edaaf25687d5623a9beaad4e0521108b8fa7be9dd0c1f243c62d6148",
+      "stored_sha256": "fd64396199565630094856f113b386aa7ca0163f905c44cf4e86c1578f8139d8"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_evaluation.xml",
+      "path": "b/numpy-full/test_fluxnet_evaluation.xml.gz",
+      "source_sha256": "ad322a6c6fd7b4bcdba16433805ac3572d43598ee0fdf77f313adc0f8ad2a889",
+      "stored_sha256": "5cf41d8936e08470a2b2e822b006148fe178260b6d8a7514885b2f16d1c2288b"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_height_summary.xml",
+      "path": "b/numpy-full/test_fluxnet_height_summary.xml.gz",
+      "source_sha256": "d3b1ec00d11fddd24f764f0f3bfd4aa01434a94658d4a218990cd33b93d5eec8",
+      "stored_sha256": "92191b01dc611cc52a715961dc7d28683ddb58e81f0562509580005b60723a9a"
+    },
+    {
+      "source": "b/numpy-full/test_irrigation.xml",
+      "path": "b/numpy-full/test_irrigation.xml.gz",
+      "source_sha256": "1d2d69767c8842d5d7689254af5b5343c82f7234412046d86437a535b468f484",
+      "stored_sha256": "be58646ebb5f7ce55f3467d510a84ae8a9527deb81e5f690e925372a6e5daf4b"
+    },
+    {
+      "source": "b/numpy-full/test_clm_bgc_column.xml",
+      "path": "b/numpy-full/test_clm_bgc_column.xml.gz",
+      "source_sha256": "de52e4ac80cc12b6a205d5ff38fd1958aeb47e9c6e65af80383d126f83ffd8ba",
+      "stored_sha256": "c3f7674a115907ef812df0da4046e7f48ec355868866027bb2030b55b594670d"
+    },
+    {
+      "source": "b/numpy-full/test_glacier.xml",
+      "path": "b/numpy-full/test_glacier.xml.gz",
+      "source_sha256": "f73a51f3493bf68984af8b71acabac3b3dbc1f1e38e7dadd04ad1525597ba4d0",
+      "stored_sha256": "9837214eea367ae1b1d916a48dac30482b93a3d7abcd4ab3d8f1d9a47f79090c"
+    },
+    {
+      "source": "b/numpy-full/test_clm_phenology_column.log",
+      "path": "b/numpy-full/test_clm_phenology_column.log.gz",
+      "source_sha256": "39382d0dbef06c453b2ff1002a682ea933a9babb4ed70571ed4b36d7dd3e2afb",
+      "stored_sha256": "2612a5b5e9e99d4bc737c144cbc5272aa0f9d66fbf8d6e07183da7f509b867a4"
+    },
+    {
+      "source": "b/numpy-full/test_snow_energy_routing.log",
+      "path": "b/numpy-full/test_snow_energy_routing.log.gz",
+      "source_sha256": "92faec45e68e487ee0ace826102a815985acef135018a8f5ef750d980dc7af98",
+      "stored_sha256": "da5f467a402e07d86f6c6d94074489e2bc396d18049fb2a0b433be1c8ed80b6e"
+    },
+    {
+      "source": "b/numpy-full/test_decomposition.xml",
+      "path": "b/numpy-full/test_decomposition.xml.gz",
+      "source_sha256": "2b6b1fc7e6e9e55d73118403436f034e8f5fdfdcc2b14f8a2f381eed5cdda8e5",
+      "stored_sha256": "31fd48432d365d2e7dc4cebd47f05cc0ec5b054e42b119db9c240fe7c3dcc667"
+    },
+    {
+      "source": "b/numpy-full/test_frozen_soil.log",
+      "path": "b/numpy-full/test_frozen_soil.log.gz",
+      "source_sha256": "f4d8e6bd1730458ada6f71d7abe90dc335727b98ed0be8aae886a0623c58bbd8",
+      "stored_sha256": "9e230abb69e86489dd88a6b3f4cc74ea4a1dcf54719d11234096f05485cba1c3"
+    },
+    {
+      "source": "b/numpy-full/test_multilayer_snow.xml",
+      "path": "b/numpy-full/test_multilayer_snow.xml.gz",
+      "source_sha256": "ec69e1008abee14e17cea0a123a0be4f3a52ed87285b49f74ca80cd31aec0e58",
+      "stored_sha256": "798f9c0cdd6323465273399ef879b7c82969526887698d810d15a42b5bf6435a"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_solar.xml",
+      "path": "b/numpy-full/test_fluxnet_solar.xml.gz",
+      "source_sha256": "e5a7ef3bbf1a115650ef6715f5195099126baf3fb2ffd09b59e5dfd8890b6bc9",
+      "stored_sha256": "817d07a1c2ed20236647c8f9712a42626f83412483026a8b88814f8b0bb1cc58"
+    },
+    {
+      "source": "b/numpy-full/test_surface_secant_rounding.xml",
+      "path": "b/numpy-full/test_surface_secant_rounding.xml.gz",
+      "source_sha256": "b9009464d5f3ed2d59dd1c14fad33772111eb22d0fb2e9fee3e6d10b48a48e6e",
+      "stored_sha256": "9a27169609eaf35d1046fa85e206cb509540b73dcf2728b921949799e53d8cd6"
+    },
+    {
+      "source": "b/numpy-full/test_clm_irrigation_column.log",
+      "path": "b/numpy-full/test_clm_irrigation_column.log.gz",
+      "source_sha256": "01f5bc2c24db7f8bffd6671868b713ff163fbe66a996655772c258e62743dac9",
+      "stored_sha256": "12751dc3096430a78b2186c0c222e4c9a181376c4b123b79e308d92063d1a8a7"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_stomata.xml",
+      "path": "b/numpy-full/test_canopy_stomata.xml.gz",
+      "source_sha256": "f703ee7a4274e50ab41ed4e20df1e9b971d67dc9d752f6a87c56067c345d22d3",
+      "stored_sha256": "eeed7ca4a3ec04ac3cd209b499790bd0148d9db37f31fb61bac52bffec7e3f17"
+    },
+    {
+      "source": "b/numpy-full/test_hrldas_comparison.xml",
+      "path": "b/numpy-full/test_hrldas_comparison.xml.gz",
+      "source_sha256": "267bd8a8454fb04895d9ff1597ed9f3c2b5f202937e35592cb0cb779b0285fea",
+      "stored_sha256": "42e94ba53723efbfdecbda2666ef9e25331c3e94c1523e4290fcb0bd762da73d"
+    },
+    {
+      "source": "b/numpy-full/test_clm_tile_column.xml",
+      "path": "b/numpy-full/test_clm_tile_column.xml.gz",
+      "source_sha256": "4cbfd3a7e6f3e1195c145bbbeadb459b817e05bc31406cdff65b775bcde99ef0",
+      "stored_sha256": "a12ea2ea5ae6880e5d4467d1f0d9d278294b5f9a40ca8df5f1b4a9f934804122"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_native_runner.log",
+      "path": "b/numpy-full/test_fluxnet_native_runner.log.gz",
+      "source_sha256": "a245caa8daf081cea09d8adcbe083c731620622085dcec8b495286365934b5f2",
+      "stored_sha256": "c839d8a74c492b0ef119579d13da5ed858b09af38bab7987ec08f45ae85bc761"
+    },
+    {
+      "source": "b/numpy-full/test_snow_forcing.xml",
+      "path": "b/numpy-full/test_snow_forcing.xml.gz",
+      "source_sha256": "29b1cf48391775dbd7f40eda2e338868485c7b6413dd40cdb94f08bb91c11551",
+      "stored_sha256": "2b98ecf60fe62a8cba876f9f3e367e37b917a19711f952ebac1395298ab39f32"
+    },
+    {
+      "source": "b/numpy-full/test_dry_condensation_phase.xml",
+      "path": "b/numpy-full/test_dry_condensation_phase.xml.gz",
+      "source_sha256": "1ea1f7643ec6769e56e95e257d8b5254ceace55532624fd597ecedd6fec4631a",
+      "stored_sha256": "5f997c02552709fb135c4146e6bc56946e48050c81b6b9a14be6936d0a6fa8aa"
+    },
+    {
+      "source": "b/numpy-full/test_snow_evolution.xml",
+      "path": "b/numpy-full/test_snow_evolution.xml.gz",
+      "source_sha256": "acfcf57d0fc595c08f68f559587b59866ad04cfc9f59b1cef878b7e58381a314",
+      "stored_sha256": "2c82703b10f8ffc4999c5734a176e9111a83e4b999bca4d64b2136c4be1c08d8"
+    },
+    {
+      "source": "b/numpy-full/test_snowpack.log",
+      "path": "b/numpy-full/test_snowpack.log.gz",
+      "source_sha256": "333edfbc417a1b168e19ce518369422b5896c7949195e16b58cb33ebef04ef08",
+      "stored_sha256": "f2a661fe30caa098c5670fe3e70761e5eef4c4aa71a58a997310b4eda12ed854"
+    },
+    {
+      "source": "b/numpy-full/test_vic.log",
+      "path": "b/numpy-full/test_vic.log.gz",
+      "source_sha256": "fa0f709ecfc6edca5e4a2a615fea0b98e2dbfef43a4136bb125b168e855e2337",
+      "stored_sha256": "e5f3408cb0328892d7782939d67e48aae5e900a44e2bcca0e5fe98c69a3edfe2"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_energy.log",
+      "path": "b/numpy-full/test_canopy_energy.log.gz",
+      "source_sha256": "3e6007ac86ce0de1390fa77bb626948d4643255c4159892a1a620f82a5335e3e",
+      "stored_sha256": "39afe9a67ecddaeaf580d587beade5268df82af4e21f720d88c4f6f6b09f7d4f"
+    },
+    {
+      "source": "b/numpy-full/test_soil_drainage.xml",
+      "path": "b/numpy-full/test_soil_drainage.xml.gz",
+      "source_sha256": "89a7cae389aea274b7f853660a9124bc2014cab830546bc3374f61568a512d7d",
+      "stored_sha256": "95a73eeb76bbf75f2cbcba420657f60af527a7c1e3124a6fc0cdea3fc6632c40"
+    },
+    {
+      "source": "b/numpy-full/test_surface_secant_rounding.log",
+      "path": "b/numpy-full/test_surface_secant_rounding.log.gz",
+      "source_sha256": "11dc0d2b62e1c02efcd2fd1fa1ce5fe1dd395cb8531477be167a81507216310e",
+      "stored_sha256": "0dd817c92fe3025865015fa59c2e903edcf99bfb74b6ec7e4204dc8356a19bf9"
+    },
+    {
+      "source": "b/numpy-full/test_soil_uptake.log",
+      "path": "b/numpy-full/test_soil_uptake.log.gz",
+      "source_sha256": "722ee50e4f9e21bebd8c8bc68a943cbb37df86acb0384e53d20dbb68c7393122",
+      "stored_sha256": "8d3d832f34af0ad4b34b7d214336fbc502a0eab931b94032a38bb7d1f1bbfd51"
+    },
+    {
+      "source": "b/numpy-full/test_snow_vapor.log",
+      "path": "b/numpy-full/test_snow_vapor.log.gz",
+      "source_sha256": "ef7c587ca7f6ba6c72f5c64ae541f2c3b36e4eeb4a446d711ee975fbe2fa34c4",
+      "stored_sha256": "72655341441c1fa192075217442867f01ec2d6707bb88b5afecb148dc1ffaa79"
+    },
+    {
+      "source": "b/numpy-full/test_precip.log",
+      "path": "b/numpy-full/test_precip.log.gz",
+      "source_sha256": "1c5136d699bf1098ac5690f8d28372ad07bfe47fd2103a95f9614b251f441421",
+      "stored_sha256": "8e56bd29e97f11550a9668aba188fe1bc942d3cbdccd6c4dbaff827ca9714065"
+    },
+    {
+      "source": "b/numpy-full/test_snow_forcing.log",
+      "path": "b/numpy-full/test_snow_forcing.log.gz",
+      "source_sha256": "87cba142dbf8910c1e726ba8faf7eaf402e92243ea8b62befeef3a498b882b35",
+      "stored_sha256": "c5663c5deca95d480f48d43874e567ce3e74758fbea9fb98e66b882993cfbfaa"
+    },
+    {
+      "source": "b/numpy-full/test_clm_wetland_column.xml",
+      "path": "b/numpy-full/test_clm_wetland_column.xml.gz",
+      "source_sha256": "af8eb2ce458c0674286a3e6526fa5f379afbae67e53b40b85db9c9527b09cff4",
+      "stored_sha256": "8ec3faf9dfd9e1e2e393d57575c7a87eeb9d46d426a792dd2ea5ac232f0b9ee2"
+    },
+    {
+      "source": "b/numpy-full/test_clm_layered_canopy_driver.xml",
+      "path": "b/numpy-full/test_clm_layered_canopy_driver.xml.gz",
+      "source_sha256": "1b93fbb3a88392f02be441fe25625cb856cc580f54a35bde3950a88743d7c98f",
+      "stored_sha256": "e4a819d85b26707b7264d756194035570262b1af686cace1fa02943cebcc234b"
+    },
+    {
+      "source": "b/numpy-full/test_column_heat.xml",
+      "path": "b/numpy-full/test_column_heat.xml.gz",
+      "source_sha256": "20646c56663c1677d0b7f92bf384bb3a43f46a1eb0591c6770d910c71340081f",
+      "stored_sha256": "7bc1e6dd6d1374e9c51bcad41383be717723e108eb86c34efa57eedd9b5f0bac"
+    },
+    {
+      "source": "b/numpy-full/test_plant_cn.xml",
+      "path": "b/numpy-full/test_plant_cn.xml.gz",
+      "source_sha256": "1a6ae5bde7b9bcfdc247b1ad69fa929aa3aac710f7fcf32267cadf27070c4232",
+      "stored_sha256": "47b54f948de2ff723e082fd3f589adce40eab20aeebbd4721c950f6064318750"
+    },
+    {
+      "source": "b/numpy-full/test_clm_driver.log",
+      "path": "b/numpy-full/test_clm_driver.log.gz",
+      "source_sha256": "a23242aa3a23c603ee39f4d2e3d2436cb7a03f54bbcaa2b4b5492c6ea5f876dd",
+      "stored_sha256": "10e287b6ce9ef7a9e121dd25e71ea28b446d99a655be465b9437ca961b786ef2"
+    },
+    {
+      "source": "b/numpy-full/test_snow_evolution.log",
+      "path": "b/numpy-full/test_snow_evolution.log.gz",
+      "source_sha256": "38c5b7455bcd3a04817cd7a641059973a0d7f04e47497ace1cc216a87ad4f3e1",
+      "stored_sha256": "e3ab4d5591f86714feedf8ef4fc2faa028044e18c9ed720facac01627c76fe30"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_deposition.xml",
+      "path": "b/numpy-full/test_fluxnet_deposition.xml.gz",
+      "source_sha256": "1acf7b4c19c1112b6e9d3261458e9eb707b2516b4db78c77c9a91662fedd11c4",
+      "stored_sha256": "9895d634780b802bb820c9eb593f6244ed711e0b1fc4e8df1c06541715cb3913"
+    },
+    {
+      "source": "b/numpy-full/test_molten_precipitation.xml",
+      "path": "b/numpy-full/test_molten_precipitation.xml.gz",
+      "source_sha256": "eaa3d1664a85f624c8bc4d7fbd20873962253058cc34f1d46ccd1599b0271624",
+      "stored_sha256": "f42b3d0d13ea8822916a2d96915865f7ea34d7ea4e0bbdfcc217de92b92b6b25"
+    },
+    {
+      "source": "b/numpy-full/test_runoff.xml",
+      "path": "b/numpy-full/test_runoff.xml.gz",
+      "source_sha256": "a840714344ae24eb6bf5af2de347027e87a917e31f175849a464055c5aab9550",
+      "stored_sha256": "924fca81ad0693ed3466e181f342da6299bb426053c578a2a4eaa157d520bf92"
+    },
+    {
+      "source": "b/numpy-full/test_clm_vic_column.log",
+      "path": "b/numpy-full/test_clm_vic_column.log.gz",
+      "source_sha256": "7d8ff0138d2dd0f89d4979f22fa37a9c8bb5813086dcc46af924b71b6a07298f",
+      "stored_sha256": "cd667a816ca9fe8a03227c9d5c21b7ffb40270f691599807fb3b184fb563dc9b"
+    },
+    {
+      "source": "b/numpy-full/verified-summary.json",
+      "path": "b/numpy-full/verified-summary.json.gz",
+      "source_sha256": "91b07d305ab2e3ea2779cd2f2e13faa1825c494a4f75892a8d4b7b102bb8845d",
+      "stored_sha256": "7744cd5615601bc6bbf61f4a9be4b2733afca28e560cf2e76b07021fc4f9b044"
+    },
+    {
+      "source": "b/numpy-full/test_clm_layered_canopy_driver.log",
+      "path": "b/numpy-full/test_clm_layered_canopy_driver.log.gz",
+      "source_sha256": "aaab73d36b0e0e33ef5e14dd304aec21f2f6d0dc9ce8b51726ce8b5740b7c5af",
+      "stored_sha256": "191720902d702afbc23555a1bedf9933f3ad82554857e58673fbc6e19a1c57c9"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_interception.xml",
+      "path": "b/numpy-full/test_canopy_interception.xml.gz",
+      "source_sha256": "c5c9ae4c9cd827c9d299e1ba34c93f2be57e69c4ffe2deab392ce1ef1b077a2f",
+      "stored_sha256": "b7a2cd259fcf2a24f1bb5b6b1c06e8cbc7dab8cb8965b8908ff2f91b0446a8e3"
+    },
+    {
+      "source": "b/numpy-full/test_numpy_benchmark_checksum.xml",
+      "path": "b/numpy-full/test_numpy_benchmark_checksum.xml.gz",
+      "source_sha256": "34c1bd46620196ba83a2026d2d70f5b039d986790a594317950468bff353fd73",
+      "stored_sha256": "93b9b835c163546d6d561a9bd2316c95b1be6c0fef89a509b046c545c00247a0"
+    },
+    {
+      "source": "b/numpy-full/test_clm_wetbulb_column.log",
+      "path": "b/numpy-full/test_clm_wetbulb_column.log.gz",
+      "source_sha256": "5dc3e560ba441ffed5dd9fd5c7f479202bc73533c0eab04cd21042840b800d84",
+      "stored_sha256": "3dc80d85f4fb01383b760b5d2b10acb2ded724f6f773dc4dee4a4186a7519930"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_stomata.log",
+      "path": "b/numpy-full/test_canopy_stomata.log.gz",
+      "source_sha256": "a68f68d8367734d5698952cdaed6e44590e8122aa18ce89f7f3c25c0058df219",
+      "stored_sha256": "f8865899e51ceb47621c2c968b1e4ff400ba2d5b9e7fe42f5a4770ea529291a5"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_evaluation.log",
+      "path": "b/numpy-full/test_fluxnet_evaluation.log.gz",
+      "source_sha256": "c8fc4493821b5b663160022c06c78f0720a869486db7e1713072b30b53bea4d1",
+      "stored_sha256": "fef7f3d7101ec8b77aeb8dda95668606b93a087b5ffc825e6655e9e3a3e57ddf"
+    },
+    {
+      "source": "b/numpy-full/test_soil_drainage.log",
+      "path": "b/numpy-full/test_soil_drainage.log.gz",
+      "source_sha256": "cb98a40d1fcf62d835f8b5161ce763d3202de2b10498272175ff91bb5b3cb789",
+      "stored_sha256": "018647784162c3e3c8e6b47345a4447775e54ecd15d2d39807f72953df805748"
+    },
+    {
+      "source": "b/numpy-full/test_snow_compaction.log",
+      "path": "b/numpy-full/test_snow_compaction.log.gz",
+      "source_sha256": "eb998a08ea822018c23426dbaa1733ee4c9f32d3f9180db9d43619391c8c5f12",
+      "stored_sha256": "c0361ae42ab2f88dc73afc72c5ae9f7989d85d88b7003d26e0da11b4cf72f98d"
+    },
+    {
+      "source": "b/numpy-full/test_ground_evap.log",
+      "path": "b/numpy-full/test_ground_evap.log.gz",
+      "source_sha256": "419a098e17fd7941a96d1a099ce1329013a4fa9b505b5528e10ff91651907e57",
+      "stored_sha256": "ad29ef9fe1ff6204af2aa9b22edfdce929df3c32899f2fa2d73692b2e86e72de"
+    },
+    {
+      "source": "b/numpy-full/test_soil_enthalpy.xml",
+      "path": "b/numpy-full/test_soil_enthalpy.xml.gz",
+      "source_sha256": "b5371861a0cb3eeb21d094e117629808d53495a1edf14cd986f20c30fbbd9fe4",
+      "stored_sha256": "7d75100a85ec88fcfc1f84486f2cbc88ea1d1453987d1c1e3e8f71c14ad75f21"
+    },
+    {
+      "source": "b/numpy-full/test_stress.log",
+      "path": "b/numpy-full/test_stress.log.gz",
+      "source_sha256": "419a098e17fd7941a96d1a099ce1329013a4fa9b505b5528e10ff91651907e57",
+      "stored_sha256": "ad29ef9fe1ff6204af2aa9b22edfdce929df3c32899f2fa2d73692b2e86e72de"
+    },
+    {
+      "source": "b/numpy-full/test_wetland.xml",
+      "path": "b/numpy-full/test_wetland.xml.gz",
+      "source_sha256": "808050c297bc84d04ecf860f60ef29c16ebcd5065ec19ada27c46e1aa65aa09e",
+      "stored_sha256": "03cce1875c93a784c3107c3bc57a11dfdb673c529c9664dc2ed56b46fc775216"
+    },
+    {
+      "source": "b/numpy-full/test_soil_uptake.xml",
+      "path": "b/numpy-full/test_soil_uptake.xml.gz",
+      "source_sha256": "b18c9567eb74e2784fff476597300428215fa617679566ba23fbe9a73f7da9cd",
+      "stored_sha256": "34e3cc952f0f7b1dfd248ebc2a46acfe15e2f36056ea2b3e0fee7fc18b2ba6b0"
+    },
+    {
+      "source": "b/numpy-full/test_most_stagnation.xml",
+      "path": "b/numpy-full/test_most_stagnation.xml.gz",
+      "source_sha256": "55b9b59b3e65bc0de46dc070636dadd59f24cd383915e01d5bd4693a128e3397",
+      "stored_sha256": "cb564bf16de2324140a3496b3c7991011a9337c3ca44e14a62108b6aa7e2055f"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_radiation.xml",
+      "path": "b/numpy-full/test_canopy_radiation.xml.gz",
+      "source_sha256": "b302e44916a87bdfe21c5fc25a6f37d688a3c9e1db8e44a29759ced722104776",
+      "stored_sha256": "5dfccb5d65cc0f945a2cdbfceb69d276eb5ce8bf4942057983c9e075739f5407"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_column.log",
+      "path": "b/numpy-full/test_canopy_column.log.gz",
+      "source_sha256": "af761d8b6ba0531b2014b45cb0b97b66008a2387925ec7b5468d6943e5f8bd25",
+      "stored_sha256": "a24fb487ecbef16292c3cde576945ea352d24819ea177311ca5e27ebd9b93536"
+    },
+    {
+      "source": "b/numpy-full/test_phenology.log",
+      "path": "b/numpy-full/test_phenology.log.gz",
+      "source_sha256": "9df4d71f124dc1d69ef50e4df87b404bf3a4a45e0e27fe270729b98316d0cdf1",
+      "stored_sha256": "9ff7d17e54ac60ecd574ae07d7257c6e6b852b3b7fdc29b7ca22ea6114ff6f0d"
+    },
+    {
+      "source": "b/numpy-full/test_soil_enthalpy.log",
+      "path": "b/numpy-full/test_soil_enthalpy.log.gz",
+      "source_sha256": "c0903260d01e4d6b29ad87806c881574ba724cb42cb499d22cff669f37282035",
+      "stored_sha256": "e79d562ac8a12f72afbf1acc0bc2ed000249bb2745fc7534ffc8c0e6b26a644b"
+    },
+    {
+      "source": "b/numpy-full/test_snowpack.xml",
+      "path": "b/numpy-full/test_snowpack.xml.gz",
+      "source_sha256": "cee01b430b77eb38bba909d20deadcbbe5335af5f4ba229ef477b68bd26fab9d",
+      "stored_sha256": "c3b9eb03fc4404d8f8211a4e757387cf946c0293e5d4fc2c4b35395eb906a093"
+    },
+    {
+      "source": "b/numpy-full/test_phase_regularization.xml",
+      "path": "b/numpy-full/test_phase_regularization.xml.gz",
+      "source_sha256": "2b1a6deb192ef90c0befc79b9253c2b04dfef4e21d862673a4d0053aae1e6b26",
+      "stored_sha256": "8eb3310a936128b0e937dee5a183c0ff0405ee8c15396f4eb3f10c0963e3f2ef"
+    },
+    {
+      "source": "b/numpy-full/selection.json",
+      "path": "b/numpy-full/selection.json.gz",
+      "source_sha256": "d4b3973818bb6ba80a39c1bf8e1c511f72a230b49145127d19df977048bce78a",
+      "stored_sha256": "308d50ee9c52446d13e1c9847c8eedf008e0ab55efcf35e15bb43f824fad5fa0"
+    },
+    {
+      "source": "b/numpy-full/test_clm_enthalpy_driver.xml",
+      "path": "b/numpy-full/test_clm_enthalpy_driver.xml.gz",
+      "source_sha256": "2631aa0063468b4d9f1a6e479481766e3ecc6ef4521d31b251b23e8198731d24",
+      "stored_sha256": "b742efff5f69a5e0c48261f568c30aba51ecd9a7a5cc8aeb4b600fba1aac6193"
+    },
+    {
+      "source": "b/numpy-full/test_clm_driver.xml",
+      "path": "b/numpy-full/test_clm_driver.xml.gz",
+      "source_sha256": "9701e52a77a6989888a5ff138d21f5c7374a4f18d89db52e3dc881265c53e08b",
+      "stored_sha256": "bf77a9632e86041c91429844ddd8ebb93ea352e33b44b12c33a2b82b7758205e"
+    },
+    {
+      "source": "b/numpy-full/test_wetland.log",
+      "path": "b/numpy-full/test_wetland.log.gz",
+      "source_sha256": "fd624e0ca3d0c931c9394658ede05811d5434239430463c7ea4723994c08ea84",
+      "stored_sha256": "8f49947318f9468d55a34fb28319d5f79f7bb34a658f22cb7d244ebfebd3cc5d"
+    },
+    {
+      "source": "b/numpy-full/test_hrldas_comparison.log",
+      "path": "b/numpy-full/test_hrldas_comparison.log.gz",
+      "source_sha256": "aacfe8b73ee65743549945570fd5aa7638eeeaa01654e92990eabbb92ab123d4",
+      "stored_sha256": "08ef2f19bc560171408e803153ef405284d4d3dd414de61ff2d7d93ffa360aa5"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_soil_operator.log",
+      "path": "b/numpy-full/test_fluxnet_soil_operator.log.gz",
+      "source_sha256": "7beb31903a1781801d007f2f90145733546550d65176d9186e03bddcd5d16ae0",
+      "stored_sha256": "5d03c514072b76e7061d295ded72d177ee8fdb704ec31237906d5e492ee59bb0"
+    },
+    {
+      "source": "b/numpy-full/test_frozen_soil.xml",
+      "path": "b/numpy-full/test_frozen_soil.xml.gz",
+      "source_sha256": "abaa7334cd6a1e2d48647b95779285f8f8381cdda173c880479b04eca137342d",
+      "stored_sha256": "73899e5f42bf6413f984fced3ffdc31c8133f7e7ccd203e0014ef01b66e69158"
+    },
+    {
+      "source": "b/numpy-full/test_surface_snow_branch.log",
+      "path": "b/numpy-full/test_surface_snow_branch.log.gz",
+      "source_sha256": "3a2b368f7d2ee385e2a4e7bf4d767c9671e470253a554ef36c8ff6b11c749e00",
+      "stored_sha256": "87a19e8a05dc8d1fab28a806beee90dc8efe86fe1ca9572a3f51e70c6614011a"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_native_runner.xml",
+      "path": "b/numpy-full/test_fluxnet_native_runner.xml.gz",
+      "source_sha256": "01a3d250d71a0518808a1348f2f2c7036f74ef04dc339e2a0eef44317fa8727f",
+      "stored_sha256": "6de15374801a8a693a6d0bfd1b87767ee627cea7729c3112abf796aadc9f10c7"
+    },
+    {
+      "source": "b/numpy-full/test_surface_independent.xml",
+      "path": "b/numpy-full/test_surface_independent.xml.gz",
+      "source_sha256": "7851f9d46832a272d6577d55c78c72576c5341a2f52217bd73c0800880259c6a",
+      "stored_sha256": "8083f40473801f9b3ddf730d80cf6fee8e6f265e689a74108e5995d5391b1231"
+    },
+    {
+      "source": "b/numpy-full/test_precip.xml",
+      "path": "b/numpy-full/test_precip.xml.gz",
+      "source_sha256": "b3a52441b7759ffe9d1e7b968d3b5c7360c4f7a2a60edf9f4788eb1be142dd69",
+      "stored_sha256": "a2a968d642654b790a28f61007596eddfcbefc7b5a135b78a73da6572df9dcbe"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_height_summary.log",
+      "path": "b/numpy-full/test_fluxnet_height_summary.log.gz",
+      "source_sha256": "e1e00987eaf93891fbd077fb662a1639a6ced95ab99532bfd10ed31397899015",
+      "stored_sha256": "b8539e5877f22a8e1679144358ef186df540f24e7f95b16d3397161b72ae340d"
+    },
+    {
+      "source": "b/numpy-full/test_numpy_benchmark_checksum.log",
+      "path": "b/numpy-full/test_numpy_benchmark_checksum.log.gz",
+      "source_sha256": "49cc79a7087a43b0e6c1b8fcff6687ba461f005179af3c6ba0f5f8a09d291c3e",
+      "stored_sha256": "6a5b15cad458c72437d31e40cf2d27e6ace7f28bd2ae481902a7b848b2183682"
+    },
+    {
+      "source": "b/numpy-full/test_snicar.log",
+      "path": "b/numpy-full/test_snicar.log.gz",
+      "source_sha256": "5806299b4d8e072709bd67a6b81192c54769a62705c5438dde7047921b33bc00",
+      "stored_sha256": "15f19283fa83620777879cc8ecf597cf80ffa3172c119d2cf1c688096b65a65d"
+    },
+    {
+      "source": "b/numpy-full/test_stress.xml",
+      "path": "b/numpy-full/test_stress.xml.gz",
+      "source_sha256": "7d04d6f414fab33a4c03c3195c618af2ca8df1497ac66b4cc5395415177cfdcb",
+      "stored_sha256": "618c6c2a437e3cdd37d64eba83c8c85d2fe739ef7547940725d56c22e936858e"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_phase_energy.log",
+      "path": "b/numpy-full/test_canopy_phase_energy.log.gz",
+      "source_sha256": "5d6906b39ea23c0a2b6ba0cfaa0ccea6cae8ec8a85fffa9aebd0cd8e33b0869f",
+      "stored_sha256": "490cf03160aad54cc76fda8817e4e02cabd318d9c7dffb1ead9c4d45c711a68f"
+    },
+    {
+      "source": "b/numpy-full/test_clm_crop_column.log",
+      "path": "b/numpy-full/test_clm_crop_column.log.gz",
+      "source_sha256": "0e92b84c3db33b2cd731d8c2d765af6c793c6908df9a9089ce69733e360afb7a",
+      "stored_sha256": "f81ab2a07082921ab2ceae12502f2efeb93d3bfe0fc1c7988c6c91dbb9a14f5d"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_snow_radiation.xml",
+      "path": "b/numpy-full/test_canopy_snow_radiation.xml.gz",
+      "source_sha256": "1a8f8ed4a303667a75b4a4c29e9e0018c8e23f0acbbbd9ef2905ed70cf4bd26c",
+      "stored_sha256": "9502bacc22d9d30104815a0c91a2c38752af75b38af796d352faf115c88e0842"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_most.xml",
+      "path": "b/numpy-full/test_canopy_most.xml.gz",
+      "source_sha256": "4db416193a0fddf185e52922f0ba5911006cabc56a51bcd5c5e2387c916db1a5",
+      "stored_sha256": "7c799f4d13c47f7135a8c070cbe84d3e50904405c2a718b6ac1d1498c696281e"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_snow_radiation.log",
+      "path": "b/numpy-full/test_canopy_snow_radiation.log.gz",
+      "source_sha256": "88f6021faceebe0f3b25cbe731730c0d80e6ff5eece66f67ca3d077f6e756018",
+      "stored_sha256": "fc76bd374f5f76a76b7ee70e9068fc10a3129ba50797ed4b4da12d0297666669"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_interception.log",
+      "path": "b/numpy-full/test_canopy_interception.log.gz",
+      "source_sha256": "ba495eb6430abc0ed4a396ee4ef6a4a108743306a67ba922bff11adf4a5d5f76",
+      "stored_sha256": "b4703880e9d6c16b47e2782da928832764498d2bd5dce88bd9d8f54fc1031c34"
+    },
+    {
+      "source": "b/numpy-full/test_snow_heat.xml",
+      "path": "b/numpy-full/test_snow_heat.xml.gz",
+      "source_sha256": "b52fd970655e5e7ff2012962eb1d4e11bcfbdb414aeef5ae83371c3fd675d381",
+      "stored_sha256": "3f4ecda7f6036d768f49c59c5c5b8d9777131c2af6f0fc6491481e0cee21b922"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_loader.xml",
+      "path": "b/numpy-full/test_fluxnet_loader.xml.gz",
+      "source_sha256": "4b57102ebed990a30a536cb31a46b94184802b5b06fed4b501b024662cad7506",
+      "stored_sha256": "49e8928322c81b67a735b61f2c51127a630294fd9c0106a6284d0b9b646d203a"
+    },
+    {
+      "source": "b/numpy-full/test_wetbulb.xml",
+      "path": "b/numpy-full/test_wetbulb.xml.gz",
+      "source_sha256": "9dabff1e3a0a866ad780c62012042be7509a305c740cd549e7ada17c3448899a",
+      "stored_sha256": "b98ceda45e0125a8c41cd5153f344753753c5f98faa1972420244455e9b4ae52"
+    },
+    {
+      "source": "b/numpy-full/test_dry_condensation_phase.log",
+      "path": "b/numpy-full/test_dry_condensation_phase.log.gz",
+      "source_sha256": "bd288f76296694e0505eff516ca3313a5d79472b1d3f637ced5e080611f135c7",
+      "stored_sha256": "ef202ebab9fa85174522f366e734c8ef15c07ff5b7842a44d32c3249fab0e7c3"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_energy.xml",
+      "path": "b/numpy-full/test_canopy_energy.xml.gz",
+      "source_sha256": "ac69e9a38f6769c4682088399cd0e214e1b951db786c061443f9c891ff6d06cd",
+      "stored_sha256": "a062f136f5a3b59f7f923a683a466bda5fbd7a1b1ef023bd9170a752380cba99"
+    },
+    {
+      "source": "b/numpy-full/test_options.log",
+      "path": "b/numpy-full/test_options.log.gz",
+      "source_sha256": "7b057b646193ebdb7df9aea472fbf9d074b1898523d4743fbdb92085bb1e93f6",
+      "stored_sha256": "04b43587c91491b3d72e03a293119c9b99c32cb8f8ba1f12281933b501c48298"
+    },
+    {
+      "source": "b/numpy-full/test_leaf_root.xml",
+      "path": "b/numpy-full/test_leaf_root.xml.gz",
+      "source_sha256": "2d5891bb8f1f181b882e356fdb29eb1cdac88d48f73e0bd36a965216a0c1a33c",
+      "stored_sha256": "d0b37157a5f9a9864b441441a58afd9a4286481b109cc86601eb7938f1b6d40a"
+    },
+    {
+      "source": "b/numpy-full/test_snow_heat.log",
+      "path": "b/numpy-full/test_snow_heat.log.gz",
+      "source_sha256": "6b3af63dc0953f10f84e8b4bdfaa62700e29bc47259260edc534182d9d1e0618",
+      "stored_sha256": "d3bfd02d2856c17de3ae53c60444fd91f9fc1f7b2a504e9bfdf536d8f95d6e5e"
+    },
+    {
+      "source": "b/numpy-full/test_validation.xml",
+      "path": "b/numpy-full/test_validation.xml.gz",
+      "source_sha256": "5c9baccf7ae00d267f0e517a09db7f76ea062355294245a91e90d177672c8e44",
+      "stored_sha256": "6ed27059133df76c316f39dc2b4764b86d7022c52bfdf790ed67a4d385174da7"
+    },
+    {
+      "source": "b/numpy-full/test_snow_thermal.log",
+      "path": "b/numpy-full/test_snow_thermal.log.gz",
+      "source_sha256": "570f2d6b7d0a4e4a6873125afb7d5b3b90d69ca346008fe64f7fed6c4cf75641",
+      "stored_sha256": "ceaec93f038802ea5c7b4aa37fb1a91e53b93bfbe4bf72ac0e4e2c2f98a4d86c"
+    },
+    {
+      "source": "b/numpy-full/test_phenology.xml",
+      "path": "b/numpy-full/test_phenology.xml.gz",
+      "source_sha256": "49fb222510290df6e63c53a5b48bba4d0cfc622b55813ddb45fdca5ae91ad43c",
+      "stored_sha256": "d565d58bc1f9afa55f264d8c0292a5280142fca9ada1d45199e1b5aa6d8f0df9"
+    },
+    {
+      "source": "b/numpy-full/test_column.xml",
+      "path": "b/numpy-full/test_column.xml.gz",
+      "source_sha256": "68136832c56f8353dbd7b2bda94be14459cb016b1139fbccb7459a4a0fcc8442",
+      "stored_sha256": "c0d14ea89e4880a78beddb318768b4426c64d1e88966c430149374b31fcb5d09"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_loader.log",
+      "path": "b/numpy-full/test_fluxnet_loader.log.gz",
+      "source_sha256": "3b60c5661a8a0e9b55b6f48bde443141404923842cbf89403efd6a890c4ce48f",
+      "stored_sha256": "4dd4647e7d7debf9be55e3b60064db988424bff8d67c263ed0c2ca33ba865c15"
+    },
+    {
+      "source": "b/numpy-full/summary.json",
+      "path": "b/numpy-full/summary.json.gz",
+      "source_sha256": "da00dd9eeec5b891b7caf51f1186644e78a884a9e729db18eb2bf6b9f18d71a9",
+      "stored_sha256": "c444898acc0557d7c001f35e240244c95cddc86c357344cd0e2d745461d49d84"
+    },
+    {
+      "source": "b/numpy-full/test_fluxnet_deposition.log",
+      "path": "b/numpy-full/test_fluxnet_deposition.log.gz",
+      "source_sha256": "fc1d6d9d681faca96e18825b6e6fca40dbff5b92f072d66cd5a607fdc8d80ba4",
+      "stored_sha256": "0683fe66ad9b860e92ea0699d6d0ce5c57a37dbad29ee632664ad81b43d90ea2"
+    },
+    {
+      "source": "b/numpy-full/test_molten_precipitation.log",
+      "path": "b/numpy-full/test_molten_precipitation.log.gz",
+      "source_sha256": "f1af5487ddd0ea1db4775aae9bbce386242f919e57258db152289fa8350348fa",
+      "stored_sha256": "c1d29b126b0c30321f150ad2d581f0bcc8033e4e588527582497ccb753c96a1f"
+    },
+    {
+      "source": "b/numpy-full/test_wetbulb.log",
+      "path": "b/numpy-full/test_wetbulb.log.gz",
+      "source_sha256": "b6198f746a9d86cc0916a7e0e23bf4b1b3e66790436486a830dcb3c214424014",
+      "stored_sha256": "acfb43f7cc76fc0f4c0aaae09dd71dddf9510b0d5c0c3cfd3510234d77d6b5ba"
+    },
+    {
+      "source": "b/numpy-full/test_irrigation.log",
+      "path": "b/numpy-full/test_irrigation.log.gz",
+      "source_sha256": "c5fd74b239ae6ca317baa51ea9ab6b05308c68062fdc21dddc1594ee1baebabc",
+      "stored_sha256": "bba2dd635235b761e725cbfa85c5cfe7a520b5184d6eb1344b5311601a0192cf"
+    },
+    {
+      "source": "b/numpy-full/test_clm_wetland_column.log",
+      "path": "b/numpy-full/test_clm_wetland_column.log.gz",
+      "source_sha256": "a367d0ea4cd6d3d593ef95838d8121710d5e6cb6a4b5f082695071e80a8390aa",
+      "stored_sha256": "9a6281138a5619cd80ae8f4de6ba6f343520bda003f8db5770790c9478d35501"
+    },
+    {
+      "source": "b/numpy-full/test_snow_albedo.log",
+      "path": "b/numpy-full/test_snow_albedo.log.gz",
+      "source_sha256": "419a098e17fd7941a96d1a099ce1329013a4fa9b505b5528e10ff91651907e57",
+      "stored_sha256": "ad29ef9fe1ff6204af2aa9b22edfdce929df3c32899f2fa2d73692b2e86e72de"
+    },
+    {
+      "source": "b/numpy-full/test_hrldas_output_audit.log",
+      "path": "b/numpy-full/test_hrldas_output_audit.log.gz",
+      "source_sha256": "8df1588fbc6c14835a182236292c5522b86c03355ef5102124dc3324d83f5fa1",
+      "stored_sha256": "7148dba137a747ea93e318a0059ef50f34aee39c49de2a8222082b47625d3a38"
+    },
+    {
+      "source": "b/numpy-full/test_surface_drag.log",
+      "path": "b/numpy-full/test_surface_drag.log.gz",
+      "source_sha256": "a68f68d8367734d5698952cdaed6e44590e8122aa18ce89f7f3c25c0058df219",
+      "stored_sha256": "f8865899e51ceb47621c2c968b1e4ff400ba2d5b9e7fe42f5a4770ea529291a5"
+    },
+    {
+      "source": "b/numpy-full/test_snow_boundary_coupling.log",
+      "path": "b/numpy-full/test_snow_boundary_coupling.log.gz",
+      "source_sha256": "e1e00987eaf93891fbd077fb662a1639a6ced95ab99532bfd10ed31397899015",
+      "stored_sha256": "b8539e5877f22a8e1679144358ef186df540f24e7f95b16d3397161b72ae340d"
+    },
+    {
+      "source": "b/numpy-full/test_canopy_phase_column.log",
+      "path": "b/numpy-full/test_canopy_phase_column.log.gz",
+      "source_sha256": "1cd7d3e50f3fe211791a141fddcf5feeac819b0d20da924f1dd3565d88c527f8",
+      "stored_sha256": "77d9a3c653e6d49482d784496ddc256c976eec5dc578fb88c1895204662a7a18"
+    },
+    {
+      "source": "b/reference/ham_surface_branch_gpu.npz",
+      "path": "b/reference/ham_surface_branch_gpu.npz",
+      "source_sha256": "a1b9014ca0d322532100208a68b9c08d90e0c6e77e37758bb14c137e661bb736",
+      "stored_sha256": "a1b9014ca0d322532100208a68b9c08d90e0c6e77e37758bb14c137e661bb736"
+    },
+    {
+      "source": "b/reference/ham_surface_branch_gpu.json",
+      "path": "b/reference/ham_surface_branch_gpu.json.gz",
+      "source_sha256": "f4e9d0e1ae52c0d95b48bfb062a5fba960daec5ed0e54dd40815bccd418d1e93",
+      "stored_sha256": "08adf8f692ac9d8503547eca700c9e3456d07a7718d122e5244a4037738c4da1"
+    },
+    {
+      "source": "b/reference/prepare_ham_branch_gpu_reference.py",
+      "path": "b/reference/prepare_ham_branch_gpu_reference.py.gz",
+      "source_sha256": "04d830aa247795ad84843122d177e7f1ea47cd9fcedd25d88faa0ecc0a37966d",
+      "stored_sha256": "3add387e8f57b5b8848dafd6cdacaafa8f848e41d8cf9eaf8c6a85a4f3c0fafb"
+    },
+    {
+      "source": "b/reference/ham-branch-reference.pbs",
+      "path": "b/reference/ham-branch-reference.pbs.gz",
+      "source_sha256": "4d1334042a60f88a359e06f891ad668d4816800bf432c867caeb830989638d9e",
+      "stored_sha256": "6880608b7e60ab7b8873e4b922d0eac55209d875908d919f51ca893d4e04df95"
+    },
+    {
+      "source": "b/reference/ham-reference-node.txt",
+      "path": "b/reference/ham-reference-node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "b/reference/ham-reference.log",
+      "path": "b/reference/ham-reference.log.gz",
+      "source_sha256": "967e4f9490aa8f1261010c3bd8e0ece518acc3abeb8595948b63f34171f31b74",
+      "stored_sha256": "be97f7a4fa82040d1d02fe7796520d6bcf88d0f96ea0a107dbb4723b3435fc1f"
+    },
+    {
+      "source": "b/reference/ham-reference-exit.txt",
+      "path": "b/reference/ham-reference-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "b/reference/ham-reference-qstat.txt",
+      "path": "b/reference/ham-reference-qstat.txt.gz",
+      "source_sha256": "33b9c869f20ec9568d517282aa7c736fe8c7a64255a2c9e5144afe5d4c07f13e",
+      "stored_sha256": "1a67b12203c03290fca583d3460dd36a8f3854ee2b3b93ec52f14bebb7d1ea0e"
+    }
+  ]
+}

@@ -116,6 +116,35 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
             if(accepted)for(int i=0;i<9;++i)h[i]=candidate[i];
             step*=.5f;
         }
+        if(!accepted) {
+            // A rounded neighbouring store can block the coupled Newton
+            // direction. Retain every original merit and convergence test.
+            int worst=0;float peak=-1.f;
+            for(int i=0;i<ns+4;++i){float ratio=fabsf(residual[i])/weights[i];if(ratio>peak){peak=ratio;worst=i;}}
+            float derivative=d[worst];
+            if(at0[worst])derivative=residual[worst]>0.f?1.f/(2100.f*mass[worst]):0.f;
+            if(at1[worst])derivative=residual[worst]<0.f?1.f/(4180.f*mass[worst]):0.f;
+            float up=worst==0?0.f:conduct[worst-1],down=worst==8?0.f:conduct[worst];
+            float diagonal=1.f+(bc[0]*((up+down)+(worst==0?bc[3]:0.f)))*derivative;
+            float correction=-residual[worst]/diagonal;
+            float scalar_step=1.f;
+            float e0=-h[worst]/(correction!=0.f?correction:1.f),e1=(upperH[worst]-h[worst])/(correction!=0.f?correction:1.f);
+            bool land0=worst<ns&&!at0[worst]&&correction!=0.f&&e0>0.f&&e0<=1.f;
+            bool land1=worst<ns&&!at1[worst]&&correction!=0.f&&e1>0.f&&e1<=1.f;
+            if(land0)scalar_step=fminf(scalar_step,e0);if(land1)scalar_step=fminf(scalar_step,e1);
+            for(int search=0;search<40&&!accepted;++search) {
+                for(int i=0;i<9;++i)candidate[i]=h[i];
+                candidate[worst]=h[worst]+scalar_step*correction;
+                if(land0&&scalar_step==e0)candidate[worst]=0.f;
+                else if(land1&&scalar_step==e1)candidate[worst]=upperH[worst];
+                bool good=heat_evaluate(candidate,old,mass,z,solar,conduct,ns,props,bc,phase,
+                    trial_r,trial_t,trial_d,trial_liq,trial_f,trial_top,trial_rounding);
+                float trial_merit=0.f;for(int i=0;i<9;++i)trial_merit+=fabsf(trial_r[i])/weights[i];
+                accepted=good&&(trial_merit<merit||heat_norm(trial_r,candidate,tolerance,trial_rounding,conduct,bc)<=1.f);
+                if(accepted)for(int i=0;i<9;++i)h[i]=candidate[i];
+                scalar_step*=.5f;
+            }
+        }
         bool good=heat_evaluate(h,old,mass,z,solar,conduct,ns,props,bc,phase,residual,t,d,liq,flux,top,rounding);
         done=heat_norm(residual,h,tolerance,rounding,conduct,bc)<=1.f;valid=good&&(accepted||done);count++;
     }
