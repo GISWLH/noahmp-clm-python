@@ -118,6 +118,8 @@ template<class Solver> __device__ void surface_device(const float* c,const float
     for(int k=0;k<60&&fabsf(out[361])>tol&&bracketed&&(right-left)>tol;++k) {
         float span=right-left,trial=left-(fl*span)/(fr!=fl?fr-fl:1.f);
         trial=fminf(right-.05f*span,fmaxf(left+.05f*span,trial));
+        // A percentage margin may round back to the endpoint. Contract it.
+        if(trial<=left||trial>=right)trial=left+.5f*span;
         surface_evaluate(c,g,p,n,phase,a,u,f,v,radiation,leaf,supply,root_h,inverse_ok,trial,out,solver);++count;
         if(out[361]>0.f){left=trial;fl=out[361];}else{right=trial;fr=out[361];}
     }

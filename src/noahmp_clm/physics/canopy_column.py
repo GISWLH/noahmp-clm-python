@@ -138,6 +138,9 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         for iteration in range(60):
             trial=(left*fr-right*fl)/(fr-fl) if fr!=fl else .5*(left+right)
             trial=float(np.clip(trial,left+.05*(right-left),right-.05*(right-left)))
+            # A fractional interior margin can round back to an endpoint.
+            # Bisect that trial so a representable bracket keeps shrinking.
+            if trial<=left or trial>=right:trial=left+.5*(right-left)
             value,details=evaluate(trial)
             if abs(value)<=temperature_tolerance: break
             if value>0.: left,fl=trial,value

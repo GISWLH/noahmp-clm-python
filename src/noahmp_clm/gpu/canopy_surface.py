@@ -143,6 +143,8 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
         k,left,right,fl,fr,details,count=carry
         width=s(right-left);trial=s(left-s(fl*width)/j.where(fr!=fl,s(fr-fl),1.))
         trial=j.clip(trial,s(left+s(.05*width)),s(right-s(.05*width)))
+        # The 5% margin can round to an endpoint in a narrow float32 bracket.
+        trial=j.where((trial<=left)|(trial>=right),s(left+s(.5*width)),trial)
         result=evaluate(trial);value=result[361]
         return k+1,j.where(value>0.,trial,left),j.where(value>0.,right,trial),j.where(value>0.,value,fl),j.where(value>0.,fr,value),result,count+1
     _,left,right,_,_,candidate,count=lax.while_loop(lambda x:(x[0]<60)&(j.abs(x[5][361])>tol)&bracketed&(s(x[2]-x[1])>resolution),step,
