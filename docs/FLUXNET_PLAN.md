@@ -7,8 +7,24 @@
 余下221设备节点继续；物理源码与当前年度身份不变，不代替科学验收。
 
 [官方CTSM单柱参考准备](CTSM_REFERENCE_PREPARATION.md)已固定来源，EHPC
-PBS108实际C/Fortran/Python NetCDF交叉读写完成；模型构建/强迫映射/输出及
+PBS115补齐XML并完成19阶段精确自检，官方namelist预览和共享库构建完成；
+后续PBS122完整模型构建0及动态库检查完成；强迫映射/实际输出及
 配对验收待完成。现有HRLDAS/FLUXNET的原始科学失败与校准/留出界限保持。
+
+J四柱各4176步的原始前缀已归档，越过旧I4016失败位置；随后在5498/17520
+出现[新HaM雪—土壤失败](CLM_J_PHASE_FAILURE.md)，原失败和NumPy参考保留，
+尚未修复，没有年度、spinup或科学通过结论。GPU C多层柱启动路径错误已保留，
+修正导入环境的D队列等待原C终态后，仅复用逐节点/退出/源核实的成功文件。
+
+EHPC PBS121另从原四站锁定强迫/配置/冷初态开启独立NumPy64完整年，每站
+仍要求17520步；原483代码/测试/基准与J相同，未换测高、LAI/水热/C/N种子。
+结果写节点临时盘以避免每日检查点耗尽home inode，PBS123在原compute002
+只读核对原报告/轨迹/pickle哈希并原样压缩最新代次到home，固定文件名原子
+替换。保留的partial/running代次不改成complete，只有真实全年/退出0才可
+计完整；六小时分配到期前仍须检查进度并按原代次恢复，不能假定完成。
+[实际启动与源/输入身份](v1-results/numpy-current-first-year-launch-a/manifest.json)、
+[保留器调度主机名错误与vnode更正](v1-results/numpy-preserver-placement-a/manifest.json)
+分开保存。后者只改排队任务的放置，原物理任务未重启。
 
 [完整气候循环核对入口](CLM_SPINUP_ASSESSMENT.md)已在EHPC PBS99完成79项，
 原J48不改身份/请求而被拒绝作为完整循环。两次水热端点阈值沿用已锁定协议，

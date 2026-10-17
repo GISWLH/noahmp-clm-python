@@ -1,0 +1,78 @@
+{
+  "scope": "EHPC PBS118 all official component compilation reached final executable link, which returned1 due to missing LAPACK symbols dgtsv/dgesv/dgbsv in case link flags. Actual failure/private workspace retained; upstream2930 bytes unchanged, no model output.",
+  "archive_sha256": "7e30b0a91b91ba4a0c91eb4b36551b57b219589391ec7af70260b973369e29ed",
+  "artifacts": [
+    {
+      "source": "build_ctsm_case_f.py",
+      "path": "build_ctsm_case_f.py.gz",
+      "source_sha256": "7c6371370f44dfbda10c1fb0de8a55de434efbbd7d2731c5025b6081e62cc47b",
+      "stored_sha256": "ba51925d6c2e16516633237f980be3a61805c2cd759713524a3623b9537b7635"
+    },
+    {
+      "source": "ctsm_case_build_f.pbs",
+      "path": "ctsm_case_build_f.pbs.gz",
+      "source_sha256": "3bb093bf59bb03ed48d71ef4c64c6fba73e831d6e8666b5798633112c1757865",
+      "stored_sha256": "96e80e47d561829a0f1b019e8bac437078e4ea19f13cbca6b0088246f59a9a13"
+    },
+    {
+      "source": "configuration.json",
+      "path": "configuration.json.gz",
+      "source_sha256": "96ec3e27ee9ab64e109abd900bef59d4d5b499179a19bd6259750d18f8da2c48",
+      "stored_sha256": "c3306f168a88f21371ed098f3a91dbbbd2775ff1b0aebc29e3aa9f31c884915d"
+    },
+    {
+      "source": "configuration.log",
+      "path": "configuration.log.gz",
+      "source_sha256": "12acd05006b46b7ace003c954d41da2be2fe5533321b1d8e75f9bfa5dd03bd9b",
+      "stored_sha256": "a8206b6f0ebabe706fae6f11a1384b624440d321a9380001372fa0e528ebdd63"
+    },
+    {
+      "source": "node.txt",
+      "path": "node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "archive_ctsm_case_build_a.py",
+      "path": "archive_ctsm_case_build_a.py.gz",
+      "source_sha256": "3f54aadd33de1f1c371d328033aaf87fb143fe3760c4eb9fe6628bad586d3cab",
+      "stored_sha256": "49f6d0d7889621e8e0356988eeca752e8862c4bef1e9309500afe452ade4080e"
+    },
+    {
+      "source": "compiler-adaptation.json",
+      "path": "compiler-adaptation.json.gz",
+      "source_sha256": "1ae93dbe68d46b8565b7cbc1f0c47896c46fb04aaea8ed251cbefd9f97d2126c",
+      "stored_sha256": "f56c272e0c5ca256f1c960a548bd525e1e751e5cdc1f09ce4af72ebbd8908d98"
+    },
+    {
+      "source": "machine-adaptation.json",
+      "path": "machine-adaptation.json.gz",
+      "source_sha256": "1f702adaf5bf0ea716406ea9402b23b0dcb468300f966de225731ea856136b61",
+      "stored_sha256": "f64c95788f299b41bb9007d93586ceb6ec101e71ab2d0a8e57ab74a80114c323"
+    },
+    {
+      "source": "resource-adaptation.json",
+      "path": "resource-adaptation.json.gz",
+      "source_sha256": "52e15903a4c3cfc0b8bbbb556a2fcbe610c6fc4c9e641ee100bc8a188e547e48",
+      "stored_sha256": "776301159e5f84a197174dd15fd8bbe024a8213c117e6d1e69fd9904f831c076"
+    },
+    {
+      "source": "safe-error-excerpts.json",
+      "path": "safe-error-excerpts.json.gz",
+      "source_sha256": "15dd66889c0a9d43b9f4b7c0e9c0a3715e3c7e9df2197d6fe77121b7e75f38b4",
+      "stored_sha256": "04600cd2bbcca5c2585e540e3e2d818e0e443742b56a9dc0e1bf2b87d862a4db"
+    },
+    {
+      "source": "private-workspace-binding.json",
+      "path": "private-workspace-binding.json.gz",
+      "source_sha256": "f489c0859ec305e5874e61b227b2e59a8faf58157dc6f4e99bdfef9b9b44aae8",
+      "stored_sha256": "11ec4fdc4df99305f04e565fd5c789c48577378a739ad691788f785a64f4207f"
+    }
+  ]
+}

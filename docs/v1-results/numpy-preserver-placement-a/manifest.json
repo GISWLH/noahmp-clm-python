@@ -1,0 +1,30 @@
+{
+  "scope": "Original queued preserver host mismatch and actual metadata-only qalter to original121 vnode; actual PBS123 compute002 execution confirms correct same-node snapshot preservation, no physical/source job restarted.",
+  "archive_sha256": "08aef3dfab5641bb0976232a2f870d9df7270fe23f0b60015a75a6302db1ff64",
+  "artifacts": [
+    {
+      "source": "placement.json",
+      "path": "placement.json.gz",
+      "source_sha256": "994477cc8807990534e137169e69de7ab9addc7748d8c45c1b5c7fad3250dcb0",
+      "stored_sha256": "0fbd351b6f293a17d300220bb911ba475d5a0452837f66f06b55f478221e2cae"
+    },
+    {
+      "source": "adjust_numpy_preserver_placement_a.py",
+      "path": "adjust_numpy_preserver_placement_a.py.gz",
+      "source_sha256": "d1d142169769c9106831072a8d93df236bd11e295d615c1954084a306362fd75",
+      "stored_sha256": "b40b0731d87a35efb3da3305ef9b25da8c8cfeaa7b5dfb72b0e686e4ecae5137"
+    },
+    {
+      "source": "actual-node-launch.json",
+      "path": "actual-node-launch.json.gz",
+      "source_sha256": "d529d7a6532b6720ac29191c6ccbb81992a4ddb368dbfb34d4fc075e8d322ceb",
+      "stored_sha256": "0523ce855c239a1ce3480a156531885aa9b0fff5bda3e216d2ba8688a4d20bc6"
+    },
+    {
+      "source": "archive_numpy_preserver_placement_a.py",
+      "path": "archive_numpy_preserver_placement_a.py.gz",
+      "source_sha256": "5c003b38d3b7db8cfb7b93536eb3c2d0d6e1154db57ee0b58865d6bbaa324ee0",
+      "stored_sha256": "382c4baa7e9188530aa07e5c14c14fa2100d2b3012975b4aaa30dab28b37bcde"
+    }
+  ]
+}

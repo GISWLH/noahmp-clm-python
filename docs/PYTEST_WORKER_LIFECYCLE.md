@@ -61,6 +61,12 @@ PYTHONPATH包含src/tests/benchmarks而缺少仓库根目录；只读模块查�
 完整C其余文件继续执行，后续用修正启动环境补跑失败文件；不改物理、原测试
 或已运行进程的环境，不重跑已核实的完整成功文件。1129项完整覆盖仍未达到。
 
+20:45UTC补跑D的逐节点预检完成，等待控制器PID4114860已启动；它等待C真实
+终态summary后，逐文件核对成功的原退出码/全部阶段/同步/XML/节点/源身份，
+复用成功文件，再以包含仓库根目录的PYTHONPATH补跑余项。预检时仍是已完成
+GPU104/待221，D本身尚未执行测试；
+[等待器/执行源码和实际预检](v1-results/full-d-deferred-a/manifest.json)保留。
+
 生产源码/物理测试修改为0。本次新增的诊断/执行原件在忽略目录outputs/v1与
 远端独立任务目录；相应源码和输出随上述证据归档，可独立清理。
 
@@ -76,6 +82,8 @@ PYTHONPATH包含src/tests/benchmarks而缺少仓库根目录；只读模块查�
 | `check_pytest_worker_controls_a.py`、`pytest_worker_controls_a.pbs` | 新建 | EHPC隔离控制与提交 | — |
 | `archive_pytest_worker_controls_a.py`、`archive_gpu_worker_prefix_a.py` | 新建 | 控制与首文件结果归档 | — |
 | `gpu-worker-lifecycle-a/`、`pytest-worker-controls-a/` | 新建 | 日志/XML/节点清单/退出记录；逐项见各manifest | — |
+| `run_most_full_gpu_d.py`、`launch_deferred_most_full_gpu_d.py` | 新建 | 修正仓库导入根，等待C终态后精确复用/补跑 | — |
+| `snapshot_full_c_most_wait_a.py`、`full-c-most-wait-a/` | 新建 | 仅自有进程身份/瞬态、原进度/日志尾与冻结源哈希 | — |
 
 未安装新的采样依赖，继续使用已有隔离py-spy0.4.1。没有GPU重置、系统配置
 修改或其他用户进程操作，原年度与完整队列继续保留。

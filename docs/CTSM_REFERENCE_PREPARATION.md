@@ -1,6 +1,6 @@
 # 官方CTSM单柱参考准备（2026-10-17）
 
-目前完成的是离线源码和可移植构建依赖，尚无官方CTSM编译/单柱输出或与本
+目前EHPC上的官方完整构建和动态库检查已完成，尚无单柱输出或与本
 模型的偏差数字。这条参考链补充已有HRLDAS与FLUXNET，不替代二者或将环境
 自检算成科学验收。实际CPU构建/模型运行安排在EHPC PBS计算节点。
 
@@ -62,11 +62,74 @@ preview_namelists因缺少Perl XML::LibXML返回1，该轮总体退出仍为1。
 [三轮配置、原错误与适配记录](v1-results/ctsm-case-config-abc/manifest.json)保留。
 PBS114另证实系统Perl5.16.3也缺LibXML/Reader，实际返回码0/2/2；
 [原可用性记录](v1-results/ctsm-system-perl-a/manifest.json)没有把缺失模块算通过。
-当前正在为独立工具链补齐该依赖，原87包压缩环境不覆盖。
+随后用另一份工具链补齐该依赖，原87包压缩环境不覆盖。
+
+## XML依赖与实际构建
+
+CF单渠道的首次补包计划因缺少perl-xml-libxml退出1，原失败保留；增加Bioconda
+后成功解出111包，保留显式URL/MD5及每个下载包SHA256。仅Perl从5.44改为
+5.32.1并增加24个Perl依赖，原其余86包相同；原环境/压缩包仍保留。
+新环境包432276606字节，SHA256为
+`6c535c3391287f26e49ec1089bc71c255651ab0de97983c1dc5c2b6a1e978a20`。
+[两次求解与实际安装/打包](v1-results/ctsm-portable-b-a/manifest.json)保留，
+没有将已缓存包遗漏于111包精确锁。
+
+EHPC PBS115 compute002对该包重做安全解包/重定位、Perl LibXML/Reader与实际
+XML属性解析、C/Fortran编译及NetCDF双向精确读取，19阶段均退出0，12.581721秒。
+[程序、原输出与节点记录](v1-results/ctsm-portable-smoke-b/manifest.json)保留。
+此项只验证构建依赖，不是官方模型或科学通过。
+
+PBS116在同一节点首次完成case.setup及preview_namelists（均0），开始真实
+CTSM/CIME构建；mpi-serial已编译，GPTL在perf_utils.F90外部MPI_BCAST的
+INTEGER/LOGICAL调用处报类型不匹配，case.build退出1（7.016649秒）。全部
+2930份上游文件仍相同；[实际构建失败与私有原工作区哈希](v1-results/ctsm-case-build-d/manifest.json)
+保留，不能称为完整构建成功。
+
+PBS117只在新生成case的Macros.make/Macros.cmake追加
+`-fallow-argument-mismatch`后重新构建，未修改上游物理或精度/优化选项。
+此选项的作用是把外部过程参数类型不一致的编译错误降为警告，适用范围及
+限制见[GNU Fortran官方说明](https://gcc.gnu.org/onlinedocs/gfortran/Fortran-Dialect-Options.html)。
+PBS117的共享库构建完成后，在FireEmisFactorsMod.F90:230的整型参数
+`z'000053db'`报BOZ常量语法错误，case.build退出1、109.164467秒，原件见
+[该轮原日志/编译适配与私有工作区哈希](v1-results/ctsm-case-build-e/manifest.json)。
+PBS118再仅追加`-fallow-invalid-boz`（同一GNU官方说明列明的旧语法兼容开关）
+重试，仍未改源、精度或优化设置。当前仍待终态，不用已完成共享库或CLM构建
+脚本的局部打印替代最终构建退出码和可执行文件。
+
+PBS118实际159.742834秒编译到最终可执行文件链接，未解析的dgtsv/dgesv/dgbsv
+来自LAPACK，整体仍退出1，源未变；[该轮原错误](v1-results/ctsm-case-build-f/manifest.json)
+保留。PBS120在新case中追加私有现有LAPACK/BLAS链接，后续仅实际构建0、唯一
+cesm.exe哈希及动态库全部可解析时才记构建完成；仍不等同运行/科学通过。
+
+PBS120的显式SLIBS同时抑制了旧CIME的默认NetCDF回退，最终仍退出1，
+[原错误/生成case记录](v1-results/ctsm-case-build-g/manifest.json)保留。
+PBS122改为显式使用已验证`nf-config --flibs`的完整NetCDF链接项再加LAPACK/
+BLAS，9阶段均返回0；case.build160.828343秒，总计178.391814秒。
+唯一cesm.exe为25779696字节，SHA256为
+`12911b249bb40ed9259d16dbeea3ff627808ecd6f9b7ab3345307d13c735ddd6`，
+ldd返回0且没有缺失共享库，2930份上游源仍原字节。
+[完整实际构建、适配、链接输出及私有工作区绑定](v1-results/ctsm-case-build-h/manifest.json)
+保留；可执行文件留服务器，没有将它加入Python模型或公共仓库。
+构建完成不勾选模型运行、有效强迫、spinup或配对科学验收。
 
 1x1_brazil/SP配置目前用于构建链检查；DATM1PT强迫尚有null文件项，不能作为
 可运行气候驱动。后续需要有效单点气象/输入数据，并按目标站点建立共同
 边界后才配对；此配置不冒充四站匹配参考，也未产生官方物理输出。
+
+上游指南的Brazil示例使用I2000Clm50SpGs；CLM1PT的自带强迫示例另用于特定
+单点，并要求按实际强迫时期设置起止日期。后续参考将显式准备目标站点强迫
+流和共同输入边界，不把当前null项扩展成常值天气。依据见
+[CLM5单点运行说明](https://escomp.github.io/CTSM/release-clm5.0/users_guide/running-single-points/running-single-point-configurations.html)。
+
+对PBS116真实输入清单逐一做HEAD，10份官方文件均200；按每文件不超过10MiB
+先暂存其中7份、2738092字节，保留原ETag/长度/NetCDF签名/SHA256，原数据
+仅在服务器。其余气溶胶/初态/urban默认文件为6205649532/693632420/343955156
+字节，尚未暂存；urban只是上游默认文件项，本项目没有新增城市物理。
+[网络/下载原记录](v1-results/ctsm-input-staging-a/manifest.json)完整保留。
+EHPC PBS119 compute002在节点临时盘按原哈希打开全部7份NetCDF、读取维度/
+变量/单点土壤和PFT等元数据，13.085429秒，未改原数据。
+[实际节点与元数据](v1-results/ctsm-input-inspection-a/manifest.json)保留。
+这不是完整输入集；两条null气象项仍在，尚无可运行的官方气候参考。
 
 数据/初态、PFT/土壤层、测高、光学/气孔约定及spinup需在配对之前明列；
 每日/月ET/H/LE/GPP/NEE/土壤温湿/径流/SWE及近零门仍按原验收规范，原水热
