@@ -18,10 +18,15 @@ CARBON_G_PER_UMOL = 12.0107e-6
 PRODUCTS = {
     'H_F_MDS': ('h_wm2','h_wm2',False),
     'LE_F_MDS': ('le_wm2','le_wm2',False),
+    'H_CORR': ('h_wm2','h_wm2',False),
+    'LE_CORR': ('le_wm2','le_wm2',False),
     'GPP_NT_VUT_REF': ('gpp_gc_m2','gpp_gc_day',True),
     'GPP_DT_VUT_REF': ('gpp_gc_m2','gpp_gc_day',True),
     'NEE_VUT_REF': ('nee_gc_m2','nee_gc_day',True),
 }
+# FULLSET defines the original flux QC as the QC for its closure-corrected
+# product too. Both products are reported; neither is chosen by model skill.
+CORRECTED_QC = {'H_CORR': 'H_F_MDS', 'LE_CORR': 'LE_F_MDS'}
 
 
 def evaluate(model,observed,*,utc_offset_hours,soil_operator=None,initial_soil=None):
@@ -46,11 +51,15 @@ def evaluate(model,observed,*,utc_offset_hours,soil_operator=None,initial_soil=N
     prepared={};instant={}
     for field,(key,variable,carbon) in PRODUCTS.items():
         a=vector(model,key,True);b=vector(observed,'obs_'+field)
-        qc=vector(observed,'qc_'+field)
+        qc=vector(observed,'qc_'+CORRECTED_QC.get(field,field))
         if carbon:a=a*86400/dt;b=b*CARBON_G_PER_UMOL*86400
         derived=field.startswith('GPP_')
         keep=np.isfinite(b) if derived else np.isfinite(b)&(qc==0)
-        instant[field]={'reference_kind':'partitioned product; no independent QC supplied' if derived else 'own QC=0 intervals',
+        kind=('partitioned product; no independent QC supplied' if derived else
+              'energy-balance-corrected product; underlying flux QC=0 intervals' if field in CORRECTED_QC else
+              'own QC=0 intervals')
+        instant[field]={'reference_kind':kind,
+                        'qc_source':None if derived else CORRECTED_QC.get(field,field)+'_QC',
                         'metrics':compare_series(a,b,variable,mask=keep),
                         'available_reference_intervals':int(np.isfinite(b).sum()),'total_intervals':len(starts)}
         prepared[field]=(a,b,qc,variable,derived)
@@ -77,7 +86,11 @@ def evaluate(model,observed,*,utc_offset_hours,soil_operator=None,initial_soil=N
             records={}
             for field,(a,b,qc,var,derived) in prepared.items():
                 valid=np.isfinite(b[mask]);q=qc[mask]
-                record={'reference_kind':'partitioned product' if derived else 'gap-filled product; observed and filled intervals retained',
+                kind=('partitioned product' if derived else
+                      'energy-balance-corrected product; observed and filled underlying flux retained' if field in CORRECTED_QC else
+                      'gap-filled product; observed and filled intervals retained')
+                record={'reference_kind':kind,
+                        'qc_source':None if derived else CORRECTED_QC.get(field,field)+'_QC',
                         'expected_intervals':int((end-begin).total_seconds()/dt),'provided_intervals':len(indices),
                         'finite_reference_intervals':int(valid.sum()),'own_qc_counts':{
                             'zero':int(np.count_nonzero(q==0)),'nonzero':int(np.count_nonzero(np.isfinite(q)&(q!=0))),

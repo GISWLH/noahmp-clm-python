@@ -59,3 +59,33 @@ def test_near_zero_nee_uses_absolute_carbon_tolerance():
     m,o=example();o['obs_NEE_VUT_REF'][:]=0.;m['nee_gc_m2'][:]=.09/48
     r=evaluate(m,o,utc_offset_hours=8)['daily']['2004-02-01']['NEE_VUT_REF']['metrics']
     assert r['bias']==pytest.approx(.09) and r['near_zero'] and r['bias_pass']
+
+
+def test_corrected_and_uncorrected_heat_products_remain_separate():
+    m,o=example();o['obs_H_CORR']*=1.25;o['obs_LE_CORR']*=1.5
+    o['qc_H_F_MDS'][0]=1;o['qc_LE_F_MDS'][1:3]=2
+    # Corrected-QC aliases are not an independent quality source. Use the
+    # official underlying H/LE QC even if a caller supplies different aliases.
+    o['qc_H_CORR'][:]=0;o['qc_LE_CORR'][:]=0
+    r=evaluate(m,o,utc_offset_hours=8);d=r['daily']['2004-02-01']
+    assert d['H_F_MDS']['metrics']['bias_pass']
+    assert d['LE_F_MDS']['metrics']['bias_pass']
+    assert not d['H_CORR']['metrics']['bias_pass']
+    assert not d['LE_CORR']['metrics']['bias_pass']
+    assert d['H_CORR']['reference_integral']==pytest.approx(37.5*86400)
+    assert d['LE_CORR']['reference_integral']==pytest.approx(45.*86400)
+    assert r['instantaneous']['H_CORR']['metrics']['n']==47
+    assert r['instantaneous']['LE_CORR']['metrics']['n']==46
+    assert r['instantaneous']['H_CORR']['qc_source']=='H_F_MDS_QC'
+    assert d['LE_CORR']['qc_source']=='LE_F_MDS_QC'
+    assert 'corrected' in d['H_CORR']['reference_kind']
+
+
+def test_missing_corrected_heat_does_not_use_uncorrected_as_replacement():
+    m,o=example();o['obs_H_CORR'][3]=np.nan;o['obs_LE_CORR'][:]=np.nan
+    r=evaluate(m,o,utc_offset_hours=8);d=r['daily']['2004-02-01']
+    assert d['H_F_MDS']['metrics']['bias_pass'] and d['LE_F_MDS']['metrics']['bias_pass']
+    assert d['H_CORR']['metrics']['status']=='unmeasured'
+    assert d['LE_CORR']['metrics']['status']=='unmeasured'
+    assert r['instantaneous']['H_CORR']['metrics']['n']==47
+    assert r['instantaneous']['LE_CORR']['metrics']['status']=='unmeasured'
