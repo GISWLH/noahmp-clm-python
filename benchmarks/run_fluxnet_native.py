@@ -19,6 +19,7 @@ import numpy as np
 
 from run_fluxnet_column import (ROOT, TRACE, sha, atomic_json, build_state,
                                 calendar, validate_input)
+from fluxnet_deposition import DepositionSchedule
 from noahmp_clm.column import SoilParams
 from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.physics.photosynthesis import LeafParameters
@@ -32,7 +33,7 @@ def source_hashes():
     paths = sorted(p for p in (ROOT/'src/noahmp_clm').rglob('*')
                    if p.suffix in ('.py', '.cu', '.npz'))
     paths += [Path(__file__), ROOT/'benchmarks/run_fluxnet_column.py',
-              ROOT/'benchmarks/fluxnet_solar.py']
+              ROOT/'benchmarks/fluxnet_solar.py', ROOT/'benchmarks/fluxnet_deposition.py']
     return {p.relative_to(ROOT).as_posix(): sha(p) for p in paths}
 
 
@@ -134,10 +135,7 @@ def load_batch(path):
             if recorded_site != config['site']: raise ValueError('Configuration/forcing disagreement: site')
         elif '_'+config['site']+'_' not in meta['archive_name']:
             raise ValueError('Configuration site is absent from forcing archive identity')
-        dep = np.asarray(config['aerosol_deposition_kg_m2_s'], float)
-        nrate = float(config['nitrogen_deposition_gn_m2_s'])
-        if dep.shape != (5,) or np.any(~np.isfinite(dep)) or np.any(dep < 0) or not np.isfinite(nrate) or nrate < 0:
-            raise ValueError('Explicit finite nonnegative aerosol/N deposition required')
+        DepositionSchedule(config)
         loaded.append(dict(case=name, paths=paths, metadata=meta, config=config, data=data, stamps=stamps))
     if not loaded: raise ValueError('Empty native batch')
     first = loaded[0]
@@ -291,8 +289,8 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     previous_segments = identity.get('initial_run', {}).get('previous_segments', 0)
     leaf = LeafParameters(**cases[0]['config']['leaf_parameters'])
     geometry = np.asarray([astuple(MOSTGeometry(**c['config']['most_geometry'])) for c in cases], dtype)
-    deposition = np.asarray([c['config']['aerosol_deposition_kg_m2_s'] for c in cases], dtype)
-    nrates = np.asarray([c['config']['nitrogen_deposition_gn_m2_s'] for c in cases], dtype)
+    deposition_schedules = [DepositionSchedule(c['config']) for c in cases]
+    nrates = np.asarray([d.nitrogen_rate for d in deposition_schedules], dtype)
     output.mkdir(parents=True, exist_ok=True); path = output/'batch.json'
     records = []; reports = []; elapsed = 0.; started = time.monotonic()
     if resume:
@@ -396,6 +394,8 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
             e, cal = pack_bgc_environment([calendar(c['stamps'][index], c['metadata'], c['config']['phenology'] is not None)
                                           for c in cases], dtype=dtype)
             nitrogen = nrates*f[:, 0]
+            deposition = np.asarray([d.aerosol(c['stamps'][index], f[k, 0])
+                for k, (c, d) in enumerate(zip(cases, deposition_schedules))], dtype)
             kwargs = dict(environment=e, calendar=cal, nitrogen_deposition_gn_m2=nitrogen,
                 deposition=deposition, most_geometry=geometry, leaf_parameters=leaf, return_surface=True)
             before_device = engine.update_forcing(device, env)

@@ -1,0 +1,324 @@
+{
+  "scope": "Four real-forcing complete days with monthly deposition, independent NumPy64/CUDA32 and unchanged parameter/initial-state identities; no observed-flux or spinup acceptance",
+  "archive_sha256": "95fb6a2bde68fd4ad53d109370036ae9ec66bd3b70800189be40cf4e354c43d7",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "f0c071e3e67b291b59c33b4eb050560a40a4c91a994085c1fbd799b7f8711c97",
+      "stored_sha256": "7dcc63a38b5435889bfeca57dbc5216d6d0721933ee8fa22bcc3e69507f300fc"
+    },
+    {
+      "source": "cpu-target.log",
+      "path": "cpu-target.log.gz",
+      "source_sha256": "ff929824b242d117008f84d41569a15c887fa95c0de340505dd4e4d321f6a3c1",
+      "stored_sha256": "65515f9e0caf69eaa6c58587c902beb63e0d6d7b399be09861f400ba376200f9"
+    },
+    {
+      "source": "cpu-launch.json",
+      "path": "cpu-launch.json.gz",
+      "source_sha256": "c54f9632432714759adb7f8ec4f09c7683ce51536a00cd29355fbfc91eb8da44",
+      "stored_sha256": "9267d4400ad40ab5f88c871018791b340535d13a3ad1d99d82c0733b617566a5"
+    },
+    {
+      "source": "prepare.py",
+      "path": "prepare.py.gz",
+      "source_sha256": "b407e0a22d11b4f317166ebab0726fc202ae6c2a2849161f46bb9c9eedc62a41",
+      "stored_sha256": "d121aa1e423ce0e7cf38e334f1fe841b9f5da0c162e29a95d80c104bc7ad4385"
+    },
+    {
+      "source": "protocol.json",
+      "path": "protocol.json.gz",
+      "source_sha256": "0822fba302df9d1841458637b5d3acdcdffce8ebc8b33f877ccf2a89147d1ffb",
+      "stored_sha256": "e45e2acfba5112e455ed7ea662a53540bdc313c675bd7ccd2531df4aa268cb11"
+    },
+    {
+      "source": "batch.json",
+      "path": "batch.json.gz",
+      "source_sha256": "b00951605adc73c774ec69d10553fbb6945679e81595ee83f97803c8c99d4ffb",
+      "stored_sha256": "6c1fc314ca95e73fd059463091270ca0a79236fb08b689f47ec17dca7598cf9f"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "4d84007f1e5d947a4c66788c90d2fffd5ed83f7e6bdc10e6d653fc3ba6971821",
+      "stored_sha256": "623717b584f06710ceb707a6c99468703716eb9a8ab9d3caf4b84b2553417da0"
+    },
+    {
+      "source": "cuda.log",
+      "path": "cuda.log.gz",
+      "source_sha256": "ea3c4d01788c106aa8ed0eb9f6ba5cac4f28b3886348bcd306ba195f952f25a1",
+      "stored_sha256": "9856191d6fb17ebe9b598f816fd6836ab81da1ffe8f487aa6c4b44f51f24c907"
+    },
+    {
+      "source": "backend-day-comparison.json",
+      "path": "backend-day-comparison.json.gz",
+      "source_sha256": "0961836459f8f7525b8221e63337543066efb8ffe4b63607127c3fd40e913dc0",
+      "stored_sha256": "231a791be182c16bf1b8545cce24c16a8a7d252127d038b0648e442f654e8d5a"
+    },
+    {
+      "source": "backend-day-comparison.log",
+      "path": "backend-day-comparison.log.gz",
+      "source_sha256": "4b7f7156d085d1ceaefc2abb5fac111cef6c03e68619e5d6d537d2ba6ce2d21c",
+      "stored_sha256": "f4050eb05be9c742a17d1cf4114efc491b94cc69640c28a779c598a3c734227e"
+    },
+    {
+      "source": "compare_station_backend_day.py",
+      "path": "compare_station_backend_day.py.gz",
+      "source_sha256": "923ad20ad08e860b995fc05baf6c27932a5f6c38d5d3fd794619c176646f58b4",
+      "stored_sha256": "38233173863928b4e445b1b49ffde931f8b86448d93a79c878d149c66de96dae"
+    },
+    {
+      "source": "inputs/CN-Cha-config.json",
+      "path": "inputs/CN-Cha-config.json.gz",
+      "source_sha256": "7322bfd879a6f41f841991bdcea1627ef65297ced06de26f4ee92f870e593965",
+      "stored_sha256": "d4dbc8932844d986ea734dd65fa8fe88f8ff3d37eb9debcce07f14e2ee9ce0a5"
+    },
+    {
+      "source": "inputs/CN-Cha.json",
+      "path": "inputs/CN-Cha.json.gz",
+      "source_sha256": "643f7925f954b1e3332c8a1ad2ed56a5fa3642b98f7c42a5e7d199c0daaac8c7",
+      "stored_sha256": "28539e4bcd513f7f8a9b95856989bd33539f85ea7d5cba962229286326bb41a6"
+    },
+    {
+      "source": "inputs/CN-Cha.npz",
+      "path": "inputs/CN-Cha.npz",
+      "source_sha256": "74736c8e870f2ce22712c59e9b060f29c6dd74e3c29de07546f66f666d70bfbb",
+      "stored_sha256": "74736c8e870f2ce22712c59e9b060f29c6dd74e3c29de07546f66f666d70bfbb"
+    },
+    {
+      "source": "inputs/CN-Cng-config.json",
+      "path": "inputs/CN-Cng-config.json.gz",
+      "source_sha256": "8f93fb5f450e370d27238e89c8d4ad62c1e33768791e411e112b33d807348d7c",
+      "stored_sha256": "15d6ee053f2bed03844da4da0207942d059c1353d4766fadce77c4569ce5fd6b"
+    },
+    {
+      "source": "inputs/CN-Cng.json",
+      "path": "inputs/CN-Cng.json.gz",
+      "source_sha256": "a073abbafd6d39a48cef3793e8c5135e52f828fdea5b43f989b1cb93855aa802",
+      "stored_sha256": "6ac7adc06a234238805ddb5aadeedb251ae1cb1f42a50baeb4d7e424975a716b"
+    },
+    {
+      "source": "inputs/CN-Cng.npz",
+      "path": "inputs/CN-Cng.npz",
+      "source_sha256": "c8b36b62c6f643a9718a2ce541daeae71133eeee768eda0b89b8122c9ab1cd55",
+      "stored_sha256": "c8b36b62c6f643a9718a2ce541daeae71133eeee768eda0b89b8122c9ab1cd55"
+    },
+    {
+      "source": "inputs/CN-HaM-config.json",
+      "path": "inputs/CN-HaM-config.json.gz",
+      "source_sha256": "7a57da3429916e321b1cbec4179919f8bbaaa8b9a732e090dfd34e6d810ddbcc",
+      "stored_sha256": "41f1dfc00b190ded3516808ffcba2c9f2c9c034d4722cad5aac336ca20111b2f"
+    },
+    {
+      "source": "inputs/CN-HaM.json",
+      "path": "inputs/CN-HaM.json.gz",
+      "source_sha256": "bb522419ceea27f452000ec9d9bdc566291a39e393881dffcbe621adb8a0479e",
+      "stored_sha256": "33fb9966e7193f833c22df6c86e75b11fa7e49f1dde713d4068b114af1ed051f"
+    },
+    {
+      "source": "inputs/CN-HaM.npz",
+      "path": "inputs/CN-HaM.npz",
+      "source_sha256": "a69770dc332612dbaffb1d96fa35e863a114fb0f36fa47f83fea274b8a47a4f0",
+      "stored_sha256": "a69770dc332612dbaffb1d96fa35e863a114fb0f36fa47f83fea274b8a47a4f0"
+    },
+    {
+      "source": "inputs/CN-Qia-config.json",
+      "path": "inputs/CN-Qia-config.json.gz",
+      "source_sha256": "84619afd7048a20317fcdc14f43101ed972a1d6c6342160a4b82a4c6eb700edc",
+      "stored_sha256": "05ed798a2f0f59cb2c6a93975f4beddc0f4678475f5c5b02627194fd0b2e2f7d"
+    },
+    {
+      "source": "inputs/CN-Qia.json",
+      "path": "inputs/CN-Qia.json.gz",
+      "source_sha256": "5c57a70e94755ccd15746ae100b5433b3177a7a23b6dac5463ee2a6f59219ad6",
+      "stored_sha256": "983747804e0e47ed3d205985265f62f2faf4919f9c6884e905fd2ff447547dbf"
+    },
+    {
+      "source": "inputs/CN-Qia.npz",
+      "path": "inputs/CN-Qia.npz",
+      "source_sha256": "09b515f9b2923411992581232f459898e1fba76e78f22a0cf4a1788c72d4420d",
+      "stored_sha256": "09b515f9b2923411992581232f459898e1fba76e78f22a0cf4a1788c72d4420d"
+    },
+    {
+      "source": "deposition-inputs/CN-Cha.json",
+      "path": "deposition-inputs/CN-Cha.json.gz",
+      "source_sha256": "16d11f5490d5309a9f77996d688046d9302af88482842cfaa58ff540373594a5",
+      "stored_sha256": "e6e5a68ac853f65c439388f54d508ecc4888b548a057514fc485f6c0479c1045"
+    },
+    {
+      "source": "deposition-inputs/CN-Cng.json",
+      "path": "deposition-inputs/CN-Cng.json.gz",
+      "source_sha256": "57f1ea8e92e9905625b077edb4ae2a249e2ea9a1834c0ee4321e6437ae47b163",
+      "stored_sha256": "ec7b7040f90cb323a0b950f861cd513d2fbece5519b1dada46ce5df0b2fe0b30"
+    },
+    {
+      "source": "deposition-inputs/CN-HaM.json",
+      "path": "deposition-inputs/CN-HaM.json.gz",
+      "source_sha256": "02ca16831dda9b851d8224f6bfecc97cae4cb9d74fb784fe1f960373d2ade44b",
+      "stored_sha256": "7e180434ce9eb3b521b4a09382561cab1eb2abf4c5d102993e14812f0e7094bf"
+    },
+    {
+      "source": "deposition-inputs/CN-Qia.json",
+      "path": "deposition-inputs/CN-Qia.json.gz",
+      "source_sha256": "1c1383d9831f152da31a8a58ce5abc13f618439823063263ced88dc2aa68f491",
+      "stored_sha256": "3408c470419a469ea7e2ba57131e5238543ddc0694212978ddae61a3f713aae7"
+    },
+    {
+      "source": "cuda-day/batch.json",
+      "path": "cuda-day/batch.json.gz",
+      "source_sha256": "05f1a23723cc53292a9e5018a2b644899790059fa9028645f36329f73ea995f6",
+      "stored_sha256": "9bade916845ce4d5d50bf0ec9add338bb6d7db7e796526c05c2904cb5d317775"
+    },
+    {
+      "source": "cuda-day/state-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "path": "cuda-day/state-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "source_sha256": "d9050c3994f4acd185e862ccb216ad25246c99597ebd3215a971264ce7bdacd8",
+      "stored_sha256": "d9050c3994f4acd185e862ccb216ad25246c99597ebd3215a971264ce7bdacd8"
+    },
+    {
+      "source": "CN-Cng-monthly-deposition.log",
+      "path": "CN-Cng-monthly-deposition.log.gz",
+      "source_sha256": "e0052d685c691fb5d69f5f175607b395a111a4449a8697152caf55445a3726d2",
+      "stored_sha256": "0440704c9424abed98f2a157ab570f64a63212c0aa033a2f44d12655ceb1b803"
+    },
+    {
+      "source": "cuda-day/CN-Cng-monthly-deposition/report.json",
+      "path": "cuda-day/CN-Cng-monthly-deposition/report.json.gz",
+      "source_sha256": "3ff896a43ab74ee630958620e31e745f4861122a0d956f29d737e987bf24c6bf",
+      "stored_sha256": "7eaa7834d1bf5ecfa8b8f10ffc9703a96f2a03811edcf4c0ee336e2ab8fdda46"
+    },
+    {
+      "source": "cuda-day/CN-Cng-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "path": "cuda-day/CN-Cng-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "source_sha256": "87bc5d73fb8de9a454d2d9d278b0bfed1b1de4a0277b8d212479cd41d3e39333",
+      "stored_sha256": "87bc5d73fb8de9a454d2d9d278b0bfed1b1de4a0277b8d212479cd41d3e39333"
+    },
+    {
+      "source": "cuda-day/CN-Cng-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json",
+      "path": "cuda-day/CN-Cng-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json.gz",
+      "source_sha256": "3ff896a43ab74ee630958620e31e745f4861122a0d956f29d737e987bf24c6bf",
+      "stored_sha256": "7eaa7834d1bf5ecfa8b8f10ffc9703a96f2a03811edcf4c0ee336e2ab8fdda46"
+    },
+    {
+      "source": "numpy-day/CN-Cng-monthly-deposition/report.json",
+      "path": "numpy-day/CN-Cng-monthly-deposition/report.json.gz",
+      "source_sha256": "02a316e7f31ea4a317434d93ce5e968eba239a3f67a6bd442bcd571215a8c517",
+      "stored_sha256": "6e360710cda05b97ba5ffd48295d3883775f4fdf503a3de7f268b7c0e792d0c7"
+    },
+    {
+      "source": "numpy-day/CN-Cng-monthly-deposition/trace-0000048.npz",
+      "path": "numpy-day/CN-Cng-monthly-deposition/trace-0000048.npz",
+      "source_sha256": "dd6c679a26c9d8e26f1a1ce3135250275a373cbfd4057d409e138564f5198d60",
+      "stored_sha256": "dd6c679a26c9d8e26f1a1ce3135250275a373cbfd4057d409e138564f5198d60"
+    },
+    {
+      "source": "CN-Qia-monthly-deposition.log",
+      "path": "CN-Qia-monthly-deposition.log.gz",
+      "source_sha256": "b17c710432121b99f83e21209013f6b5a31d74dff185183cb4e6a1582008c60b",
+      "stored_sha256": "49e935503e1ebba3e910e353ff48f0c442339e6424b69d31e1a2771f3baf7320"
+    },
+    {
+      "source": "cuda-day/CN-Qia-monthly-deposition/report.json",
+      "path": "cuda-day/CN-Qia-monthly-deposition/report.json.gz",
+      "source_sha256": "ad076cbc7a02aff549c2f8f72816a8230e7600dd0858ea615c3b1965b054b446",
+      "stored_sha256": "de484cd0e270c9b5e5e7ee13bd1036e3026403e06d46f9258ada9cc60d93ea07"
+    },
+    {
+      "source": "cuda-day/CN-Qia-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "path": "cuda-day/CN-Qia-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "source_sha256": "d60d4edb543b992352015e5df6bc55b372d48cfbf7e83c50b9687a37991f2d99",
+      "stored_sha256": "d60d4edb543b992352015e5df6bc55b372d48cfbf7e83c50b9687a37991f2d99"
+    },
+    {
+      "source": "cuda-day/CN-Qia-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json",
+      "path": "cuda-day/CN-Qia-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json.gz",
+      "source_sha256": "ad076cbc7a02aff549c2f8f72816a8230e7600dd0858ea615c3b1965b054b446",
+      "stored_sha256": "de484cd0e270c9b5e5e7ee13bd1036e3026403e06d46f9258ada9cc60d93ea07"
+    },
+    {
+      "source": "numpy-day/CN-Qia-monthly-deposition/report.json",
+      "path": "numpy-day/CN-Qia-monthly-deposition/report.json.gz",
+      "source_sha256": "abe0eda343a9f0571c312ce86a9a05a3f594706b9f10ca20c2e1944774039e70",
+      "stored_sha256": "1444c0b7a97e234c5735c572f8345cbab72974697473a144669016fb590071d9"
+    },
+    {
+      "source": "numpy-day/CN-Qia-monthly-deposition/trace-0000048.npz",
+      "path": "numpy-day/CN-Qia-monthly-deposition/trace-0000048.npz",
+      "source_sha256": "03e3376dd70f79da585022b2e8f29e88e694d52f7b73b122dcbe42f884f47f0a",
+      "stored_sha256": "03e3376dd70f79da585022b2e8f29e88e694d52f7b73b122dcbe42f884f47f0a"
+    },
+    {
+      "source": "CN-Cha-monthly-deposition.log",
+      "path": "CN-Cha-monthly-deposition.log.gz",
+      "source_sha256": "1e30e286d2668f3d1046b4f6aa5da5edd5e6a4e7e8477d5a83b454fee6fe60ef",
+      "stored_sha256": "4a86913bb26d6817d31a66ed4ead0b89b8f2548ad03a28ea3c46263b1039be6d"
+    },
+    {
+      "source": "cuda-day/CN-Cha-monthly-deposition/report.json",
+      "path": "cuda-day/CN-Cha-monthly-deposition/report.json.gz",
+      "source_sha256": "cb493f9e20997dcef3cf94d0d9b69bc37f8e82d699eeefb81ecfbaa14c445b16",
+      "stored_sha256": "3aed91df03bf476dc9488d3635b15c33ba93774b5f211d1fdb9890f500fd0b7d"
+    },
+    {
+      "source": "cuda-day/CN-Cha-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "path": "cuda-day/CN-Cha-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "source_sha256": "26735bc8f5a24bad6dd49cc9378524b16d0c88d8477908ae2ae2d1683795eab8",
+      "stored_sha256": "26735bc8f5a24bad6dd49cc9378524b16d0c88d8477908ae2ae2d1683795eab8"
+    },
+    {
+      "source": "cuda-day/CN-Cha-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json",
+      "path": "cuda-day/CN-Cha-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json.gz",
+      "source_sha256": "cb493f9e20997dcef3cf94d0d9b69bc37f8e82d699eeefb81ecfbaa14c445b16",
+      "stored_sha256": "3aed91df03bf476dc9488d3635b15c33ba93774b5f211d1fdb9890f500fd0b7d"
+    },
+    {
+      "source": "numpy-day/CN-Cha-monthly-deposition/report.json",
+      "path": "numpy-day/CN-Cha-monthly-deposition/report.json.gz",
+      "source_sha256": "edddf641e2ed9b5ffd9edc64997d2464c53ccf9ea4fc93946ec13dd8e590788b",
+      "stored_sha256": "d0a6e5bf218fde155af75e0c7d9236cebc00e8794517786f48554cdbf18881bd"
+    },
+    {
+      "source": "numpy-day/CN-Cha-monthly-deposition/trace-0000048.npz",
+      "path": "numpy-day/CN-Cha-monthly-deposition/trace-0000048.npz",
+      "source_sha256": "34cb6e2a9d5649880e11922484c5c227420a4c23e402f6a632254901f73481e9",
+      "stored_sha256": "34cb6e2a9d5649880e11922484c5c227420a4c23e402f6a632254901f73481e9"
+    },
+    {
+      "source": "CN-HaM-monthly-deposition.log",
+      "path": "CN-HaM-monthly-deposition.log.gz",
+      "source_sha256": "7eae540d58fe774e8c93daadc3ffea26cedbd5fd8365f242ccb432e6a577dc4b",
+      "stored_sha256": "f7945781e7424ae4cfe24500526ee0ad3e0fb8633e3dea548a56f6ebde05b5b3"
+    },
+    {
+      "source": "cuda-day/CN-HaM-monthly-deposition/report.json",
+      "path": "cuda-day/CN-HaM-monthly-deposition/report.json.gz",
+      "source_sha256": "0c62b3bf1b64d433ba9ea499091a23f1fa3d3f0782d2234acdf694017abc9ed1",
+      "stored_sha256": "a180a46d9cbe9cf4d51d7998f596b43fb2a23295caaa8ac396aee2a8c5d376fc"
+    },
+    {
+      "source": "cuda-day/CN-HaM-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "path": "cuda-day/CN-HaM-monthly-deposition/trace-0000048-d7360b4356ab4d558c36ef39e3c8a410.npz",
+      "source_sha256": "c97d490c4835242e060d0474e395d7dd67b911586b5063923bd39cd06a0bd614",
+      "stored_sha256": "c97d490c4835242e060d0474e395d7dd67b911586b5063923bd39cd06a0bd614"
+    },
+    {
+      "source": "cuda-day/CN-HaM-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json",
+      "path": "cuda-day/CN-HaM-monthly-deposition/report-0000048-d7360b4356ab4d558c36ef39e3c8a410.json.gz",
+      "source_sha256": "0c62b3bf1b64d433ba9ea499091a23f1fa3d3f0782d2234acdf694017abc9ed1",
+      "stored_sha256": "a180a46d9cbe9cf4d51d7998f596b43fb2a23295caaa8ac396aee2a8c5d376fc"
+    },
+    {
+      "source": "numpy-day/CN-HaM-monthly-deposition/report.json",
+      "path": "numpy-day/CN-HaM-monthly-deposition/report.json.gz",
+      "source_sha256": "e44fff95e53689d51cad90182e9fbaf509529a848d1f856dc82da28d1f94e237",
+      "stored_sha256": "2d0434fb81e6d1fefed9cbc24237b8be584583362cca429d4785eaf0ebc57360"
+    },
+    {
+      "source": "numpy-day/CN-HaM-monthly-deposition/trace-0000048.npz",
+      "path": "numpy-day/CN-HaM-monthly-deposition/trace-0000048.npz",
+      "source_sha256": "a5a94022988045a823faaca49b1678e58bfb4c8c8f40cb5621cb7d759812d983",
+      "stored_sha256": "a5a94022988045a823faaca49b1678e58bfb4c8c8f40cb5621cb7d759812d983"
+    }
+  ]
+}

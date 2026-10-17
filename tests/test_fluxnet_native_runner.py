@@ -192,7 +192,8 @@ def test_week_repetition_cannot_masquerade_as_climate_cycle(tmp_path):
         runner.carry_generation(folder, 'cycle', cases, identity)
 
 
-def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monkeypatch):
+@pytest.mark.parametrize('monthly', [False, True])
+def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monkeypatch, monthly):
     """Exercise runner transactions with an exactly conserved test tendency.
 
     This is an orchestration test, not an alternate physical backend or a
@@ -216,10 +217,11 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
                       11:'plant_state', 13:'soil_cn_state'}
             out = {name:a[k].copy() for k, name in fields.items()}
             out['plant_state'][:, 6] += .125
+            out['plant_state'][:, 7] += kwargs['nitrogen_deposition_gn_m2']
             d = {key:np.zeros(n) for key in (*runner.TRACE.values(),
                  'advected_enthalpy_jm2', 'runoff_enthalpy_jm2')}
             d['gpp_gc_m2'][:] = .125; d['nee_gc_m2'][:] = -.125
-            out.update(diagnostics=d, impurity_output_kgm2=np.zeros((n, 5)), surface=dict(
+            out.update(diagnostics=d, impurity_output_kgm2=kwargs['deposition']*forcing[:, :1], surface=dict(
                 outgoing_shortwave=forcing[:, 5], outgoing_longwave=forcing[:, 6],
                 thermal_layer_tolerance=np.zeros((n, 9)), layer_residual=np.zeros((n, 10))))
             return out
@@ -229,6 +231,10 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
     monkeypatch.setattr(runner, 'Backend', LedgerBackend)
     path, row, config = batch_fixture(tmp_path)
     config.update(scope='test instrument only', most_geometry={}, leaf_dimension_m=.04, phenology=None)
+    if monthly:
+        del config['aerosol_deposition_kg_m2_s']
+        config['aerosol_deposition_monthly_kg_m2_s'] = (np.arange(1, 13)[:, None]*np.arange(1, 6)*1e-12).tolist()
+        config['nitrogen_deposition_gn_m2_s'] = 1e-7
     runner.atomic_json(tmp_path/'config.json', config)
     with np.load(tmp_path/'input.npz') as z: original = dict(z)
     for name, starts, ends in [
@@ -262,3 +268,5 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
     for key, values in full_rows[0][1].items():
         np.testing.assert_array_equal(np.concatenate((first_rows[0][1][key], end_rows[0][1][key])), values)
     assert actual['net'][0, 2] == .5
+    if monthly:
+        assert actual['net'][0, 3] == pytest.approx(4*1800*1e-7)

@@ -1,0 +1,48 @@
+{
+  "scope": "8 completed actual device and scheduling regressions, corrected float64 fixture with unchanged authoritative stores",
+  "archive_sha256": "e24c8b3dd15d9394a7835ca87f759305a898a5418bbab0dbac76011411cf827a",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "f313d43c98eacaede183010d319c0a26936ebc1c6f0386995e1b618d2180c063",
+      "stored_sha256": "aa4cf00282372a0b4fb43a4d53c17c31e4c96a2989c1dcdedff281b1427cf22c"
+    },
+    {
+      "source": "gpu-target.log",
+      "path": "gpu-target.log.gz",
+      "source_sha256": "9d1a453785fd899ae68bde31ef54fa68968fb272690f3161a453ef6744b59d67",
+      "stored_sha256": "bfc7d7c7aa5eb6cc5387cd47b076231762db8c982764b25159c2e6268f140f33"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "9f0f15c0a76dbe05e4ba10fe19936a0d7ee69bb518732c1b4361810ade33d2a5",
+      "stored_sha256": "2cacacdfc4953bf1873a72f37e1bd319e32bbcc527a7dccbf759aacdd85ce60f"
+    },
+    {
+      "source": "tests/test_most_stagnation.py",
+      "path": "tests/test_most_stagnation.py.gz",
+      "source_sha256": "8180f91c75331714372ef0a9a3b91381a330759b1972e20703b3232ae4321e0c",
+      "stored_sha256": "9b965360b8ae95ac1843badc9073705bc8d27ba3de89997521bf3b5476ae9287"
+    },
+    {
+      "source": "tests/test_gpu_most_stagnation.py",
+      "path": "tests/test_gpu_most_stagnation.py.gz",
+      "source_sha256": "24a941645abca54dc2d5b86665e848b9c3fd23912eb14f07d504f73a6c4ac087",
+      "stored_sha256": "e060c825ebf66a104d934be34588b25c19dd465ad3fc5170c4443abfaed6c0de"
+    },
+    {
+      "source": "tests/fixtures/qia_most_float32_stagnation.json",
+      "path": "tests/fixtures/qia_most_float32_stagnation.json.gz",
+      "source_sha256": "2cbff8abda9695387e5681406e133e55735a5101e38feaaf79c204f4ac5982db",
+      "stored_sha256": "071e83655508cde674d5b8ca136d92fbfbe3766b05e87f364cd7753d0d7e2e3e"
+    },
+    {
+      "source": "a-float64-diagnosis.log",
+      "path": "a-float64-diagnosis.log.gz",
+      "source_sha256": "b0847cad94cb196bf738d74c1ca160ddaca943557845aff39c52b80dbf28c0a5",
+      "stored_sha256": "de90cbc899499946ae0326b36eb510aae6128a703d1748a8d5ea6d45b3e06c17"
+    }
+  ]
+}

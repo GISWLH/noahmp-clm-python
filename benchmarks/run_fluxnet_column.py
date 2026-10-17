@@ -29,6 +29,7 @@ from noahmp_clm.physics.phenology import PhenologyState, PhenologyParameters, Ph
 from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.physics.photosynthesis import LeafParameters
 from fluxnet_solar import solar_geometry
+from fluxnet_deposition import DepositionSchedule
 
 ROOT = Path(__file__).resolve().parents[1]
 TRACE = {'h_wm2': 'h', 'le_wm2': 'le', 'gpp_gc_m2': 'gpp_gc_m2',
@@ -43,7 +44,7 @@ def sha(path):
 
 def source_hashes():
     paths = sorted((ROOT/'src/noahmp_clm').rglob('*.py'))
-    paths += [Path(__file__), ROOT/'benchmarks/fluxnet_solar.py']
+    paths += [Path(__file__), ROOT/'benchmarks/fluxnet_solar.py', ROOT/'benchmarks/fluxnet_deposition.py']
     return {p.relative_to(ROOT).as_posix(): sha(p) for p in paths}
 
 
@@ -137,10 +138,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
     identity = dict(forcing_npz_sha256=sha(input_path), forcing_manifest_sha256=sha(input_manifest),
                     configuration_sha256=sha(config_path), source_sha256=source_hashes())
     geometry = MOSTGeometry(**config['most_geometry']); leaf = LeafParameters(**config['leaf_parameters'])
-    dep = np.asarray(config['aerosol_deposition_kg_m2_s'], float)
-    nrate = float(config['nitrogen_deposition_gn_m2_s'])
-    if dep.shape != (5,) or np.any(~np.isfinite(dep)) or np.any(dep < 0) or not np.isfinite(nrate) or nrate < 0:
-        raise ValueError('Explicit finite nonnegative aerosol/N deposition required')
+    deposition = DepositionSchedule(config)
     output.mkdir(parents=True, exist_ok=True); report_path = output/'report.json'
     started = time.monotonic(); elapsed_before = 0.
     if resume:
@@ -190,7 +188,8 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
         while index < end_index:
             f = Forcing(*data['forcing'][index]); co2, mu, diffuse = data['environment'][index]
             environment = calendar(stamps[index], metadata, config['phenology'] is not None)
-            nitrogen = nrate*f.dt
+            dep = deposition.aerosol(stamps[index], f.dt)
+            nitrogen = deposition.nitrogen_rate*f.dt
             after, d = step_clm_enthalpy_column(state, f, co2_ppm=float(co2), cosine_zenith=float(mu), diffuse_fraction=float(diffuse),
                 leaf_dimension=config['leaf_dimension_m'], leaf_parameters=leaf, most_geometry=geometry,
                 phenology_environment=environment, deposition_rates=dep, nitrogen_deposition_gn_m2=nitrogen)
