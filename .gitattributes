@@ -1,3 +1,6 @@
 # Executable batch scripts must remain portable through Windows checkout/archive.
 *.sh text eol=lf
 *.pbs text eol=lf
+# Evidence manifests hash original bytes, including text and namelists.
+# Preserve them across Windows checkout rather than translating newlines.
+docs/v1-results/** -text
