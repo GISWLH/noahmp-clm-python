@@ -1,0 +1,108 @@
+{
+  "scope": "EHPC PBS60: complete calendar/integral/source/ledger entry-point tests, original four I336 checkpoint conservation and incomplete annual rejection only. No completed real annual, spinup or scientific acceptance.",
+  "archive_sha256": "24b7a7eba50bc8ffdb0097741e2434e2b4bdaf46af07dc8d64631c9b25f48e32",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "c08de266d17ccbad125b5643f6582165bbf77002b5f2f3b45165457125308f64",
+      "stored_sha256": "99afd603ff29c6d7d58678c4cc533d927abd0ae3c5b37f33b4341f87a1ceccc7"
+    },
+    {
+      "source": "native-year-target-receipt.json",
+      "path": "native-year-target-receipt.json.gz",
+      "source_sha256": "5c44fec6112d2ba668b7221e4eb7857c80d81d85688349fde9be1c1cac38307d",
+      "stored_sha256": "f3cd3036eb5a541c47383f7a6d8d8b7c931e296f241720d56dd0fc44e96dfad3"
+    },
+    {
+      "source": "native-year-target.xml",
+      "path": "native-year-target.xml.gz",
+      "source_sha256": "7fbfdc5e00653fba30ec7e761f7617c0d25c0ffd2bedd19da14b4d830314b7de",
+      "stored_sha256": "4e44acf6979daede43e885b58674584e5fb914a26765006a9369ecfaccc9983a"
+    },
+    {
+      "source": "native-year-target.log",
+      "path": "native-year-target.log.gz",
+      "source_sha256": "d72ba1e69f29f34da7bc77d40fdd6e41052d4bcd290e46b27ad22fdc3d548f50",
+      "stored_sha256": "6ae1a5bd14ae5c0fd255831334a715e6a8920d25b3e94a2f96506988394acc0b"
+    },
+    {
+      "source": "native-year-target-exit.txt",
+      "path": "native-year-target-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "run_hrldas_year_target_b.py",
+      "path": "run_hrldas_year_target_b.py.gz",
+      "source_sha256": "09340ad92d854dfb8ae677cf39d6196d70b72c32918d2e3d5c1841cc182cae78",
+      "stored_sha256": "b08dc699bd5f4e6c5d6ffb3f7db0625569bae409c988a560d1df5669796c7625"
+    },
+    {
+      "source": "hrldas_year_target_b.pbs",
+      "path": "hrldas_year_target_b.pbs.gz",
+      "source_sha256": "dc715d5998cdeca1162ec320dec8cda4cd4845acb450f2c27b4f13039dbf79e8",
+      "stored_sha256": "d363fedac4da19fedb5123c8fabf6e9919059dd27b8c3389f9ea784ae1e9c7b4"
+    },
+    {
+      "source": "benchmarks/compare_hrldas_native_year.py",
+      "path": "benchmarks/compare_hrldas_native_year.py.gz",
+      "source_sha256": "028b7c9d73ac64e733cb60a78d11c515b5209de1413d8cb7ba0fae4ef729e3e9",
+      "stored_sha256": "c3dc2ce3ced9ea3f6a1998d40d91e08057067dd76260831eeb68d6b2f8160a4b"
+    },
+    {
+      "source": "benchmarks/compare_hrldas_column.py",
+      "path": "benchmarks/compare_hrldas_column.py.gz",
+      "source_sha256": "9a5c544f4900231e34c0923f7cf2f32bc522435c1d39593edad5bd2e274afca4",
+      "stored_sha256": "f12cc28d9cba4cb6f7c84fc2896420402f818c36d0dd593a16b66f49a93132d9"
+    },
+    {
+      "source": "benchmarks/compare_hrldas_suction_prefix.py",
+      "path": "benchmarks/compare_hrldas_suction_prefix.py.gz",
+      "source_sha256": "3dd487181b87c614dde728d9cc4c77161d39a8a115c37d794f76e81ad2e53f9b",
+      "stored_sha256": "d605a70923832a28a906d8251fa4c8ea6d60784c4b4fdf7f5c4fdf587755affa"
+    },
+    {
+      "source": "benchmarks/compare_hrldas_climate_prefix.py",
+      "path": "benchmarks/compare_hrldas_climate_prefix.py.gz",
+      "source_sha256": "51b6b560a20bd9a5798816047408491339d614c31082e876549a36105409a40b",
+      "stored_sha256": "f55d2c9124dcb754117acc195a4911cfd25f6f2e9b37578498b9069bddc82bbf"
+    },
+    {
+      "source": "tests/test_hrldas_climate_prefix.py",
+      "path": "tests/test_hrldas_climate_prefix.py.gz",
+      "source_sha256": "d87bcd47f3da665cb7736b96b0e137cc41d1d5e6595525e28e319e4c8e56a054",
+      "stored_sha256": "10e51f34d5e7314dab91b4688511eb2ad61adb2bdd7f8a527b3cc247ea585996"
+    },
+    {
+      "source": "tests/test_hrldas_comparison.py",
+      "path": "tests/test_hrldas_comparison.py.gz",
+      "source_sha256": "dca9df407853cfe4fe7461e461a77e1bcb7fb77add724b7eb7c632ec2ab35560",
+      "stored_sha256": "d06d5c8d3e7e1600e9ef59f3ba2b832dff7a900a6058e72d945a17e04590a803"
+    },
+    {
+      "source": "tests/test_hrldas_native_year.py",
+      "path": "tests/test_hrldas_native_year.py.gz",
+      "source_sha256": "7b64bd1135c619788c2bf4e54497147a96fa3d87a2177426602c93c736fc5315",
+      "stored_sha256": "f4b3182f89008f0dbd75d22e9c9bda9bd09943fe434fd04e66abe5d8f27ef204"
+    },
+    {
+      "source": "tests/test_hrldas_output_audit.py",
+      "path": "tests/test_hrldas_output_audit.py.gz",
+      "source_sha256": "a43acd5a2dab9c9ff6aa7d80814ef816b00a8bb4c902cb3e89ec5c1baf873348",
+      "stored_sha256": "e7030e9d45d77857c164bf0b3c6d03a804896db7bded04abbd686a65450340bb"
+    },
+    {
+      "source": "tests/test_hrldas_suction_binding.py",
+      "path": "tests/test_hrldas_suction_binding.py.gz",
+      "source_sha256": "8469f32fd9c5064a0878170a90b037f17b0da75c362663e322861016dbd94734",
+      "stored_sha256": "ab1b0b9b2ab7dbef8bb598c6cd0b4a979473aade0bb10893f8c9885f2170b165"
+    },
+    {
+      "source": "native-year-summary.json",
+      "path": "native-year-summary.json.gz",
+      "source_sha256": "c0a38552665c36ef028d2303ab17beacbf7dad066debaf2c144c95d1c5ae86a0",
+      "stored_sha256": "bc259d0a924394bea9b6a17fe3a58678c74f68a210d84b5ba02e12314290502c"
+    }
+  ]
+}

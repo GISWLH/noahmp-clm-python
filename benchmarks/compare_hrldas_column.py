@@ -39,22 +39,40 @@ def compare_columns(model,reference):
         return result
     aa,bb=series(a),series(b)
     if aa.keys()!=bb.keys():raise ValueError('Soil layer counts differ; explicit remapping required')
+    def period(selected):
+        group={}
+        for key in aa:
+            variable=key.split('_layer_')[0]
+            metric=compare_series(aa[key][selected],bb[key][selected],variable)
+            if key in ('et_mm_day','runoff_mm_day','h_wm2','le_wm2'):
+                factor=dt/86400. if key.endswith('_mm_day') else dt
+                metric.update(model_integral=float(np.sum(aa[key][selected])*factor),
+                    reference_integral=float(np.sum(bb[key][selected])*factor),
+                    integral_units='mm' if key.endswith('_mm_day') else 'J/m2',integration_seconds=int(selected.sum()*dt))
+            else:metric['state_units']='deg C' if key.startswith('tsoil_c') else 'm3/m3' if key.startswith('smc') else 'm water equivalent'
+            group[key]=metric
+        return group
     dates=np.array([r['time_start'][:10] for r in a]);daily={}
     for date in sorted(set(dates)):
         selected=dates==date
         if int(selected.sum())*dt!=86400:raise ValueError('Partial days cannot masquerade as daily acceptance')
-        group={}
-        for key in aa:
-            variable=key.split('_layer_')[0]
-            group[key]=compare_series(aa[key][selected],bb[key][selected],variable)
-        daily[date]=group
+        daily[date]=period(selected)
+    months=np.array([r['time_start'][:7] for r in a]);monthly={}
+    for month in sorted(set(months)):
+        selected=months==month;indices=np.flatnonzero(selected);begin=datetime.strptime(month,'%Y-%m')
+        end=begin.replace(year=begin.year+1,month=1) if begin.month==12 else begin.replace(month=begin.month+1)
+        complete=a[indices[0]]['time_start']==begin.isoformat() and a[indices[-1]]['time_end']==end.isoformat()
+        if complete:monthly[month]=period(selected)
+        else:monthly[month]={key:dict(status='unmeasured',n=len(indices),bias_pass=None,correlation_pass=None,reason='partial calendar month') for key in aa}
     instant={key:compare_series(aa[key],bb[key],key) for key in ('h_wm2','le_wm2')}
     return {'scope':'Numerical scientific comparisons only; configuration/spinup representativeness requires separate review',
-            'physical_intervals':len(a),'daily':daily,'instantaneous_fluxes':instant,
+            'physical_intervals':len(a),'daily':daily,'monthly':monthly,'full_span':period(np.ones(len(a),bool)),'instantaneous_fluxes':instant,
             'time_convention':reference['time_convention'],
             'state_convention':'Arithmetic means of equally spaced interval-end states; soil temperature in Celsius',
             'daily_bias_criteria_met':all(x['bias_pass'] for d in daily.values() for x in d.values()),
-            'instantaneous_flux_criteria_met':all(x['correlation_pass'] is True for x in instant.values())}
+            'monthly_bias_criteria_met':None if any(x['bias_pass'] is None for d in monthly.values() for x in d.values()) else all(x['bias_pass'] for d in monthly.values() for x in d.values()),
+            'instantaneous_flux_criteria_met':all(x['correlation_pass'] is True for x in instant.values()),
+            'instantaneous_flux_criteria_status':'unmeasured' if any(x['correlation_pass'] is None for x in instant.values()) else 'pass' if all(x['correlation_pass'] for x in instant.values()) else 'fail'}
 
 
 def main():

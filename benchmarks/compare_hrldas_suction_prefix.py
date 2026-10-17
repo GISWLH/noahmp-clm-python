@@ -40,7 +40,7 @@ def bind_suction_configurations(old_raw,new_raw,prepared,site):
         saturated_suction_m=SITES[site],all_other_configuration_values_equal=True,
         permitted_changes=['case','scope','parent_configuration_sha256','physics_revision','column.soil.saturated_suction_m'])
 
-def compare_suction_prefix(trace,report,reference,prepared,old_raw,new_raw,site):
+def bind_suction_inputs(report,prepared,old_raw,new_raw,site):
     binding=bind_suction_configurations(old_raw,new_raw,prepared,site)
     if report['configuration_sha256']!=binding['new_configuration_sha256']:raise ValueError('New model report/configuration bytes disagree')
     if report.get('case')!=site+'-suction-climate-cycle':raise ValueError('New model report case mismatch')
@@ -48,6 +48,11 @@ def compare_suction_prefix(trace,report,reference,prepared,old_raw,new_raw,site)
             (lambda k:k.endswith('.json') and not k.endswith('-config.json'),'forcing_manifest_sha256')]:
         values=[v for k,v in prepared['inputs_sha256'].items() if predicate(k)]
         if values!=[report[key]]:raise ValueError('Original forcing/metadata byte identity required')
+    return binding
+
+
+def compare_suction_prefix(trace,report,reference,prepared,old_raw,new_raw,site):
+    binding=bind_suction_inputs(report,prepared,old_raw,new_raw,site)
     result=_compare_aligned_prefix(trace,report,reference,prepared)
     result['configuration_binding']=binding
     result['scope']='Declared explicit-suction first-week cold-start diagnostic against an unchanged official full year. Derived configuration binding; not regenerated reference, annual/spinup or scientific acceptance.'
