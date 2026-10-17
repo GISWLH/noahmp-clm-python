@@ -1,0 +1,26 @@
+{
+  "scope": "Static byte/AST/remote result and exact-node coverage provenance only; no local model/evaluation execution.",
+  "source_files": 488,
+  "runtime_files": 174,
+  "unchanged_existing_code_test_benchmark_files": 483,
+  "added_files": [
+    "benchmarks/assess_clm_spinup.py",
+    "tests/test_clm_spinup.py"
+  ],
+  "target_counts": {
+    "tests": 79,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "target_pbs_job": "99.manager",
+  "cpu_coverage_pbs_job": "100.manager",
+  "current_cpu_nodes": 804,
+  "current_gpu_nodes": 325,
+  "current_collected_nodes": 1129,
+  "original_real_j48_running_prefix_rejected": true,
+  "original_a_failure_and_b_pass_preserved": true,
+  "old_gpu_and_j_annual_physical_source_unmodified": true,
+  "all_public_artifacts_hash_verified_and_git_tracked": 4466,
+  "actual_climate_spinup_soil_c_equilibrium_observation_release_acceptance": false
+}

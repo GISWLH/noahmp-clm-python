@@ -1,0 +1,108 @@
+{
+  "scope": "EHPC PBS99 current79 target pass, distinguishes three SOC pools from seven litter/wood/SOM total and rejects original J48 as incomplete; PBS100 exact CPU804 coverage union, old780 plus new24 and55 overlaps. Runtime174/existing483 code/test/benchmark files unchanged. Actual coupled spinup remains incomplete.",
+  "archive_sha256": "ec541bedf2a9f353879c9c9a0e02c8b531a55cd8e62a57fa7ac7e448b798e7d4",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "66fd70d968726658013e2fe5f7fa80a0d6935755a9800516de2ce3aeecf0cf9c",
+      "stored_sha256": "d7009fbcae4f7ff23e449b6d171338e9a7ea283aece9e24677057e427ef245df"
+    },
+    {
+      "source": "source-unpack-receipt.json",
+      "path": "source-unpack-receipt.json.gz",
+      "source_sha256": "7aa97234d9ae81c7ec88b3ba7123278304cfb3c440eb3606826e90e3bc44efc7",
+      "stored_sha256": "d9ab5822138656b7a40c273be55f63c154823272c657d299b5ffd6b3a493b3d4"
+    },
+    {
+      "source": "run_spinup_assessment_c.py",
+      "path": "run_spinup_assessment_c.py.gz",
+      "source_sha256": "c4f86dcc9738cc59678d456f4ab181ae9fcc8f7716bbaa8b4d800ead0e394836",
+      "stored_sha256": "2c9bb51b11c66389d3e5fc369bdb0fd1ad53915390daf91ddbef29e18e0246d8"
+    },
+    {
+      "source": "spinup_assessment_c.pbs",
+      "path": "spinup_assessment_c.pbs.gz",
+      "source_sha256": "ec49577672cb7fef34dcb1e6153281802b8051a042283866f74ea995b556be38",
+      "stored_sha256": "fd37d1c0190d78a2ad63ebaa8204e39be0f23bbba46bf5b02e21a5663a9c7509"
+    },
+    {
+      "source": "spinup-target.log",
+      "path": "spinup-target.log.gz",
+      "source_sha256": "c40d3152be17f9d123f27c0979de5b7ab3b4febc823ea1eb321a323e3b4f4f69",
+      "stored_sha256": "e97e5f8ca064e91539288aa8720659938cd2eae41adec87a2bf669e9e15d644f"
+    },
+    {
+      "source": "spinup-target.xml",
+      "path": "spinup-target.xml.gz",
+      "source_sha256": "0aa8251cc455ac07e48dd1de4243ea244fc97ced77db284d18b48712450f9479",
+      "stored_sha256": "f946aee534068d959f464e4a941424dd8c050ef292c1d438e668be999e155e32"
+    },
+    {
+      "source": "spinup-target-receipt.json",
+      "path": "spinup-target-receipt.json.gz",
+      "source_sha256": "096036e816818b50ea85b5b44fd83fc61c8fc232547969a45acd513cd95af459",
+      "stored_sha256": "87fcb8160063c4c32e356c35e15c1ab6c6a7ec264f83ec5195821c6cab3a7d97"
+    },
+    {
+      "source": "spinup-target-exit.txt",
+      "path": "spinup-target-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "benchmarks/assess_clm_spinup.py",
+      "path": "benchmarks/assess_clm_spinup.py.gz",
+      "source_sha256": "2f65c6a27743384a52b8ca36d2aee19d119b57f89cd68918990048b56a0f389c",
+      "stored_sha256": "cdf20d4e1bcdebb44d5b87474f9eb12c88a7d70a6d11eaecd76d3f58d797d6b0"
+    },
+    {
+      "source": "tests/test_clm_spinup.py",
+      "path": "tests/test_clm_spinup.py.gz",
+      "source_sha256": "58555012c69b31d039a6f0048742e1689fbc7e8835dbf13e63d47392690c771b",
+      "stored_sha256": "395bf3cb53af7edc4c6abb988b18d7aaf787968c377844dd226c172a51c2eb65"
+    },
+    {
+      "source": "verify_spinup_cpu_coverage_c.py",
+      "path": "verify_spinup_cpu_coverage_c.py.gz",
+      "source_sha256": "48e54ec85478180c68fab2c620193394c92e1bf85ce8133091188e346329e8e7",
+      "stored_sha256": "c42356f11d09e4b2c3fa18f32ca15e91bb1eda7ed0de5df88cb999d365e835b1"
+    },
+    {
+      "source": "spinup_cpu_coverage_c.pbs",
+      "path": "spinup_cpu_coverage_c.pbs.gz",
+      "source_sha256": "b6c4ad16a982a7a6fded50a40c2fc94d149de2dc800e52405778e4acd1a5c222",
+      "stored_sha256": "e138e0b9d76251135f0898cafb32130b5aaa9b975b1e7f818611da24e835ee38"
+    },
+    {
+      "source": "cpu-coverage-collection.log",
+      "path": "cpu-coverage-collection.log.gz",
+      "source_sha256": "ac7a3e42621c17f4d0801e58fcb7dd7b5e37e88cea983048f4d12c9c52b97ed0",
+      "stored_sha256": "2dcd09978e11e148c37f7e2d1db006c8f1217bd6cd61bc634d46e9af7ace481c"
+    },
+    {
+      "source": "cpu-coverage.log",
+      "path": "cpu-coverage.log.gz",
+      "source_sha256": "bd0c004d771c865817b7b6af7389496a124d91764d63a2df02f00d6677c3e947",
+      "stored_sha256": "2b4cce0f709cff7c98d8495c6f4a7bc4dcbdf415f8774dce853e7b153848acff"
+    },
+    {
+      "source": "cpu-coverage-receipt.json",
+      "path": "cpu-coverage-receipt.json.gz",
+      "source_sha256": "4db97afb5a7d239fb3821f5fafae58831d7a86dd93673acd4ac53f68def8cdb6",
+      "stored_sha256": "26f3c363126f4ec6cd77f9aa68ca5081913e2b75817c7a6ef95fec22ad549a40"
+    },
+    {
+      "source": "cpu-coverage-exit.txt",
+      "path": "cpu-coverage-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "prior-evidence-binding.json",
+      "path": "prior-evidence-binding.json.gz",
+      "source_sha256": "b9e5962c03260718fd139e8e931499e3d79eddca780b40d4bc14dd7f36affcd1",
+      "stored_sha256": "f7554213525ae670218872141a144522250b92f7aa512df156b149dde7dea6ae"
+    }
+  ]
+}

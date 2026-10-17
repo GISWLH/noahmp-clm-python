@@ -16,6 +16,10 @@ NumPy目标21项及完整CPU780项完成，xuanze实态核心3项完成，同精
 7.28e-12。新J首日全部轨迹/状态与原I48逐字节一致后，从自身48步续全年；
 完整设备回归继续，未用首月或首日代替年度、spinup或观测验收。
 
+[气候循环收敛核对入口](docs/CLM_SPINUP_ASSESSMENT.md)已在EHPC完成79项目标，
+原J48前缀被明确拒绝作为完整循环。当前804个CPU节点有同源分布式覆盖记录；
+设备325项仍在执行，实际气候spinup和多站多年验收未完成。
+
 连续验证记录：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
 [联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
 后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，该检查点EHPC完整CPU部分
