@@ -1,0 +1,108 @@
+{
+  "scope": "Original old six-property soil law and G614 four-column CUDA whole-step replay, only three phase solver source files patched. Complete97.408105s, independent M/H/C/N and all5tracers meet original bounds. JAX whole-step shadow launched separately and pending at archive; original annual remains failed.",
+  "archive_sha256": "7dbd9e7a3fb612e61e62c49e51492e15e33a4e0a2fd7674f449254118a687f57",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "fe783dba40e9b302ec77d1d1adcdc1da84eaafdf1e4a57ad7f79f16b5c5261bc",
+      "stored_sha256": "8ba28ac4c9521138940d743a57b14566c91e3fcf6f4d69609e6c6da3002c1a6e"
+    },
+    {
+      "source": "original-source-sha256.json",
+      "path": "original-source-sha256.json.gz",
+      "source_sha256": "343cf387f066fe26c07d7c842133e561b64622d564304c93d72267eb7dd75fdb",
+      "stored_sha256": "b940f7136c810fcdb0020ab218631811869d96ca9066a39f6c69e106ff42beb3"
+    },
+    {
+      "source": "source-differences.json",
+      "path": "source-differences.json.gz",
+      "source_sha256": "439716f9fb18e6744200dd620e048019172ba779582ad504db9416039e969e18",
+      "stored_sha256": "37ce5e6558923684132636563010144317cca391d5ed0b223db662dd283576c9"
+    },
+    {
+      "source": "cuda-output.npz",
+      "path": "cuda-output.npz",
+      "source_sha256": "76689918b08e482db21de6778758d986987f6acd9377bf7566e9ce00136af08a",
+      "stored_sha256": "76689918b08e482db21de6778758d986987f6acd9377bf7566e9ce00136af08a"
+    },
+    {
+      "source": "cuda-next-state.npz",
+      "path": "cuda-next-state.npz",
+      "source_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5",
+      "stored_sha256": "8bb76197ca0984c72f51e8d16d2f85385f8e8091f43c14c303992ad5414b34c5"
+    },
+    {
+      "source": "cuda-replay.json",
+      "path": "cuda-replay.json.gz",
+      "source_sha256": "bdff680755a1db5964d2617516d35ba6db3bada783e1700491ed908f59f75ff6",
+      "stored_sha256": "dae78c90a0d76002eab1537c87945e16aea9b152d92c00a30045c14af9d57b8c"
+    },
+    {
+      "source": "cuda-replay.log",
+      "path": "cuda-replay.log.gz",
+      "source_sha256": "7d94f950350a26f919f4b33e944e32787b32abe764131f9608fae0c5670d14ca",
+      "stored_sha256": "2565150749f0822392eb9a50439b726acb90b35d9f75788f5a2ce38a445dd81a"
+    },
+    {
+      "source": "cuda-launch.json",
+      "path": "cuda-launch.json.gz",
+      "source_sha256": "fe7040886e38f38d83552510efa83c152c22efb4a111bc5eb6c8234acfcf3525",
+      "stored_sha256": "ce0b77b96e491cff2e87eb1a93dfc3fa103ac3ada62ebe61c3788c2d18405aad"
+    },
+    {
+      "source": "replay_legacy_g614_cuda.py",
+      "path": "replay_legacy_g614_cuda.py.gz",
+      "source_sha256": "f3555b5b9ececd3f7996325b08cd9412e094c82001556ee920387326841655b6",
+      "stored_sha256": "096d68e8b3ba1694f06f623376b552859b827cf63f810253e7e606b39c10e09b"
+    },
+    {
+      "source": "launch_legacy_phase_replay_a.py",
+      "path": "launch_legacy_phase_replay_a.py.gz",
+      "source_sha256": "b8c5fd3b9446e9d2178642cd971130c31d51a161de03b988acf3f50fb8f0824e",
+      "stored_sha256": "17c2382e683178c8e96113970c984811f7ba457662c018d9dcd0ff61b987f54f"
+    },
+    {
+      "source": "replay_legacy_g614_jax.py",
+      "path": "replay_legacy_g614_jax.py.gz",
+      "source_sha256": "150c8247f99a99de7fd9b9af89343a8a04b9bd32e9112b60a9c857725d37d7e6",
+      "stored_sha256": "e36059585b71ceca08306e2182397e2ef13e07067e75e07c38885c0aae123f44"
+    },
+    {
+      "source": "launch_legacy_phase_jax_replay_a.py",
+      "path": "launch_legacy_phase_jax_replay_a.py.gz",
+      "source_sha256": "616e9093cf2d0c3f238d8ee417c2bf7b61ab67e6ecc8775044bc93e0dec62869",
+      "stored_sha256": "cf5570903c8a267fa32c2afcf340de99737d5b509999c6c27a11272a3fba1ff1"
+    },
+    {
+      "source": "jax-launch.json",
+      "path": "jax-launch.json.gz",
+      "source_sha256": "16d7c6e7b6c91c3b5c99861a71cf0eae54364326f7f4065f81979f0056069f18",
+      "stored_sha256": "cc7bb1ff26473405ad9c901134b2596b9e87c5572dc14de2a0b015b8f77c283a"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "c6c6a67dfb4c89e616971ad4d63cd721cde1bf9da4315959a81b2cb661fdab8e",
+      "stored_sha256": "8ac581d5e7889267eb0954e655313c090d20421f3865b9502b72ceb4e5ca9f07"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "a0a4dc98058fb69c15817d5de1098d8f2b34a11b15103209153d12543a9d7c47",
+      "stored_sha256": "95fa645cd676b0a1066a4bb4919dad17be5c840e19b0977bd96c6e044c7b9282"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "8ac0621af73633fa994a6ccc6efe3712dde726781a45ad9a37b6e556072f7208",
+      "stored_sha256": "21c45bd560280399fb1850a8112dbdb6b229ac1561fa81dde976845a09d706b3"
+    },
+    {
+      "source": "prepare_legacy_phase_replay_a.py",
+      "path": "prepare_legacy_phase_replay_a.py.gz",
+      "source_sha256": "5035e1975127bb731e3572995cf64ce07ce4de91d68326fcf07b15462b5e1116",
+      "stored_sha256": "d424e612e79347defbc5721e775cfe1de2d98d0a76753be104dfb82214744c22"
+    }
+  ]
+}

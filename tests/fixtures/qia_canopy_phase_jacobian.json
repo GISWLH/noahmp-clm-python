@@ -1,0 +1,21 @@
+{
+  "fixture_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035",
+  "scope": "Actual old G614 fixed-boundary phase operands: prepared on GPU from original captured surface, no old soil enthalpy decoded by the new law.",
+  "original_failure_max_solver_residual_wm2": 0.006016910076141357,
+  "original_phase_coordinates_layer0": 79.89864349365234,
+  "melting_endpoint": 79.90430622009569,
+  "original_cuda_finite_difference_half_step": 0.02,
+  "original_half_step_crosses_melting_endpoint": true,
+  "original_source": "p6-heat-phase-event-a",
+  "input_source": "fluxnet-first-climate-cycle-20261017-g/failure-614-capture-a/failed-surface-inputs.npz",
+  "independent_numpy_pbs51": {
+    "iterations": 4,
+    "max_solver_residual_wm2": 1.1073753200918635e-05,
+    "phase_coordinate_layer0": 79.23335850622733
+  },
+  "in_memory_interval_experiment": {
+    "iterations": 4,
+    "max_solver_residual_wm2": 0.00014407921116799116,
+    "old_numerical_acceptance_unchanged": true
+  }
+}

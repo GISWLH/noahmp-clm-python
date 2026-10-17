@@ -1,0 +1,114 @@
+{
+  "scope": "EHPC PBS54 complete CPU-file collection709pass0fail0error0skip292.53s,473source files unchanged. GPU separate.",
+  "archive_sha256": "5206e6abb72a9723ce52a8f8ea77bbaa6aed665cf15b9d2ca24c75361b15e626",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "ae65657e2567a5a9dee2add70c88166f230272dfa8f165a4ca392a569dd07c4f",
+      "stored_sha256": "a8d266c8c18ab2d3d6b4783367583e58ea53948eb1a5aac53a34796f8b626cc0"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "c6c6a67dfb4c89e616971ad4d63cd721cde1bf9da4315959a81b2cb661fdab8e",
+      "stored_sha256": "8ac581d5e7889267eb0954e655313c090d20421f3865b9502b72ceb4e5ca9f07"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "a0a4dc98058fb69c15817d5de1098d8f2b34a11b15103209153d12543a9d7c47",
+      "stored_sha256": "95fa645cd676b0a1066a4bb4919dad17be5c840e19b0977bd96c6e044c7b9282"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "8ac0621af73633fa994a6ccc6efe3712dde726781a45ad9a37b6e556072f7208",
+      "stored_sha256": "21c45bd560280399fb1850a8112dbdb6b229ac1561fa81dde976845a09d706b3"
+    },
+    {
+      "source": "tests/test_canopy_phase_energy.py",
+      "path": "tests/test_canopy_phase_energy.py.gz",
+      "source_sha256": "303169beb8d2cde8d020094599839d8a9971a10af609035016748856e89fded4",
+      "stored_sha256": "757ba0e2b6a5346085f6225cd92874316204acfa812ca78c6ec9c7e9e6e06e37"
+    },
+    {
+      "source": "tests/test_canopy_phase_column.py",
+      "path": "tests/test_canopy_phase_column.py.gz",
+      "source_sha256": "ceb8970822de2cf50b2dc4d2d4662851dfda9216ad6154c4880d569355411384",
+      "stored_sha256": "3409825945864fbf006435763f241ff481bbed8246a96c4f228a373752ed36a6"
+    },
+    {
+      "source": "tests/test_phase_jacobian_boundary.py",
+      "path": "tests/test_phase_jacobian_boundary.py.gz",
+      "source_sha256": "d00bce9a97a86dea50ae1e5644e3b8c097bb685b07574e4365180e3845ab2f01",
+      "stored_sha256": "d43cf7f66da6731f4dd26792e9145ee3b8dddeff4fb20c654ea2efee2b21540e"
+    },
+    {
+      "source": "tests/test_gpu_phase_jacobian_boundary.py",
+      "path": "tests/test_gpu_phase_jacobian_boundary.py.gz",
+      "source_sha256": "1b1e8957bc4fc94ef5287b04840afaf5021a4e25fa29b6e7e757f38b485cd1db",
+      "stored_sha256": "1d1a6d0dedd96d049adad73213c480fbb0f4b0ee92e3af6117925ae7132ddc92"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "source_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035",
+      "stored_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.json",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.json.gz",
+      "source_sha256": "bfbe150fd2712c3ae0b2c55eee88d48bfc7380c58b030558b0dc474f55a7e70f",
+      "stored_sha256": "387644a894aa2f4f1ae1d1c84bf6cc0cc17ec1b103ae0401bce44e85af24aad0"
+    },
+    {
+      "source": "phase_gpu_a_cpu_full.pbs",
+      "path": "phase_gpu_a_cpu_full.pbs.gz",
+      "source_sha256": "32e7c80eb45141cce4b6f8dfa3375215665ae870ba96c13b0416fe0545e1d03f",
+      "stored_sha256": "ca1e171cb5773b05e89d23ae4eb50a06e7eb66e8eeb6a7259844e153a1d0c121"
+    },
+    {
+      "source": "cpu-full.log",
+      "path": "cpu-full.log.gz",
+      "source_sha256": "fef442daa4ca75d7c3d8f4a6075c67c99040bd37355284e61cc9a9dd586af34d",
+      "stored_sha256": "340bf4189109ed16337ad5c2a9291cd6b5266517cf8807973d207e443374e77c"
+    },
+    {
+      "source": "cpu-full.xml",
+      "path": "cpu-full.xml.gz",
+      "source_sha256": "93c55bb0e96f4c2d3dfc58fce4655c4f3e8fe66a62937beb95f6776ff64a31f9",
+      "stored_sha256": "d52e58eb13bc9651f1e40f77624b6a7f95834248ba25bd600f1a16908287a58b"
+    },
+    {
+      "source": "cpu-full-exit.txt",
+      "path": "cpu-full-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cpu-full-receipt.json",
+      "path": "cpu-full-receipt.json.gz",
+      "source_sha256": "856ad40fe11afa8f3b714e5195b1d1f00700479a981c5a627a2e43271f99a740",
+      "stored_sha256": "b3e05e43ddbb252aaf120257ae814f83673afa9a82ddde88bba9d45694f6f517"
+    },
+    {
+      "source": "cpu-full-selection.json",
+      "path": "cpu-full-selection.json.gz",
+      "source_sha256": "800847fb8e9cbb7c190952023239f5ec83689b007388c4f221408bf491602d51",
+      "stored_sha256": "7d91829279236bf1c4ca3699efd0b2c07f5ff474c702a1d0f4aa3bbd61c09a33"
+    },
+    {
+      "source": "run_suction_numpy_full.py",
+      "path": "run_suction_numpy_full.py.gz",
+      "source_sha256": "a65e7103a60008388349e5ac53b5edbbc327967212a80fbaae81ad214d129430",
+      "stored_sha256": "975aaa05907fb26217f2e16f2dce64aa1fc22d0c341b8daad14911b8a5a19523"
+    },
+    {
+      "source": "archive-source-audit.json",
+      "path": "archive-source-audit.json.gz",
+      "source_sha256": "d2e1257c2b44981de4aef9645edcfd12a4558bc749fd14a9b8fc49990844bec3",
+      "stored_sha256": "dcf456166a35ae0a41f756722010a19b557557f2a4be485f458aa0b0321d3200"
+    }
+  ]
+}

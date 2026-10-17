@@ -1,0 +1,108 @@
+{
+  "scope": "xuanze9pass0skip175.49s; original23 phase contexts plus actualG614, JAX32/JAX64 independent comparisons and CUDA32/JAX32 all fields exact0 including actual300outputs. Original physical/convergence/parcel and1e-6same-precision gates retained.473source files unchanged.",
+  "archive_sha256": "21f01edceaa29580f9675789cb19fdbab62efa9f7eca4e4f6c28f6bfe38339a5",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "ae65657e2567a5a9dee2add70c88166f230272dfa8f165a4ca392a569dd07c4f",
+      "stored_sha256": "a8d266c8c18ab2d3d6b4783367583e58ea53948eb1a5aac53a34796f8b626cc0"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "c6c6a67dfb4c89e616971ad4d63cd721cde1bf9da4315959a81b2cb661fdab8e",
+      "stored_sha256": "8ac581d5e7889267eb0954e655313c090d20421f3865b9502b72ceb4e5ca9f07"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "a0a4dc98058fb69c15817d5de1098d8f2b34a11b15103209153d12543a9d7c47",
+      "stored_sha256": "95fa645cd676b0a1066a4bb4919dad17be5c840e19b0977bd96c6e044c7b9282"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "8ac0621af73633fa994a6ccc6efe3712dde726781a45ad9a37b6e556072f7208",
+      "stored_sha256": "21c45bd560280399fb1850a8112dbdb6b229ac1561fa81dde976845a09d706b3"
+    },
+    {
+      "source": "tests/test_canopy_phase_energy.py",
+      "path": "tests/test_canopy_phase_energy.py.gz",
+      "source_sha256": "303169beb8d2cde8d020094599839d8a9971a10af609035016748856e89fded4",
+      "stored_sha256": "757ba0e2b6a5346085f6225cd92874316204acfa812ca78c6ec9c7e9e6e06e37"
+    },
+    {
+      "source": "tests/test_canopy_phase_column.py",
+      "path": "tests/test_canopy_phase_column.py.gz",
+      "source_sha256": "ceb8970822de2cf50b2dc4d2d4662851dfda9216ad6154c4880d569355411384",
+      "stored_sha256": "3409825945864fbf006435763f241ff481bbed8246a96c4f228a373752ed36a6"
+    },
+    {
+      "source": "tests/test_phase_jacobian_boundary.py",
+      "path": "tests/test_phase_jacobian_boundary.py.gz",
+      "source_sha256": "d00bce9a97a86dea50ae1e5644e3b8c097bb685b07574e4365180e3845ab2f01",
+      "stored_sha256": "d43cf7f66da6731f4dd26792e9145ee3b8dddeff4fb20c654ea2efee2b21540e"
+    },
+    {
+      "source": "tests/test_gpu_phase_jacobian_boundary.py",
+      "path": "tests/test_gpu_phase_jacobian_boundary.py.gz",
+      "source_sha256": "1b1e8957bc4fc94ef5287b04840afaf5021a4e25fa29b6e7e757f38b485cd1db",
+      "stored_sha256": "1d1a6d0dedd96d049adad73213c480fbb0f4b0ee92e3af6117925ae7132ddc92"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "source_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035",
+      "stored_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.json",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.json.gz",
+      "source_sha256": "bfbe150fd2712c3ae0b2c55eee88d48bfc7380c58b030558b0dc474f55a7e70f",
+      "stored_sha256": "387644a894aa2f4f1ae1d1c84bf6cc0cc17ec1b103ae0401bce44e85af24aad0"
+    },
+    {
+      "source": "phase-target.log",
+      "path": "phase-target.log.gz",
+      "source_sha256": "737a18dbd01c3d94e69e3f0b3927b0cf431cd6af3a74009315414cddf4de0a22",
+      "stored_sha256": "4022120f33a2710717dbe198bc33077aef05b8e8a9b547534b940cbbcecab653"
+    },
+    {
+      "source": "phase-target.xml",
+      "path": "phase-target.xml.gz",
+      "source_sha256": "2ebbb618fa202861f682b377e1d51fce4930fffc5f5c0b1f4792230ce5aa339b",
+      "stored_sha256": "b2a69098fe989064fb692e5d3d9f10a3968aaac3c2ccdcf669705e1ff542e961"
+    },
+    {
+      "source": "phase-target-receipt.json",
+      "path": "phase-target-receipt.json.gz",
+      "source_sha256": "d3a6cea28635ecbd11297e568022f154ee27de9b1467ef03a7a802b0a095df7b",
+      "stored_sha256": "8644c407037ca11343375cec9f041709aadce52e98318b1c866733742e79d451"
+    },
+    {
+      "source": "phase-target-launch.json",
+      "path": "phase-target-launch.json.gz",
+      "source_sha256": "3fa9c676fa1e183de8369dd5c97f57e12130551c265aea15952d1318aad34d9e",
+      "stored_sha256": "5d0781c3ed3117ccc281b9407b93e2187209280928cac4a39fcb1cfde1a83d0f"
+    },
+    {
+      "source": "phase_gpu_a_target.py",
+      "path": "phase_gpu_a_target.py.gz",
+      "source_sha256": "af00904909d8700ea4cb3c3a20d042a0230fa54f3015bf5e79d4872b3fff4b94",
+      "stored_sha256": "28cbd4e6a246891e1ad254f630329978e03694e55ce4c262dd7d4f943febba37"
+    },
+    {
+      "source": "launch_phase_gpu_a.py",
+      "path": "launch_phase_gpu_a.py.gz",
+      "source_sha256": "9419a96bada2eaab5df7b0a8c7ffa2aca6ce50b188b8f3061b9878b45cfdb7df",
+      "stored_sha256": "85a43717c80b71f459663ecb76ae0ab4381450541c14c55cda44a02f3bd0d0e8"
+    },
+    {
+      "source": "archive-source-audit.json",
+      "path": "archive-source-audit.json.gz",
+      "source_sha256": "d2e1257c2b44981de4aef9645edcfd12a4558bc749fd14a9b8fc49990844bec3",
+      "stored_sha256": "dcf456166a35ae0a41f756722010a19b557557f2a4be485f458aa0b0321d3200"
+    }
+  ]
+}

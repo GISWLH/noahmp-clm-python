@@ -1,0 +1,252 @@
+{
+  "scope": "Original G614 phase exact replay; offset arithmetic variants remain failed. Always-local phase Jacobian converges in isolated case but causes separate NumPy regression; not adopted. Failure-only local derivative experiment converges under original gates. Original derivative measured3.59945 vs0.00670555 magnitudes; all raw variants saved. First path-resolution failure retained.",
+  "archive_sha256": "59eba62ca29289e109a0e8ce7cb99b8dce30cb2deaa96a9e05d999277dd9611a",
+  "artifacts": [
+    {
+      "source": "a/p6-qia614-phase-diagnostic-a.log",
+      "path": "a/p6-qia614-phase-diagnostic-a.log.gz",
+      "source_sha256": "37242e39484245c3f06644587e366d96d68d44633481f82688eee9cbdc28e27e",
+      "stored_sha256": "85168711084c2d3e66cc38852ee01552b75a8725c37f7a80dd1bb7172d027ad9"
+    },
+    {
+      "source": "a/p6-qia614-phase-diagnostic-a-launch.json",
+      "path": "a/p6-qia614-phase-diagnostic-a-launch.json.gz",
+      "source_sha256": "b788648e635d0206d87058b49e293cce8f0e7d419b13dc0e15174b3f5ab942f1",
+      "stored_sha256": "eb16693b1820664d03317ad2fb77a922c236e308edcc86ba2f011de03e82401d"
+    },
+    {
+      "source": "a/diagnose_qia_614_phase.py",
+      "path": "a/diagnose_qia_614_phase.py.gz",
+      "source_sha256": "1c09baf92ca5ee02a11e19f0cd857991462b80ccf4ba61b4d8cf312614f07b2c",
+      "stored_sha256": "65fd110acbdcde2f5cdd2df4724c4c86a9908a186cd372af58169624f0857873"
+    },
+    {
+      "source": "a/launch_qia614_phase_diagnostic.py",
+      "path": "a/launch_qia614_phase_diagnostic.py.gz",
+      "source_sha256": "ef477831f21d4d60d74afd86cbb73303f0c77f280464d483073aab386a2bf799",
+      "stored_sha256": "318ba637a607d7a4a2a15fbfedeecc1a12a4fa5135efc6ce752e7b9d272b2e94"
+    },
+    {
+      "source": "b/both_offsets.cu",
+      "path": "b/both_offsets.cu.gz",
+      "source_sha256": "c04bf6417f89c6b80ef549f66408a9fa1386405f7ed1bc3a24f64e32b4c13e2e",
+      "stored_sha256": "f42cb480c6285db87d46df330db0fdbcdbc4ee02759f309a818a40777c3fee32"
+    },
+    {
+      "source": "b/both_offsets.npz",
+      "path": "b/both_offsets.npz",
+      "source_sha256": "db23df328530c9aed1d8feee8649c907bc8fc0c724e106d3736c0e68aa00c711",
+      "stored_sha256": "db23df328530c9aed1d8feee8649c907bc8fc0c724e106d3736c0e68aa00c711"
+    },
+    {
+      "source": "b/measure-jacobian.cu",
+      "path": "b/measure-jacobian.cu.gz",
+      "source_sha256": "8fa9f76745336ba7ff26b5bc94b1651a1f3b9a32bb978bbe9f6c14cb854d87aa",
+      "stored_sha256": "0490d6f78f75bb678c2fe9dbcd642649fdb5f5ac9e21738091c2f9649ae13e2c"
+    },
+    {
+      "source": "b/measured-jacobian.json",
+      "path": "b/measured-jacobian.json.gz",
+      "source_sha256": "0891a9d8674dcac000b048c4e028006c033067ef9073e54849224b99e1022724",
+      "stored_sha256": "3406b4cf8af2765ba1a353916cb252f905375338a2cc3e385e5ebb750331e695"
+    },
+    {
+      "source": "b/original.cu",
+      "path": "b/original.cu.gz",
+      "source_sha256": "52bf9a40f78383c86c97c076570b2fc3468a7b1251302f31d82a56980b2d788c",
+      "stored_sha256": "15098bc0a320cf531e7f2aaef241674317887c65e7cd4f8d487cf1dfd1bc8580"
+    },
+    {
+      "source": "b/original.npz",
+      "path": "b/original.npz",
+      "source_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166",
+      "stored_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166"
+    },
+    {
+      "source": "b/phase-reference-inputs.npz",
+      "path": "b/phase-reference-inputs.npz",
+      "source_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035",
+      "stored_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035"
+    },
+    {
+      "source": "b/sensible_offset.cu",
+      "path": "b/sensible_offset.cu.gz",
+      "source_sha256": "0315a2e09b090e73879f91de07b9fc250ae6066152aece117612e925f86917b2",
+      "stored_sha256": "597c80ba9b66760f3e4aee29c8a37d56d1d17e4d1c8442554a8b6b408e3119e1"
+    },
+    {
+      "source": "b/sensible_offset.npz",
+      "path": "b/sensible_offset.npz",
+      "source_sha256": "41d22d5c19192b55a41d5338b8d451947cc8b25763027637c4c4fd42d6a4f665",
+      "stored_sha256": "41d22d5c19192b55a41d5338b8d451947cc8b25763027637c4c4fd42d6a4f665"
+    },
+    {
+      "source": "b/summary.json",
+      "path": "b/summary.json.gz",
+      "source_sha256": "88beb689806b3c10d7f75f4990c77518b3b99beda76bbac502531590c41508fc",
+      "stored_sha256": "8af55655e1fac16423bfd0dd3180f0378e114cf77e50ac512e13fd75eb6a8cc7"
+    },
+    {
+      "source": "b/water_saturation_offset.cu",
+      "path": "b/water_saturation_offset.cu.gz",
+      "source_sha256": "a1b2dd898466e1cba73264e7d26630f8cafa97fb2896671d5aace272a193e13d",
+      "stored_sha256": "49b70d4206d64d380f8d13cf9b184a992f7333a81ae0d46f4120d8348ec12e62"
+    },
+    {
+      "source": "b/water_saturation_offset.npz",
+      "path": "b/water_saturation_offset.npz",
+      "source_sha256": "edf5b66456641d05bf24a2df3438b87ca3b87b7444329cfaa9aea8d58db03bc9",
+      "stored_sha256": "edf5b66456641d05bf24a2df3438b87ca3b87b7444329cfaa9aea8d58db03bc9"
+    },
+    {
+      "source": "b/p6-qia614-phase-diagnostic-b.log",
+      "path": "b/p6-qia614-phase-diagnostic-b.log.gz",
+      "source_sha256": "77916574f603b688c0d70a383f8c5944e4c95f70f8cb4ab3e24e2f9abfd91699",
+      "stored_sha256": "5a16d4ca2cde002b758e52110dd1f7a127e249267037aabb4901d3998b72446c"
+    },
+    {
+      "source": "b/p6-qia614-phase-diagnostic-b-launch.json",
+      "path": "b/p6-qia614-phase-diagnostic-b-launch.json.gz",
+      "source_sha256": "3f9a549922c3aca8ec466fe4474f39503c1db1fb7c3ac49cab1f5e7bcf75a3b1",
+      "stored_sha256": "1ebdd959ec61a59417daf43bcade5a3342ee4c14a46f42d719a9d5ad10df9e68"
+    },
+    {
+      "source": "b/diagnose_qia_614_phase_b.py",
+      "path": "b/diagnose_qia_614_phase_b.py.gz",
+      "source_sha256": "e9e02854ec82319cbfe505074184766bd0f2d743e71a0dcde71b0adafe97a20c",
+      "stored_sha256": "2df4c3147d9d21f12930eaa89284b4b59ddbe724b383951e2d4189e28518b278"
+    },
+    {
+      "source": "b/launch_qia614_phase_diagnostic_b.py",
+      "path": "b/launch_qia614_phase_diagnostic_b.py.gz",
+      "source_sha256": "6b84de847fba798fd5d4473c2460263de415827dd39387236dd8c595aa12b917",
+      "stored_sha256": "40e2976998d0de9deedb79aae8d094edbade3e15469b5fcae6130877b96b0ea6"
+    },
+    {
+      "source": "c/original.cu",
+      "path": "c/original.cu.gz",
+      "source_sha256": "52bf9a40f78383c86c97c076570b2fc3468a7b1251302f31d82a56980b2d788c",
+      "stored_sha256": "15098bc0a320cf531e7f2aaef241674317887c65e7cd4f8d487cf1dfd1bc8580"
+    },
+    {
+      "source": "c/original.npz",
+      "path": "c/original.npz",
+      "source_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166",
+      "stored_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166"
+    },
+    {
+      "source": "c/summary.json",
+      "path": "c/summary.json.gz",
+      "source_sha256": "7c7123d707330be261e90f226fffdb1fca0eb932acf714361407c2c544f943ac",
+      "stored_sha256": "4391bf82128f0d96d3f47a1f49aeb07d662b7eaaa4aedbd40078190df0c79d3e"
+    },
+    {
+      "source": "c/within_phase_interval.cu",
+      "path": "c/within_phase_interval.cu.gz",
+      "source_sha256": "943b4272b47c68190b2e5803d4745564223c0e9ce62c44614d504c4ea30f5d07",
+      "stored_sha256": "c94e2a06fb50de21c877b0af185e78872595e66c3b26b42c1b08998cb1e5e984"
+    },
+    {
+      "source": "c/within_phase_interval.npz",
+      "path": "c/within_phase_interval.npz",
+      "source_sha256": "16b82393be80d7a9e6615fff5c7dc68593bca8a3081f2ef2ab86826ce91e7322",
+      "stored_sha256": "16b82393be80d7a9e6615fff5c7dc68593bca8a3081f2ef2ab86826ce91e7322"
+    },
+    {
+      "source": "c/p6-qia614-phase-diagnostic-c.log",
+      "path": "c/p6-qia614-phase-diagnostic-c.log.gz",
+      "source_sha256": "b0c2b231e0f0052ae2cdc432f9187f9311e220ff87430e94631c5dd243ba2957",
+      "stored_sha256": "1cc2ea9dbb9620ed8197ecdd6651ee39c003ecf7b4a8c489c050bf3882f8f2b0"
+    },
+    {
+      "source": "c/p6-qia614-phase-diagnostic-c-launch.json",
+      "path": "c/p6-qia614-phase-diagnostic-c-launch.json.gz",
+      "source_sha256": "30c9efbdb4e26083419a4aac33b53ec1ecb780f9175d94fac993efb9cf8d489f",
+      "stored_sha256": "5642d0c5c5daa756b5817a17eb959edfd3c10d505e7ec443a111f1c3b97f97ef"
+    },
+    {
+      "source": "c/diagnose_qia_614_phase_c.py",
+      "path": "c/diagnose_qia_614_phase_c.py.gz",
+      "source_sha256": "258bb02f22a2f4682f7e3dfc3e2bfcc5e1dc8e34c077e75dd46d865ffc15712b",
+      "stored_sha256": "a37b916c1fbd26086faa3f8e377e994f84a405dc5b3c25af622e384e46bd7e02"
+    },
+    {
+      "source": "c/launch_qia614_phase_diagnostic_c.py",
+      "path": "c/launch_qia614_phase_diagnostic_c.py.gz",
+      "source_sha256": "73e3684f91eb483970282fcdce6c1b006407b32a49300c91f08e129bc8f63ae2",
+      "stored_sha256": "a0c1aabdd1e307b16b3dae7ac058964e13f70e7cd0992457d80cfe5453361aca"
+    },
+    {
+      "source": "d/interval_failure_rescue.cu",
+      "path": "d/interval_failure_rescue.cu.gz",
+      "source_sha256": "ccf405e21b28e0e3de96c9f490957a1c2d150a089d4607927f49a098a0e80b1f",
+      "stored_sha256": "d49b65ecb7d261ef586dfa1c11fb60cb93f254e18be5a7b78dbf6b25becc93b9"
+    },
+    {
+      "source": "d/interval_failure_rescue.npz",
+      "path": "d/interval_failure_rescue.npz",
+      "source_sha256": "d416403facddc25254d9e95f73240f3daf2b527e31a3387d316c14588ca7a8b0",
+      "stored_sha256": "d416403facddc25254d9e95f73240f3daf2b527e31a3387d316c14588ca7a8b0"
+    },
+    {
+      "source": "d/original.cu",
+      "path": "d/original.cu.gz",
+      "source_sha256": "52bf9a40f78383c86c97c076570b2fc3468a7b1251302f31d82a56980b2d788c",
+      "stored_sha256": "15098bc0a320cf531e7f2aaef241674317887c65e7cd4f8d487cf1dfd1bc8580"
+    },
+    {
+      "source": "d/original.npz",
+      "path": "d/original.npz",
+      "source_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166",
+      "stored_sha256": "f4ccc5085dde97066b1a8ca0499be2c1842f7e90efb37eeacbb30c20977c1166"
+    },
+    {
+      "source": "d/summary.json",
+      "path": "d/summary.json.gz",
+      "source_sha256": "d46cb98a99d8163e76a784e774b0d03751df3cb312aeea75430fd337d12de0fe",
+      "stored_sha256": "dc6fbb43caadd1d90dd69ab19096a426b690bd7d0034e6e7fecaffcf17685112"
+    },
+    {
+      "source": "d/p6-qia614-phase-diagnostic-d.log",
+      "path": "d/p6-qia614-phase-diagnostic-d.log.gz",
+      "source_sha256": "4f905bc1b425fe3c4a0e66583420837d622800bb9cba79cd209ee6ca793d87f2",
+      "stored_sha256": "95db20fda78de2647d37c6e0a63de00a89b9b6766ebe72c2404e958e1538a172"
+    },
+    {
+      "source": "d/p6-qia614-phase-diagnostic-d-launch.json",
+      "path": "d/p6-qia614-phase-diagnostic-d-launch.json.gz",
+      "source_sha256": "7a1b5e007bd4a7c0130161c9383eda3d7665bc4d3442fe56be5d4a70bb9f77b1",
+      "stored_sha256": "5f36dfe1d5aa3c15583e37300a7e0ea6425e39740e5e8aed3b55eca0f5bbccf8"
+    },
+    {
+      "source": "d/diagnose_qia_614_phase_d.py",
+      "path": "d/diagnose_qia_614_phase_d.py.gz",
+      "source_sha256": "e73c9f0f0337b95e300a93ba00d52086683b3ddef4b96917c4dbdff940f739ce",
+      "stored_sha256": "f86531736c31fe376915656e3fda57567af2e4f7cc393ee9bd28c6086d68b2f6"
+    },
+    {
+      "source": "d/launch_qia614_phase_diagnostic_d.py",
+      "path": "d/launch_qia614_phase_diagnostic_d.py.gz",
+      "source_sha256": "2a40cf3da6f6ba6cbb3be734edc1d1e5ea308b6d81321437927fd06659e3ad8f",
+      "stored_sha256": "b2ead7f45459d1afbfffe8181cd8906b14ac102261437f95f0720520e2a31deb"
+    },
+    {
+      "source": "measure_qia614_phase_jacobian.py",
+      "path": "measure_qia614_phase_jacobian.py.gz",
+      "source_sha256": "bfeae4a6209e3fbf9e5d8b56547b92435b790d3a57a7f10c62077c0ba6e7e55e",
+      "stored_sha256": "cfdf3bd45593c1bc5acb63fb42c75aa17a0d8be324fd9523968cecf8c0e54ee7"
+    },
+    {
+      "source": "export_qia614_phase_inputs.py",
+      "path": "export_qia614_phase_inputs.py.gz",
+      "source_sha256": "e600b388a9fcb58c35f3c1971c80a56ef4f4ad37982653725a28524f182a0cae",
+      "stored_sha256": "f66471457773720b8906b1aa70469d1d04c3cabb9d224eb2edd7f58b1eedd6be"
+    },
+    {
+      "source": "summarize_qia_phase_operands.py",
+      "path": "summarize_qia_phase_operands.py.gz",
+      "source_sha256": "3170e8822967fec9ab3923907b46a0d9c055a067515d8418182fc4f4b9ab55ef",
+      "stored_sha256": "b1849bc21e0412f980815f2b5ad4abb61100ae9387d7b44afbe1be4c751fb513"
+    }
+  ]
+}

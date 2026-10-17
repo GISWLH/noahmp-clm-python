@@ -106,8 +106,12 @@ xuanze核心耦合验证**26 passed /0 skipped，69.12秒**，469份冻结文件
 更完整的冠层/BGC/管理模块逐文件测试已在xuanze启动，第一份冠层表面文件
 5 passed /0 skipped，422.88秒，其余尚未收齐。
 [首份已完成文件的证据](v1-results/suction-surface-prefix-c/manifest.json)已独立保存。
-当前174份运行库文件与核心B、
-整柱C和CPU最终D逐字节一致；C到D只改两份夹具适配测试，
+该检查点174份运行库文件与核心B、整柱C和CPU最终D逐字节一致；C到D只改
+两份夹具适配测试，
 [完整静态身份及归档核对](v1-results/suction-coupling-static-audit-20261017.json)单列。
-接入后的
-连续气候柱、官方/观测重新评价仍待完成，没有据此勾选完整年度或v1.0发布。
+后续另修订三份[冠层相变导数恢复](CLM_CANOPY_PHASE_JACOBIAN.md)文件，原C
+逐文件回归仍属导数修订前的快照，不能冒称当前最终源全量。
+显式吸力头H初态已在EHPC完成四站各48步，新参数/初焓和完整账单列于
+[首气候年记录](FLUXNET_FIRST_CLIMATE_CYCLE.md)。GPU首日与独立NumPy对照已
+完成，日H/LE最大后端偏差0.000700186%/0.000936399%；H已续全年，完整年度、
+官方/观测重新评价仍待完成，没有据此勾选v1.0发布。

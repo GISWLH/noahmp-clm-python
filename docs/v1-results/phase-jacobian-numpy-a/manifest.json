@@ -1,0 +1,90 @@
+{
+  "scope": "EHPC PBS52 unadopted always-local finite-difference candidate:30pass1fail47.98s. Existing phase-edge test stalls7.19771W/m2. Full failed log/JUnit/source preserved; not a passing proposal.",
+  "archive_sha256": "46dae4be3d78bd1c27be17e4ce8ee9830a0dedc7a70754db7ee3c18f47e54436",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "03b8ad4fe3609996e310879668d9f94f05e986c3f9edf774008522b7380f56ed",
+      "stored_sha256": "8e3186f7b5a7234a929c667931e1ca2e19fddd6055c60637ea35c83078ecb6e7"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "8a7da167409c7b09690aeedac10f6e5fc973e5523265563621cc73994a37b845",
+      "stored_sha256": "d339ef78c1371c3d7de8692abbd1c6e84446f16389c75616eb6a4def72c61301"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "67b6ebc316828478ab758db29acb2504643554a96eb9379282b340fe6078143c",
+      "stored_sha256": "22f11d87387a8c9a885877c2ce09ff02cbd56e3fc7e72f768bb17e8bd712d2fc"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "a88444a29a8ac3ed0cc3d317e288659d81356dfa94ea69b860973f62982961e1",
+      "stored_sha256": "e802c1b97ba643b13182e5ef9f06a90fdfec81c4e5a4dd13362d94cfb76a4a7c"
+    },
+    {
+      "source": "tests/test_canopy_phase_energy.py",
+      "path": "tests/test_canopy_phase_energy.py.gz",
+      "source_sha256": "303169beb8d2cde8d020094599839d8a9971a10af609035016748856e89fded4",
+      "stored_sha256": "757ba0e2b6a5346085f6225cd92874316204acfa812ca78c6ec9c7e9e6e06e37"
+    },
+    {
+      "source": "tests/test_canopy_phase_column.py",
+      "path": "tests/test_canopy_phase_column.py.gz",
+      "source_sha256": "ceb8970822de2cf50b2dc4d2d4662851dfda9216ad6154c4880d569355411384",
+      "stored_sha256": "3409825945864fbf006435763f241ff481bbed8246a96c4f228a373752ed36a6"
+    },
+    {
+      "source": "tests/test_phase_jacobian_boundary.py",
+      "path": "tests/test_phase_jacobian_boundary.py.gz",
+      "source_sha256": "d00bce9a97a86dea50ae1e5644e3b8c097bb685b07574e4365180e3845ab2f01",
+      "stored_sha256": "d43cf7f66da6731f4dd26792e9145ee3b8dddeff4fb20c654ea2efee2b21540e"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.npz",
+      "source_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035",
+      "stored_sha256": "7bfad4a7201ce6e40d4f2fe3517e98fa3c68a436e00b99f506cc046c66d93035"
+    },
+    {
+      "source": "tests/fixtures/qia_canopy_phase_jacobian.json",
+      "path": "tests/fixtures/qia_canopy_phase_jacobian.json.gz",
+      "source_sha256": "bfbe150fd2712c3ae0b2c55eee88d48bfc7380c58b030558b0dc474f55a7e70f",
+      "stored_sha256": "387644a894aa2f4f1ae1d1c84bf6cc0cc17ec1b103ae0401bce44e85af24aad0"
+    },
+    {
+      "source": "phase_jacobian_numpy_a.pbs",
+      "path": "phase_jacobian_numpy_a.pbs.gz",
+      "source_sha256": "09577e7ee99534621b337f5faa4339d8b92b8602c4429a10ed63acc629e6ea38",
+      "stored_sha256": "c627f26509679bd19b1991af88f0eeecb3d0ac733c427700eb96df276963853b"
+    },
+    {
+      "source": "target.log",
+      "path": "target.log.gz",
+      "source_sha256": "860046351b1fcb121c0662b8dc37fd1070b0aa5a2b15d4613a042785bff8a77b",
+      "stored_sha256": "c34c18c3195b0134cb888b67dea7a3b410724953db46aa802f3adaabaaf52b83"
+    },
+    {
+      "source": "target.xml",
+      "path": "target.xml.gz",
+      "source_sha256": "fdbc5379dceab8844589da85068870aaa7eb6b5d06392945ff46d67cb9a85def",
+      "stored_sha256": "99af20a2880cb435b0da247e2603afff86acd00d5b58e773cf33b36b1a0d61ba"
+    },
+    {
+      "source": "exit.txt",
+      "path": "exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "archive-source-audit.json",
+      "path": "archive-source-audit.json.gz",
+      "source_sha256": "b4c4ce33322ef0a800c50d90d66045c09b378a0bde7594bcf69a10b950828474",
+      "stored_sha256": "b399046d27e91bf3bb38dd84dd75a24805564751054ad4a89852e92ffec73eb9"
+    }
+  ]
+}

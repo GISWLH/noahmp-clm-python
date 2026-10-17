@@ -257,6 +257,27 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
                     x=trial;restarts+=1
                     continue
             if accepted:continue
+            # A centred derivative can cross a latent-plateau kink and point
+            # uphill on the current branch. Retry locally only after the
+            # original Newton/backtracking and humidity recovery have failed.
+            # Exact kinks retain the centred derivative. Accept only a strict
+            # reduction of the same complete coupled residual; all final
+            # energy/water and convergence requirements are unchanged.
+            local_jac=np.empty_like(jac)
+            for k in range(n+2):
+                step=1e-4 if k<n+1 else 1e-5
+                lo=x.copy();hi=x.copy();lo[k]=max(lower[k],x[k]-step);hi[k]=min(upper[k],x[k]+step)
+                if k<n and phase_active[k]:
+                    if x[k]<0.:hi[k]=min(hi[k],0.)
+                    elif 0.<x[k]<LF/CW:lo[k]=max(lo[k],0.);hi[k]=min(hi[k],LF/CW)
+                    elif x[k]>LF/CW:lo[k]=max(lo[k],LF/CW)
+                local_jac[:,k]=(evaluate(hi)-evaluate(lo))/(hi[k]-lo[k])
+            local_delta=np.linalg.lstsq(local_jac,-residual,rcond=None)[0]
+            local_delta/=max(1.,float(np.max(abs(local_delta)/np.r_[np.full(n,20.),5.,5.])))
+            for backtrack in range(24):
+                trial=np.clip(x+local_delta*2.**(-backtrack),lower,upper);rr=evaluate(trial)
+                if rr@rr<norm:x=trial;accepted=True;restarts+=1;break
+            if accepted:continue
             if restart_available:
                 # Lowest initial residual need not select the right side of
                 # the latent plateau. Retry the other physical initial guess

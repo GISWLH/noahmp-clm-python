@@ -168,6 +168,31 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
                 if(ca_dot(rr,rr,12)<chosen_norm){for(int i=0;i<12;++i)chosen[i]=mid[i];accepted=true;++restarts;}
             }
         }
+        // Retry a derivative confined to the current smooth phase branch
+        // only when the original Newton and humidity steps cannot descend.
+        if(!accepted) {
+            float local_jac[144],local_rhs[12],local_delta[12];
+            for(int k=0;k<12;++k) {
+                float lo[12],hi[12],rl[12],rh[12],step=k==11?.002f:.02f;
+                for(int i=0;i<12;++i){lo[i]=x[i];hi[i]=x[i];}
+                lo[k]=fmaxf(lower[k],x[k]-step);hi[k]=fminf(upper[k],x[k]+step);
+                if(k<10&&v.phase_active[k]) {
+                    if(x[k]<0.f)hi[k]=fminf(hi[k],0.f);
+                    else if(x[k]>0.f&&x[k]<plateau){lo[k]=fmaxf(lo[k],0.f);hi[k]=fminf(hi[k],plateau);}
+                    else if(x[k]>plateau)lo[k]=fmaxf(lo[k],plateau);
+                }
+                phase_evaluate(v,lo,rl,nullptr);phase_evaluate(v,hi,rh,nullptr);
+                for(int i=0;i<12;++i)local_jac[i*12+k]=(rh[i]-rl[i])/(hi[k]-lo[k]);
+            }
+            for(int i=0;i<12;++i)local_rhs[i]=-r[i];phase_linear(local_jac,local_rhs,local_delta);
+            float local_scale=1.f;for(int i=0;i<12;++i)local_scale=fmaxf(local_scale,fabsf(local_delta[i])/(i<10?20.f:5.f));
+            for(int i=0;i<12;++i)local_delta[i]/=local_scale;
+            for(int k=0;k<24;++k){
+                float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+local_delta[i]*ldexpf(1.f,-k)));
+                phase_evaluate(v,trial,rr,nullptr);float candidate_norm=ca_dot(rr,rr,12);
+                if(!accepted&&candidate_norm<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=candidate_norm;++restarts;}
+            }
+        }
         bool retry=!accepted&&available;
         for(int i=0;i<12;++i)x[i]=retry?alternative[i]:chosen[i];
         if(retry){available=false;++restarts;}failed=!(accepted||retry);++iteration;

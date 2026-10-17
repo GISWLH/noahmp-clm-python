@@ -8,18 +8,22 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 瞬时通量 r >0.85、近零绝对容差、收支守恒独立硬要求。旧 H4/K3/M4 门已退役，
 下述 v0.2.0 数字是保留的历史记录，不是本阶段合并条件。
 
-最新连续验证：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
+连续验证记录：薄雪消失的[表面分支括区](docs/CLM_SNOW_BRANCH.md)已同步三后端；
 [联合热量局部舍入恢复](docs/CLM_HEAT_COORDINATE.md)保持原守恒/收敛界，
-后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，EHPC完整CPU部分
+后续[精确相变端点前进](docs/CLM_HEAT_PHASE_EVENT.md)同步后，该检查点EHPC完整CPU部分
 688项、xuanze热量10项通过，CUDA32/JAX32全字段差0。
 完整GPU回归、四站气候年和观测验收仍在推进。CPU物理运行使用EHPC计算节点，
 GPU使用xuanze；本机用于编辑和结果整理。
-原G年度随后在614步Qia冠层未收敛而停止，精确原态与独立NumPy参考已保存，
-当前全年不在运行。新发现的[CLM冻土基质势缺口](docs/CLM_FREEZING_REFERENCE.md)
+原G年度随后在614步Qia冠层未收敛而停止；现已定位并完成
+[相变分支导数恢复](docs/CLM_CANOPY_PHASE_JACOBIAN.md)，EHPC完整CPU710项、
+xuanze设备9项完成，实际300字段同精度差0。原四柱CUDA重放热账最大2.09280J/m²，
+完整JAX重放完成，输出最大差3.64e-12、下一状态差0；完整全年仍未完成。
+新[CLM冻土基质势缺口](docs/CLM_FREEZING_REFERENCE.md)
 已有NumPy8080点最大偏差0.953774%、10项测试及原生3项验证，同精度全字段
 最大差0；现已接入开发焓/输送参数链，xuanze核心26项完成，同精度最大差0、
-联合热量对NumPy最大温差0.000588K；EHPC修后完整CPU部分708项通过。
-完整冠层/BGC及新曲线连续气候验收仍待完成。
+联合热量对NumPy最大温差0.000588K。新H独立初态四站首日后端对照完成，
+日H/LE最大偏差0.000700%/0.000936%；H已续全年，完整冠层/BGC回归继续。
+新曲线完整年度、spinup和观测验收仍待完成。
 
 [三站官方HRLDAS完整首气候年](docs/HRLDAS_CLIMATE_PROTOCOL.md)已在EHPC完成，
 每站17,520步。CLM首周科学诊断尚未整体达标，例如Qia H周均偏差−35.42%、

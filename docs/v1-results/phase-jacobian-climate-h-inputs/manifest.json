@@ -1,0 +1,90 @@
+{
+  "scope": "EHPC PBS50 four fresh first-year seeds with explicit suction. Meteorology, heights, initial physical temperatures/water/C/N policy locked; old H and checkpoints not reused. Config/protocol/import hashes only, not a completed climate year.",
+  "archive_sha256": "713c49f8c56aac5e5447e9e5557e7b1e21073feec9f4d1efe35690dd272eab34",
+  "artifacts": [
+    {
+      "source": "protocol.json",
+      "path": "protocol.json.gz",
+      "source_sha256": "449759fef8ccdc862dd11e87cbe97c1d057cd21e5c79d1358198647fe593f67f",
+      "stored_sha256": "0bb2b996f00b4d8dc754c5828634d2faa36869eae7996f979ddf0966f3279d38"
+    },
+    {
+      "source": "batch.json",
+      "path": "batch.json.gz",
+      "source_sha256": "a53d78e80e95a9a2f579e6d0b59a25025a81f5a5f14f32c8acd31dd2c9f040b6",
+      "stored_sha256": "52b0140ae51dc8b98e17ce1ccbe20b70b244f6b2b9733b4c0cd36e13c41f05b4"
+    },
+    {
+      "source": "input-archive.json",
+      "path": "input-archive.json.gz",
+      "source_sha256": "285f97ebd9dba663fa1db98e766df440eafb55d87013da84f57ffa40116c6e45",
+      "stored_sha256": "ce46fe2d0185b84c3407b3e6ac550759f1ad952370aaefafb0e9d7010670a0a0"
+    },
+    {
+      "source": "prepare_run_suction_climate_h.py",
+      "path": "prepare_run_suction_climate_h.py.gz",
+      "source_sha256": "7ad79833882b17e64a05675c94f6afa58fa61353c0a2efb3e193eaf2b932bede",
+      "stored_sha256": "3efa5583b2d3e5453bf91a7af9c73f2452866b97bd23c607da3a094e55ee18fe"
+    },
+    {
+      "source": "suction_climate_h_numpy_day.pbs",
+      "path": "suction_climate_h_numpy_day.pbs.gz",
+      "source_sha256": "cac333525cd71784341f74ccdeb9c9a1b417649db48e196d8c9bf7047f54fba4",
+      "stored_sha256": "a3769abd6b3a30170061895a46e77b24969b0b2322510ee4964f3d2b6b592a03"
+    },
+    {
+      "source": "numpy-launch.json",
+      "path": "numpy-launch.json.gz",
+      "source_sha256": "689849e3ec4165814cb6feea64a9f6422731e9d82ed647a0eefc46d92c440ce8",
+      "stored_sha256": "9ddfe02473b8829381db5765bae295bc93e55a82c404f8403be8fa4c3bf0e05a"
+    },
+    {
+      "source": "inputs/CN-Cha-config.json",
+      "path": "inputs/CN-Cha-config.json.gz",
+      "source_sha256": "b019e583df5275d6143370c76bf84a888011339cf3e84bae877da13ffe48a03a",
+      "stored_sha256": "7975e7bc3b3dba9e9376e653d27079b2fcc572794afcb121a019df409a393a53"
+    },
+    {
+      "source": "inputs/CN-Cha.json",
+      "path": "inputs/CN-Cha.json.gz",
+      "source_sha256": "8638173b8723c033c44fed6f2d52ae4c2ba60139e94956a521166ed9fa37710b",
+      "stored_sha256": "bad6c0a2fb44633eb5c5550f43dcb8b123d7ebdb6798fa6db6277f49dd546b7b"
+    },
+    {
+      "source": "inputs/CN-Cng-config.json",
+      "path": "inputs/CN-Cng-config.json.gz",
+      "source_sha256": "1f3d7de1f7aee0631a81840442226ace48f9e5d638dc5f5c363fdc6eedf740b2",
+      "stored_sha256": "9ca781d3e595645dafa78d7458401f5c31bbd9a504cede966d4b9b262c039b94"
+    },
+    {
+      "source": "inputs/CN-Cng.json",
+      "path": "inputs/CN-Cng.json.gz",
+      "source_sha256": "d4dd23ec908d97f305833edac6545b3e41bf624727311414568865730ade6a1e",
+      "stored_sha256": "de3eb7f7788da8fbdd547eb0dcf7627ebab3ce8de4928dc5d36fd68f3a516d44"
+    },
+    {
+      "source": "inputs/CN-HaM-config.json",
+      "path": "inputs/CN-HaM-config.json.gz",
+      "source_sha256": "6b2d9391c21b076665cb59e7cda3a474ec191f618dd7e526d8f73fcd95c8b696",
+      "stored_sha256": "95d669fa0c60eee560282326ae3b67234b23aa3054bc2b515c37425f8761ac09"
+    },
+    {
+      "source": "inputs/CN-HaM.json",
+      "path": "inputs/CN-HaM.json.gz",
+      "source_sha256": "c41f8ede96b84267e30213c26abafdad6d108733d9835604102300e1d8a625ce",
+      "stored_sha256": "d18680194a3bbd923feba30e138f6f1b4b35966d675730a45519bfb3a67180f3"
+    },
+    {
+      "source": "inputs/CN-Qia-config.json",
+      "path": "inputs/CN-Qia-config.json.gz",
+      "source_sha256": "60b9be1100fc25c5d8b7481883afe6998ace981c8c0deab046b752f8f206e8fd",
+      "stored_sha256": "93129e891a011a46fee2a6ff252f994e1eb20940becae01ff9bba0b5f3d0185f"
+    },
+    {
+      "source": "inputs/CN-Qia.json",
+      "path": "inputs/CN-Qia.json.gz",
+      "source_sha256": "db8d2b2ccb71134dde4bd0ea27abeae8ab4f205a732923bcae0d4b8bee465f93",
+      "stored_sha256": "d9423cebc685bb87410dd6d3271f2c53b7d92f9c6fd4fea1b599c1217c91fc4b"
+    }
+  ]
+}

@@ -52,11 +52,13 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
     least_squares=pytest.importorskip('scipy.optimize').least_squares
     leaf=np.asarray(area);area=leaf+np.broadcast_to(kw.get('stem_area',0.),leaf.shape);n=len(area)
     fv=kw.get('vegetated_fraction',1.) if area.sum() else 0.;active=fv*area>0.
-    sw=canopy_shortwave(area,swdown);mass=old.mass;old_h=old.enthalpy;coupled=None
+    radiation=dict(ground_albedo=kw.get('ground_albedo',(.15,.3)),diffuse_fraction=kw.get('diffuse_fraction',.5),cosine_zenith=kw.get('cosine_zenith',.5))
+    emissivity=kw.get('ground_emissivity',.97)
+    sw=canopy_shortwave(area,swdown,**radiation);mass=old.mass;old_h=old.enthalpy;coupled=None
     if kw.get('snowpack') is not None:
         from noahmp_clm.physics.canopy_snow_radiation import canopy_snow_shortwave
-        coupled=canopy_snow_shortwave(area,kw['snowpack'],swdown,vegetated_fraction=fv);sw=coupled['canopy']
-    supply=kw['soil_supply'];root_h=kw['root_enthalpy'];root_limit=supply.roots[supply.weights>0.].sum()
+        coupled=canopy_snow_shortwave(area,kw['snowpack'],swdown,vegetated_fraction=fv,**radiation);sw=coupled['canopy']
+    supply=kw['soil_supply'];root_h=kw['root_enthalpy'];root_limit=min(kw.get('transpiration_limit',np.inf),supply.roots[supply.weights>0.].sum())
     rho=e.pressure/(287.*e.air_temperature*(1.+.61*e.specific_humidity));mol=e.pressure/(8.314462618*e.air_temperature)
     capacity=.1*fv*area;fw=np.minimum(1.,np.divide(mass,capacity,out=np.zeros(n),where=capacity>0.)**(2./3.))
     fd=(1.-fw)*np.divide(leaf,area,out=np.zeros(n),where=area>0.)
@@ -73,7 +75,8 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         fraction=np.divide(liq,mass,out=np.asarray(leaf_t>273.15,dtype=float),where=mass>0.)
         qs=qi[:-1]+fraction*(ql[:-1]-qi[:-1])
         gas=leaf_gas_exchange(sw['absorbed_par'],leaf_t,co2_ppm=e.co2_ppm,relative_humidity=q*e.pressure/(.622+.378*q)/es[:-1],
-            boundary_conductance=e.leaf_velocity*mol,nitrogen_factor=1. if root_limit>0. else 0.)
+            boundary_conductance=e.leaf_velocity*mol,nitrogen_factor=kw.get('nitrogen_factor',1.)*kw.get('water_stress',1.) if root_limit>0. else 0.,
+            water_stress=kw.get('water_stress',1.),parameters=kw.get('leaf_parameters'))
         wanted=rho*fv*area*e.leaf_velocity*np.where(qs>q,fw,1.)*(qs-q)*dt
         loss=np.minimum(np.maximum(wanted,0.),mass);deposit=np.maximum(-wanted,0.)
         wet=(loss-deposit)/dt
@@ -91,18 +94,18 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         uptake=np.minimum(supply.roots,(lo+hi)/2.*supply.weights)
         qground=qi[-1] if kw.get('ground_is_ice',False) else ql[-1]
         ge=rho*np.array([fv*(qground-q)/(1./e.ground_velocity+e.ground_resistance),
-            (1.-fv)*(qground-e.specific_humidity)/(1./e.atmosphere_velocity+e.ground_resistance)])
+            (1.-fv)*(qground-e.specific_humidity)/(1./e.water_velocity+e.ground_resistance)])
         pos=np.maximum(ge,0.);neg=np.minimum(ge,0.);limit=kw.get('ground_evaporation_limit',np.inf)
         if kw.get('ground_shares_soil',True):limit=min(limit,max(0.,supply.surface-uptake[0]))
         if pos.sum()>0.:pos*=min(1.,(limit-neg.sum())/pos.sum())
         ge=pos+neg
         weights=np.r_[area*e.leaf_velocity,e.ground_velocity]
-        tc=e.air_temperature+weights@(t-e.air_temperature)/(weights.sum()+e.atmosphere_velocity) if fv else e.air_temperature
-        sensible=rho*1004.*fv*weights*(t-tc);sensible[-1]+=rho*1004.*(1.-fv)*e.atmosphere_velocity*(t[-1]-e.air_temperature)
-        longwave=canopy_longwave(area,leaf_t,lwdown,t[-1],ground_emissivity=.97)
+        tc=e.heat_temperature+weights@(t-e.heat_temperature)/(weights.sum()+e.atmosphere_velocity) if fv else e.heat_temperature
+        sensible=rho*1004.*fv*weights*(t-tc);sensible[-1]+=rho*1004.*(1.-fv)*e.atmosphere_velocity*(t[-1]-e.heat_temperature)
+        longwave=canopy_longwave(area,leaf_t,lwdown,t[-1],ground_emissivity=emissivity)
         rn=np.r_[fv*(sw['absorbed']+longwave['net_absorbed']),fv*(sw['ground_absorbed']+longwave['ground_net'])+
-            (1.-fv)*(swdown*.775+.97*(lwdown-5.670374419e-8*t[-1]**4))]
-        if coupled is not None:rn[-1]=coupled['snow_absorbed'].sum()+coupled['soil_absorbed']+fv*longwave['ground_net']+(1.-fv)*.97*(lwdown-5.670374419e-8*t[-1]**4)
+            (1.-fv)*(swdown*(1.-.5*sum(radiation['ground_albedo']))+emissivity*(lwdown-5.670374419e-8*t[-1]**4))]
+        if coupled is not None:rn[-1]=coupled['snow_absorbed'].sum()+coupled['soil_absorbed']+fv*longwave['ground_net']+(1.-fv)*emissivity*(lwdown-5.670374419e-8*t[-1]**4)
         latent=np.r_[(2834000.-334000.*fraction)*wet+2500000.*tr,(2834000. if kw.get('ground_is_ice',False) else 2500000.)*ge.sum()]
         root_mean=float(uptake@root_h/uptake.sum()) if uptake.sum()>0. else 0.
         extra=tr*(334000.+4180.*(leaf_t-273.15)-root_mean)
@@ -112,7 +115,7 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         residual[-1]-=g
         if kw.get('fixed_ground_temperature') is not None:residual[-1]=kw['fixed_ground_temperature']-t[-1]
         residual[:-1]=np.where(active,residual[:-1],e.air_temperature-leaf_t)
-        qres=(wet.sum()+tr.sum()+ge[0]-rho*fv*e.atmosphere_velocity*(q-e.specific_humidity))*2500000. if fv else (q-e.specific_humidity)*1e5
+        qres=(wet.sum()+tr.sum()+ge[0]-rho*fv*e.water_velocity*(q-e.specific_humidity))*2500000. if fv else (q-e.specific_humidity)*1e5
         result=np.r_[residual,qres]
         if details:return dict(residual=result,temperature=t,h=sensible.sum(),le=latent.sum(),g=g,gpp=fv*leaf@gas['gross'],mass=final_m,enthalpy=final_h,humidity=q)
         return result

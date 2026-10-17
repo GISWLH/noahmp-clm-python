@@ -195,8 +195,32 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             return j.where(good,candidate,trial),good
         trial,rescued=lax.cond(slow,humidity_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|rescued
+        def interval_restart(_):
+            # An original centred difference can straddle0 or LF/Cw. Keep
+            # the usual trajectory unless both original recovery paths fail.
+            def local_column(k):
+                step=j.where(k==11,qstep,step_size)
+                lo=x.at[k].set(j.maximum(lo_bound[k],s(x[k]-step)));hi=x.at[k].set(j.minimum(hi_bound[k],s(x[k]+step)))
+                phase=(k<10)&phase_active[j.minimum(k,9)]
+                cold=phase&(x[k]<0.);melt=phase&(x[k]>0.)&(x[k]<plateau);warm=phase&(x[k]>plateau)
+                lo=lo.at[k].set(j.maximum(lo[k],j.where(melt,0.,j.where(warm,plateau,lo[k]))))
+                hi=hi.at[k].set(j.minimum(hi[k],j.where(cold,0.,j.where(melt,plateau,hi[k]))))
+                a,_=evaluate(lo,phase_active);d,_=evaluate(hi,phase_active)
+                return s(d-a)/s(hi[k]-lo[k])
+            local_jac=jax.vmap(local_column)(j.arange(12)).T
+            delta=_linear_solve(local_jac,-r)
+            scale=j.maximum(1.,j.max(abs(delta)/j.concatenate((j.full(10,20.,u.dtype),j.asarray([5.,5.],u.dtype)))))
+            delta=delta/scale
+            def local_backtrack(k,carry):
+                chosen,good=carry;fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
+                candidate=j.clip(s(x+s(delta*fraction)),lo_bound,hi_bound);rr,_=evaluate(candidate,phase_active)
+                better=(~good)&(_dot(rr,rr)<norm)
+                return j.where(better,candidate,chosen),good|better
+            return lax.fori_loop(0,24,local_backtrack,(trial,j.asarray(False)))
+        trial,phase_rescued=lax.cond(~accepted,interval_restart,lambda _:(trial,j.asarray(False)),operand=None)
+        accepted=accepted|phase_rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
+        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
     def condition(state):
         it,x,_,_,failed,phase_active=state;r,_=evaluate(x,phase_active)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)
