@@ -15,6 +15,10 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 完整GPU回归、四站气候年和观测验收仍在推进。CPU物理运行使用EHPC计算节点，
 GPU使用xuanze；本机用于编辑和结果整理。
 
+[三站官方HRLDAS完整首气候年](docs/HRLDAS_CLIMATE_PROTOCOL.md)已在EHPC完成，
+每站17,520步。CLM首周科学诊断尚未整体达标，例如Qia H周均偏差−35.42%、
+LE瞬时r=0.5749；官方输出完整不代表配对全年或v1.0验收完成。
+
 开发分支已完成[P1物理修复](docs/V1_P1_RESULTS.md)，并建立三后端
 [单叶光合](docs/CLM_PHOTOSYNTHESIS.md)和[多层辐射](docs/CLM_CANOPY_RADIATION.md)
 组件及[三后端冠层能量联立](docs/CLM_CANOPY_ENERGY.md)。新的无雪柱入口已接入

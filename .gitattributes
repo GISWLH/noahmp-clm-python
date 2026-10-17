@@ -4,3 +4,5 @@
 # Evidence manifests hash original bytes, including text and namelists.
 # Preserve them across Windows checkout rather than translating newlines.
 docs/v1-results/** -text
+# Plain JSON indexes use canonical LF; hashed raw JSON is stored as gzip.
+docs/v1-results/**/*.json text eol=lf

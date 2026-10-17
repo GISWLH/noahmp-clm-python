@@ -122,7 +122,7 @@ NumPy64、JAX64、JAX32、CUDA32在已测范围内可用、总体一致，原H4/
 
 - [x] 四个FLUXNET站点各30天有界smoke、后端对照和LE/H的r/bias/RMSE；未调参
 - [ ] 站点元数据及测高映射、spinup、多站多年评价、独立留出集和校准
-- [ ] 完整官方HRLDAS站点输出对标（与阶段1未完成项关联）；[独立编译及官方单点输出链路](docs/HRLDAS_REFERENCE.md)已完成，3—5站点比较待做。
+- [ ] 完整官方HRLDAS站点输出对标（与阶段1未完成项关联）；[三站各17,520步官方输出](docs/HRLDAS_CLIMATE_PROTOCOL.md)已在EHPC完成；CLM首周科学诊断三站均未整体达标，原CLM全年/最终配对验收待完成。
 - [ ] ERA5格点驱动对照：本轮可达数据缺下行辐射和总降水，保持未测
 
 具体站点、指标和校准设计见[FLUXNET_PLAN](docs/FLUXNET_PLAN.md)。四站短期
