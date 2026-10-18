@@ -93,3 +93,10 @@ W/m²，H/LE对NumPy最大差1.50180e−10/5.57296e−9 W/m²，parcel水/热残
 
 PBS145已在PBS144真实成功后另起四站原冷初态48步，对照不可变K48；不复用
 原失败年度状态。冷首日仍未计完成，489源的1129项历史覆盖不抵充493源。
+
+[PBS145实际启动/只读进度](v1-results/material-numpy-day-launch-b/manifest.json)
+在12:38:05UTC保留：Cng/Cha/HaM已各48步、子进程退出0，Qia仍运行，原
+17520步请求和running报告身份不变，尚无全部四站的首日对照结论。
+设备方面另建[完整1135条件队列](v1-results/material-full-launch-b/manifest.json)，
+只有当前12项真实成功后才复用同源目标及本次CPU808、执行剩余GPU315项；
+启动/等待不计完整通过，正常解释器清理限制仍按原工作进程说明保留。

@@ -17,6 +17,8 @@ PBS142原四步/旧用例完成，当前493源CPU808/25例NumPy参考矩阵及xu
 [12:23:35UTC不可变代次快照](v1-results/material-live-a/manifest.json)保留实际
 报告/状态/轨迹及哈希：K仍running/48、L仍running/1056，各请求17520，未
 把该前缀称作完整年或科学通过。
+新493源[EHPC冷首日启动/进度](v1-results/material-numpy-day-launch-b/manifest.json)
+于12:38:05UTC仍有Qia未终态，另三站48步退出0；没有预先宣称四站对照通过。
 
 [当前完整回归调度](PYTEST_WORKER_LIFECYCLE.md)使用独立工作进程保留所有
 pytest阶段/设备同步/实际退出。J5498修订后新489源在EHPC PBS126实际完成
