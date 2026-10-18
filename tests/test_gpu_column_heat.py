@@ -37,6 +37,12 @@ def cases(dtype):
         c,p,o,b=(np.asarray(row[key],np.int32 if key=='options' else dtype)
                  for key in ('cells','props','options','boundary'))
         rows.append((c,fixture_suction(p,.355),o,b))
+    # The original J5498 HaM thermal solve accepted tiny snow corrections
+    # while its dominant soil equation stayed at -724861 J/m2 for 80 rounds.
+    # Keep the original quantized state and every existing physical bound.
+    with np.load(Path(__file__).parent/'fixtures/j5498_joint_stagnation.npz',allow_pickle=False) as fixture:
+        rows.append(tuple(fixture[key][0].astype(np.int32 if key=='options' else dtype)
+                          for key in ('cells','props','options','boundary')))
     return tuple(np.stack([row[i] for row in rows]) for i in range(4))
 
 

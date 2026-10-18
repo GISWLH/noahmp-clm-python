@@ -78,6 +78,8 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
     float residual[9],t[9],d[9],liq[9],flux[8],top,rounding[9];
     bool valid=heat_evaluate(h,old,mass,z,solar,conduct,ns,props,bc,phase,residual,t,d,liq,flux,top,rounding);
     bool done=heat_norm(residual,h,tolerance,rounding,conduct,bc)<=1.f;int count=0;
+    float previous_h[9],previous_r[9];
+    for(int i=0;i<9;++i){previous_h[i]=h[i];previous_r[i]=residual[i];}
     while(count<80&&!done&&valid) {
         float merit=0.f,weights[9],delta[9],f0[9],f1[9];
         bool at0[9],at1[9],ev0[9],ev1[9];
@@ -87,6 +89,10 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
             merit+=fabsf(residual[i])/weights[i];
             at0[i]=i<ns&&h[i]==0.f;at1[i]=i<ns&&h[i]==upperH[i];
         }
+        int dominant=0;float peak_dominant=-1.f;
+        for(int i=0;i<ns+4;++i){float ratio=fabsf(residual[i])/weights[i];if(ratio>peak_dominant){peak_dominant=ratio;dominant=i;}}
+        bool stalled=count>0&&h[dominant]==previous_h[dominant]&&fabsf(residual[dominant])>=fabsf(previous_r[dominant]);
+        for(int i=0;i<9;++i){previous_h[i]=h[i];previous_r[i]=residual[i];}
         for(int a=0;a<12;++a) {
             heat_linear(d,residual,conduct,bc,delta);
             for(int i=0;i<ns;++i) {
@@ -94,7 +100,22 @@ __device__ void joint_heat_device(const float* cells,const float* props,const in
                 if(at1[i]) d[i]=delta[i]>0.f?1.f/(4180.f*mass[i]):0.f;
             }
         }
-        heat_linear(d,residual,conduct,bc,delta);float step=1.f;
+        heat_linear(d,residual,conduct,bc,delta);
+        // A tiny accepted change in another reservoir can conceal a stuck
+        // dominant equation at the soil freezing cap. Rebuild this direction
+        // from represented T(H) chords without relaxing any residual bound.
+        if(stalled)for(int chord=0;chord<4;++chord){
+            float trial[9],r2[9],t2[9],d2[9],l2[9],f2[8],top2,round2[9];
+            for(int i=0;i<9;++i)trial[i]=h[i]+delta[i];
+            bool good=heat_evaluate(trial,old,mass,z,solar,conduct,ns,props,bc,phase,r2,t2,d2,l2,f2,top2,round2);
+            if(!good)break;
+            for(int i=0;i<ns+4;++i){
+                float change=trial[i]-h[i];
+                if(change!=0.f){float slope=(t2[i]-t[i])/change;if(isfinite(slope)&&slope>=0.f)d[i]=slope;}
+            }
+            heat_linear(d,residual,conduct,bc,delta);
+        }
+        float step=1.f;
         for(int i=0;i<9;++i) {
             f0[i]=-h[i]/(delta[i]!=0.f?delta[i]:1.f);f1[i]=(upperH[i]-h[i])/(delta[i]!=0.f?delta[i]:1.f);
             ev0[i]=i<ns&&!at0[i]&&delta[i]!=0.f&&f0[i]>0.f&&f0[i]<=1.f;

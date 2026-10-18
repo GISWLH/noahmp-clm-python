@@ -10,14 +10,14 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 
 [官方CTSM参考准备](docs/CTSM_REFERENCE_PREPARATION.md)已在EHPC验证可移植
 编译器、XML及NetCDF跨接口精确读写；官方完整构建/动态库检查完成，实际单柱输出仍待完成。
-当前[独立测试工作进程](docs/PYTEST_WORKER_LIFECYCLE.md)已完成单叶6项与整柱
-灌溉13项，CUDA/JAX全字段差0；完整1129清单从已核验CPU804+GPU104节点
-续跑余下221个GPU节点，原清理进程状态与未完成科学验收均保留。
-多层柱另有一项启动路径导入失败，完整文件未计通过，修正环境补跑已排队。
-
-J年度随后在5498/17520发生[HaM雪—土壤试算失败](docs/CLM_J_PHASE_FAILURE.md)，
-原失败和同态NumPy参考已保留，尚未修复。当前完整MOST三项退出0、同精度
-最大差3.64e-12；GPU已核验107/325节点，其余继续，年度/科学验收未完成。
+J年度在5498/17520发生的[HaM雪—土壤停滞](docs/CLM_J_PHASE_FAILURE.md)
+已定位并同步局部JAX/CUDA修订：原态联合热残差由约−728405降至−1.07J/m²，
+原逐层/全局界保留，CUDA32/JAX32全字段差0，完整CUDA步也已重放成功。
+新489源EHPC CPU804与xuanze GPU325合计1129项完整回归已完成；旧源结果没有
+抵充新覆盖。K原冷初态首日对NumPy H/LE最大日均偏差0.000700%/0.000936%，
+独立JAX32影子同精度最大绝对差7.28e-12，现从自身48步续全年。
+独立NumPy年四站[新失败及精确重放](docs/CLM_NUMPY_ANNUAL_FAILURES.md)已保留，
+完整年、spinup和科学验收尚未完成。
 
 最新[固定首个1月诊断](docs/CLM_FIRST_MONTH_RESULTS.md)已在EHPC完成：94项完整性/
 评价检查通过，但三站官方对照仍未整体达标。Qia H月偏差−62.3938%、LE

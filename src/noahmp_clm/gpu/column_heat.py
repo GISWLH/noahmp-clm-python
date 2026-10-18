@@ -116,12 +116,15 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
             ix=7-i;return d.at[ix].set(stop(rhs[ix]-stop(upper[ix]*d[ix+1]))/diagonal[ix])
         return lax.fori_loop(0,8,backward,delta)
     def iteration(carry):
-        count,h,_,_=carry;res,t,deriv,_,valid,_,_,rounding=evaluate(h)
+        count,h,_,_,previous_h,previous_residual=carry;res,t,deriv,_,valid,_,_,rounding=evaluate(h)
         # Freeze line-search weights for this Newton direction. Precision
         # bounds jump when a snow cell enters/leaves the latent plateau;
         # rescaling the trial by its own bound can reject a decreasing
         # residual exactly at that phase event and stall indefinitely.
         weights=tolerance_at(h,rounding);norm=j.max(j.abs(res)/weights);merit=merit_of(res,weights)
+        dominant=j.argmax(j.where(active,j.abs(res)/weights,-1.))
+        stalled=((count>0)&(h[dominant]==previous_h[dominant])&
+            (j.abs(res[dominant])>=j.abs(previous_residual[dominant])))
         upper=stop(334000.*mass)
         # Phase-event steps land exactly. A nearby representable H is still
         # inside its current phase; treating several ULPs as an endpoint
@@ -132,6 +135,24 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
             ds=j.where(at_lower,j.where(delta<0.,1./stop(2100.*j.maximum(mass,1e-30)),0.),d)
             return j.where(at_upper,j.where(delta>0.,1./stop(4180.*j.maximum(mass,1e-30)),0.),ds)
         deriv=lax.fori_loop(0,12,active_set,deriv);delta=linear_solve(deriv,res)
+        def chord_direction():
+            # Tiny accepted moves in a different reservoir can hide a stuck
+            # dominant equation at the compact soil freezing cap. Rebuild
+            # only this Newton direction using represented T(H) secants;
+            # retain the enthalpy equations, phase events and original tests.
+            def refine(carry):
+                count,d,step,_=carry
+                trial=stop(h+step);_,trial_t,_,_,good,_,_,_=evaluate(trial)
+                change=stop(trial-h)
+                slope=stop(stop(trial_t-t)/j.where(change!=0.,change,1.))
+                chord=j.where(active&(change!=0.)&j.isfinite(slope)&(slope>=0.),slope,d)
+                d=j.where(good,chord,d)
+                step=lax.cond(good,lambda:linear_solve(d,res),lambda:step)
+                return count+1,d,step,good
+            _,d,step,_=lax.while_loop(lambda c:(c[0]<4)&c[3],refine,
+                (j.asarray(0),deriv,delta,j.asarray(True)))
+            return d,step
+        deriv,delta=lax.cond(stalled,chord_direction,lambda:(deriv,delta))
         fraction0=-h/j.where(delta!=0.,delta,1.)
         fraction1=stop(upper-h)/j.where(delta!=0.,delta,1.)
         event0=snow&~at_lower&(delta!=0.)&(fraction0>0.)&(fraction0<=1.)
@@ -185,10 +206,10 @@ def joint_heat_kernel_jax(cells,props,options,boundary):
         next_h=j.where(norm<=1.,h,trial)
         next_result=evaluate(next_h)
         done=norm_of(next_result[0],next_h,next_result[7])<=1.
-        return count+1,next_h,done,valid&(accepted|done)
+        return count+1,next_h,done,valid&(accepted|done),h,res
     initial_res=evaluate(h0);done=norm_of(initial_res[0],h0,initial_res[7])<=1.
-    count,h,done,valid=lax.while_loop(lambda c:(c[0]<80)&~c[2]&c[3],iteration,
-        (j.asarray(0),h0,done,initial_res[4]))
+    count,h,done,valid,_,_=lax.while_loop(lambda c:(c[0]<80)&~c[2]&c[3],iteration,
+        (j.asarray(0),h0,done,initial_res[4],h0,initial_res[0]))
     res,t,deriv,liquid,ok,flux,top,rounding=evaluate(h)
     summed=lax.fori_loop(0,9,lambda i,s:stop(s+j.where(active[i],solar[i],0.)),j.zeros_like(dt))
     change=lax.fori_loop(0,9,lambda i,s:stop(s+stop(h[i]-h0[i])),j.zeros_like(dt))
