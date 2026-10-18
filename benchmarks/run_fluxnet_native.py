@@ -3,7 +3,8 @@
 This validation runner consumes the same explicit configurations and prepared
 forcing as run_fluxnet_column. Batch axes never exchange state. CUDA32 can
 carry an independent JAX32 shadow and compare every returned field each step.
-Checkpoints retain all sixteen arrays; cold starts are not called spinup.
+Checkpoints retain sixteen base arrays plus three explicit structure arrays
+when configured; cold starts are not called spinup.
 """
 from __future__ import annotations
 import argparse
@@ -18,7 +19,7 @@ from uuid import uuid4
 import numpy as np
 
 from run_fluxnet_column import (ROOT, TRACE, sha, atomic_json, build_state,
-                                calendar, validate_input)
+                                calendar, validate_input,structure_configuration,structure_trace_keys)
 from fluxnet_deposition import DepositionSchedule
 from noahmp_clm.column import SoilParams
 from noahmp_clm.physics.canopy_most import MOSTGeometry
@@ -27,6 +28,28 @@ from noahmp_clm.physics.precip import partition_precipitation
 from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
 from noahmp_clm.gpu.clm_bgc_column import (pack_clm_bgc_columns,
     pack_bgc_environment, next_bgc_arrays)
+from noahmp_clm.gpu.clm_structure_column import pack_clm_structure_columns,next_structure_arrays
+
+
+def native_state_count(cases):
+    enabled=[structure_configuration(c['config']) is not None for c in cases]
+    if len(set(enabled))!=1:raise ValueError('Split structured and leaf-only station batches')
+    return 19 if enabled[0] else 16
+
+
+def checkpoint_arrays(saved,identity,*,shadow=False):
+    count=identity.get('native_state_arrays',16)
+    if type(count) is not int or count not in (16,19):raise ValueError('Unsupported native checkpoint state count')
+    prefix='shadow' if shadow else 'a';expected={f'{prefix}{k}' for k in range(count)}
+    actual={key for key in saved if re.fullmatch(prefix+r'\d+',key)}
+    if actual!=expected:raise ValueError('Native checkpoint must retain every declared state array')
+    return tuple(saved[f'{prefix}{k}'] for k in range(count))
+
+
+def next_station_arrays(previous,result):
+    if len(previous)==16:return next_bgc_arrays(previous,result)
+    if len(previous)==19:return next_structure_arrays(previous,result,kind='bgc')
+    raise ValueError('Unsupported native station state count')
 
 
 def source_hashes():
@@ -136,6 +159,7 @@ def load_batch(path):
         elif '_'+config['site']+'_' not in meta['archive_name']:
             raise ValueError('Configuration site is absent from forcing archive identity')
         DepositionSchedule(config)
+        structure_configuration(config)
         loaded.append(dict(case=name, paths=paths, metadata=meta, config=config, data=data, stamps=stamps))
     if not loaded: raise ValueError('Empty native batch')
     first = loaded[0]
@@ -162,7 +186,9 @@ class Backend:
             from noahmp_clm.gpu.cuda.clm_bgc_column import step_clm_bgc_columns_cuda
             from noahmp_clm.gpu.cuda.enthalpy import run_soil_thermodynamics_cuda
             self.xp, self.convert = cp, cp.asnumpy
-            self.step, self.inverse = step_clm_bgc_columns_cuda, run_soil_thermodynamics_cuda
+            from noahmp_clm.gpu.clm_structure_column import step_clm_structure_columns_cuda
+            self._plain_step,self._structure_step=step_clm_bgc_columns_cuda,step_clm_structure_columns_cuda
+            self.inverse = run_soil_thermodynamics_cuda
         else:
             import jax
             import jax.numpy as j
@@ -171,7 +197,15 @@ class Backend:
             from noahmp_clm.gpu.clm_bgc_column import step_clm_bgc_columns_jax
             from noahmp_clm.gpu.enthalpy import run_soil_thermodynamics_jax
             self.xp, self.convert = j, np.asarray
-            self.step, self.inverse = step_clm_bgc_columns_jax, run_soil_thermodynamics_jax
+            from noahmp_clm.gpu.clm_structure_column import step_clm_structure_columns_jax
+            self._plain_step,self._structure_step=step_clm_bgc_columns_jax,step_clm_structure_columns_jax
+            self.inverse = run_soil_thermodynamics_jax
+
+    def step(self,*args,**kwargs):
+        arrays,forcing=args[:-1],args[-1]
+        if len(arrays)==16:return self._plain_step(*arrays,forcing,**kwargs)
+        if len(arrays)==19:return self._structure_step(arrays,forcing,kind='bgc',**kwargs)
+        raise ValueError('Native station step requires sixteen or nineteen arrays')
 
     def host(self, value):
         if isinstance(value, dict): return {k: self.host(v) for k, v in value.items()}
@@ -212,6 +246,9 @@ def read_generation(folder):
     if checkpoint.parent != folder or sha(checkpoint) != report['checkpoint_sha256']:
         raise ValueError('Native checkpoint hash mismatch')
     with np.load(checkpoint, allow_pickle=False) as z: state = dict(z)
+    checkpoint_arrays(state,report['identity'])
+    if report['identity']['compare_jax32']:checkpoint_arrays(state,report['identity'],shadow=True)
+    elif any(re.fullmatch(r'shadow\d+',key) for key in state):raise ValueError('Undeclared native shadow state')
     index = report['steps_completed']
     if int(state['index']) != index: raise ValueError('Native checkpoint generation mismatch')
     cases = []
@@ -248,6 +285,8 @@ def carry_generation(folder, mode, cases, identity):
     old = report['identity']
     for key in ('backend', 'compare_jax32', 'source_sha256'):
         if old[key] != identity[key]: raise ValueError(f'Initial run identity mismatch: {key}')
+    if old.get('native_state_arrays',16)!=identity.get('native_state_arrays',16):
+        raise ValueError('Initial run structure state mismatch')
     if len(old['cases']) != len(cases): raise ValueError('Initial run column count mismatch')
     for c, new, former, (_, data) in zip(cases, identity['cases'], old['cases'], previous):
         for key in ('case', 'configuration_sha256'):
@@ -276,12 +315,14 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     if (initial_run is None) != (initial_mode is None):
         raise ValueError('Supply both initial_run and initial_mode')
     cases = load_batch(batch_path); count = len(cases); n = len(cases[0]['stamps'])
+    state_count=native_state_count(cases)
     dtype = np.float64 if backend == 'jax64' else np.float32
     sources = source_hashes()
     identities = [dict(case=c['case'], forcing_npz_sha256=sha(c['paths']['input']),
         forcing_manifest_sha256=sha(c['paths']['input_manifest']), configuration_sha256=sha(c['paths']['configuration'])) for c in cases]
     identity = dict(batch_sha256=sha(batch_path), cases=identities, source_sha256=sources,
                     backend=backend, compare_jax32=compare_jax32)
+    if state_count==19:identity['native_state_arrays']=19
     carried = None
     if initial_run is not None:
         link, previous_report, carried = carry_generation(initial_run, initial_mode, cases, identity)
@@ -298,8 +339,8 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         report, saved, prior_cases = read_generation(output)
         if report['identity'] != identity: raise ValueError('Native resume identity mismatch')
         if report['status'] == 'complete': return report
-        a = tuple(saved[f'a{k}'] for k in range(16))
-        shadow = tuple(saved[f'shadow{k}'] for k in range(16)) if compare_jax32 else None
+        a = checkpoint_arrays(saved,identity)
+        shadow = checkpoint_arrays(saved,identity,shadow=True) if compare_jax32 else None
         initial, net, bounds, maximum, stepmax, tracermax = (saved[k] for k in
             ('initial', 'net', 'bounds', 'maximum', 'stepmax', 'tracermax'))
         index = int(saved['index'])
@@ -312,27 +353,28 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         if carried is None:
             states = [build_state(c['config']) for c in cases]
             env = np.asarray([c['data']['environment'][0] for c in cases], dtype)
-            a = pack_clm_bgc_columns(states, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
+            pack=pack_clm_bgc_columns if state_count==16 else lambda values,**kw:pack_clm_structure_columns(values,kind='bgc',**kw)
+            a = pack(states, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
                 diffuse_fraction=env[:, 2], leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in cases], dtype))
             shadow = tuple(v.copy() for v in a) if compare_jax32 else None
             initial = totals(a); net = np.zeros((count, 4)); bounds = net.copy()
             maximum = net.copy(); stepmax = net.copy(); tracermax = np.zeros((count, 5)); same = 0.
         else:
-            a = tuple(carried[f'a{k}'] for k in range(16))
-            shadow = tuple(carried[f'shadow{k}'] for k in range(16)) if compare_jax32 else None
+            a = checkpoint_arrays(carried,identity)
+            shadow = checkpoint_arrays(carried,identity,shadow=True) if compare_jax32 else None
             initial, net, bounds, maximum, stepmax, tracermax = (carried[k] for k in
                 ('initial', 'net', 'bounds', 'maximum', 'stepmax', 'tracermax'))
             same = previous_report['same_precision_max_absolute'] or 0.
         index = 0
         report = dict(identity=identity, steps_requested=n, columns=count)
         for k, c in enumerate(cases):
-            records.append({key: [] for key in (*TRACE, 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
+            records.append({key: [] for key in (*TRACE,*structure_trace_keys(c['config']), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
                 'step_residual_m_h_c_n', 'step_bound_m_h_c_n', 'cumulative_residual_m_h_c_n')})
             reports.append(dict(**identities[k], source_sha256=sources, backend=backend,
                 site=c['config']['site'], scope=c['config']['scope'], configuration=c['config'],
                 time_convention='local standard time', utc_offset_hours=c['metadata']['utc_offset_hours'],
                 steps_requested=n, initial_state={'ground': initial_ground(a, k)},
-                state_authority='All sixteen native arrays in batch checkpoint, with the case index below',
+                state_authority=f'All {state_count} native arrays in batch checkpoint, with the case index below',
                 batch_column=k, forcing_quantization=np.dtype(dtype).name))
     engine = Backend(backend); checker = Backend('jax32') if compare_jax32 else None
     # This shadow has its own carried state and cumulative accounting. It is
@@ -401,7 +443,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
                 deposition=deposition, most_geometry=geometry, leaf_parameters=leaf, return_surface=True)
             before_device = engine.update_forcing(device, env)
             out_device = engine.step(*before_device, f, **kwargs); out = engine.host(out_device)
-            next_device = next_bgc_arrays(before_device, out_device)
+            next_device = next_station_arrays(before_device, out_device)
             after = tuple(engine.host(v) for v in next_device)
             incoming, residual, bound, tracer = audit_step(a, after, f, deposition, nitrogen, out)
             next_net = net+incoming; next_bounds = bounds+bound; cumulative = totals(after)-initial-next_net
@@ -412,7 +454,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
                 sb = checker.update_forcing(shadow_device, env)
                 so_device = checker.step(*sb, f, **kwargs); so = checker.host(so_device)
                 same = max(same, compare_same_precision(out, so))
-                next_shadow_device = next_bgc_arrays(sb, so_device)
+                next_shadow_device = next_station_arrays(sb, so_device)
                 next_shadow = tuple(checker.host(v) for v in next_shadow_device)
                 si, sr, bound_shadow, _ = audit_step(shadow, next_shadow, f, deposition, nitrogen, so)
                 snet = shadow_net+si; sbounds = shadow_bounds+bound_shadow
@@ -427,6 +469,10 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
             values.update(swe_m=after[0][:, :, 0].astype(float).sum(1)/1000., lai=after[4][:, 0],
                 tsoil_k=temperature, smc_m3m3=g[:, :, 0]/(1000.*g[:, :, 2]), liquid_m3m3=liquid/(1000.*g[:, :, 2]),
                 step_residual_m_h_c_n=residual, step_bound_m_h_c_n=bound, cumulative_residual_m_h_c_n=cumulative)
+            if state_count==19:
+                used=out['canopy_geometry']
+                values.update(sai_m2m2=after[16][:,0],canopy_sai_used_m2m2=used['total_sai'],
+                    canopy_exposed_lai_m2m2=used['exposed_lai'],canopy_exposed_sai_m2m2=used['exposed_sai'])
             if not all(np.all(np.isfinite(v)) for v in values.values()): raise RuntimeError('Nonfinite native trace')
             for k in range(count):
                 for key, value in values.items(): records[k][key].append(np.array(value[k], copy=True))

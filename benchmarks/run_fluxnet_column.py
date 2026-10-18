@@ -28,6 +28,7 @@ from noahmp_clm.physics.decomposition import DecompositionState, DecompositionPa
 from noahmp_clm.physics.phenology import PhenologyState, PhenologyParameters, PhenologyEnvironment
 from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.physics.photosynthesis import LeafParameters
+from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
 from fluxnet_solar import solar_geometry
 from fluxnet_deposition import DepositionSchedule
 
@@ -36,6 +37,27 @@ TRACE = {'h_wm2': 'h', 'le_wm2': 'le', 'gpp_gc_m2': 'gpp_gc_m2',
          'nee_gc_m2': 'nee_gc_m2', 'et_mm': 'et_mm', 'runoff_mm': 'runoff_mm',
          'autotrophic_respiration_gc_m2': 'autotrophic_respiration_gc_m2',
          'heterotrophic_respiration_gc_m2': 'heterotrophic_respiration_gc_m2'}
+STRUCTURE_TRACE=('sai_m2m2','canopy_sai_used_m2m2','canopy_exposed_lai_m2m2','canopy_exposed_sai_m2m2')
+
+
+def structure_configuration(config):
+    """Read an explicit initial SAI and its geometry; no score-based defaults."""
+    value=config.get('canopy_structure')
+    if value is None:return None
+    if not isinstance(value,dict) or set(value)!={'parameters','initial_sai'}:
+        raise ValueError('Canopy structure requires parameters and explicit initial_sai')
+    parameters=dict(value['parameters']);scheme=parameters.get('scheme',0)
+    if isinstance(scheme,str):
+        try:parameters['scheme']=StemAreaScheme[scheme]
+        except KeyError:raise ValueError('Unknown canopy structure scheme') from None
+    p=CanopyStructureParameters(**parameters);sai=value['initial_sai']
+    if isinstance(sai,bool) or not isinstance(sai,(int,float)) or not np.isfinite(sai) or sai<0.:
+        raise ValueError('Initial SAI must be an explicit finite nonnegative number')
+    return p,float(sai)
+
+
+def structure_trace_keys(config):
+    return STRUCTURE_TRACE if config.get('canopy_structure') is not None else ()
 
 
 def sha(path):
@@ -76,7 +98,10 @@ def build_state(config):
     soil = DecompositionState(np.array(s['carbon']), np.array(s['nitrogen']), s['mineral_nitrogen'])
     parameters = BGCParameters(PlantParameters(**b['plant_parameters']), DecompositionParameters(**b['decomposition_parameters']),
                               b['maximum_lai'], b['saturated_potential_mpa'])
-    return state.with_biogeochemistry(BGCState(plant, soil), parameters)
+    state=state.with_biogeochemistry(BGCState(plant, soil), parameters)
+    structure=structure_configuration(config)
+    if structure is not None:state=state.with_vegetation_structure(structure[0],sai=structure[1])
+    return state
 
 
 def calendar(stamp, metadata, seasonal):
@@ -159,7 +184,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
         if any(output.iterdir()): raise ValueError('Use an empty run directory or explicit --resume')
         state = build_state(config); initial = totals(state); net = np.zeros(4); bounds = np.zeros(4)
         maximum = np.zeros(4); stepmax = np.zeros(4); index = 0
-        records = {key:[] for key in (*TRACE, 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
+        records = {key:[] for key in (*TRACE,*structure_trace_keys(config), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
                                       'step_residual_m_h_c_n', 'step_bound_m_h_c_n', 'cumulative_residual_m_h_c_n')}
         report = dict(**identity, status='running', site=config['site'], scope=config['scope'], configuration=config,
                       time_convention='local standard time', utc_offset_hours=metadata['utc_offset_hours'],
@@ -200,6 +225,10 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
             values.update(swe_m=after.swe, lai=after.lai, tsoil_k=after.tsoil.copy(), smc_m3m3=after.smc.copy(),
                           liquid_m3m3=after.ground.liquid/(1000.*after.ground.dz), step_residual_m_h_c_n=residual,
                           step_bound_m_h_c_n=bound, cumulative_residual_m_h_c_n=cumulative)
+            if structure_trace_keys(config):
+                canopy_geometry=d['canopy_geometry']
+                values.update(sai_m2m2=after.sai,canopy_sai_used_m2m2=canopy_geometry['total_sai'],
+                    canopy_exposed_lai_m2m2=canopy_geometry['exposed_lai'],canopy_exposed_sai_m2m2=canopy_geometry['exposed_sai'])
             if not all(np.all(np.isfinite(v)) for v in values.values()): raise RuntimeError('Nonfinite trajectory output')
             for key, value in values.items(): records[key].append(value)
             state = after; net = next_net; bounds = next_bounds; index += 1

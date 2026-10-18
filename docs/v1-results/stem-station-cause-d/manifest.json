@@ -1,0 +1,108 @@
+{
+  "scope": "Read-only process-local MOST traces reproduce all original fields bitwise; only stem-area input differs by one float32 ulp. CUDA stem-input-only counterfactual makes all 380 outputs and next-state fields bitwise equal to original JAX. Synthetic two-column failing second-step input, not station-year/scientific acceptance.",
+  "archive_sha256": "6bbbb4f94e18d3cff4896229817db3840b788b42a686a32840a2c9abe479b439",
+  "artifacts": [
+    {
+      "source": "cuda32-most-trace/receipt.json",
+      "path": "cuda32-most-trace/receipt.json.gz",
+      "source_sha256": "5e12191da4bc843c07d0f7cb1645f47605206e2cacbd886315e698ddc46ee3bb",
+      "stored_sha256": "0bef4ddd6ce1a59fc75f2dc339b27a2928094797b1cd51baa06c371e5717d599"
+    },
+    {
+      "source": "cuda32-most-trace/trace.npz",
+      "path": "cuda32-most-trace/trace.npz",
+      "source_sha256": "667f2e232d72d9856c1cb93d73393c32042c44d59e11c9e7c737474e987e141d",
+      "stored_sha256": "667f2e232d72d9856c1cb93d73393c32042c44d59e11c9e7c737474e987e141d"
+    },
+    {
+      "source": "jax32-most-trace/receipt.json",
+      "path": "jax32-most-trace/receipt.json.gz",
+      "source_sha256": "2e797ce8119c8b35b2dbec2673006939315ffe789a16a568aa74501545e68caa",
+      "stored_sha256": "6f229df08f716d3d8cde36dad9f58adacfb55a14a8b97ff43211042f4d59ead9"
+    },
+    {
+      "source": "jax32-most-trace/trace.npz",
+      "path": "jax32-most-trace/trace.npz",
+      "source_sha256": "d318d3ca73e2fba9126c41c3941c2befe0065dc8ae151b833689327636afa455",
+      "stored_sha256": "d318d3ca73e2fba9126c41c3941c2befe0065dc8ae151b833689327636afa455"
+    },
+    {
+      "source": "canonical-stem-counterfactual/outputs.npz",
+      "path": "canonical-stem-counterfactual/outputs.npz",
+      "source_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034",
+      "stored_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034"
+    },
+    {
+      "source": "canonical-stem-counterfactual/receipt.json",
+      "path": "canonical-stem-counterfactual/receipt.json.gz",
+      "source_sha256": "3d4df5207834f9fd8eb1b351e32d537ecc13c0f224a18b46f1ebc7d2065c506d",
+      "stored_sha256": "e7b085c24a1a89a424fda1532a40f07904a851dcf58b44ae797ae4a1ed61e5ae"
+    },
+    {
+      "source": "cuda32-most-trace.log",
+      "path": "cuda32-most-trace.log.gz",
+      "source_sha256": "8e958566220f4a96719435d1ffc998d2b1cb6aa142858aec14daabc58954d320",
+      "stored_sha256": "26db299fec5c66feb019bc37bdc81e267d23e1e2f92ba92ca3717d21fff94eea"
+    },
+    {
+      "source": "jax32-most-trace.log",
+      "path": "jax32-most-trace.log.gz",
+      "source_sha256": "2a8425a804a3c99ac06856207d5ad09475f021b2569d0650ebdde0a8b8c515ca",
+      "stored_sha256": "b7c94dcaca67ec78cd8439b3e0c6a4aaad24a214c5ec12f8c58fc1966f160559"
+    },
+    {
+      "source": "trace-launch.json",
+      "path": "trace-launch.json.gz",
+      "source_sha256": "d90fd943cdd29f1712bef24f281ad24b7fb4d626ab8d81e282e2ec746065e3e1",
+      "stored_sha256": "2684ffafe69490dc05c7195376aac2e62336f0d9f76fb96a9b9540c40881342c"
+    },
+    {
+      "source": "most-comparison.json",
+      "path": "most-comparison.json.gz",
+      "source_sha256": "3490116e8d22a14f242407aa32d58011f767c2dbb4b9e5c246ec960d37ced835",
+      "stored_sha256": "db4788ede3729a5c44ddbb2b7654fa9d0f739aedb9dd7ff6a820a053238356d4"
+    },
+    {
+      "source": "most-comparison-finite.json",
+      "path": "most-comparison-finite.json.gz",
+      "source_sha256": "909ce87fb96a925eeb728211dd4b05f591ffd58f26d7769dda9de02d9518d711",
+      "stored_sha256": "85c9effd201947df0ec218fb221b6a5ff35eb814edd2141fe7e7d5c9d56c452d"
+    },
+    {
+      "source": "control/trace_stem_station_precision_d.py",
+      "path": "control/trace_stem_station_precision_d.py.gz",
+      "source_sha256": "beaca482ce2b0fb2905a68c09a948e22d55d13fd88040c9e064ba96b2870e464",
+      "stored_sha256": "3c205db73cc85400666b4e69bc8997d2ccfbcfd96d74b6b2cf952958ac116879"
+    },
+    {
+      "source": "control/launch_stem_station_trace_d.py",
+      "path": "control/launch_stem_station_trace_d.py.gz",
+      "source_sha256": "39c30750a437f9edfeabf981b4ec9e9ae190be28f02ce1fa91b8d58ec847234a",
+      "stored_sha256": "3398fd6098873e1360f32364ce6bbda76b5d5c714b529ebde3efb669d145cb1d"
+    },
+    {
+      "source": "control/compare_stem_station_most_trace_d.py",
+      "path": "control/compare_stem_station_most_trace_d.py.gz",
+      "source_sha256": "ad660ea271f9a5e0ff1995312f9ddec3b6bf40a362ec4cf9edab37e71153c910",
+      "stored_sha256": "e0fe88b01a54ccee05107e05f4eee17f891fdb363fa0f19c94cd77a91e0a009c"
+    },
+    {
+      "source": "control/compare_stem_station_most_trace_finite_d.py",
+      "path": "control/compare_stem_station_most_trace_finite_d.py.gz",
+      "source_sha256": "9016316ed0bb445d2c2a7dbbb8c46f96b1f3b6bb2e72f867a5eccfb9f5934e1b",
+      "stored_sha256": "d57e2daf558ec3d85a0996690d79aa1f95944cb8bd7aeb89a0854fc17c78d06e"
+    },
+    {
+      "source": "control/counterfactual_stem_split_d.py",
+      "path": "control/counterfactual_stem_split_d.py.gz",
+      "source_sha256": "6b0a14f08b3fe64c97be2011052c07d4f6be9ced5e803678ec83e9cfebb9ebc1",
+      "stored_sha256": "34614cd18e224a3ae48f2916fbeeb83f85053909eac865abfea094c12c9b0524"
+    },
+    {
+      "source": "control/archive_stem_station_cause_d.py",
+      "path": "control/archive_stem_station_cause_d.py.gz",
+      "source_sha256": "05c6e73fbe085ddcdad21cd5430ff130661b0c92b51f95be2d4661a9a9847a8f",
+      "stored_sha256": "2241bd595dcd19625d35b6c4a94d9cf65bdd6a3dab0e0aa276a08ff1a207740c"
+    }
+  ]
+}

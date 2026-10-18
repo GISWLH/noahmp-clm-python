@@ -65,7 +65,7 @@ def layered_interception_jax(condensate,site,forcing,rain,snow,canopy_area=None)
     from jax import lax
     s=lax.optimization_barrier
     area=(j.stack((j.full(10,site[0]/10.,condensate.dtype),j.zeros(10,condensate.dtype)),axis=1)
-          if canopy_area is None else j.broadcast_to(canopy_area/10.,(10,2)))
+          if canopy_area is None else j.broadcast_to(s(canopy_area*j.asarray(.1,condensate.dtype)),(10,2)))
     u=j.stack((rain,snow,forcing[1],s(forcing[0]/2.),site[1],forcing[3],j.asarray(270.15,condensate.dtype)))
     return canopy_water_kernel_jax(condensate,area,u,j.zeros_like(condensate),j.asarray(0))
 
@@ -86,7 +86,7 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None,g
     empty=storage.at[:2].set(0.);dry=forcing.at[7].set(0.)
     physical_site=site if canopy_area is None else site.at[0].set(s(canopy_area[0]+canopy_area[1]))
     pc,pg,po,a,u,f,v,base_prep,good,pre_impurity=prepare_column_jax(c,g,p,o.at[0].set(n),physical_site,empty,roots,dry,vic)
-    if canopy_area is not None:a=j.full(10,canopy_area[0]/10.,c.dtype)
+    if canopy_area is not None:a=j.full(10,s(canopy_area[0]*j.asarray(.1,c.dtype)),c.dtype)
     out=s(out+base_prep[2:4])
     v=v.at[1].set(_sum(cc[:,0])).at[2].set(_sum(cc[:,1]))
     prep=j.concatenate((row(s(rain+snow),ledger[8]),out,row(0.)))
@@ -138,7 +138,7 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     pc,pg,po,a,u,f,v,prep,valid,cc,pre,old,pre_impurity=prepare(*arrays,forcing,vic,ground_input,area)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
-    stems={} if area is None else dict(stem_area=j.broadcast_to(area[:,1,None]/10.,(len(c),10)))
+    stems={} if area is None else dict(stem_area=j.broadcast_to(area[:,1,None]*j.asarray(.1,arrays[0].dtype),(len(c),10)))
     if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic,**stems)
     else:
         from .canopy_most_surface import run_most_surface

@@ -51,12 +51,14 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
         prepare(*launch,(c,g,p,o,site,storage,condensate,forcing,pc0,pg0,po0,cc,totals,prep,pre,old,good,vic_arg,ground_arg,area_arg,np.int32(n)))
         empty=storage.copy();empty[:,:2]=0.;dry=forcing.copy();dry[:,7]=0.
         base_prepare(*launch,(pc0,pg0,p,po0,physical_site,empty,roots,dry,pc,pg,po,a,u,f,v,unused,valid,pre_impurity,vic_arg,np.int32(n)))
-        if area is not None:a[:]=area[:,0,None]/10.
+        if area is not None:a[:]=area[:,0,None]*cp.float32(.1)
         prep[:,2:4]=prep[:,2:4]+unused[:,2:4]
         v[:,1:3]=totals
         if not bool(cp.all((good>0)&(valid>0))):raise RuntimeError('CUDA layered precipitation preparation failed')
     surface_arrays=(pc,pg,p,po,a,u,f,v,cc)
-    stems={} if area is None else dict(stem_area=cp.ascontiguousarray(cp.broadcast_to(area[:,1,None]/10.,(n,10))))
+    # Match JAX's explicit reciprocal multiplication. Correctly rounded CuPy
+    # division can differ by1ulp (e.g. SAI0.8), changing a nonlinear leaf solve.
+    stems={} if area is None else dict(stem_area=cp.ascontiguousarray(cp.broadcast_to(area[:,1,None]*cp.float32(.1),(n,10))))
     if most_geometry is None:surface=run_canopy_phase_surface_cuda(*surface_arrays,parameters=leaf_parameters,vic=vic,**stems)
     else:
         from ..canopy_most_surface import run_most_surface

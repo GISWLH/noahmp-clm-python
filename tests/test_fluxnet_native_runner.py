@@ -193,7 +193,8 @@ def test_week_repetition_cannot_masquerade_as_climate_cycle(tmp_path):
 
 
 @pytest.mark.parametrize('monthly', [False, True])
-def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monkeypatch, monthly):
+@pytest.mark.parametrize('structured', [False, True])
+def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monkeypatch, monthly,structured):
     """Exercise runner transactions with an exactly conserved test tendency.
 
     This is an orchestration test, not an alternate physical backend or a
@@ -201,6 +202,9 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
     """
     from test_clm_bgc_column import case
     state, _, _ = case(None)
+    if structured:
+        from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters
+        state=state.with_vegetation_structure(CanopyStructureParameters(1,3.,.5),sai=.8)
     monkeypatch.setattr(runner, 'build_state', lambda config: state)
 
     class LedgerBackend:
@@ -211,7 +215,7 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
             a = list(arrays); a[4] = a[4].copy(); a[4][:, 7:10] = env
             return tuple(a)
         def step(self, *args, **kwargs):
-            a, forcing = args[:16], args[16]; n = len(forcing)
+            a, forcing = args[:-1], args[-1]; n = len(forcing)
             fields = {0:'snow_cells', 1:'soil_cells', 3:'options', 4:'site', 5:'storage',
                       7:'condensate', 8:'phenology_state', 9:'phenology_flags',
                       11:'plant_state', 13:'soil_cn_state'}
@@ -224,6 +228,11 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
             out.update(diagnostics=d, impurity_output_kgm2=kwargs['deposition']*forcing[:, :1], surface=dict(
                 outgoing_shortwave=forcing[:, 5], outgoing_longwave=forcing[:, 6],
                 thermal_layer_tolerance=np.zeros((n, 9)), layer_residual=np.zeros((n, 10))))
+            if len(a)==19:
+                # An exact synthetic tendency tests transaction/carry only;
+                # it is never used as a physical structure reference.
+                out.update(structure_state=a[16]+.125,canopy_geometry=dict(total_sai=a[16][:,0],
+                    exposed_lai=a[4][:,0],exposed_sai=a[16][:,0]))
             return out
         def soil(self, arrays):
             return np.full((len(arrays[0]), 4), 285.), arrays[1][:, :, 0]
@@ -231,6 +240,7 @@ def test_segmented_run_matches_continuous_state_trace_and_ledger(tmp_path, monke
     monkeypatch.setattr(runner, 'Backend', LedgerBackend)
     path, row, config = batch_fixture(tmp_path)
     config.update(scope='test instrument only', most_geometry={}, leaf_dimension_m=.04, phenology=None)
+    if structured:config['canopy_structure']=dict(parameters=dict(scheme='CN_NONCROP',canopy_top_m=3.,canopy_bottom_m=.5),initial_sai=.8)
     if monthly:
         del config['aerosol_deposition_kg_m2_s']
         config['aerosol_deposition_monthly_kg_m2_s'] = (np.arange(1, 13)[:, None]*np.arange(1, 6)*1e-12).tolist()

@@ -29,6 +29,14 @@ JAX32影子已在78步因[局部同精度差异](docs/CLM_K78_PRECISION.md)失�
 CPU物理/pytest只在EHPC PBS计算节点，GPU只在xuanze，本机仅编辑和整理。
 以下各检查点数字按历史保留，以本段及链接中的当前记录为准。
 
+后续[SAI站点驱动](docs/CLM_STEM_STATION.md)已显式保留19状态数组及独立影子；
+EHPC PBS157新版全CPU879项通过、PBS退出0。xuanze连续4步/2步续2步的48个
+检查点数组逐位相同，CUDA/JAX最大绝对差7.28e-12；对NumPy H/LE最大绝对差
+0.000170/0.0000858 W/m²。原第二步同精度失败已定位为SAI拆层1 ulp差异并
+统一新结构分支算式，原态380字段差0。旧502目标为18通过/1失败，当前506
+修正float64测试输入后的3项回归已全过，原态380字段差0；其余完整设备目标
+仍在执行，真实站点采用/全年未完成。
+
 [官方CTSM参考准备](docs/CTSM_REFERENCE_PREPARATION.md)已在EHPC验证可移植
 编译器、XML及NetCDF跨接口精确读写；官方完整构建/动态库检查完成，实际单柱输出仍待完成。
 J年度在5498/17520发生的[HaM雪—土壤停滞](docs/CLM_J_PHASE_FAILURE.md)

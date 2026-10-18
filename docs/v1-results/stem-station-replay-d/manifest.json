@@ -1,0 +1,156 @@
+{
+  "scope": "Original source504C failed second step: three counterfactual replays,380 paths/22 failures including aliases, before19 and next19 bitwise equal, repeated JAX deterministic. Original independent MHCN audits all passed,1e-6 gate not relaxed. Includes invalid zero-index prep as failed control only.",
+  "archive_sha256": "7dc3e8fe44623d1d359f06634a594252298ba405205db401016bf8b9f3af58bd",
+  "artifacts": [
+    {
+      "source": "input.npz",
+      "path": "input.npz",
+      "source_sha256": "49a6243432708a57e426ba466804cd25b102d580fc6f9be30007f0d2085f051a",
+      "stored_sha256": "49a6243432708a57e426ba466804cd25b102d580fc6f9be30007f0d2085f051a"
+    },
+    {
+      "source": "binding.json",
+      "path": "binding.json.gz",
+      "source_sha256": "abbc663c1aba61042d6cb684009aaf507ef79724245f028192fe97c8742ca294",
+      "stored_sha256": "60f7c60aa19d5dc43938f0ec0fd056222aee9cc00d100cec83583b7d13709506"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "619508496658c09b98155f66fe17676845e724d299255833e6c3f783dc54dd04",
+      "stored_sha256": "5aa17f4b27ae457979154e0f01a4d1dcb389584158a2ad0d52e5db7d3264fcb5"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "e28cad0d6cf314d0d95b8976d738b06e1f9068703edfb2c4a2348923dc56886c",
+      "stored_sha256": "3056c5f735c3ca2f187a71f69d6ce2a4fa80f74f8220eb918a898a3b70823a83"
+    },
+    {
+      "source": "comparison.json",
+      "path": "comparison.json.gz",
+      "source_sha256": "4cd4ee8be2a0b1bc06a34b612d7a6e64e8189f3a8dabf7ae604047e728c89d88",
+      "stored_sha256": "44907caa5d86efe69e805b01a2a5682732657d145ff63516a3e3597be9896602"
+    },
+    {
+      "source": "cuda32/outputs.npz",
+      "path": "cuda32/outputs.npz",
+      "source_sha256": "269dc7fdd9b131e3c93984e0d3dc184dd5edd56c41de048490c455687c9bdd42",
+      "stored_sha256": "269dc7fdd9b131e3c93984e0d3dc184dd5edd56c41de048490c455687c9bdd42"
+    },
+    {
+      "source": "cuda32/receipt.json",
+      "path": "cuda32/receipt.json.gz",
+      "source_sha256": "d7c284b87a1ce7fbe6eeddefe4761a52c8d1b33f63f244f8402bb97a186c6cab",
+      "stored_sha256": "b98d7fae9e4e27edd5e18616205787f3075afc5a90063c974a2bdaa2d0a0f33a"
+    },
+    {
+      "source": "cuda32.log",
+      "path": "cuda32.log.gz",
+      "source_sha256": "f170d5159969933d067ef0aec8ed318f9679696d6d88d2aebc63a8182c847837",
+      "stored_sha256": "ea058f6d947a289eeb6553fd4fcdbc3144aaeff88a5d7e9cc560b5dc688398db"
+    },
+    {
+      "source": "jax32/outputs.npz",
+      "path": "jax32/outputs.npz",
+      "source_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034",
+      "stored_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034"
+    },
+    {
+      "source": "jax32/receipt.json",
+      "path": "jax32/receipt.json.gz",
+      "source_sha256": "8cec4dbffdccf618fd772ef0f5330af4c69ccd691d036bc8b41265d6471694f6",
+      "stored_sha256": "0c4bd5430b8eada971b8a7b0e5776dae01f356a62f0572b904f7f08c28407d7f"
+    },
+    {
+      "source": "jax32.log",
+      "path": "jax32.log.gz",
+      "source_sha256": "31867ff76d58de5f5a942db931582a917b92ec0e805ef6cba725da68f1ce524b",
+      "stored_sha256": "997857c12b918f24c93a83b8d1bc4f4ed3d57d430e2162fab8f61cfc00fa9e31"
+    },
+    {
+      "source": "jax32-primary/outputs.npz",
+      "path": "jax32-primary/outputs.npz",
+      "source_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034",
+      "stored_sha256": "2e030d4946496d29fbe167668865b311c6d41d99b04d27f04eff0e4dc162d034"
+    },
+    {
+      "source": "jax32-primary/receipt.json",
+      "path": "jax32-primary/receipt.json.gz",
+      "source_sha256": "1945d78f5c69551044d75bc8827705bb981dcd0a189c79044873ad0edc4375dd",
+      "stored_sha256": "1eac1f13c86a0366f3cf44f5707012342a4980dab21f14ede3e21114815b7283"
+    },
+    {
+      "source": "jax32-primary.log",
+      "path": "jax32-primary.log.gz",
+      "source_sha256": "40da709eecdd5929982bfc859201ba62684b992eca34f11169924bad0b3d4b27",
+      "stored_sha256": "c4aa9ddbf8ffed6c667bb4383c52e14c6f92edab35d09ab8ca88fd446d2bedcb"
+    },
+    {
+      "source": "control/export_stem_station_precision_d.py",
+      "path": "control/export_stem_station_precision_d.py.gz",
+      "source_sha256": "1454f7f7cfb0b1e0d48c503cf07276e3dcdc49f9de4bba7bedfa3ca663483e17",
+      "stored_sha256": "3b69d605262981082a8a06b3b8e59e9f1d4a14824ebc5638651ccd0be7318e6d"
+    },
+    {
+      "source": "control/replay_stem_station_precision_d.py",
+      "path": "control/replay_stem_station_precision_d.py.gz",
+      "source_sha256": "c9a43b5de1c0179c2335525d571e1505ef7a01a67c266fcf478eda1827b09a03",
+      "stored_sha256": "966aab5347c07bd5e97d3fad9d73136663e6aa619d8fd9993b380a3e3c2be53b"
+    },
+    {
+      "source": "control/launch_stem_station_precision_d.py",
+      "path": "control/launch_stem_station_precision_d.py.gz",
+      "source_sha256": "d044be6fdacc022096e91b2ce14c28ea94ce6fc5504e27b6e486a14e9b17ae6e",
+      "stored_sha256": "6d071edf01bdc88c6c14d28d57854b7903d352e593dba7a23f3aa4d15b0b2427"
+    },
+    {
+      "source": "control/compare_stem_station_precision_d.py",
+      "path": "control/compare_stem_station_precision_d.py.gz",
+      "source_sha256": "24f55275d0d5203493565c08baa62ee1d602804ec5b907389891b61a918fa004",
+      "stored_sha256": "c56e4e784af511f14be6cdaf2ffe5a176618f8fd211753e6f8b8ece561e07d15"
+    },
+    {
+      "source": "control/archive_stem_station_replay_d.py",
+      "path": "control/archive_stem_station_replay_d.py.gz",
+      "source_sha256": "559521e6b36b635387a1837ad5e31f2a58a8d9c9b9c912d020d0da5c6bd8bb7e",
+      "stored_sha256": "45bc98690628d7fed104fc89ddf75880e52519f9831084d32c328daad5c5b61c"
+    },
+    {
+      "source": "failed-preparation-c/cuda32.log",
+      "path": "failed-preparation-c/cuda32.log.gz",
+      "source_sha256": "d47a56ace83ceffcaf2c0c48508da40a1da6a561a5f05420c2d18552b71d33a9",
+      "stored_sha256": "0a94130356344c759a7084cb90567b2178c35b4e3a09374bce4066ebe848c149"
+    },
+    {
+      "source": "failed-preparation-c/jax32.log",
+      "path": "failed-preparation-c/jax32.log.gz",
+      "source_sha256": "d47a56ace83ceffcaf2c0c48508da40a1da6a561a5f05420c2d18552b71d33a9",
+      "stored_sha256": "0a94130356344c759a7084cb90567b2178c35b4e3a09374bce4066ebe848c149"
+    },
+    {
+      "source": "failed-preparation-c/launch.json",
+      "path": "failed-preparation-c/launch.json.gz",
+      "source_sha256": "89a90c134e87c9755f4de7049dc25c9150ab7bc4527fbfc1d4853b639d60871f",
+      "stored_sha256": "a1babd8e70e8aea0ba416a919e3795de468f2e243a6a8913a303ed4d8c6e5e8d"
+    },
+    {
+      "source": "failed-preparation-c/control/export_stem_station_precision_c.py",
+      "path": "failed-preparation-c/control/export_stem_station_precision_c.py.gz",
+      "source_sha256": "629205aed6e0099f29788f3e63b4071452fdaa68665450e26270ba089dbde738",
+      "stored_sha256": "a19cc4a4bb44125ce0c26119c89b592ae41161197ee6a81d245a0a64430da660"
+    },
+    {
+      "source": "failed-preparation-c/control/replay_stem_station_precision_c.py",
+      "path": "failed-preparation-c/control/replay_stem_station_precision_c.py.gz",
+      "source_sha256": "cfcab4d49183b86ff90284643569412b744c3fd6312d3e182454dc5c516539ef",
+      "stored_sha256": "1529df3ac2e862c7e2de8b516c39bc26cc0366d4ae5cec1dda7e836d99c372f4"
+    },
+    {
+      "source": "failed-preparation-c/control/launch_stem_station_precision_c.py",
+      "path": "failed-preparation-c/control/launch_stem_station_precision_c.py.gz",
+      "source_sha256": "dea22cb01057eac836e1d4c3c77682101b13fe5fe57bed6d753d5062cadf1212",
+      "stored_sha256": "db49db69ae945056fbfef68675537593f567538fb65cb4d8f5797a61b5409ebb"
+    }
+  ]
+}

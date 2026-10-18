@@ -1,7 +1,7 @@
 // Layered interception adapters. Shared enthalpy-column helpers compile first.
 __device__ void lc_interception(const float* cc,const float* site,const float* forcing,float rain,float snow,float* out,const float* geometry=nullptr) {
     float area[20]={0.f},vapor[20]={0.f};for(int k=0;k<10;++k){
-        area[k*2]=(geometry?geometry[0]:site[0])/10.f;area[k*2+1]=geometry?geometry[1]/10.f:0.f;}
+        area[k*2]=geometry?geometry[0]*.1f:site[0]/10.f;area[k*2+1]=geometry?geometry[1]*.1f:0.f;}
     float u[7]={rain,snow,forcing[1],forcing[0]/2.f,site[1],forcing[3],270.15f};
     canopy_water_device(cc,area,u,vapor,0,out);
 }
