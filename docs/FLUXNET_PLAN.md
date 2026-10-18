@@ -2,6 +2,13 @@
 
 ## v1.0 当前任务
 
+最新[SAI下游评价入口](CLM_SPINUP_ASSESSMENT.md)在EHPC完成A版全CPU899
+与B版69目标，保留全部19数组，独立水热/SAI端点与原收支界分别核对；实际
+设备短轨迹已明确拒绝为完整年，仍无实际spinup通过。
+[Qia新冷启动](CTSM_PFT_GEOMETRY_INPUTS.md)先固定气候态SAI0.549363及
+11/5.5m冠层假设，保留所有原物理种子/强迫/测高，在EHPC计算首48步。
+16:28快照running/0/17520；不是原失败年续跑、完整日/年或观测验收。
+
 后续[SAI站点驱动](CLM_STEM_STATION.md)支持显式初始SAI/几何及19数组检查点，
 EHPC PBS157全CPU879实际通过；xuanze两柱合成4步完整/分段48数组逐位相同，
 逐步独立JAX影子最大绝对差7.28e-12，对NumPy H/LE绝对差0.000170/0.0000858W/m²。

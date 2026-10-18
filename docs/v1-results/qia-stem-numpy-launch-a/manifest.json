@@ -1,0 +1,132 @@
+{
+  "scope": "Immutable EHPC PBS162 input preparation and PBS163 NumPy launch snapshot2026-10-18T16:28:29UTC,running0/17520,first48 requested stop only. Explicit official-PFT1 JanuarySAI0.54936333 and11/5.5m site crown assumptions,all original cold water/heat/C/N/LAI/forcing/MOST unchanged. Not a complete day/year,spinup,observational result or resumed failed year.",
+  "archive_sha256": "942c86315cd18dc6d531f02d5c53a2369ca144aacb1beee4b1e1bb9e6ad52682",
+  "artifacts": [
+    {
+      "source": "input-preparation/clm-qia-stem-in.o162",
+      "path": "input-preparation/clm-qia-stem-in.o162",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "input-preparation/controller.log",
+      "path": "input-preparation/controller.log.gz",
+      "source_sha256": "987793badcfd0ff43a08b28009540f7dcf4944c9c7d7f810633def49f5d99b5d",
+      "stored_sha256": "9a1a4abb2c41fb83ed539a108e41f02e3a74c98d837dd7682475dd9a26f558fc"
+    },
+    {
+      "source": "input-preparation/inputs/CN-Qia-original-config.json",
+      "path": "input-preparation/inputs/CN-Qia-original-config.json.gz",
+      "source_sha256": "60b9be1100fc25c5d8b7481883afe6998ace981c8c0deab046b752f8f206e8fd",
+      "stored_sha256": "93129e891a011a46fee2a6ff252f994e1eb20940becae01ff9bba0b5f3d0185f"
+    },
+    {
+      "source": "input-preparation/inputs/CN-Qia-stem-config.json",
+      "path": "input-preparation/inputs/CN-Qia-stem-config.json.gz",
+      "source_sha256": "339310f80d579cd52926447c5e0645438c918343753ae096bd4a75ff5e941bf1",
+      "stored_sha256": "a28b436706b46d43a10f7d2fbf5a4090e3d88cf1cdbb8419d0ed00db9419e82c"
+    },
+    {
+      "source": "input-preparation/inputs/CN-Qia.json",
+      "path": "input-preparation/inputs/CN-Qia.json.gz",
+      "source_sha256": "db8d2b2ccb71134dde4bd0ea27abeae8ab4f205a732923bcae0d4b8bee465f93",
+      "stored_sha256": "d9423cebc685bb87410dd6d3271f2c53b7d92f9c6fd4fea1b599c1217c91fc4b"
+    },
+    {
+      "source": "input-preparation/inputs/CN-Qia.npz",
+      "path": "input-preparation/inputs/CN-Qia.npz",
+      "source_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960",
+      "stored_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960"
+    },
+    {
+      "source": "input-preparation/inputs/batch.json",
+      "path": "input-preparation/inputs/batch.json.gz",
+      "source_sha256": "6a4bf6b66caf7dfb83b1b4271b02165384de4f3b9c60f58d5a975bb7f936cd24",
+      "stored_sha256": "d3a399baaf308b6a3dd76d707c54c26908cba266f86fb60844e8a7f684e02969"
+    },
+    {
+      "source": "input-preparation/pbs-exit.txt",
+      "path": "input-preparation/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "input-preparation/prepare_qia_stem_inputs_a.py",
+      "path": "input-preparation/prepare_qia_stem_inputs_a.py.gz",
+      "source_sha256": "286c3ce5713a5368d28e3ddca0ae6284deef4bc8fc3fdf2eadf461d6bd3c808f",
+      "stored_sha256": "e63bc2bf92a4a1c24910c19a736ab8b9cc0e0f3d2d931727aca16902ab13ead1"
+    },
+    {
+      "source": "input-preparation/protocol.json",
+      "path": "input-preparation/protocol.json.gz",
+      "source_sha256": "4912439fd86bb736eca5eb1b9c78c17e23de0a466398b55d9b993c9f30df2fef",
+      "stored_sha256": "ba696fc7f60e58dd6beabf2fea60a5065a1815cf455158b50538f7c04c9579de"
+    },
+    {
+      "source": "input-preparation/qia_stem_inputs_a.pbs",
+      "path": "input-preparation/qia_stem_inputs_a.pbs.gz",
+      "source_sha256": "19eff22743d3c2e0b0ef1ba74fd52b449e4eccd0aa86aa7a6982da189ca922ee",
+      "stored_sha256": "53f5eba532945339ed8021bfd06099c02cab25671f57d457bf56b80ef7d3a70c"
+    },
+    {
+      "source": "numpy-launch/launch.json",
+      "path": "numpy-launch/launch.json.gz",
+      "source_sha256": "96a440bac2a1bed7a4c801265c818c602f712ae16e0dc85908ee0691096f156c",
+      "stored_sha256": "df7e27659b39775da42f527af9914b0e7dabb41dee2357ed7185199d1f48f5d2"
+    },
+    {
+      "source": "numpy-launch/SOURCE_SHA256.json",
+      "path": "numpy-launch/SOURCE_SHA256.json.gz",
+      "source_sha256": "ebb28c9126a7aca30a2061b534886dc177e30c365ffc3135899a7edd4589ed69",
+      "stored_sha256": "71a8c3feb7e55676746d8727f8d5c60dfc28df3d0b8f4c05d4959a52afc6120d"
+    },
+    {
+      "source": "numpy-launch/run_qia_stem_numpy_day_a.py",
+      "path": "numpy-launch/run_qia_stem_numpy_day_a.py.gz",
+      "source_sha256": "c3c1d9a225e3cc94394e66bec1bda8738d4457909ee649bc521cbf83b83c5e4d",
+      "stored_sha256": "f685a8d26ac956b4c75f180bef52c03a7bc51ef91533300a4ed32359bc896328"
+    },
+    {
+      "source": "numpy-launch/qia_stem_numpy_day_a.pbs",
+      "path": "numpy-launch/qia_stem_numpy_day_a.pbs.gz",
+      "source_sha256": "49c140f9001220943538cd5bf64849587cf6bb42b4c992710992b0c3a6891950",
+      "stored_sha256": "ab408ba3c77b69b12c08f6a8ca3043f272e7e71595cf01c05f0711d3f0792d96"
+    },
+    {
+      "source": "numpy-launch/trajectory/trace-0000000.npz",
+      "path": "numpy-launch/trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "numpy-launch/trajectory/state-0000000.pkl",
+      "path": "numpy-launch/trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "control/archive_qia_stem_launch_a.py",
+      "path": "control/archive_qia_stem_launch_a.py.gz",
+      "source_sha256": "c18226d028875a13b694b686d03700e5ad829d0a91863d42488080bb0feb8d8b",
+      "stored_sha256": "43aa12b65fc10156bccbf19b08b77eed35ac39cce42da39d732d27c6e0e259a4"
+    },
+    {
+      "source": "numpy-launch/captured-report.json",
+      "path": "numpy-launch/captured-report.json.gz",
+      "source_sha256": "552207a94c495e259d365cb80ea1cd958643e24d8952c21bfbe1e9e65a707815",
+      "stored_sha256": "a0800e996a552baea0b80c43421176baab77291c62e897b04a43d32ef487c71b"
+    },
+    {
+      "source": "snapshot.json",
+      "path": "snapshot.json.gz",
+      "source_sha256": "8b3754228b58537eb4da3c0a0b13fef54217facd71f467fd32f22e4f40331bcc",
+      "stored_sha256": "bcfd9ace10728c0f79a8cc976385345c8bafcaa8b566e722ab2c5b36fc2f89a1"
+    },
+    {
+      "source": "numpy-launch/captured-model.log",
+      "path": "numpy-launch/captured-model.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ]
+}

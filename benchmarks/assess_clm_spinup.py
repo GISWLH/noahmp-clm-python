@@ -17,6 +17,7 @@ from noahmp_clm.physics.decomposition import POOLS
 
 LIMITS=dict(soil_temperature_k=.1,soil_water_m3m3=.001,swe_m=.0005,
             minimum_cycles=2,consecutive_endpoint_checks=2,
+            canopy_sai_relative=.1,canopy_sai_near_zero_m2m2=.0001,canopy_sai_absolute_m2m2=1e-6,
             soil_carbon_percent_per_century=5.,soil_carbon_near_zero_gc_m2=1.)
 
 
@@ -26,6 +27,14 @@ def require(condition,message):
 
 def compare_endpoints(before,after):
     result={}
+    require(('canopy_sai_m2m2' in before)==('canopy_sai_m2m2' in after),'Canopy structure endpoint schema mismatch')
+    if 'canopy_sai_m2m2' in before:
+        a,b=(np.asarray(v['canopy_sai_m2m2'],float) for v in (before,after))
+        require(a.shape==b.shape==() and np.isfinite(a) and np.isfinite(b) and a>=0 and b>=0,'Invalid canopy SAI endpoint')
+        change=float(abs(b-a));near=bool(a<=LIMITS['canopy_sai_near_zero_m2m2'])
+        result.update(canopy_sai_change_m2m2=change,canopy_sai_before_m2m2=float(a),canopy_sai_after_m2m2=float(b),
+            canopy_sai_relative_change=None if near else change/float(a),
+            canopy_structure_criterion_met=change<=(LIMITS['canopy_sai_absolute_m2m2'] if near else LIMITS['canopy_sai_relative']*float(a)))
     for key in ('soil_temperature_k','soil_water_m3m3','swe_m'):
         a,b=(np.asarray(v[key],float) for v in (before,after))
         require(a.shape==b.shape and a.size>0 and np.isfinite(a).all() and np.isfinite(b).all(),'Invalid endpoint '+key)
@@ -49,13 +58,15 @@ def compare_endpoints(before,after):
     return result
 
 
-def _frame(saved,k):
-    arrays=tuple(saved['a'+str(i)] for i in range(16))
+def _frame(saved,k,identity=None):
+    arrays=native.checkpoint_arrays(saved,identity or {})
     ground=native.initial_ground(arrays,k);ground['params']=SoilParams(**ground['params'])
     temperature=SoilEnthalpyState(**ground).temperature
     soil=np.asarray(arrays[1][k],float);carbon=np.asarray(arrays[13][k,:7],float)
-    return dict(soil_temperature_k=temperature,soil_water_m3m3=soil[:,0]/(1000.*soil[:,2]),
+    frame=dict(soil_temperature_k=temperature,soil_water_m3m3=soil[:,0]/(1000.*soil[:,2]),
         swe_m=float(np.asarray(arrays[0][k,:,0],float).sum()/1000.),soil_carbon_gc_m2=carbon)
+    if len(arrays)==19:frame['canopy_sai_m2m2']=float(arrays[16][k,0])
+    return frame
 
 
 def _inputs(batch,input_root):
@@ -81,7 +92,9 @@ def _initial_generation(folder,report,rows,source_hashes):
     candidates=list(folder.glob('state-0000000-*.npz'));require(len(candidates)==1,'One original zero-step generation required')
     path=candidates[0];generation=path.stem.removeprefix('state-');state_sha=sha(path);evidence={str(path):state_sha}
     with np.load(path,allow_pickle=False) as z:saved=dict(z)
-    require(saved['index'].item()==0 and all('a'+str(i) in saved for i in range(16)),'Initial sixteen-array schema required')
+    require(saved['index'].item()==0,'Initial zero-step generation required')
+    native.checkpoint_arrays(saved,report['identity'])
+    if report['identity']['compare_jax32']:native.checkpoint_arrays(saved,report['identity'],shadow=True)
     for k,(case,(_,trace)) in enumerate(zip(report['identity']['cases'],rows)):
         sub=folder/case['case'];p=sub/('report-'+generation+'.json');r=json.loads(p.read_text());trace0=sub/r['model_npz']
         require(trace0.parent==sub and sha(trace0)==r['model_npz_sha256'],'Original initial trace hash mismatch')
@@ -99,12 +112,14 @@ def assess_cycles(batch,input_root,folders,model_source_manifest):
     identities=[c['identity'] for c in loaded];evidence={str(Path(batch)):sha(batch),str(Path(model_source_manifest)):sha(model_source_manifest)}
     for c in loaded:
         evidence.update({str(p):sha(p) for p in c['paths'].values()})
-    previous=None;history=[];consecutive=[0]*len(loaded);carbon_history=[];last_frames=None
+    state_count=native.native_state_count(loaded)
+    previous=None;history=[];consecutive=[0]*len(loaded);structure_checks=[0]*len(loaded);carbon_history=[];last_frames=None
     for cycle,folder in enumerate(map(Path,folders),1):
         declared=json.loads((folder/'batch.json').read_text());n=loaded[0]['steps']
         # Authenticate the committed case list before following its paths.
         require(declared['status']=='complete' and declared['source_unchanged'] and declared['steps_completed']==declared['steps_requested']==n,'Unchanged complete original year required; running/failed prefixes are not cycles')
         require(declared['identity']['cases']==identities and declared['identity']['batch_sha256']==sha(batch) and declared['identity']['source_sha256']==sources,'Cycle source/input/order identity mismatch')
+        require(declared['identity'].get('native_state_arrays',16)==state_count,'Cycle structure state/configuration mismatch')
         require(set(declared.get('case_reports',{}))=={v['case'] for v in identities},'Immutable case generation descriptors required')
         report,saved,rows=native.read_generation(folder);require(report==declared,'Committed generation changed while reading')
         link=report['identity'].get('initial_run')
@@ -119,15 +134,21 @@ def assess_cycles(batch,input_root,folders,model_source_manifest):
         initial_path,initial,initial_evidence=_initial_generation(folder,report,rows,sources);evidence.update(initial_evidence)
         if previous is None:
             dtype=initial['a0'].dtype;environment=np.asarray([c['data']['environment'][0] for c in loaded],dtype)
-            expected=native.pack_clm_bgc_columns([native.build_state(c['config']) for c in loaded],dtype=dtype,
+            pack=native.pack_clm_bgc_columns if state_count==16 else lambda values,**kw:native.pack_clm_structure_columns(values,kind='bgc',**kw)
+            expected=pack([native.build_state(c['config']) for c in loaded],dtype=dtype,
                 co2_ppm=environment[:,0],cosine_zenith=environment[:,1],diffuse_fraction=environment[:,2],
                 leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in loaded],dtype))
             for i,value in enumerate(expected):
                 actual=initial['a'+str(i)]
                 require(actual.dtype==value.dtype and actual.shape==value.shape and actual.tobytes()==value.tobytes(),'Cold state differs from original configuration/forcing seed: a'+str(i))
-            require(np.array_equal(initial['initial'],native.totals(tuple(initial['a'+str(i)] for i in range(16)))),'Cold initial extensive storage mismatch')
+                if report['identity']['compare_jax32']:
+                    shadow=initial['shadow'+str(i)]
+                    require(shadow.dtype==value.dtype and shadow.shape==value.shape and shadow.tobytes()==value.tobytes(),'Cold shadow differs from original configuration/forcing seed: shadow'+str(i))
+            require(np.array_equal(initial['initial'],native.totals(native.checkpoint_arrays(initial,report['identity']))),'Cold initial extensive storage mismatch')
             require(all(np.all(initial[k]==0) for k in ('net','bounds','maximum','stepmax','tracermax')),'Cold numerical ledgers must start at zero')
-            last_frames=[_frame(initial,k) for k in range(len(loaded))];carbon_history.append([v['soil_carbon_gc_m2'].copy() for v in last_frames])
+            if report['identity']['compare_jax32']:
+                require(all(np.all(initial[k]==0) for k in ('shadow_net','shadow_bounds','shadow_maximum')),'Cold shadow numerical ledgers must start at zero')
+            last_frames=[_frame(initial,k,report['identity']) for k in range(len(loaded))];carbon_history.append([v['soil_carbon_gc_m2'].copy() for v in last_frames])
         else:
             old_state=previous[1];require(initial.keys()==old_state.keys(),'Carried checkpoint field schema mismatch')
             for key in initial.keys()-{'index'}:
@@ -140,15 +161,19 @@ def assess_cycles(batch,input_root,folders,model_source_manifest):
                     and r['time_convention']=='local standard time' and r['utc_offset_hours']==c['metadata']['utc_offset_hours'],'Original case completion/configuration/time identity mismatch')
             require(all(np.array_equal(trace[key],c['data'][key]) for key in ('time_start','time_end')),'Complete original calendar alignment required')
             ledger=check_ledgers(trace,r,None if previous is None else previous[2]/previous[0]['checkpoint_file'])
-            storage=check_final_checkpoint(checkpoint,trace,r);endpoint=_frame(saved,k)
+            storage=check_final_checkpoint(checkpoint,trace,r);endpoint=_frame(saved,k,report['identity'])
             require(np.array_equal(endpoint['soil_water_m3m3'],trace['smc_m3m3'][-1]) and endpoint['swe_m']==trace['swe_m'][-1],'Final water/snow state aliases mismatch')
             native_temperature=np.asarray(trace['tsoil_k'][-1],float)
             require(native_temperature.shape==endpoint['soil_temperature_k'].shape and np.isfinite(native_temperature).all(),'Finite matching soil temperature layers required')
             decode=float(abs(native_temperature-endpoint['soil_temperature_k']).max())
             require(decode<=LIMITS['soil_temperature_k'],'Native/independent endpoint temperature decoding differs by more than the convergence scale')
             result=compare_endpoints(last_frames[k],endpoint);consecutive[k]=consecutive[k]+1 if result['water_heat_criteria_met'] else 0
+            structure=result.get('canopy_structure_criterion_met')
+            structure_checks[k]=structure_checks[k]+1 if structure else 0
             result.update(case=identities[k]['case'],site=c['config']['site'],consecutive_water_heat_checks=consecutive[k],
                 water_heat_converged=cycle>=LIMITS['minimum_cycles'] and consecutive[k]>=LIMITS['consecutive_endpoint_checks'],
+                consecutive_structure_checks=None if structure is None else structure_checks[k],
+                canopy_structure_converged=None if structure is None else cycle>=LIMITS['minimum_cycles'] and structure_checks[k]>=LIMITS['consecutive_endpoint_checks'],
                 maximum_temperature_decode_difference_k=decode,stored_independent_ledgers=ledger,final_checkpoint=storage)
             case_results.append(result);frame.append(endpoint)
             p=folder/identities[k]['case']/report['case_reports'][identities[k]['case']]['file'];t=p.parent/r['model_npz']
@@ -157,6 +182,7 @@ def assess_cycles(batch,input_root,folders,model_source_manifest):
         history.append(dict(cycle=cycle,cases=case_results));carbon_history.append([v['soil_carbon_gc_m2'].copy() for v in frame]);last_frames=frame;previous=(report,saved,folder)
     observed_century=observed_carbon_century(carbon_history,[c['identity']['case'] for c in loaded])
     return dict(scope=__doc__,limits=LIMITS,cycles=history,all_columns_water_heat_converged=all(v['water_heat_converged'] for v in history[-1]['cases']),
+        all_columns_water_heat_sai_converged=all(v['water_heat_converged'] and v['canopy_structure_converged'] is not False for v in history[-1]['cases']),
         soil_carbon_observed_century=observed_century,soil_c_long_term_equilibrium_claim=False,nitrogen_equilibrium_claim=False,
         scientific_acceptance_claim=False,temperature_method='Same NumPy enthalpy decoder applied to original initial/final stores; native final temperature discrepancy reported and limited to the predeclared 0.1K convergence scale.',
         not_certified=['Long-term soil-C equilibrium by extrapolating short-window rates','Total N steady state in a positive-deposition/no-loss simplification','Observation/calibration/holdout acceptance','Independent re-derivation of every boundary flux from stored traces'],

@@ -63,7 +63,7 @@ def test_litter_gain_cannot_hide_three_pool_soil_carbon_drift():
     assert r['actual_100_cycle_soc_change_percent']==-10. and not r['actual_100_cycle_soc_criterion_met']
 
 
-def fixture(tmp_path,cycles=2,year=2003):
+def fixture(tmp_path,cycles=2,year=2003,*,structure=False,shadow=False,sai_after=None):
     inputs=tmp_path/'inputs';inputs.mkdir();begin=datetime(year,1,1);n=int((datetime(year+1,1,1)-begin).total_seconds()/3600)
     starts=np.array([(begin+timedelta(hours=i)).strftime('%Y%m%d%H%M') for i in range(n)])
     ends=np.array([(begin+timedelta(hours=i+1)).strftime('%Y%m%d%H%M') for i in range(n)])
@@ -76,19 +76,25 @@ def fixture(tmp_path,cycles=2,year=2003):
         biogeochemistry=dict(plant_parameters=asdict(p.plant),decomposition_parameters=asdict(p.decomposition),maximum_lai=p.maximum_lai,saturated_potential_mpa=p.saturated_potential_mpa,
             plant_state=dict(carbon=plant,nitrogen=plant/np.array(p.plant.target_cn),reserve_carbon=30.,reserve_nitrogen=.05),
             soil_state=dict(carbon=soil,nitrogen=soil/25.,mineral_nitrogen=1.)))
+    if structure:config['canopy_structure']=dict(parameters=dict(scheme='CN_NONCROP',canopy_top_m=3.,canopy_bottom_m=.5),initial_sai=.8)
     native.atomic_json(inputs/'config.json',config);config=json.loads((inputs/'config.json').read_text())
     meta=dict(**geometry,prepared_npz_sha256=native.sha(inputs/'forcing.npz'),archive_name='FLX_CN-Qia_FLUXNET2015_FULLSET.zip')
     native.atomic_json(inputs/'meta.json',meta)
     batch=tmp_path/'batch.json';native.atomic_json(batch,dict(cases=[dict(case='site',input=str(inputs/'forcing.npz'),input_manifest=str(inputs/'meta.json'),configuration=str(inputs/'config.json'))]))
     identity=dict(case='site',forcing_npz_sha256=native.sha(inputs/'forcing.npz'),forcing_manifest_sha256=native.sha(inputs/'meta.json'),configuration_sha256=native.sha(inputs/'config.json'))
     sources=native.source_hashes();manifest=tmp_path/'source.json';native.atomic_json(manifest,sources)
-    a=native.pack_clm_bgc_columns([native.build_state(config)],dtype=np.float64,co2_ppm=env[:1,0],cosine_zenith=env[:1,1],diffuse_fraction=env[:1,2],leaf_dimension=np.array([.04]))
+    pack=native.pack_clm_bgc_columns if not structure else lambda values,**kw:native.pack_clm_structure_columns(values,kind='bgc',**kw)
+    a=pack([native.build_state(config)],dtype=np.float32 if shadow else np.float64,co2_ppm=env[:1,0],cosine_zenith=env[:1,1],diffuse_fraction=env[:1,2],leaf_dimension=np.array([.04]))
     saved={f'a{i}':v for i,v in enumerate(a)};saved.update(index=np.array(0),initial=native.totals(a),net=np.zeros((1,4)),bounds=np.zeros((1,4)),maximum=np.zeros((1,4)),stepmax=np.zeros((1,4)),tracermax=np.zeros((1,5)))
+    if shadow:
+        saved.update({f'shadow{i}':v.copy() for i,v in enumerate(a)})
+        saved.update(shadow_net=np.zeros((1,4)),shadow_bounds=np.zeros((1,4)),shadow_maximum=np.zeros((1,4)))
     folders=[];previous=None
     for index in range(cycles):
         folder=tmp_path/('cycle'+str(index));sub=folder/'site';sub.mkdir(parents=True);folders.append(folder)
         link=None if previous is None else dict(mode='cycle',batch_report_sha256=native.sha(previous/'batch.json'),checkpoint_sha256=native.sha(previous/'state-final.npz'),previous_ledger_steps=index*n,previous_segments=index)
-        gid=dict(batch_sha256=native.sha(batch),source_sha256=sources,backend='jax64',compare_jax32=False,cases=[identity])
+        gid=dict(batch_sha256=native.sha(batch),source_sha256=sources,backend='cuda32' if shadow else 'jax64',compare_jax32=shadow,cases=[identity])
+        if structure:gid['native_state_arrays']=19
         if link:gid['initial_run']=link
         initial={k:v.copy() for k,v in saved.items()};initial['index']=np.array(0);native.write_npz(folder/'state-0000000-seed.npz',**initial)
         native.write_npz(sub/'empty.npz',time_start=np.array([],dtype='U12'),time_end=np.array([],dtype='U12'))
@@ -97,9 +103,14 @@ def fixture(tmp_path,cycles=2,year=2003):
         native.atomic_json(sub/'report-0000000-seed.json',r0)
         bounds=np.cumsum(np.vstack((saved['bounds'],np.full((n,4),.001))),axis=0)[1:][-1:]
         saved={k:v.copy() for k,v in saved.items()};saved['index']=np.array(n);saved['bounds']=bounds
-        native.write_npz(folder/'state-final.npz',**saved);frame=audit._frame(saved,0)
+        if structure and sai_after is not None:saved['a16'][0,0]=sai_after[index]
+        if shadow:
+            saved['shadow_bounds']=bounds.copy()
+            if structure:saved['shadow16']=saved['a16'].copy()
+        native.write_npz(folder/'state-final.npz',**saved);frame=audit._frame(saved,0,gid)
         native.write_npz(sub/'trace.npz',time_start=starts,time_end=ends,tsoil_k=np.tile(frame['soil_temperature_k'],(n,1)),smc_m3m3=np.tile(frame['soil_water_m3m3'],(n,1)),
-            swe_m=np.full(n,frame['swe_m']),step_residual_m_h_c_n=np.zeros((n,4)),step_bound_m_h_c_n=np.full((n,4),.001),cumulative_residual_m_h_c_n=np.zeros((n,4)))
+            swe_m=np.full(n,frame['swe_m']),step_residual_m_h_c_n=np.zeros((n,4)),step_bound_m_h_c_n=np.full((n,4),.001),cumulative_residual_m_h_c_n=np.zeros((n,4)),
+            **(dict(sai_m2m2=np.full(n,frame['canopy_sai_m2m2'])) if structure else {}))
         r=dict(base,status='complete',steps_requested=n,steps_completed=n,ledger_steps=(index+1)*n,ledger_segments=index+1,model_npz='trace.npz',model_npz_sha256=native.sha(sub/'trace.npz'),
             batch_checkpoint_sha256=native.sha(folder/'state-final.npz'),cumulative_numerical_bounds_m_h_c_n=bounds[0].tolist())
         native.atomic_json(sub/'report-final.json',r)
@@ -120,6 +131,50 @@ def test_two_complete_linked_calendar_cycles_can_meet_water_heat_only(tmp_path,y
 
 def test_one_full_cycle_is_not_spinup(tmp_path):
     assert not audit.assess_cycles(*fixture(tmp_path,cycles=1))['all_columns_water_heat_converged']
+
+
+@pytest.mark.parametrize('shadow',[False,True])
+def test_structured_full_calendar_audit_retains_nineteen_arrays_without_extra_carbon(tmp_path,shadow):
+    r=audit.assess_cycles(*fixture(tmp_path,structure=True,shadow=shadow))
+    case=r['cycles'][-1]['cases'][0]
+    assert r['all_columns_water_heat_sai_converged'] and case['canopy_structure_converged']
+    assert case['canopy_sai_before_m2m2']==case['canopy_sai_after_m2m2']==pytest.approx(.8)
+    assert case['consecutive_structure_checks']==2 and case['total_soil_carbon_change_gc_m2']==0.
+    assert not r['scientific_acceptance_claim'] and not r['soil_c_long_term_equilibrium_claim']
+
+
+def test_structured_area_drift_does_not_inherit_water_heat_convergence(tmp_path):
+    r=audit.assess_cycles(*fixture(tmp_path,structure=True,sai_after=[1.,1.2]))
+    assert r['all_columns_water_heat_converged'] and not r['all_columns_water_heat_sai_converged']
+    case=r['cycles'][-1]['cases'][0]
+    assert case['canopy_sai_change_m2m2']==pytest.approx(.2) and not case['canopy_structure_converged']
+    assert case['total_soil_carbon_change_gc_m2']==0.
+
+
+def test_zero_sai_endpoint_uses_a_fixed_absolute_gate():
+    a=endpoints();a['canopy_sai_m2m2']=0.;b=deepcopy(a);b['canopy_sai_m2m2']=.5e-6
+    r=audit.compare_endpoints(a,b)
+    assert r['canopy_sai_relative_change'] is None and r['canopy_structure_criterion_met']
+    b['canopy_sai_m2m2']=1.1e-6
+    assert not audit.compare_endpoints(a,b)['canopy_structure_criterion_met']
+    del b['canopy_sai_m2m2']
+    with pytest.raises(ValueError,match='schema'):audit.compare_endpoints(a,b)
+
+
+@pytest.mark.parametrize('fault',['cold_sai','cold_shadow_sai','carried_sai','missing_geometry','final_geometry','final_trace_sai'])
+def test_structured_cycle_rejects_dropped_reseeded_or_inconsistent_geometry(tmp_path,fault):
+    batch,inputs,folders,manifest=fixture(tmp_path,structure=True,shadow=True)
+    target=folders[0] if fault.startswith('cold_') else folders[1]
+    final=fault.startswith('final_');p=target/('state-final.npz' if final else 'state-0000000-seed.npz')
+    with np.load(p,allow_pickle=False) as z:saved=dict(z)
+    if fault=='missing_geometry':del saved['a18']
+    elif fault=='final_geometry':saved['a17'][0,0]+=.1
+    else:saved['shadow16' if fault=='cold_shadow_sai' else 'a16'][0,0]+=.1
+    native.write_npz(p,**saved)
+    case_path=target/'site'/('report-final.json' if final else 'report-0000000-seed.json');case=json.loads(case_path.read_text());case['batch_checkpoint_sha256']=native.sha(p);native.atomic_json(case_path,case)
+    if final:
+        gpath=target/'batch.json';g=json.loads(gpath.read_text());g['checkpoint_sha256']=native.sha(p);g['case_reports']['site']['sha256']=native.sha(case_path);native.atomic_json(gpath,g)
+    with pytest.raises(ValueError):audit.assess_cycles(batch,inputs,folders,manifest)
 
 
 @pytest.mark.parametrize('fault',['running','failed','source','forcing','order','descriptor','continue','link','ledger_reset','carried_alias','cold_seed','trace_time','temperature','zero_duplicate'])

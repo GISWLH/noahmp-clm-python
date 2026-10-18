@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import datetime,timedelta
 import argparse,hashlib,json,os,tarfile
 import numpy as np
+import run_fluxnet_native as native
 from compare_hrldas_column import compare_columns
 from compare_hrldas_suction_prefix import bind_suction_inputs,ARCHIVE_SHA,PROTOCOL_SHA,GENERATOR_SHA,SITES
 
@@ -37,13 +38,22 @@ def check_ledgers(trace,report,initial_checkpoint=None):
         maximum_cumulative_residual_m_h_c_n=abs(cumulative).max(0).tolist(),final_bounds_m_h_c_n=accumulated[-1].tolist())
 
 def check_final_checkpoint(path,trace,report):
-    """Independently sum extensive storage from the original sixteen arrays."""
+    """Check all declared arrays, then independently sum conserved storage."""
     if sha(path)!=report['batch_checkpoint_sha256']:raise ValueError('Final checkpoint identity mismatch')
     k=report['batch_column'];n=report['steps_completed']
     with np.load(path,allow_pickle=False) as z:
-        if z['index'].item()!=n or any('a'+str(i) not in z for i in range(16)):raise ValueError('Final checkpoint generation/arrays mismatch')
-        a=[np.asarray(z['a'+str(i)],float) for i in range(16)]
+        count=native.native_state_count([dict(config=report.get('configuration',{}))])
+        if z['index'].item()!=n:raise ValueError('Final checkpoint generation/arrays mismatch')
+        original=native.checkpoint_arrays(z,dict(native_state_arrays=count));a=[np.asarray(v,float) for v in original]
         if any(not np.isfinite(v).all() for v in a):raise ValueError('Nonfinite checkpoint state')
+        if count==19:
+            p,_=native.structure_configuration(report['configuration']);ss,pp,oo=original[-3:];columns=len(original[0])
+            if ss.shape!=(columns,1) or pp.shape!=(columns,2) or oo.shape!=(columns,2) or oo.dtype.kind not in 'iu' or np.any(ss<0):
+                raise ValueError('Malformed structure checkpoint arrays')
+            if ss.dtype!=original[0].dtype or pp.dtype!=original[0].dtype or not np.array_equal(pp[k],np.asarray([p.canopy_top_m,p.canopy_bottom_m],pp.dtype)) or not np.array_equal(oo[k],[int(p.scheme),p.short_vegetation]):
+                raise ValueError('Checkpoint structure parameters disagree with configuration')
+            if 'sai_m2m2' not in trace or np.asarray(trace['sai_m2m2']).shape!=(n,) or trace['sai_m2m2'][-1]!=ss[k,0]:
+                raise ValueError('Final SAI state/trace alias mismatch')
         snow,soil,canopy,plant,earth=(a[i][k] for i in (0,1,7,11,13))
         storage=np.array([sum(v[:,0].sum() for v in (snow,soil,canopy)),sum(v[:,1].sum() for v in (snow,soil,canopy)),
             plant[:3].sum()+plant[6]+earth[:7].sum(),plant[3:6].sum()+plant[7]+earth[7:].sum()])

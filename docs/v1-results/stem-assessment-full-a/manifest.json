@@ -1,0 +1,108 @@
+{
+  "scope": "EHPC PBS160 exact506A assessment-only target69 and fullCPU899 all passed,0fail/error/skip and actualPBS0,full813.372725s. B later changes only one reporting key and its two assertions,target69 rerun separately. No production physics/GPU byte change,real spinup/year/observation acceptance.",
+  "archive_sha256": "c5a28b7222de9910f75fbb591bb73b773192f402fba3770e9d8bf7d1a6d6bffc",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "ebb28c9126a7aca30a2061b534886dc177e30c365ffc3135899a7edd4589ed69",
+      "stored_sha256": "71a8c3feb7e55676746d8727f8d5c60dfc28df3d0b8f4c05d4959a52afc6120d"
+    },
+    {
+      "source": "clm-sai-audit.o160",
+      "path": "clm-sai-audit.o160",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "controller.log",
+      "path": "controller.log.gz",
+      "source_sha256": "0ce1b6f4448ebe5e5eac1b55b94b6033591346b1dd16dc80f398d39a6efe0b51",
+      "stored_sha256": "baf7c18befab8675bd44a841a290ff8368f4b43657c2c1caff072e48e0827f55"
+    },
+    {
+      "source": "cpu-full-receipt.json",
+      "path": "cpu-full-receipt.json.gz",
+      "source_sha256": "a044da3cdd7e2bbb09051993ba8d2ef6bdcf7e0c7c91e81c831506deeb9f56ae",
+      "stored_sha256": "0b661427d8797dbce0120638c8923161203c1e310989ad6884c571e4f9a626b7"
+    },
+    {
+      "source": "cpu-full.log",
+      "path": "cpu-full.log.gz",
+      "source_sha256": "dd96f8d33558387654e96b069077462dc9657a8d2b16ba2967add8e1177e7e46",
+      "stored_sha256": "ffb0d90880cdf9f6dda2b35482c27c63570a245d4785f91a0d93761322f97d58"
+    },
+    {
+      "source": "cpu-full.xml",
+      "path": "cpu-full.xml.gz",
+      "source_sha256": "d010270daa4048fccab4b0e0ec8868f5923ea584160a2b3c92ea57c79a55f698",
+      "stored_sha256": "7b6283deec28dfbf0b77d46e257a490c9fc0264ff3dfbb6ea0bacd745075ae72"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "run_stem_assessment_a.py",
+      "path": "run_stem_assessment_a.py.gz",
+      "source_sha256": "c9b86a34b575a983a2ce630abd7d3a84bc4251f55a1cd76bfb6e9601a18b9255",
+      "stored_sha256": "134dd573db5e9f667e3d8ad105a329e218bc8930adefc736b2c2113428fca222"
+    },
+    {
+      "source": "stem_assessment_a.pbs",
+      "path": "stem_assessment_a.pbs.gz",
+      "source_sha256": "7cd26b13716d85d89640304e2172a25f83f27fb21ce2efbc5e71fbe8fa6373e2",
+      "stored_sha256": "580944f213e775b36ab6ab3a4c92755880736502c7459788a5e5ba8e61f774e3"
+    },
+    {
+      "source": "targets-receipt.json",
+      "path": "targets-receipt.json.gz",
+      "source_sha256": "04941005da5999602ff2ab3e18ba2f0781aaea1855462b3d4f1d7c0a96abb83c",
+      "stored_sha256": "b890a55f07e19d4b2d8623412830402c5796fd45d0a8002af488dfe0509781f8"
+    },
+    {
+      "source": "targets.log",
+      "path": "targets.log.gz",
+      "source_sha256": "e04c35b80be7c1c2a561f82b0e8561ada6173879d3ad345042b243c287e7cc0f",
+      "stored_sha256": "3a6a3e89be7a0bddfd6c95efc00ec560e2f9c83f885286943c054eb40722fe9d"
+    },
+    {
+      "source": "targets.xml",
+      "path": "targets.xml.gz",
+      "source_sha256": "d29cb091e83c93dc192630096c02a7afb039ecc1e24c1a4727c14f97a1852a43",
+      "stored_sha256": "2c309b6bea0a4dd98e6df8b19f6389478c8e83c7e94f7acd19bdd41c6842e0a3"
+    },
+    {
+      "source": "benchmarks/assess_clm_spinup.py",
+      "path": "benchmarks/assess_clm_spinup.py.gz",
+      "source_sha256": "e1a0f690b529323c98f67bc7db655fdcf97a3255f9b55aed5dca7781b6b37707",
+      "stored_sha256": "5e83b6afce90451d6c79fe437239566d3df8d3f34f9684195f0709b5619c858a"
+    },
+    {
+      "source": "benchmarks/compare_hrldas_native_year.py",
+      "path": "benchmarks/compare_hrldas_native_year.py.gz",
+      "source_sha256": "02a4e9e56627b0e1c904803ad42fab9d59a40607b57fc0f50bde398acb3be432",
+      "stored_sha256": "e7f310bfdb9c56dfc8ce9e3b5db83e8b60745d4a92b21d22d4a11464adad52d8"
+    },
+    {
+      "source": "tests/test_clm_spinup.py",
+      "path": "tests/test_clm_spinup.py.gz",
+      "source_sha256": "cb861d5ad91fdc20913d6c42f6b6822992bf7b9001d58d1f12c64fe1ca364ed1",
+      "stored_sha256": "324d41ca7723ba6800bfc6366ad38b78c16ba025e7d613d303236aeb175536fa"
+    },
+    {
+      "source": "tests/test_hrldas_native_year.py",
+      "path": "tests/test_hrldas_native_year.py.gz",
+      "source_sha256": "6d374bd4fcc809f4073026709fb4d909c3490532b65743d12e99253601610a42",
+      "stored_sha256": "f00a13066e8b730da112f2cf6ed70fb08a3a58c949f8c1d26c87c06a8e8e31b2"
+    },
+    {
+      "source": "control/archive_stem_assessment_full_a.py",
+      "path": "control/archive_stem_assessment_full_a.py.gz",
+      "source_sha256": "d809a84715740099dbb8afb834791f61c0e544a0accd3735fe6c4d703422e84e",
+      "stored_sha256": "256ab5f321ef470141511fac95a6cd66b2ec0d649f98ef9e9616d06322815af7"
+    }
+  ]
+}

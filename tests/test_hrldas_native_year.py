@@ -1,7 +1,7 @@
 """Synthetic calendar/integral/provenance tests, not physical annual evidence."""
 from copy import deepcopy
 from datetime import datetime,timedelta
-import hashlib
+import hashlib,json
 import sys
 from pathlib import Path
 import numpy as np
@@ -122,11 +122,16 @@ def test_carried_ledger_requires_original_checkpoint_and_cumulative_bounds(tmp_p
     with pytest.raises(ValueError):check_ledgers(t,r,path)
 
 
-def test_final_storage_is_summed_from_checkpoint_not_reported_alias(tmp_path):
+@pytest.mark.parametrize('structure',[False,True])
+def test_final_storage_is_summed_from_checkpoint_not_reported_alias(tmp_path,structure):
     t,r,_,_=year_inputs();r['batch_column']=0
     arrays={f'a{i}':np.zeros((1,1)) for i in range(16)}
     for i in (0,1,7):arrays[f'a{i}']=np.zeros((1,2,9))
     arrays['a11']=np.zeros((1,8));arrays['a13']=np.zeros((1,14))
+    if structure:
+        r['configuration']=dict(canopy_structure=dict(parameters=dict(scheme='CN_NONCROP',canopy_top_m=3.,canopy_bottom_m=.5),initial_sai=.8))
+        arrays.update(a16=np.array([[.8]]),a17=np.array([[3.,.5]]),a18=np.array([[1,0]],np.int32))
+        t['sai_m2m2']=np.full(r['steps_completed'],.8)
     arrays['a1'][0,0,0]=2.;arrays['a11'][0,6]=3.;arrays['a13'][0,7]=4.
     path=tmp_path/'final.npz'
     def save():
@@ -136,3 +141,22 @@ def test_final_storage_is_summed_from_checkpoint_not_reported_alias(tmp_path):
     assert result['extensive_storage_m_h_c_n']==[2.,0.,3.,4.]
     arrays['a11'][0,6]+=.00001;save()
     with pytest.raises(ValueError,match='storage/ledger'):check_final_checkpoint(path,t,r)
+
+
+@pytest.mark.parametrize('fault',['missing_sai','missing_height','missing_flags','shape','negative','fractional_flags','parameters','trace_alias','undeclared'])
+def test_final_storage_audit_cannot_ignore_structure_state(tmp_path,fault):
+    # Reuse the complete linked-transaction fixture without advancing physics.
+    from test_clm_spinup import fixture
+    _,_,folders,_=fixture(tmp_path,cycles=1,structure=True)
+    folder=folders[0];path=folder/'state-final.npz';r=json.loads((folder/'site/report-final.json').read_text())
+    with np.load(folder/'site/trace.npz',allow_pickle=False) as z:t=dict(z)
+    with np.load(path,allow_pickle=False) as z:arrays=dict(z)
+    if fault.startswith('missing_'):del arrays[dict(missing_sai='a16',missing_height='a17',missing_flags='a18')[fault]]
+    elif fault=='shape':arrays['a16']=arrays['a16'][:,0]
+    elif fault=='negative':arrays['a16'][0,0]=-.1
+    elif fault=='fractional_flags':arrays['a18']=arrays['a18'].astype(float)
+    elif fault=='parameters':arrays['a17'][0,0]=4.
+    elif fault=='trace_alias':arrays['a16'][0,0]+=.01
+    else:del r['configuration']['canopy_structure']
+    np.savez(path,**arrays);r['batch_checkpoint_sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
+    with pytest.raises(ValueError):check_final_checkpoint(path,t,r)

@@ -37,6 +37,13 @@ EHPC PBS157新版全CPU879项通过、PBS退出0。xuanze连续4步/2步续2步�
 修正float64测试输入后的3项回归已全过，原态380字段差0；其余完整设备目标
 仍在执行，真实站点采用/全年未完成。
 
+后续[spinup/HRLDAS评价器](docs/CLM_SPINUP_ASSESSMENT.md)已保留19数组及SAI，
+EHPC A版全CPU899项通过（813.37秒），B仅改汇总键名称并重跑69项通过，
+不将A899说成单次B899。实际设备四步检查点的存量/SAI/账目核对完成，土温
+独立解码最大差9.12e-6 K，并正确拒绝将短轨迹作为完整年。
+[Qia SAI新假设](docs/CTSM_PFT_GEOMETRY_INPUTS.md)已先固定输入并在EHPC启动
+NumPy首48步，16:28UTC快照仍为0/17520，不计完整日/年或观测通过。
+
 [官方CTSM参考准备](docs/CTSM_REFERENCE_PREPARATION.md)已在EHPC验证可移植
 编译器、XML及NetCDF跨接口精确读写；官方完整构建/动态库检查完成，实际单柱输出仍待完成。
 J年度在5498/17520发生的[HaM雪—土壤停滞](docs/CLM_J_PHASE_FAILURE.md)
