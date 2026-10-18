@@ -76,6 +76,7 @@ def _step(arrays,forcing,environment,calendar,backend,**kwargs):
     result=phenology(ps,flags,climate,calendar,parameters)
     if backend=='jax':next_site=site.at[:,0].set(result['lai'])
     else:next_site=site.copy();next_site[:,0]=result['lai']
+    if kwargs.get('canopy_structure') is not None:kwargs['structure_lai_before']=site[:,0]
     out=column(c,g,p,o,next_site,storage,roots,condensate,forcing,**kwargs)
     result['lai_before']=site[:,0]
     out.update(site=next_site,phenology=result,phenology_parameters=parameters)

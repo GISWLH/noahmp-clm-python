@@ -23,7 +23,7 @@ def irrigated_reference_state(state,data):
     return state,IrrigationInput(bool(check[0]),*np.asarray(inputs,float))
 
 
-def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None,irrigation_data=None,tile_parameters=None):
+def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,phenology=None,phenology_environment=None,irrigation_data=None,tile_parameters=None,canopy_structure=None,prescribed_sai=None):
     state=state_from_row(row[:7]);roots=state.root_frac
     cc=np.asarray(row[7],float);state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     if phenology is not None:
@@ -36,10 +36,14 @@ def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,ph
     if tile_parameters is not None:
         from noahmp_clm.physics.tile_drainage import TileDrainageParameters
         state=state.with_tile_drainage(TileDrainageParameters(*np.asarray(tile_parameters,float)))
+    if canopy_structure is not None:
+        from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters
+        ss,pp,oo=canopy_structure
+        state=state.with_vegetation_structure(CanopyStructureParameters(int(oo[0]),*map(float,pp),bool(oo[1])),sai=float(ss[0]))
     object.__setattr__(state,'root_frac',roots);site=np.asarray(row[4],float)
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),
         **dict(zip(SITE_NAMES[7:],site[7:])),deposition_rates=np.asarray(deposition,float),most_geometry=most_geometry,vic_parameters=vic_parameters,
-        phenology_environment=phenology_environment,irrigation_input=irrigation_input)
+        phenology_environment=phenology_environment,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
@@ -52,6 +56,7 @@ def reference(row,forcing,deposition,*,most_geometry=None,vic_parameters=None,ph
         soil_temperature=final.ground.temperature,soil_parameters=final.ground.params,freezing_option=final.ground.freezing_option)
     if irrigation_data is not None:
         result.update(irrigation=d['irrigation'],irrigation_state=np.array([final.irrigation_state.pending_kgm2,final.irrigation_state.remaining_seconds]))
+    if canopy_structure is not None:result.update(structure_state=np.array([final.sai]),canopy_geometry=d['canopy_geometry'])
     return result
 
 

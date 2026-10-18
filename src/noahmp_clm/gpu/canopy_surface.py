@@ -36,7 +36,7 @@ def pack_canopy_surface(snow,soil,dt,area,swdown,lwdown,exchange,*,canopy_water_
     return c,g,p,o,a,u,f,v
 
 
-def validate_surface(arrays,xp):
+def validate_surface(arrays,xp,*,plant_area=None):
     c,g,p,o,a,u,f,v=arrays;n=len(c)
     if (c.shape!=(n,5,9) or g.shape!=(n,4,3) or p.shape!=(n,7) or o.shape!=(n,2)
             or v.shape!=(n,7)):raise ValueError('Invalid surface state/parameter shapes')
@@ -54,12 +54,12 @@ def validate_surface(arrays,xp):
     validate_canopy_batch(a,u,f,supply,initial,xp)
     if (not bool(xp.all(xp.isfinite(v))) or not bool(xp.all(xp.isfinite(p))) or
         bool(xp.any((v[:,0]<=0.)|(v[:,1]<0.)|((v[:,1]==0.)&(v[:,2]!=0.))|
-            (((xp.sum(a,axis=1)==0.)|(u[:,13]==0.))&(v[:,1]>0.)))) or bool(xp.any(v[:,3:]<0.)) or
+            (((xp.sum(a if plant_area is None else plant_area,axis=1)==0.)|(u[:,13]==0.))&(v[:,1]>0.)))) or bool(xp.any(v[:,3:]<0.)) or
         bool(xp.any((p[:,4]<0.)|(p[:,4]>1.)|(p[:,5]<0.)|(p[:,5]>p[:,0])))):
         raise ValueError('Invalid surface stores, roots or soil properties')
 
 
-def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exchange_extension=None,vic=None):
+def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exchange_extension=None,vic=None,stem_area=None):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;dtype=c.dtype;zero=j.zeros((),dtype);dt=v[0];n=o[0];phase=o[1]
@@ -79,7 +79,7 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
         else:
             from .canopy_phase_energy import phase_energy_kernel_jax
             b=j.concatenate((row(1.,temp,(temp<273.15).astype(dtype),(n==0).astype(dtype),dt),root_h))
-            extra=phase_energy_kernel_jax(a,u,f,supply,j.zeros(10,dtype),condensate,b,None,n,leaf,None,None,
+            extra=phase_energy_kernel_jax(a,u,f,supply,j.zeros(10,dtype) if stem_area is None else stem_area,condensate,b,None,n,leaf,None,None,
                 tolerance=.005 if dtype==j.float32 else 1e-7,radiation=radiation,exchange_extension=exchange_extension)
             canopy=j.concatenate((extra[:195],extra[288:289],extra[293:298],extra[289:291],extra[285:286],
                 row(_sum(extra[195:205]),_sum(extra[205:215])),extra[286:288]))

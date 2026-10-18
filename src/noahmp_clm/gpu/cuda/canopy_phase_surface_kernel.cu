@@ -3,10 +3,11 @@ struct PhaseSurfaceCanopy {
     static const int output_size=741;
     const float *a,*f,*leaf,*radiation,*v,*condensate;
     const float *extension=nullptr;
+    const float *stem_area=nullptr;
     __device__ void solve(float temp,const float* u,const float* supply,const float* root_h,int n,float* out) const {
         float stem[10]={0.f},b[9]={1.f,temp,temp<273.15f?1.f:0.f,n==0?1.f:0.f,v[0]};
         for(int i=0;i<4;++i)b[5+i]=root_h[i];
-        PhaseContext context;phase_prepare(a,u,f,supply,stem,condensate,b,leaf,radiation,context);
+        PhaseContext context;phase_prepare(a,u,f,supply,stem_area?stem_area:stem,condensate,b,leaf,radiation,context);
         if(extension){context.water_velocity=extension[0];context.heat_temperature=extension[1];}
         float* full=out+441;phase_solve(context,full,100,.005f);
         float* canopy=out+58;
@@ -20,6 +21,19 @@ struct PhaseSurfaceCanopy {
         return (ca_sum(out+696,10)/v[0]+2500000.f*ca_sum(out+98,10))+out[350];
     }
 };
+
+extern "C" __global__ void run_canopy_phase_surface_stems(const float* c,const float* g,const float* p,const int* o,
+    const float* a,const float* u,const float* f,const float* input,const float* condensate,const float* stem,
+    const float* extension,const float* vic,const float* radiation,const float* leaf,const float* aging,float* out,int n) {
+    for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x){
+        float v[7];for(int i=0;i<7;++i)v[i]=input[7*row+i];v[1]=0.f;v[2]=0.f;
+        for(int i=0;i<10;++i){v[1]+=condensate[20*row+2*i];v[2]+=condensate[20*row+2*i+1];}
+        PhaseSurfaceCanopy solver{a+10*row,f+20*row,leaf,radiation+584*row,v,condensate+20*row,
+            extension?extension+2*row:nullptr,stem+10*row};
+        surface_device(c+45*row,g+12*row,p+7*row,o+2*row,a+10*row,u+23*row,f+20*row,v,
+            radiation+584*row,leaf,aging,out+741*row,solver,vic?vic+8*row:nullptr);
+    }
+}
 
 __device__ void canopy_phase_surface_device(const float* c,const float* g,const float* p,const int* o,
     const float* a,const float* u,const float* f,const float* input,const float* condensate,

@@ -100,7 +100,7 @@ def _ratio(numerator,denominator,backend):
 
 
 def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arrays=None,crop_management=None,
-          wetland_state=None,wetland_parameters=None,**kwargs):
+          wetland_state=None,wetland_parameters=None,canopy_structure=None,prescribed_sai=None,**kwargs):
     if backend=='jax':
         import jax.numpy as xp
         from .enthalpy import run_soil_thermodynamics_jax as inverse
@@ -175,7 +175,14 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
     nf=xp.where(live[:,0]>0.,xp.minimum(1.,_ratio(live[:,3]*plant_p[:,3],
         xp.maximum(live[:,0],xp.finfo(dtype).tiny),backend)),0.)
     used_site=_set(_set(site,0,lai,backend),11,nf,backend)
-    out=column(c,g,p,o,used_site,storage,roots,condensate,forcing,**kwargs)
+    structure_kwargs={};structure_management=None
+    if canopy_structure is not None:
+        if cd is not None:
+            structure_management=xp.stack((cd['harvested'],cd['phase'][:,0]==0,cd['planted']),axis=1).astype(xp.int32)
+        structure_kwargs=dict(canopy_structure=canopy_structure,structure_lai_before=site[:,0],
+            structure_management=structure_management,prescribed_sai=prescribed_sai)
+    elif prescribed_sai is not None:raise ValueError('Prescribed SAI requires retained structure')
+    out=column(c,g,p,o,used_site,storage,roots,condensate,forcing,**structure_kwargs,**kwargs)
     # Invert the actual post-physical soil enthalpy on device for both root
     # maintenance and topsoil decomposition, including frozen liquid water.
     ng=out['soil_cells'];si=xp.concatenate((ng,xp.broadcast_to(thermodynamic_parameters[:,None,:],(n,4,3))),axis=2).reshape(-1,6)
@@ -230,6 +237,14 @@ def _step(arrays,forcing,environment,calendar,nitrogen,oxygen,backend,*,crop_arr
         raise RuntimeError('Native whole-column C/N budget exceeds numerical bound')
     final_lai=_ratio(live[:,0]*plant_p[:,19],xp.maximum(site[:,1],xp.finfo(dtype).tiny),backend)
     final_site=_set(_set(site,0,final_lai,backend),11,ad['nitrogen_factor'],backend)
+    if canopy_structure is not None:
+        from .clm_structure_column import resolve_column_structure
+        final_geometry=resolve_column_structure(canopy_structure,(c,g,p,o,final_site),forcing,backend,
+            previous_lai=site[:,0],management=structure_management,prescribed_sai=prescribed_sai)
+        used_geometry=out['canopy_geometry']
+        out.update(structure_state=final_geometry['sai_after'][:,None],vegetation_structure=dict(
+            used=used_geometry,after=final_geometry,sai_before=used_geometry['sai_before'],
+            sai_used=used_geometry['sai_after'],sai_after=final_geometry['sai_after']))
     # GPP in the physical ledger remains the actual surface solve output.
     out['diagnostics'].update(exchange)
     out.update(site=final_site,plant_state=live,soil_cn_state=earth,phenology_state=next_ps,phenology_flags=next_flags,

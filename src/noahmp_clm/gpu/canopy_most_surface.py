@@ -6,7 +6,7 @@ remain on the selected device. All trials use the identical old M/H arrays.
 """
 
 
-def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,parameters=None,vic=None):
+def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,parameters=None,vic=None,stem_area=None):
     if backend=='jax':
         import jax.numpy as xp
         from .canopy_most import run_canopy_most_jax as coefficients
@@ -32,7 +32,8 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
     for count in range(1,51):
         trial=xp.concatenate((u[:,:3],xp.stack((current['heat_velocity'],current['ground_velocity'],current['leaf_velocity']),axis=1),u[:,6:]),axis=1)
         extension=xp.stack((current['water_velocity'],current['potential_temperature']),axis=1)
-        surface=solve(*arrays[:5],trial,*arrays[6:],parameters=parameters,exchange_extension=extension,vic=vic)
+        stem_options={} if stem_area is None else dict(stem_area=stem_area)
+        surface=solve(*arrays[:5],trial,*arrays[6:],parameters=parameters,exchange_extension=extension,vic=vic,**stem_options)
         # XLA lowers float32 division to reciprocal/multiply, while CuPy's
         # direct divide rounds the quotient. Keep the same two operations:
         # a one-ulp vapor difference can change the accepted MOST iteration.
