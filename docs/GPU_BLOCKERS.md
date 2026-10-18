@@ -1,5 +1,21 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1 P6：Qia首日等待超过30分钟及实际收尾（2026-10-18）
+
+EHPC PBS145在另三站各48步退出0后，Qia仍计算，整批等待超过30分钟；
+其间qstat仍确认原作业R，未因旧report指针为0步就推断计算停止。
+原驱动只提交检查点代次，0是最后可读的提交进度。按规则保留原任务并绕行：
+PBS146完成气候态14字段/域缺项核对，PBS147完成新官方123MB地表四站邻域
+读取；PBS148在同compute002只读归档原report/trace/pickle及原哈希，
+[原样快照](v1-results/material-numpy-day-preserve-b/manifest.json)不算模型终态。
+没有改源/初态/进程或重启。随后PBS145在1995.460228秒实际完成、四站均退出0，
+H/LE首日对CUDA最大偏差0.000700181%/0.000936390%，
+[实际终态](v1-results/material-numpy-day-b/manifest.json)保留；未以此豁免科学年度。
+
+xuanze当前493源12项设备目标也已全部完成，完整队列随后按原条件启动；
+[13:02:36UTC原快照](v1-results/material-full-running-b/manifest.json)已有967/1135
+真实完成节点，活动worker611527未计通过。先前“目标4项仍运行”按历史保留。
+
 ## v1 P6：K影子长等待、独立CUDA科学年绕行及NumPy回归（2026-10-18）
 
 K在10:39:43UTC从自身48步续全年，超过30分钟后仍为running/48；11:18:29
