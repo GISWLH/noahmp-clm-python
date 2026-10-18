@@ -13,6 +13,7 @@ from .physics.crop import CropState,CropParameters,CropPhase
 from .physics.irrigation import IrrigationState,IrrigationParameters
 from .physics.wetland import WetlandState,WetlandParameters
 from .physics.tile_drainage import TileDrainageParameters
+from .physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
 
 
 def clm_options():
@@ -52,8 +53,22 @@ class CLMColumnState:
     wetland_state: WetlandState | None=None
     wetland_parameters: WetlandParameters | None=None
     tile_drainage_parameters: TileDrainageParameters | None=None
+    sai: float=0.
+    canopy_structure_parameters: CanopyStructureParameters | None=None
 
     def __post_init__(self):
+        structure=self.canopy_structure_parameters
+        if not np.isfinite(self.sai) or self.sai<0.:
+            raise ValueError('Invalid total stem area index')
+        if structure is not None:
+            if not isinstance(structure,CanopyStructureParameters) or self.canopy_condensate is None:
+                raise ValueError('Explicit canopy structure requires parameters and a layered canopy')
+            if structure.scheme==StemAreaScheme.ANNUAL_C3_CROP and self.crop_state is None:
+                raise ValueError('Annual crop structure requires the actual crop state')
+            if self.crop_state is not None and structure.scheme in (StemAreaScheme.CN_NONCROP,StemAreaScheme.CN_GENERIC_CROP):
+                raise ValueError('Annual crop uses annual-crop or prescribed structure')
+        elif self.sai!=0.:
+            raise ValueError('Nonzero SAI requires explicit canopy geometry parameters')
         if self.options.OptDynamicVeg==5:
             if (not isinstance(self.phenology_state,PhenologyState)
                 or not isinstance(self.phenology_parameters,PhenologyParameters)
@@ -184,6 +199,23 @@ class CLMColumnState:
             if len(self.canopy_condensate.mass)!=layers:raise ValueError('Explicit conservative canopy remapping required')
             return self
         return replace(self,canopy_condensate=CanopyCondensate(np.full(layers,self.canopy_water_kgm2/layers),np.full(layers,self.canopy_enthalpy_jm2/layers)))
+
+    def with_vegetation_structure(self,parameters,*,sai=None):
+        """Enable explicit total/exposed leaf+stem geometry, retaining all M/H.
+
+        Prescribed SAI requires its actual initial input. Dynamic schemes
+        initialize at their reference floor/annual-crop ratio unless supplied.
+        Height and vegetation form are explicit parameters, not inferred from
+        flux scores. The legacy state and its70-float ABI are unchanged.
+        """
+        if not isinstance(parameters,CanopyStructureParameters):raise TypeError('Expected canopy structure parameters')
+        if sai is None:
+            if parameters.scheme==StemAreaScheme.PRESCRIBED:raise ValueError('Prescribed structure requires explicit initial SAI')
+            if parameters.scheme==StemAreaScheme.CN_NONCROP:sai=.5
+            elif parameters.scheme==StemAreaScheme.CN_GENERIC_CROP:sai=.05
+            else:sai=.2*self.lai
+        layered=self.with_layered_canopy() if self.canopy_condensate is None else self
+        return replace(layered,sai=sai,canopy_structure_parameters=parameters)
 
     def with_crop(self,parameters=None,initial=None):
         """Attach an annual crop to explicit BGC pools, retaining canopy M/H.

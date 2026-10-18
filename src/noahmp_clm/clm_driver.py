@@ -22,7 +22,7 @@ from .physics.surface_drag import exchange_velocity
 def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
                     diffuse_fraction=.5, leaf_dimension=.04, canopy_layers=10,
                     leaf_parameters=None, nitrogen_factor=1., most_geometry=None, vic_parameters=None, phenology_environment=None,
-                    nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None):
+                    nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None,prescribed_sai=None):
     """Advance one NumPy CLM column, dispatching by its state representation.
 
     Solar partition, CO2 and leaf dimension are explicit site assumptions until
@@ -40,7 +40,8 @@ def step_clm_column(state, forcing, *, co2_ppm=420., cosine_zenith=.5,
             diffuse_fraction=diffuse_fraction,leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,
             leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
-            crop_management=crop_management,irrigation_input=irrigation_input)
+            crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai)
+    if prescribed_sai is not None:raise NotImplementedError('Stem geometry requires an extensive CLMColumnState')
     if state.options.OptWetlandModel!=0:
         raise NotImplementedError('Wetland requires an extensive CLMColumnState with BGC')
     if state.options.OptTileDrainage!=0:

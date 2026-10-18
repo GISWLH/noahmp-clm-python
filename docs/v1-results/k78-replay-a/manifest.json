@@ -1,0 +1,102 @@
+{
+  "scope": "Independent CUDA/JAX32 one-step replay of original K78; original budgets passed but original1e-6 thermal residual comparison failed. Not a fixed or resumed annual run.",
+  "archive_sha256": "455bdd7d3dd7eb97341bce0d07be333820943bd112c14e245246efd40fdb0d4d",
+  "artifacts": [
+    {
+      "source": "k78-failure-a/SOURCE_SHA256.json",
+      "path": "k78-failure-a/SOURCE_SHA256.json.gz",
+      "source_sha256": "9e4512a9d587e914275fd9b8266047d321c39eed4996afc6f5b1295bee0cb6d0",
+      "stored_sha256": "1d574fbd8962e166f814449b3b942b96ffbb77a7aacbf1b902c6461d9670860b"
+    },
+    {
+      "source": "k78-failure-a/binding.json",
+      "path": "k78-failure-a/binding.json.gz",
+      "source_sha256": "c9d879a4a8ac9d751bbbeff6a9ff5b72e8ac9c6d40ebda774e96d54e32b292fa",
+      "stored_sha256": "e04801d1e14640379692c3ea779d1f210d2a8044fb3efd8fdbdd85d8acc65fbb"
+    },
+    {
+      "source": "k78-failure-a/comparison.json",
+      "path": "k78-failure-a/comparison.json.gz",
+      "source_sha256": "40462ed424bfb1d21c0b905d258d86bd01355b16bddc1264697bfebe416bd6b8",
+      "stored_sha256": "1ab763ec700ed4e1007ee043ea2e2df232fd1ed5801ffbf895ad6005adce6b6f"
+    },
+    {
+      "source": "k78-failure-a/cuda32/output.npz",
+      "path": "k78-failure-a/cuda32/output.npz",
+      "source_sha256": "af20950b90dba51b7867b4cd70c6358e525c7507d0895fb2cfa49188d3603c29",
+      "stored_sha256": "af20950b90dba51b7867b4cd70c6358e525c7507d0895fb2cfa49188d3603c29"
+    },
+    {
+      "source": "k78-failure-a/cuda32/receipt.json",
+      "path": "k78-failure-a/cuda32/receipt.json.gz",
+      "source_sha256": "cdc3048d212d0b56ede2c4d21f8b49dffbca83f57d4e3047b347497098daaba8",
+      "stored_sha256": "ccd3a8f139b68f8dec006ba43ed3f3314b0dd8f59fd3028122da8a25715abf13"
+    },
+    {
+      "source": "k78-failure-a/cuda32-replay.log",
+      "path": "k78-failure-a/cuda32-replay.log.gz",
+      "source_sha256": "990c8d80062967bcfebbdd3ba0e2d3d58ff2ecd260db48f9a1f8cab036712ef7",
+      "stored_sha256": "86de5f0aa86480de0457ef3219164f44b6d31b279b04ee3dfef27de556b79ca8"
+    },
+    {
+      "source": "k78-failure-a/input.npz",
+      "path": "k78-failure-a/input.npz",
+      "source_sha256": "957049c10718278276967f5749ea392989f2fb99011d238a09046bcb8fe49a29",
+      "stored_sha256": "957049c10718278276967f5749ea392989f2fb99011d238a09046bcb8fe49a29"
+    },
+    {
+      "source": "k78-failure-a/jax32/output.npz",
+      "path": "k78-failure-a/jax32/output.npz",
+      "source_sha256": "0ca112a5ccc51825aa2404ac594d10768b87088dc63322fe467b8a4840e7205f",
+      "stored_sha256": "0ca112a5ccc51825aa2404ac594d10768b87088dc63322fe467b8a4840e7205f"
+    },
+    {
+      "source": "k78-failure-a/jax32/receipt.json",
+      "path": "k78-failure-a/jax32/receipt.json.gz",
+      "source_sha256": "2b537988b01d097978c808b92d53c8b7e492a77898228c52177b6da70c905f37",
+      "stored_sha256": "391e4dd820dddc1128fa87aa2b460754edda07a50fb2e0a3872dc6092f1ea737"
+    },
+    {
+      "source": "k78-failure-a/jax32-replay.log",
+      "path": "k78-failure-a/jax32-replay.log.gz",
+      "source_sha256": "1ace795495dbd90bf36be6a391dc74c45428ae1e4da6672eaf3a5225cb041d86",
+      "stored_sha256": "bb59e62e41beff204a36298988762694d9a7103e25a27b334fff0ae2cb931a5b"
+    },
+    {
+      "source": "k78-failure-a/launch.json",
+      "path": "k78-failure-a/launch.json.gz",
+      "source_sha256": "b5cd7d68d92793921622973c408ce01b3109ed0f5dfdd0aa918eb7d847ba7fce",
+      "stored_sha256": "24e9e7ee9b7596c8651413d0fcfccbd01ed9c986a27e104827d53f2ccc01eac6"
+    },
+    {
+      "source": "control/export_k78_failure_a.py",
+      "path": "control/export_k78_failure_a.py.gz",
+      "source_sha256": "afded9f36e646f4af38fee63909eec1bb4db22e506432df2e2ae65ec4942cee3",
+      "stored_sha256": "c27a971594bae78e84e6ede8a95aea8f588912b25ee0bf85b9be84bd3b8f5626"
+    },
+    {
+      "source": "control/replay_k78_backend_a.py",
+      "path": "control/replay_k78_backend_a.py.gz",
+      "source_sha256": "2d3e469b39a3671b16dc8dae72bf9e38678c3fcf390725807e13b60e4643736b",
+      "stored_sha256": "b2a841eee244be74f9f4af7bd017e2077ff8563419c011c17548c632da36ab9c"
+    },
+    {
+      "source": "control/launch_k78_replay_a.py",
+      "path": "control/launch_k78_replay_a.py.gz",
+      "source_sha256": "c361b4037be94da0f963625312609d0b002c1594e7eae21d74bdb0b05123ed89",
+      "stored_sha256": "4f9765a9d3c5fc047b43d2f957847eed93d17f59f6cd320fb51c49a7122f5b4b"
+    },
+    {
+      "source": "control/compare_k78_replay_a.py",
+      "path": "control/compare_k78_replay_a.py.gz",
+      "source_sha256": "74f461aa36f619c3c418f78f3a8396222164a4e51ebd0b4abf203ab576c4e33e",
+      "stored_sha256": "812f9c5eaccda6574f77556d780b7095a8735f30fb2d72b3ac7233dfe7f7d75f"
+    },
+    {
+      "source": "control/archive_k78_replay_a.py",
+      "path": "control/archive_k78_replay_a.py.gz",
+      "source_sha256": "950862a9d2850d19aaa13a3a92081652f39a93e18dbaff27709fa2c9f297cad6",
+      "stored_sha256": "287471b4a1fc094b9a62ebfe51f6053fa98d0b918cfd85ad93349c3d6fc6b442"
+    }
+  ]
+}

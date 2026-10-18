@@ -2,6 +2,12 @@
 
 ## v1.0 当前任务
 
+最新[SAI完整柱开发](CLM_STEM_AREA_GAP.md)在EHPC完成NumPy全CPU848项，
+xuanze原生独立组件4项/800工况矩阵同精度差0；原生完整柱和站点几何采用仍待
+完成。不会按通量评分选择SAI、替换原冷初态或将组件门当观测验收。
+原K已[failed/78](CLM_K78_PRECISION.md)，同精度热残差差1.52588e-5 J/m²；
+独立CUDA年度L继续。以下“原K影子运行”为旧冻结快照，不代表当前仍运行。
+
 最新[NumPy物质事件及冠层差分修订](CLM_NUMPY_MATERIAL_EVENTS.md)保留原四站
 failed年及全部候选失败。初版492源CPU808有1回归、设备集成也失败；后续
 PBS142原四步/旧用例完成，当前493源CPU808/25例NumPy参考矩阵及xuanze相变

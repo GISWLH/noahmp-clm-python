@@ -20,12 +20,14 @@ from .physics.ground_evap import ground_resistance
 from .physics.stress import soil_water_stress
 from .physics.runoff import route_runoff
 from .physics.canopy_interception import intercept_precipitation
+from .physics.vegetation_structure import step_stem_area,exposed_canopy_geometry
 
 
 def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffuse_fraction=.5,
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
                             deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
-                            nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None):
+                            nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None,
+                            prescribed_sai=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     if state.bgc_state is not None:
         from .clm_bgc_driver import step_clm_bgc_column
@@ -33,7 +35,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,
             deposition_rates=deposition_rates,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
-            crop_management=crop_management,irrigation_input=irrigation_input)
+            crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai)
     if crop_management is not None:raise ValueError('Crop management requires an annual crop BGC column')
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
@@ -60,7 +62,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if (not np.all(np.isfinite(list(vars(f).values()))) or f.dt<=0. or f.prcp<0. or f.wind<0.
             or not isinstance(canopy_layers,int) or canopy_layers<1 or leaf_dimension<=0.):
         raise ValueError('Invalid CLM forcing or canopy discretization')
-    phenology=None
+    phenology=None;previous_lai=state.lai
     if opt.OptDynamicVeg==5:
         from .physics.phenology import PhenologyEnvironment,step_phenology
         if not isinstance(phenology_environment,PhenologyEnvironment):
@@ -72,6 +74,16 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         phenology.update(lai_before=old_lai)
     elif phenology_environment is not None:
         raise ValueError('Phenology environment requires OptDynamicVeg=5')
+    structure=None;geometry=None
+    if state.canopy_structure_parameters is not None:
+        sai,structure=step_stem_area(state.sai,previous_lai,state.lai,f.dt,
+            state.canopy_structure_parameters,prescribed_sai=prescribed_sai)
+        state=replace(state,sai=sai)
+        # Geometry is frozen from beginning-of-step snow depth, before the
+        # interception/precipitation split. Total LAI/SAI remain state variables.
+        geometry=exposed_canopy_geometry(state.lai,state.sai,float(state.snow.thickness.sum()),
+            state.canopy_structure_parameters)
+    elif prescribed_sai is not None:raise ValueError('Prescribed SAI requires explicit canopy structure')
     irrigation=None;irrigation_state=state.irrigation_state;irrigation_mass=irrigation_heat=0.
     if opt.OptIrrigation==1:
         from .physics.irrigation import IrrigationInput,step_irrigation
@@ -94,8 +106,12 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     snow,ground=state.snow,state.ground;canopy=state.canopy_water_kgm2;canopy_heat=state.canopy_enthalpy_jm2
     condensate=state.canopy_condensate
     if condensate is not None and len(condensate.mass)!=canopy_layers:raise ValueError('Canopy state and leaf discretization disagree')
-    area=np.full(canopy_layers,state.lai/canopy_layers)
-    capacity=.5*state.fveg*state.lai
+    exposed_lai=state.lai if geometry is None else geometry['exposed_lai']
+    exposed_sai=0. if geometry is None else geometry['exposed_sai']
+    plant_area=exposed_lai+exposed_sai
+    area=np.full(canopy_layers,exposed_lai/canopy_layers)
+    stems=np.full(canopy_layers,exposed_sai/canopy_layers)
+    capacity=.5*state.fveg*plant_area
     runoff=runoff_heat=0.
     def route_water(pack,earth,mass,heat):
         if mass==0.: return pack,earth,0.,0.
@@ -113,7 +129,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             pack=add_snowfall(pack,ice,temperature,float(density),float(radius))
         return route_water(pack,earth,flow['ground_liquid_kgm2'],flow['ground_liquid_enthalpy_jm2'])
     if condensate is not None:
-        condensate,interception=intercept_precipitation(condensate,rain,snowfall,f.tair,f.dt/2.,area,vegetated_fraction=state.fveg,wind=f.wind)
+        condensate,interception=intercept_precipitation(condensate,rain,snowfall,f.tair,f.dt/2.,area,stem_area=stems,vegetated_fraction=state.fveg,wind=f.wind)
         snow,ground,out,oh=route_canopy_outlets(snow,ground,interception);runoff+=out;runoff_heat+=oh
         canopy=float(condensate.mass.sum());canopy_heat=float(condensate.enthalpy.sum())
     elif canopy>capacity:
@@ -150,11 +166,11 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     z0=np.clip(state.z0m,1e-5,5.);ustar=.4*max(f.wind,.3)/np.log(10./z0)
     leaf_velocity=.01*np.sqrt(ustar/leaf_dimension)
     coefficient=.4/.13*(z0*ustar/1.5e-5)**(-.45)
-    ground_velocity=(coefficient*np.exp(-state.lai)+.004*(1.-np.exp(-state.lai)))*ustar
+    ground_velocity=(coefficient*np.exp(-plant_area)+.004*(1.-np.exp(-plant_area)))*ustar
     exchange=CanopyExchange(f.tair,f.qair,f.ps,velocity,ground_velocity,leaf_velocity,float(ground.temperature[0]),0.,
         co2_ppm=co2_ppm,ground_resistance=ground_resistance(view,opt.OptGroundResistanceEvap,snow_cover=bool(len(snow.mass))))
     wet=min(1.,(canopy/capacity)**(2./3.)) if capacity>0. else 0.
-    storage_args=(dict(canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat) if condensate is None else dict(canopy_condensate=condensate))
+    storage_args=(dict(canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat) if condensate is None else dict(canopy_condensate=condensate,stem_area=stems))
     def solve_surface(boundary):
         return surface_step(snow,ground,f.dt,area,f.swdown,f.lwdown,
             boundary,**storage_args,root_weights=state.root_frac,
@@ -166,12 +182,12 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     else:
         from .physics.canopy_most import solve_surface_most
         surface_result=solve_surface_most(solve_surface,exchange,f.wind,most_geometry,
-            leaf_dimension=leaf_dimension,plant_area=state.lai,time_step=f.dt)
+            leaf_dimension=leaf_dimension,plant_area=plant_area,time_step=f.dt)
     snow,ground,canopy,d=surface_result
     canopy_heat=d['canopy_enthalpy_after_jm2'];runoff+=d['runoff_kgm2'];runoff_heat+=d['runoff_enthalpy_jm2']
     impurity_out=d['impurity_output_kgm2']+pre_impurity_out
     if condensate is not None:
-        condensate,post=intercept_precipitation(d['canopy_condensate'],0.,0.,f.tair,f.dt/2.,area,vegetated_fraction=state.fveg,wind=f.wind)
+        condensate,post=intercept_precipitation(d['canopy_condensate'],0.,0.,f.tair,f.dt/2.,area,stem_area=stems,vegetated_fraction=state.fveg,wind=f.wind)
         snow,ground,out,oh=route_canopy_outlets(snow,ground,post);runoff+=out;runoff_heat+=oh
         canopy=float(condensate.mass.sum());canopy_heat=float(condensate.enthalpy.sum())
         snow,flow=drain_liquid(snow,return_ledger=True)
@@ -221,6 +237,9 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         energy_residual_jm2=final.enthalpy_jm2-state.enthalpy_jm2-precipitation_heat-irrigation_heat-d['atmospheric_energy_jm2']+d['advected_enthalpy_jm2']+runoff_heat,
         impurity_output_kgm2=impurity_out,canopy_water_after_kgm2=canopy,canopy_enthalpy_after_jm2=canopy_heat)
     if phenology is not None:d['phenology']=phenology
+    if geometry is not None:
+        d['canopy_geometry']=geometry
+        d['vegetation_structure']=structure
     if irrigation is not None:
         d.update(irrigation=irrigation,irrigation_mm=irrigation_mass,irrigation_enthalpy_jm2=irrigation_heat)
     if tile is not None:

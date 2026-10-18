@@ -1,0 +1,66 @@
+{
+  "scope": "Corrected native SAI component800 rows per case,4 nodes; strict1e-6 sameprecision preserved, full native column not synchronized.",
+  "archive_sha256": "20a752237e30615d48e6bc2ed8814e3abdb2bfd37e6c7558dd3fe984aaf785da",
+  "artifacts": [
+    {
+      "source": "target-a/expected.json",
+      "path": "target-a/expected.json.gz",
+      "source_sha256": "cd397e7bc6dd3edb7087e2b6677ae427decdf0a9ed04c72d8e75e5c1202614df",
+      "stored_sha256": "450ea3a802d4d68aa4e843c59ddee82ee9400bbf70938026d913bce903b039a8"
+    },
+    {
+      "source": "target-a/launch.json",
+      "path": "target-a/launch.json.gz",
+      "source_sha256": "7e7ee8bd2527332fa40ffa524bcd31946b84d43dfeab66a9fe18d2deff024801",
+      "stored_sha256": "adeedf465e3f75acfef06345834dc6da139b782ec12b2a07635d28dfa0afecb5"
+    },
+    {
+      "source": "target-a/receipt.json",
+      "path": "target-a/receipt.json.gz",
+      "source_sha256": "0d2505e8221d88db976330d377de0dbaa31d70af7aa7f7aa82fa285d362c4b22",
+      "stored_sha256": "07b0d30ea763f6a86f566ed3482ebc46d8ca4e47d537ec0c2acff233a5e79838"
+    },
+    {
+      "source": "target-a/targets.log",
+      "path": "target-a/targets.log.gz",
+      "source_sha256": "c5114d84fe59ce6380f0fdb065e76fae9ba678306eeff0eda4f043f9b8d81837",
+      "stored_sha256": "fca74f5051528602422dbafb7259898bd595e91a9d6b08138d470d3a2ac8ff02"
+    },
+    {
+      "source": "target-a/targets.xml",
+      "path": "target-a/targets.xml.gz",
+      "source_sha256": "f23ee2edf3c61be58fb9c180abe1f21b5c2988b047c56e87fd9c3938eabb171e",
+      "stored_sha256": "2b26212e71a7fa603a5bc1a446e9ec392aec46ea6d670f18f8c5c5c74914d245"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "c99d151cb96e6872c00de8eb91f8754e1e674e187fc8db6a1b020bbf02c15cea",
+      "stored_sha256": "bfabd77f8edd9bd99907e185dc96ebce9c53ef453031a31796cc5c6f4362c83b"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/vegetation_structure.py",
+      "path": "src/noahmp_clm/gpu/vegetation_structure.py.gz",
+      "source_sha256": "67bd2fbe24f76feba05beaed93e3463d5223ba67530cc3f13d273e8686db7336",
+      "stored_sha256": "5388f27b427e0f856fbce88ad0620906d9ea4c8d2f9e850befcd4d0e60d414d8"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/vegetation_structure.py",
+      "path": "src/noahmp_clm/gpu/cuda/vegetation_structure.py.gz",
+      "source_sha256": "9457726d0e958b9cbbdbca029d59cb7606877ff2447457ede074bc285a073a3d",
+      "stored_sha256": "a666b63309d92e4d5a0a44fdb8b744f75df75fb2fa7cb052c2a6424329790e91"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/vegetation_structure_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/vegetation_structure_kernel.cu.gz",
+      "source_sha256": "bf761e609b480d34702f2b647d2adcee450258914801820b909991c62cb4dab2",
+      "stored_sha256": "5157b9bece8bd2641caedc5246ec0b408f85da255d82232f22a30cc6077b4027"
+    },
+    {
+      "source": "tests/test_gpu_vegetation_structure.py",
+      "path": "tests/test_gpu_vegetation_structure.py.gz",
+      "source_sha256": "26438c1c19e2a2d03aab8978fcefcab33329a0eabdc1a84feb9bc77eb0a442fa",
+      "stored_sha256": "79625f144b916470cfce361899a43612566a36b9b4034eb8975394e3d087af38"
+    }
+  ]
+}

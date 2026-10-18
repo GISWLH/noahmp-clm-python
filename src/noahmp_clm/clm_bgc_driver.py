@@ -13,6 +13,7 @@ from .physics.plant_cn import (turnover_plant,plant_lai,leaf_nitrogen_factor,pla
 from .physics.decomposition import step_decomposition
 from .physics.phenology import PhenologyEnvironment,PhenologyPhase,step_phenology
 from .physics.crop import CropManagement,CropPhase,step_crop
+from .physics.vegetation_structure import StemAreaScheme,step_stem_area
 
 
 def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_deposition_gn_m2=0.,
@@ -66,11 +67,25 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
     litter_c=fall['litter_carbon_gc_m2'];litter_n=fall['litter_nitrogen_gn_m2']
     if cd is not None:
         litter_c=litter_c+cd['litter_carbon_gc_m2'];litter_n=litter_n+cd['litter_nitrogen_gn_m2']
+    structure_parameters=state.canopy_structure_parameters
+    structure_options={};structure_used=None
+    if structure_parameters is not None:
+        if structure_parameters.scheme!=StemAreaScheme.PRESCRIBED:
+            if physical_options.get('prescribed_sai') is not None:
+                raise ValueError('Prescribed SAI cannot bypass dynamic C/N structure')
+            flags={}
+            if structure_parameters.scheme==StemAreaScheme.ANNUAL_C3_CROP:
+                flags=dict(harvested=bool(cd['harvested']),fallow=crop.phase==CropPhase.FALLOW,
+                    newly_planted=bool(cd['planted']))
+            sai_used,structure_used=step_stem_area(state.sai,state.lai,lai,f.dt,structure_parameters,**flags)
+        else:sai_used=state.sai
+        structure_options=dict(sai=sai_used,
+            canopy_structure_parameters=replace(structure_parameters,scheme=StemAreaScheme.PRESCRIBED))
     # This temporary physical state has no unadvanced seasonal or C/N state.
     # The outer step retains and returns both; M/H is copied without loss.
     physical=replace(state,bgc_state=None,bgc_parameters=None,phenology_state=None,phenology_parameters=None,
         crop_state=None,crop_parameters=None,wetland_state=None,wetland_parameters=None,
-        options=replace(state.options,OptDynamicVeg=4,OptCropModel=0,OptWetlandModel=0),lai=lai)
+        options=replace(state.options,OptDynamicVeg=4,OptCropModel=0,OptWetlandModel=0),lai=lai,**structure_options)
     next_physical,d=step_clm_enthalpy_column(physical,f,nitrogen_factor=nf,**physical_options)
     environment=soil_environment(next_physical.ground,state.root_frac,p)
     methane=state.wetland_state;wetland_environment=wd=None;ch4_emission=0.
@@ -104,14 +119,27 @@ def step_clm_bgc_column(state,forcing,*,phenology_environment=None,nitrogen_depo
     cb=128.*eps*max(new_c+state.carbon_gc_m2+exchange['gpp_gc_m2']+exchange['ecosystem_respiration_gc_m2']+ch4_emission+seed_c+export_c,1.)
     nb=128.*eps*max(new_n+state.nitrogen_gn_m2+nitrogen_deposition_gn_m2+seed_n+export_n,1.)
     if abs(cr)>cb or abs(nr)>nb:raise RuntimeError('Whole-column C/N budget exceeds numerical bound')
+    final_structure={};structure_after=None
+    if structure_parameters is not None:
+        final_sai=next_physical.sai
+        if structure_parameters.scheme!=StemAreaScheme.PRESCRIBED:
+            # Re-evaluate from the SAME old state with funded end-of-step LAI;
+            # do not apply the monthly decay twice. The current physical solve
+            # used the post-turnover geometry, just like its displayed LAI.
+            final_sai,structure_after=step_stem_area(state.sai,state.lai,plant_lai(new.plant,state.fveg,p.plant),
+                f.dt,structure_parameters,**flags)
+        final_structure=dict(sai=final_sai,canopy_structure_parameters=structure_parameters)
     final=replace(next_physical,options=state.options,phenology_state=season,phenology_parameters=state.phenology_parameters,
         bgc_state=new,bgc_parameters=p,crop_state=crop,crop_parameters=state.crop_parameters,
-        wetland_state=methane,wetland_parameters=state.wetland_parameters)
+        wetland_state=methane,wetland_parameters=state.wetland_parameters,**final_structure)
     d.update(exchange)
     d['biogeochemistry']=dict(turnover=fall,allocation=ad,decomposition=sd,environment=environment,
         lai_before=state.lai,lai_used=lai,lai_after=final.lai,target_lai=target_lai,nitrogen_factor_used=nf,
         nitrogen_factor_after=leaf_nitrogen_factor(plant,p.plant),carbon_residual_gc_m2=cr,nitrogen_residual_gn_m2=nr,
         carbon_bound_gc_m2=cb,nitrogen_bound_gn_m2=nb,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2)
+    if structure_parameters is not None:
+        d['vegetation_structure']=dict(used=structure_used,after=structure_after,sai_before=state.sai,
+            sai_used=next_physical.sai,sai_after=final.sai,scheme=int(structure_parameters.scheme))
     if pd is not None:d['phenology']=dict(pd,lai_before=state.lai,lai_used=lai,lai_after=final.lai)
     if cd is not None:d['crop']=cd
     if wd is not None:
