@@ -9,7 +9,8 @@ from noahmp_clm.gpu.canopy_phase_energy import pack_canopy_phase,run_canopy_phas
 from noahmp_clm.physics.canopy_phase_energy import solve_canopy_phase_energy
 
 
-def reference(row,**solver_controls):
+def reference(row,*,exchange_extension=None,**solver_controls):
+    from dataclasses import replace
     from noahmp_clm.physics.canopy_energy import CanopyExchange
     from noahmp_clm.physics.canopy_interception import CanopyCondensate
     from noahmp_clm.physics.soil_uptake import SoilWaterSupply
@@ -26,7 +27,11 @@ def reference(row,**solver_controls):
         nitrogen_factor=f[:,0],water_stress=f[:,1],fixed_ground_temperature=b[1] if b[0]>0. else None,
         ground_is_ice=bool(b[2]),ground_shares_soil=bool(b[3]),snowpack=pack,
         leaf_parameters=LeafParameters(*pack_leaf_parameters(dtype=dtype).astype(float)))
-    return solve_canopy_phase_energy(a,u[11],u[12],CanopyExchange(*u[:11]),CanopyCondensate(c[:,0],c[:,1]),b[4],**kw,**solver_controls)
+    exchange=CanopyExchange(*u[:11])
+    if exchange_extension is not None:
+        exchange=replace(exchange,atmosphere_water_velocity=float(exchange_extension[0]),
+            potential_temperature=float(exchange_extension[1]))
+    return solve_canopy_phase_energy(a,u[11],u[12],exchange,CanopyCondensate(c[:,0],c[:,1]),b[4],**kw,**solver_controls)
 
 
 def batch(dtype):
@@ -105,3 +110,35 @@ def test_phase_cuda_same_precision():
             except AssertionError as error:failures.append((name,str(error)))
     compare(cu,ja);print('phase same precision',maximum,flush=True)
     assert not failures,failures
+
+
+@pytest.mark.parametrize('fixture',['qia_479_phase_jacobian.npz','phase_edge_float64_stencil.npz'],ids=['Qia479-supply','existing-phase-edge'])
+def test_saved_float64_jacobian_closes_original_phase_equations(fixture):
+    jax=pytest.importorskip('jax')
+    if not jax.config.x64_enabled:pytest.skip('JAX x64 required')
+    import jax.numpy as j
+    from noahmp_clm.gpu.canopy_phase_energy import phase_energy_kernel_jax,unpack_phase
+    from noahmp_clm.gpu.snicar import _jax_tables
+    with np.load(Path(__file__).parent/'fixtures'/fixture,allow_pickle=False) as saved:
+        arrays=tuple(saved['a'+str(k)] for k in range(9));extension=saved['extension'];parameters=saved['leaf_parameters']
+    expected=reference(arrays,exchange_extension=extension,tolerance=1e-7,max_iterations=80)
+    ice,impurity=_jax_tables('float64');p=j.asarray(parameters);ext=j.asarray(extension)
+    fn=jax.jit(lambda *x:phase_energy_kernel_jax(*x,p,ice,impurity,
+        exchange_extension=ext,tolerance=1e-7,max_iterations=80))
+    result=host(unpack_phase(np.asarray(fn(*map(j.asarray,arrays)))[None,:]))
+    assert result['converged'][0] and result['max_solver_residual'][0]<=1e-7
+    assert np.max(abs(expected['solver_residual']))<=1e-7
+    maximum={}
+    for key in ('leaf_temperature','ground_temperature','canopy_temperature','h','le','gpp','ground_heat'):
+        actual=result[key][0];target=expected[key];maximum[key]=float(np.max(abs(actual-target)))
+        if 'temperature' in key:np.testing.assert_allclose(actual,target,rtol=0.,atol=.05)
+        else:assert_science_close(actual,target,relative=.1,zero_floor=.1 if key=='gpp' else 10.,absolute=.01 if key=='gpp' else 1.)
+    mass=arrays[5][:,0];heat=arrays[5][:,1];dt=arrays[6][4]
+    water=result['mass'][0]-mass+dt*result['wet_evaporation'][0]
+    energy=result['enthalpy'][0]-heat+result['vapor_enthalpy'][0]-(result['thermal_enthalpy'][0]-heat)
+    magnitude=abs(result['enthalpy'][0])+abs(heat)+abs(result['vapor_enthalpy'][0])+abs(result['thermal_enthalpy'][0])
+    assert np.all(abs(water)<=64*np.finfo(float).eps*np.maximum(mass,1.)+1e-12)
+    assert np.all(abs(energy)<=64*np.finfo(float).eps*np.maximum(magnitude,1.)+1e-6)
+    print('saved float64 phase',fixture,json.dumps(dict(iterations=result['iterations'].tolist(),
+        maximum_absolute_difference=maximum,max_solver_residual=result['max_solver_residual'].tolist(),
+        water_residual_kgm2=float(abs(water).max()),parcel_heat_residual_jm2=float(abs(energy).max()))),flush=True)

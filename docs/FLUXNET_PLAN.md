@@ -2,6 +2,22 @@
 
 ## v1.0 当前任务
 
+最新[NumPy物质事件及冠层差分修订](CLM_NUMPY_MATERIAL_EVENTS.md)保留原四站
+failed年及全部候选失败。初版492源CPU808有1回归、设备集成也失败；后续
+PBS142原四步/旧用例完成，当前493源CPU808/25例NumPy参考矩阵及xuanze相变
+8项已完成，集成4项仍验证。PBS145已在完整CPU真实成功后从锁定原冷初态跑
+四站48步，对照不可变K48，
+不复用失败状态/观测评分选择测高。历史489源1129项不抵充该新源覆盖。
+
+另已在xuanze GPU0独立冷启动L科学CUDA轨迹：
+[自身首48步](v1-results/chord-l-day-a/manifest.json)与K主轨迹及冷0/48状态/账
+全部逐位一致，原NumPy首日和独立MHCN界通过后才续自身全年。L没有JAX影子，
+原K在GPU1保留独立JAX32影子验证；两者都未完成全年。
+原测高文献假设和敏感性/校准/留出协议保持，不据短期评分更改初态或参数。
+[12:23:35UTC不可变代次快照](v1-results/material-live-a/manifest.json)保留实际
+报告/状态/轨迹及哈希：K仍running/48、L仍running/1056，各请求17520，未
+把该前缀称作完整年或科学通过。
+
 [当前完整回归调度](PYTEST_WORKER_LIFECYCLE.md)使用独立工作进程保留所有
 pytest阶段/设备同步/实际退出。J5498修订后新489源在EHPC PBS126实际完成
 CPU804项、0失败/错误/跳过，xuanze GPU325项随后完整完成，规范并集1129。

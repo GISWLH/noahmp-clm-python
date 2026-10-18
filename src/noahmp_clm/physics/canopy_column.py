@@ -126,12 +126,14 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     # clipped at freezing and post-melt heat remains available to the soil.
     initial=float(snow.temperature[0] if ns else soil.temperature[0])
     center=float(np.clip(initial,200.,350.));fc,details=evaluate(center)
+    left=right=center;fl=fr=fc;left_details=right_details=details
+    root_residual=fc;material_event_resolved=False
+    resolution=2.*np.finfo(float).eps*TF
     if abs(fc)>temperature_tolerance:
-        left=right=center;fl=fr=fc
         width=2.
         for _ in range(8):
-            if fl<0. and left>200.: left=max(200.,center-width);fl,unused=evaluate(left)
-            if fr>0. and right<350.: right=min(350.,center+width);fr,unused=evaluate(right)
+            if fl<0. and left>200.: left=max(200.,center-width);fl,left_details=evaluate(left)
+            if fr>0. and right<350.: right=min(350.,center+width);fr,right_details=evaluate(right)
             if fl>=0. and fr<=0.: break
             width*=2.
         else: raise RuntimeError('Surface temperature is not bracketed in 200--350 K')
@@ -150,21 +152,36 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
                     event_value,event_details=evaluate(event_trial)
                     if len(event_details['snow'].mass)==ns:
                         if event_value<=0.:
-                            right,fr=event_trial,event_value
+                            right,fr,right_details=event_trial,event_value,event_details
                             break
                         event_left=event_trial
                     else:event_right=event_trial
         branch_evaluations=evaluations-branch_start
         for iteration in range(60):
-            trial=(left*fr-right*fl)/(fr-fl) if fr!=fl else .5*(left+right)
+            # An exhausted snow cell changes the thermal surface. Bisect
+            # that material bracket, and avoid slow false-position progress
+            # at a latent plateau after the ordinary secant has had20 rounds.
+            material_bracket=len(left_details['snow'].mass)!=len(right_details['snow'].mass)
+            trial=(left+.5*(right-left) if material_bracket or iteration>=20 else
+                (left*fr-right*fl)/(fr-fl) if fr!=fl else left+.5*(right-left))
             trial=float(np.clip(trial,left+.05*(right-left),right-.05*(right-left)))
             # A fractional interior margin can round back to an endpoint.
             # Bisect that trial so a representable bracket keeps shrinking.
             if trial<=left or trial>=right:trial=left+.5*(right-left)
-            value,details=evaluate(trial)
+            value,details=evaluate(trial);root_residual=value
             if abs(value)<=temperature_tolerance: break
-            if value>0.: left,fl=trial,value
-            else: right,fr=trial,value
+            if value>0.: left,fl,left_details=trial,value,details
+            else: right,fr,right_details=trial,value,details
+            if (ns and right-left<=resolution and fl>=0. and fr<=0.
+                    and len(left_details['snow'].mass)!=len(right_details['snow'].mass)):
+                # Native solvers also resolve a signed representational
+                # bracket. Here restrict this alternative to a snow-material
+                # event, retain the actual residual, and never call it an
+                # ordinary residual-converged root. Each candidate still
+                # satisfies its original physical/parcel/thermal equations.
+                root_residual,details=((fl,left_details) if abs(fl)<=abs(fr) else (fr,right_details))
+                material_event_resolved=True
+                break
         else: raise RuntimeError(f'Surface heat/water iteration did not converge: {value:.9g} K')
     # A mixed-phase snow surface is exactly on its latent plateau. A scalar
     # secant can stop one Kelvin ULP below TF and wrongly classify deposition
@@ -173,7 +190,8 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
     if (len(details['snow'].mass) and details['snow'].temperature[0]==TF
             and details['temperature']!=TF):
         residual,plateau=evaluate(TF)
-        if abs(residual)<=temperature_tolerance:details=plateau
+        if abs(residual)<=temperature_tolerance:
+            details=plateau;root_residual=residual;material_event_resolved=False
     pack,ground=details['snow'],details['soil'];result=details['result']
     thermal_state=dict(thermal_snow_mass=pack.mass.copy(),thermal_snow_enthalpy=pack.enthalpy.copy(),
         thermal_snow_temperature=pack.temperature.copy(),thermal_soil_water=ground.water.copy(),
@@ -208,6 +226,11 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         ground_latent_energy_jm2=details['ground_latent']*dt,
         surface_temperature=details['temperature'],thermal=details['thermal'],surface_evaluations=evaluations,
         surface_branch_evaluations=branch_evaluations,
+        surface_boundary_temperature=details['temperature'],surface_root_residual_k=float(root_residual),
+        surface_root_converged=bool(abs(root_residual)<=temperature_tolerance),
+        surface_vapor_event=material_event_resolved,surface_temperature_resolution_k=resolution,
+        surface_root_bracket_k=np.array([left,right]),surface_root_bracket_residual_k=np.array([fl,fr]),
+        surface_root_bracket_snow_layers=(len(left_details['snow'].mass),len(right_details['snow'].mass)),
         et_kgm2=et,runoff_kgm2=runoff,runoff_enthalpy_jm2=runoff_heat,
         advected_enthalpy_jm2=advected,atmospheric_energy_jm2=atmospheric,
         energy_residual_jm2=final_heat-original_heat-atmospheric+advected+runoff_heat,

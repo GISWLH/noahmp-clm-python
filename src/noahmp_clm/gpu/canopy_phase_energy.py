@@ -150,7 +150,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
     r0,_=evaluate(old,mass>0.);ra,_=evaluate(ambient,mass>0.);choose=_dot(ra,ra)<_dot(r0,r0)
     initial=j.where(choose,ambient,old);alternative=j.where(choose,old,ambient)
     available=j.any(initial!=alternative)
-    step_size=j.asarray(.02 if u.dtype==j.float32 else 1e-4,u.dtype);qstep=j.asarray(.002 if u.dtype==j.float32 else 1e-5,u.dtype)
+    step_size=j.asarray(.02 if u.dtype==j.float32 else 1e-6,u.dtype);qstep=j.asarray(.002 if u.dtype==j.float32 else 1e-7,u.dtype)
     def body(state):
         iteration,x,restarts,avail,failed,phase_active=state
         r,out=evaluate(x,phase_active)
@@ -231,8 +231,41 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             return result
         trial,phase_rescued=lax.cond(~accepted,interval_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|phase_rescued
+        wide_rescued=j.asarray(False)
+        if u.dtype==j.float64:
+            # Match NumPy's final-stall recovery only after the original
+            # fine-stencil, humidity, phase and alternate-seed paths fail.
+            # Keep the float32 JAX/CUDA algorithm and arithmetic unchanged.
+            def wider_restart(_):
+                def attempt(clipped,carry):
+                    chosen,good=carry
+                    def wide_column(k):
+                        step=j.where(k==11,j.asarray(1e-5,u.dtype),j.asarray(1e-4,u.dtype))
+                        lo=x.at[k].set(j.maximum(lo_bound[k],s(x[k]-step)))
+                        hi=x.at[k].set(j.minimum(hi_bound[k],s(x[k]+step)))
+                        phase=(k<10)&phase_active[j.minimum(k,9)]
+                        cold=phase&(x[k]<0.);melt=phase&(x[k]>0.)&(x[k]<plateau);warm=phase&(x[k]>plateau)
+                        lo=lo.at[k].set(j.where(clipped,j.maximum(lo[k],j.where(melt,0.,j.where(warm,plateau,lo[k]))),lo[k]))
+                        hi=hi.at[k].set(j.where(clipped,j.minimum(hi[k],j.where(cold,0.,j.where(melt,plateau,hi[k]))),hi[k]))
+                        a,_=evaluate(lo,phase_active);d,_=evaluate(hi,phase_active)
+                        return s(d-a)/s(hi[k]-lo[k])
+                    wide_jac=jax.vmap(wide_column)(j.arange(12)).T
+                    direction=_linear_solve(wide_jac,-r)
+                    direction=direction/j.maximum(1.,j.max(abs(direction)/j.concatenate((j.full(10,20.,u.dtype),j.asarray([5.,5.],u.dtype)))))
+                    def wide_step(state):
+                        k,current,done=state
+                        fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
+                        candidate=j.clip(s(x+s(direction*fraction)),lo_bound,hi_bound)
+                        rr,_=evaluate(candidate,phase_active);better=_dot(rr,rr)<norm
+                        return k+1,j.where(better,candidate,current),better
+                    _,chosen,good=lax.while_loop(lambda state:(state[0]<24)&(~state[2]),wide_step,(j.asarray(0,j.int32),chosen,good))
+                    return chosen,good
+                first=attempt(j.asarray(False),(trial,j.asarray(False)))
+                return lax.cond(first[1],lambda _:first,lambda _:attempt(j.asarray(True),first),operand=None)
+            trial,wide_rescued=lax.cond((~accepted)&(~avail),wider_restart,lambda _:(trial,j.asarray(False)),operand=None)
+            accepted=accepted|wide_rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
+        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued|wide_rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
     def condition(state):
         it,x,_,_,failed,phase_active=state;r,_=evaluate(x,phase_active)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)

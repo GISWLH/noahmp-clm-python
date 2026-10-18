@@ -128,6 +128,20 @@ ldd返回0且没有缺失共享库，2930份上游源仍原字节。
 可运行气候驱动。后续需要有效单点气象/输入数据，并按目标站点建立共同
 边界后才配对；此配置不冒充四站匹配参考，也未产生官方物理输出。
 
+EHPC PBS127后续已用原CN-Qia 2003年17520个半小时间隔序列化单点气象，
+[实际节点、变量/单位映射及逐值回读](v1-results/ctsm-qia-meteorology-a/manifest.json)
+保留。六字段回读最大差0；降水m/s到mm/s乘1000，往返差8.47e−22。
+气温/比湿/风速均39.6m，未按评分挑测高；原UTC+8完整年对应UTC
+2002-12-31T16至2003-12-31T16，CF时间为区间中点并保留边界，不补虚构小时。
+文件SHA256 `34ed3f0128820575e78a5faa2ed8373912d9bbd6ceae23dd555db8b7df9a8f74`。
+CO2原372.93–376.54ppm只作辅助变量保留，尚未声称DATM已实际读取。
+
+[固定上游DATM合同及生成case核对](v1-results/ctsm-forcing-contract-a/manifest.json)
+确认温度/比湿/风/气压/短长波/降水/高度分别使用TBOT/QBOT/WIND/PSRF/
+FSDS/FLDS/PRECTmms/ZBOT对应的tbot/shum/wind/pbot/swdn/lwdn/precn/z。
+这只是只读配置证据；匹配的domain/地表PFT/土壤/初态、气溶胶/CO2实际映射及
+DATM日界对齐仍须准备并真正运行，不能把Brazil静态输入当作Qia匹配参考。
+
 上游指南的Brazil示例使用I2000Clm50SpGs；CLM1PT的自带强迫示例另用于特定
 单点，并要求按实际强迫时期设置起止日期。后续参考将显式准备目标站点强迫
 流和共同输入边界，不把当前null项扩展成常值天气。依据见

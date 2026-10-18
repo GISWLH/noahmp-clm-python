@@ -223,7 +223,9 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             residual=evaluate(x)
         jac=np.empty((n+2,n+2))
         for k in range(n+2):
-            step=1e-4 if k<n+1 else 1e-5
+            # Resolve narrow vapour-supply transitions in float64 rather
+            # than averaging their two derivatives across a coarse stencil.
+            step=1e-6 if k<n+1 else 1e-7
             lo=x.copy();hi=x.copy();lo[k]=max(lower[k],x[k]-step);hi[k]=min(upper[k],x[k]+step)
             jac[:,k]=(evaluate(hi)-evaluate(lo))/(hi[k]-lo[k])
         delta=np.linalg.lstsq(jac,-residual,rcond=None)[0]
@@ -265,7 +267,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             # energy/water and convergence requirements are unchanged.
             local_jac=np.empty_like(jac)
             for k in range(n+2):
-                step=1e-4 if k<n+1 else 1e-5
+                step=1e-6 if k<n+1 else 1e-7
                 lo=x.copy();hi=x.copy();lo[k]=max(lower[k],x[k]-step);hi[k]=min(upper[k],x[k]+step)
                 if k<n and phase_active[k]:
                     if x[k]<0.:hi[k]=min(hi[k],0.)
@@ -284,6 +286,30 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
                 # before declaring a failure; no residual is accepted here.
                 x=alternative.copy();restart_available=False;restarts+=1
                 continue
+            # The fine derivative can lose descent on an ordinary phase
+            # edge. Retry the former wider stencil only after every original
+            # recovery path has failed; narrow-supply trajectories stay intact.
+            # Strict descent of all equations and the original iteration and
+            # independent parcel budgets remain mandatory.
+            for clipped in (False,True):
+                wide_jac=np.empty_like(jac)
+                for k in range(n+2):
+                    step=1e-4 if k<n+1 else 1e-5
+                    lo=x.copy();hi=x.copy()
+                    lo[k]=max(lower[k],x[k]-step);hi[k]=min(upper[k],x[k]+step)
+                    if clipped and k<n and phase_active[k]:
+                        if x[k]<0.:hi[k]=min(hi[k],0.)
+                        elif 0.<x[k]<LF/CW:lo[k]=max(lo[k],0.);hi[k]=min(hi[k],LF/CW)
+                        elif x[k]>LF/CW:lo[k]=max(lo[k],LF/CW)
+                    wide_jac[:,k]=(evaluate(hi)-evaluate(lo))/(hi[k]-lo[k])
+                wide_delta=np.linalg.lstsq(wide_jac,-residual,rcond=None)[0]
+                wide_delta/=max(1.,float(np.max(abs(wide_delta)/np.r_[np.full(n,20.),5.,5.])))
+                for backtrack in range(24):
+                    trial=np.clip(x+wide_delta*2.**(-backtrack),lower,upper)
+                    rr=evaluate(trial)
+                    if rr@rr<norm:x=trial;accepted=True;restarts+=1;break
+                if accepted:break
+            if accepted:continue
             raise RuntimeError(f'Canopy phase Newton stalled at iteration {iteration}: residual={np.max(abs(residual)):.8g} W/m2')
     else:
         raise RuntimeError(f'Canopy phase energy did not converge: residual={np.max(abs(residual)):.8g} W/m2')

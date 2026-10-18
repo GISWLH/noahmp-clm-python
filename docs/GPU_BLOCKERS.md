@@ -1,5 +1,34 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1 P6：K影子长等待、独立CUDA科学年绕行及NumPy回归（2026-10-18）
+
+K在10:39:43UTC从自身48步续全年，超过30分钟后仍为running/48；11:18:29
+只读快照见worker R、CPU累计2317.28秒，不能把全等待归因于该瞬间。K原
+源码/状态/独立JAX32影子及守恒界保留。为推进科学轨迹，11:14:41在GPU0
+另起独立冷启动L，48步实际CLI退出0、147.144086秒；原NumPy对照及原MHCN
+门通过，L全部轨迹及冷0/48主状态账目与不可变K前缀逐位一致。
+[首日前缀](v1-results/chord-l-day-a/manifest.json)和
+[等待快照/独立启动](v1-results/chord-k-wait-l-start-a/manifest.json)保留。L只含
+CUDA主轨迹，没有JAX影子；K继续独立承担影子验证，未迁移其状态到L。
+后续[12:23:35UTC不可变代次快照](v1-results/material-live-a/manifest.json)见K仍
+48、L四站各1056/17520，仍非完整年、spinup或科学通过。
+
+11:44附近新SSH连接被服务端以`Exceeded MaxStartups`在认证前关闭；不是
+用户权限不足。11:51已建立持久连接，确认新GPU目标未启动后才启动545987，
+没有盲目重复启动、重启K/L或修改sshd；后续SCP也恢复。终态按实际设备记录。
+
+EHPC PBS138新492源完整CPU808项有1失败：全局缩小差分修复Qia却令旧相变
+边缘停滞。四个新原态通过不能抵消此回归；已保留[完整失败](v1-results/material-event-cpu-a/manifest.json)，
+PBS139及后续比较不同差分恢复顺序。详见[分支及导数诊断](CLM_NUMPY_MATERIAL_EVENTS.md)。
+科学CUDA年保持固定489源，当前NumPy候选没有混入其检查点身份。
+
+后续PBS142仅在原细差分全部恢复均失败后尝试旧宽差分，同时完成原四步和
+旧用例；同步JAX64的新493源已在EHPC PBS144完整CPU808项全过，563.436707
+秒，25例原GPU64用例的NumPy参考也全部完成。xuanze相变8项全过，实际退出0，
+CUDA32/JAX32全字段最大差0；设备集成4项仍运行，PBS145另起四站冷48步
+对照不可变K48。详见[原数字与全部证据](CLM_NUMPY_MATERIAL_EVENTS.md)，不将
+旧失败改写为通过，也不以当前816节点抵充完整1135或科学验收。
+
 ## v1 P6：新489源完整回归终态与NumPy新失败（2026-10-18）
 
 当前完整回归已完成：EHPC PBS126 CPU804项、xuanze GPU325项/62文件，
