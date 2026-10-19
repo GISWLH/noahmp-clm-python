@@ -1,5 +1,25 @@
 # v1.0.0 执行记录
 
+23:43UTC后续：[563C完整1071CPU](v1-results/numerical-recovery-cpu-c/manifest.json)
+已在EHPC354 compute002实际0、803.927秒，零失败／错误／跳过，原XML哈希
+`4748eec89ec10344dbf3abdcc8d6dcdf488c3ea31c86c0acfa61b0052993b5fa`一致。
+本源水分4＋携焓4先已实际0；整柱5／站点3队列108025已收到CPU凭据，仍等旧552
+实际终态及资源。当前两组新NumPy年均480/17520，旧519H年2640/17520，各自
+原账保持，见[CPU快照](v1-results/recovery-cpu-background-s/manifest.json)和
+[GPU队列／实际worker快照](v1-results/recovery-gpu-background-s/manifest.json)。
+完整规范1461、K78、完整年／spinup、多站多年／留出／测高敏感性及科学验收
+继续，未合并main、未打v1.0.0。以下为对应时间的历史状态。
+
+23:38UTC：[3803](CLM_QIA3803_PHASE.md)从独立NumPy参考推进到B完整1071CPU、
+GPU专项4和原整步C/J全部380原始字段，最大差3.64e-12，原单步／累计MHCN／
+杂质门不改，旧失败年保留。[Richards](CLM_RICHARDS.md)当前G的精确195调用
+定位到自适应误差倒数差异，私有Q完整4验证后，生产C目标28／水分4＋携焓4
+实际0；原13／21字段门满足，压力差2.38419e-6 m，携带W/H/T差0，面焓差
+.015625 J/m²按原相对＋绝对界核对。C完整1071CPU仍在EHPC354，本源整柱5／
+站点3轻量队列108025等待本源CPU终态、旧552终态和资源；仅收集1461，未计
+完整执行。两组原冷年、K78、spinup、多站多年／留出／测高敏感性和科学验收
+继续，未发布v1.0.0。本机只编辑／静态／归档，CPU物理在EHPC PBS、GPU在xuanze。
+
 22:28UTC：[最新558源完整1068CPU](v1-results/thin-snow-event-cpu-a/manifest.json)
 在EHPC341 compute002实际0、799.207秒，零失败／错误／跳过，源码清单
 `d2d5a6b492487c1d3e9837ac090a2d4df084d24988c4be9c2208f5a236b222f3`及原XML核验一致。

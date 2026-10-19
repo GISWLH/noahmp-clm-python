@@ -1,0 +1,204 @@
+{
+  "scope": "Actual EHPC352 original3803 independent step/cumulative MHCN/impurity and350 NumPy fluxreference gates all satisfied, source563B unchanged. Legacy1110 scope-text typo corrected by separate metadata note with original record retained; actual3803 assertions/input/checkpoint verified. Not JAX/fullcanonical/annual acceptance.",
+  "archive_sha256": "8a208eb24e409dad22f8b55e3a0573b1a6f865609189697bfc003c58921c0cee",
+  "artifacts": [
+    {
+      "source": "audit.json",
+      "path": "audit.json.gz",
+      "source_sha256": "af71f5e9c8cc57e00b3be51b73e7c049b0fe4405912f7294ded49e2d2a77c92a",
+      "stored_sha256": "28838fdc34b5856c54262ea0a871f8fc0856bda931ad04b66d309b5b0c5d47dc"
+    },
+    {
+      "source": "audit.log",
+      "path": "audit.log.gz",
+      "source_sha256": "3081c863c5882d62df664537f6536951d9cc57972427a1fa24e1ac93087f4316",
+      "stored_sha256": "6382d8c20d735c419c2d63e70f07ef82cd1e86a7518eb41fff049e34055b214e"
+    },
+    {
+      "source": "audit_qia3803_cuda_b.py",
+      "path": "audit_qia3803_cuda_b.py.gz",
+      "source_sha256": "319f6486f53e482a744c338ae508561465ff0d2061ed28325dbbf0cdbeeee885",
+      "stored_sha256": "911974e48b1a0bcfd401a67a6655eedd9407d4132972784ae2316607ae27550c"
+    },
+    {
+      "source": "clm-qia3803-cuda-audit-b.o352",
+      "path": "clm-qia3803-cuda-audit-b.o352",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "device/SOURCE_SHA256.json",
+      "path": "device/SOURCE_SHA256.json.gz",
+      "source_sha256": "d9205b75c2baa2eb4afef8f8f26cf961118d396d63b959f0af89435ee997eab6",
+      "stored_sha256": "3d60f210b0e59c7beef48806da6124353a605cbef0665d50bccfbe3ef42c87ac"
+    },
+    {
+      "source": "device/after.npz",
+      "path": "device/after.npz",
+      "source_sha256": "e1f50f3a75cbf07a8a78a11b9337662612c74ee797caf174aa9506d557dc272d",
+      "stored_sha256": "e1f50f3a75cbf07a8a78a11b9337662612c74ee797caf174aa9506d557dc272d"
+    },
+    {
+      "source": "device/before.npz",
+      "path": "device/before.npz",
+      "source_sha256": "a29ae54ec84ffa34ff0536f9109f014bae6af187c518e6752118ffd64b6f428f",
+      "stored_sha256": "a29ae54ec84ffa34ff0536f9109f014bae6af187c518e6752118ffd64b6f428f"
+    },
+    {
+      "source": "device/binding.json",
+      "path": "device/binding.json.gz",
+      "source_sha256": "787169649f7548fea27b6057b2d7f0e7ddf1ea890e18beff319780e83afa07b2",
+      "stored_sha256": "82510adfebb4826f156bf10b2f87dd26cb819ab0fea8f2827cbbd836adf0f330"
+    },
+    {
+      "source": "device/control/archive_qia3803_full_cuda_b.py",
+      "path": "device/control/archive_qia3803_full_cuda_b.py.gz",
+      "source_sha256": "969855cecec594a04dd56d012ad0f52de2fa734b73e19c6d8e038516f0777357",
+      "stored_sha256": "d26cda07c232552c2d853bd4b1402ee259ff564b19971489762fb339952ace8a"
+    },
+    {
+      "source": "device/control/control_qia3803_full_b.py",
+      "path": "device/control/control_qia3803_full_b.py.gz",
+      "source_sha256": "be81bd3307608d2d686787cb9002a8298b8fa68c8a6e0386ef7747c903af5016",
+      "stored_sha256": "39ebe6bc8f9648e9b90d53c93235ec310b49df9a4a40da38fc3a2deca66b908a"
+    },
+    {
+      "source": "device/control/launch_qia3803_full_b.py",
+      "path": "device/control/launch_qia3803_full_b.py.gz",
+      "source_sha256": "171475c75676722731ec1792c51f5d73b5457066b579e58376c7d7f24736140e",
+      "stored_sha256": "c7857f62efdc7ba4cbb9284c8a68f066dcfc16107fb9b13da764f6051026a06d"
+    },
+    {
+      "source": "device/control/phase-coordinate-native-b-package.json",
+      "path": "device/control/phase-coordinate-native-b-package.json.gz",
+      "source_sha256": "f72c971243fd633bff356224d2575eb52e06017b45e3e2422549a06aa4202367",
+      "stored_sha256": "374a95b7b91a9c3fa76a54e833808e6869e98fe27c2f785f03150541706cf315"
+    },
+    {
+      "source": "device/control/phase-coordinate-native-b-source.tar.gz",
+      "path": "device/control/phase-coordinate-native-b-source.tar.gz",
+      "source_sha256": "4ccc9752ab61b6c3ddc3e66c667c0e6da4e8a868b3235000930c1cadb15c1c91",
+      "stored_sha256": "4ccc9752ab61b6c3ddc3e66c667c0e6da4e8a868b3235000930c1cadb15c1c91"
+    },
+    {
+      "source": "device/control/run_qia3803_full_b.py",
+      "path": "device/control/run_qia3803_full_b.py.gz",
+      "source_sha256": "0fe27e12972cc8f677f5c1e521663d9ced499ccf9c91c68621406680e421b702",
+      "stored_sha256": "00a609e9c5c2e1ec73441904a8274668df7015fb4cf9d3cf6b4f6e57487ca8a8"
+    },
+    {
+      "source": "device/controller.log",
+      "path": "device/controller.log.gz",
+      "source_sha256": "5a6074bb8768c81581e0c7dc9a8596ead63bd85c73da356d233d963fdfdf97b3",
+      "stored_sha256": "68f457bce086c0cdbb98dd41092919a7239567dfb61ade7744575f4a364f1bf7"
+    },
+    {
+      "source": "device/exit.json",
+      "path": "device/exit.json.gz",
+      "source_sha256": "17cd80640bf71186ea86c7bc20622c169828781cad36ba4b6a2b4080f9c483a5",
+      "stored_sha256": "a465561d5873383a7efb47a920198a136595298ed81d1024bfbf8c64105d2a65"
+    },
+    {
+      "source": "device/input.npz",
+      "path": "device/input.npz",
+      "source_sha256": "881b1cb5163fb3a72d3055b71dd22a268e764a2851e471b63f74a5c3e66cc55d",
+      "stored_sha256": "881b1cb5163fb3a72d3055b71dd22a268e764a2851e471b63f74a5c3e66cc55d"
+    },
+    {
+      "source": "device/launch.json",
+      "path": "device/launch.json.gz",
+      "source_sha256": "fe6cc310e4155135355a8a272d16fbb7d87b076c505565cbe16554b174ebfe24",
+      "stored_sha256": "bc1d7ad471a7a863f5501b2b92c1405a3aced2f61ee02cf9459d222c2964626b"
+    },
+    {
+      "source": "device/model.log",
+      "path": "device/model.log.gz",
+      "source_sha256": "1b8ecbe29c8ecf259d778c1cbb919aa90ffbb512ccc7254327c79e366fbc0c2b",
+      "stored_sha256": "65ed389ce68d4dc90e68c0f81281d749fcbd5e9a75d03839dea6f2ff7196c5b8"
+    },
+    {
+      "source": "device/output.npz",
+      "path": "device/output.npz",
+      "source_sha256": "9d8f2620ce794beaf2a778a47fc20929581a12a0e00cafe329e9d68e88a3c820",
+      "stored_sha256": "9d8f2620ce794beaf2a778a47fc20929581a12a0e00cafe329e9d68e88a3c820"
+    },
+    {
+      "source": "device/receipt.json",
+      "path": "device/receipt.json.gz",
+      "source_sha256": "55d7f8cc3f3430ab89cde41ee46899767ea6576e564877632d43219404904641",
+      "stored_sha256": "16016c8bcf48a9fd6fbde2c7072a20a5998f841a774f81d9fe7463002fa57adc"
+    },
+    {
+      "source": "device/worker.json",
+      "path": "device/worker.json.gz",
+      "source_sha256": "8ede653c952f85f198a3b21a63952920f6dc408aa6444a5febd709bc5ae268b1",
+      "stored_sha256": "b9e065e812ea1242790f18a010a52d8d6d4be9d8513517955a3110a9c482476d"
+    },
+    {
+      "source": "dispatch.json",
+      "path": "dispatch.json.gz",
+      "source_sha256": "b5f7d04cd531ae3a7a81797d59d51e4d4a8db6e231a69d872b332579e9051a48",
+      "stored_sha256": "e7d6060d38a5604be042e4e0f6c82ef3c3f3722829c4f54686713dbe0842113d"
+    },
+    {
+      "source": "node.txt",
+      "path": "node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia3803_cuda_audit_b.pbs",
+      "path": "qia3803_cuda_audit_b.pbs.gz",
+      "source_sha256": "e0388cd26ccaabdeb6988cd309c58065cf9b07433e2f14c743f6afcc2d90d55f",
+      "stored_sha256": "87e7e949d7c0bd353f55de5ad5c00cc212d646a4f0ead0eff2ceee0f97ff5ae3"
+    },
+    {
+      "source": "scope-correction.json",
+      "path": "scope-correction.json.gz",
+      "source_sha256": "8ddec10dd316881817c02770715453b370e0bd038b56ab05688c412a1717bcf8",
+      "stored_sha256": "ae396d944284fd4b161284bbb6665bc1e1868163264f5adbf5311b13d3f04aa9"
+    },
+    {
+      "source": "original-ledger/batch.json",
+      "path": "original-ledger/batch.json.gz",
+      "source_sha256": "ce3a2e6545ac3c00aaca11a32ba7ca8a9b3d1222859cebd889d6ff2b915aae89",
+      "stored_sha256": "39bb7723d1deb27c59f4284c9e631710b71e1a67cac95888aa11349f69cae741"
+    },
+    {
+      "source": "original-ledger/state-0003803-79ab8e17bc0641ceaca161fd805e5cea.npz",
+      "path": "original-ledger/state-0003803-79ab8e17bc0641ceaca161fd805e5cea.npz",
+      "source_sha256": "1da1409b32e60c1f3b98719caffc73b8c64dcb6fdb18a3fa526a5d43385403e1",
+      "stored_sha256": "1da1409b32e60c1f3b98719caffc73b8c64dcb6fdb18a3fa526a5d43385403e1"
+    },
+    {
+      "source": "numpy-reference/full-reference.npz",
+      "path": "numpy-reference/full-reference.npz",
+      "source_sha256": "48c49e3976c78fae9819946850151531f592a375b2680384bae27647a7982d51",
+      "stored_sha256": "48c49e3976c78fae9819946850151531f592a375b2680384bae27647a7982d51"
+    },
+    {
+      "source": "numpy-reference/receipt.json",
+      "path": "numpy-reference/receipt.json.gz",
+      "source_sha256": "be2a10d9e85c7ca4b128cd0790435865d895e0ae3f86495fc75510318779bb47",
+      "stored_sha256": "13135481ed5e1e06644b9dd0de90c5a36719cfceafd4a3ffc9974b2452fc33eb"
+    },
+    {
+      "source": "control/dispatch_qia3803_cuda_audit_b.py",
+      "path": "control/dispatch_qia3803_cuda_audit_b.py.gz",
+      "source_sha256": "255ed2cc81bc81cd71ad7e511efea21bf2c354b4e6444484ce582bf4f8bd3c86",
+      "stored_sha256": "380035527a80af5338bc445568c24784bf5e1b29b43dc0b945ffaadaf4b5078d"
+    },
+    {
+      "source": "control/archive_qia3803_cuda_audit_b.py",
+      "path": "control/archive_qia3803_cuda_audit_b.py.gz",
+      "source_sha256": "3fc96c253c1791792e4c1f0c400d7ad5cd7284f64a06cc2dd03a02cd0c4fe3fe",
+      "stored_sha256": "7d47cc85a713cd66ba495053ba5fa67da174944c3642b891c8ab0dd4fdc5f3dc"
+    }
+  ]
+}

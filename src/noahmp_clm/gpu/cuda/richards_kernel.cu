@@ -1,5 +1,9 @@
-// Independent closed-column liquid Richards step; no production column use.
+// Independent closed-column liquid Richards step.
 // Storage is actual kg/m2. Coefficient limits never add stored water.
+extern "C" __global__ void richards_controller_reciprocal(const float* value,float* result,int n) {
+    int i=threadIdx.x;if(i<n)result[i]=1.f/value[i];
+}
+
 __device__ void richards_system(const float* u,const float* old,const float* p,
                                float dt,int n,float* residual,float* q,float* a) {
     float water[10],dw[10],head[10],dh[10],z[10],sum=0.f;

@@ -217,6 +217,31 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             return j.where(good,candidate,trial),good
         trial,rescued=lax.cond(slow,humidity_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|rescued
+        def coordinate_phase_events(_):
+            # An almost empty wet layer can dominate the global Newton
+            # scaling and quantize every other update away. Exact latent
+            # endpoints need no temperature jump on this plateau. Compare
+            # against the real current merit, including a humidity rescue.
+            rr,_=evaluate(trial,phase_active);best_norm=_dot(rr,rr)
+            needed=(~accepted)|(best_norm>s(.999*norm))
+            def layer_step(carry):
+                layer,chosen,best,changes=carry
+                eligible=phase_active[layer]&(chosen[layer]>0.)&(chosen[layer]<plateau)
+                def edge_step(state):
+                    side,z,merit,count=state
+                    candidate=z.at[layer].set(j.where(side==0,j.asarray(0.,u.dtype),plateau))
+                    r,_=evaluate(candidate,phase_active);candidate_norm=_dot(r,r)
+                    take=candidate_norm<merit
+                    return side+1,j.where(take,candidate,z),j.where(take,candidate_norm,merit),count+take.astype(j.int32)
+                _,chosen,best,changes=lax.while_loop(lambda state:(state[0]<2)&eligible,
+                    edge_step,(j.asarray(0,j.int32),chosen,best,changes))
+                return layer+1,chosen,best,changes
+            _,chosen,best,changes=lax.while_loop(lambda state:(state[0]<10)&needed,layer_step,
+                (j.asarray(0,j.int32),trial,best_norm,j.asarray(0,j.int32)))
+            return chosen,changes,best
+        trial,coordinate_restarts,chosen_norm=lax.cond(slow,coordinate_phase_events,
+            lambda _:(trial,j.asarray(0,j.int32),chosen_norm),operand=None)
+        accepted=accepted|(coordinate_restarts>0)
         original_direction=delta
         def interval_restart(_):
             # An original centred difference can straddle0 or LF/Cw. Keep
@@ -284,7 +309,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             trial,wide_rescued=lax.cond((~accepted)&(~avail),wider_restart,lambda _:(trial,j.asarray(False)),operand=None)
             accepted=accepted|wide_rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued|wide_rescued).astype(j.int32),avail&(~retry),~(accepted|retry),phase_active
+        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued|wide_rescued).astype(j.int32)+coordinate_restarts,avail&(~retry),~(accepted|retry),phase_active
     def condition(state):
         it,x,_,_,failed,phase_active=state;r,_=evaluate(x,phase_active)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)

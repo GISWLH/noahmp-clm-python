@@ -6,12 +6,25 @@ from ..richards import _run
 
 
 @lru_cache(maxsize=1)
-def _kernel():
+def _module():
     import cupy as cp
     source=Path(__file__).with_name('richards_kernel.cu').read_text()
     module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false','--prec-sqrt=false'),
-        name_expressions=('richards_implicit_step',))
-    return module.get_function('richards_implicit_step')
+        name_expressions=('richards_implicit_step','richards_controller_reciprocal'))
+    return module
+
+
+@lru_cache(maxsize=1)
+def _kernel():return _module().get_function('richards_implicit_step')
+
+
+def _controller_reciprocal(value):
+    import cupy as cp
+    if value.dtype!=cp.float32 or value.ndim!=1 or not 1<=value.size<=10:
+        raise ValueError('Richards controller requires 1--10 float32 values')
+    value=cp.ascontiguousarray(value);result=cp.empty_like(value)
+    _module().get_function('richards_controller_reciprocal')((1,),(32,),(value,result,np.int32(value.size)))
+    return result
 
 
 def _step(old,guess,p,dt):

@@ -2,7 +2,7 @@
 
 Newton and water-flux arithmetic run on the selected device. The host only
 dispatches adaptive steps and disconnected hydraulic blocks, as in MOST.
-This component is not connected to the production column or heat transport.
+The explicit closed-column hydrology also uses this flow for heat transport.
 """
 from functools import lru_cache
 import math
@@ -175,7 +175,16 @@ def _one(old,p,duration,xp,stepper,absolute,relative,budget):
                 if step<1e-7:raise RuntimeError('Device Richards nonlinear substep underflow')
                 continue
             fine=second[:n];error=xp.abs(fine-coarse[:n]);tendency=xp.maximum(xp.abs(fine-current),xp.abs(coarse[:n]-current))
-            ratio=float(xp.max(error*xp.reciprocal(absolute+relative*tendency)))
+            denominator=absolute+relative*tendency
+            if xp.__name__.startswith('cupy'):
+                # CuPy's default reciprocal is correctly rounded, while
+                # JAX and our CUDA implicit kernel use approximate float32
+                # division. Keep the adaptive controller on the same
+                # arithmetic so equal physical steps choose equal durations.
+                from .cuda.richards import _controller_reciprocal
+                inverse=_controller_reciprocal(denominator)
+            else:inverse=xp.reciprocal(denominator)
+            ratio=float(xp.max(error*inverse))
             if ratio>1.:
                 rejected+=1;step*=max(.2,.8/math.sqrt(ratio));continue
             for part in (first[2*n:3*n-1],second[2*n:3*n-1]):

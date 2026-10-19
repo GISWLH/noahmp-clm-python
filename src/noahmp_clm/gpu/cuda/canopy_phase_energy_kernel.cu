@@ -184,6 +184,28 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
                 if(ca_dot(rr,rr,12)<chosen_norm){for(int i=0;i<12;++i)chosen[i]=mid[i];accepted=true;++restarts;}
             }
         }
+        // A tiny wet-layer heat capacity can scale all other coordinates
+        // below their represented temperature increments. Try its exact
+        // latent endpoints separately after weak progress; every accepted
+        // event must improve the actual best complete residual norm.
+        if(!accepted||chosen_norm>.999f*norm) {
+            float current_r[12];phase_evaluate(v,chosen,current_r,nullptr);
+            float best_norm=ca_dot(current_r,current_r,12);
+            if(!accepted||best_norm>.999f*norm) {
+                for(int layer=0;layer<10;++layer)if(v.phase_active[layer]&&chosen[layer]>0.f&&chosen[layer]<plateau) {
+                    for(int side=0;side<2;++side) {
+                        float candidate[12],rr[12];for(int k=0;k<12;++k)candidate[k]=chosen[k];
+                        candidate[layer]=side?plateau:0.f;phase_evaluate(v,candidate,rr,nullptr);
+                        float candidate_norm=ca_dot(rr,rr,12);
+                        if(candidate_norm<best_norm) {
+                            for(int k=0;k<12;++k)chosen[k]=candidate[k];
+                            best_norm=candidate_norm;accepted=true;++restarts;
+                        }
+                    }
+                }
+            }
+            chosen_norm=best_norm;
+        }
         // Retry a derivative confined to the current smooth phase branch
         // only when the original Newton and humidity steps cannot descend.
         if(!accepted) {

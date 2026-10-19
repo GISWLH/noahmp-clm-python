@@ -1,5 +1,43 @@
 # 单柱垂向水热重分配
 
+## 2026-10-19 23:38UTC：自适应误差估计倒数修订，原水分同精度门关闭
+
+[当前G生产调用的只读追踪N](v1-results/richards-current-flow-n/manifest.json)
+在xuanze实际0，两端各195次且全部最终字段字节精确重现G原失败；使用真实
+强类型时间步入口。[EHPC353](v1-results/richards-context-analysis-o/manifest.json)
+实际0：前18次旧态／初猜／结果相同，首次分歧为调用18的主机调度时长
+354.7294266339／354.7294089227 s，其后才有通量差，旧水到83、初猜到84才不同。
+旧543E弱标量现场的[M重放](v1-results/richards-context-klm/manifest.json)另按原ABI
+逐位复现；K的标量API错误和L未复现旧E的结果均保留，不混用两种入口。
+
+[设备P算术探针](v1-results/richards-controller-probe-p/manifest.json)保持共同
+物理状态：第15次所在误差估计，CuPy默认倒数给比值.5968965291976929，JAX为
+.5968965888023376；显式CUDA近似除法得到后者，正确舍入倒数得到前者。
+控制器此前CuPy算术与原JAX／CUDA物理核的近似除法不同，随后改变自适应时长。
+
+[私有Q](v1-results/richards-controller-candidate-q/manifest.json)仅统一CUDA
+控制器倒数算术后，原4项／每端17例科学参考及全部13字段原同精度门实际0、
+68.823秒；私有运行时函数替换明确保留，不当作生产验证。生产修订在563C中
+使用同一个原CUDA编译选项的独立float32倒数核，保持JAX、Newton、物理方程、
+误差准则、时间步预算和精度；没有舍入返回量或省略失败字段。先EHPC354目标28
+实际0、10.164秒，再[未插桩生产水分4＋携焓4](v1-results/clm-numerical-recovery-c-native/manifest.json)
+实际全部0、127.026秒，所有节点／XML／源哈希和实际退出一致。
+
+原13水分字段中，最终水量两端差0，压力最大绝对差2.38419e-6 m，在对应字段
+原rtol=atol=1e-6界内；面净／正向量最大差约9.18e-34 kg/m²，整数计数相同。
+原失败第五例亦按全部字段核对，不再用重算报告压力绕开面转移失败。携焓21字段
+及两步携带原门也满足：实际W/H/T携带差0，面焓最大差.015625 J/m²、面水量
+5.96046e-8 kg/m²，均按原相对＋绝对界核对，未声称全部差0。独立实际存量账
+单独验证，例如首例32位热残差-10 J/m²，对原界1982.3418 J/m²。
+
+当前C清单`1bc9065e3c7c568cd71c56cc4b87bb88073bc50bc68bece8851239fd88fb1fc2`。
+23:43后续：[EHPC354完整1071CPU](v1-results/numerical-recovery-cpu-c/manifest.json)
+已实际0、803.927秒，零失败／错误／跳过，原XML核验一致。轻量队列108025已
+收到该凭据，整柱5／站点3须等旧552实际终态及8 GiB显存／32 GiB主机可用内存
+后才启动，不能将排队计为通过。
+完整1461仅已收集，未全部执行。旧源552／555结果不抵充C，新实际年／spinup／
+科学验收和完整CTSM含水层／饱和带过程仍待。下方原水分同精度失败为历史记录。
+
 22:28UTC：[最终558源完整1068CPU](v1-results/thin-snow-event-cpu-a/manifest.json)
 在EHPC341 compute002实际0、799.207秒，零失败／错误／跳过，源码／XML保持。
 最新清单为`d2d5a6b492487c1d3e9837ac090a2d4df084d24988c4be9c2208f5a236b222f3`；
