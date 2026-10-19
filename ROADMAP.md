@@ -7,6 +7,12 @@
 旧 H4/K3/M4 数值门已退役为已接受限制，历史复验结论保留在下方。
 本阶段排除城市模型、土地利用变化、整机耦合、河道和侧向地下水。
 
+10:30UTC补充：[新509C CUDA自身48及原后处理失败](docs/v1-results/qia-physical-cuda-day-c/manifest.json)
+已归档，物理模型running/48，父进程1只因严格影子/主状态字段集断言；只读
+核验26主字段及此前CUDA48的22轨迹字段完全相同、实际0。模型源码/输入未变，
+[D续自身有效前缀](docs/v1-results/qia-physical-cuda-year-launch-d/manifest.json)实际96/17520。
+不从原failed163/1519或变更源码的失败物理年续跑；完整GPU340、年/spinup/科学验收仍待。
+
 10:21UTC终态补充（下方10:05及更早段落保留为历史）：
 
 - [x] 数值修订工程验证：[最终509C全CPU909/MOST14/相变24](docs/v1-results/most-warm-cpu-c/manifest.json)在EHPC PBS209实际0，完整CPU470.937863秒；[xuanze原1519整步](docs/v1-results/most-physical-gpu-c/manifest.json)最终CUDA32/JAX32实际0，361原始字段最大差0，原MHCN界不变。原206/207/208失败全部保留。

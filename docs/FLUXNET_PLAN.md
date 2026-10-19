@@ -4,6 +4,12 @@
 
 ### 2026-10-19执行更新
 
+10:30UTC：新CUDA自身首48物理已完成，原冷主26字段/此前CUDA首日22轨迹
+字段完全相同；父进程后处理字段集断言1和首个Unicode核验1均保留，正确
+只读核验实际0后，相同源码续自身有效前缀至96/17520，原独立MHCN界满足。
+这不抵充当前源NumPy新首日、JAX严格配对、340GPU规范节点或FLUXNET科学评价；
+测高/输入/观测/留出协议均未改，仍无完整年或spinup通过。详见[原记录](CLM_QIA1519_MOST_PHYSICS.md)。
+
 10:21UTC：[最终源CPU909](v1-results/most-warm-cpu-c/manifest.json)已在EHPC通过，
 [xuanze原1519整步](v1-results/most-physical-gpu-c/manifest.json)CUDA32/JAX32全部361
 原始字段最大差0，原硬守恒界满足。新NumPy/PBS210与CUDA-only试算均从原

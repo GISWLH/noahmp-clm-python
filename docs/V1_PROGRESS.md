@@ -1,5 +1,14 @@
 # v1.0.0 执行记录
 
+2026-10-19 10:30UTC补充：[新509C CUDA自身48](v1-results/qia-physical-cuda-day-c/manifest.json)
+实际完成，模型running/48；父进程1是严格影子与主检查点字段集的后处理断言。
+首次只读核验因ISO字符串dtype又退出1，均保留；后续GPU数值/字符串元数据
+核验实际0，原冷主26字段与此前CUDA48的22轨迹字段逐值一致。模型源码/输入
+未变，[D续自身有效48](v1-results/qia-physical-cuda-year-launch-d/manifest.json)实际
+96/17520；累计热残差最大43.923652J/m²、原MHCN界满足。不是续旧failed1519/
+163或变更源码的失败年。[补充47件元数据/哈希审计](v1-results/qia-physical-continuation-static-d.json)
+完成，无本机物理/数组分析。当前340GPU、完整年、spinup及科学验收仍待。
+
 2026-10-19 10:21UTC终态：最终509C在EHPC PBS209完成全CPU909，0失败/错误/
 跳过、470.937863秒，MOST14/相变24目标也完成。xuanze的原1519完整步用同源
 CUDA32/JAX32实际重放并退出0，361原始字段最大差0，原MHCN界满足，GPU重放

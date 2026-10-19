@@ -28,6 +28,11 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 EHPC新NumPy和xuanze新CUDA轨迹已分别从原冷种子启动，原失败年未续写。
 CPU物理/pytest在EHPC PBS计算节点，GPU在xuanze；Python年、spinup/科学验收仍待。
 
+10:30UTC补充：新CUDA已完成自身48步，26个主状态/账目字段与原严格冷种子、
+22个轨迹字段与此前CUDA首日逐值一致。原父进程因影子字段集合后处理退出1，
+模型仍running/48；只读核验实际0后，[同源自身前缀续年](docs/v1-results/qia-physical-cuda-year-launch-d/manifest.json)
+已到96/17520。新源完整340GPU仍排队，无JAX影子/同精度为null，不是科学通过。
+
 **以下为07:25UTC历史快照：** [Qia实际首日和官方输出](docs/CLM_QIA_FIRST_DAY.md)的CUDA-only首48步在
 xuanze完成，对EHPC NumPy日H/LE偏差0.000101%/0.000783%，原守恒界满足，
 从自身成功前缀继续全年，07:25UTC为384/17520。原严格JAX32配对独立继续，
