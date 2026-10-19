@@ -1,5 +1,15 @@
 # Qia735：已有冠层湿层的相变端点
 
+15:18后续：新CUDA E已物理完成48步；[原父退出1及正确只读审计](v1-results/qia-all-phase-cuda-day-e/manifest.json)
+确认父脚本误把无影子26字段与含影子的48字段集作整体相等断言。26个原冷
+主状态/索引/账目字段逐值相同，额外22字段全部为参考JAX影子，原守恒和模型
+状态running/48未失败。正确审计实际0，原E错误未修改。
+[F同源续跑](v1-results/qia-all-phase-cuda-year-launch-f/manifest.json)只复制这段
+自身有效前缀，所有输入/状态/轨迹/账目逐字节一致；15:14快照running/96，
+worker3414721/controller3414720仍在。无JAX影子、同精度null，不计完整年或
+当前K78/完整回归通过。F继承的scope字符串中“error/audit1”有误，归档已明确
+更正：E父进程1，正确审计0，没有另一个失败的E数组审计。
+
 2026-10-19 14:58UTC。CPU计算与独立分析在EHPC PBS计算节点，GPU在xuanze；
 本机只编辑、检查语法/哈希、整理归档。完整气候年、spinup和科学验收仍未完成。
 
