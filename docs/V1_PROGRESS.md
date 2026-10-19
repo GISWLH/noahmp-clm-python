@@ -1,5 +1,27 @@
 # v1.0.0 执行记录
 
+2026-10-19 14:58UTC：[735已有湿层端点修订](CLM_QIA735_PHASE.md)先完成EHPC257
+NumPy26/原实现新回归预期失败，256独立SciPy温差5.68434e-14 K；随后同步
+JAX/CUDA。最终B511在EHPC262全CPU911/未插桩735整步实际0，热残差
+3.84025e-8 J/m²对原界1.45253e-5；xuanze11项相变目标实际0、0失败/跳过。
+原A版10通过/1失败（57/300字段、最大0.18237305 J/m²）保留；EHPC261对照
+证明新增测试捕获常量与生产动态参数调用差异，只修调用后300原始字段差0，
+584追踪辐射也差0。B对量化NumPy参考叶温差2.73907e-5 K、H/LE差4.10080e-5/
+0.000307560 W/m²，未放宽物理/精度/守恒/同精度门。
+
+[3798 JAX终态和独立双端硬审计](CLM_QIA3798_PHASE.md)均实际0，全部361输出+
+19后状态最大差0，双端原单步/累计MHCN及杂质界满足。三后端最终生产函数/
+CUDA词元与原F一致，最终B仅较A修改新GPU测试参数绑定。
+[完整实际收集](v1-results/all-phase-full-deferred-b/manifest.json)1254=911CPU+
+343GPU，余332等待旧506实际退出；仅核实后替换旧510无子进程等待器，原模型未停。
+原510 NumPy年实际failed/735，原509C CUDA年failed/3798，均未续失败轨迹。
+[新原冷NumPy年](v1-results/qia-all-phase-numpy-year-launch-c/manifest.json)EHPC260
+在14:52快照running/144/17520、累计热残差0.000915885961 J/m²；
+[新原冷CUDA年](v1-results/qia-all-phase-cuda-year-launch-e/manifest.json)14:55在
+xuanzeGPU0启动，最终B源、同精度null，无JAX影子。K78仍未接受，完整回归、
+完整年/spinup、多站多年/留出/测高敏感性、官方同条件科学验收和发布仍待。
+下方为此前历史快照，所有CPU物理/分析在EHPC PBS，GPU在xuanze，本机无模型计算。
+
 2026-10-19 13:50UTC补充：[两PFT参数首日对照](CLM_CTSM_PHYSIOLOGY_INPUTS.md)
 模型/PBS243/244均0，分析250精确复现原R基线；联合容量上界/11°C/斜率后
 H仍−18.0934%、LE绝对差0.809665 W/m²、GPP均值+138.495%/r0.981039，全部

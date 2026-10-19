@@ -156,6 +156,21 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
             float trial_norm=ca_dot(rr,rr,12);
             if(!accepted&&trial_norm<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=trial_norm;}
         }
+        // Try the first exact phase edge without replacing old parcel stores.
+        float edge_alpha=2.f,edge_value=0.f;int edge_layer=-1;
+        for(int i=0;i<10;++i)if(v.phase_active[i]&&delta[i]!=0.f){
+            for(int side=0;side<2;++side){
+                float edge=side?plateau:0.f,alpha=(edge-x[i])/delta[i];
+                if(alpha>0.f&&alpha<=1.f&&alpha<edge_alpha){edge_alpha=alpha;edge_layer=i;edge_value=edge;}
+            }
+        }
+        if(edge_layer>=0){
+            float trial[12],rr[12];
+            for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+edge_alpha*delta[i]));
+            trial[edge_layer]=edge_value;phase_evaluate(v,trial,rr,nullptr);
+            float event_norm=ca_dot(rr,rr,12);
+            if(event_norm<chosen_norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=event_norm;}
+        }
         if(!accepted||chosen_norm>.999f*norm) {
             float low[12],high[12],mid[12],rl[12],rh[12],rr[12];
             for(int i=0;i<12;++i){low[i]=chosen[i];high[i]=chosen[i];}

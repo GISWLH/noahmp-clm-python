@@ -1,0 +1,120 @@
+{
+  "scope": "ActualA511 phase11:10pass1fail. Original735300rawJAX/CUDA57fieldsfail,max.18237305J retained. Correct32/64sciencechecks passed,rawfailure not waived. Atexitbypassdisclosed,notfull343/year/science.",
+  "archive_sha256": "1f65e633fb4dea0f1bc490134545d1e105fe8e077e9eafdefc868b37c6a20d25",
+  "artifacts": [
+    {
+      "source": "target-a/controller.log",
+      "path": "target-a/controller.log.gz",
+      "source_sha256": "e8124fcfdcdd56a01c9c0cda3abbe328481a67a45c28792ac91cabf1d94fea0a",
+      "stored_sha256": "8c4a928d0ab4fe722bac181ad92f08e0eaefdef913f3b9a3c82fc02a0a0dc061"
+    },
+    {
+      "source": "target-a/exit.json",
+      "path": "target-a/exit.json.gz",
+      "source_sha256": "20c1fd0afab1043bfd46c53a0df7c5d47d354edb704da637ecff5543a8e2ba28",
+      "stored_sha256": "01ef0a68e70ee65253f4f2a761cdc233dfd1a4314159012283e8dec31ad28834"
+    },
+    {
+      "source": "target-a/expected.json",
+      "path": "target-a/expected.json.gz",
+      "source_sha256": "61ac36eca038a6bca242caf63da3db10846a176b86710a75cb9789cf777b798e",
+      "stored_sha256": "362055d3fb5a7cd985f9240d45abec10ab5f6cf32a887314eeebd3a25c043ed5"
+    },
+    {
+      "source": "target-a/launch.json",
+      "path": "target-a/launch.json.gz",
+      "source_sha256": "247d519151f25db5c61a8f7ff59001d449c15e53f4cd6d3da0a7ed87104e4ae7",
+      "stored_sha256": "5d407bc9f3881e54b1a831a7d5c7b1ffa9b4e957b1de83e70aed1d9b82da0659"
+    },
+    {
+      "source": "target-a/receipt.json",
+      "path": "target-a/receipt.json.gz",
+      "source_sha256": "a4b6bcafce0190d617bdd1b4412dc5bf01464133bec0048548ab0ac72e1cb96c",
+      "stored_sha256": "a6f9323e00cd41cb9c2872e166bc131423f179590f0d022385fbc593680a06ce"
+    },
+    {
+      "source": "target-a/targets.log",
+      "path": "target-a/targets.log.gz",
+      "source_sha256": "082a470e06f41fc7c5c9c8a20de8d25bea4d4a0f32910104f456d393830b40b4",
+      "stored_sha256": "cc83e64453fe29d742c1bc9d39277a1621b48f30c29760f82475fe045fe0c616"
+    },
+    {
+      "source": "target-a/targets.xml",
+      "path": "target-a/targets.xml.gz",
+      "source_sha256": "388eb38cb23c3f413f048dc721bd9c9ca2af14edab82ca56869fee40c1e465ea",
+      "stored_sha256": "32e5092c5ec24ccb32d9e36ba00a20f9c7cfa8d5854457fc9a261da94b2eb0fd"
+    },
+    {
+      "source": "target-a/worker.json",
+      "path": "target-a/worker.json.gz",
+      "source_sha256": "7475360b5742c4a12b4cde652c9ff2be7ecc399ea4e6345c0fb0f1707cf3525e",
+      "stored_sha256": "e18fd83ef5ac58a319244cdd07c7213a3e4bc154519a0737b9d233c3f8717ca1"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "800455fdc85479be79709cbc1f1ce5587ab6a62761d90126a4d720293f53f0b1",
+      "stored_sha256": "c2e60674f491a71973f9c5b0c279bb08323403ba15fe0199dfa4c38650f06e49"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "b30fd24fa6b25e8d59421a9b3d1405fb9303f2c337e0e5b3344554714aba21dc",
+      "stored_sha256": "cd595cac992aa18195afceaa39b11fce638cace3f0f6fe82b1b89a2786d1edbb"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "fe726108ead1bed028614880c301d89c498859a1c22fe0494f50de3e85f9db41",
+      "stored_sha256": "757e3b73e263c088ce6afdf2c4bb838e2855b90042f8fbc999eafff7b1438da9"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "b140d68b853fbdd5d71b60f94d6b2abd8f4446bae86732af98880acab1d3d2ca",
+      "stored_sha256": "6d9ee9150a0125b1687ade049404fd7a611c221df5109757e1ee5cc09ba0ca64"
+    },
+    {
+      "source": "tests/test_canopy_phase_energy.py",
+      "path": "tests/test_canopy_phase_energy.py.gz",
+      "source_sha256": "3bd97530a318f65d604417e7373a8fa1137580bd64a48bb44b7869cb823eb0c7",
+      "stored_sha256": "318f3cb4b503da6afe392859c2d44ff0e5f9ce9558b0bbb5e9fed28800251f28"
+    },
+    {
+      "source": "tests/test_gpu_canopy_phase_energy.py",
+      "path": "tests/test_gpu_canopy_phase_energy.py.gz",
+      "source_sha256": "739a6d2fd1e918bf327c3c80018a2d1460cbe0727eec06bd3fde2b6babf33af3",
+      "stored_sha256": "af4ef17ee5b253e60b2b24197a1a7582940126bdacdcc6ae9d47671ec9757874"
+    },
+    {
+      "source": "tests/fixtures/qia_735_phase_oldwet.json",
+      "path": "tests/fixtures/qia_735_phase_oldwet.json.gz",
+      "source_sha256": "93bf18fcbfba472509ee03a32681a5746c57190e4decac75697f0af7d521ffc6",
+      "stored_sha256": "72a2d2a50c48b63b64e669fdcdbb8c2174bacf2969ce3a3846c31f8637a527a9"
+    },
+    {
+      "source": "control/control_all_phase_gpu_target_a.py",
+      "path": "control/control_all_phase_gpu_target_a.py.gz",
+      "source_sha256": "e868dc5a8eb1d558f6b23b9388e25bee45784b869285adcb8eebb34fd8dc2c23",
+      "stored_sha256": "52d80e8f0c6b61dd8d657552fbd31b9a01791093f962738cc9afa2ebeb77e12f"
+    },
+    {
+      "source": "control/launch_all_phase_gpu_target_a.py",
+      "path": "control/launch_all_phase_gpu_target_a.py.gz",
+      "source_sha256": "d58b98cdecdcc3923209184f79be763dd8e706b76dcb007643850a46ac02adff",
+      "stored_sha256": "f3ae3cceab473f60e24f86b55c3b7f38eb249a728c1413ee5c19983dfe2f15b2"
+    },
+    {
+      "source": "summary.json",
+      "path": "summary.json.gz",
+      "source_sha256": "4eb2dfbf15842f712aebbb812156b6677f90346056dedbaae963253d67040027",
+      "stored_sha256": "f29db10e5949b59341b063409c010e27212713eacdf96fddb6b38d000239c5f6"
+    },
+    {
+      "source": "control/archive_all_phase_xuanze_wave_a.py",
+      "path": "control/archive_all_phase_xuanze_wave_a.py.gz",
+      "source_sha256": "a282fcb51193766656f0146f6a3f2ba353f95921b2ee71e42554a9242ac8a2b4",
+      "stored_sha256": "4de4a5420a8f14e417d00b15e54533670b567e37394cd173a78e6ee4584624e9"
+    }
+  ]
+}

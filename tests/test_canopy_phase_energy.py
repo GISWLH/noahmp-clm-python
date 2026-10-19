@@ -286,3 +286,26 @@ def test_new_condensate_phase_edge_reaches_same_root_within_original_budget():
     print('saved Qia fresh phase endpoint',dict(iterations=got['iterations'],reference_iterations=reference['iterations'],
         maximum_solver_residual=float(np.max(abs(got['solver_residual']))),independent_heat_residual_Wm2=float(energy),
         maximum_temperature_difference_K=float(np.max(abs(got['leaf_temperature']-reference['leaf_temperature'])))),flush=True)
+
+
+def test_existing_wet_phase_edge_closes_saved_qia735_without_changing_stores():
+    # The original annual trajectory exhausted80 updates from this causal
+    # warm guess. Existing water must be eligible for a phase-edge trial too.
+    saved=saved_phase_call('qia_735_phase_oldwet.json');args=saved['args'];kw=saved['kwargs'];old=args[4]
+    mass,heat=old.mass.copy(),old.enthalpy.copy();assert np.any(mass>0.) and kw['tolerance']==1e-7
+    got=solve_canopy_phase_energy(*args,**kw,initial_guess=saved['initial_guess'])
+    ref=independent_reference(*args,**kw)
+    assert got['iterations']<=80
+    assert np.max(abs(got['solver_residual']))<=kw['tolerance']
+    assert np.max(abs(got['layer_residual']))<=1.01*kw['tolerance']
+    np.testing.assert_array_equal(old.mass,mass);np.testing.assert_array_equal(old.enthalpy,heat)
+    np.testing.assert_allclose(got['condensate'].mass+args[5]*got['wet_evaporation'],mass,rtol=0.,atol=1e-14)
+    temperature_error=float(np.max(abs(np.r_[got['leaf_temperature'],got['ground_temperature']]-ref['temperature'])))
+    assert temperature_error<=.05
+    for key in ('h','le','gpp'):
+        absolute,near=(.01,.1) if key=='gpp' else (1.,10.)
+        assert abs(got[key]-ref[key])<=(absolute if abs(ref[key])<=near else .1*abs(ref[key]))
+    print('saved Qia existing-water phase endpoint',dict(iterations=got['iterations'],
+        maximum_solver_residual=float(np.max(abs(got['solver_residual']))),
+        independent_temperature_error_K=temperature_error,
+        independent_flux_absolute_differences={k:float(abs(got[k]-ref[k])) for k in ('h','le','gpp')}),flush=True)

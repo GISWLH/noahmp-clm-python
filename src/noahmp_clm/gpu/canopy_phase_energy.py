@@ -187,6 +187,21 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         _,(trial,accepted,chosen_norm)=lax.while_loop(
             lambda state:(state[0]<24)&(~state[1][1]),backtrack_step,
             (j.asarray(0,j.int32),(x,j.asarray(False),norm)))
+        # Try the first exact phase edge for existing and newly deposited
+        # parcels, retaining old stores and strict complete-residual descent.
+        edges=j.stack((j.zeros(10,u.dtype),j.full(10,plateau,u.dtype)),axis=1)
+        direction=delta[:10]
+        fractions=s(edges-x[:10,None])/j.where(direction[:,None]!=0.,direction[:,None],1.)
+        eligible=phase_active[:,None]&(direction[:,None]!=0.)&(fractions>0.)&(fractions<=1.)
+        scores=j.where(eligible,fractions,j.asarray(2.,u.dtype)).reshape(20)
+        selected=j.argmin(scores);alpha=scores[selected]
+        def phase_edge_trial(_):
+            candidate=j.clip(s(x+s(delta*alpha)),lo_bound,hi_bound)
+            candidate=candidate.at[selected//2].set(j.where(selected%2==0,j.asarray(0.,u.dtype),plateau))
+            rr,_=evaluate(candidate,phase_active);event_norm=_dot(rr,rr)
+            good=event_norm<chosen_norm
+            return j.where(good,candidate,trial),accepted|good,j.where(good,event_norm,chosen_norm)
+        trial,accepted,chosen_norm=lax.cond(alpha<=1.,phase_edge_trial,lambda _:(trial,accepted,chosen_norm),operand=None)
         slow=(~accepted)|(chosen_norm>s(.999*norm))
         def humidity_restart(_):
             lo=trial.at[11].set(lo_bound[11]);hi=trial.at[11].set(hi_bound[11])

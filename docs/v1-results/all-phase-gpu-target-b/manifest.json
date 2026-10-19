@@ -1,0 +1,120 @@
+{
+  "scope": "CurrentB511 xuanzephase11actual0,0fail/skip,167.288s worker/168.073scontroller. Test-only productiondynamicparameterbinding correction;productionidenticalA.300rawmax0 atoriginal1e-6/exactints,all phases/barriers/source verified;atexitbypassdisclosed,notfull343/year/science.",
+  "archive_sha256": "057d5819299b118f61b557fcacdf2cf33e29a968a74a6ae6d4cfd753f21d6f0b",
+  "artifacts": [
+    {
+      "source": "target-a/controller.log",
+      "path": "target-a/controller.log.gz",
+      "source_sha256": "f83258676dc0f67160d6d65c11a202b6ede5a5194a19df7f0a17b33ebd473811",
+      "stored_sha256": "7c2c1760b8c1aa2db835ae21475eee3fb6bc9e37de42eb6db85ffc4f5a70dc14"
+    },
+    {
+      "source": "target-a/exit.json",
+      "path": "target-a/exit.json.gz",
+      "source_sha256": "514aa5f843b9f71391af0324132f437c73a0ee4099ccbc7790c199fb2cdcc7e9",
+      "stored_sha256": "7aa301a755ba6d85db622db9945fb67f358dd91cb6748620cadb006674befbab"
+    },
+    {
+      "source": "target-a/expected.json",
+      "path": "target-a/expected.json.gz",
+      "source_sha256": "61ac36eca038a6bca242caf63da3db10846a176b86710a75cb9789cf777b798e",
+      "stored_sha256": "362055d3fb5a7cd985f9240d45abec10ab5f6cf32a887314eeebd3a25c043ed5"
+    },
+    {
+      "source": "target-a/launch.json",
+      "path": "target-a/launch.json.gz",
+      "source_sha256": "efc29a44c57028c19e487fb32d117202b6a024317ce2e97d3c31727d6bb2a5fc",
+      "stored_sha256": "ced1ec710f9715494fa807d75bee6b1cbfab3bc225aa894e9f9874b04fca5da0"
+    },
+    {
+      "source": "target-a/receipt.json",
+      "path": "target-a/receipt.json.gz",
+      "source_sha256": "c95f8edc62199ca401a6d2de1c1810520f220a95559a268aa45bc4be7358bc8e",
+      "stored_sha256": "3a848d6f955d092573a884daba4d8a96deffa34aeb91daac052235b9a7ac01a6"
+    },
+    {
+      "source": "target-a/targets.log",
+      "path": "target-a/targets.log.gz",
+      "source_sha256": "30150cfdb7c92999561126c8b75f18679b35e15143211c0457d27c7a51985d51",
+      "stored_sha256": "aa480a2ae4d29a58179b9a5525d5ad645fc97b37cb84e8322c7aec474394e9b1"
+    },
+    {
+      "source": "target-a/targets.xml",
+      "path": "target-a/targets.xml.gz",
+      "source_sha256": "577f9a4daab2dee353587a9eacd20062e6a07b13008bcf516486466391eab957",
+      "stored_sha256": "f73ab16383facaf0baaef728cc0bedd228cb80e036e81ad737f34ad02949a7af"
+    },
+    {
+      "source": "target-a/worker.json",
+      "path": "target-a/worker.json.gz",
+      "source_sha256": "dc09236d20aae8743ce571bc9bef620e0920793a6c6f3c2e70512b3f33ce3716",
+      "stored_sha256": "b3d2c19a78d8889046e677fa36613cfb28217090e51ca22adb9a41c64ec094c1"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "37187bea427930cdf1772c5db1d07b679c7dda15d8033e85e5a013a06089517f",
+      "stored_sha256": "6c6159e659e3f71282ba5db009215bb3871b1b079dfa9ff91890c73792efe0e7"
+    },
+    {
+      "source": "src/noahmp_clm/physics/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/physics/canopy_phase_energy.py.gz",
+      "source_sha256": "b30fd24fa6b25e8d59421a9b3d1405fb9303f2c337e0e5b3344554714aba21dc",
+      "stored_sha256": "cd595cac992aa18195afceaa39b11fce638cace3f0f6fe82b1b89a2786d1edbb"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/canopy_phase_energy.py",
+      "path": "src/noahmp_clm/gpu/canopy_phase_energy.py.gz",
+      "source_sha256": "fe726108ead1bed028614880c301d89c498859a1c22fe0494f50de3e85f9db41",
+      "stored_sha256": "757e3b73e263c088ce6afdf2c4bb838e2855b90042f8fbc999eafff7b1438da9"
+    },
+    {
+      "source": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu",
+      "path": "src/noahmp_clm/gpu/cuda/canopy_phase_energy_kernel.cu.gz",
+      "source_sha256": "b140d68b853fbdd5d71b60f94d6b2abd8f4446bae86732af98880acab1d3d2ca",
+      "stored_sha256": "6d9ee9150a0125b1687ade049404fd7a611c221df5109757e1ee5cc09ba0ca64"
+    },
+    {
+      "source": "tests/test_canopy_phase_energy.py",
+      "path": "tests/test_canopy_phase_energy.py.gz",
+      "source_sha256": "3bd97530a318f65d604417e7373a8fa1137580bd64a48bb44b7869cb823eb0c7",
+      "stored_sha256": "318f3cb4b503da6afe392859c2d44ff0e5f9ce9558b0bbb5e9fed28800251f28"
+    },
+    {
+      "source": "tests/test_gpu_canopy_phase_energy.py",
+      "path": "tests/test_gpu_canopy_phase_energy.py.gz",
+      "source_sha256": "5b155455502614b7c37e0ff65e1888333d07ce394dd13d0298452a957e1c975d",
+      "stored_sha256": "33d2e5d61505aa21662656489e5785b51f54eab76a8237afc3b2a8db7c248a69"
+    },
+    {
+      "source": "tests/fixtures/qia_735_phase_oldwet.json",
+      "path": "tests/fixtures/qia_735_phase_oldwet.json.gz",
+      "source_sha256": "93bf18fcbfba472509ee03a32681a5746c57190e4decac75697f0af7d521ffc6",
+      "stored_sha256": "72a2d2a50c48b63b64e669fdcdbb8c2174bacf2969ce3a3846c31f8637a527a9"
+    },
+    {
+      "source": "control/control_all_phase_gpu_target_b.py",
+      "path": "control/control_all_phase_gpu_target_b.py.gz",
+      "source_sha256": "f28d1d5c9ae100e4749952409f1a9e9c8185508d75a478af6fe78bb561002d4b",
+      "stored_sha256": "d12e7d19886524c9cc862ab08676e7e20170141d131d9a63604eddff73c3bd98"
+    },
+    {
+      "source": "control/launch_all_phase_gpu_target_b.py",
+      "path": "control/launch_all_phase_gpu_target_b.py.gz",
+      "source_sha256": "0aadc988b7984a09870d98630fa3b4b59f5ca8cbf9604f1a38acca11385a04c6",
+      "stored_sha256": "3dac9b89118dee89c4db78eb9255509b4ba4623c8929005a21641396bae95606"
+    },
+    {
+      "source": "summary.json",
+      "path": "summary.json.gz",
+      "source_sha256": "db582a2eb13de5642b99cce0d30cad66f30c5e62a64e6b96e448b8766cc3e954",
+      "stored_sha256": "528eb08fd40a32828e1f2d2746433017d9e69b21e6225c9604e9c7cc806e7611"
+    },
+    {
+      "source": "control/archive_all_phase_xuanze_wave_a.py",
+      "path": "control/archive_all_phase_xuanze_wave_a.py.gz",
+      "source_sha256": "a282fcb51193766656f0146f6a3f2ba353f95921b2ee71e42554a9242ac8a2b4",
+      "stored_sha256": "4de4a5420a8f14e417d00b15e54533670b567e37394cd173a78e6ee4584624e9"
+    }
+  ]
+}

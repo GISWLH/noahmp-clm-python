@@ -256,14 +256,14 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             r=evaluate(trial)
             trial_norm=float(r@r)
             if trial_norm<norm:x=trial;accepted=True;chosen_norm=trial_norm;break
-        # A newly deposited parcel has no old thermal mass. On its latent
-        # plateau, binary backtracking can approach a phase edge indefinitely
-        # while making small residual reductions. Also try the first exact
-        # edge along this same Newton direction; never change old stores or
-        # accept a larger complete coupled residual.
+        # A latent plateau can have very little thermal storage, including
+        # an existing thin parcel. Binary backtracking may approach its edge
+        # indefinitely. Also try the first exact edge along this same Newton
+        # direction, retaining old stores and requiring strict descent of
+        # the complete coupled residual.
         crossing=[]
         for k in range(n):
-            if phase_active[k] and mass[k]==0. and delta[k]!=0.:
+            if phase_active[k] and delta[k]!=0.:
                 for edge in (0.,LF/CW):
                     alpha=(edge-iteration_x[k])/delta[k]
                     if 0.<alpha<=1.:crossing.append((alpha,k,edge))
