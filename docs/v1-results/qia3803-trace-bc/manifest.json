@@ -1,0 +1,114 @@
+{
+  "scope": "Read-only original519H phase trace: both baseline and instrumented raw741 byte-exact. Full100 iteration trace retained; original B get_global API export failure preserved, C corrects export only and actualexit0. Not accepted step/year.",
+  "archive_sha256": "bb609337dba41d65951f7c64cd5671967a82f8fff9e5453af097890efbda2bda",
+  "artifacts": [
+    {
+      "source": "qia3803-trace-device-b/diagnostic-kernel.cu",
+      "path": "qia3803-trace-device-b/diagnostic-kernel.cu.gz",
+      "source_sha256": "6987ee5091281c01de9b38267e1462b80eb06bf61f147ed893582785d8875acf",
+      "stored_sha256": "fdb47cd359ec1483e6043adbe7dc58d8f5a089956107454854d2150d0d7d23fc"
+    },
+    {
+      "source": "qia3803-trace-device-b/launch.json",
+      "path": "qia3803-trace-device-b/launch.json.gz",
+      "source_sha256": "39ddfb94773ccb13cc04bca2b2fa12857c2ba600cd17d7f3dfc5bd645a0bde9e",
+      "stored_sha256": "399e7521c79b61e98a628795e9aa76b2834a05fea77c7b9a5753fee64d2e30bd"
+    },
+    {
+      "source": "qia3803-trace-device-b/model.log",
+      "path": "qia3803-trace-device-b/model.log.gz",
+      "source_sha256": "b3a954690d0521a6d6eaf4ec5f16d68ba8a16e4d346e2acc1cafa5a331290775",
+      "stored_sha256": "9b21710284d60bde5d099297e1143691cf65831162a9da861bab690ba2650025"
+    },
+    {
+      "source": "qia3803-trace-device-c/diagnostic-kernel.cu",
+      "path": "qia3803-trace-device-c/diagnostic-kernel.cu.gz",
+      "source_sha256": "6987ee5091281c01de9b38267e1462b80eb06bf61f147ed893582785d8875acf",
+      "stored_sha256": "fdb47cd359ec1483e6043adbe7dc58d8f5a089956107454854d2150d0d7d23fc"
+    },
+    {
+      "source": "qia3803-trace-device-c/exit.json",
+      "path": "qia3803-trace-device-c/exit.json.gz",
+      "source_sha256": "87c60e90715b8f0a611342b4de56e7bee17950a328149815e28ce1d5520ecd0c",
+      "stored_sha256": "4d5689dcd8da9dc4fd0e9b52d0822fcf7d0198b3a84454e8b005e3587a814bdc"
+    },
+    {
+      "source": "qia3803-trace-device-c/launch.json",
+      "path": "qia3803-trace-device-c/launch.json.gz",
+      "source_sha256": "8574c5efc1a6bed51912c75068f76193a77370e51e4385de161ec10586820f4a",
+      "stored_sha256": "59810656554446e7cda27943a9843fdc3be629b8bc975db01965690fc4bb9f92"
+    },
+    {
+      "source": "qia3803-trace-device-c/model.log",
+      "path": "qia3803-trace-device-c/model.log.gz",
+      "source_sha256": "599a4d3a8da4b930818c4c254aa2204ef28e46b0d6d3f4f0e9d1b9b4904741ab",
+      "stored_sha256": "9ab2bdda80e04c882a44036bb8340c2b265e279bae3b7c030598a03547003266"
+    },
+    {
+      "source": "qia3803-trace-device-c/receipt.json",
+      "path": "qia3803-trace-device-c/receipt.json.gz",
+      "source_sha256": "fd0fff49f2579929a347587287672dfc1cf3d1525a6603b68e649849fcb1a765",
+      "stored_sha256": "b4b75f3f68d10be3ae659348d971fd1a47d6e6be639f7fbc14f6c19ab9ebda84"
+    },
+    {
+      "source": "qia3803-trace-device-c/trace-and-raw.npz",
+      "path": "qia3803-trace-device-c/trace-and-raw.npz",
+      "source_sha256": "e6aeec5571acdddceebf0cb29451fad0f7d317da2a3feb804955ee2bfb85f780",
+      "stored_sha256": "e6aeec5571acdddceebf0cb29451fad0f7d317da2a3feb804955ee2bfb85f780"
+    },
+    {
+      "source": "qia3803-trace-device-c/worker.json",
+      "path": "qia3803-trace-device-c/worker.json.gz",
+      "source_sha256": "65a35d2d6a03d04b2672e79f045d5471ebfc0cd773b24fdc7d2f4992c8147b25",
+      "stored_sha256": "17e52f4e668ba399ee1f54fa573034e539e167c92e58c936009e6568e9a93966"
+    },
+    {
+      "source": "qia3803-trace-device-c/worker.log",
+      "path": "qia3803-trace-device-c/worker.log.gz",
+      "source_sha256": "d2715e3e4f51f1323fe72b23c6274914a60aeee034abdbbf792dd4b3cc7e05c4",
+      "stored_sha256": "9d2e52e4264327470db7405791fdc6eeec755f127595e274508ad7ec0f5dac56"
+    },
+    {
+      "source": "control/trace_qia3803_device_b.py",
+      "path": "control/trace_qia3803_device_b.py.gz",
+      "source_sha256": "f67fe58718f8de2fc73a672e2d737008051fab0db9dc11a025f5146a8e2f2ab4",
+      "stored_sha256": "17aeb0b2b6a001fde2e8be963971d2344e68e9e46927968067d70a664bc00441"
+    },
+    {
+      "source": "control/launch_qia3803_trace_b.py",
+      "path": "control/launch_qia3803_trace_b.py.gz",
+      "source_sha256": "db61a15f25c3468a37875590533ab22cc86ade0b5f83e902d4a2795e014a9a12",
+      "stored_sha256": "93dd6d1e28f3ff6f1afc24ec1c9bf1f5e2e5f6a4c0a23df56af1b4a1fd04406e"
+    },
+    {
+      "source": "control/trace_qia3803_device_c.py",
+      "path": "control/trace_qia3803_device_c.py.gz",
+      "source_sha256": "f499272280421b91284519f1d11971339a7ce5a2e89ac3b2b54e666d5d6b1ac7",
+      "stored_sha256": "24702f7338de7d7541ed441cd44a5dd0c841c76efacb5b0bec1161057a35c720"
+    },
+    {
+      "source": "control/control_qia3803_trace_c.py",
+      "path": "control/control_qia3803_trace_c.py.gz",
+      "source_sha256": "2ee555b14f01de0aef477936de4b48f503e35c7d9c9e77c9bc10e9db3ce6cd65",
+      "stored_sha256": "15c120406032670c7833690861741a0ec95b33ded80c126bb77f0f55c543c31c"
+    },
+    {
+      "source": "control/launch_qia3803_trace_c.py",
+      "path": "control/launch_qia3803_trace_c.py.gz",
+      "source_sha256": "b1d87041269cea83a12603947c382d3ee6b2df99990a34c5dd443e5cdf4395e5",
+      "stored_sha256": "c3c259dfadf1e9276cd92b5b13692e6777ec4783a6508cb85c41474b0df975ee"
+    },
+    {
+      "source": "control/archive_small_gpu_diagnosis.py",
+      "path": "control/archive_small_gpu_diagnosis.py.gz",
+      "source_sha256": "881867bb65cb3ba8394c2f1655560d5c8a3b63a1b6d035f80f92fcceea03913a",
+      "stored_sha256": "9a86fa111d8eb29b5aec76b2f3fe6e1fcc652dc3be3175e0c011031e9ba48706"
+    },
+    {
+      "source": "source/qia1110-final-h-source.tar.gz",
+      "path": "source/qia1110-final-h-source.tar.gz",
+      "source_sha256": "ffa30e87bc515d0694c9135c8b77d14286112e6da2cf7f4ef6467417319132a0",
+      "stored_sha256": "ffa30e87bc515d0694c9135c8b77d14286112e6da2cf7f4ef6467417319132a0"
+    }
+  ]
+}

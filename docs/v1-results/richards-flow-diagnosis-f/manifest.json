@@ -1,0 +1,60 @@
+{
+  "scope": "GPU-only unchanged543E each195 adaptive calls and initial system traces. Both final outputs reproduce original saved arrays byte-exact. First difference not a gate waiver; independent primitive staging must be checked before attributing root cause.",
+  "archive_sha256": "c8e3c6cdfae4182a6cce2d9f10e9c991b2eae99f771f59e9f8b84164ec1dde23",
+  "artifacts": [
+    {
+      "source": "richards-flow-diagnosis-f/diagnostic-kernel.cu",
+      "path": "richards-flow-diagnosis-f/diagnostic-kernel.cu.gz",
+      "source_sha256": "13e0b80fed401e14165cf722032c134d8a7911ad18c41fe9126b9200126e3925",
+      "stored_sha256": "36ccf217efd82599c2c88bc05bf092b870f492015e64a065d08c70df1a159161"
+    },
+    {
+      "source": "richards-flow-diagnosis-f/flow-and-systems.npz",
+      "path": "richards-flow-diagnosis-f/flow-and-systems.npz",
+      "source_sha256": "f215d9990f3937484e7d5f023f7174d6d1d9e0578a23993f3bb03e7b9a496ae5",
+      "stored_sha256": "f215d9990f3937484e7d5f023f7174d6d1d9e0578a23993f3bb03e7b9a496ae5"
+    },
+    {
+      "source": "richards-flow-diagnosis-f/launch.json",
+      "path": "richards-flow-diagnosis-f/launch.json.gz",
+      "source_sha256": "fc7e8728b1452aa689280cfec01800087625d02c9a1de221eb2212b0123dd5d7",
+      "stored_sha256": "d94661a38668ab8f220985d686659b71c8d4b11c4e6be6c63a23f6b025a3f011"
+    },
+    {
+      "source": "richards-flow-diagnosis-f/model.log",
+      "path": "richards-flow-diagnosis-f/model.log.gz",
+      "source_sha256": "fd4dd31d5250e04a29d8d22315cbfab470ec51704e1c2292d864fa81a07c0b65",
+      "stored_sha256": "6a1f83fb2dcbdfdfb9640a1d6f8fe1bec2bb13fd8244850e5bb3b85db31508ea"
+    },
+    {
+      "source": "richards-flow-diagnosis-f/receipt.json",
+      "path": "richards-flow-diagnosis-f/receipt.json.gz",
+      "source_sha256": "797e3706fa39a7897825fbd78738ceeab510cd7be6309bdbcbde8d2961b2cc54",
+      "stored_sha256": "869d2e259374a2a7d0f93aa2fd59722fa9eb0de1bff821874ef1288080d191a2"
+    },
+    {
+      "source": "control/probe_richards_native_flow_f.py",
+      "path": "control/probe_richards_native_flow_f.py.gz",
+      "source_sha256": "2c0ae11bad429a530e126fdb66f913c906cdb8cf65d37d3b15f3549dddd84b83",
+      "stored_sha256": "eab64f26020061dd5f94d85420e8245c4a998f186e7c645333a449aec05272aa"
+    },
+    {
+      "source": "control/launch_richards_flow_f.py",
+      "path": "control/launch_richards_flow_f.py.gz",
+      "source_sha256": "f216209c9434e022fa5b960e22baeb6d9584ef4ed33cd62a4714dbfb093c4ee9",
+      "stored_sha256": "649ff2f1f020703693a95300fa82dc3d68d416a884776684bf8d635d52e445fc"
+    },
+    {
+      "source": "control/archive_small_gpu_diagnosis.py",
+      "path": "control/archive_small_gpu_diagnosis.py.gz",
+      "source_sha256": "881867bb65cb3ba8394c2f1655560d5c8a3b63a1b6d035f80f92fcceea03913a",
+      "stored_sha256": "9a86fa111d8eb29b5aec76b2f3fe6e1fcc652dc3be3175e0c011031e9ba48706"
+    },
+    {
+      "source": "source/richards-native-e-source.tar.gz",
+      "path": "source/richards-native-e-source.tar.gz",
+      "source_sha256": "8b7d1a85cc633b19aed25783e0ed951487001c63981ff11a1501462c022ad58d",
+      "stored_sha256": "8b7d1a85cc633b19aed25783e0ed951487001c63981ff11a1501462c022ad58d"
+    }
+  ]
+}

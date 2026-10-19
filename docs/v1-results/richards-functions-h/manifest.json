@@ -1,0 +1,60 @@
+{
+  "scope": "GPU-only common finalcoordinate typed-scalar and function probes. Independent compile arithmetic may differ from original Newton context; allraw retained for EHPC322, no physical acceptance.",
+  "archive_sha256": "eacc1aa7c9f412a5bf7c9014e6f34f409a25faa8847ae0b19f37d03cd7610957",
+  "artifacts": [
+    {
+      "source": "richards-functions-h/diagnostic-kernel.cu",
+      "path": "richards-functions-h/diagnostic-kernel.cu.gz",
+      "source_sha256": "2b87c071072b900220fe56af1a9403197e75aaa6d4366003c3868f7a305f7ce2",
+      "stored_sha256": "11eeb858aa45f0853b424739b744a08a3bcc706be069d136ab64a6d9bcd4befd"
+    },
+    {
+      "source": "richards-functions-h/functions.npz",
+      "path": "richards-functions-h/functions.npz",
+      "source_sha256": "4cb6d4606fdf2decc2302c0eaecd162327821eccf76f45c9ccf14b6f996b8541",
+      "stored_sha256": "4cb6d4606fdf2decc2302c0eaecd162327821eccf76f45c9ccf14b6f996b8541"
+    },
+    {
+      "source": "richards-functions-h/launch.json",
+      "path": "richards-functions-h/launch.json.gz",
+      "source_sha256": "ed7fab0d28905580805803a71bb5fb1ed1ea9f49b31ffbb1e9d78d439fc40be0",
+      "stored_sha256": "bc0ac191aaa5b062ddb81d1d7011f9eaff0114453df209a3674f067f79629153"
+    },
+    {
+      "source": "richards-functions-h/model.log",
+      "path": "richards-functions-h/model.log.gz",
+      "source_sha256": "cfc8e1e50499e3342de7000a5c6ab78c2071fd67d46404156c3597b8855b634a",
+      "stored_sha256": "84cee9a1566fc5106dff40d9ec26b053f23a4f11c7b6f7c26175c9b151da82ea"
+    },
+    {
+      "source": "richards-functions-h/receipt.json",
+      "path": "richards-functions-h/receipt.json.gz",
+      "source_sha256": "5ed0aafb429b6b2ad97f01c5c971763f3f89d4a65e1caa5022547208db575224",
+      "stored_sha256": "399455647b877b7cf320f455ccfc6d8c71a985a28a01a7771ef76cf6b08f7bb2"
+    },
+    {
+      "source": "control/probe_richards_functions_h.py",
+      "path": "control/probe_richards_functions_h.py.gz",
+      "source_sha256": "9fb0f194485dc1cf1e603c2a020bdb312f23ff5d2dc5acb20715cc767cc9e8cf",
+      "stored_sha256": "48e31277392b93a8e4490af447ccb2ad00ce308ba8d0006bf04fdfa800f3c3ef"
+    },
+    {
+      "source": "control/launch_richards_functions_h.py",
+      "path": "control/launch_richards_functions_h.py.gz",
+      "source_sha256": "1655556fe796310e463ff19ce6f42ee8c9f174446d2b502c76a432aed7edbb05",
+      "stored_sha256": "da8c6c9e7e36f7409243c7a936660d2953fe275b5235bd1e21f9300b9967d498"
+    },
+    {
+      "source": "control/archive_small_gpu_diagnosis.py",
+      "path": "control/archive_small_gpu_diagnosis.py.gz",
+      "source_sha256": "4216ad04c4f80c50b2e93669b6564f27c826a48fa370ea641d829b119c94fef7",
+      "stored_sha256": "247f713ddce420022485bf1fcfe856519eaa759d3af311f57d9f00e71ce54ab4"
+    },
+    {
+      "source": "source/richards-native-f-source.tar.gz",
+      "path": "source/richards-native-f-source.tar.gz",
+      "source_sha256": "bd85950f6b4c59bf00c8ebebee4ea8c5cbbb2b45f68953a0193fb4a108290370",
+      "stored_sha256": "bd85950f6b4c59bf00c8ebebee4ea8c5cbbb2b45f68953a0193fb4a108290370"
+    }
+  ]
+}

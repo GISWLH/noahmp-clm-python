@@ -1,9 +1,8 @@
 """NumPy development reference for closed-column vertical liquid redistribution.
 
-Mixed pressure-head Richards equations, Campbell retention and harmonic face
-conductivity. Downward flux is positive. This water-only component is not yet
-wired into the physical column: frozen-pore/enthalpy coupling, runoff boundary
-operators and native backends must be validated before that integration.
+Mixed storage/saturated-pressure Richards equations and Campbell retention.
+Face conductivity uses mean liquid content; downward flux is positive.
+This development component is not yet wired into the physical column.
 No upstream implementation is copied. See docs/CLM_RICHARDS.md.
 """
 from dataclasses import dataclass
@@ -18,19 +17,26 @@ class HydraulicProfile:
     saturated_conductivity_m_s: np.ndarray
     saturated_suction_m: np.ndarray
     retention_exponent: np.ndarray
+    conductivity_porosity: np.ndarray | None=None
 
     def __post_init__(self):
         dz=np.asarray(self.dz_m,float)
         if dz.ndim!=1 or not len(dz) or not np.all(np.isfinite(dz)) or np.any(dz<=0.):
             raise ValueError('Richards requires positive finite layer thicknesses')
         for name in self.__dataclass_fields__:
-            try:value=np.broadcast_to(np.asarray(getattr(self,name),float),dz.shape).copy()
+            supplied=getattr(self,name)
+            if name=='conductivity_porosity' and supplied is None:supplied=np.where(self.porosity>0.,self.porosity,1.)
+            try:value=np.broadcast_to(np.asarray(supplied,float),dz.shape).copy()
             except ValueError:raise ValueError('Hydraulic profile fields must match the soil layers') from None
             if not np.all(np.isfinite(value)):raise ValueError('Nonfinite hydraulic profile')
-            if name=='porosity' and np.any((value<=0.)|(value>=1.)):raise ValueError('Invalid liquid pore volume')
+            if name=='porosity' and np.any((value<0.)|(value>=1.)):raise ValueError('Invalid liquid pore volume')
+            if name=='conductivity_porosity' and not np.all(((value>0.)&(value<1.))|((value==1.)&(self.porosity==0.))):
+                raise ValueError('Invalid conductivity reference porosity')
             if name=='saturated_conductivity_m_s' and np.any(value<0.):raise ValueError('Negative hydraulic conductivity')
             if name in ('saturated_suction_m','retention_exponent') and np.any(value<=0.):raise ValueError('Positive retention parameters required')
             value.setflags(write=False);object.__setattr__(self,name,value)
+        if np.any((self.porosity==0.)&(self.saturated_conductivity_m_s!=0.)):
+            raise ValueError('Zero available pores must be hydraulically blocked')
 
     @property
     def midpoint_m(self):return np.cumsum(self.dz_m)-.5*self.dz_m
@@ -39,6 +45,8 @@ class HydraulicProfile:
 def hydraulic_properties(head_m,profile):
     """Liquid volume fraction, dtheta/dhead, conductivity and its derivative.
 
+    This unregularized head-only relation is for positive-water diagnostics.
+    Dry-end storage cannot be recovered from the limited coefficient head.
     Positive pressure above air entry retains saturated pore water while
     pressure gradients still transmit water through saturated cells.
     """
@@ -48,29 +56,57 @@ def hydraulic_properties(head_m,profile):
     theta=p.porosity*(p.saturated_suction_m/suction)**(1./p.retention_exponent)
     capacity=np.where(h < -p.saturated_suction_m,theta/(p.retention_exponent*suction),0.)
     power=2.*p.retention_exponent+3.
-    conductivity=p.saturated_conductivity_m_s*(theta/p.porosity)**power
-    derivative=power*conductivity*capacity/theta
+    conductivity=p.saturated_conductivity_m_s*(theta/p.conductivity_porosity)**power
+    derivative=np.divide(power*conductivity*capacity,theta,out=np.zeros_like(theta),where=theta>0.)
     return theta,capacity,conductivity,derivative
 
 
-def _faces(head,p):
-    theta,capacity,k,dk=hydraulic_properties(head,p)
-    distance=np.diff(p.midpoint_m);total=k[:-1]+k[1:]
-    # A zero-conductivity layer blocks its two faces, without a numerical leak.
-    valid=total>0.;denominator=np.where(valid,total,1.)
-    face=np.where(valid,2.*k[:-1]*k[1:]/denominator,0.)
-    gradient=1.-np.diff(head)/distance
-    left=np.where(valid,2.*(k[1:]/denominator)**2*dk[:-1],0.)*gradient+face/distance
-    right=np.where(valid,2.*(k[:-1]/denominator)**2*dk[1:],0.)*gradient-face/distance
-    return theta,capacity,face*gradient,left,right
+def _storage_properties(coordinate,p):
+    """Actual storage below saturation, pressure coordinate above it.
+
+    Only the hydraulic coefficient uses the CLM .01-relative-water /1e5m
+    suction limits. The storage is never floored, so zero stays zero until an
+    actual face flux wets it. Zero-pore pressure is explicitly undefined.
+    """
+    maximum=1000.*p.dz_m*p.porosity;defined=maximum>0.;safe=np.where(defined,maximum,1.)
+    saturated=coordinate>maximum
+    water=np.where(defined,np.minimum(coordinate,maximum),0.)
+    dw=np.where(defined&~saturated,1.,0.)
+    relative=water/safe
+    limited=np.maximum(relative,np.divide(.01*p.conductivity_porosity,p.porosity,
+        out=np.ones_like(relative),where=defined))
+    raw=p.saturated_suction_m*limited**(-p.retention_exponent)
+    suction=np.minimum(raw,1e5)
+    floor=(relative<limited)|(raw>=1e5)
+    entry=np.minimum(p.saturated_suction_m,1e5)
+    head=np.where(saturated,-entry+(coordinate-maximum)*p.retention_exponent*entry/safe,-suction)
+    unsaturated_derivative=np.divide(p.retention_exponent*raw,water,
+        out=np.zeros_like(water),where=defined&~floor&(water>0.))
+    derivative=np.where(saturated,p.retention_exponent*entry/safe,unsaturated_derivative)
+    return water,dw,np.where(defined,head,0.),np.where(defined,derivative,0.),defined&floor
 
 
-def _residual(head,old,p,dt,jacobian=False):
-    theta,capacity,q,left,right=_faces(head,p)
+def _faces(coordinate,p):
+    water,dw,head,dh,floor=_storage_properties(coordinate,p)
+    theta=water/(1000.*p.dz_m);dtheta=dw/(1000.*p.dz_m)
+    reference=p.conductivity_porosity[:-1]+p.conductivity_porosity[1:]
+    relative=(theta[:-1]+theta[1:])/reference
+    power=p.retention_exponent[:-1]+p.retention_exponent[1:]+3.
+    material=np.sqrt(p.saturated_conductivity_m_s[:-1])*np.sqrt(p.saturated_conductivity_m_s[1:])
+    face=material*relative**power
+    dk=material*power*relative**(power-1.)/reference
+    distance=np.diff(p.midpoint_m);gradient=1.-np.diff(head)/distance
+    left=dk*dtheta[:-1]*gradient+face*dh[:-1]/distance
+    right=dk*dtheta[1:]*gradient-face*dh[1:]/distance
+    return water,dw,face*gradient,left,right
+
+
+def _residual(coordinate,old,p,dt,jacobian=False):
+    water,dw,q,left,right=_faces(coordinate,p)
     faces=np.r_[0.,q,0.]
-    residual=1000.*p.dz_m*theta-old+1000.*dt*np.diff(faces)
+    residual=water-old+1000.*dt*np.diff(faces)
     if not jacobian:return residual,q
-    matrix=np.diag(1000.*p.dz_m*capacity)
+    matrix=np.diag(dw)
     for j in range(len(q)):
         matrix[j,j]+=1000.*dt*left[j];matrix[j,j+1]+=1000.*dt*right[j]
         matrix[j+1,j]-=1000.*dt*left[j];matrix[j+1,j+1]-=1000.*dt*right[j]
@@ -78,9 +114,9 @@ def _residual(head,old,p,dt,jacobian=False):
 
 
 def _implicit_step(old,guess,p,dt):
-    head=guess.copy();total_capacity=float(np.sum(1000.*p.dz_m*p.porosity))
+    coordinate=guess.copy();total_capacity=float(np.sum(1000.*p.dz_m*p.porosity))
     for iteration in range(45):
-        residual,q,matrix=_residual(head,old,p,dt,True)
+        residual,q,matrix=_residual(coordinate,old,p,dt,True)
         norm=float(np.max(abs(residual)))
         if norm<=1e-10:
             transfer=1000.*dt*q
@@ -88,20 +124,19 @@ def _implicit_step(old,guess,p,dt):
             # It telescopes exactly; no residual mass is invented or discarded.
             water=old+np.r_[0.,transfer]-np.r_[transfer,0.]
             maximum=1000.*p.dz_m*p.porosity
-            if np.any(water<=0.) or np.any(water>maximum+1e-9):raise RuntimeError('Richards solved flux violates pore bounds')
-            return water,head,transfer,norm,iteration+1
+            if np.any(water<0.) or np.any(water>maximum+1e-9):raise RuntimeError('Richards solved flux violates pore bounds')
+            return water,coordinate,transfer,norm,iteration+1
         try:direction=np.linalg.solve(matrix,-residual)
         except np.linalg.LinAlgError:raise RuntimeError('Singular mixed Richards pressure solve') from None
         scale=1.;accepted=False
         for _ in range(35):
-            candidate=head+scale*direction
-            if np.all(np.isfinite(candidate)):
-                theta=hydraulic_properties(candidate,p)[0]
-                all_saturated=np.all(candidate>=-p.saturated_suction_m)
+            candidate=coordinate+scale*direction
+            if np.all(np.isfinite(candidate)) and np.all(candidate>=0.):
+                all_saturated=np.all(candidate>=1000.*p.dz_m*p.porosity)
                 if not (all_saturated and float(old.sum())<total_capacity-1e-8):
                     trial,_=_residual(candidate,old,p,dt)
                     if np.max(abs(trial))<norm:
-                        head=candidate;accepted=True;break
+                        coordinate=candidate;accepted=True;break
             scale*=.5
         if not accepted:raise RuntimeError('Richards pressure line search did not decrease the full water residual')
     raise RuntimeError('Richards nonlinear water solve did not converge')
@@ -113,25 +148,49 @@ def redistribute_liquid(water_kg_m2,profile,dt_seconds,*,absolute_tolerance_kg_m
 
     The complete change is carried by signed integrated face transfers. A
     backward-Euler full step and two half steps control temporal error; the
-    accepted solution uses the two half steps. Strictly positive liquid is the
-    current development domain. No ice, energy, surface input, aquifer or
+    accepted solution uses the two half steps. No ice, energy, surface input, aquifer or
     lateral groundwater tendency is hidden in this component.
     """
     if not isinstance(profile,HydraulicProfile):raise TypeError('Expected HydraulicProfile')
     p=profile;old=np.asarray(water_kg_m2,float);maximum=1000.*p.dz_m*p.porosity
-    if old.shape!=p.dz_m.shape or not np.all(np.isfinite(old)) or np.any(old<=0.) or np.any(old>maximum):
-        raise ValueError('Richards reference requires positive liquid within explicit pore capacity')
+    if old.shape!=p.dz_m.shape or not np.all(np.isfinite(old)) or np.any(old<0.) or np.any(old>maximum):
+        raise ValueError('Richards reference requires nonnegative liquid within explicit pore capacity')
     if (not math.isfinite(dt_seconds) or dt_seconds<=0. or not math.isfinite(absolute_tolerance_kg_m2)
             or absolute_tolerance_kg_m2<=0. or not math.isfinite(relative_tendency_tolerance)
             or not 0.<relative_tendency_tolerance<=.1 or type(max_substeps) is not int or max_substeps<1):
         raise ValueError('Invalid Richards timestep or temporal controls')
-    theta=old/(1000.*p.dz_m)
-    head=-p.saturated_suction_m*(p.porosity/theta)**p.retention_exponent
+    coordinate=old.copy();defined=p.porosity>0.
+    # Disconnected hydraulic blocks are independent closed columns. This
+    # includes zero-pore ice barriers and isolated impermeable material cells.
+    connected=(p.saturated_conductivity_m_s>0.)&defined
+    if not np.all(connected):
+        result=dict(water_kg_m2=old.copy(),pressure_head_m=_storage_properties(coordinate,p)[2],
+            pressure_defined=defined.copy(),pressure_floor_active=_storage_properties(coordinate,p)[4],
+            interface_transfer_kg_m2=np.zeros(len(old)-1),forward_transfer_kg_m2=np.zeros(len(old)-1),reverse_transfer_kg_m2=np.zeros(len(old)-1),
+            accepted_substeps=0,rejected_substeps=0,maximum_nonlinear_residual_kg_m2=0.,maximum_temporal_error_kg_m2=0.)
+        j=0
+        while j<len(old):
+            if not connected[j]:j+=1;continue
+            end=j+1
+            while end<len(old) and connected[end]:end+=1
+            part=HydraulicProfile(**{name:getattr(p,name)[j:end] for name in p.__dataclass_fields__})
+            one=redistribute_liquid(old[j:end],part,dt_seconds,absolute_tolerance_kg_m2=absolute_tolerance_kg_m2,
+                relative_tendency_tolerance=relative_tendency_tolerance,max_substeps=max_substeps)
+            for name in ('water_kg_m2','pressure_head_m','pressure_floor_active'):result[name][j:end]=one[name]
+            for name in ('interface_transfer_kg_m2','forward_transfer_kg_m2','reverse_transfer_kg_m2'):result[name][j:end-1]=one[name]
+            for name in ('accepted_substeps','rejected_substeps'):result[name]+=one[name]
+            for name in ('maximum_nonlinear_residual_kg_m2','maximum_temporal_error_kg_m2'):result[name]=max(result[name],one[name])
+            j=end
+        result['mass_residual_kg_m2']=float(math.fsum(result['water_kg_m2'])-math.fsum(old))
+        result['mass_bound_kg_m2']=32.*np.finfo(float).eps*max(float(abs(result['water_kg_m2']).sum()+abs(old).sum()),1.)
+        if abs(result['mass_residual_kg_m2'])>result['mass_bound_kg_m2']:raise RuntimeError('Disconnected Richards water budget failed')
+        return result
     # Closed, fully saturated columns have an undetermined pressure offset.
     # Select a hydrostatic gauge; water and interface transfers remain exact.
     if np.all(old==maximum):
         head=p.midpoint_m+float(np.max(-p.saturated_suction_m-p.midpoint_m))
         return dict(water_kg_m2=old.copy(),pressure_head_m=head,interface_transfer_kg_m2=np.zeros(len(old)-1),
+                    pressure_defined=defined,pressure_floor_active=np.zeros(len(old),bool),
                     forward_transfer_kg_m2=np.zeros(len(old)-1),reverse_transfer_kg_m2=np.zeros(len(old)-1),
                     mass_residual_kg_m2=0.,mass_bound_kg_m2=32.*np.finfo(float).eps*max(float(2.*old.sum()),1.),
                     accepted_substeps=0,rejected_substeps=0,maximum_nonlinear_residual_kg_m2=0.,maximum_temporal_error_kg_m2=0.)
@@ -141,8 +200,8 @@ def redistribute_liquid(water_kg_m2,profile,dt_seconds,*,absolute_tolerance_kg_m
         if accepted+rejected>=max_substeps:raise RuntimeError('Richards adaptive substep budget exhausted')
         step=min(step,dt_seconds-elapsed)
         try:
-            coarse,_,_,_,_=_implicit_step(current,head,p,step)
-            half,half_head,first,r1,_=_implicit_step(current,head,p,.5*step)
+            coarse,_,_,_,_=_implicit_step(current,coordinate,p,step)
+            half,half_head,first,r1,_=_implicit_step(current,coordinate,p,.5*step)
             fine,next_head,second,r2,_=_implicit_step(half,half_head,p,.5*step)
             error=abs(fine-coarse);tendency=np.maximum(abs(fine-current),abs(coarse-current))
             ratio=float(np.max(error/(absolute_tolerance_kg_m2+relative_tendency_tolerance*tendency)))
@@ -154,7 +213,7 @@ def redistribute_liquid(water_kg_m2,profile,dt_seconds,*,absolute_tolerance_kg_m
             rejected+=1;step*=max(.2,.8/math.sqrt(ratio));continue
         for part in (first,second):
             for face,value in enumerate(part):transfers[face].append(float(value))
-        current=fine;head=next_head;elapsed+=step;accepted+=1
+        current=fine;coordinate=next_head;elapsed+=step;accepted+=1
         max_residual=max(max_residual,r1,r2);max_error=max(max_error,float(error.max()))
         step*=min(2.,max(.5,.8/math.sqrt(max(ratio,1e-12))))
     integrated=np.asarray([math.fsum(v) for v in transfers])
@@ -163,7 +222,8 @@ def redistribute_liquid(water_kg_m2,profile,dt_seconds,*,absolute_tolerance_kg_m
     water=old+np.r_[0.,integrated]-np.r_[integrated,0.]
     residual=float(math.fsum(water)-math.fsum(old));bound=32.*np.finfo(float).eps*max(float(abs(water).sum()+abs(old).sum()),1.)
     if abs(residual)>bound:raise RuntimeError('Richards extensive water budget failed')
-    return dict(water_kg_m2=water,pressure_head_m=head,interface_transfer_kg_m2=integrated,
+    return dict(water_kg_m2=water,pressure_head_m=_storage_properties(coordinate,p)[2],
+        pressure_defined=defined,pressure_floor_active=_storage_properties(coordinate,p)[4],interface_transfer_kg_m2=integrated,
         forward_transfer_kg_m2=forward,reverse_transfer_kg_m2=reverse,
         mass_residual_kg_m2=residual,mass_bound_kg_m2=bound,accepted_substeps=accepted,rejected_substeps=rejected,
         maximum_nonlinear_residual_kg_m2=max_residual,maximum_temporal_error_kg_m2=max_error)
@@ -183,11 +243,10 @@ def soil_hydraulic_profile(state,ice_impedance_exponent=6.):
         raise ValueError('Invalid ice impedance')
     p=state.params;liquid=state.liquid;ice=state.water-liquid
     fraction=ice/(1000.*state.dz*p.smcmax);available=p.smcmax-ice/(1000.*state.dz)
-    if np.any(liquid<=0.) or np.any(available<=0.):raise NotImplementedError('Dry/fully ice-filled Richards cells require a separate degenerate-limit validation')
-    ratio=available/p.smcmax
-    suction=p.saturated_suction_m/ratio**p.bexp
-    conductivity=p.satdk*ratio**(2.*p.bexp+3.)*10.**(-ice_impedance_exponent*fraction)
-    return HydraulicProfile(state.dz,available,conductivity,suction,p.bexp)
+    ratio=available/p.smcmax;safe=np.where(available>0.,ratio,1.)
+    suction=p.saturated_suction_m/safe**p.bexp
+    conductivity=np.where(available>0.,p.satdk*10.**(-ice_impedance_exponent*fraction),0.)
+    return HydraulicProfile(state.dz,available,conductivity,suction,p.bexp,np.full(len(state.water),p.smcmax))
 
 
 def redistribute_soil_enthalpy(state,dt_seconds,*,ice_impedance_exponent=6.,maximum_liquid_fraction=.05,
@@ -215,7 +274,10 @@ def redistribute_soil_enthalpy(state,dt_seconds,*,ice_impedance_exponent=6.,maxi
         flow=redistribute_liquid(liquid,profile,step)
         forward=flow['forward_transfer_kg_m2'];reverse=flow['reverse_transfer_kg_m2'];net=flow['interface_transfer_kg_m2']
         outward=np.r_[forward,0.]+np.r_[0.,reverse]
-        fraction=float(np.max(outward/liquid))
+        incoming=np.r_[0.,forward]+np.r_[reverse,0.]
+        available=liquid+incoming
+        if np.any((available==0.)&(outward>0.)):raise RuntimeError('Richards outflow has no liquid source')
+        fraction=float(np.max(np.divide(outward,available,out=np.zeros_like(outward),where=available>0.)))
         if fraction>maximum_liquid_fraction:
             rejected+=1;step*=max(.1,.8*maximum_liquid_fraction/fraction)
             if step<1e-7:raise RuntimeError('Richards liquid-availability substep underflow')
