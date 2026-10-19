@@ -1,0 +1,102 @@
+{
+  "scope": "Actual EHPC PBS163 NumPy64 real Qia first48,original17520 request/statusrunning retained,model/PBS exits0,2353.892450s,source unchanged. Explicit new SAI/geometry assumption only,original cold water/heat/CN/LAI and meteorology retained. Not a complete year/spinup/FLUXNET acceptance;actual state/trace/input binding preserved for independent GPU reference.",
+  "archive_sha256": "a7dfdd99e9258a626047d9361a63020563961395ef42470c53caeae9a30382b5",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "ebb28c9126a7aca30a2061b534886dc177e30c365ffc3135899a7edd4589ed69",
+      "stored_sha256": "71a8c3feb7e55676746d8727f8d5c60dfc28df3d0b8f4c05d4959a52afc6120d"
+    },
+    {
+      "source": "clm-qia-sai-day.o163",
+      "path": "clm-qia-sai-day.o163",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "controller.log",
+      "path": "controller.log.gz",
+      "source_sha256": "c7001f94a8616f582ce5b7e1ebb30ce9b38d554fa13e9663cd1489a4b9b24122",
+      "stored_sha256": "c1d4e582af9e64abc99bf038c5217d20a5eeab2cded1b69e45e1ee7d3d3db32a"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "96a440bac2a1bed7a4c801265c818c602f712ae16e0dc85908ee0691096f156c",
+      "stored_sha256": "df7e27659b39775da42f527af9914b0e7dabb41dee2357ed7185199d1f48f5d2"
+    },
+    {
+      "source": "model.log",
+      "path": "model.log.gz",
+      "source_sha256": "4ba1f9c7a9b8980dee466e96000d379289d7459c8246c190740b22bb4181db0a",
+      "stored_sha256": "8538f8d50d4aa0c559d1c7462aa9c39bb9a1a7a93ccba6396770d14e74c70143"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia_stem_numpy_day_a.pbs",
+      "path": "qia_stem_numpy_day_a.pbs.gz",
+      "source_sha256": "49c140f9001220943538cd5bf64849587cf6bb42b4c992710992b0c3a6891950",
+      "stored_sha256": "ab408ba3c77b69b12c08f6a8ca3043f272e7e71595cf01c05f0711d3f0792d96"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "ac069913799c7803b08187743742550d0ba6ed969221ed7e873921142b499b02",
+      "stored_sha256": "751ae244f7133edeb46ffb516f1d13f28db90ea9f9ad032bfd1bdf023dff9595"
+    },
+    {
+      "source": "run_qia_stem_numpy_day_a.py",
+      "path": "run_qia_stem_numpy_day_a.py.gz",
+      "source_sha256": "c3c1d9a225e3cc94394e66bec1bda8738d4457909ee649bc521cbf83b83c5e4d",
+      "stored_sha256": "f685a8d26ac956b4c75f180bef52c03a7bc51ef91533300a4ed32359bc896328"
+    },
+    {
+      "source": "trajectory/report.json",
+      "path": "trajectory/report.json.gz",
+      "source_sha256": "a59af1f1aded3fd7a97dc57579c8eaff99eac94aaad71e769250e88b919a5a64",
+      "stored_sha256": "e4b6b774141f9c1493ffcb4744dc7cdee9befc0f4b732db20d5a88a218ac218d"
+    },
+    {
+      "source": "trajectory/state-0000000.pkl",
+      "path": "trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "trajectory/state-0000048.pkl",
+      "path": "trajectory/state-0000048.pkl",
+      "source_sha256": "03e3bc1e51dcced09bdbd939cfd0e35bf4a9c5913d20483c158ae10d0b72c83a",
+      "stored_sha256": "03e3bc1e51dcced09bdbd939cfd0e35bf4a9c5913d20483c158ae10d0b72c83a"
+    },
+    {
+      "source": "trajectory/trace-0000000.npz",
+      "path": "trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "trajectory/trace-0000048.npz",
+      "path": "trajectory/trace-0000048.npz",
+      "source_sha256": "7ae80d6f3a0fca081015068a1a0d43a2e1f16d555d69c5deb147c1931704e460",
+      "stored_sha256": "7ae80d6f3a0fca081015068a1a0d43a2e1f16d555d69c5deb147c1931704e460"
+    },
+    {
+      "source": "control/qia-stem-inputs-a.tar.gz",
+      "path": "control/qia-stem-inputs-a.tar.gz",
+      "source_sha256": "66ca0988cc66751284f61bf0909bd97b54c234cab895a53b51ce308d9ecec2f7",
+      "stored_sha256": "66ca0988cc66751284f61bf0909bd97b54c234cab895a53b51ce308d9ecec2f7"
+    },
+    {
+      "source": "control/archive_qia_stem_numpy_day_a.py",
+      "path": "control/archive_qia_stem_numpy_day_a.py.gz",
+      "source_sha256": "66aa90e3efd18045b5529c020ef56b191199e066d29de9ad86f7c10312fcf18b",
+      "stored_sha256": "d19e4c0dea271905e7a99cbff847896533b4ae16b8d634e7174d6ad0a806268f"
+    }
+  ]
+}

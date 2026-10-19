@@ -1,5 +1,21 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1：实际Qia CUDA32/JAX32首日等待超过30分钟（2026-10-19）
+
+[原始只读快照](v1-results/qia-stem-device-wait-a/manifest.json)在实际elapsed1805秒
+确认xuanze GPU0原工作进程2242411仍Rl、101%CPU，控制器无退出回执，提交指针
+仍0。指针不是迭代计数，不据此宣称停滞或GPU错误。保留原进程、源和独立影子，
+不重启/重置设备，绕行超算官方CTSM单点输入及实际运行；原1e-6/守恒界不变。
+EHPC NumPy对应首日已实际完成48步，原17520年度请求身份保留。
+
+## v1：Qia显式SAI的NumPy首日等待超过30分钟（2026-10-18）
+
+16:59:17UTC[实际PBS/工作进程核对](v1-results/qia-stem-wait-a/manifest.json)
+确认PBS163仍R，compute002原worker29750为R、99.9%CPU、elapsed34:25。
+已提交代次仍为0/17520，不能据此判断内部时间步停止；本次只请求先停48步。
+按30分钟规则保留原输入/冻结源码/工作进程，绕行官方CTSM单点域、地表和
+月沉降准备。没有用旧失败年续跑、修改求解轮数/守恒界或重启该活进程。
+
 ## v1：506结构柱矩阵等待超过30分钟（2026-10-18）
 
 16:35:31UTC[只读确认](v1-results/stem-split-wait-e/manifest.json)原结构柱文件

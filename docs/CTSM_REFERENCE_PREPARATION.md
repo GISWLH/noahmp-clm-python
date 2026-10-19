@@ -1,5 +1,35 @@
 # 官方CTSM单柱参考准备（2026-10-17）
 
+## 2026-10-19 Qia单点输入与运行配置
+
+[输入原件的元数据、控制脚本与PBS回执](v1-results/ctsm-qia-point-inputs-ab/manifest.json)
+保存了PBS165带time维TOPO索引失败及PBS166修正后的完整读核。后者在EHPC
+compute002用17.159733秒完成9份输入，实际退出0；原官方NetCDF留在服务器。
+单点domain为显式0.01°工程柱（面积1.236516563km²），不称实测塔足迹。
+地表按预先固定的最近邻27.4736842°N、115°E取原土壤，单点植被为PFT1天然林，
+LAI3、SAI0.549363333、冠层11/5.5m，作物/城市/湖泊/湿地/冰川面积均0。
+原实际Qia17520步气象不变，回读最大差0；气溶胶14个日期锚点覆盖2002年12月、
+2003全部月及2004年1月，按当地月中心转UTC。原BC/尘5种沉降插值与本模型
+17520步最大差≤5.16988e-26kg/m²/s；共同5种实验显式设OC为0，原OC元数据保留。
+
+[运行A/B原预检失败](v1-results/ctsm-qia-run-failures-ab/manifest.json)实际均退出1：
+A重复指定域文件，B重复指定CO₂类型，均未编译或运行官方物理。
+[C/D原失败](v1-results/ctsm-qia-run-failures-cd/manifest.json)分别为
+非FATES不允许create_crop_landunit=false，以及空finidat与未强制冷启动矛盾。
+这些均按固定版本实际错误修正生成case配置，上游2930文件字节未改。
+E改用XML的CLM_FORCE_COLDSTART=on并移除user_nl中的finidat，EHPC PBS171
+实际预检/构建/动态库检查均0，构建165.751360秒、总182.594063秒；
+[实际运行退出233](v1-results/ctsm-qia-run-e/manifest.json)，在DATM流文件查找
+dataSource标签时终止，尚未进入物理积分。固定源码shr_stream_readUpToTag逐行
+扫描标签，本次XML把标签写在file标签同一行；F只将流文件标签/值写为独立行，
+在PBS172执行。Ball–Berry、5雪层、关闭LUNA/水力胁迫、实际CO₂映射及读入
+对齐仍须由实际终态核对，尚无官方科学偏差数字。
+
+当前工程执行的官方10SL_3.5m土壤、粗网格土质及默认冷库存与本项目4层/原冷
+种子不匹配；官方SP固定LAI/SAI也不是动态CN参考。成功执行后须核对实际DATM
+时钟、CO₂及气象读入，再落实匹配初态/土壤和可比过程，不能将配置成功当作10%
+科学验收。CPU官方构建/模型只在EHPC PBS计算节点执行。
+
 2026-10-18后续：[PFT/冠层几何输入](CTSM_PFT_GEOMETRY_INPUTS.md)已在EHPC
 PBS159实际核对79/79名称与固定源码一致，并读取四站候选类别的原月LAI/SAI/
 上下沿。此处仍为输入核对，未采用站点参数、生成官方物理输出或验收完整年。

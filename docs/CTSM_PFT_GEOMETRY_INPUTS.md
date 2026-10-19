@@ -1,5 +1,14 @@
 # 官方 PFT 与冠层几何输入核对
 
+2026-10-19终态：[Qia首日实际NumPy轨迹与回执](v1-results/qia-stem-numpy-day-a/manifest.json)
+已保存。EHPC PBS163/compute002在2353.892450秒完成首48步，模型/PBS实际退出0。
+原请求17520步、报告running身份保留；当地1月1日48个半小时时段完整，不伪称
+全年完成。累计M/H/C/N最大绝对残差分别1.818545314e-13kg/m²、
+0.000498820911J/m²、5.352662757e-12gC/m²、5.865759267e-13gN/m²，原守恒界
+全部满足。初态/强迫/源冻结哈希及所有轨迹和检查点原件均保留。
+同输入CUDA32／独立JAX32首日已在xuanze GPU0启动，原同精度与守恒界不变，
+尚无终态。科学偏差、真实spinup和完整年待完成；以下启动快照按当时状态保留。
+
 后续[Qia新冷启动试验的准备/启动快照](v1-results/qia-stem-numpy-launch-a/manifest.json)
 已在EHPC PBS162/163落实：固定PFT1，按地理双线性权重读取原January月均SAI，
 初始值0.5493633328；此后按CN_NONCROP更新。保留原C/N资金所给LAI及全部
