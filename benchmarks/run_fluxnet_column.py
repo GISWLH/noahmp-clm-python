@@ -7,8 +7,9 @@ internal artifacts, not a format for untrusted external model inputs.
 """
 from __future__ import annotations
 import argparse
-from dataclasses import asdict
+from dataclasses import asdict,replace
 from datetime import datetime, timedelta
+from functools import lru_cache
 import hashlib
 import json
 import os
@@ -30,6 +31,7 @@ from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.physics.photosynthesis import LeafParameters
 from noahmp_clm.physics.canopy_optics import CanopyOptics
 from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
+from noahmp_clm.physics.canopy_capacity import TemperatureMemory,CanopyCapacityParameters,CanopyCapacityEnvironment
 from fluxnet_solar import solar_geometry
 from fluxnet_deposition import DepositionSchedule
 
@@ -39,6 +41,58 @@ TRACE = {'h_wm2': 'h', 'le_wm2': 'le', 'gpp_gc_m2': 'gpp_gc_m2',
          'autotrophic_respiration_gc_m2': 'autotrophic_respiration_gc_m2',
          'heterotrophic_respiration_gc_m2': 'heterotrophic_respiration_gc_m2'}
 STRUCTURE_TRACE=('sai_m2m2','canopy_sai_used_m2m2','canopy_exposed_lai_m2m2','canopy_exposed_sai_m2m2')
+CAPACITY_TRACE={'capacity_mean_temperature_used_k':'mean_temperature_k',
+    'capacity_next_mean_temperature_k':'next_mean_temperature_k',
+    'capacity_daylength_factor':'daylength_factor',
+    'capacity_vcmax25_top':'vcmax25_top',
+    'capacity_nitrogen_extinction':'nitrogen_extinction',
+    'capacity_temperature_count':'temperature_count_after',
+    'capacity_temperature_cursor':'temperature_cursor_after'}
+
+
+def capacity_configuration(config):
+    """Explicit traits, fixed history interval and cold temperature; no tuning."""
+    value=config.get('canopy_capacity')
+    if value is None:return None
+    if not isinstance(value,dict) or set(value)!={'parameters','time_step_seconds','initial_temperature_k'}:
+        raise ValueError('Canopy capacity requires parameters, time_step_seconds and initial_temperature_k')
+    if not isinstance(value['parameters'],dict):raise ValueError('Capacity parameters must be an object')
+    required={'specific_leaf_area','leaf_cn','rubisco_nitrogen_fraction'}
+    if not required<=set(value['parameters'])<=required|{'foliage_nitrogen_factor'}:
+        raise ValueError('Capacity parameters require explicit C3 leaf traits')
+    if any(isinstance(v,bool) or not isinstance(v,(int,float)) for v in value['parameters'].values()):
+        raise ValueError('Capacity traits must be explicit numbers')
+    for key in ('time_step_seconds','initial_temperature_k'):
+        v=value[key]
+        if isinstance(v,bool) or not isinstance(v,(int,float)) or not np.isfinite(v):
+            raise ValueError('Capacity interval and initial temperature must be explicit finite numbers')
+    return (CanopyCapacityParameters(**value['parameters']),
+            TemperatureMemory.cold(value['time_step_seconds'],value['initial_temperature_k']))
+
+
+def capacity_trace_keys(config):
+    return tuple(CAPACITY_TRACE) if config.get('canopy_capacity') is not None else ()
+
+
+@lru_cache(maxsize=128)
+def maximum_daylength(year,latitude,longitude,utc_offset_hours):
+    """NOAA geometric daylength maximum over all local noons in this year.
+
+    This approximation is independent of the selected forcing/score window.
+    It is not labelled as a tower measurement or CTSM's actual DAYL history.
+    """
+    day=datetime(year,1,1,12);end=datetime(year+1,1,1,12);longest=0.
+    while day<end:
+        longest=max(longest,solar_geometry(day,latitude,longitude,utc_offset_hours)['daylength_seconds'])
+        day+=timedelta(days=1)
+    return longest
+
+
+def capacity_environment(stamp,metadata,enabled):
+    if not enabled:return None
+    coordinates=tuple(metadata[k] for k in ('latitude','longitude','utc_offset_hours'))
+    day=solar_geometry(stamp.replace(hour=12,minute=0,second=0,microsecond=0),*coordinates)['daylength_seconds']
+    return CanopyCapacityEnvironment(day,maximum_daylength(stamp.year,*coordinates))
 
 
 def structure_configuration(config):
@@ -89,8 +143,11 @@ def build_state(config):
     c['soil'] = SoilParams(**c['soil']); c['options'] = PhysicsOptions(**c['options'])
     for key in ('dz', 'tsoil', 'smc', 'root_frac'):
         c[key] = np.asarray(c[key], float)
-    state = CLMColumnState.from_column(ColumnState(**c), options=c['options']).with_layered_canopy()
     seasonal = config['phenology']
+    # Assemble the required layers and phenology together before enabling
+    # option5. from_column cannot construct an incomplete seasonal CLM state.
+    seed_options=replace(c['options'],OptDynamicVeg=4) if seasonal is not None and c['options'].OptDynamicVeg==5 else c['options']
+    state = CLMColumnState.from_column(ColumnState(**c), options=seed_options).with_layered_canopy()
     if seasonal is not None:
         state = state.with_phenology(PhenologyParameters(**seasonal['parameters']), PhenologyState(**seasonal['initial']))
     b = config['biogeochemistry']
@@ -102,6 +159,8 @@ def build_state(config):
     state=state.with_biogeochemistry(BGCState(plant, soil), parameters)
     structure=structure_configuration(config)
     if structure is not None:state=state.with_vegetation_structure(structure[0],sai=structure[1])
+    capacity=capacity_configuration(config)
+    if capacity is not None:state=state.with_canopy_capacity(*capacity)
     return state
 
 
@@ -159,6 +218,9 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
     metadata = json.loads(input_manifest.read_text(encoding='utf-8')); config = json.loads(config_path.read_text(encoding='utf-8'))
     with np.load(input_path, allow_pickle=False) as archive: data = dict(archive)
     stamps = validate_input(data, metadata, input_path); n = len(stamps)
+    capacity=capacity_configuration(config)
+    if capacity is not None and data['forcing'][0,0]!=capacity[1].time_step_seconds:
+        raise ValueError('Forcing interval disagrees with capacity temperature history')
     for key in ('latitude', 'longitude', 'utc_offset_hours'):
         if config[key] != metadata[key]: raise ValueError(f'Configuration/forcing geometry disagreement: {key}')
     identity = dict(forcing_npz_sha256=sha(input_path), forcing_manifest_sha256=sha(input_manifest),
@@ -186,7 +248,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
         if any(output.iterdir()): raise ValueError('Use an empty run directory or explicit --resume')
         state = build_state(config); initial = totals(state); net = np.zeros(4); bounds = np.zeros(4)
         maximum = np.zeros(4); stepmax = np.zeros(4); index = 0
-        records = {key:[] for key in (*TRACE,*structure_trace_keys(config), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
+        records = {key:[] for key in (*TRACE,*structure_trace_keys(config),*capacity_trace_keys(config), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
                                       'step_residual_m_h_c_n', 'step_bound_m_h_c_n', 'cumulative_residual_m_h_c_n')}
         report = dict(**identity, status='running', site=config['site'], scope=config['scope'], configuration=config,
                       time_convention='local standard time', utc_offset_hours=metadata['utc_offset_hours'],
@@ -220,6 +282,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
             after, d = step_clm_enthalpy_column(state, f, co2_ppm=float(co2), cosine_zenith=float(mu), diffuse_fraction=float(diffuse),
                 leaf_dimension=config['leaf_dimension_m'], leaf_parameters=leaf, most_geometry=geometry,
                 phenology_environment=environment, deposition_rates=dep, nitrogen_deposition_gn_m2=nitrogen,
+                capacity_environment=capacity_environment(stamps[index],metadata,capacity is not None),
                 **({} if optics is None else dict(canopy_optics=optics)))
             incoming, residual, bound = audit_step(state, after, f, d, nitrogen)
             next_net = net+incoming; next_bounds = bounds+bound; cumulative = totals(after)-initial-next_net
@@ -232,6 +295,8 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
                 canopy_geometry=d['canopy_geometry']
                 values.update(sai_m2m2=after.sai,canopy_sai_used_m2m2=canopy_geometry['total_sai'],
                     canopy_exposed_lai_m2m2=canopy_geometry['exposed_lai'],canopy_exposed_sai_m2m2=canopy_geometry['exposed_sai'])
+            if capacity is not None:
+                values.update({key:d['canopy_capacity'][field] for key,field in CAPACITY_TRACE.items()})
             if not all(np.all(np.isfinite(v)) for v in values.values()): raise RuntimeError('Nonfinite trajectory output')
             for key, value in values.items(): records[key].append(value)
             state = after; net = next_net; bounds = next_bounds; index += 1

@@ -87,10 +87,11 @@ def attach_column_capacity(result,state):
     return result
 
 
-def _step(arrays,forcing,backend,kind,structured,environment,kwargs):
+def _step(arrays,forcing,backend,kind,structured,environment,kwargs,seasonal_environment):
     if len(arrays)<4:raise ValueError('Missing native capacity state')
     if 'canopy_capacity' in kwargs or 'capacity_environment' in kwargs:
         raise ValueError('Use the retained capacity arrays and explicit environment')
+    if seasonal_environment is not None:kwargs['environment']=seasonal_environment
     base,capacity=arrays[:-4],arrays[-4:]
     if structured:
         from .clm_structure_column import step_clm_structure_columns_jax,step_clm_structure_columns_cuda
@@ -103,12 +104,14 @@ def _step(arrays,forcing,backend,kind,structured,environment,kwargs):
     return run(*base,forcing,canopy_capacity=capacity,capacity_environment=environment,**kwargs)
 
 
-def step_clm_capacity_columns_jax(arrays,forcing,*,kind='bgc',structured=False,environment=None,**kwargs):
-    return _step(arrays,forcing,'jax',kind,structured,environment,kwargs)
+def step_clm_capacity_columns_jax(arrays,forcing,*,kind='bgc',structured=False,environment=None,seasonal_environment=None,**kwargs):
+    """Capacity photoperiod and optional phenology environment are separate."""
+    return _step(arrays,forcing,'jax',kind,structured,environment,kwargs,seasonal_environment)
 
 
-def step_clm_capacity_columns_cuda(arrays,forcing,*,kind='bgc',structured=False,environment=None,**kwargs):
-    return _step(arrays,forcing,'cuda',kind,structured,environment,kwargs)
+def step_clm_capacity_columns_cuda(arrays,forcing,*,kind='bgc',structured=False,environment=None,seasonal_environment=None,**kwargs):
+    """Capacity photoperiod and optional phenology environment are separate."""
+    return _step(arrays,forcing,'cuda',kind,structured,environment,kwargs,seasonal_environment)
 
 
 def next_capacity_arrays(previous,result,*,kind='bgc',structured=False):

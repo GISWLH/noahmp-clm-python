@@ -3,8 +3,8 @@
 This validation runner consumes the same explicit configurations and prepared
 forcing as run_fluxnet_column. Batch axes never exchange state. CUDA32 can
 carry an independent JAX32 shadow and compare every returned field each step.
-Checkpoints retain sixteen base arrays plus three explicit structure arrays
-when configured; cold starts are not called spinup.
+Checkpoints retain sixteen base arrays, three structure arrays and four
+capacity/history arrays when configured; cold starts are not called spinup.
 """
 from __future__ import annotations
 import argparse
@@ -19,7 +19,8 @@ from uuid import uuid4
 import numpy as np
 
 from run_fluxnet_column import (ROOT, TRACE, sha, atomic_json, build_state,
-                                calendar, validate_input,structure_configuration,structure_trace_keys)
+                                calendar, validate_input,structure_configuration,structure_trace_keys,
+                                capacity_configuration,capacity_environment,capacity_trace_keys,CAPACITY_TRACE)
 from fluxnet_deposition import DepositionSchedule
 from noahmp_clm.column import SoilParams
 from noahmp_clm.physics.canopy_most import MOSTGeometry
@@ -29,17 +30,22 @@ from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState
 from noahmp_clm.gpu.clm_bgc_column import (pack_clm_bgc_columns,
     pack_bgc_environment, next_bgc_arrays)
 from noahmp_clm.gpu.clm_structure_column import pack_clm_structure_columns,next_structure_arrays
+from noahmp_clm.gpu.clm_capacity_column import pack_clm_capacity_columns,pack_capacity_environment,next_capacity_arrays
 
 
 def native_state_count(cases):
     enabled=[structure_configuration(c['config']) is not None for c in cases]
     if len(set(enabled))!=1:raise ValueError('Split structured and leaf-only station batches')
-    return 19 if enabled[0] else 16
+    capacity=[capacity_configuration(c['config']) for c in cases]
+    if len({v is not None for v in capacity})!=1:raise ValueError('Split capacity and fixed-capacity station batches')
+    if capacity[0] is not None and len({v[1].time_step_seconds for v in capacity})!=1:
+        raise ValueError('Capacity station batches require matching history intervals')
+    return 16+3*enabled[0]+4*(capacity[0] is not None)
 
 
 def checkpoint_arrays(saved,identity,*,shadow=False):
     count=identity.get('native_state_arrays',16)
-    if type(count) is not int or count not in (16,19):raise ValueError('Unsupported native checkpoint state count')
+    if type(count) is not int or count not in (16,19,20,23):raise ValueError('Unsupported native checkpoint state count')
     prefix='shadow' if shadow else 'a';expected={f'{prefix}{k}' for k in range(count)}
     actual={key for key in saved if re.fullmatch(prefix+r'\d+',key)}
     if actual!=expected:raise ValueError('Native checkpoint must retain every declared state array')
@@ -49,6 +55,14 @@ def checkpoint_arrays(saved,identity,*,shadow=False):
 def next_station_arrays(previous,result):
     if len(previous)==16:return next_bgc_arrays(previous,result)
     if len(previous)==19:return next_structure_arrays(previous,result,kind='bgc')
+    if len(previous) in (20,23):return next_capacity_arrays(previous,result,kind='bgc',structured=len(previous)==23)
+    raise ValueError('Unsupported native station state count')
+
+
+def pack_station_arrays(states,count,**kwargs):
+    if count==16:return pack_clm_bgc_columns(states,**kwargs)
+    if count==19:return pack_clm_structure_columns(states,kind='bgc',**kwargs)
+    if count in (20,23):return pack_clm_capacity_columns(states,kind='bgc',structured=count==23,**kwargs)
     raise ValueError('Unsupported native station state count')
 
 
@@ -160,12 +174,16 @@ def load_batch(path):
             raise ValueError('Configuration site is absent from forcing archive identity')
         DepositionSchedule(config)
         structure_configuration(config)
+        capacity=capacity_configuration(config)
+        if capacity is not None and data['forcing'][0,0]!=capacity[1].time_step_seconds:
+            raise ValueError('Forcing interval disagrees with capacity temperature history')
         loaded.append(dict(case=name, paths=paths, metadata=meta, config=config, data=data, stamps=stamps))
     if not loaded: raise ValueError('Empty native batch')
     first = loaded[0]
     if any(len(v['stamps']) != len(first['stamps']) for v in loaded):
         raise ValueError('Batch columns need equal interval counts, with independent local dates')
-    if any(v['config']['leaf_parameters'] != first['config']['leaf_parameters'] for v in loaded):
+    state_count=native_state_count(loaded)
+    if state_count not in (20,23) and any(v['config']['leaf_parameters'] != first['config']['leaf_parameters'] for v in loaded):
         raise ValueError('Native leaf parameters are shared within a batch; split differing parameter sets')
     return loaded
 
@@ -188,6 +206,8 @@ class Backend:
             self.xp, self.convert = cp, cp.asnumpy
             from noahmp_clm.gpu.clm_structure_column import step_clm_structure_columns_cuda
             self._plain_step,self._structure_step=step_clm_bgc_columns_cuda,step_clm_structure_columns_cuda
+            from noahmp_clm.gpu.clm_capacity_column import step_clm_capacity_columns_cuda
+            self._capacity_step=step_clm_capacity_columns_cuda
             self.inverse = run_soil_thermodynamics_cuda
         else:
             import jax
@@ -199,13 +219,20 @@ class Backend:
             self.xp, self.convert = j, np.asarray
             from noahmp_clm.gpu.clm_structure_column import step_clm_structure_columns_jax
             self._plain_step,self._structure_step=step_clm_bgc_columns_jax,step_clm_structure_columns_jax
+            from noahmp_clm.gpu.clm_capacity_column import step_clm_capacity_columns_jax
+            self._capacity_step=step_clm_capacity_columns_jax
             self.inverse = run_soil_thermodynamics_jax
 
     def step(self,*args,**kwargs):
         arrays,forcing=args[:-1],args[-1]
         if len(arrays)==16:return self._plain_step(*arrays,forcing,**kwargs)
         if len(arrays)==19:return self._structure_step(arrays,forcing,kind='bgc',**kwargs)
-        raise ValueError('Native station step requires sixteen or nineteen arrays')
+        if len(arrays) in (20,23):
+            photoperiod=kwargs.pop('capacity_environment')
+            seasonal=kwargs.pop('environment',None)
+            return self._capacity_step(arrays,forcing,kind='bgc',structured=len(arrays)==23,
+                environment=photoperiod,seasonal_environment=seasonal,**kwargs)
+        raise ValueError('Native station step requires16/19/20/23 arrays')
 
     def host(self, value):
         if isinstance(value, dict): return {k: self.host(v) for k, v in value.items()}
@@ -322,7 +349,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         forcing_manifest_sha256=sha(c['paths']['input_manifest']), configuration_sha256=sha(c['paths']['configuration'])) for c in cases]
     identity = dict(batch_sha256=sha(batch_path), cases=identities, source_sha256=sources,
                     backend=backend, compare_jax32=compare_jax32)
-    if state_count==19:identity['native_state_arrays']=19
+    if state_count!=16:identity['native_state_arrays']=state_count
     carried = None
     if initial_run is not None:
         link, previous_report, carried = carry_generation(initial_run, initial_mode, cases, identity)
@@ -330,6 +357,8 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     previous_steps = identity.get('initial_run', {}).get('previous_ledger_steps', 0)
     previous_segments = identity.get('initial_run', {}).get('previous_segments', 0)
     leaf = LeafParameters(**cases[0]['config']['leaf_parameters'])
+    if state_count in (20,23):
+        leaf=np.asarray([astuple(LeafParameters(**c['config']['leaf_parameters'])) for c in cases],dtype)
     optics=None
     if any(c['config'].get('canopy_optics') is not None for c in cases):
         from noahmp_clm.physics.canopy_optics import CanopyOptics
@@ -358,8 +387,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         if carried is None:
             states = [build_state(c['config']) for c in cases]
             env = np.asarray([c['data']['environment'][0] for c in cases], dtype)
-            pack=pack_clm_bgc_columns if state_count==16 else lambda values,**kw:pack_clm_structure_columns(values,kind='bgc',**kw)
-            a = pack(states, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
+            a = pack_station_arrays(states,state_count, dtype=dtype, co2_ppm=env[:, 0], cosine_zenith=env[:, 1],
                 diffuse_fraction=env[:, 2], leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in cases], dtype))
             shadow = tuple(v.copy() for v in a) if compare_jax32 else None
             initial = totals(a); net = np.zeros((count, 4)); bounds = net.copy()
@@ -373,7 +401,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
         index = 0
         report = dict(identity=identity, steps_requested=n, columns=count)
         for k, c in enumerate(cases):
-            records.append({key: [] for key in (*TRACE,*structure_trace_keys(c['config']), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
+            records.append({key: [] for key in (*TRACE,*structure_trace_keys(c['config']),*capacity_trace_keys(c['config']), 'swe_m', 'lai', 'tsoil_k', 'smc_m3m3', 'liquid_m3m3',
                 'step_residual_m_h_c_n', 'step_bound_m_h_c_n', 'cumulative_residual_m_h_c_n')})
             reports.append(dict(**identities[k], source_sha256=sources, backend=backend,
                 site=c['config']['site'], scope=c['config']['scope'], configuration=c['config'],
@@ -447,6 +475,9 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
             kwargs = dict(environment=e, calendar=cal, nitrogen_deposition_gn_m2=nitrogen,
                 deposition=deposition, most_geometry=geometry, leaf_parameters=leaf, return_surface=True)
             if optics is not None:kwargs['canopy_optics']=optics
+            if state_count in (20,23):
+                kwargs['capacity_environment']=pack_capacity_environment([
+                    capacity_environment(c['stamps'][index],c['metadata'],True) for c in cases],dtype=dtype)
             before_device = engine.update_forcing(device, env)
             out_device = engine.step(*before_device, f, **kwargs); out = engine.host(out_device)
             next_device = next_station_arrays(before_device, out_device)
@@ -462,6 +493,8 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
                 same = max(same, compare_same_precision(out, so))
                 next_shadow_device = next_station_arrays(sb, so_device)
                 next_shadow = tuple(checker.host(v) for v in next_shadow_device)
+                same=max(same,compare_same_precision({str(k):v for k,v in enumerate(after)},
+                    {str(k):v for k,v in enumerate(next_shadow)},'carried_state'))
                 si, sr, bound_shadow, _ = audit_step(shadow, next_shadow, f, deposition, nitrogen, so)
                 snet = shadow_net+si; sbounds = shadow_bounds+bound_shadow
                 scumulative = totals(next_shadow)-initial-snet
@@ -475,10 +508,12 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
             values.update(swe_m=after[0][:, :, 0].astype(float).sum(1)/1000., lai=after[4][:, 0],
                 tsoil_k=temperature, smc_m3m3=g[:, :, 0]/(1000.*g[:, :, 2]), liquid_m3m3=liquid/(1000.*g[:, :, 2]),
                 step_residual_m_h_c_n=residual, step_bound_m_h_c_n=bound, cumulative_residual_m_h_c_n=cumulative)
-            if state_count==19:
+            if state_count in (19,23):
                 used=out['canopy_geometry']
                 values.update(sai_m2m2=after[16][:,0],canopy_sai_used_m2m2=used['total_sai'],
                     canopy_exposed_lai_m2m2=used['exposed_lai'],canopy_exposed_sai_m2m2=used['exposed_sai'])
+            if state_count in (20,23):
+                values.update({key:out['canopy_capacity'][field] for key,field in CAPACITY_TRACE.items()})
             if not all(np.all(np.isfinite(v)) for v in values.values()): raise RuntimeError('Nonfinite native trace')
             for k in range(count):
                 for key, value in values.items(): records[k][key].append(np.array(value[k], copy=True))

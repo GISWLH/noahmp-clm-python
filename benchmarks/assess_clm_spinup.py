@@ -65,7 +65,7 @@ def _frame(saved,k,identity=None):
     soil=np.asarray(arrays[1][k],float);carbon=np.asarray(arrays[13][k,:7],float)
     frame=dict(soil_temperature_k=temperature,soil_water_m3m3=soil[:,0]/(1000.*soil[:,2]),
         swe_m=float(np.asarray(arrays[0][k,:,0],float).sum()/1000.),soil_carbon_gc_m2=carbon)
-    if len(arrays)==19:frame['canopy_sai_m2m2']=float(arrays[16][k,0])
+    if len(arrays) in (19,23):frame['canopy_sai_m2m2']=float(arrays[16][k,0])
     return frame
 
 
@@ -134,8 +134,7 @@ def assess_cycles(batch,input_root,folders,model_source_manifest):
         initial_path,initial,initial_evidence=_initial_generation(folder,report,rows,sources);evidence.update(initial_evidence)
         if previous is None:
             dtype=initial['a0'].dtype;environment=np.asarray([c['data']['environment'][0] for c in loaded],dtype)
-            pack=native.pack_clm_bgc_columns if state_count==16 else lambda values,**kw:native.pack_clm_structure_columns(values,kind='bgc',**kw)
-            expected=pack([native.build_state(c['config']) for c in loaded],dtype=dtype,
+            expected=native.pack_station_arrays([native.build_state(c['config']) for c in loaded],state_count,dtype=dtype,
                 co2_ppm=environment[:,0],cosine_zenith=environment[:,1],diffuse_fraction=environment[:,2],
                 leaf_dimension=np.asarray([c['config']['leaf_dimension_m'] for c in loaded],dtype))
             for i,value in enumerate(expected):
