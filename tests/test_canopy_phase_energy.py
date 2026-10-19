@@ -227,7 +227,7 @@ def test_phase_guess_rejects_invalid_shape_nonfinite_or_domain(guess):
         solve_canopy_phase_energy(area,sw,lw,e,c,1800.,initial_guess=guess,**kw)
 
 
-def test_saved_qia_phase_uses_causal_warm_root_without_changing_old_stores():
+def saved_phase_call(filename):
     import json
     from pathlib import Path
     from noahmp_clm.physics.photosynthesis import LeafParameters
@@ -240,8 +240,12 @@ def test_saved_qia_phase_uses_causal_warm_root_without_changing_old_stores():
         if '__array__' in value:return np.asarray(decode(value['__array__']),dtype=value['dtype'])
         if '__float__' in value:return float(value['__float__'])
         return {k:decode(v) for k,v in value.items()}
-    record=json.loads((Path(__file__).parent/'fixtures/qia_163_phase_warm.json').read_text())
-    saved=decode(record['call']);args=saved['args'];kw=saved['kwargs'];old=args[4]
+    record=json.loads((Path(__file__).parent/'fixtures'/filename).read_text())
+    return decode(record['call'])
+
+
+def test_saved_qia_phase_uses_causal_warm_root_without_changing_old_stores():
+    saved=saved_phase_call('qia_163_phase_warm.json');args=saved['args'];kw=saved['kwargs'];old=args[4]
     mass,heat=old.mass.copy(),old.enthalpy.copy()
     got=solve_canopy_phase_energy(*args,**kw,initial_guess=saved['initial_guess'])
     ref=independent_reference(*args,**kw)
@@ -255,3 +259,30 @@ def test_saved_qia_phase_uses_causal_warm_root_without_changing_old_stores():
     print('saved Qia phase warm root',dict(iterations=got['iterations'],maximum_solver_residual=float(np.max(abs(got['solver_residual']))),
         maximum_temperature_difference_K=float(np.max(abs(np.r_[got['leaf_temperature'],got['ground_temperature']]-ref['temperature']))),
         independent_flux_absolute_differences={k:float(abs(got[k]-ref[k])) for k in ('h','le','gpp')}),flush=True)
+
+
+def test_new_condensate_phase_edge_reaches_same_root_within_original_budget():
+    saved=saved_phase_call('qia_182_phase_edge.json');args=saved['args'];kw=saved['kwargs'];old=args[4]
+    mass,heat=old.mass.copy(),old.enthalpy.copy();dt=args[5]
+    got=solve_canopy_phase_energy(*args,**kw,initial_guess=saved['initial_guess'])
+    reference=solve_canopy_phase_energy(*args,**kw,initial_guess=None)
+    assert got['iterations']<=80 and reference['iterations']<=80 and kw['tolerance']==1e-7
+    assert np.max(abs(got['solver_residual']))<=kw['tolerance']
+    assert np.max(abs(got['layer_residual']))<=1.01*kw['tolerance']
+    np.testing.assert_array_equal(old.mass,mass);np.testing.assert_array_equal(old.enthalpy,heat)
+    np.testing.assert_allclose(got['condensate'].mass+dt*got['wet_evaporation'],mass,rtol=0.,atol=1e-14)
+    np.testing.assert_allclose(got['leaf_temperature'],reference['leaf_temperature'],rtol=0.,atol=.05)
+    for key in ('h','le','gpp'):np.testing.assert_allclose(got[key],reference[key],rtol=.1,atol=.01 if key=='gpp' else 1.)
+    # Every final leaf here is away from Tf. Reconstruct advected water
+    # enthalpy from actual mass and its pure phase, without the solver's
+    # parcel-energy or residual helpers.
+    t=got['leaf_temperature'];assert np.all(t!=273.15)
+    wet_mass=mass-got['condensate'].mass
+    wet_heat=(wet_mass*np.where(t<273.15,2100.*(t-273.15),334000.+4180.*(t-273.15))).sum()/dt
+    storage=(got['condensate'].enthalpy-heat).sum()/dt
+    transp=(got['transpiration']*(334000.+4180.*(t-273.15))).sum()-got['root_uptake']@kw['root_enthalpy']
+    energy=got['rnet']-got['h']-got['le']-got['ground_heat']-storage-wet_heat-transp
+    assert abs(energy)<=11.*kw['tolerance']
+    print('saved Qia fresh phase endpoint',dict(iterations=got['iterations'],reference_iterations=reference['iterations'],
+        maximum_solver_residual=float(np.max(abs(got['solver_residual']))),independent_heat_residual_Wm2=float(energy),
+        maximum_temperature_difference_K=float(np.max(abs(got['leaf_temperature']-reference['leaf_temperature'])))),flush=True)

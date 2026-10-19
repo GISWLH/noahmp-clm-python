@@ -3,6 +3,13 @@
 当前NumPy、JAX64/JAX32、CUDA32单叶组件已接入分层冠层和完整BGC柱；
 实际FLUXNET GPP与下列未达标单叶曲线仍须独立评价。早期组件检查按日期保留。
 
+2026-10-19新增[完整C3作物登记与分离留出评价](CLM_LEAFWEB_CROP.md)：全部63文件
+先登记，14份常氧数据/162个光响应点评价，3达标、11失败、49未测。水稻NRMSE
+6.87098–18.7581%，番茄Basket Vee24.8801–50.6887%、Growdena13.8453–39.6311%；
+21个近零点中7个超绝对门。EHPC PBS215仅校准A–Ci、参数固定后PBS216独立预测
+光响应，原数据/单位/协议/每点结果保留，生产实现及参数未改。不替换下方草地
+失败，也不据局部相关性或3份达标宣称全部单叶/气孔/冠层观测通过。
+
 方程来源为 [CLM5 技术手册 2.9 节](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Photosynthesis/CLM50_Tech_Note_Photosynthesis.html)，
 参考 [PhotosynthesisMod](https://github.com/ESCOMP/CTSM/blob/release-clm5.0/src/biogeophys/PhotosynthesisMod.F90)
 和 [CanopyFluxesMod](https://github.com/ESCOMP/CTSM/blob/release-clm5.0/src/biogeophys/CanopyFluxesMod.F90)

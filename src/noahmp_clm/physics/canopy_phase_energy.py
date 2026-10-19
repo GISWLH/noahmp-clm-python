@@ -246,6 +246,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         # Preserve the Newton direction while limiting the largest component;
         # separate clipping of humidity and enthalpy can reverse descent.
         delta/=max(1.,float(np.max(abs(delta)/np.r_[np.full(n,20.),5.,5.])))
+        iteration_x=x.copy()
         norm=float(residual@residual);accepted=False;chosen_norm=norm
         # Near a latent-plateau edge, the Newton step can be much larger than
         # the distance to the kink. Keep sub-Jacobian steps available rather
@@ -255,6 +256,22 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             r=evaluate(trial)
             trial_norm=float(r@r)
             if trial_norm<norm:x=trial;accepted=True;chosen_norm=trial_norm;break
+        # A newly deposited parcel has no old thermal mass. On its latent
+        # plateau, binary backtracking can approach a phase edge indefinitely
+        # while making small residual reductions. Also try the first exact
+        # edge along this same Newton direction; never change old stores or
+        # accept a larger complete coupled residual.
+        crossing=[]
+        for k in range(n):
+            if phase_active[k] and mass[k]==0. and delta[k]!=0.:
+                for edge in (0.,LF/CW):
+                    alpha=(edge-iteration_x[k])/delta[k]
+                    if 0.<alpha<=1.:crossing.append((alpha,k,edge))
+        if crossing:
+            alpha,k,edge=min(crossing)
+            trial=np.clip(iteration_x+alpha*delta,lower,upper);trial[k]=edge
+            rr=evaluate(trial);event_norm=float(rr@rr)
+            if event_norm<chosen_norm:x=trial;accepted=True;chosen_norm=event_norm
         if not accepted or chosen_norm>.999*norm:
             # A Newton humidity direction can point outside the physical
             # interval, or make negligible accepted progress near a bound.
