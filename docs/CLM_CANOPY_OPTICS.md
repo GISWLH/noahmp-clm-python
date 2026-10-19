@@ -59,7 +59,12 @@ EHPC279另外发现合法完全不吸收的纯叶／纯枝／混合输入可能�
 `interception`与`1−(1−interception)`舍入不同。D统一CUDA与原JAX顺序，原精度/
 方程/返回字段不变。xuanze受控候选直接调用原五函数，47组参考及新增完全散射例
 全部624字段最大差均2.00239802e-36；这不能冒充pytest或完整回归。[D完整940CPU](v1-results/pft-optics-cpu-final-d/manifest.json)与[设备目标20](v1-results/pft-optics-gpu20-d/manifest.json)现已实际0，0失败／跳过；正式pytest中完全散射及47例全部624字段最大差2.00239802e-36。
-[D整柱BGC3及规范1291](v1-results/pft-optics-full-deferred-d/manifest.json)在xuanze继续，未计完整通过；A/B/C保留原身份。
+[D整柱BGC3](v1-results/pft-optics-full-gpu3-d/manifest.json)随后实际父／worker0，
+1547.608秒、0失败／跳过；32／64参考、MOST开／关及两次携带状态的原MHCN界满足，
+全部原始CUDA32/JAX32返回字段最大差0。D规范1291在GPU0继续，17:57快照1111项
+覆盖、当前MOST振荡专项仍运行，未计全量通过；A/B/C保留原身份。其后1110数值
+修订的519H另有943CPU／14相变及整步双端380字段审计，见[该点记录](CLM_QIA1110_PHASE.md)，
+不能把D结果重新标为H。
 
 ## 固定首日站点对照
 

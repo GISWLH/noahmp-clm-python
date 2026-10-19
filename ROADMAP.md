@@ -7,6 +7,15 @@
 旧 H4/K3/M4 数值门已退役为已接受限制，历史复验结论保留在下方。
 本阶段排除城市模型、土地利用变化、整机耦合、河道和侧向地下水。
 
+17:57UTC当前检查点：
+
+- [x] [1110精确拐点局部Jacobian](docs/CLM_QIA1110_PHASE.md)：NumPy先行29、最终H完整943CPU及xuanze相变14实际0；原整步两端实际0，全部380字段最大差3.64e-12，原单步／累计MHCN与杂质界满足。
+- [x] [PFT最终D整柱BGC3](docs/v1-results/pft-optics-full-gpu3-d/manifest.json)实际0、全部原始同精度字段差0；[早期506完整1241](docs/v1-results/phase-final-check-full-a/manifest.json)实际0，保持各自源码身份。
+- [ ] H当前规范1297余340GPU排队；D完整1291／旧511完整1254仍实际运行，不停止实际worker。新原冷NumPy295快照144/17520，新CUDA原冷年已启动，旧两端failed1110原样保留。
+- [ ] 日长容量／十日温度记忆／垂直叶N、K78原1e-6、完整气候年／spinup／多站多年／留出／测高敏感性／科学验收和发布。CPU只在EHPC PBS计算节点，GPU只在xuanze。
+
+下方带时间的运行状态为当时快照，不代表后续终态。
+
 16:58UTC最终检查点：
 
 - [x] [PFT光学最终D](docs/CLM_CANOPY_OPTICS.md)完整940CPU、设备目标20实际0，47例及完全散射全部624字段差2.00e-36；A整柱BGC3另有实际0，所有B/C失败保留。

@@ -302,7 +302,8 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             # A centred derivative can cross a latent-plateau kink and point
             # uphill on the current branch. Retry locally only after the
             # original Newton/backtracking and humidity recovery have failed.
-            # Exact kinks retain the centred derivative. Accept only a strict
+            # At an exact kink use the side indicated by the original
+            # Newton direction. Accept only a strict
             # reduction of the same complete coupled residual; all final
             # energy/water and convergence requirements are unchanged.
             local_jac=np.empty_like(jac)
@@ -310,6 +311,9 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
                 step=1e-6 if k<n+1 else 1e-7
                 lo=x.copy();hi=x.copy();lo[k]=max(lower[k],x[k]-step);hi[k]=min(upper[k],x[k]+step)
                 if k<n and phase_active[k]:
+                    if x[k]==0. or x[k]==LF/CW:
+                        if delta[k]>=0.:lo[k]=x[k]
+                        else:hi[k]=x[k]
                     if x[k]<0.:hi[k]=min(hi[k],0.)
                     elif 0.<x[k]<LF/CW:lo[k]=max(lo[k],0.);hi[k]=min(hi[k],LF/CW)
                     elif x[k]>LF/CW:lo[k]=max(lo[k],LF/CW)

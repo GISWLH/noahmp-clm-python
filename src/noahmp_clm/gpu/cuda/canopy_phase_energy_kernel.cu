@@ -193,6 +193,9 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
                 for(int i=0;i<12;++i){lo[i]=x[i];hi[i]=x[i];}
                 lo[k]=fmaxf(lower[k],x[k]-step);hi[k]=fminf(upper[k],x[k]+step);
                 if(k<10&&v.phase_active[k]) {
+                    if(x[k]==0.f||x[k]==plateau) {
+                        if(delta[k]>=0.f)lo[k]=x[k];else hi[k]=x[k];
+                    }
                     if(x[k]<0.f)hi[k]=fminf(hi[k],0.f);
                     else if(x[k]>0.f&&x[k]<plateau){lo[k]=fmaxf(lo[k],0.f);hi[k]=fminf(hi[k],plateau);}
                     else if(x[k]>plateau)lo[k]=fmaxf(lo[k],plateau);

@@ -1,0 +1,882 @@
+{
+  "scope": "EHPC independentnetwork/quantizedrefs/fullMHCN, trueold3Newtonfail/new29pass, originalNumPyandCUDA1110 hard single/cumulative/tracer audit. Original287serialization1/289invalidshape1 explicitly retained not truephysicsregression. No failedyearresume or fullJAX/1297/scientificpass.",
+  "archive_sha256": "07b181e7f24154e99666ab4658fbfa5b464c5842b7b35bd38c74d98f25ac4b07",
+  "artifacts": [
+    {
+      "source": "qia1110-reference-d/clm-qia1110-reference-d.o287",
+      "path": "qia1110-reference-d/clm-qia1110-reference-d.o287",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-reference-d/device/SOURCE_SHA256.json",
+      "path": "qia1110-reference-d/device/SOURCE_SHA256.json.gz",
+      "source_sha256": "37187bea427930cdf1772c5db1d07b679c7dda15d8033e85e5a013a06089517f",
+      "stored_sha256": "6c6159e659e3f71282ba5db009215bb3871b1b079dfa9ff91890c73792efe0e7"
+    },
+    {
+      "source": "qia1110-reference-d/device/binding.json",
+      "path": "qia1110-reference-d/device/binding.json.gz",
+      "source_sha256": "3ccd7873a91257acfe7461b67f13f8f0282c801285ff42ba83f41d8f8029b03c",
+      "stored_sha256": "e064c25879152b09c5b2aa4d8379434bb295d91c0266540057a7f781e45e3fe0"
+    },
+    {
+      "source": "qia1110-reference-d/device/capture-launch.json",
+      "path": "qia1110-reference-d/device/capture-launch.json.gz",
+      "source_sha256": "49f7cc965ede00700da85a24c665980eb40a27176c59e23abe6e0439cae6986f",
+      "stored_sha256": "06f83d4ceb7ae6a84957df0c9f6b28520a75eaf1406bf1307b2e5912d1de1357"
+    },
+    {
+      "source": "qia1110-reference-d/device/capture.log",
+      "path": "qia1110-reference-d/device/capture.log.gz",
+      "source_sha256": "f2e8070903ec447d0c54198dc98c5adc86bdc467e3fcadd1d3164e5acaad081c",
+      "stored_sha256": "49f4a0f74735f463b069492fd4bf59d620d33c1735e2aaff0778e9942d74749e"
+    },
+    {
+      "source": "qia1110-reference-d/device/control/capture_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-d/device/control/capture_qia_cuda_1110_a.py.gz",
+      "source_sha256": "36d334a4f9502d0ac7d41cb2db3fe38ed092858e7148a09bd8531f3b1a29a84e",
+      "stored_sha256": "fed859d48dabe4aa2a5ac1da4d6a525f914c0faed5db26d281d69611e7f3427a"
+    },
+    {
+      "source": "qia1110-reference-d/device/control/export_qia1110_capture_a.py",
+      "path": "qia1110-reference-d/device/control/export_qia1110_capture_a.py.gz",
+      "source_sha256": "befc9a56a651c03a2057b1ad89570f0f5e883d730cdd9e8db4fec4f8c32f6a49",
+      "stored_sha256": "cd989fadef5fb356f4eab2134da0cf03cae802141c541650178fd10dc15f4625"
+    },
+    {
+      "source": "qia1110-reference-d/device/control/export_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-d/device/control/export_qia_cuda_1110_a.py.gz",
+      "source_sha256": "cf69fd6146a9eaba52b81babc21391ba90fca17630e02dd49691bb613e6208f5",
+      "stored_sha256": "77d2fa7988c0212cecec644cb53414e9e6f55f7d553455efc0e0311eb815347a"
+    },
+    {
+      "source": "qia1110-reference-d/device/control/launch_qia1110_capture_a.py",
+      "path": "qia1110-reference-d/device/control/launch_qia1110_capture_a.py.gz",
+      "source_sha256": "67012729784528441b8ee666eb307e37f578ad93255326e35f080bb06de22eb0",
+      "stored_sha256": "0768cc8f5013675389c76843c90b04a2f579c068e1e7a6b27d20ce232b5ad5cf"
+    },
+    {
+      "source": "qia1110-reference-d/device/input.npz",
+      "path": "qia1110-reference-d/device/input.npz",
+      "source_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d",
+      "stored_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d"
+    },
+    {
+      "source": "qia1110-reference-d/device/surface-capture-a/failed-surface.npz",
+      "path": "qia1110-reference-d/device/surface-capture-a/failed-surface.npz",
+      "source_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0",
+      "stored_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0"
+    },
+    {
+      "source": "qia1110-reference-d/device/surface-capture-a/leaf-parameters.json",
+      "path": "qia1110-reference-d/device/surface-capture-a/leaf-parameters.json.gz",
+      "source_sha256": "199613c2dd7d397628a40cc28249d3c471c9d4f326f58e80b9e98f8efcf55dda",
+      "stored_sha256": "f1c2ff3f240a43f2cd8c60efec36f160f0f8045337106bf432a296308c3bc717"
+    },
+    {
+      "source": "qia1110-reference-d/device/surface-capture-a/receipt.json",
+      "path": "qia1110-reference-d/device/surface-capture-a/receipt.json.gz",
+      "source_sha256": "1fdf7c5f6239883c6a1a3ed4ab61e52f753ecf6a2c971a3319a5432f4b38af8b",
+      "stored_sha256": "5c02dde9ad7c1de1d7cf77cae4fabaf14b34661ba7aceceb0e2538ca5793a848"
+    },
+    {
+      "source": "qia1110-reference-d/device/surface-capture-a/traceback.txt",
+      "path": "qia1110-reference-d/device/surface-capture-a/traceback.txt.gz",
+      "source_sha256": "b3e36221b0202072a038113345ab28ffca2602c07669bdc8d43152adcabb38ea",
+      "stored_sha256": "6a4c56c56424f3c1744d3778f79f8ef4c33092301006cb1710c581e6e8989236"
+    },
+    {
+      "source": "qia1110-reference-d/diagnosis.log",
+      "path": "qia1110-reference-d/diagnosis.log.gz",
+      "source_sha256": "ece35784091b7ba8b11cf00ce64420112d9f90a2a4a1d61f9f6c86a9e1f3f65d",
+      "stored_sha256": "6191ec91200500be891d18de18934f6ad7d7871cadc520fd0812691a9d11c0cb"
+    },
+    {
+      "source": "qia1110-reference-d/dispatch.json",
+      "path": "qia1110-reference-d/dispatch.json.gz",
+      "source_sha256": "80668b2480e5e380b1c6dcf8635c44991b468d45bd06561792d4054b8910dbe8",
+      "stored_sha256": "f75bb2b4a6480f48be6392a1f4e66270f4ca457af15f195109fe728092fa5cd9"
+    },
+    {
+      "source": "qia1110-reference-d/generate_qia1110_reference_d.py",
+      "path": "qia1110-reference-d/generate_qia1110_reference_d.py.gz",
+      "source_sha256": "9fa7099bab05f3af766040ae48856f574f30f8d234e6f28692a84f6ecf106b37",
+      "stored_sha256": "8363a3cd2aa6b6d33671b537059a1928a22b16436ac8c24821f9fcb8a3cc4480"
+    },
+    {
+      "source": "qia1110-reference-d/node.txt",
+      "path": "qia1110-reference-d/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-reference-d/pbs-exit.txt",
+      "path": "qia1110-reference-d/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "qia1110-reference-d/qia1110_reference_d.pbs",
+      "path": "qia1110-reference-d/qia1110_reference_d.pbs.gz",
+      "source_sha256": "7bfd44657bde924ba8299da92f1ba41944e45c0c526e8eb0c5a88286943f9e1e",
+      "stored_sha256": "eac04c369931c664ea102c5ffe9ef99bc7e758f3d034b66d093d4c68429c93ec"
+    },
+    {
+      "source": "qia1110-reference-e/clm-qia1110-reference-e.o288",
+      "path": "qia1110-reference-e/clm-qia1110-reference-e.o288",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-reference-e/device/SOURCE_SHA256.json",
+      "path": "qia1110-reference-e/device/SOURCE_SHA256.json.gz",
+      "source_sha256": "37187bea427930cdf1772c5db1d07b679c7dda15d8033e85e5a013a06089517f",
+      "stored_sha256": "6c6159e659e3f71282ba5db009215bb3871b1b079dfa9ff91890c73792efe0e7"
+    },
+    {
+      "source": "qia1110-reference-e/device/binding.json",
+      "path": "qia1110-reference-e/device/binding.json.gz",
+      "source_sha256": "3ccd7873a91257acfe7461b67f13f8f0282c801285ff42ba83f41d8f8029b03c",
+      "stored_sha256": "e064c25879152b09c5b2aa4d8379434bb295d91c0266540057a7f781e45e3fe0"
+    },
+    {
+      "source": "qia1110-reference-e/device/capture-launch.json",
+      "path": "qia1110-reference-e/device/capture-launch.json.gz",
+      "source_sha256": "49f7cc965ede00700da85a24c665980eb40a27176c59e23abe6e0439cae6986f",
+      "stored_sha256": "06f83d4ceb7ae6a84957df0c9f6b28520a75eaf1406bf1307b2e5912d1de1357"
+    },
+    {
+      "source": "qia1110-reference-e/device/capture.log",
+      "path": "qia1110-reference-e/device/capture.log.gz",
+      "source_sha256": "f2e8070903ec447d0c54198dc98c5adc86bdc467e3fcadd1d3164e5acaad081c",
+      "stored_sha256": "49f4a0f74735f463b069492fd4bf59d620d33c1735e2aaff0778e9942d74749e"
+    },
+    {
+      "source": "qia1110-reference-e/device/control/capture_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-e/device/control/capture_qia_cuda_1110_a.py.gz",
+      "source_sha256": "36d334a4f9502d0ac7d41cb2db3fe38ed092858e7148a09bd8531f3b1a29a84e",
+      "stored_sha256": "fed859d48dabe4aa2a5ac1da4d6a525f914c0faed5db26d281d69611e7f3427a"
+    },
+    {
+      "source": "qia1110-reference-e/device/control/export_qia1110_capture_a.py",
+      "path": "qia1110-reference-e/device/control/export_qia1110_capture_a.py.gz",
+      "source_sha256": "befc9a56a651c03a2057b1ad89570f0f5e883d730cdd9e8db4fec4f8c32f6a49",
+      "stored_sha256": "cd989fadef5fb356f4eab2134da0cf03cae802141c541650178fd10dc15f4625"
+    },
+    {
+      "source": "qia1110-reference-e/device/control/export_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-e/device/control/export_qia_cuda_1110_a.py.gz",
+      "source_sha256": "cf69fd6146a9eaba52b81babc21391ba90fca17630e02dd49691bb613e6208f5",
+      "stored_sha256": "77d2fa7988c0212cecec644cb53414e9e6f55f7d553455efc0e0311eb815347a"
+    },
+    {
+      "source": "qia1110-reference-e/device/control/launch_qia1110_capture_a.py",
+      "path": "qia1110-reference-e/device/control/launch_qia1110_capture_a.py.gz",
+      "source_sha256": "67012729784528441b8ee666eb307e37f578ad93255326e35f080bb06de22eb0",
+      "stored_sha256": "0768cc8f5013675389c76843c90b04a2f579c068e1e7a6b27d20ce232b5ad5cf"
+    },
+    {
+      "source": "qia1110-reference-e/device/input.npz",
+      "path": "qia1110-reference-e/device/input.npz",
+      "source_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d",
+      "stored_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d"
+    },
+    {
+      "source": "qia1110-reference-e/device/surface-capture-a/failed-surface.npz",
+      "path": "qia1110-reference-e/device/surface-capture-a/failed-surface.npz",
+      "source_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0",
+      "stored_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0"
+    },
+    {
+      "source": "qia1110-reference-e/device/surface-capture-a/leaf-parameters.json",
+      "path": "qia1110-reference-e/device/surface-capture-a/leaf-parameters.json.gz",
+      "source_sha256": "199613c2dd7d397628a40cc28249d3c471c9d4f326f58e80b9e98f8efcf55dda",
+      "stored_sha256": "f1c2ff3f240a43f2cd8c60efec36f160f0f8045337106bf432a296308c3bc717"
+    },
+    {
+      "source": "qia1110-reference-e/device/surface-capture-a/receipt.json",
+      "path": "qia1110-reference-e/device/surface-capture-a/receipt.json.gz",
+      "source_sha256": "1fdf7c5f6239883c6a1a3ed4ab61e52f753ecf6a2c971a3319a5432f4b38af8b",
+      "stored_sha256": "5c02dde9ad7c1de1d7cf77cae4fabaf14b34661ba7aceceb0e2538ca5793a848"
+    },
+    {
+      "source": "qia1110-reference-e/device/surface-capture-a/traceback.txt",
+      "path": "qia1110-reference-e/device/surface-capture-a/traceback.txt.gz",
+      "source_sha256": "b3e36221b0202072a038113345ab28ffca2602c07669bdc8d43152adcabb38ea",
+      "stored_sha256": "6a4c56c56424f3c1744d3778f79f8ef4c33092301006cb1710c581e6e8989236"
+    },
+    {
+      "source": "qia1110-reference-e/diagnosis.log",
+      "path": "qia1110-reference-e/diagnosis.log.gz",
+      "source_sha256": "065f0729f731009e82d2627fcb0ab9c2c7ed1687e530f2ff32760dff244c8182",
+      "stored_sha256": "e98e2618ddcefda3015c661616a888772802ad6355e1bc6603674a26c00daa81"
+    },
+    {
+      "source": "qia1110-reference-e/dispatch.json",
+      "path": "qia1110-reference-e/dispatch.json.gz",
+      "source_sha256": "6ca9e86d761e58798ea3dbec88c3b05400ee153d70e8ce380cb014b9d99db085",
+      "stored_sha256": "1c44128a15ed489fc14c63cfc58681b8b3f0851754ae28eb6e8d995a16a57cc5"
+    },
+    {
+      "source": "qia1110-reference-e/full-reference-state.pkl",
+      "path": "qia1110-reference-e/full-reference-state.pkl",
+      "source_sha256": "f9a2ca46bd72b9524ce2de9be5ac9b0f911b2f6f042e6e89d4e9fc665ce42e39",
+      "stored_sha256": "f9a2ca46bd72b9524ce2de9be5ac9b0f911b2f6f042e6e89d4e9fc665ce42e39"
+    },
+    {
+      "source": "qia1110-reference-e/full-reference.npz",
+      "path": "qia1110-reference-e/full-reference.npz",
+      "source_sha256": "7aa96b95908bffa06ffd4c3d5da10853f1f52641868e2ef10aa174339b9eddc9",
+      "stored_sha256": "7aa96b95908bffa06ffd4c3d5da10853f1f52641868e2ef10aa174339b9eddc9"
+    },
+    {
+      "source": "qia1110-reference-e/generate_qia1110_reference_e.py",
+      "path": "qia1110-reference-e/generate_qia1110_reference_e.py.gz",
+      "source_sha256": "a4b284b99859143378574b3fee684d67482a98bdfdfca3a22b0601ce0340c27b",
+      "stored_sha256": "3cff6e401f03195913e66b956c6ba6618ca4c5995e9a755456fde88ff25c233b"
+    },
+    {
+      "source": "qia1110-reference-e/node.txt",
+      "path": "qia1110-reference-e/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-reference-e/pbs-exit.txt",
+      "path": "qia1110-reference-e/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia1110-reference-e/qia1110_reference_e.pbs",
+      "path": "qia1110-reference-e/qia1110_reference_e.pbs.gz",
+      "source_sha256": "bfaf488f678c329c59e6421d62e87d8159bd7fece7788484e15a22734df6d2a5",
+      "stored_sha256": "300feae0843eccd1bf968c7d00178c2a5b2fb08cb9ad4c2d9eb06485610bf9d3"
+    },
+    {
+      "source": "qia1110-reference-e/qia_1110_phase_kink.json",
+      "path": "qia1110-reference-e/qia_1110_phase_kink.json.gz",
+      "source_sha256": "44add2c2d234a0731338b835830ea2e5ca685e7069f6865f6040de6fb8da8f25",
+      "stored_sha256": "960114cbd05f01923204aa3e6d7401ccac00b2e33a74454894750ef5955c13d8"
+    },
+    {
+      "source": "qia1110-reference-e/receipt.json",
+      "path": "qia1110-reference-e/receipt.json.gz",
+      "source_sha256": "a65d3d503ca4d257d2cf9db8863e70deb951a87c9355d4bca3b49f6b766e0546",
+      "stored_sha256": "9e693b104dc708f9329b2da16d9281b7b1ff0dec4c4d819386134198cd140c13"
+    },
+    {
+      "source": "qia1110-reference-g/clm-qia1110-reference-g.o290",
+      "path": "qia1110-reference-g/clm-qia1110-reference-g.o290",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-reference-g/device/SOURCE_SHA256.json",
+      "path": "qia1110-reference-g/device/SOURCE_SHA256.json.gz",
+      "source_sha256": "37187bea427930cdf1772c5db1d07b679c7dda15d8033e85e5a013a06089517f",
+      "stored_sha256": "6c6159e659e3f71282ba5db009215bb3871b1b079dfa9ff91890c73792efe0e7"
+    },
+    {
+      "source": "qia1110-reference-g/device/binding.json",
+      "path": "qia1110-reference-g/device/binding.json.gz",
+      "source_sha256": "3ccd7873a91257acfe7461b67f13f8f0282c801285ff42ba83f41d8f8029b03c",
+      "stored_sha256": "e064c25879152b09c5b2aa4d8379434bb295d91c0266540057a7f781e45e3fe0"
+    },
+    {
+      "source": "qia1110-reference-g/device/capture-launch.json",
+      "path": "qia1110-reference-g/device/capture-launch.json.gz",
+      "source_sha256": "49f7cc965ede00700da85a24c665980eb40a27176c59e23abe6e0439cae6986f",
+      "stored_sha256": "06f83d4ceb7ae6a84957df0c9f6b28520a75eaf1406bf1307b2e5912d1de1357"
+    },
+    {
+      "source": "qia1110-reference-g/device/capture.log",
+      "path": "qia1110-reference-g/device/capture.log.gz",
+      "source_sha256": "f2e8070903ec447d0c54198dc98c5adc86bdc467e3fcadd1d3164e5acaad081c",
+      "stored_sha256": "49f4a0f74735f463b069492fd4bf59d620d33c1735e2aaff0778e9942d74749e"
+    },
+    {
+      "source": "qia1110-reference-g/device/control/capture_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-g/device/control/capture_qia_cuda_1110_a.py.gz",
+      "source_sha256": "36d334a4f9502d0ac7d41cb2db3fe38ed092858e7148a09bd8531f3b1a29a84e",
+      "stored_sha256": "fed859d48dabe4aa2a5ac1da4d6a525f914c0faed5db26d281d69611e7f3427a"
+    },
+    {
+      "source": "qia1110-reference-g/device/control/export_qia1110_capture_a.py",
+      "path": "qia1110-reference-g/device/control/export_qia1110_capture_a.py.gz",
+      "source_sha256": "befc9a56a651c03a2057b1ad89570f0f5e883d730cdd9e8db4fec4f8c32f6a49",
+      "stored_sha256": "cd989fadef5fb356f4eab2134da0cf03cae802141c541650178fd10dc15f4625"
+    },
+    {
+      "source": "qia1110-reference-g/device/control/export_qia_cuda_1110_a.py",
+      "path": "qia1110-reference-g/device/control/export_qia_cuda_1110_a.py.gz",
+      "source_sha256": "cf69fd6146a9eaba52b81babc21391ba90fca17630e02dd49691bb613e6208f5",
+      "stored_sha256": "77d2fa7988c0212cecec644cb53414e9e6f55f7d553455efc0e0311eb815347a"
+    },
+    {
+      "source": "qia1110-reference-g/device/control/launch_qia1110_capture_a.py",
+      "path": "qia1110-reference-g/device/control/launch_qia1110_capture_a.py.gz",
+      "source_sha256": "67012729784528441b8ee666eb307e37f578ad93255326e35f080bb06de22eb0",
+      "stored_sha256": "0768cc8f5013675389c76843c90b04a2f579c068e1e7a6b27d20ce232b5ad5cf"
+    },
+    {
+      "source": "qia1110-reference-g/device/input.npz",
+      "path": "qia1110-reference-g/device/input.npz",
+      "source_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d",
+      "stored_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d"
+    },
+    {
+      "source": "qia1110-reference-g/device/surface-capture-a/failed-surface.npz",
+      "path": "qia1110-reference-g/device/surface-capture-a/failed-surface.npz",
+      "source_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0",
+      "stored_sha256": "325b0745154364bf8e9a00726cd39cdd2bc1607f7085b7c75d2fa5652a92e0b0"
+    },
+    {
+      "source": "qia1110-reference-g/device/surface-capture-a/leaf-parameters.json",
+      "path": "qia1110-reference-g/device/surface-capture-a/leaf-parameters.json.gz",
+      "source_sha256": "199613c2dd7d397628a40cc28249d3c471c9d4f326f58e80b9e98f8efcf55dda",
+      "stored_sha256": "f1c2ff3f240a43f2cd8c60efec36f160f0f8045337106bf432a296308c3bc717"
+    },
+    {
+      "source": "qia1110-reference-g/device/surface-capture-a/receipt.json",
+      "path": "qia1110-reference-g/device/surface-capture-a/receipt.json.gz",
+      "source_sha256": "1fdf7c5f6239883c6a1a3ed4ab61e52f753ecf6a2c971a3319a5432f4b38af8b",
+      "stored_sha256": "5c02dde9ad7c1de1d7cf77cae4fabaf14b34661ba7aceceb0e2538ca5793a848"
+    },
+    {
+      "source": "qia1110-reference-g/device/surface-capture-a/traceback.txt",
+      "path": "qia1110-reference-g/device/surface-capture-a/traceback.txt.gz",
+      "source_sha256": "b3e36221b0202072a038113345ab28ffca2602c07669bdc8d43152adcabb38ea",
+      "stored_sha256": "6a4c56c56424f3c1744d3778f79f8ef4c33092301006cb1710c581e6e8989236"
+    },
+    {
+      "source": "qia1110-reference-g/diagnosis.log",
+      "path": "qia1110-reference-g/diagnosis.log.gz",
+      "source_sha256": "ee5f955da562dc05c7f97c422b7a7826e95075331027c313a2c33e67881f81b3",
+      "stored_sha256": "1ecc16b3224855e6a7ff0a2a0d646f85719f5cc3b2275651f83d3d5a954a94e0"
+    },
+    {
+      "source": "qia1110-reference-g/dispatch.json",
+      "path": "qia1110-reference-g/dispatch.json.gz",
+      "source_sha256": "c7286a3b3bcf40b395f7934af7f8205705cdb5ff69ee42cbc03bd3880b1347ef",
+      "stored_sha256": "dfd4dd6dbccfa643e98c497a2ca11e7bc93642e1a3c80856a3b6052549a7f7a7"
+    },
+    {
+      "source": "qia1110-reference-g/full-reference-state.pkl",
+      "path": "qia1110-reference-g/full-reference-state.pkl",
+      "source_sha256": "f9a2ca46bd72b9524ce2de9be5ac9b0f911b2f6f042e6e89d4e9fc665ce42e39",
+      "stored_sha256": "f9a2ca46bd72b9524ce2de9be5ac9b0f911b2f6f042e6e89d4e9fc665ce42e39"
+    },
+    {
+      "source": "qia1110-reference-g/full-reference.npz",
+      "path": "qia1110-reference-g/full-reference.npz",
+      "source_sha256": "7aa96b95908bffa06ffd4c3d5da10853f1f52641868e2ef10aa174339b9eddc9",
+      "stored_sha256": "7aa96b95908bffa06ffd4c3d5da10853f1f52641868e2ef10aa174339b9eddc9"
+    },
+    {
+      "source": "qia1110-reference-g/generate_qia1110_reference_g.py",
+      "path": "qia1110-reference-g/generate_qia1110_reference_g.py.gz",
+      "source_sha256": "80b2cad06c85c8ccee1ce0e994e78c3a62c4c3b161874b95af2f5b1d557e64d6",
+      "stored_sha256": "695689eda3f784942372fb3fa26884781869823a319292df1319f554ce392adc"
+    },
+    {
+      "source": "qia1110-reference-g/node.txt",
+      "path": "qia1110-reference-g/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-reference-g/pbs-exit.txt",
+      "path": "qia1110-reference-g/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia1110-reference-g/qia1110_reference_g.pbs",
+      "path": "qia1110-reference-g/qia1110_reference_g.pbs.gz",
+      "source_sha256": "d7fa302de583e56e3e71754b57ac10d7ea810cb8712a7eddc36263a72d1954b7",
+      "stored_sha256": "6383c98448b20c9710cad4cfb5a73574d28110d7a364e12b8da14b8de10734a4"
+    },
+    {
+      "source": "qia1110-reference-g/qia_1110_phase_kink.json",
+      "path": "qia1110-reference-g/qia_1110_phase_kink.json.gz",
+      "source_sha256": "32ee226bb44de385b61f39351f3d340a535e65fc19a54fe49cf35468c331af3e",
+      "stored_sha256": "be347eb373dec55ffb67ae25456bded5b6d47603dbfec6a1ae199a646cb84264"
+    },
+    {
+      "source": "qia1110-reference-g/receipt.json",
+      "path": "qia1110-reference-g/receipt.json.gz",
+      "source_sha256": "73b3193bebc011d0bd5144f486732400efc4062a233f4b1ef6f2efb4470258d7",
+      "stored_sha256": "79bf549ea6261faf41f80e6110b6f6293993e6b79c482cfb1d89db7704691741"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/baseline/SOURCE_SHA256.json",
+      "path": "qia1110-numpy-tests-f/baseline/SOURCE_SHA256.json.gz",
+      "source_sha256": "8e47734fa8d5cd47eb4ea948e9e9885343a45b89d1be37eac46cb064eae57e1c",
+      "stored_sha256": "bb6f30e4d4d7416baab2a111cc71247838ec5a3010d5861900fd1f07ee2a3b31"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/baseline/receipt.json",
+      "path": "qia1110-numpy-tests-f/baseline/receipt.json.gz",
+      "source_sha256": "eb064c50e697d4d6da48ec4dd235f39b02f06d75d26074af81041f51931114c0",
+      "stored_sha256": "9e7a39d6f99f112f6b5f204bc7874aef7b0288f9e04661100c9cd5c91f6afed3"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/baseline/targets.log",
+      "path": "qia1110-numpy-tests-f/baseline/targets.log.gz",
+      "source_sha256": "f3e49b17a53d7ebc1cb6e79b163fbd32c7ee0a11fcfc97f3cf0b2d17a61911ca",
+      "stored_sha256": "e1f0b5c6fbb4ef3e1d6c43d0244fb6393e1bba36305dbd34b47a2392f2d94080"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/baseline/targets.xml",
+      "path": "qia1110-numpy-tests-f/baseline/targets.xml.gz",
+      "source_sha256": "9e642f4ec7e40ed33ded620c811a76c9ab0e77c4adf1a8ebe806a722b6f4d360",
+      "stored_sha256": "1c949e479fd0c4d663f2033d0618412915153e4a0b5645e2444b0edb9d99a51d"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/candidate/SOURCE_SHA256.json",
+      "path": "qia1110-numpy-tests-f/candidate/SOURCE_SHA256.json.gz",
+      "source_sha256": "f9cdcd5cccbaa5c79082e22cb57b71da00c3218ed4bf27e272bec7ff16ae846d",
+      "stored_sha256": "4dfc7c1fbbf43b87f18f9054be453c2bc34a615b52885b7480f06e2991266093"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/candidate/receipt.json",
+      "path": "qia1110-numpy-tests-f/candidate/receipt.json.gz",
+      "source_sha256": "e10ba6ecafb7bdd06f5e7976cdd554e0a282f312a4830b470fd8bf8970e7db0d",
+      "stored_sha256": "000fc00101b6e8b10a824cb24d64a4d9570b3338bd2700e5fc531745b36c3410"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/candidate/targets.log",
+      "path": "qia1110-numpy-tests-f/candidate/targets.log.gz",
+      "source_sha256": "e084264e6df4a5806428d4b1ebe6eeb50a68802ad7b9b3c04afb7337d592fca6",
+      "stored_sha256": "6ed7f3bc3741f7984669573838d3fd0a077c55c0ca0c900b35c3abe5c98be484"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/candidate/targets.xml",
+      "path": "qia1110-numpy-tests-f/candidate/targets.xml.gz",
+      "source_sha256": "0ed5387485df8110b76df14c65b8bf7e893b4e9e9168a963c8048062f4f7fb8b",
+      "stored_sha256": "847bf2ee564064bc8c1450d50ed625a6a23a8175eae32422437867ab371debb9"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/clm-qia1110-numpy-tests-f.o289",
+      "path": "qia1110-numpy-tests-f/clm-qia1110-numpy-tests-f.o289",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/controller.log",
+      "path": "qia1110-numpy-tests-f/controller.log.gz",
+      "source_sha256": "569d8a95c759bad52e2b093e7ac3623fbceea01122bbf7763d72d398b5e76970",
+      "stored_sha256": "d1ceb931e3b61d9211a9ce2ddcee4ac96b2365c9e084fc2c3fc894016773f2c3"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/dispatch.json",
+      "path": "qia1110-numpy-tests-f/dispatch.json.gz",
+      "source_sha256": "73b7943ae68e060eb47bd975770b18d7ed9e13d2edd64c2e6c2f29ff9d24bf22",
+      "stored_sha256": "5d170d34e3dd16242d6d94d37e35e58ed8f8e6470e21683210bff50aeae56a43"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/node.txt",
+      "path": "qia1110-numpy-tests-f/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/package.json",
+      "path": "qia1110-numpy-tests-f/package.json.gz",
+      "source_sha256": "c4e8c43bca8438740a5e62addb68516153c6b29b6204d39e5a41b92d2fe73405",
+      "stored_sha256": "4f0f59bf5b3fc5040e0f12e86c15384779bbb229aea7918fbd9061867446c588"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/pbs-exit.txt",
+      "path": "qia1110-numpy-tests-f/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/qia1110_numpy_tests_f.pbs",
+      "path": "qia1110-numpy-tests-f/qia1110_numpy_tests_f.pbs.gz",
+      "source_sha256": "c50563f19cea9348d12e9665eb342a2c68f6dce843c504f9391ff55a4f5f9985",
+      "stored_sha256": "d3618d4bc78dee2cd0f2f1a8d49c13dd896b5e9806537e5e1e4b22aa4be687bf"
+    },
+    {
+      "source": "qia1110-numpy-tests-f/run_qia1110_numpy_tests_f.py",
+      "path": "qia1110-numpy-tests-f/run_qia1110_numpy_tests_f.py.gz",
+      "source_sha256": "2919dcedd4ed9fd9c796716c87198dece80ca5aff04490983bc65c276d1bf996",
+      "stored_sha256": "5de0a5961d1ca52d87f521cfcb5345a4ab57c433582c7b7348456170b252dcfc"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/baseline/SOURCE_SHA256.json",
+      "path": "qia1110-numpy-tests-g/baseline/SOURCE_SHA256.json.gz",
+      "source_sha256": "6fc7a13b44ed412a411929147ec45e44bdb9603ac357f5298f57ac6179a3aab1",
+      "stored_sha256": "c7e303f628805c46692047021adc290bdec33fcf74baa3203de23f4cdd66e57e"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/baseline/receipt.json",
+      "path": "qia1110-numpy-tests-g/baseline/receipt.json.gz",
+      "source_sha256": "de4285418e4d6ad92b233aaa2632eaca9d22ddfa88c15e8819e626b4844eb7ab",
+      "stored_sha256": "af066edf52bb38ca9d595048102fae63a0a0e278cffa78d4963b7b02a74914a2"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/baseline/targets.log",
+      "path": "qia1110-numpy-tests-g/baseline/targets.log.gz",
+      "source_sha256": "f34a58c2b6bf2912afc0453a7749dd3a5ab5a669a6635c09a373ae69dc1aabcb",
+      "stored_sha256": "fe686a714443b551b0aa120d54bfb4c16c57610d3f8006d8b2240c688ededef7"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/baseline/targets.xml",
+      "path": "qia1110-numpy-tests-g/baseline/targets.xml.gz",
+      "source_sha256": "790cc5917fa0f1cde4c49837de53780d526d4e675cb70ce8cf2127c5eab8cd80",
+      "stored_sha256": "255a66bc5225a68530a107a5e454281ffc5a67b7e7c0199eca82cb3639055377"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/candidate/SOURCE_SHA256.json",
+      "path": "qia1110-numpy-tests-g/candidate/SOURCE_SHA256.json.gz",
+      "source_sha256": "af2c1a536d86f00a087bf9a864c9e12edce0ff707e08174f643fb63120edff55",
+      "stored_sha256": "86d10a99d8bbe90275775e8e335ce1f7c0ffc430b2e55d677ed9013551de1c27"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/candidate/receipt.json",
+      "path": "qia1110-numpy-tests-g/candidate/receipt.json.gz",
+      "source_sha256": "30ac55de30f37226da25b5b637d9f0b24328589ad08a2734fd57be186ebfbfb5",
+      "stored_sha256": "fa89f5a20338e74e23189c89ceffb5b0de6e9333e2d97e5a3c2ce982cffad3c1"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/candidate/targets.log",
+      "path": "qia1110-numpy-tests-g/candidate/targets.log.gz",
+      "source_sha256": "b0929428734ecbb8e70fe798f151996195ebb600a24e3e09037c5cdb12116b0c",
+      "stored_sha256": "23c655f4ce4fbb419e70d02eda3700dbff04595e40c0a220c35779953a80cf80"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/candidate/targets.xml",
+      "path": "qia1110-numpy-tests-g/candidate/targets.xml.gz",
+      "source_sha256": "c50e145abbc8b3f27e24c5db0f6f675963848dddbc090aa75629f792326ae9af",
+      "stored_sha256": "a292a0e3c9a13901eed4bbb05085077b941d760ac5e31b758a52c20e0d6164e7"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/clm-qia1110-numpy-tests-g.o291",
+      "path": "qia1110-numpy-tests-g/clm-qia1110-numpy-tests-g.o291",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/controller.log",
+      "path": "qia1110-numpy-tests-g/controller.log.gz",
+      "source_sha256": "99d2587ba6570c5a644cb77de40f7ffaebe1857320da07ac7d9404d2fc13d7aa",
+      "stored_sha256": "95db455fd0dd4ca350b002c3d206d31bd47a3bc234d6691b39e5e48cdfeadef1"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/dispatch.json",
+      "path": "qia1110-numpy-tests-g/dispatch.json.gz",
+      "source_sha256": "379c5771cda6a97d5af22dd22c0981cb8f824e6d0c1d29bc58aede7089b898b0",
+      "stored_sha256": "7f79ae7aa93fc668f260ae4717723b2a3e7ac2dfbd52b95f6f569b92dc2eb154"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/node.txt",
+      "path": "qia1110-numpy-tests-g/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/package.json",
+      "path": "qia1110-numpy-tests-g/package.json.gz",
+      "source_sha256": "d33b5f7ab3565ed5eee272d36176d0280c38e7886850eb581e896a7d8eed40b9",
+      "stored_sha256": "64ea64932a6f6ba33919a1daeb4f4b4a2ab81465ca1871ec4e03c327c7c0d118"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/pbs-exit.txt",
+      "path": "qia1110-numpy-tests-g/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/qia1110_numpy_tests_g.pbs",
+      "path": "qia1110-numpy-tests-g/qia1110_numpy_tests_g.pbs.gz",
+      "source_sha256": "7a1f125ce8de54a48ade784cb9370464360799952c713269f5f02aaa7ab611c4",
+      "stored_sha256": "f6f35eb45d47fd485df44c37ac476f3feb9fa1a33d0d4788f0cdbdb90fb812fe"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/receipt.json",
+      "path": "qia1110-numpy-tests-g/receipt.json.gz",
+      "source_sha256": "733273bd43f16b7ee179f6d5c16bd78a64f41018ef788154e7b6cd71f3ef5150",
+      "stored_sha256": "c12618ceecf9413e7916fcaeebe50d00cbe65edd6ad5cea1d4f224a52eff2027"
+    },
+    {
+      "source": "qia1110-numpy-tests-g/run_qia1110_numpy_tests_g.py",
+      "path": "qia1110-numpy-tests-g/run_qia1110_numpy_tests_g.py.gz",
+      "source_sha256": "848c31ae17c5f3244e862851f88aa1b508407d808a5a313f128e049fa5f85647",
+      "stored_sha256": "2888967b4ccc183b3b52bd5f890f3931a114e59eabeb0307d6435a3b6064fa03"
+    },
+    {
+      "source": "qia1110-numpy-native-h/clm-qia1110-numpy-native-h.o293",
+      "path": "qia1110-numpy-native-h/clm-qia1110-numpy-native-h.o293",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-numpy-native-h/diagnosis.log",
+      "path": "qia1110-numpy-native-h/diagnosis.log.gz",
+      "source_sha256": "b117053c072363ddf60d99b9bd2ceb515037180fb6575f8fe58a2bcce8abe8a4",
+      "stored_sha256": "9695b7f88f2d34d54eec1468afdf52577ce35bc84dfc6d56a2d017c82dcbf77b"
+    },
+    {
+      "source": "qia1110-numpy-native-h/dispatch.json",
+      "path": "qia1110-numpy-native-h/dispatch.json.gz",
+      "source_sha256": "b518737946e930674c3498b1644dc1877e376066a272c9af9baef7fcde13904f",
+      "stored_sha256": "4eee12e54200a0e1deb370321d1b0508d531aa79702891de494939d88fd025ec"
+    },
+    {
+      "source": "qia1110-numpy-native-h/node.txt",
+      "path": "qia1110-numpy-native-h/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-numpy-native-h/pbs-exit.txt",
+      "path": "qia1110-numpy-native-h/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia1110-numpy-native-h/point1110-diagnostic-step736.pkl",
+      "path": "qia1110-numpy-native-h/point1110-diagnostic-step736.pkl",
+      "source_sha256": "5bb0da43e3165998affe0def613f2cd1e42ca68c7370f23b1bd2114e1a9ce9bc",
+      "stored_sha256": "5bb0da43e3165998affe0def613f2cd1e42ca68c7370f23b1bd2114e1a9ce9bc"
+    },
+    {
+      "source": "qia1110-numpy-native-h/point1110-probe.json",
+      "path": "qia1110-numpy-native-h/point1110-probe.json.gz",
+      "source_sha256": "cec0ef0620fd36b2576a48a9e6ec3419fdaa59ba5ccd8516c9b89bbc134aa407",
+      "stored_sha256": "d74fd06b28aa4b21c80cda2852448c55852fd0ebde36d7164fab3a421b901646"
+    },
+    {
+      "source": "qia1110-numpy-native-h/probe_qia1110_numpy_native_h.py",
+      "path": "qia1110-numpy-native-h/probe_qia1110_numpy_native_h.py.gz",
+      "source_sha256": "2e9bce9f8731ee891d20b4b72fb3ee6b689f9a84d0bd0818666ddfc8962523a7",
+      "stored_sha256": "c99f41188845d6dee93b639c0c3caa55080c4bd787502aa472d9c26fa782ef69"
+    },
+    {
+      "source": "qia1110-numpy-native-h/qia1110_numpy_native_h.pbs",
+      "path": "qia1110-numpy-native-h/qia1110_numpy_native_h.pbs.gz",
+      "source_sha256": "913ba4bb5a79f66b1d3ab0a135e9e2e573a51ef5163c2ecf10ddaee79ccef461",
+      "stored_sha256": "db94a9994a347d66fb91474df2488e4399f2dcfb751ee192e276586f9a8f7d3d"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/audit.json",
+      "path": "qia1110-cuda-audit-h/audit.json.gz",
+      "source_sha256": "4f71a6cc4d58e03c492e486864acc24da2d46e9f51ef04970f47c899be700896",
+      "stored_sha256": "d260ffcd67db472b4daa8ec2548df7011f78de9b6cf1a26082b4456b76c8fd38"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/audit.log",
+      "path": "qia1110-cuda-audit-h/audit.log.gz",
+      "source_sha256": "6e632008137e592901094f9332db086a361bbfa78f0ba182445af1cbc59bc736",
+      "stored_sha256": "a3664218b329563be4097f6331e03227b588d5c34fb6ac6809f29f2c8b316d38"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/audit_qia1110_cuda_h.py",
+      "path": "qia1110-cuda-audit-h/audit_qia1110_cuda_h.py.gz",
+      "source_sha256": "154975c228558dae14a5db6fe34281748e7c6c28cc56e87a65620834e03f546c",
+      "stored_sha256": "19224997a229809a22dcf464c1f0feb5de2fdfe0e634f43b67b3998eb2bdd953"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/clm-qia1110-cuda-audit-h.o294",
+      "path": "qia1110-cuda-audit-h/clm-qia1110-cuda-audit-h.o294",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/SOURCE_SHA256.json",
+      "path": "qia1110-cuda-audit-h/device/SOURCE_SHA256.json.gz",
+      "source_sha256": "095f94bdce98640df6902983c71c44798e7ddca8d7352564895fe915834a0871",
+      "stored_sha256": "a19621bc514a1d00a06262b72add26388d83844d63c8ecfc974103f2f6e6a0e1"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/after.npz",
+      "path": "qia1110-cuda-audit-h/device/after.npz",
+      "source_sha256": "79d5eb961fb90418f4953981354aaf460375058a940277f7f0ecf54110b3a7f7",
+      "stored_sha256": "79d5eb961fb90418f4953981354aaf460375058a940277f7f0ecf54110b3a7f7"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/before.npz",
+      "path": "qia1110-cuda-audit-h/device/before.npz",
+      "source_sha256": "ff566b897a1c76f5069ec4b42807b2e1e90b27476c4e46f815193c5c9e89a497",
+      "stored_sha256": "ff566b897a1c76f5069ec4b42807b2e1e90b27476c4e46f815193c5c9e89a497"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/binding.json",
+      "path": "qia1110-cuda-audit-h/device/binding.json.gz",
+      "source_sha256": "3ccd7873a91257acfe7461b67f13f8f0282c801285ff42ba83f41d8f8029b03c",
+      "stored_sha256": "e064c25879152b09c5b2aa4d8379434bb295d91c0266540057a7f781e45e3fe0"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/control/control_qia1110_full_h.py",
+      "path": "qia1110-cuda-audit-h/device/control/control_qia1110_full_h.py.gz",
+      "source_sha256": "e66498d3414a05c4425408e6dd28dbe4ac53dcf8d4b2b81de0a896d3bc489257",
+      "stored_sha256": "b3b7ec9446a6d2d6817fc1e7c113fac56a62c045e558f1810434c43209eb6f25"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/control/export_qia1110_full_h.py",
+      "path": "qia1110-cuda-audit-h/device/control/export_qia1110_full_h.py.gz",
+      "source_sha256": "c23ed31590d3e5fe57fc8aba9b870733ad96a32c42ceb26edff3b1bf7d4fcc61",
+      "stored_sha256": "5c6210039a2d9aebe0c5fbdce44afc9e0b759e0120df9033ebeba7e208a570a5"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/control/launch_qia1110_full_h.py",
+      "path": "qia1110-cuda-audit-h/device/control/launch_qia1110_full_h.py.gz",
+      "source_sha256": "3a45cf63a6afe2968aea0a55998868431632425c83a74a5ef52de471e45b5b1c",
+      "stored_sha256": "2df098676d3dc1a53c37c85900218eba2a8972d09d0159349ba62e060787f21d"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/control/run_qia1110_full_h.py",
+      "path": "qia1110-cuda-audit-h/device/control/run_qia1110_full_h.py.gz",
+      "source_sha256": "0e5785c5bb7b2b19db2f44585a3d3b4c1bd60a6f07b8675aa1b8e21d7b22d693",
+      "stored_sha256": "da2f8816c8ad4d7c58ecb16772e46b61d988dfd88766b5d634ed295a52aeb94f"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/controller.log",
+      "path": "qia1110-cuda-audit-h/device/controller.log.gz",
+      "source_sha256": "b943804804092b1e6ab5dba753a0d1af8bab6c50e9b98f874aa33acf7f53f365",
+      "stored_sha256": "1e44f03b7459eb6af94c81243d562e83c6aad6c1c287ce09e66190eaddb0c4bf"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/exit.json",
+      "path": "qia1110-cuda-audit-h/device/exit.json.gz",
+      "source_sha256": "9565309ffbbcd192dd35f27851466449a4d02a13ab7e437c87fcf1038b68ae92",
+      "stored_sha256": "14ba61484fac190be38e5b312a02a0c5bbb330f775fde582fe8e302752dce978"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/input.npz",
+      "path": "qia1110-cuda-audit-h/device/input.npz",
+      "source_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d",
+      "stored_sha256": "d3e972f0aca8a0532b062ce95eb31e4a5944eb474b175faea2b124031615df2d"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/launch.json",
+      "path": "qia1110-cuda-audit-h/device/launch.json.gz",
+      "source_sha256": "ff8b009e5d2ca2d7cba5892d5d8665ed01af87cf216b764ffa7597afc35f9ebc",
+      "stored_sha256": "2f24e87bea361831625a9d067ee03b232aa3937c38394c30cd4be4788779decd"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/model.log",
+      "path": "qia1110-cuda-audit-h/device/model.log.gz",
+      "source_sha256": "8b269769d1f817dd5d0fbdd0e414bfe3c3c0927b314452272e31b049c7f63d99",
+      "stored_sha256": "fdf7f9c6daef87d93f11af1ec8c386fb22e98d9a0506e51cf3d49026d92ddb27"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/output.npz",
+      "path": "qia1110-cuda-audit-h/device/output.npz",
+      "source_sha256": "05b1e080da429befcc109b6ac235f3bcdd2251a794bfda17b059048fa128fc91",
+      "stored_sha256": "05b1e080da429befcc109b6ac235f3bcdd2251a794bfda17b059048fa128fc91"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/receipt.json",
+      "path": "qia1110-cuda-audit-h/device/receipt.json.gz",
+      "source_sha256": "ec9ea9a41d5d4ede927c957a9367af4c3026315bb93442a781237cabb795745f",
+      "stored_sha256": "9c068c6ab436b0522cc48c735bd53f9cc8a6daf82fb02969f73248598a622ba9"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/device/worker.json",
+      "path": "qia1110-cuda-audit-h/device/worker.json.gz",
+      "source_sha256": "818ec81cdc8720b9fe9a8dcb7a9d7152a7398597db2292b4aba47958685787dc",
+      "stored_sha256": "ace8bdf1ae077a99bb53ab0a231a67c9631c9e1bb89157b42648c723708d77db"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/dispatch.json",
+      "path": "qia1110-cuda-audit-h/dispatch.json.gz",
+      "source_sha256": "29e4fba5c62d7c8f6816fddf787520423f856673fd474bb2de770716f792b53d",
+      "stored_sha256": "7da575de6df64322cda5b0c9e4fc021d20498f6cc565782ce70ba65811672e4f"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/node.txt",
+      "path": "qia1110-cuda-audit-h/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/pbs-exit.txt",
+      "path": "qia1110-cuda-audit-h/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia1110-cuda-audit-h/qia1110_cuda_audit_h.pbs",
+      "path": "qia1110-cuda-audit-h/qia1110_cuda_audit_h.pbs.gz",
+      "source_sha256": "ee6f19fcd4f120a7eab1044bfe88b461a7f8f0419b94825acd90d5dd23028e5c",
+      "stored_sha256": "9954b7bad9cae19f9aaa83526ac1abc156117eef656c8073322c61793266cd53"
+    },
+    {
+      "source": "source/qia1110-numpy-d-source.tar.gz",
+      "path": "source/qia1110-numpy-d-source.tar.gz",
+      "source_sha256": "300e6052489ccffeeba7710309686659f94e3d69f191f0181b253e830d7bdb45",
+      "stored_sha256": "300e6052489ccffeeba7710309686659f94e3d69f191f0181b253e830d7bdb45"
+    },
+    {
+      "source": "source/qia1110-numpy-tests-f-source.tar.gz",
+      "path": "source/qia1110-numpy-tests-f-source.tar.gz",
+      "source_sha256": "a0c91a82171cdf191a4a7c1901b6bc57788c028adec22c9d43c896d4284ba50c",
+      "stored_sha256": "a0c91a82171cdf191a4a7c1901b6bc57788c028adec22c9d43c896d4284ba50c"
+    },
+    {
+      "source": "source/qia1110-numpy-tests-g-source.tar.gz",
+      "path": "source/qia1110-numpy-tests-g-source.tar.gz",
+      "source_sha256": "a04e30bbcfa37103d08f70f38e2fbf0b5377d86712fc11a2362834450d367dd6",
+      "stored_sha256": "a04e30bbcfa37103d08f70f38e2fbf0b5377d86712fc11a2362834450d367dd6"
+    },
+    {
+      "source": "source/qia1110-final-h-source.tar.gz",
+      "path": "source/qia1110-final-h-source.tar.gz",
+      "source_sha256": "ffa30e87bc515d0694c9135c8b77d14286112e6da2cf7f4ef6467417319132a0",
+      "stored_sha256": "ffa30e87bc515d0694c9135c8b77d14286112e6da2cf7f4ef6467417319132a0"
+    },
+    {
+      "source": "control/dispatch_qia1110_reference_d.py",
+      "path": "control/dispatch_qia1110_reference_d.py.gz",
+      "source_sha256": "e0ae4671c3bdfb09e3d66a24c455a58c61fc46bb6dcb5d99ff590356ce8dc3c9",
+      "stored_sha256": "44699f571970ed1c585ca8d23efd1497f8a914a9e8e653a74a18c01281be6a5d"
+    },
+    {
+      "source": "control/dispatch_qia1110_reference_e.py",
+      "path": "control/dispatch_qia1110_reference_e.py.gz",
+      "source_sha256": "f344e80110d3c2f92f89638bd96df02cf503338c9cdeb0e6bcee134ac8828bb1",
+      "stored_sha256": "c68d6efadba83289b2b0f9ede01fe928bfca915d906ac50f6a093d636d219bf3"
+    },
+    {
+      "source": "control/dispatch_qia1110_reference_g.py",
+      "path": "control/dispatch_qia1110_reference_g.py.gz",
+      "source_sha256": "232749c2c4783b9cf55839043c0417a06309d4564955a57e0cf81aa7e0741ef1",
+      "stored_sha256": "d59f605ae181b220100fc952dbdf94018d9911b2c17964bbb07eaafbd38a7110"
+    },
+    {
+      "source": "control/dispatch_qia1110_numpy_tests_f.py",
+      "path": "control/dispatch_qia1110_numpy_tests_f.py.gz",
+      "source_sha256": "4d03072f33567629b9cf30f0fb6c6a0215d20468d7452f2a52609008f94f74ab",
+      "stored_sha256": "638cabb69dcf90b3bb3df178dc7773d4c82096500d42d38006fed782623763b8"
+    },
+    {
+      "source": "control/dispatch_qia1110_numpy_tests_g.py",
+      "path": "control/dispatch_qia1110_numpy_tests_g.py.gz",
+      "source_sha256": "5ef7492ef518da1901053a57bc0b3671f450f3decaaef291a04884d0c5da82ed",
+      "stored_sha256": "e3c3891b71d0fee77cd23be9c37f4ddb93cdd9d31e8977a6c158b035bf4bbcc5"
+    },
+    {
+      "source": "control/dispatch_qia1110_numpy_native_h.py",
+      "path": "control/dispatch_qia1110_numpy_native_h.py.gz",
+      "source_sha256": "78f021c175db5025f5162f015abaae982b34c07f9e05a931f4bf3835e3f36e02",
+      "stored_sha256": "d0b890f0c377e2ed299af0d7ef2e33dfa8970587bc174dc43af352b59a73c52d"
+    },
+    {
+      "source": "control/dispatch_qia1110_cuda_audit_h.py",
+      "path": "control/dispatch_qia1110_cuda_audit_h.py.gz",
+      "source_sha256": "0f94017053a64976fdb93b83d1af7d00a4e9a1331306a2b83d7185105679c1cb",
+      "stored_sha256": "d92d3f724efc9563e13deee6f64828f73b819eb5c05b2775c006292c02323e7f"
+    },
+    {
+      "source": "control/archive_qia1110_numpy_h.py",
+      "path": "control/archive_qia1110_numpy_h.py.gz",
+      "source_sha256": "581e4c0d3f7625f6dd80aa19f807fc14ba4071ba69b71f44391b43edbe08f427",
+      "stored_sha256": "4321862fb10fedcf914d59aa6784704b366028452e2770ba5333643d23488e26"
+    }
+  ]
+}

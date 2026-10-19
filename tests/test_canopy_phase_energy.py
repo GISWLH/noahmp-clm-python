@@ -237,7 +237,9 @@ def saved_phase_call(filename):
         if isinstance(value,list):return [decode(v) for v in value]
         if not isinstance(value,dict):return value
         if '__type__' in value:return registry[value['__type__']](**decode(value['data']))
-        if '__array__' in value:return np.asarray(decode(value['__array__']),dtype=value['dtype'])
+        if '__array__' in value:
+            array=np.asarray(decode(value['__array__']),dtype=value['dtype'])
+            return array.reshape(value['shape']) if 'shape' in value else array
         if '__float__' in value:return float(value['__float__'])
         return {k:decode(v) for k,v in value.items()}
     record=json.loads((Path(__file__).parent/'fixtures'/filename).read_text())
@@ -309,3 +311,43 @@ def test_existing_wet_phase_edge_closes_saved_qia735_without_changing_stores():
         maximum_solver_residual=float(np.max(abs(got['solver_residual']))),
         independent_temperature_error_K=temperature_error,
         independent_flux_absolute_differences={k:float(abs(got[k]-ref[k])) for k in ('h','le','gpp')}),flush=True)
+
+
+@pytest.mark.parametrize('seed',['default','old-state','air'])
+def test_exact_phase_kink_recovery_closes_qia1110_with_original_equations(seed):
+    saved=saved_phase_call('qia_1110_phase_kink.json');args=saved['args'];kw=saved['kwargs']
+    leaf,_,_,exchange,old,dt=args;mass=old.mass.copy();heat=old.enthalpy.copy()
+    assert kw['tolerance']==1e-7 and kw['max_iterations']==80
+    guess=None
+    if seed!='default':
+        coordinates=np.divide(heat,mass*4180.,out=np.full(10,exchange.air_temperature-273.15),where=mass>0.)
+        if seed=='air':
+            offset=exchange.air_temperature-273.15
+            coordinates=np.where(mass>0.,offset*2100./4180. if offset<0. else 334000./4180.+offset,offset)
+        guess=np.r_[coordinates,kw['fixed_ground_temperature'],exchange.specific_humidity*1000.]
+    got=solve_canopy_phase_energy(*args,**kw,initial_guess=guess)
+    ref=independent_reference(*args,**kw)
+    assert got['iterations']<=80 and np.max(abs(got['solver_residual']))<=1e-7
+    assert np.max(abs(got['layer_residual']))<=1.01e-7
+    np.testing.assert_array_equal(old.mass,mass);np.testing.assert_array_equal(old.enthalpy,heat)
+    np.testing.assert_allclose(got['condensate'].mass+dt*got['wet_evaporation'],mass,rtol=0.,atol=1e-14)
+    temperature_error=float(np.max(abs(np.r_[got['leaf_temperature'],got['ground_temperature']]-ref['temperature'])))
+    assert temperature_error<=.05
+    for key in ('h','le','gpp'):
+        absolute,near=(.01,.1) if key=='gpp' else (1.,10.)
+        assert abs(got[key]-ref[key])<=(absolute if abs(ref[key])<=near else .1*abs(ref[key]))
+    # Independently reconstruct advected mixed-phase parcel heat. The final
+    # water/enthalpy stores and actual vapor mass are used, without the
+    # production vapor-parcel or heat-residual helper.
+    fraction=np.clip(got['phase_coordinates']*4180./334000.,0.,1.)
+    offset=got['leaf_temperature']-273.15
+    specific=(1.-fraction)*2100.*offset+fraction*(334000.+4180.*offset)
+    advected=((mass-got['condensate'].mass)*specific).sum()/dt
+    storage=(got['condensate'].enthalpy-heat).sum()/dt
+    transpiration=got['transpiration']@(334000.+4180.*offset)-got['root_uptake']@kw['root_enthalpy']
+    energy=got['rnet']-got['h']-got['le']-got['ground_heat']-storage-advected-transpiration
+    assert abs(energy)<=11.*kw['tolerance']
+    assert got['leaf_temperature'][0]<273.15 and got['leaf_temperature'][3]==273.15
+    print('Qia1110 exact-kink recovery',seed,dict(iterations=got['iterations'],
+        maximum_solver_residual=float(np.max(abs(got['solver_residual']))),independent_temperature_error_K=temperature_error,
+        independent_energy_residual_Wm2=float(energy),independent_flux_absolute_differences={k:float(abs(got[k]-ref[k])) for k in ('h','le','gpp')}),flush=True)

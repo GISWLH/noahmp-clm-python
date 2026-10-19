@@ -145,16 +145,18 @@ def test_saved_float64_jacobian_closes_original_phase_equations(fixture):
         water_residual_kgm2=float(abs(water).max()),parcel_heat_residual_jm2=float(abs(energy).max()))),flush=True)
 
 
-def oldwet_case(precision):
-    # Both quantized references were computed on EHPC from the actual735
-    # rejection; no NumPy forward solve is needed in this device regression.
+def oldwet_case(precision,fixture='qia_735_phase_oldwet.json'):
+    # Quantized references were computed on EHPC from actual rejected calls;
+    # no NumPy forward solve is needed in this device regression.
     def decode(value):
         if isinstance(value,list):return [decode(x) for x in value]
         if not isinstance(value,dict):return value
-        if '__array__' in value:return np.asarray(decode(value['__array__']),dtype=value['dtype'])
+        if '__array__' in value:
+            array=np.asarray(decode(value['__array__']),dtype=value['dtype'])
+            return array.reshape(value['shape']) if 'shape' in value else array
         if '__float__' in value:return float(value['__float__'])
         return {k:decode(v) for k,v in value.items()}
-    saved=json.loads((Path(__file__).parent/'fixtures/qia_735_phase_oldwet.json').read_text())
+    saved=json.loads((Path(__file__).parent/'fixtures'/fixture).read_text())
     return decode(saved['quantized'][precision])
 
 
@@ -172,12 +174,13 @@ def oldwet_jax_kernel(precision):
 
 
 @pytest.mark.parametrize('precision',['32','64'])
-def test_saved_existing_water_phase_matches_ehpc_reference(precision):
+@pytest.mark.parametrize('fixture',['qia_735_phase_oldwet.json','qia_1110_phase_kink.json'],ids=['existing735','exact1110'])
+def test_saved_existing_water_phase_matches_ehpc_reference(precision,fixture):
     jax=pytest.importorskip('jax')
     if precision=='64' and not jax.config.x64_enabled:pytest.skip('JAX x64 required')
     import jax.numpy as j
     from noahmp_clm.gpu.canopy_phase_energy import unpack_phase
-    case=oldwet_case(precision);arrays=case['arrays']
+    case=oldwet_case(precision,fixture);arrays=case['arrays']
     raw=np.asarray(oldwet_jax_kernel(precision)(*map(j.asarray,arrays),j.asarray(case['parameters']),j.asarray(case['extension'])))[None,:]
     got=host(unpack_phase(raw));tolerance=.005 if precision=='32' else 1e-7
     assert got['converged'][0] and got['max_solver_residual'][0]<=tolerance
@@ -194,19 +197,20 @@ def test_saved_existing_water_phase_matches_ehpc_reference(precision):
     energy=(final-heat+advected)-(thermal-heat)
     assert np.all(abs(water)<=64.*eps*np.maximum(mass,1.)+1e-12)
     assert np.all(abs(energy)<=64.*eps*np.maximum(abs(final)+abs(heat)+abs(advected)+abs(thermal),1.)+1e-6)
-    print('saved existing-water native reference',precision,dict(iterations=got['iterations'].tolist(),
+    print('saved existing-water native reference',fixture,precision,dict(iterations=got['iterations'].tolist(),
         maximum_absolute_difference=differences,maximum_water_residual_kgm2=float(np.max(abs(water))),
         maximum_parcel_heat_residual_jm2=float(np.max(abs(energy)))) ,flush=True)
 
 
-def test_saved_existing_water_phase_cuda_all_raw_same_precision():
+@pytest.mark.parametrize('fixture',['qia_735_phase_oldwet.json','qia_1110_phase_kink.json'],ids=['existing735','exact1110'])
+def test_saved_existing_water_phase_cuda_all_raw_same_precision(fixture):
     cp=pytest.importorskip('cupy');pytest.importorskip('jax')
     import jax.numpy as j
     from noahmp_clm.gpu.canopy_phase_energy import unpack_phase,validate_phase
     from noahmp_clm.gpu.canopy_boundary import radiation_inputs
     from noahmp_clm.gpu.cuda.canopy_snow_radiation import _kernel as radiation_kernel
     from noahmp_clm.gpu.cuda.snicar import _tables
-    case=oldwet_case('32');arrays=tuple(cp.ascontiguousarray(cp.asarray(np.asarray(v)[None,...],
+    case=oldwet_case('32',fixture);arrays=tuple(cp.ascontiguousarray(cp.asarray(np.asarray(v)[None,...],
         dtype=cp.int32 if k==8 else cp.float32)) for k,v in enumerate(case['arrays']))
     validate_phase(arrays,cp);leaf,u,f,soil,stem,condensate,boundary,snow,count=arrays
     area=cp.ascontiguousarray(leaf+stem);radiation=cp.empty((1,584),cp.float32)
@@ -224,9 +228,13 @@ extern "C" __global__ void saved_oldwet_phase(const float* a,const float* u,cons
             cp.asarray(case['parameters']),cp.asarray(case['extension']),cuda))
     actual=cp.asnumpy(cuda);expected=np.asarray(oldwet_jax_kernel('32')(*map(j.asarray,case['arrays']),
         j.asarray(case['parameters']),j.asarray(case['extension'])))[None,:]
+    import os
+    if os.environ.get('NOAHMP_QIA1110_DIAGNOSTICS'):
+        folder=Path(os.environ['NOAHMP_QIA1110_DIAGNOSTICS']);folder.mkdir(parents=True,exist_ok=True)
+        np.savez_compressed(folder/(Path(fixture).stem+'-raw300.npz'),cuda=actual,jax=expected)
     np.testing.assert_allclose(actual,expected,rtol=1e-6,atol=1e-6)
     a,b=unpack_phase(actual),unpack_phase(expected)
     assert np.all(a['converged']) and np.all(b['converged'])
     for key,value in a.items():
         if not isinstance(value,dict) and value.dtype.kind in 'biu':np.testing.assert_array_equal(value,b[key])
-    print('saved existing-water all300raw sameprecision',float(np.max(abs(actual.astype(float)-expected.astype(float)))),flush=True)
+    print('saved existing-water all300raw sameprecision',fixture,float(np.max(abs(actual.astype(float)-expected.astype(float)))),flush=True)

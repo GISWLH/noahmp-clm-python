@@ -217,6 +217,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             return j.where(good,candidate,trial),good
         trial,rescued=lax.cond(slow,humidity_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|rescued
+        original_direction=delta
         def interval_restart(_):
             # An original centred difference can straddle0 or LF/Cw. Keep
             # the usual trajectory unless both original recovery paths fail.
@@ -224,6 +225,9 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
                 step=j.where(k==11,qstep,step_size)
                 lo=x.at[k].set(j.maximum(lo_bound[k],s(x[k]-step)));hi=x.at[k].set(j.minimum(hi_bound[k],s(x[k]+step)))
                 phase=(k<10)&phase_active[j.minimum(k,9)]
+                edge=phase&((x[k]==0.)|(x[k]==plateau))
+                lo=lo.at[k].set(j.where(edge&(original_direction[k]>=0.),x[k],lo[k]))
+                hi=hi.at[k].set(j.where(edge&(original_direction[k]<0.),x[k],hi[k]))
                 cold=phase&(x[k]<0.);melt=phase&(x[k]>0.)&(x[k]<plateau);warm=phase&(x[k]>plateau)
                 lo=lo.at[k].set(j.maximum(lo[k],j.where(melt,0.,j.where(warm,plateau,lo[k]))))
                 hi=hi.at[k].set(j.minimum(hi[k],j.where(cold,0.,j.where(melt,plateau,hi[k]))))

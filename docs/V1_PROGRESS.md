@@ -1,5 +1,50 @@
 # v1.0.0 执行记录
 
+2026-10-19 17:57UTC：[1110精确拐点三后端修订](CLM_QIA1110_PHASE.md)完成NumPy
+先行验证再同步设备。EHPC291原实现三种初猜均Newton停滞，新29项全0；原287
+JSON无穷编码失败、289空数组shape加载失败均保留，不冒充物理回归。独立网络
+叶温差1.03e-11 K，H／LE差1.23e-11／2.50e-10 W/m²，完整耦合残差严格下降，
+原旧储量／方程／tol1e-7／80次及设备原精度／预算／所有硬门不变。
+
+冻结H519包`ffa30e87…9132a0`、清单`095f94bd…0871`：
+[EHPC292全CPU943](v1-results/qia1110-cpu-final-h/manifest.json)实际0、487.602秒、
+0失败／错误／跳过；[xuanze相变14](v1-results/qia1110-gpu-target-h/manifest.json)
+实际0、315.734秒，735／1110全部300原始同精度字段差0。CPUreceipt继承518文字
+而实际清单519；293原诊断文件名继承736而实际输入1110→1111，均保留原文件，
+不重标原证据。[原NumPy年C](v1-results/qia-all-phase-numpy-year-terminal-c/manifest.json)
+终态failed1110/17520、模型/PBS1、残差3.4540945 W/m²，原轨迹不续写。
+
+[CUDA整步](v1-results/qia1110-full-cuda32-h/manifest.json)及
+[JAX整步](v1-results/qia1110-full-jax32-h/manifest.json)未插桩生产函数实际父／
+worker均0，126.964／729.165秒、设备屏障完成。
+[EHPC296独立审计](v1-results/qia1110-paired-audit-j/manifest.json)全部361输出＋19
+后状态最大差3.637978807091713e-12，原1e-6及整数门满足；两端单步热残差
+−14.04237 J/m²对原界1814.91399，累计293.28734对原界2018109.02204，其他原
+MHCN和五杂质界也满足。293原NumPy整步热残差1.04774e-5对原界2.49821e-5，
+累计0.01746057对原界0.03381453。没有使用组件结果代替整柱硬审计。
+
+审计i在qsub前因inode耗尽未提交，部分解包保留。EHPChome仍有4.7TB字节空间；
+[恢复证据](v1-results/ehpc-inode-recovery-b/manifest.json)保存缓存清理、4025个闲置
+清单源码副本的完整可还原归档／逐文件hash及异机备份核验，再回收inode；全部
+输入／轨迹／输出／控制／清单／依赖保留。恢复后新j审计实际0，新NumPy295继续。
+
+[PFT最终D整柱3](v1-results/pft-optics-full-gpu3-d/manifest.json)实际父／worker0、
+1547.608秒，全部原始同精度字段差0；[早期506规范完整1241](v1-results/phase-final-check-full-a/manifest.json)
+实际0、27045.877秒，精确901CPU＋340GPU、零失败／错误／跳过，保持506身份。
+17:57快照D完整1291覆盖1111、旧511完整1254覆盖1077，实际worker均保留；
+[当前H规范1297](v1-results/qia1110-full-deferred-h/manifest.json)已有943CPU＋14GPU，
+余340待D实际退出后执行。没有将旧源通过数抵充H，也没有因耗时停止测试。
+
+[新原冷NumPy年](v1-results/qia-kink-ehpc-progress-i/manifest.json)17:57为
+running144/17520、累计热残差0.000915890 J/m²；
+[新原冷CUDA年](v1-results/qia-kink-xuanze-launch-i/manifest.json)17:57在GPU1启动，
+先正确核对26主冷字段、排除参考22影子额外字段后续自身成功48。原failed1110
+两条年均保留，CUDA年无JAX影子、同精度null。K78、日长／十日温度记忆／垂直
+叶N、完整年／spinup／多站多年／留出／测高敏感性／科学验收及发布仍待。CPU
+物理／分析在EHPC PBS计算节点，GPU在xuanze，本机只编辑／静态检查／归档。
+
+以下为此前历史快照。
+
 2026-10-19 16:58UTC：[最终D全940CPU](v1-results/pft-optics-cpu-final-d/manifest.json)
 EHPC286模型/PBS0、0失败/错误/跳过、483.919秒；[设备目标20](v1-results/pft-optics-gpu20-d/manifest.json)
 全部worker/controller0，新5加原SNICAR4/相变11，211.984秒，全部624原始字段及
