@@ -1,5 +1,18 @@
 # GPU 阶段 3b 阻塞记录
 
+## v1：官方Qia首日初始化链超过30分钟及当前输出差异（2026-10-19）
+
+从D的06:06UTC启动到K首次完成已超过30分钟，中间域/CO₂/冷启动、流格式/
+地形时间轴、辅助依赖、SP历史字段和运行目录的问题分别保留，未把它们编造为
+同一数值根因。[官方K终态/输出](CLM_QIA_FIRST_DAY.md)实际已完成；其48正区间
+仍有强迫诊断/辐射边界不匹配，未放宽10%或声明科学通过。绕行工作实际推进
+EHPC NumPy首周、xuanze CUDA独立首日及全年C、当前完整GPU队列。
+
+当前506B全GPU队列于07:34:58UTC[实际确认](v1-results/stem-full-wait-b/manifest.json)
+原控制器2387702仍Ss、elapsed47:00，旧493原597245仍存活、当前worker/旧exit
+均不存在，确实还在等待；旧493为1115/1135、湿地文件执行中。没有重复启动
+GPU队列、杀其他用户进程或将等待算成已完成318项；独立全年和官方诊断继续。
+
 ## v1：实际Qia CUDA32/JAX32首日等待超过30分钟（2026-10-19）
 
 [原始只读快照](v1-results/qia-stem-device-wait-a/manifest.json)在实际elapsed1805秒
@@ -7,6 +20,11 @@
 仍0。指针不是迭代计数，不据此宣称停滞或GPU错误。保留原进程、源和独立影子，
 不重启/重置设备，绕行超算官方CTSM单点输入及实际运行；原1e-6/守恒界不变。
 EHPC NumPy对应首日已实际完成48步，原17520年度请求身份保留。
+
+后续[原进程采样与独立CUDA启动](v1-results/qia-stem-cuda-launch-b/manifest.json)
+一处native栈位于XLA GPU WhileThunk执行，明确detach后原A继续；不能据此
+认定全程JIT、死锁或唯一性能原因。独立CUDA B首日实际完成并配对NumPy，
+全年C沿自身成功前缀继续；A的独立影子和1e-6门保留，B/C同精度字段为null。
 
 ## v1：Qia显式SAI的NumPy首日等待超过30分钟（2026-10-18）
 

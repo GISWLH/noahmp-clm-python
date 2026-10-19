@@ -1,0 +1,186 @@
+{
+  "scope": "Actual CUDA-only Qia48/17520,299.065s,controller/worker0 and original MHCN/NumPy48 metrics passed.26 cold primary/ledger arrays exactly equal strictA initial state. No JAX shadow or same-precision result here; original strictA and canonical22 module checks remain separate. Not spinup/FLUXNET/official scientific acceptance.",
+  "archive_sha256": "20bc1c0345f62dd05996ab67f003ec7d3c634665fffbb96308c533b6c2156e17",
+  "artifacts": [
+    {
+      "source": "controller.log",
+      "path": "controller.log.gz",
+      "source_sha256": "38473fa94e72bcd42de32fec1ecaa115234b5fdc9fb49ed7c1643137c066b77e",
+      "stored_sha256": "383bd8a700ef942cb98f600f27d1a0782f2a4e921b4afea87da11c69712df162"
+    },
+    {
+      "source": "exit.json",
+      "path": "exit.json.gz",
+      "source_sha256": "a6e0c42f807db4c02e5d53ed4b6dfde415b86a86ac9500352a284f956b306cbd",
+      "stored_sha256": "cdb52fa1f632c39ef0f4cb635b35a81e416cf81b77fe5b63551d4458e546d3a1"
+    },
+    {
+      "source": "inputs/CN-Qia-original-config.json",
+      "path": "inputs/CN-Qia-original-config.json.gz",
+      "source_sha256": "60b9be1100fc25c5d8b7481883afe6998ace981c8c0deab046b752f8f206e8fd",
+      "stored_sha256": "93129e891a011a46fee2a6ff252f994e1eb20940becae01ff9bba0b5f3d0185f"
+    },
+    {
+      "source": "inputs/CN-Qia-stem-config.json",
+      "path": "inputs/CN-Qia-stem-config.json.gz",
+      "source_sha256": "339310f80d579cd52926447c5e0645438c918343753ae096bd4a75ff5e941bf1",
+      "stored_sha256": "a28b436706b46d43a10f7d2fbf5a4090e3d88cf1cdbb8419d0ed00db9419e82c"
+    },
+    {
+      "source": "inputs/CN-Qia.json",
+      "path": "inputs/CN-Qia.json.gz",
+      "source_sha256": "db8d2b2ccb71134dde4bd0ea27abeae8ab4f205a732923bcae0d4b8bee465f93",
+      "stored_sha256": "d9423cebc685bb87410dd6d3271f2c53b7d92f9c6fd4fea1b599c1217c91fc4b"
+    },
+    {
+      "source": "inputs/CN-Qia.npz",
+      "path": "inputs/CN-Qia.npz",
+      "source_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960",
+      "stored_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960"
+    },
+    {
+      "source": "inputs/batch.json",
+      "path": "inputs/batch.json.gz",
+      "source_sha256": "6a4bf6b66caf7dfb83b1b4271b02165384de4f3b9c60f58d5a975bb7f936cd24",
+      "stored_sha256": "d3a399baaf308b6a3dd76d707c54c26908cba266f86fb60844e8a7f684e02969"
+    },
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "59b4d85e51d605eb5703dda50b91a3630fc7b544426897992e06e0bd3dffe5c5",
+      "stored_sha256": "9841fabe2dfca1819fda951d84a936aba9b4c8b600356a1d489b81364534bb44"
+    },
+    {
+      "source": "model.log",
+      "path": "model.log.gz",
+      "source_sha256": "9c15aec7e189b56c8fb487b7619978a6752454fd3c4d9619cb7e16b14edd042c",
+      "stored_sha256": "8f372b676392f5541a341972d013ab40d5762418d9611ce3027bec6bc15c94ee"
+    },
+    {
+      "source": "protocol.json",
+      "path": "protocol.json.gz",
+      "source_sha256": "4912439fd86bb736eca5eb1b9c78c17e23de0a466398b55d9b993c9f30df2fef",
+      "stored_sha256": "ba696fc7f60e58dd6beabf2fea60a5065a1815cf455158b50538f7c04c9579de"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "fe83ac0949dbf962f2149189728fa3a56ce23ceee49c931237e192fd07b01c7e",
+      "stored_sha256": "1fa90e6c4ee13dc7b19f57de38b9ac020d766da58ccf151ad4b5b7e78fecaff8"
+    },
+    {
+      "source": "strict-reference-cold0.npz",
+      "path": "strict-reference-cold0.npz",
+      "source_sha256": "3a051312dc7a5ae4168024a39a88e2c4e49781bc64b56ce8c339bf6137b4b368",
+      "stored_sha256": "3a051312dc7a5ae4168024a39a88e2c4e49781bc64b56ce8c339bf6137b4b368"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/report-0000000-77e8015d4bd74b579d9254666fe52ce0.json",
+      "path": "trajectory/CN-Qia-stem-first-cycle/report-0000000-77e8015d4bd74b579d9254666fe52ce0.json.gz",
+      "source_sha256": "1a09fdd765026f88772eb3715edb556a1f4d983626d72f939441ef42f62b4c00",
+      "stored_sha256": "a790949d1002f7d9d290fe5467a5405887fbe77f37b3f176a9f24625f9eec8f5"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/report-0000048-bb54ee73053845029b679862c19d48ce.json",
+      "path": "trajectory/CN-Qia-stem-first-cycle/report-0000048-bb54ee73053845029b679862c19d48ce.json.gz",
+      "source_sha256": "487153d7848301a254d3b814685b95c30d6201695f8d428ad5ed232e2ad5499a",
+      "stored_sha256": "c46530f830981f5bc2f5cdac81549bfbd12eceb80ffc17e3c5b3c6c3296525c2"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/report-0000048-da39882b432c40e499d54493dc83c08d.json",
+      "path": "trajectory/CN-Qia-stem-first-cycle/report-0000048-da39882b432c40e499d54493dc83c08d.json.gz",
+      "source_sha256": "846fc519c9cbe05c877ced0f3861312cacc398bbf37390d69739cd39ffa54d6e",
+      "stored_sha256": "63e64610c256745fa7cd3705d53bef286a6e8c6fee1027ecaa89737f8b5261c2"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/report.json",
+      "path": "trajectory/CN-Qia-stem-first-cycle/report.json.gz",
+      "source_sha256": "846fc519c9cbe05c877ced0f3861312cacc398bbf37390d69739cd39ffa54d6e",
+      "stored_sha256": "63e64610c256745fa7cd3705d53bef286a6e8c6fee1027ecaa89737f8b5261c2"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/trace-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "path": "trajectory/CN-Qia-stem-first-cycle/trace-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/trace-0000048-bb54ee73053845029b679862c19d48ce.npz",
+      "path": "trajectory/CN-Qia-stem-first-cycle/trace-0000048-bb54ee73053845029b679862c19d48ce.npz",
+      "source_sha256": "47457b7b9ae06e2b628f16bad7dd058dce1b39ba2f6d04b16c69885401f9fac2",
+      "stored_sha256": "47457b7b9ae06e2b628f16bad7dd058dce1b39ba2f6d04b16c69885401f9fac2"
+    },
+    {
+      "source": "trajectory/CN-Qia-stem-first-cycle/trace-0000048-da39882b432c40e499d54493dc83c08d.npz",
+      "path": "trajectory/CN-Qia-stem-first-cycle/trace-0000048-da39882b432c40e499d54493dc83c08d.npz",
+      "source_sha256": "47457b7b9ae06e2b628f16bad7dd058dce1b39ba2f6d04b16c69885401f9fac2",
+      "stored_sha256": "47457b7b9ae06e2b628f16bad7dd058dce1b39ba2f6d04b16c69885401f9fac2"
+    },
+    {
+      "source": "trajectory/batch.json",
+      "path": "trajectory/batch.json.gz",
+      "source_sha256": "398f37618a30f3ee48d4fe50bda4df3b5c5caa5d67a741e3d25642f87e4ed65b",
+      "stored_sha256": "195c6831599f8573333ef099a42851b3cb74537c45d49c5160442516247836b9"
+    },
+    {
+      "source": "trajectory/state-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "path": "trajectory/state-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "source_sha256": "1ee81d3db49d29090db4417611c456eb4fbbef4539343c7f17c046d08e373cc3",
+      "stored_sha256": "1ee81d3db49d29090db4417611c456eb4fbbef4539343c7f17c046d08e373cc3"
+    },
+    {
+      "source": "trajectory/state-0000048-bb54ee73053845029b679862c19d48ce.npz",
+      "path": "trajectory/state-0000048-bb54ee73053845029b679862c19d48ce.npz",
+      "source_sha256": "778a8ef1a745287b1df01003266dfce2b6af8c749e6e9e3bc58eacff3ca650c2",
+      "stored_sha256": "778a8ef1a745287b1df01003266dfce2b6af8c749e6e9e3bc58eacff3ca650c2"
+    },
+    {
+      "source": "trajectory/state-0000048-da39882b432c40e499d54493dc83c08d.npz",
+      "path": "trajectory/state-0000048-da39882b432c40e499d54493dc83c08d.npz",
+      "source_sha256": "778a8ef1a745287b1df01003266dfce2b6af8c749e6e9e3bc58eacff3ca650c2",
+      "stored_sha256": "778a8ef1a745287b1df01003266dfce2b6af8c749e6e9e3bc58eacff3ca650c2"
+    },
+    {
+      "source": "worker.json",
+      "path": "worker.json.gz",
+      "source_sha256": "ceaedf48f523ad3a23f1f1951bc3d1084e3054f0ae8b88f250cd6c60f26e50b3",
+      "stored_sha256": "49d0acee3cb7ec4950394183f17ee50062953989c0bcf6317ea0c58f7f6ba5a8"
+    },
+    {
+      "source": "control/run_qia_stem_cuda_day_b.py",
+      "path": "control/run_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "e9f20ab030a92ab06ff275383d97a5fddcf6e18909f800eb57baa5b09338150e",
+      "stored_sha256": "4a6a1147297a02f7e3fed8400714589b97f2e496f240b7622490bd2fab29cbcc"
+    },
+    {
+      "source": "control/control_qia_stem_cuda_day_b.py",
+      "path": "control/control_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "053da939c018848a2c264126ce86072d4f87586b38e147ba877101fbbf1dc8b2",
+      "stored_sha256": "ead50cc5c13b84afebedfbc2fbab721db91fa6aa58cb4ab46fd54ad607686cf8"
+    },
+    {
+      "source": "control/launch_qia_stem_cuda_day_b.py",
+      "path": "control/launch_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "34186655ea7136421c45db2a7f7f00f9cfa47d989bbdf5cb2c69ad4eeca94a12",
+      "stored_sha256": "1553bafbf0b12e19438ad91e5ebd3c6af7229d4a830306688ea0cfe7cd9691cc"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "f03e43577ba6c0a2c38f3f19f292f868e5075cf14af94b917c48c5ebe304610e",
+      "stored_sha256": "387ac885d60b9c20b4ce1e7d1342c26921492ea369dbc2ea78162972873b823f"
+    },
+    {
+      "source": "control/archive_qia_stem_cuda_day_b.py",
+      "path": "control/archive_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "f7f076feb4f1a17a40380837340fff8f1fe4044ff8413564528ea0c06a27b85b",
+      "stored_sha256": "a1a08d5c7a568ad05818913cca8dfb26437f628380179414500690f34ba8a332"
+    },
+    {
+      "source": "summary.json",
+      "path": "summary.json.gz",
+      "source_sha256": "8b982e46a63a9f9daf3532ac27f4b01dbca7e6d34a25ab15e6de7a6c14439a3a",
+      "stored_sha256": "0200311de270a9f25d3f587df2e57679ffb19a9c5a5bff6ca6527656978066de"
+    }
+  ]
+}

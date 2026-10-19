@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<file id="stream" version="1.0">
+  <dataSource>
+GENERIC
+</dataSource>
+  <domainInfo>
+    <variableNames>
+time time
+xc lon
+yc lat
+area area
+mask mask
+</variableNames>
+    <filePath>
+/var/tmp/pbs.178.manager/ctsm-qia-run-k/inputdata
+</filePath>
+    <fileNames>
+domain.lnd.CN-Qia.nc
+</fileNames>
+  </domainInfo>
+  <fieldInfo>
+    <variableNames>
+BCDEPWET bcphiwet
+BCPHODRY bcphodry
+BCPHIDRY bcphidry
+OCDEPWET ocphiwet
+OCPHIDRY ocphidry
+OCPHODRY ocphodry
+DSTX01WD dstwet1
+DSTX01DD dstdry1
+DSTX02WD dstwet2
+DSTX02DD dstdry2
+DSTX03WD dstwet3
+DSTX03DD dstdry3
+DSTX04WD dstwet4
+DSTX04DD dstdry4
+</variableNames>
+    <filePath>
+/var/tmp/pbs.178.manager/ctsm-qia-run-k/inputdata
+</filePath>
+    <fileNames>
+CN-Qia.aero.2002-2004.nc
+</fileNames>
+    <offset>
+0
+</offset>
+  </fieldInfo>
+</file>

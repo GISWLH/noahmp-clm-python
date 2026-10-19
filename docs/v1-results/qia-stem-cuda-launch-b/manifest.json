@@ -1,0 +1,78 @@
+{
+  "scope": "Actual independent CUDA-only B live launch;26 cold primary/ledger arrays exact to original strictA. Original A one sampled native stack inside XLA GPU WhileThunk execution,detached and still live; no unique bottleneck diagnosis. Original strict1e-6 gate unchanged/pending, no same-precision result claimed for B.",
+  "archive_sha256": "ecc5dbf4981c4aab907bf7e4e9291e30a9d81cf1b699a775e7a2a86aa676f874",
+  "artifacts": [
+    {
+      "source": "launch.json",
+      "path": "launch.json.gz",
+      "source_sha256": "59b4d85e51d605eb5703dda50b91a3630fc7b544426897992e06e0bd3dffe5c5",
+      "stored_sha256": "9841fabe2dfca1819fda951d84a936aba9b4c8b600356a1d489b81364534bb44"
+    },
+    {
+      "source": "worker.json",
+      "path": "worker.json.gz",
+      "source_sha256": "ceaedf48f523ad3a23f1f1951bc3d1084e3054f0ae8b88f250cd6c60f26e50b3",
+      "stored_sha256": "49d0acee3cb7ec4950394183f17ee50062953989c0bcf6317ea0c58f7f6ba5a8"
+    },
+    {
+      "source": "strict-reference-cold0.npz",
+      "path": "strict-reference-cold0.npz",
+      "source_sha256": "3a051312dc7a5ae4168024a39a88e2c4e49781bc64b56ce8c339bf6137b4b368",
+      "stored_sha256": "3a051312dc7a5ae4168024a39a88e2c4e49781bc64b56ce8c339bf6137b4b368"
+    },
+    {
+      "source": "state-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "path": "state-0000000-77e8015d4bd74b579d9254666fe52ce0.npz",
+      "source_sha256": "1ee81d3db49d29090db4417611c456eb4fbbef4539343c7f17c046d08e373cc3",
+      "stored_sha256": "1ee81d3db49d29090db4417611c456eb4fbbef4539343c7f17c046d08e373cc3"
+    },
+    {
+      "source": "profile-gdb-main-a.txt",
+      "path": "profile-gdb-main-a.txt.gz",
+      "source_sha256": "dab844bdd64020829bd389fb3e84a60cbc1729a0463a9afd89495acd29d02703",
+      "stored_sha256": "57fc9cf1bc3fb98f64201141baef4de17b707ce0a2bf9c884f8a69bb7ff3ad2f"
+    },
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "f03e43577ba6c0a2c38f3f19f292f868e5075cf14af94b917c48c5ebe304610e",
+      "stored_sha256": "387ac885d60b9c20b4ce1e7d1342c26921492ea369dbc2ea78162972873b823f"
+    },
+    {
+      "source": "run_qia_stem_cuda_day_b.py",
+      "path": "run_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "e9f20ab030a92ab06ff275383d97a5fddcf6e18909f800eb57baa5b09338150e",
+      "stored_sha256": "4a6a1147297a02f7e3fed8400714589b97f2e496f240b7622490bd2fab29cbcc"
+    },
+    {
+      "source": "control_qia_stem_cuda_day_b.py",
+      "path": "control_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "053da939c018848a2c264126ce86072d4f87586b38e147ba877101fbbf1dc8b2",
+      "stored_sha256": "ead50cc5c13b84afebedfbc2fbab721db91fa6aa58cb4ab46fd54ad607686cf8"
+    },
+    {
+      "source": "launch_qia_stem_cuda_day_b.py",
+      "path": "launch_qia_stem_cuda_day_b.py.gz",
+      "source_sha256": "34186655ea7136421c45db2a7f7f00f9cfa47d989bbdf5cb2c69ad4eeca94a12",
+      "stored_sha256": "1553bafbf0b12e19438ad91e5ebd3c6af7229d4a830306688ea0cfe7cd9691cc"
+    },
+    {
+      "source": "archive_qia_stem_cuda_launch_b.py",
+      "path": "archive_qia_stem_cuda_launch_b.py.gz",
+      "source_sha256": "a30f56386d05ead8d4df63cca81321c0db9cbed6e4a9864e17cca86124d01ca5",
+      "stored_sha256": "be2a0d0ecab117e8c8bdf5c0ca9ab41a06cbdc0ae3c1eafb3b8d16ca6c39d049"
+    },
+    {
+      "source": "observation.json",
+      "path": "observation.json.gz",
+      "source_sha256": "5ecbcb551013c72abfeb169adf5dc1c9f2bb4a733b9d3aaf2c2f446d3769f008",
+      "stored_sha256": "9eed9e7063390b5e991ecc47efefbc5ed256c65d6f339c15655e181a05491c2a"
+    },
+    {
+      "source": "captured-batch.json",
+      "path": "captured-batch.json.gz",
+      "source_sha256": "aaff020d03d387f713df4fd1e5741d91f7685933e735ba88e9af1f6745fc0f0a",
+      "stored_sha256": "ddeb4d087c86141ab0e1cfaf043477e887982483cc2aff7ec5d68df9d0f0d843"
+    }
+  ]
+}

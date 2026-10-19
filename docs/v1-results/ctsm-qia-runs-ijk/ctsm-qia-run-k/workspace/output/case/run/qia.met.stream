@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<file id="stream" version="1.0">
+  <dataSource>
+GENERIC
+</dataSource>
+  <domainInfo>
+    <variableNames>
+time time
+xc lon
+yc lat
+area area
+mask mask
+</variableNames>
+    <filePath>
+/var/tmp/pbs.178.manager/ctsm-qia-run-k/inputdata
+</filePath>
+    <fileNames>
+domain.lnd.CN-Qia.nc
+</fileNames>
+  </domainInfo>
+  <fieldInfo>
+    <variableNames>
+TBOT tbot
+QBOT shum
+WIND wind
+PSRF pbot
+FSDS swdn
+FLDS lwdn
+PRECTmms precn
+ZBOT z
+CO2_PPM_AUXILIARY co2diag
+</variableNames>
+    <filePath>
+/var/tmp/pbs.178.manager/ctsm-qia-run-k/inputdata
+</filePath>
+    <fileNames>
+CN-Qia.datm.2003.nc
+</fileNames>
+    <offset>
+0
+</offset>
+  </fieldInfo>
+</file>
