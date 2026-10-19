@@ -16,6 +16,13 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 首日配对仍运行。官方CTSM首日实际运行已完成，强迫时序/辐射等同条件核对仍待完成。
 完整气候年、spinup、多站多年及科学验收均未完成，v1.0.0仍未发布。
 
+后续[官方CTSM全年输入核对](docs/CLM_CTSM_FORCING_AUDIT.md)已完成官方SP的
+17520区间积分及原输出重读；它与Python完整年不同。四短波分量已对齐，比湿
+仍有77项差异；冷初态/土质/SP-CN未匹配，首日H偏差−12.4116%、LE近零绝对差
+10.7473W/m²。[NumPy163末次迭代误报](docs/CLM_QIA163_PHASE_FAILURE.md)修正已在
+EHPC完整CPU901和xuanze相变8项通过，同精度最大差0；原周试算failed/163及
+整柱后续真未收敛保留。当前1241完整回归尚余332 GPU项排队，科学验收未完成。
+
 后续[Qia实际首日和官方输出](docs/CLM_QIA_FIRST_DAY.md)：CUDA-only首48步在
 xuanze完成，对EHPC NumPy日H/LE偏差0.000101%/0.000783%，原守恒界满足，
 从自身成功前缀继续全年，07:25UTC为384/17520。原严格JAX32配对独立继续，

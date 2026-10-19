@@ -1,5 +1,24 @@
 # v1.0.0 执行记录
 
+2026-10-19后续：[官方CTSM时序/辐射全年核对](CLM_CTSM_FORCING_AUDIT.md)完成
+L/M首日两组实际模型/PBS0，解决原nearest中点导致的陆面前一时段输入，并用
+标准直射/散射字段统一Erbs边界。官方N实际模型0、17520区间，原后处理失败
+使父PBS1；原件保留，PBS192只重读原输出后退出0，没有重跑或改输出。
+四个陆面短波分量全年符合原值的历史精度，散射比例最大差2.47267e-8；比湿
+77项仍不同、最大6.91925e-5kg/kg，不称输入全部一致。原冷首日H偏差−12.4116%，
+LE近零绝对差10.7473W/m²、r0.597699，初态/土质/SP-CN仍未匹配，无科学通过。
+
+[NumPy原周试算](v1-results/qia-stem-numpy-week-a/manifest.json)在163/17520失败，
+不是完成周；原状态和全部账目归档，累计热残差最大0.001114758J/m²。实际原态
+单步发现末次Newton更新达到1.66089e-12W/m²却用旧残差报错；候选只补最终检查，
+不改tol1e-7或80次预算；[EHPC全CPU901](v1-results/phase-final-check-cpu-a/manifest.json)
+实际通过831.732762秒，[xuanze相变8项](v1-results/phase-final-check-gpu-a/manifest.json)
+175.306658秒、实际退出0，同精度最大差0。整柱后续15.451636W/m²真未收敛
+尚未解决，已按30分钟规则记录并绕行。旧1239仅等待的队列已由
+[当前同源1241队列](v1-results/phase-full-deferred-a/manifest.json)替换，精确绑定
+901CPU/8GPU，余332尚待执行；原模型未停。xuanze年试算08:45已1248/17520，
+完整Python年、spinup/发布仍未完成。
+
 2026-10-19 07:25UTC检查点：[Qia实际首日/官方输出](CLM_QIA_FIRST_DAY.md)已完成
 CUDA-only B48，实际299.065秒、控制器/worker0，对EHPC NumPy H/LE日偏差
 0.000101%/0.000783%，ET近零绝对差2.46915e-6mm/day，全部原MHCN界满足。

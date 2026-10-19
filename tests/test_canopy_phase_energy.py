@@ -194,3 +194,27 @@ def test_complete_evaporation_releases_the_redundant_plateau_coordinate():
     assert np.max(abs(r['layer_residual']))<5e-5
     assert r['condensate'].mass[3]==0. and r['condensate'].enthalpy[3]==0.
     assert r['leaf_temperature'][3]<273.15
+
+
+def test_phase_root_reached_by_last_permitted_update_is_accepted():
+    # A root found on the final update needs no extra Newton update. The
+    # unrestricted run discovers the necessary budget without changing its
+    # physical initial state, tolerances, or independent parcel equations.
+    _,area,sw,lw,e,c,kw=cases()[0]
+    expected=solve_canopy_phase_energy(area,sw,lw,e,c,1800.,tolerance=1e-7,**kw)
+    assert expected['iterations']>1
+    result=solve_canopy_phase_energy(area,sw,lw,e,c,1800.,tolerance=1e-7,
+        max_iterations=expected['iterations']-1,**kw)
+    for key in ('leaf_temperature','solver_residual','layer_residual','wet_evaporation','root_uptake'):
+        np.testing.assert_array_equal(result[key],expected[key])
+    np.testing.assert_array_equal(result['condensate'].mass,expected['condensate'].mass)
+    np.testing.assert_array_equal(result['condensate'].enthalpy,expected['condensate'].enthalpy)
+    assert np.max(abs(result['solver_residual']))<=1e-7
+    assert np.max(abs(result['layer_residual']))<=1.01e-7
+    np.testing.assert_allclose(result['condensate'].mass+1800.*result['wet_evaporation'],c.mass,rtol=0.,atol=1e-14)
+
+
+def test_exhausted_phase_updates_still_reject_an_unconverged_final_state():
+    _,area,sw,lw,e,c,kw=cases()[0]
+    with pytest.raises(RuntimeError,match='Canopy phase energy did not converge'):
+        solve_canopy_phase_energy(area,sw,lw,e,c,1800.,tolerance=1e-7,max_iterations=1,**kw)

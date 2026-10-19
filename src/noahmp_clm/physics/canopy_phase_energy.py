@@ -312,7 +312,12 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             if accepted:continue
             raise RuntimeError(f'Canopy phase Newton stalled at iteration {iteration}: residual={np.max(abs(residual)):.8g} W/m2')
     else:
-        raise RuntimeError(f'Canopy phase energy did not converge: residual={np.max(abs(residual)):.8g} W/m2')
+        # The last permitted update may have reached the root. Check its
+        # accepted state before declaring failure; the loop's residual is
+        # from before that update. Keep the same tolerance and update budget.
+        residual=evaluate(x)
+        if np.max(abs(residual))>tolerance:
+            raise RuntimeError(f'Canopy phase energy did not converge: residual={np.max(abs(residual)):.8g} W/m2')
     result=evaluate(x,True);result['iterations']=iteration;result['restarts']=restarts
     if np.max(abs(result['layer_residual']))>tolerance*1.01:
         raise RuntimeError('Final canopy parcel energy does not match the solved heat budget')
