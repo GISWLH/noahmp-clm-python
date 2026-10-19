@@ -1,0 +1,40 @@
+{
+  "scope": "Local metadata/hash/AST only; all numerical tests,physics and analysis executed on EHPC PBS or xuanze. Runtime source exact frozen509C; packaged README/ROADMAP intentionally retained from earlier frozen base,latest repo docs separate. No model,pytest or numerical analysis on Windows; not science or complete canonical/year acceptance.",
+  "utc": "2026-10-19T10:23:30.359601+00:00",
+  "parent_commit": "66d27d3dce4eafdf7beb76249289d4b8d2d01eaf",
+  "archive_sha256": {
+    "ctsm-qia-copyall-o": "5e2639a82c893b66c8d6b327bafc55206777bed8648d513d61cebca9f0ab6ec7",
+    "qia-stem-cuda-year-terminal-c": "9c95ab9e033e10c0e8af9204fc31749f0dfbd37c05ae4602a70cddc25475ed21",
+    "qia163-warm-probes-a": "83261b17c7cf1e94704ceeec742e2cf9b371a23270542cd04d825e249af8c0a8",
+    "qia1519-probes-a": "352097db2fdaf56b8a875b0bf39b2f48590672073dbd6e2c334076859eb2a2bf",
+    "most-warm-cpu-c": "15d44099440f09798fe88f766de4854fe7dfc565a6e9d3dd54084b209e685391",
+    "most-full-deferred-c": "fb3a5062ed751f5ec6dd9e3e93cc46af91091f00b9ee367f64196e3fc3d6c1a0",
+    "qia-physical-numpy-launch-c": "f3ee43f2dc8c6e110b4a412188dd37532f715e2c5aa36cbb1c846c9f90868906",
+    "most-physical-gpu-c": "00d0be8461d623ab1bdde5f0f37c99e01c7ba7907175b202914bb677d1afdb88",
+    "qia-physical-cuda-launch-c": "09fdd67a0220fd3420c0161459b05b471f024a1e540a6645f46a3bed23831aaf"
+  },
+  "artifacts_verified": 339,
+  "source_files": 509,
+  "runtime_files_verified": 496,
+  "changed": [
+    "src/noahmp_clm/clm_enthalpy_driver.py",
+    "src/noahmp_clm/gpu/canopy_most_surface.py",
+    "src/noahmp_clm/physics/canopy_column.py",
+    "src/noahmp_clm/physics/canopy_most.py",
+    "src/noahmp_clm/physics/canopy_phase_energy.py",
+    "src/noahmp_clm/physics/most_physical_check.py",
+    "tests/fixtures/qia_163_phase_warm.json",
+    "tests/test_canopy_phase_energy.py",
+    "tests/test_most_physical_check.py",
+    "tests/test_most_stagnation.py"
+  ],
+  "phase_nested_equations_and_original_defaults_unchanged": true,
+  "cpu909_actual_returncode": 0,
+  "raw_gpu_fields": 361,
+  "maximum_same_precision_difference": 0.0,
+  "official_intervals": 17520,
+  "original_cuda_year_status": "failed/1519",
+  "new_cold_launch_snapshot_steps": 0,
+  "canonical1249_status": "CPU909 passed; all340GPU deferred",
+  "script_sha256": "ca3fa312d885bac1b7262679bb0fc02655483e56e497a8e20a0daba0d2a2babd"
+}

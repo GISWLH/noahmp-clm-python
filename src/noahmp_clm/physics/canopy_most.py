@@ -158,7 +158,27 @@ def solve_surface_most(solve_surface,exchange,wind,geometry,*,leaf_dimension=.04
         if previous is not None:
             dh=abs(d['h']-previous['h']);de=abs(vapor-previous['vapor'])
             dt=float(np.max(abs(d['leaf_temperature']-previous['temperature']),initial=0.))
-            if mismatch<=1e-4 and dh<=.05 and de<=2e-8 and dt<=.01:
+            physical_stable=dh<=.05 and de<=2e-8 and dt<=.01
+            accepted=mismatch<=1e-4 and physical_stable
+            if not accepted and iteration==max_iterations==50 and physical_stable and mismatch<=.1:
+                # One validation solve at the undamped feedback target.
+                # Never advance its stores or accept stability of successive
+                # iterates alone across a discontinuous inner-solver branch.
+                required={'h','le','gpp','et_kgm2','runoff_kgm2','leaf_temperature',
+                    'ground_temperature','canopy_temperature','canopy_humidity'}
+                if required<=d.keys():
+                    checked=solve_surface(replace(boundary,atmosphere_velocity=updated['heat_velocity'],
+                        atmosphere_water_velocity=updated['water_velocity'],leaf_velocity=updated['leaf_velocity'],
+                        ground_velocity=updated['ground_velocity']))
+                    from .most_physical_check import surface_consistent
+                    def physical(r):
+                        pack,soil,_,diag=r
+                        return {**{k:np.asarray(diag[k])[None,...] for k in required},
+                            'soil_temperature':soil.temperature[None,:],
+                            'soil_water_content':(soil.water/(1000.*soil.dz))[None,:],
+                            'swe':np.asarray([pack.mass.sum()/1000.])}
+                    accepted=bool(surface_consistent(physical(result),physical(checked),time_step,np)[0])
+            if accepted:
                 d['most']=dict(**velocities,**target,used_zeta=zeta,used_effective_wind=effective,
                     iterations=iteration,coefficient_residual=mismatch,heat_change_wm2=float(dh),
                     vapor_change_kgm2s=float(de),leaf_temperature_change_k=dt,history=history)

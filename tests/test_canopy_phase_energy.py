@@ -218,3 +218,40 @@ def test_exhausted_phase_updates_still_reject_an_unconverged_final_state():
     _,area,sw,lw,e,c,kw=cases()[0]
     with pytest.raises(RuntimeError,match='Canopy phase energy did not converge'):
         solve_canopy_phase_energy(area,sw,lw,e,c,1800.,tolerance=1e-7,max_iterations=1,**kw)
+
+
+@pytest.mark.parametrize('guess',[np.zeros(11),np.full(12,np.nan),np.r_[np.full(10,1000.),280.,3.]])
+def test_phase_guess_rejects_invalid_shape_nonfinite_or_domain(guess):
+    _,area,sw,lw,e,c,kw=cases()[0]
+    with pytest.raises(ValueError,match='phase guess'):
+        solve_canopy_phase_energy(area,sw,lw,e,c,1800.,initial_guess=guess,**kw)
+
+
+def test_saved_qia_phase_uses_causal_warm_root_without_changing_old_stores():
+    import json
+    from pathlib import Path
+    from noahmp_clm.physics.photosynthesis import LeafParameters
+    from noahmp_clm.physics.snowpack import Snowpack
+    registry={c.__name__:c for c in (CanopyExchange,CanopyCondensate,SoilWaterSupply,LeafParameters,Snowpack)}
+    def decode(value):
+        if isinstance(value,list):return [decode(v) for v in value]
+        if not isinstance(value,dict):return value
+        if '__type__' in value:return registry[value['__type__']](**decode(value['data']))
+        if '__array__' in value:return np.asarray(decode(value['__array__']),dtype=value['dtype'])
+        if '__float__' in value:return float(value['__float__'])
+        return {k:decode(v) for k,v in value.items()}
+    record=json.loads((Path(__file__).parent/'fixtures/qia_163_phase_warm.json').read_text())
+    saved=decode(record['call']);args=saved['args'];kw=saved['kwargs'];old=args[4]
+    mass,heat=old.mass.copy(),old.enthalpy.copy()
+    got=solve_canopy_phase_energy(*args,**kw,initial_guess=saved['initial_guess'])
+    ref=independent_reference(*args,**kw)
+    assert got['iterations']<=80
+    assert np.max(abs(got['solver_residual']))<=kw['tolerance']
+    assert np.max(abs(got['layer_residual']))<=1.01*kw['tolerance']
+    np.testing.assert_array_equal(old.mass,mass);np.testing.assert_array_equal(old.enthalpy,heat)
+    np.testing.assert_allclose(got['condensate'].mass+args[5]*got['wet_evaporation'],mass,rtol=0.,atol=1e-14)
+    np.testing.assert_allclose(np.r_[got['leaf_temperature'],got['ground_temperature']],ref['temperature'],rtol=0.,atol=.05)
+    for key in ('h','le','gpp'):np.testing.assert_allclose(got[key],ref[key],rtol=.1,atol=.01 if key=='gpp' else 1.)
+    print('saved Qia phase warm root',dict(iterations=got['iterations'],maximum_solver_residual=float(np.max(abs(got['solver_residual']))),
+        maximum_temperature_difference_K=float(np.max(abs(np.r_[got['leaf_temperature'],got['ground_temperature']]-ref['temperature']))),
+        independent_flux_absolute_differences={k:float(abs(got[k]-ref[k])) for k in ('h','le','gpp')}),flush=True)

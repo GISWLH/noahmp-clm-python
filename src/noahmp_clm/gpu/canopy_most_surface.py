@@ -48,6 +48,33 @@ def run_most_surface(arrays,geometry,wind,leaf_dimension,plant_area,*,backend,pa
             dh=xp.abs(surface['h']-previous[0]);de=xp.abs(vapor-previous[1])
             dt=xp.max(xp.abs(surface['leaf_temperature']-previous[2]),axis=1)
             accepted=(mismatch<=1e-4)&(dh<=.05)&(de<=2e-8)&(dt<=.01)
+            physical_keys={'h','le','gpp','et_kgm2','runoff_kgm2','leaf_temperature',
+                'ground_temperature','canopy_temperature','canopy_humidity','soil_cells','snow_cells'}
+            if count==50 and physical_keys<=surface.keys() and not bool(xp.all(done|accepted)):
+                eligible=(dh<=.05)&(de<=2e-8)&(dt<=.01)&(mismatch<=.1)
+                if bool(xp.all(done|eligible)):
+                    # Only an exhausted, physically stable outer iteration
+                    # may use this additional target validation. Its result
+                    # is checked then discarded; original stores/ledgers and
+                    # the last surface's unrounded diagnostics are retained.
+                    trial=xp.concatenate((u[:,:3],xp.stack((target['heat_velocity'],target['ground_velocity'],target['leaf_velocity']),axis=1),u[:,6:]),axis=1)
+                    extension=xp.stack((target['water_velocity'],target['potential_temperature']),axis=1)
+                    checked=solve(*arrays[:5],trial,*arrays[6:],parameters=parameters,exchange_extension=extension,vic=vic,**stem_options)
+                    from ..physics.most_physical_check import surface_consistent
+                    if backend=='jax':
+                        from .enthalpy import run_soil_thermodynamics_jax as invert
+                    else:
+                        from .cuda.enthalpy import run_soil_thermodynamics_cuda as invert
+                    def physical(s):
+                        g=s['soil_cells'];p=arrays[2];options=arrays[3]
+                        params=xp.broadcast_to(p[:,None,[0,1,6]],(n,4,3))
+                        inputs=xp.concatenate((g,params),axis=2).reshape(-1,6)
+                        phase=xp.broadcast_to(options[:,1,None],(n,4)).reshape(-1)
+                        temperature=invert(inputs,phase,inverse=True)['temperature_k'].reshape(n,4)
+                        return {**s,'soil_temperature':temperature,'soil_water_content':g[:,:,0]/(1000.*g[:,:,2]),
+                            'swe':xp.sum(s['snow_cells'][:,:,0],axis=1)/1000.}
+                    consistent=surface_consistent(physical(surface),physical(checked),arrays[7][:,0],xp)
+                    accepted=accepted|(eligible&consistent)
             iterations=xp.where((~done)&accepted,xp.asarray(count,xp.int32),iterations);done=done|accepted
             if bool(xp.all(done)):
                 surface['most']={**current,**{k:feedback[k] for k in ('zeta','raw_zeta','buoyancy','convective_wind','effective_wind')},

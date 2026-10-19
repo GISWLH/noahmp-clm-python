@@ -4,6 +4,24 @@
 
 ### 2026-10-19当前补充
 
+10:21UTC最终记录：[509C全CPU909](v1-results/most-warm-cpu-c/manifest.json)实际
+退出0，目标MOST14/相变24完成；[xuanze原1519实际重放](v1-results/most-physical-gpu-c/manifest.json)
+CUDA32/JAX32的361原始字段最大差0、原MHCN界满足、实际退出0。原206/207/208
+失败保留。当前[规范1249](v1-results/most-full-deferred-c/manifest.json)的340GPU仍
+排队，不能称完整回归已通过。新NumPy和CUDA从原物理冷种子另行启动，归档
+均running/0，原failed163/1519未续写；Python年、spinup及科学验收均未完成。
+设备重放正常atexit仍未验证，显式同步/落盘后的退出旁路保持明确披露。
+
+10:05UTC后续优先于下方此前快照：[官方O](CLM_CTSM_FORCING_AUDIT.md)实际
+模型/PBS0、完整17520正区间，含比湿的全部直接气象/四短波符合原输入历史精度；
+冷初态/土质/SP-CN仍未匹配。[NumPy163](CLM_QIA163_PHASE_FAILURE.md)正式因果
+初值候选已重放整步、原MHCN界满足；旧CPU905有一项LE快照差1.88425e-8W/m²
+超过1e-8门，现按已固定近零绝对门修订并保留失败。新CPU909待终态。
+[CUDA原全年C](CLM_QIA1519_MOST_PHYSICS.md)已failed/1519，未完成年；候选以
+完整反馈目标的物理一致性补充辅助系数检查，不豁免守恒或1e-6。目标CPU14/
+相变24已完成、实际设备重放待终态；前一1241回归覆盖1061，不抵充新源。
+无Python完整气候年、spinup、多站多年或科学验收通过。
+
 后续[Qia首日/官方实际输出](CLM_QIA_FIRST_DAY.md)已完成CUDA-only48对NumPy，
 H/LE日偏差0.000101%/0.000783%，原守恒界满足；全年08:26UTC为912/17520。
 该轨迹无JAX影子、同精度字段为null，原严格A与当前全部GPU340回归仍独立待办。

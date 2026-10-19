@@ -1,0 +1,220 @@
+{
+  "scope": "Actual Qia163 same-step phase call where the causal prior root has a larger initial residual than the old/ambient guess. Typed data only; no pickled executable in test fixture. Original step/call in archived probes, not a fitted or future-step seed.",
+  "pbs_job": "205.manager",
+  "node": "compute002",
+  "original_call_sha256": "e0b613827a2be99d7fb82ff61d90e81e30079796cd37b33d1bac61dfc9e41a19",
+  "original_probe_sha256": "9b3fdfb6f6d88114c0795ea33b49434be7010e1ba1431f19e4879a3b6c8cea4c",
+  "call": {
+    "args": [
+      {
+        "__array__": [
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326,
+          0.30718908310916326
+        ],
+        "dtype": "float64"
+      },
+      129.2,
+      315.0,
+      {
+        "__type__": "CanopyExchange",
+        "data": {
+          "air_temperature": 272.632,
+          "specific_humidity": 0.00357206902927926,
+          "pressure": 102000.0,
+          "atmosphere_velocity": 0.029912739361783715,
+          "ground_velocity": 0.0027764949569121593,
+          "leaf_velocity": 0.023106656419311495,
+          "soil_temperature": 275.1293112930821,
+          "soil_conductance": 0.0,
+          "co2_ppm": 374.94,
+          "ground_resistance": 1.0,
+          "soil_flux_offset": 0.0,
+          "atmosphere_water_velocity": 0.029912739361783715,
+          "potential_temperature": 273.02008
+        }
+      },
+      {
+        "__type__": "CanopyCondensate",
+        "data": {
+          "mass": {
+            "__array__": [
+              0.012116156613860535,
+              0.009527877610369008,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686,
+              0.008328207844616686
+            ],
+            "dtype": "float64"
+          },
+          "enthalpy": {
+            "__array__": [
+              1488.8726197108854,
+              602.9922447606609,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916,
+              193.07240805166916
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      1800.0
+    ],
+    "kwargs": {
+      "root_enthalpy": {
+        "__array__": [
+          342273.5212050832,
+          351792.64736072405,
+          356423.4724805486,
+          357232.07853223017
+        ],
+        "dtype": "float64"
+      },
+      "fixed_ground_temperature": 272.75413497439257,
+      "ground_is_ice": true,
+      "ground_shares_soil": false,
+      "snowpack": {
+        "__type__": "Snowpack",
+        "data": {
+          "mass": {
+            "__array__": [
+              0.016716206792434355
+            ],
+            "dtype": "float64"
+          },
+          "enthalpy": {
+            "__array__": [
+              -13.896459422885533
+            ],
+            "dtype": "float64"
+          },
+          "thickness": {
+            "__array__": [
+              0.00011534905617103328
+            ],
+            "dtype": "float64"
+          },
+          "radius_um": {
+            "__array__": [
+              201.91000000000014
+            ],
+            "dtype": "float64"
+          },
+          "impurities": {
+            "__array__": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      "ground_evaporation_limit": 9.28678155135242e-06,
+      "soil_supply": {
+        "__type__": "SoilWaterSupply",
+        "data": {
+          "roots": {
+            "__array__": [
+              0.00895608954965759,
+              0.028494928603537195,
+              0.053978842715993,
+              0.08878708809228875
+            ],
+            "dtype": "float64"
+          },
+          "weights": {
+            "__array__": [
+              0.39999999999999997,
+              0.3000000000000001,
+              0.19999999999999998,
+              0.09999999999999999
+            ],
+            "dtype": "float64"
+          },
+          "surface": 0.015622756216324257
+        }
+      },
+      "tolerance": 1e-07,
+      "stem_area": {
+        "__array__": [
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908,
+          0.05190074904053908
+        ],
+        "dtype": "float64"
+      },
+      "water_stress": 0.9998854741038249,
+      "vegetated_fraction": 1.0,
+      "nitrogen_factor": 1.0,
+      "leaf_parameters": {
+        "__type__": "LeafParameters",
+        "data": {
+          "vcmax25": 60.0,
+          "jmax25": 100.0,
+          "tpu25": 10.0,
+          "respiration25": 0.9,
+          "quantum_yield_psii": 0.85,
+          "curvature": 0.7,
+          "ball_berry_slope": 9.0,
+          "minimum_conductance": 0.01,
+          "growth_temperature": 298.15,
+          "oxygen_ppm": 210000.0
+        }
+      },
+      "ground_albedo": [
+        0.2,
+        0.2
+      ],
+      "ground_emissivity": 0.97,
+      "cosine_zenith": 0.4585572756445324,
+      "diffuse_fraction": 0.9820668199161237
+    },
+    "initial_guess": {
+      "__array__": [
+        84.2100213324101,
+        83.92748603141455,
+        83.67859593096479,
+        83.46238261323948,
+        83.28946892024808,
+        83.1519981004999,
+        83.0407058928235,
+        82.94862941071585,
+        82.8703705687689,
+        82.80127824281452,
+        275.42449086167454,
+        4.496716157275291
+      ],
+      "dtype": "float64"
+    }
+  }
+}

@@ -13,17 +13,22 @@ Wang 已确认新的[科学验收口径](docs/V1_ACCEPTANCE.md)：关键变量�
 最大差7.28e-12；六类非MOST完整柱的最终输出最大差0。
 [Qia新SAI冷启动](docs/CTSM_PFT_GEOMETRY_INPUTS.md)已在EHPC PBS163完成首日48步，
 热量累计残差最大0.000498821 J/m²；原17520步请求保留。xuanze的独立CUDA32／JAX32
-首日配对仍运行。官方CTSM首日实际运行已完成，强迫时序/辐射等同条件核对仍待完成。
+首日配对仍运行。官方CTSM的全年直接气象/四短波核对随后已完成，见下段。
 完整气候年、spinup、多站多年及科学验收均未完成，v1.0.0仍未发布。
 
-后续[官方CTSM全年输入核对](docs/CLM_CTSM_FORCING_AUDIT.md)已完成官方SP的
-17520区间积分及原输出重读；它与Python完整年不同。四短波分量已对齐，比湿
-仍有77项差异；冷初态/土质/SP-CN未匹配，首日H偏差−12.4116%、LE近零绝对差
-10.7473W/m²。[NumPy163末次迭代误报](docs/CLM_QIA163_PHASE_FAILURE.md)修正已在
-EHPC完整CPU901和xuanze相变8项通过，同精度最大差0；原周试算failed/163及
-整柱后续真未收敛保留。当前1241完整回归尚余332 GPU项排队，科学验收未完成。
+10:21UTC后续：[官方CTSM全年输入核对](docs/CLM_CTSM_FORCING_AUDIT.md)的O试验
+已实际完成17520区间、模型/PBS均0，直接气象及四短波全部符合原输入的历史精度；
+原N的77项湿度差异保留。冷初态/土质/SP-CN仍未匹配，不能计同条件科学通过。
+[NumPy163](docs/CLM_QIA163_PHASE_FAILURE.md)因果初值候选已重放原整步，能量残差
+3.32293e-8J/m²，独立方程最大温差8.75389e-12K；旧905回归的1.88425e-8W/m²
+快照门失败已记录，[最终源CPU909](docs/v1-results/most-warm-cpu-c/manifest.json)已完成。
+[CUDA全年原C](docs/CLM_QIA1519_MOST_PHYSICS.md)实际failed/1519；新物理一致性候选
+已在最终源码实际重放该步，CUDA32/JAX32的361原始字段最大差0，原守恒界满足。
+新规范1249的340GPU已排队；前一1241为1064覆盖，未完成且不抵充新源。
+EHPC新NumPy和xuanze新CUDA轨迹已分别从原冷种子启动，原失败年未续写。
+CPU物理/pytest在EHPC PBS计算节点，GPU在xuanze；Python年、spinup/科学验收仍待。
 
-后续[Qia实际首日和官方输出](docs/CLM_QIA_FIRST_DAY.md)：CUDA-only首48步在
+**以下为07:25UTC历史快照：** [Qia实际首日和官方输出](docs/CLM_QIA_FIRST_DAY.md)的CUDA-only首48步在
 xuanze完成，对EHPC NumPy日H/LE偏差0.000101%/0.000783%，原守恒界满足，
 从自身成功前缀继续全年，07:25UTC为384/17520。原严格JAX32配对独立继续，
 本CUDA-only轨迹的同精度结果为null。官方CTSM PBS178已实际退出0并写49个

@@ -4,6 +4,21 @@
 
 ### 2026-10-19执行更新
 
+10:21UTC：[最终源CPU909](v1-results/most-warm-cpu-c/manifest.json)已在EHPC通过，
+[xuanze原1519整步](v1-results/most-physical-gpu-c/manifest.json)CUDA32/JAX32全部361
+原始字段最大差0，原硬守恒界满足。新NumPy/PBS210与CUDA-only试算均从原
+物理冷种子另建轨迹，快照running/0；后者无JAX影子/同精度为null，原严格
+首日不变。完整规范1249尚待340GPU；气候年、spinup、多站多年和留出科学
+验收仍未完成，数值修订工程结果不计观测通过。下方为此前执行快照。
+
+10:05UTC后续：[官方O](CLM_CTSM_FORCING_AUDIT.md)已完成17520原区间、模型/
+PBS0，全部直接气象含QBOT及四短波符合原输入历史精度；原N的77项差异保留。
+它仍是冷初态/土质/SP-CN未匹配的官方SP试验，不替代FLUXNET/留出评价。
+[NumPy163](CLM_QIA163_PHASE_FAILURE.md)正式因果初值候选已完成原整步重放，
+热残差3.32293e-8J/m²；[CUDA年C](CLM_QIA1519_MOST_PHYSICS.md)实际failed/1519。
+新候选CPU909和设备重放另验，原失败年不续写。测高文献假设及敏感性分析、
+SAI/PFT、原强迫/观测和留出协议不随这些数值修订或通量评分调整。
+
 [后续官方参考全年核对](CLM_CTSM_FORCING_AUDIT.md)已实际读回17520原区间。
 首日时序和四短波分量已对齐；全年湿度77项尚不同。原冷首日H偏差−12.4116%，
 LE近零绝对差10.7473W/m²、r0.597699；GPP近零绝对差3.74373gC/m²/day、

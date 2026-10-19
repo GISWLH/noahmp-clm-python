@@ -52,7 +52,8 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         water_stress=1., nitrogen_factor=1., leaf_parameters=None,
         ground_emissivity=.97, ground_albedo=(.15,.3), diffuse_fraction=.5,
         cosine_zenith=.5, fixed_ground_temperature=None, ground_is_ice=False,
-        ground_shares_soil=True, snowpack=None, tolerance=5e-5, max_iterations=80):
+        ground_shares_soil=True, snowpack=None, tolerance=5e-5, max_iterations=80,
+        initial_guess=None):
     """Joint layer phase/temperature and canopy-air humidity solution.
 
     Condensate and all fluxes refer to total ground area. Leaf/stem areas
@@ -60,6 +61,8 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
     enthalpies J/kg, dt seconds. Return condensate already includes actual
     vapour loss/deposition, but has not yet shed any new capacity excess.
     Fixed-ground operation returns the heat required by the ground column.
+    An optional numerical guess contains n leaf phase coordinates, ground
+    temperature and canopy humidity in g/kg. It never replaces old stores.
     No SciPy solver or host/device surrogate is used by this implementation.
     """
     e=exchange;leaf=np.asarray(leaf_area,float);n=len(condensate.mass)
@@ -194,6 +197,17 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
     old_res=evaluate(x);ambient_res=evaluate(ambient)
     alternative=ambient.copy()
     if ambient_res@ambient_res<old_res@old_res:alternative=x.copy();x=ambient
+    if initial_guess is not None:
+        seeded=np.asarray(initial_guess,float).copy()
+        if seeded.shape!=x.shape or not np.all(np.isfinite(seeded)):
+            raise ValueError('Invalid initial phase guess shape or values')
+        if fixed_ground_temperature is not None:seeded[n]=fixed_ground_temperature
+        if np.any((seeded<lower)|(seeded>upper)):
+            raise ValueError('Initial phase guess outside solver domain')
+        # A preceding solution of the same coupled step can stay in the
+        # physical phase basin even when its starting residual is larger.
+        # Retain the original best guess as the stalled-Newton alternative.
+        alternative=x.copy();x=seeded
     restart_available=not np.array_equal(x,alternative);restarts=0
     # Small coupled Newton system, numerical Jacobian and residual-based line
     # search. No approximate-heat-capacity smearing of the latent plateau.

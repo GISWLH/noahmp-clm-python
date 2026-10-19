@@ -23,7 +23,7 @@ LV=2.5e6
 
 def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kgm2=0.,
                  canopy_enthalpy_jm2=None,canopy_condensate=None,root_weights=None,wet_fraction=0.,temperature_tolerance=2e-7,
-                 infiltration_parameters=None,**canopy_options):
+                 infiltration_parameters=None,_phase_cache=None,**canopy_options):
     """Return snow, soil, canopy water, diagnostics after one surface step.
 
     Temperature convergence concerns the post-vapour, pre-drain thermal state.
@@ -44,8 +44,13 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
             or not np.isfinite(temperature_tolerance) or temperature_tolerance<=0):
         raise ValueError('Invalid surface time step, canopy water or tolerance')
     reserved={'soil_supply','fixed_ground_temperature','ground_is_ice','ground_shares_soil',
-        'snowpack','canopy_evaporation_limit','ground_evaporation_limit','initial_temperatures','tolerance','canopy_storage'}
+        'snowpack','canopy_evaporation_limit','ground_evaporation_limit','initial_temperatures','initial_guess','tolerance','canopy_storage'}
     if reserved & canopy_options.keys(): raise ValueError('Surface step owns its water and thermal boundary controls')
+    if _phase_cache is not None and not isinstance(_phase_cache,dict):
+        raise ValueError('Phase working cache must be a dictionary')
+    phase_cache={} if _phase_cache is None else _phase_cache
+    phase_key=(np.asarray(leaf_area).tobytes(),canopy_condensate.mass.tobytes(),
+        canopy_condensate.enthalpy.tobytes(),float(dt)) if canopy_condensate is not None else None
     roots=np.zeros_like(soil.water) if root_weights is None else np.asarray(root_weights,float)
     liquid=soil.liquid
     supply=SoilWaterSupply(np.maximum(liquid-soil.params.smcwlt*1000.*soil.dz,0.)/dt,roots,liquid[0]/dt)
@@ -67,7 +72,14 @@ def surface_step(snow,soil,dt,leaf_area,swdown,lwdown,exchange,*,canopy_water_kg
         else:
             from .canopy_phase_energy import solve_canopy_phase_energy
             result=solve_canopy_phase_energy(leaf_area,swdown,lwdown,exchange,canopy_condensate,dt,
-                root_enthalpy=storage.root_enthalpy,**boundary,**canopy_options)
+                root_enthalpy=storage.root_enthalpy,
+                initial_guess=phase_cache.get('guess') if phase_cache.get('key')==phase_key else None,
+                **boundary,**canopy_options)
+            # Reuse numerical coordinates only, never the new extensive
+            # water/enthalpy. Old dry leaves retain temperature coordinates.
+            phase_cache.update(key=phase_key,guess=np.r_[np.where(canopy_condensate.mass>0.,
+                result['phase_coordinates'],result['leaf_temperature']-TF),
+                result['ground_temperature'],result['canopy_humidity']*1000.])
             result.update(canopy_water_after_kgm2=float(result['condensate'].mass.sum()),
                 canopy_enthalpy_after_jm2=float(result['condensate'].enthalpy.sum()))
         root_mass=result['root_uptake']*dt

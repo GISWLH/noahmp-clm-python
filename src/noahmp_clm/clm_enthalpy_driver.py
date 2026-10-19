@@ -171,9 +171,12 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         co2_ppm=co2_ppm,ground_resistance=ground_resistance(view,opt.OptGroundResistanceEvap,snow_cover=bool(len(snow.mass))))
     wet=min(1.,(canopy/capacity)**(2./3.)) if capacity>0. else 0.
     storage_args=(dict(canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat) if condensate is None else dict(canopy_condensate=condensate,stem_area=stems))
+    # Working guesses live only within this physical step. Every MOST trial
+    # still solves from the same old extensive stores.
+    phase_cache={} if condensate is not None else None
     def solve_surface(boundary):
         return surface_step(snow,ground,f.dt,area,f.swdown,f.lwdown,
-            boundary,**storage_args,root_weights=state.root_frac,
+            boundary,**storage_args,root_weights=state.root_frac,_phase_cache=phase_cache,
             wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
             leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
             cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction,

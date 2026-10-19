@@ -7,6 +7,19 @@
 旧 H4/K3/M4 数值门已退役为已接受限制，历史复验结论保留在下方。
 本阶段排除城市模型、土地利用变化、整机耦合、河道和侧向地下水。
 
+10:21UTC终态补充（下方10:05及更早段落保留为历史）：
+
+- [x] 数值修订工程验证：[最终509C全CPU909/MOST14/相变24](docs/v1-results/most-warm-cpu-c/manifest.json)在EHPC PBS209实际0，完整CPU470.937863秒；[xuanze原1519整步](docs/v1-results/most-physical-gpu-c/manifest.json)最终CUDA32/JAX32实际0，361原始字段最大差0，原MHCN界不变。原206/207/208失败全部保留。
+- [ ] [当前规范1249完整回归](docs/v1-results/most-full-deferred-c/manifest.json)：909CPU同源已完成，全部340GPU已排队等前一1241实际退出，不抵充旧源/1519探针。前一1241为1064覆盖。
+- [ ] 新原冷初态气候试算：[EHPC PBS210 NumPy](docs/v1-results/qia-physical-numpy-launch-c/manifest.json)先到336、原17520请求保留；[xuanze CUDA-only](docs/v1-results/qia-physical-cuda-launch-c/manifest.json)先验自身48再续年。归档均为running/0快照，非完成周/年/科学验收；原failed163/1519和严格配对首日未改。
+
+10:05UTC更新（下方为此前快照）：
+
+- [x] P6 [官方O全年直接强迫核对](docs/CLM_CTSM_FORCING_AUDIT.md)：PBS200模型/PBS0、17520正区间，气象含比湿及四短波全部符合历史精度；原N的77项湿度差异保留，冷初态/土质/SP-CN和科学验收仍待。
+- [ ] P2/P6 [NumPy163因果初值候选](docs/CLM_QIA163_PHASE_FAILURE.md)：正式代码已重放原整步，水/热/C/N原界满足，独立方程温差8.75389e-12K；相变24目标通过。905全CPU有旧近零LE快照门1失败，实际差1.88425e-8W/m²；按既定绝对门修订，当前909另验。
+- [ ] P6 [MOST物理一致性候选](docs/CLM_QIA1519_MOST_PHYSICS.md)：原CUDA年failed/1519保留；只在原50次物理稳定后另验完整反馈目标，硬守恒和原始1e-6不变。CPU14/相变24目标通过，当前完整CPU909及设备重放待终态。
+- [ ] P6 前一终止检查源完整1241：09:05后已实际启动GPU1，10:05覆盖1061/1241；未计当前509源候选，原严格配对首日保持独立运行。
+
 - [x] P6 [Qia CUDA-only首48与NumPy工程对照](docs/CLM_QIA_FIRST_DAY.md)：实际299.065秒，H/LE日偏差0.000101%/0.000783%，原MHCN界满足；26冷状态/账目数组与严格A相同，原A继续且门不变。CUDA全年384/17520仍运行，不是科学验收。
 - [x] P6 [官方CTSM首日实际执行/输出读取](docs/CLM_QIA_FIRST_DAY.md)：EHPC PBS178模型/PBS0、49样本含起始区间；PBS179/180提取原48区间。原I/J失败保留，上游2930源字节不变。
 - [x] P6 [官方SP全年执行/边界诊断](docs/CLM_CTSM_FORCING_AUDIT.md)：实际17520区间、模型0，原后处理使父PBS1；原输出重读0，全部错误保留，未改上游源。四短波分量符合历史精度，散射比例最大差2.47267e-8。
