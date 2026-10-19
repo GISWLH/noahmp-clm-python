@@ -2,6 +2,14 @@
 // One independent leaf per thread; AoS input (n,7), output (n,12).
 // NVRTC provides device math builtins without a host math.h include path.
 
+#ifdef CANOPY_LAYER_PARAMETERS
+#define CLM_COLUMN_LEAF_PARAMETERS(p,row) ((p)+100*(row))
+#define CLM_LAYER_LEAF_PARAMETERS(p,layer) ((p)+10*(layer))
+#else
+#define CLM_COLUMN_LEAF_PARAMETERS(p,row) (p)
+#define CLM_LAYER_LEAF_PARAMETERS(p,layer) (p)
+#endif
+
 __device__ float arrhenius(float t, float activation) {
     return expf((activation / (float)(8.314462618 * 298.15)) * (1.f - 298.15f / t));
 }

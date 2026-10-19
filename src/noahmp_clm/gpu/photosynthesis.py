@@ -15,7 +15,35 @@ LEAF_OUTPUTS = ("gross", "net", "rubisco", "rubp", "tpu", "respiration",
 
 
 def pack_leaf_parameters(parameters=None, dtype=np.float64):
-    return np.asarray(astuple(parameters or LeafParameters()), dtype=dtype)
+    packed=np.asarray(astuple(parameters or LeafParameters()), dtype=dtype)
+    if packed.ndim!=1:
+        raise NotImplementedError('Layer-specific leaf coefficients require the pending native column profile entry')
+    return packed
+
+
+def prepare_canopy_leaf_parameters(parameters,xp,count,dtype):
+    """Retain the scalar path; optionally validate native n×10×10 profiles.
+
+    Device coefficient arrays stay on device. This performs no biochemical
+    calculation, and does not derive capacities from host-side state.
+    """
+    if parameters is None or isinstance(parameters,LeafParameters):
+        p=parameters or LeafParameters()
+        values=np.broadcast_arrays(*(np.asarray(v) for v in astuple(p)))
+        if not values[0].ndim:return xp.asarray(pack_leaf_parameters(p,np.dtype(dtype))),False
+        if values[0].shape!=(10,):raise ValueError('Native canopy requires ten leaf coefficient rows')
+        packed=xp.asarray(np.stack(values,axis=1),dtype=dtype)
+    else:packed=xp.asarray(parameters,dtype=dtype)
+    if packed.shape==(10,):profiled=False
+    elif packed.shape==(10,10):packed=xp.broadcast_to(packed,(count,10,10));profiled=True
+    elif packed.shape==(count,10,10):profiled=True
+    else:raise ValueError('Canopy leaf coefficients require10,10×10 or n×10×10 values')
+    rows=packed.reshape(-1,10)
+    if (not bool(xp.all(xp.isfinite(rows))) or bool(xp.any(rows<0.))
+            or bool(xp.any((rows[:,4:6]<=0.)|(rows[:,4:6]>1.))) or bool(xp.any(rows[:,7]<=0.))
+            or bool(xp.any((rows[:,8]<250.)|(rows[:,8]>320.)))):
+        raise ValueError('Invalid native canopy leaf coefficients')
+    return packed,profiled
 
 
 def validate_leaf_inputs(u, xp):

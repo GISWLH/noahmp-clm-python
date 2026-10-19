@@ -22,7 +22,8 @@ def _stages():
 
 def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
                                 irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None,
-                                canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None):
+                                canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None,
+                                canopy_capacity=None,capacity_environment=None):
     import cupy as cp
     if cp.asarray(o).dtype.kind not in 'iu':raise ValueError('CLM options must be integers')
     c,g,p,site,storage,roots,condensate,forcing=[cp.ascontiguousarray(cp.asarray(x,cp.float32)) for x in (c,g,p,site,storage,roots,condensate,forcing)]
@@ -56,6 +57,8 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
         v[:,1:3]=totals
         if not bool(cp.all((good>0)&(valid>0))):raise RuntimeError('CUDA layered precipitation preparation failed')
     surface_arrays=(pc,pg,p,po,a,u,f,v,cc)
+    from ..clm_capacity_column import resolve_column_capacity,attach_column_capacity
+    leaf_parameters,capacity_state=resolve_column_capacity(canopy_capacity,capacity_environment,a,forcing,leaf_parameters,'cuda')
     # Match JAX's explicit reciprocal multiplication. Correctly rounded CuPy
     # division can differ by1ulp (e.g. SAI0.8), changing a nonlinear leaf solve.
     stems={} if area is None else dict(stem_area=cp.ascontiguousarray(cp.broadcast_to(area[:,1,None]*cp.float32(.1),(n,10))))
@@ -81,4 +84,5 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     if most_geometry is not None:result['most']=surface['most']
     from ..tile_drainage import finish_column_tile
     result=attach_column_structure(result,canopy_structure,geometry)
+    result=attach_column_capacity(result,capacity_state)
     return finish_column_tile(attach_column_irrigation(result,irrigation),p,o,forcing,tile_parameters,'cuda')

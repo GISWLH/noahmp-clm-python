@@ -1,5 +1,53 @@
 # v1.0.0 执行记录
 
+2026-10-19 19:02UTC：[C3日长容量／十日温度记忆／垂直叶N](CLM_CANOPY_CAPACITY.md)
+实现NumPy参考、真实列状态和逐叶系数，组件同步JAX/CUDA。新历史保存完整十天
+样本及整数位置／计数，冷启动初值显式保留；每次成功物理步只追加一次，MOST
+所有试算用同一旧记忆。旧默认None、原C/N反馈、物理方程／预算／硬门不变。
+
+[EHPC297/298 NumPy41](v1-results/canopy-capacity-numpy-reference-b/manifest.json)
+均实际0；独立时间重叠积分最大温差5.68434e-14 K，连续叶N剖面对10层Vcmax
+积分最大偏差0.0427090%、总光合积分0.0401382%。298在41实际0后生成量化32／64
+参考。[527A设备3](v1-results/canopy-capacity-gpu3-a/manifest.json)随后实际0，原混合
+1e-6门满足，原始最大差7.62939e-6；[隔离除法诊断](v1-results/capacity-division-probe-b/manifest.json)
+选择与XLA相同倒数运算后新容量126字段差0，原门／返回精度不变，温度记忆核
+选项保持原样。隔离探针不冒充pytest。
+
+[NumPy完整柱及全部C/D/E证据](v1-results/clm-capacity-numpy-cde/manifest.json)：
+300的49项47过／2失败，因新增调用未指定tol却断言1e-7；301仅明确该调用
+tol1e-7／80，49实际0，原失败保留。独立液／干网络温差最大5.68434e-14 K、
+H／LE最大差1.90425e-12／2.21689e-12 W/m²；富／贫N、MOST关／开、两步原
+MHCN及连续／pickle重启相同。303的53实际0，再生成两精度、20／23数组、
+两列不同性状／气孔模板、MOST开关的连续两步参考，全部32次原硬审计满足；
+量化初态根权重按既有NumPy重构归一，随后DP参考携带状态不重新取整。
+旧527A全969／528D全977均实际0，保留身份。
+
+最终532F源包`734acea9…beee`、清单`b19fbf81…ba7b`：
+[EHPC304完整981CPU](v1-results/clm-capacity-cpu-f/manifest.json)实际0、568.989秒、
+零失败／错误／跳过；[xuanze目标20](v1-results/clm-capacity-target20-f/manifest.json)
+实际父／全部worker0、296.972秒，组件3／逐层相变3／原相变14。新逐层相变
+对量化NumPy的32位H／LE差0.000111929／0.0000293501 W/m²，64位3.54419e-11／
+2.46700e-11；新全部300原始CUDA32/JAX32字段差0，原735／1110也保持0。
+设备容量126字段及全部历史样本／均温差0，整数位置／计数精确。
+
+原生容量入口在原前缀后保留四数组，BGC20、含结构23；逐层系数实际送入Farquhar
+核，保留独立列的气孔模板。[19:02实际整柱3](v1-results/capacity-xuanze-background-g/manifest.json)
+worker3802990 Rl、尚无终态；首个32位无MOST步骤H／LE差0.000164340／0.00175115
+W/m²，GPP／NEE差1.89114e-7／1.70632e-7 gC/m²，原硬界满足，不能计全部3通过。
+当前精确收集1344=981CPU＋363GPU，其余340GPU尚待安排，未计完整1344通过。
+站点JSON／20或23数组连续年度入口尚待；新选项完整年／spinup／多站多年／
+留出／测高敏感性和科学验收均未完成。
+
+[EHPC旧519H年](v1-results/capacity-ehpc-background-g/manifest.json)19:02为
+running576/17520；[xuanze旧H年](v1-results/capacity-xuanze-background-g/manifest.json)
+running1200，跨过原1110失效时间，但未启用新容量、无JAX影子、同精度null。
+两条原failed1110年未续写。旧511完整1254覆盖1151、518D完整1291覆盖1197，
+实际worker均已PS核实；519H完整等待器尚无worker，没有停止任何实际模型。
+PFT角度／冠层冰雪组织光学、K78及原科学缺口保留，未合并main或发布。
+CPU物理／参考在EHPC PBS计算节点，GPU在xuanze，本机仅编辑／静态检查／归档。
+
+以下为此前检查点。
+
 2026-10-19 17:57UTC：[1110精确拐点三后端修订](CLM_QIA1110_PHASE.md)完成NumPy
 先行验证再同步设备。EHPC291原实现三种初猜均Newton停滞，新29项全0；原287
 JSON无穷编码失败、289空数组shape加载失败均保留，不冒充物理回归。独立网络

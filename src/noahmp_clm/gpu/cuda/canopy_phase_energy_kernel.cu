@@ -42,7 +42,7 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
         float m=c[2*i],frac=m>0.f?fminf(m,fmaxf(0.f,thermal[i]/334000.f))/m:dry_fraction;
         float sat=frac*qs[i]+(1.f-frac)*qi[i],rh=((q*u[2])/(.622f+.378f*q))/es[i];
         float input[7]={v.rad[10+i],t[i],u[8],rh,u[5]*v.mol,v.f[2*i]*(v.trlimit>0.f?v.f[2*i+1]:0.f),v.f[2*i+1]};
-        leaf_gas_exchange_device(input,v.p,gas+12*i);
+        leaf_gas_exchange_device(input,CLM_LAYER_LEAF_PARAMETERS(v.p,i),gas+12*i);
         float amount=b[4]*((v.vc[i]*(sat>q?v.fw[i]:1.f))*(sat-q));
         float loss=fminf(fmaxf(amount,0.f),m),deposit=fmaxf(-amount,0.f),remaining=m-loss;
         float retained=(remaining/(m>0.f?m:1.f))*thermal[i];
@@ -222,7 +222,7 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
 extern "C" __global__ void run_canopy_phase(const float* leaf,const float* u,const float* f,const float* soil,
     const float* stem,const float* c,const float* b,const float* radiation,const float* p,float* out,int n,int max_iterations,float tolerance) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x) {
-        PhaseContext v;phase_prepare(leaf+row*10,u+row*23,f+row*20,soil+row*10,stem+row*10,c+row*20,b+row*9,p,radiation+row*584,v);
+        PhaseContext v;phase_prepare(leaf+row*10,u+row*23,f+row*20,soil+row*10,stem+row*10,c+row*20,b+row*9,CLM_COLUMN_LEAF_PARAMETERS(p,row),radiation+row*584,v);
         phase_solve(v,out+row*300,max_iterations,tolerance);
     }
 }

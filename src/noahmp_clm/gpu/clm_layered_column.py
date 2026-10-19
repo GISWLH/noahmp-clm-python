@@ -19,6 +19,8 @@ from .canopy_phase_surface import run_canopy_phase_surface_jax
 
 def pack_clm_layered_columns(states,**kwargs):
     states=list(states);dtype=kwargs.get('dtype',np.float64)
+    if any(s.canopy_capacity_state is not None for s in states):
+        raise NotImplementedError('Canopy capacity needs an extended native ABI retaining temperature history')
     if any(s.canopy_structure_parameters is not None for s in states):
         raise NotImplementedError('Use pack_clm_structure_columns; the base ABI cannot retain stem geometry')
     if any(s.irrigation_state is not None for s in states):
@@ -121,7 +123,8 @@ def _stages(vic=False,external=False,structure=False):
 
 def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None,
-                               canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None):
+                               canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None,
+                               canopy_capacity=None,capacity_environment=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
@@ -138,6 +141,8 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     pc,pg,po,a,u,f,v,prep,valid,cc,pre,old,pre_impurity=prepare(*arrays,forcing,vic,ground_input,area)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
+    from .clm_capacity_column import resolve_column_capacity,attach_column_capacity
+    leaf_parameters,capacity_state=resolve_column_capacity(canopy_capacity,capacity_environment,a,forcing,leaf_parameters,'jax')
     stems={} if area is None else dict(stem_area=j.broadcast_to(area[:,1,None]*j.asarray(.1,arrays[0].dtype),(len(c),10)))
     if canopy_optics is not None:stems['canopy_optics']=canopy_optics
     if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic,**stems)
@@ -156,4 +161,5 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     if most_geometry is not None:result['most']=surface['most']
     from .tile_drainage import finish_column_tile
     result=attach_column_structure(result,canopy_structure,geometry)
+    result=attach_column_capacity(result,capacity_state)
     return finish_column_tile(attach_column_irrigation(result,irrigation),arrays[2],arrays[3],forcing,tile_parameters,'jax')

@@ -27,7 +27,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
                             deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
                             nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None,
-                            prescribed_sai=None,canopy_optics=None):
+                            prescribed_sai=None,canopy_optics=None,capacity_environment=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     if state.bgc_state is not None:
         from .clm_bgc_driver import step_clm_bgc_column
@@ -36,7 +36,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             deposition_rates=deposition_rates,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
             crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai,
-            **({} if canopy_optics is None else dict(canopy_optics=canopy_optics)))
+            **({} if canopy_optics is None else dict(canopy_optics=canopy_optics)),
+            **({} if capacity_environment is None else dict(capacity_environment=capacity_environment)))
     if canopy_optics is not None:
         from .physics.canopy_optics import CanopyOptics
         if not isinstance(canopy_optics,CanopyOptics) or state.canopy_condensate is None:
@@ -45,6 +46,15 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
     f=forcing;opt=state.options
+    memory=state.canopy_capacity_state
+    if memory is not None:
+        from .physics.canopy_capacity import CanopyCapacityEnvironment,canopy_capacity_profile
+        if not isinstance(capacity_environment,CanopyCapacityEnvironment):
+            raise ValueError('Canopy capacity requires explicit current/maximum photoperiod')
+        if f.dt!=memory.time_step_seconds:
+            raise ValueError('Forcing interval disagrees with retained temperature memory')
+    elif capacity_environment is not None:
+        raise ValueError('Capacity photoperiod requires retained traits and temperature memory')
     vic_surface=opt.OptRunoffSurface==6;vic_bottom=opt.OptRunoffSubsurface==6
     if vic_surface or vic_bottom:
         if opt.OptRunoffSurface not in (3,6) or opt.OptRunoffSubsurface not in (3,6):
@@ -116,6 +126,13 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     plant_area=exposed_lai+exposed_sai
     area=np.full(canopy_layers,exposed_lai/canopy_layers)
     stems=np.full(canopy_layers,exposed_sai/canopy_layers)
+    capacity_profile=None
+    if memory is not None:
+        from .physics.photosynthesis import LeafParameters
+        capacity_profile=canopy_capacity_profile(area,capacity_environment.daylength_seconds,
+            capacity_environment.maximum_daylength_seconds,memory.mean_temperature_k,
+            state.canopy_capacity_parameters,leaf_parameters=leaf_parameters)
+        leaf_parameters=LeafParameters.from_layer_rows(capacity_profile['leaf_parameters'])
     capacity=.5*state.fveg*plant_area
     runoff=runoff_heat=0.
     def route_water(pack,earth,mass,heat):
@@ -225,8 +242,10 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     # Melting/drainage can remove the layer that supplied this step's flux
     # temperature. The next step's drag must see the surviving surface.
     final_temperature=float(snow.temperature[0] if len(snow.mass) else ground.temperature[0])
+    next_memory=None if memory is None else memory.append(f.tair,f.dt)
     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
-        surface_temperature=final_temperature,canopy_condensate=condensate,irrigation_state=irrigation_state)
+        surface_temperature=final_temperature,canopy_condensate=condensate,irrigation_state=irrigation_state,
+        canopy_capacity_state=next_memory)
     if vic_surface or vic_bottom:
         # These are physical outlets, already removed from the state with heat.
         deep=drain['bottom_mass_kgm2']/1000.;surface=(runoff-drain['bottom_mass_kgm2'])/1000.
@@ -253,4 +272,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         d.update(irrigation=irrigation,irrigation_mm=irrigation_mass,irrigation_enthalpy_jm2=irrigation_heat)
     if tile is not None:
         d.update(tile_drainage=tile,tile_drainage_mm=tile_mass,tile_drainage_enthalpy_jm2=tile['drained_enthalpy_jm2'])
+    if capacity_profile is not None:
+        d['canopy_capacity']=dict(capacity_profile,temperature_count_before=memory.count,
+            temperature_count_after=next_memory.count,temperature_cursor_after=next_memory.cursor,
+            next_mean_temperature_k=next_memory.mean_temperature_k)
     return final,d

@@ -31,7 +31,8 @@ def cases(dtype):
     return pack_clm_bgc_columns(states,dtype=dtype),np.asarray(forcings,dtype),np.zeros((8,5),dtype),env,cal
 
 
-def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None,tile_parameters=None,most_geometry=None,canopy_structure=None,prescribed_sai=None):
+def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,irrigation_data=None,wetland_data=None,tile_parameters=None,most_geometry=None,canopy_structure=None,prescribed_sai=None,
+              canopy_capacity=None,capacity_environment=None,leaf_parameters=None,canopy_optics=None,return_states=False):
     state=state_from_row(row[:7]);cc=np.asarray(row[7],float)
     state=replace(state,canopy_condensate=CanopyCondensate(cc[:,0],cc[:,1]))
     ps,flags,pp,plant,plant_p,soil,soil_p,bp=row[8:]
@@ -65,11 +66,20 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,ir
         from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters
         ss,pp,oo=canopy_structure
         state=state.with_vegetation_structure(CanopyStructureParameters(int(oo[0]),*map(float,pp),bool(oo[1])),sai=float(ss[0]))
+    extra={}
+    if canopy_capacity is not None:
+        from noahmp_clm.physics.canopy_capacity import TemperatureMemory,CanopyCapacityParameters
+        values,controls,configuration,traits=canopy_capacity
+        state=state.with_canopy_capacity(CanopyCapacityParameters(*np.asarray(traits,float)),
+            TemperatureMemory(np.asarray(values,float),float(configuration[0]),int(controls[0]),int(controls[1]),float(configuration[1])))
+        extra['capacity_environment']=capacity_environment
+    if leaf_parameters is not None:extra['leaf_parameters']=leaf_parameters
+    if canopy_optics is not None:extra['canopy_optics']=canopy_optics
     # CLMColumnState normalizes the quantized root weights on reconstruction;
     # no reference host tendency is supplied to the native implementation.
     site=np.asarray(row[4],float);kwargs=dict(zip(SITE_NAMES[7:-1],site[7:-1]))
     final,d=step_clm_enthalpy_column(state,Forcing(*np.asarray(forcing,float)),**kwargs,deposition_rates=np.asarray(deposition,float),
-        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management,irrigation_input=irrigation_input,most_geometry=most_geometry,prescribed_sai=prescribed_sai)
+        phenology_environment=environment,nitrogen_deposition_gn_m2=float(nitrogen),oxygen_factor=float(oxygen),crop_management=crop_management,irrigation_input=irrigation_input,most_geometry=most_geometry,prescribed_sai=prescribed_sai,**extra)
     cells=np.zeros((5,9));cells[:,3]=54.5;n=len(final.snow.mass)
     cells[:n]=np.column_stack((final.snow.mass,final.snow.enthalpy,final.snow.thickness,final.snow.radius_um,final.snow.impurities))
     options=row[3].copy();options[0]=n;d['leaf_respiration_umol_m2s']=d['leaf_respiration'];d['valid']=1.
@@ -95,7 +105,11 @@ def reference(row,forcing,deposition,env,cal,nitrogen,oxygen,*,crop_data=None,ir
     if wetland_data is not None:
         result.update(wetland=d['wetland'],wetland_state=np.array([final.wetland_state.methane_gc_m2]))
     if canopy_structure is not None:result.update(structure_state=np.array([final.sai]),canopy_geometry=d['canopy_geometry'])
-    return result
+    if canopy_capacity is not None:
+        memory=final.canopy_capacity_state
+        result.update(capacity_temperature_values=memory.values,capacity_temperature_controls=np.asarray([memory.count,memory.cursor],np.int32),
+            capacity_configuration=np.asarray(configuration,float),capacity_traits=np.asarray(traits,float),canopy_capacity=d['canopy_capacity'])
+    return (result,state,final) if return_states else result
 
 
 def cn_budgets(arrays,got,nitrogen):

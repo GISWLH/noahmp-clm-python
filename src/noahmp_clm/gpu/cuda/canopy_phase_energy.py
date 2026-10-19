@@ -4,21 +4,22 @@ from pathlib import Path
 import numpy as np
 from ..canopy_phase_energy import validate_phase,unpack_phase,PHASE_OUTPUT_SIZE
 from ..canopy_boundary import radiation_inputs
-from ..photosynthesis import pack_leaf_parameters
+from ..photosynthesis import prepare_canopy_leaf_parameters
 from .canopy_snow_radiation import _kernel as _radiation_kernel
 from .snicar import _tables
 
 
-@lru_cache(maxsize=1)
-def _kernel():
+@lru_cache(maxsize=2)
+def _kernel(profiled=False):
     import cupy as cp
     source='\n'.join(Path(__file__).with_name(p).read_text() for p in
         ('leaf_kernel.cu','radiation_kernel.cu','canopy_energy_kernel.cu','canopy_phase_energy_kernel.cu'))
+    if profiled:source='#define CANOPY_LAYER_PARAMETERS\n'+source
     module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false','--prec-sqrt=false'),name_expressions=('run_canopy_phase',))
     return module.get_function('run_canopy_phase')
 
 
-def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.005,raise_on_failure=True,canopy_optics=None):
+def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.005,raise_on_failure=True,canopy_optics=None,return_raw=False):
     import cupy as cp
     raw=cp.asarray(arrays[-1])
     if raw.dtype.kind not in 'iu':raise ValueError('Snow counts must be integers')
@@ -38,10 +39,11 @@ def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.
             from .canopy_optics import canopy_snow_optics_raw_cuda
             optical_result=canopy_snow_optics_raw_cuda(area,snow,n,ru,a,canopy_optics)
             rad=cp.ascontiguousarray(optical_result[:,:584])
-        p=cp.asarray(pack_leaf_parameters(parameters,np.float32))
-        _kernel()(*launch,(a,u,f,soil,stem,c,b,rad,p,out,np.int32(size),np.int32(max_iterations),np.float32(tolerance)))
+        p,profiled=prepare_canopy_leaf_parameters(parameters,cp,size,cp.float32);p=cp.ascontiguousarray(p)
+        _kernel(profiled)(*launch,(a,u,f,soil,stem,c,b,rad,p,out,np.int32(size),np.int32(max_iterations),np.float32(tolerance)))
     if not bool(cp.all(cp.isfinite(out))):raise RuntimeError('Nonfinite phase canopy result')
     result=unpack_phase(out)
+    if return_raw:result['raw']=out
     if optical_result is not None:
         from ..canopy_optics import attach_optical_absorption
         attach_optical_absorption(result,optical_result)

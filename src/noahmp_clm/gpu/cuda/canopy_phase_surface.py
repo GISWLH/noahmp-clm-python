@@ -4,19 +4,20 @@ from pathlib import Path
 import numpy as np
 from ..canopy_phase_surface import validate_phase_surface,unpack_phase_surface,validate_exchange_extension
 from ..canopy_boundary import radiation_inputs
-from ..photosynthesis import pack_leaf_parameters
+from ..photosynthesis import prepare_canopy_leaf_parameters
 from .canopy_snow_radiation import _kernel as _radiation_kernel
 from .snicar import _tables
 from .snow_evolution import _table as _aging
 
 
-@lru_cache(maxsize=8)
-def _kernel(extended=False,vic=False,stems=False):
+@lru_cache(maxsize=16)
+def _kernel(extended=False,vic=False,stems=False,profiled=False):
     import cupy as cp
     names=('leaf_kernel.cu','radiation_kernel.cu','canopy_energy_kernel.cu','canopy_phase_energy_kernel.cu',
         'enthalpy_kernel.cu','column_heat_kernel.cu','snow_mass_kernel.cu','snow_vapor_kernel.cu',
         'snow_evolution_kernel.cu','soil_transport_kernel.cu','canopy_surface_kernel.cu','canopy_phase_surface_kernel.cu')
     source='\n'.join(Path(__file__).with_name(name).read_text() for name in names)
+    if profiled:source='#define CANOPY_LAYER_PARAMETERS\n'+source
     name='run_canopy_phase_surface_stems' if stems else ('run_canopy_phase_surface_vic' if vic else ('run_canopy_phase_surface_extended' if extended else 'run_canopy_phase_surface'))
     module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false','--prec-sqrt=false'),
         name_expressions=(name,))
@@ -53,7 +54,8 @@ def run_canopy_phase_surface_cuda(*arrays,parameters=None,raise_on_failure=True,
             from .canopy_optics import canopy_snow_optics_raw_cuda
             optical_result=canopy_snow_optics_raw_cuda(plant,optical,counts,radiation_inputs(plant,u,cp),a,canopy_optics)
             radiation=cp.ascontiguousarray(optical_result[:,:584])
-        _kernel(bool(extra),vic is not None,stem is not None)(*launch,(*arrays,*arguments,radiation,cp.asarray(pack_leaf_parameters(parameters,np.float32)),_aging(),out,np.int32(size)))
+        coefficients,profiled=prepare_canopy_leaf_parameters(parameters,cp,size,cp.float32)
+        _kernel(bool(extra),vic is not None,stem is not None,profiled)(*launch,(*arrays,*arguments,radiation,cp.ascontiguousarray(coefficients),_aging(),out,np.int32(size)))
     result=unpack_phase_surface(out)
     if optical_result is not None:
         from ..canopy_optics import attach_optical_absorption

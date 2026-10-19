@@ -10,7 +10,7 @@ from .canopy_energy import (pack_canopy_case,validate_canopy_batch,unpack_canopy
 from .canopy_boundary import radiation_inputs
 from .canopy_snow_radiation import validate_canopy_snow,canopy_snow_kernel_jax
 from .snicar import pack_snow_optics,_jax_tables
-from .photosynthesis import pack_leaf_parameters
+from .photosynthesis import prepare_canopy_leaf_parameters
 
 PHASE_LAYERS=('mass','enthalpy','thermal_enthalpy','ice_vapor','liquid_vapor',
     'vapor_enthalpy','vapor_latent_energy','unmet_evaporation','phase_coordinates')
@@ -102,7 +102,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         qs=s(s(frac*qliq[:10])+s(s(1.-frac)*qice[:10]))
         rh=s(q*u[2])/s(.622+s(.378*q))/es[:10]
         leaf_input=j.stack((par,tleaf,j.full(10,u[8]),rh,j.full(10,s(u[5]*mol)),s(f[:,0]*j.where(trlimit>0.,f[:,1],0.)),f[:,1]),axis=1)
-        gas=jax.vmap(leaf_kernel_jax,in_axes=(0,None))(leaf_input,p)
+        gas=jax.vmap(leaf_kernel_jax,in_axes=(0,0 if p.ndim==2 else None))(leaf_input,p)
         amount=s(b[4]*s(s(vc*j.where(qs>q,fw,1.))*s(qs-q)))
         loss=j.minimum(j.maximum(amount,0.),mass);deposit=j.maximum(-amount,0.);remaining=s(mass-loss)
         retained=s((remaining/j.where(mass>0.,mass,1.))*thermal)
@@ -293,36 +293,38 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
     return out.at[67].set(it+1).at[68].set(good.astype(u.dtype)).at[291].set(restarts)
 
 
-@lru_cache(maxsize=8)
-def _compiled(max_iterations,tolerance):
+@lru_cache(maxsize=16)
+def _compiled(max_iterations,tolerance,profiled=False):
     import jax
-    return jax.jit(jax.vmap(partial(phase_energy_kernel_jax,max_iterations=max_iterations,tolerance=tolerance),in_axes=(*([0]*9),None,None,None)))
+    return jax.jit(jax.vmap(partial(phase_energy_kernel_jax,max_iterations=max_iterations,tolerance=tolerance),in_axes=(*([0]*9),0 if profiled else None,None,None)))
 
 
-@lru_cache(maxsize=8)
-def _compiled_optics(max_iterations,tolerance):
+@lru_cache(maxsize=16)
+def _compiled_optics(max_iterations,tolerance,profiled=False):
     import jax
     def kernel(a,u,f,soil,stem,c,b,snow,n,p,ice,imp,rad):
         return phase_energy_kernel_jax(a,u,f,soil,stem,c,b,snow,n,p,ice,imp,
             max_iterations=max_iterations,tolerance=tolerance,radiation=rad)
-    return jax.jit(jax.vmap(kernel,in_axes=(0,)*9+(None,None,None,0)))
+    return jax.jit(jax.vmap(kernel,in_axes=(0,)*9+(0 if profiled else None,None,None,0)))
 
 
-def run_canopy_phase_jax(*arrays,parameters=None,max_iterations=100,tolerance=None,raise_on_failure=True,canopy_optics=None):
+def run_canopy_phase_jax(*arrays,parameters=None,max_iterations=100,tolerance=None,raise_on_failure=True,canopy_optics=None,return_raw=False):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,arrays));validate_phase(arrays,j);dtype=arrays[0].dtype
     tol=(.005 if dtype==j.float32 else 5e-5) if tolerance is None else tolerance
     if not isinstance(max_iterations,int) or max_iterations<1 or not np.isfinite(tol) or tol<=0.:raise ValueError('Invalid phase solver controls')
     optical_result=None
-    args=(*arrays,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),*_jax_tables(str(dtype)))
-    if canopy_optics is None:out=_compiled(max_iterations,float(tol))(*args)
+    parameters,profiled=prepare_canopy_leaf_parameters(parameters,j,len(arrays[0]),dtype)
+    args=(*arrays,parameters,*_jax_tables(str(dtype)))
+    if canopy_optics is None:out=_compiled(max_iterations,float(tol),profiled)(*args)
     else:
         from .canopy_optics import canopy_snow_optics_raw_jax
         a,u,_,_,stem,_,_,snow,n=arrays;plant=a+stem
         optical_result=canopy_snow_optics_raw_jax(plant,snow,n,radiation_inputs(plant,u,j),a,canopy_optics)
-        out=_compiled_optics(max_iterations,float(tol))(*args,optical_result[:,:584])
+        out=_compiled_optics(max_iterations,float(tol),profiled)(*args,optical_result[:,:584])
     if not bool(j.all(j.isfinite(out))):raise RuntimeError('Nonfinite phase canopy output')
     result=unpack_phase(out)
+    if return_raw:result['raw']=out
     if optical_result is not None:
         from .canopy_optics import attach_optical_absorption
         attach_optical_absorption(result,optical_result)

@@ -10,7 +10,7 @@ from noahmp_clm.gpu.canopy_phase_energy import pack_canopy_phase,run_canopy_phas
 from noahmp_clm.physics.canopy_phase_energy import solve_canopy_phase_energy
 
 
-def reference(row,*,exchange_extension=None,**solver_controls):
+def reference(row,*,exchange_extension=None,leaf_parameters=None,**solver_controls):
     from dataclasses import replace
     from noahmp_clm.physics.canopy_energy import CanopyExchange
     from noahmp_clm.physics.canopy_interception import CanopyCondensate
@@ -27,7 +27,7 @@ def reference(row,*,exchange_extension=None,**solver_controls):
         ground_albedo=u[19:21],diffuse_fraction=u[21],cosine_zenith=u[22],
         nitrogen_factor=f[:,0],water_stress=f[:,1],fixed_ground_temperature=b[1] if b[0]>0. else None,
         ground_is_ice=bool(b[2]),ground_shares_soil=bool(b[3]),snowpack=pack,
-        leaf_parameters=LeafParameters(*pack_leaf_parameters(dtype=dtype).astype(float)))
+        leaf_parameters=LeafParameters(*pack_leaf_parameters(dtype=dtype).astype(float)) if leaf_parameters is None else leaf_parameters)
     exchange=CanopyExchange(*u[:11])
     if exchange_extension is not None:
         exchange=replace(exchange,atmosphere_water_velocity=float(exchange_extension[0]),

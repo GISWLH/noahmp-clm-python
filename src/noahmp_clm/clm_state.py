@@ -14,6 +14,7 @@ from .physics.irrigation import IrrigationState,IrrigationParameters
 from .physics.wetland import WetlandState,WetlandParameters
 from .physics.tile_drainage import TileDrainageParameters
 from .physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
+from .physics.canopy_capacity import TemperatureMemory,CanopyCapacityParameters
 
 
 def clm_options():
@@ -55,8 +56,15 @@ class CLMColumnState:
     tile_drainage_parameters: TileDrainageParameters | None=None
     sai: float=0.
     canopy_structure_parameters: CanopyStructureParameters | None=None
+    canopy_capacity_state: TemperatureMemory | None=None
+    canopy_capacity_parameters: CanopyCapacityParameters | None=None
 
     def __post_init__(self):
+        if self.canopy_capacity_state is not None or self.canopy_capacity_parameters is not None:
+            if (not isinstance(self.canopy_capacity_state,TemperatureMemory)
+                    or not isinstance(self.canopy_capacity_parameters,CanopyCapacityParameters)
+                    or self.canopy_condensate is None):
+                raise ValueError('Canopy capacity requires traits, retained temperature memory and a layered canopy')
         structure=self.canopy_structure_parameters
         if not np.isfinite(self.sai) or self.sai<0.:
             raise ValueError('Invalid total stem area index')
@@ -199,6 +207,10 @@ class CLMColumnState:
             if len(self.canopy_condensate.mass)!=layers:raise ValueError('Explicit conservative canopy remapping required')
             return self
         return replace(self,canopy_condensate=CanopyCondensate(np.full(layers,self.canopy_water_kgm2/layers),np.full(layers,self.canopy_enthalpy_jm2/layers)))
+
+    def with_canopy_capacity(self,parameters,memory):
+        """Attach explicit C3 traits and the complete restartable T10 history."""
+        return replace(self,canopy_capacity_parameters=parameters,canopy_capacity_state=memory)
 
     def with_vegetation_structure(self,parameters,*,sai=None):
         """Enable explicit total/exposed leaf+stem geometry, retaining all M/H.

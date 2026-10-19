@@ -28,12 +28,26 @@ class LeafParameters:
     oxygen_ppm: float = 210000.0
 
     def __post_init__(self):
-        values = np.array(list(vars(self).values()), float)
-        if not np.all(np.isfinite(values)) or np.any(values < 0):
+        names=list(self.__dataclass_fields__)
+        values=np.broadcast_arrays(*(np.asarray(getattr(self,name),float) for name in names))
+        if not all(np.all(np.isfinite(v)) and np.all(v>=0.) for v in values):
             raise ValueError("Leaf parameters must be finite and nonnegative")
-        if not (0.0 < self.curvature <= 1.0 and 0.0 < self.quantum_yield_psii <= 1.0
-                and self.minimum_conductance > 0.0 and 250.0 <= self.growth_temperature <= 320.0):
+        for name,value in zip(names,values):
+            if value.ndim:
+                value=value.copy();value.setflags(write=False);object.__setattr__(self,name,value)
+        if not (np.all((self.curvature>0.)&(self.curvature<=1.))
+                and np.all((self.quantum_yield_psii>0.)&(self.quantum_yield_psii<=1.))
+                and np.all(self.minimum_conductance>0.)
+                and np.all((self.growth_temperature>=250.)&(self.growth_temperature<=320.))):
             raise ValueError("Invalid leaf efficiency, conductance, or growth temperature")
+
+    @classmethod
+    def from_layer_rows(cls, rows):
+        """Validated per-leaf coefficient rows for vectorized NumPy physics."""
+        rows=np.asarray(rows,float)
+        if rows.ndim!=2 or rows.shape[1]!=len(cls.__dataclass_fields__) or not len(rows):
+            raise ValueError('Leaf coefficient rows require a nonempty n by10 array')
+        return cls(**{name:rows[:,k] for k,name in enumerate(cls.__dataclass_fields__)})
 
 
 def _arrhenius(temperature, activation):

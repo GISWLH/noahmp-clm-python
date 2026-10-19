@@ -4,7 +4,7 @@ import numpy as np
 from .canopy_surface import pack_canopy_surface,validate_surface,surface_kernel_jax,unpack_surface,_radiation
 from .canopy_phase_energy import validate_phase,unpack_phase
 from .canopy_boundary import radiation_inputs
-from .photosynthesis import pack_leaf_parameters
+from .photosynthesis import prepare_canopy_leaf_parameters
 from .snicar import _jax_tables
 from .snow_evolution import _tables as _aging
 
@@ -51,10 +51,10 @@ def unpack_phase_surface(out):
     return result
 
 
-@lru_cache(maxsize=8)
-def _compiled(extended=False,vic=False,stems=False):
+@lru_cache(maxsize=16)
+def _compiled(extended=False,vic=False,stems=False,profiled=False):
     import jax
-    axes=(0,0,0,0,0,0,0,0,0,None,None,0)
+    axes=(0,0,0,0,0,0,0,0,0,0 if profiled else None,None,0)
     return jax.jit(jax.vmap(surface_kernel_jax,in_axes=axes+(0 if extended else None,0 if vic else None,0 if stems else None)))
 
 
@@ -86,7 +86,8 @@ def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,e
         from .vic import validate_vic
         vic=j.asarray(vic);validate_vic(vic,len(c),j)
         if vic.dtype!=c.dtype:raise ValueError('VIC precision mismatch')
-    out=_compiled(bool(extra),vic is not None,stem is not None)(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate,
+    parameters,profiled=prepare_canopy_leaf_parameters(parameters,j,len(c),c.dtype)
+    out=_compiled(bool(extra),vic is not None,stem is not None,profiled)(*arrays[:8],radiation,parameters,_aging(dtype),condensate,
         extra[0] if extra else None,vic,stem)
     result=unpack_phase_surface(out)
     if optical_result is not None:
