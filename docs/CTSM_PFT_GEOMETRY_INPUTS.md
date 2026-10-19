@@ -9,6 +9,11 @@
 同输入CUDA32／独立JAX32首日已在xuanze GPU0启动，原同精度与守恒界不变，
 尚无终态。科学偏差、真实spinup和完整年待完成；以下启动快照按当时状态保留。
 
+[后续首周NumPy启动快照](v1-results/qia-stem-numpy-week-launch-a/manifest.json)在
+2026-10-19 06:27:13UTC核实EHPC PBS174/compute002仍运行。仅从成功的自身48步
+检查点继续至336步，原年度请求/源/输入/累计账保留；原首日归档及所有旧失败年
+不变。快照已提交48步，不能算完成周、年或spinup，GPU首日配对也仍待终态。
+
 后续[Qia新冷启动试验的准备/启动快照](v1-results/qia-stem-numpy-launch-a/manifest.json)
 已在EHPC PBS162/163落实：固定PFT1，按地理双线性权重读取原January月均SAI，
 初始值0.5493633328；此后按CN_NONCROP更新。保留原C/N资金所给LAI及全部

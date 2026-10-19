@@ -25,6 +25,16 @@ dataSource标签时终止，尚未进入物理积分。固定源码shr_stream_re
 在PBS172执行。Ball–Berry、5雪层、关闭LUNA/水力胁迫、实际CO₂映射及读入
 对齐仍须由实际终态核对，尚无官方科学偏差数字。
 
+后续[F/PBS172原终态](v1-results/ctsm-qia-run-f/manifest.json)仍退出233：气象及
+气溶胶流格式已能读取，派生地形文件缺失原始time坐标。核对原官方文件后，
+恢复单个time=0、days since0001-01-01、noleap及TOPO的time维，坐标、mask、
+area、TOPO所有数值逐项完全相同；新地形SHA256为
+`1c85bbd3021344b96dd3ddd53a63b0b690467b72de1d59c0cc86fc2a63893a6a`。
+[G/PBS173原终态](v1-results/ctsm-qia-run-g/manifest.json)确认三条DATM流均初始化
+完成，官方读到单森林柱/单PFT及Ball–Berry；随后在陆面初始化读取空的
+UrbanTimeVar辅助流时退出233，尚无物理时间积分。该固定版本即使城市面积0
+也初始化此辅助流，正暂存上游原始依赖；林地柱城市面积仍0，未开发城市模型。
+
 当前工程执行的官方10SL_3.5m土壤、粗网格土质及默认冷库存与本项目4层/原冷
 种子不匹配；官方SP固定LAI/SAI也不是动态CN参考。成功执行后须核对实际DATM
 时钟、CO₂及气象读入，再落实匹配初态/土壤和可比过程，不能将配置成功当作10%

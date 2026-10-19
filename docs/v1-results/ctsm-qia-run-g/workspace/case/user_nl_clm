@@ -1,0 +1,17 @@
+fsurdat = '/var/tmp/pbs.173.manager/ctsm-qia-run-g/inputdata/surfdata.CN-Qia.engineering.nc'
+paramfile = '/var/tmp/pbs.173.manager/ctsm-qia-run-g/inputdata/clm5_params.c171117.nc'
+fsnowaging = '/var/tmp/pbs.173.manager/ctsm-qia-run-g/inputdata/snicar_drdt_bst_fit_60_c070416.nc'
+fsnowoptics = '/var/tmp/pbs.173.manager/ctsm-qia-run-g/inputdata/snicar_optics_5bnd_c090915.nc'
+nlevsno = 5
+soil_layerstruct = '10SL_3.5m'
+use_bedrock = .false.
+use_luna = .false.
+use_hydrstress = .false.
+stomatalcond_method = 'Ball-Berry1987'
+create_crop_landunit = .true.
+irrigate = .false.
+run_zero_weight_urban = .false.
+stream_fldfilename_urbantv = ''
+hist_nhtfrq = 1
+hist_mfilt = 48
+hist_fincl1 = 'TBOT','QBOT','WIND','ZBOT','FSDS','FLDS','RAIN','SNOW','H2OSNO','TSOI','H2OSOI','GPP','FSH','EFLX_LH_TOT','FCEV','FCTR','FGEV','QOVER','QDRAI','TLAI','TSAI','ELAI','FGR','FSA','FIRA','TG'
