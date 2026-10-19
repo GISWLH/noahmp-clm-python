@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<file id="stream" version="1.0">
+  <dataSource>
+GENERIC
+</dataSource>
+  <domainInfo>
+    <variableNames>
+time time
+xc lon
+yc lat
+area area
+mask mask
+</variableNames>
+    <filePath>
+/var/tmp/pbs.227.manager/ctsm-qia-run-q/inputdata
+</filePath>
+    <fileNames>
+domain.lnd.CN-Qia.nc
+</fileNames>
+  </domainInfo>
+  <fieldInfo>
+    <variableNames>
+TOPO topo
+</variableNames>
+    <filePath>
+/var/tmp/pbs.227.manager/ctsm-qia-run-q/inputdata
+</filePath>
+    <fileNames>
+CN-Qia.topo.nc
+</fileNames>
+    <offset>
+0
+</offset>
+  </fieldInfo>
+</file>

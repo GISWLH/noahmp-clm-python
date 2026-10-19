@@ -1,0 +1,113 @@
+{
+  "scope": "Read-only two-server live JSON/proc snapshot; no new numerical analysis, completion, scientific acceptance, or exact new-source year credit inferred. CPU on EHPC PBS, GPU on xuanze. Source510 CPU910/GPU8,full332 still pending; CUDA year D retains509C identity,strict firstday independent.",
+  "snapshots": [
+    {
+      "ssh_alias": "ehpc",
+      "metadata": {
+        "utc": "2026-10-19T12:09:35.559169+00:00",
+        "host": "manager",
+        "scope": "Read-only live JSON/proc metadata; running snapshot is not completion, no numerical analysis.",
+        "cases": {
+          "numpy_cold_510": {
+            "present": true,
+            "status": "running",
+            "steps_completed": 192,
+            "steps_requested": 17520,
+            "source_unchanged": true,
+            "maximum_cumulative_residual_m_h_c_n": [
+              5.870859354217828e-13,
+              0.0012638903863262385,
+              9.697131986285967e-12,
+              5.263654095921666e-13
+            ],
+            "seconds": 2531.5087797919987
+          },
+          "numpy_cold_receipt": {
+            "present": false
+          }
+        },
+        "processes": {}
+      }
+    },
+    {
+      "ssh_alias": "xuanze-neiwang",
+      "metadata": {
+        "utc": "2026-10-19T12:09:36.761669+00:00",
+        "host": "localhost.localdomain",
+        "scope": "Read-only live JSON/proc metadata; running snapshot is not completion, no numerical analysis.",
+        "cases": {
+          "previous506": {
+            "present": true,
+            "status": "running",
+            "covered_nodes": 1186,
+            "covered_gpu_nodes": 285,
+            "collected_nodes": 1241,
+            "active": {
+              "file": "tests/test_gpu_clm_layered_column.py",
+              "pid": 2811265
+            },
+            "seconds": 10734.197634190321
+          },
+          "current510_exit": {
+            "present": false
+          },
+          "current510_worker": {
+            "present": false
+          },
+          "cuda_year_D": {
+            "present": true,
+            "status": "running",
+            "steps_completed": 1680,
+            "steps_requested": 17520,
+            "source_unchanged": true,
+            "same_precision_max_absolute": null,
+            "maximum_cumulative_residual_m_h_c_n": [
+              [
+                0.0008982222946087859,
+                399.2854231260717,
+                0.06590310709407277,
+                0.01594846323132515
+              ]
+            ],
+            "seconds": 6035.91306103766
+          },
+          "strict_day_A": {
+            "present": true,
+            "status": "running",
+            "steps_completed": 48,
+            "steps_requested": 17520,
+            "source_unchanged": true,
+            "same_precision_max_absolute": 3.637978807091713e-12,
+            "maximum_cumulative_residual_m_h_c_n": [
+              [
+                0.00018397154053673148,
+                22.95030951499939,
+                0.005815310403704643,
+                0.0007947934791445732
+              ]
+            ],
+            "seconds": 22955.19805532694
+          }
+        },
+        "processes": {
+          "2242411": {
+            "present": true,
+            "command": "/home/lhwang/venvs/noahmp-phase3b/bin/python -u /home/lhwang/work/noahmp-v1/run_qia_stem_device_day_a.py "
+          },
+          "2557162": {
+            "present": true,
+            "command": "/home/lhwang/venvs/noahmp-phase3b/bin/python -u /home/lhwang/work/noahmp-v1/run_phase_full_gpu_a.py "
+          },
+          "2659844": {
+            "present": true,
+            "command": "/home/lhwang/venvs/noahmp-phase3b/bin/python -u /home/lhwang/work/noahmp-v1/run_qia_physical_cuda_year_d.py "
+          },
+          "2750196": {
+            "present": true,
+            "command": "/home/lhwang/venvs/noahmp-phase3b/bin/python -u /home/lhwang/work/noahmp-v1/wait_fresh_phase_full_gpu_a.py "
+          }
+        }
+      }
+    }
+  ]
+}

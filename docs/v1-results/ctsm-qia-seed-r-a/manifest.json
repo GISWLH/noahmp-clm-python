@@ -1,0 +1,750 @@
+{
+  "scope": "Official R full17520 model/PBS0 with original declared native hydrothermal and canopy cold fields, all input readback errors0, original meteorology and2930 source unchanged. Raw2NetCDF histories retained. First-bin LAI/SAI gap removed; remaining H/LE/ET/runoff biases fail, GPP mean+192.85percent/r0.967753 reported without science claim. Same immutable native96 prefix and O/Q metrics exactly replayed. B parent-exit race/C historical scheduler hold and rejected qalter/canceled unstarted233/actual234 analysis retained. No model/year tasks stopped or gate relaxation.",
+  "archive_sha256": "47d570940cf2cdc2581acf9fd639a4711664d95c3622768349c5b34c5faf8c95",
+  "artifacts": [
+    {
+      "source": "ctsm-qia-run-r/audit_ctsm_qia_year_boundary_o_a.py",
+      "path": "ctsm-qia-run-r/audit_ctsm_qia_year_boundary_o_a.py.gz",
+      "source_sha256": "d200855c2713a98c1ecaeee921516c38df1bad741b5eff29717cc3200e064435",
+      "stored_sha256": "040b1408579242c434413edd13f18fd4da029a20061658c709257db30157a316"
+    },
+    {
+      "source": "ctsm-qia-run-r/canopy-seed-audit.json",
+      "path": "ctsm-qia-run-r/canopy-seed-audit.json.gz",
+      "source_sha256": "879e62c871d7ffe913544e661dad1854aac3e085a67a9c8eda645f384ba591f4",
+      "stored_sha256": "1a5a677b29d8c7794d5685ed951a5653d0b171f227c649c4c4ad0adef58097e3"
+    },
+    {
+      "source": "ctsm-qia-run-r/canopy-seed.json",
+      "path": "ctsm-qia-run-r/canopy-seed.json.gz",
+      "source_sha256": "2b47432bd64601eb7fb2641744867412a95c1bf8763a47095a45d1fcf732da43",
+      "stored_sha256": "c398e34cc0b4c9b0039778d642cf3aedcfdb556f9aa05ce240d978a7eff909e1"
+    },
+    {
+      "source": "ctsm-qia-run-r/clm-qia-official-r.o231",
+      "path": "ctsm-qia-run-r/clm-qia-official-r.o231",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-run-r/configuration.json",
+      "path": "ctsm-qia-run-r/configuration.json.gz",
+      "source_sha256": "b6021521caec59cf4375f5f5fde857b4311c9954ea5d42e59b7ec4f5fea1bfb2",
+      "stored_sha256": "4fbbde1c9a56c8a170d4aa460b87db5769378822659b1a77e6c9b4675aec7888"
+    },
+    {
+      "source": "ctsm-qia-run-r/configuration.log",
+      "path": "ctsm-qia-run-r/configuration.log.gz",
+      "source_sha256": "689b86414fda5b67cdeffaeff15dbe15970daa771e5f241da8aa0d36801e9683",
+      "stored_sha256": "b5674bc008ce8e7a2d1e68dfa5f891237b39cfda424af7871bbef8b609aa9688"
+    },
+    {
+      "source": "ctsm-qia-run-r/ctsm-qia-run-r-protocol.json",
+      "path": "ctsm-qia-run-r/ctsm-qia-run-r-protocol.json.gz",
+      "source_sha256": "8ebcb8d5d79dbf9eaee5de2cfab2b2b48a5571b7bfe38906d3e698dd16ee7b35",
+      "stored_sha256": "cd8083cadbbb77fe3bdad5404b849b12cce11df63729bb636cd47a8e81eb91ac"
+    },
+    {
+      "source": "ctsm-qia-run-r/ctsm_qia_run_r.pbs",
+      "path": "ctsm-qia-run-r/ctsm_qia_run_r.pbs.gz",
+      "source_sha256": "72096cc547c86958d0309872e68c0930cadd003c0424677b9f228fc4f2783a01",
+      "stored_sha256": "3ecc32dbef63904c4cc2e64f09c3acedbb601472ac8f6b65a7bdb60632e3b362"
+    },
+    {
+      "source": "ctsm-qia-run-r/derive_ctsm_qia_common_radiation_a.py",
+      "path": "ctsm-qia-run-r/derive_ctsm_qia_common_radiation_a.py.gz",
+      "source_sha256": "ecd9afd1f227fdcf9606e1a0f66f497028f9e5910b2d0944862c9d9a7e3e48b4",
+      "stored_sha256": "432feb2b189c14fec93f0d97a00fdd8df46c92224fc53f458c37849ec39bdefc"
+    },
+    {
+      "source": "ctsm-qia-run-r/derive_ctsm_qia_copyall_a.py",
+      "path": "ctsm-qia-run-r/derive_ctsm_qia_copyall_a.py.gz",
+      "source_sha256": "5e072b385096eef0fd13e187c1944bb288ea2e9ca3d4d478a657e586da95abb6",
+      "stored_sha256": "bc0092f28b6ebb5bb7109175a3ea046d22e3077e69d9a801a4ad7ab4897a4c42"
+    },
+    {
+      "source": "ctsm-qia-run-r/launch-qstat.stderr.txt",
+      "path": "ctsm-qia-run-r/launch-qstat.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/launch-qstat.txt",
+      "path": "ctsm-qia-run-r/launch-qstat.txt.gz",
+      "source_sha256": "c9fb380c39b911018da21dcc5f8f72279296a325ad55c835be7fa723dbb80563",
+      "stored_sha256": "c192eaf764a41c91c3d7521bd45247e7633c5bd1351f43525c8a88361aa8b51c"
+    },
+    {
+      "source": "ctsm-qia-run-r/launch.json",
+      "path": "ctsm-qia-run-r/launch.json.gz",
+      "source_sha256": "6392a1582083282d2334aa5804ce8a0d8b76b308675d501509e246dfc0f7dc92",
+      "stored_sha256": "6ec451c30095622db99cd6d5640beb4d2228dd80db45f0b792315e77b3d77544"
+    },
+    {
+      "source": "ctsm-qia-run-r/make_ctsm_qia_partial_seed_a.py",
+      "path": "ctsm-qia-run-r/make_ctsm_qia_partial_seed_a.py.gz",
+      "source_sha256": "50f2f5bea04a56cafb851adcbe8269a6ce9137f51e8b941d4e0218663f31fd25",
+      "stored_sha256": "72c516d4cfeb5e9584b083a3dd3bc7077b53967dc7545432b719f2bee60bae4e"
+    },
+    {
+      "source": "ctsm-qia-run-r/make_ctsm_urbantv_point_b.py",
+      "path": "ctsm-qia-run-r/make_ctsm_urbantv_point_b.py.gz",
+      "source_sha256": "42a56eb60c5fefec4543e5e245e3d8f4024b38c82dd6e3cbe3b328cd84be6777",
+      "stored_sha256": "168e8f254859626c5ed70fd29b7a953f5fe7b68b254570496fd726c73a804967"
+    },
+    {
+      "source": "ctsm-qia-run-r/node.txt",
+      "path": "ctsm-qia-run-r/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-run-r/official-year-fields.npz",
+      "path": "ctsm-qia-run-r/official-year-fields.npz",
+      "source_sha256": "431afb47af338a8fa8702a55044ee5a3b9e59647aba2bddbf4ac9317ba41a889",
+      "stored_sha256": "431afb47af338a8fa8702a55044ee5a3b9e59647aba2bddbf4ac9317ba41a889"
+    },
+    {
+      "source": "ctsm-qia-run-r/partial-seed-audit.json",
+      "path": "ctsm-qia-run-r/partial-seed-audit.json.gz",
+      "source_sha256": "3431b49e21c9f8ec9a4cc5ea45a06d591068aa7231d59eedc28c21c892291abc",
+      "stored_sha256": "38a7c9bd9ffaef30e9945a867ee3708b996404e01c9abbcb236a3f458f51558f"
+    },
+    {
+      "source": "ctsm-qia-run-r/partial-seed.json",
+      "path": "ctsm-qia-run-r/partial-seed.json.gz",
+      "source_sha256": "4cc236bcd7ea3ff24a24520ffa1a63d06a37516f0b56e8a1fe661e05e022d984",
+      "stored_sha256": "e2a1df0a833d850c9b5ef803e67b42bdd12e202eb2c58465a95674b2d1340fce"
+    },
+    {
+      "source": "ctsm-qia-run-r/pbs-exit.txt",
+      "path": "ctsm-qia-run-r/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "ctsm-qia-run-r/prepare_ctsm_qia_run_r.py",
+      "path": "ctsm-qia-run-r/prepare_ctsm_qia_run_r.py.gz",
+      "source_sha256": "13123ae7437dca367b23395d55c2d6be8270b5fa97ae49b2799da707e8a0f1a8",
+      "stored_sha256": "842721c1e487d93549f87804ae29fed912672a1f15174f5bccb82a8c7951a28f"
+    },
+    {
+      "source": "ctsm-qia-run-r/record_ctsm_qia_launch_q.py",
+      "path": "ctsm-qia-run-r/record_ctsm_qia_launch_q.py.gz",
+      "source_sha256": "4fec7fa9ca79ef0a31b2dc363e255a29f004fe4c13ff4c61aab8c37a0bd9b0cd",
+      "stored_sha256": "715bd84d36ffb23ea37a24aa9787c3209781cc2926dd0827fa1f63dd8f1bfb7c"
+    },
+    {
+      "source": "ctsm-qia-run-r/restore_ctsm_topo_time_a.py",
+      "path": "ctsm-qia-run-r/restore_ctsm_topo_time_a.py.gz",
+      "source_sha256": "b6ee583bf5f20dbad1d9ec3ce563a071efb8ab1eea1f77db6cd2ba705fd8059a",
+      "stored_sha256": "d80ba8e7cc4c5ec5a5a77388201bc63fe89402d1af51a5266d14fb8dbf18e93c"
+    },
+    {
+      "source": "ctsm-qia-run-r/run_ctsm_qia_r.py",
+      "path": "ctsm-qia-run-r/run_ctsm_qia_r.py.gz",
+      "source_sha256": "9aaf61fb0fb6a3101fc05c7b46e21fb4470bd0f87c7c27dfe07741a8cae315d7",
+      "stored_sha256": "d5c883aeb73b4fec2f761cf25aec8c1e05a133f9ca03d63076d60b10878ae224"
+    },
+    {
+      "source": "ctsm-qia-run-r/set_ctsm_qia_canopy_seed_a.py",
+      "path": "ctsm-qia-run-r/set_ctsm_qia_canopy_seed_a.py.gz",
+      "source_sha256": "1e4ed49ad20af2aed0059f6cf9bbe213c3a13a60a6985fbd2fd9523575981953",
+      "stored_sha256": "3e7dbaecdf32d37b7a5d5322541716ff181bf07e61690dbd46099fe6270000da"
+    },
+    {
+      "source": "ctsm-qia-run-r/urbantv-selection.json",
+      "path": "ctsm-qia-run-r/urbantv-selection.json.gz",
+      "source_sha256": "2f06147f8a9b6b07e0f3e261bf7170adea3c738cfa33c880c3b1fcf69bf50641",
+      "stored_sha256": "0efd175f451b308dd5bb87fe157f1851d3ca09e324c0bb131bd1963e513585ad"
+    },
+    {
+      "source": "ctsm-qia-run-r/year-boundary.json",
+      "path": "ctsm-qia-run-r/year-boundary.json.gz",
+      "source_sha256": "a4fae509ffcf461761627d4e5295e98d8b0837a82445e07063d73864b95d8405",
+      "stored_sha256": "8a37fc36f6ab31bf17767d095a9e2c5ba10741895bea0d0581218a4ea72aa6db"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/clm-qia-seed-firstday-b.o232",
+      "path": "ctsm-qia-seed-firstday-b/clm-qia-seed-firstday-b.o232",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/compare_ctsm_qia_seed_firstday_b.py",
+      "path": "ctsm-qia-seed-firstday-b/compare_ctsm_qia_seed_firstday_b.py.gz",
+      "source_sha256": "040686523d82899830f94c8eb091e405b9257199ab50ae61bbc4f55e9c36d2c9",
+      "stored_sha256": "9baee3ca969888ee8448a153b848cdf1acab0c0006945334703a60ea785482b4"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/comparison.log",
+      "path": "ctsm-qia-seed-firstday-b/comparison.log.gz",
+      "source_sha256": "decd176f1b7cbcbaea96faf9e3bddbb0360d19e7045e5c73daa8b7fc7e23c735",
+      "stored_sha256": "b3c4bec778208cf67c7eaa30cebfd3451c5faf564c828f354307a0d9f597ea94"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/ctsm-qia-seed-firstday-b-protocol.json",
+      "path": "ctsm-qia-seed-firstday-b/ctsm-qia-seed-firstday-b-protocol.json.gz",
+      "source_sha256": "89b591011b01e3e2110b2f23bc5daebab5cb01dc235bdc0d35e9592bcb062ae3",
+      "stored_sha256": "1fc3c3668e62b70f3cd2e61ee2e49b6d2ecdc353edc1bb1bc87a10e483acbce1"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/ctsm_qia_seed_firstday_b.pbs",
+      "path": "ctsm-qia-seed-firstday-b/ctsm_qia_seed_firstday_b.pbs.gz",
+      "source_sha256": "cadcb73b74aea33d627b2a6283c8662034fcd466aed10d538016afc84ff73c66",
+      "stored_sha256": "e612f9c8979e85f41611fafb8c7f555da7e1e1c67bbe940340163df1da4d5042"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/native-report-snapshot.json",
+      "path": "ctsm-qia-seed-firstday-b/native-report-snapshot.json.gz",
+      "source_sha256": "07e8fc43d6033da23e93c371e08dc314982086d9fe25399472d643bfabcafa8e",
+      "stored_sha256": "da9d6a17a583ac7cb8a9981da837394c46d32dc7f18b9a553623900e5152df97"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/native-trace-snapshot.npz",
+      "path": "ctsm-qia-seed-firstday-b/native-trace-snapshot.npz",
+      "source_sha256": "5f0df713900563395b14f7db4ad74b8bde2a9912ca2f430e63c693c650cb6582",
+      "stored_sha256": "5f0df713900563395b14f7db4ad74b8bde2a9912ca2f430e63c693c650cb6582"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/node.txt",
+      "path": "ctsm-qia-seed-firstday-b/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/pbs-exit.txt",
+      "path": "ctsm-qia-seed-firstday-b/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-b/prepare_ctsm_qia_seed_firstday_b.py",
+      "path": "ctsm-qia-seed-firstday-b/prepare_ctsm_qia_seed_firstday_b.py.gz",
+      "source_sha256": "da24ce0a279e81937ffdae994e118e5b7c2983962d6db20ff12c78eff55b0dc2",
+      "stored_sha256": "0cc3fe9040e5c3a0a16858ef5dc67c3b93eede15bfdae1dc949221047dbfe2b0"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/cancel-held233-qstat.txt",
+      "path": "ctsm-qia-seed-firstday-c/cancel-held233-qstat.txt.gz",
+      "source_sha256": "d25d5676d4a4d0e4c6c4f709ca3e75dbe9aeb6c61250a88f66d465cffeecc0de",
+      "stored_sha256": "eed806739d84abc8f366c3846818274b21ba30f0045d77239ec618f1fcae9611"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/cancel-held233.stderr.txt",
+      "path": "ctsm-qia-seed-firstday-c/cancel-held233.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/cancel-held233.stdout.txt",
+      "path": "ctsm-qia-seed-firstday-c/cancel-held233.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/clm-qia-seed-firstday-c.o234",
+      "path": "ctsm-qia-seed-firstday-c/clm-qia-seed-firstday-c.o234",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/compare_ctsm_qia_seed_firstday_c.py",
+      "path": "ctsm-qia-seed-firstday-c/compare_ctsm_qia_seed_firstday_c.py.gz",
+      "source_sha256": "fb90a5a4494cf24f69d7fa36cc952ca3e22d49721715cf1c1e9c5367156dc108",
+      "stored_sha256": "afc5a2e00e82a8488bf3b4710a327276258572e423d4204cf01d143c290a708d"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/comparison.log",
+      "path": "ctsm-qia-seed-firstday-c/comparison.log.gz",
+      "source_sha256": "10df71b6835a0c293e59a6175c63a58d62a9d4ee926d6d63abbe734662329d1a",
+      "stored_sha256": "8ecf2c229045df9217299c3652e5eebb0e20f10a1c2c1d5bbeda4e71bd2df001"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/completed-parent-qstat.txt",
+      "path": "ctsm-qia-seed-firstday-c/completed-parent-qstat.txt.gz",
+      "source_sha256": "7b4b80b66fc2f2065ad0441aecfcee9fead9dadbaa55e641fb7848b219d848a8",
+      "stored_sha256": "271c2e9887c35c32f3c0a84956ae3520e0b2c211d0a8eb88c00a75d6bac19e25"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/ctsm-qia-seed-firstday-c-protocol.json",
+      "path": "ctsm-qia-seed-firstday-c/ctsm-qia-seed-firstday-c-protocol.json.gz",
+      "source_sha256": "5c1dfd65ee15b3e1f0a896588b432a363b5d596b34b18223aa227311d0f188fa",
+      "stored_sha256": "fafdc4e42d60eba051f34e07b3f323937c332be5768894cea93e093b7963e970"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/ctsm_qia_seed_firstday_c.pbs",
+      "path": "ctsm-qia-seed-firstday-c/ctsm_qia_seed_firstday_c.pbs.gz",
+      "source_sha256": "16003134bc1d541930ddbe5c4ab723cbe58f2fc3e97d3731aa908f06f73b7708",
+      "stored_sha256": "7bf6dc8974a90938788e25503b705adc1fbc31c0185bfe477420c1c9b159ae92"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dependency-after.txt",
+      "path": "ctsm-qia-seed-firstday-c/dependency-after.txt.gz",
+      "source_sha256": "c58b524ce90ebb005843652484b7464ffba6b94c7f4a1d73faa1867a420d764d",
+      "stored_sha256": "d6c78d9cf618a2c891dc9de728dc464086fc35f0e6e51dd72fa35ad18f8456eb"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dependency-before.txt",
+      "path": "ctsm-qia-seed-firstday-c/dependency-before.txt.gz",
+      "source_sha256": "c58b524ce90ebb005843652484b7464ffba6b94c7f4a1d73faa1867a420d764d",
+      "stored_sha256": "d6c78d9cf618a2c891dc9de728dc464086fc35f0e6e51dd72fa35ad18f8456eb"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dependency-qalter.stderr.txt",
+      "path": "ctsm-qia-seed-firstday-c/dependency-qalter.stderr.txt.gz",
+      "source_sha256": "d1c7e21832196b079977f04520f8b29c3e5f0ead5a1df1aa7000e88f2a3ad104",
+      "stored_sha256": "6959195fed15f589dbb1b2ddca34fbc307e50fe520365f4a0c778611db1b33b1"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dependency-qalter.stdout.txt",
+      "path": "ctsm-qia-seed-firstday-c/dependency-qalter.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dependency-resolution.json",
+      "path": "ctsm-qia-seed-firstday-c/dependency-resolution.json.gz",
+      "source_sha256": "9f2b02ac73ce093ee677342d5b49ccd2b95ae92541b7b040a72762acf7173f78",
+      "stored_sha256": "876f0dfca37f1cfee688f7c6db67b48e015fa535d61ce8c65889038ea09189e4"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/diagnosis.json",
+      "path": "ctsm-qia-seed-firstday-c/diagnosis.json.gz",
+      "source_sha256": "4a2f76941cb021cd8a0cd361b3cf94130d85219c6dd52857e58ed4e02640b453",
+      "stored_sha256": "f0f77f79eaaedf7298c76c2a4f13f4146088d9ea3ea676bfb804899ad6001bdb"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/dispatch.json",
+      "path": "ctsm-qia-seed-firstday-c/dispatch.json.gz",
+      "source_sha256": "c6951fc299413facaab86945c69011cd77df80daef2eeeef5a5d01099eb12a01",
+      "stored_sha256": "f6257ed4c70a7ca5417551ec510e57f537263a6df6b562baeba849f1da1707a3"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/native-report-snapshot.json",
+      "path": "ctsm-qia-seed-firstday-c/native-report-snapshot.json.gz",
+      "source_sha256": "07e8fc43d6033da23e93c371e08dc314982086d9fe25399472d643bfabcafa8e",
+      "stored_sha256": "da9d6a17a583ac7cb8a9981da837394c46d32dc7f18b9a553623900e5152df97"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/native-trace-snapshot.npz",
+      "path": "ctsm-qia-seed-firstday-c/native-trace-snapshot.npz",
+      "source_sha256": "5f0df713900563395b14f7db4ad74b8bde2a9912ca2f430e63c693c650cb6582",
+      "stored_sha256": "5f0df713900563395b14f7db4ad74b8bde2a9912ca2f430e63c693c650cb6582"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/node.txt",
+      "path": "ctsm-qia-seed-firstday-c/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/pbs-exit.txt",
+      "path": "ctsm-qia-seed-firstday-c/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/prepare_ctsm_qia_seed_firstday_c.py",
+      "path": "ctsm-qia-seed-firstday-c/prepare_ctsm_qia_seed_firstday_c.py.gz",
+      "source_sha256": "026da4521e30d97accbe93d5dfffd2f903d75a424627d82db49fdbb4ca8ae3ee",
+      "stored_sha256": "d9255f795f8e9e3540e24244daaa02fd3d12765b3145e4e57874d289a3622f3c"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/submit.stderr.txt",
+      "path": "ctsm-qia-seed-firstday-c/submit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-seed-firstday-c/submit.stdout.txt",
+      "path": "ctsm-qia-seed-firstday-c/submit.stdout.txt.gz",
+      "source_sha256": "6761d5cc60d47d407bea5f882aed0807d71d73f4b62f1cd2199ce41d09ebe60f",
+      "stored_sha256": "f4f1f6bed9b3be36d7888e215f3512642a5f791de56f9b7aa481138783e8731c"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case/user_nl_clm",
+      "path": "ctsm-qia-run-r/workspace/case/user_nl_clm",
+      "source_sha256": "70e4d86d98bf25270ba65645dedff24442bb80da94bd6946e3aad9780afb9056",
+      "stored_sha256": "70e4d86d98bf25270ba65645dedff24442bb80da94bd6946e3aad9780afb9056"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case/user_nl_cpl",
+      "path": "ctsm-qia-run-r/workspace/case/user_nl_cpl",
+      "source_sha256": "aaa5af09290fec0ebdf1698ac18a4f96b4a890eb1bdf2bead5fe94b1a0ea4410",
+      "stored_sha256": "aaa5af09290fec0ebdf1698ac18a4f96b4a890eb1bdf2bead5fe94b1a0ea4410"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case/user_nl_datm",
+      "path": "ctsm-qia-run-r/workspace/case/user_nl_datm",
+      "source_sha256": "c59c0bd968c76c2cf53133933df56366c216d8b762fb5be9b6571408eb3e379c",
+      "stored_sha256": "c59c0bd968c76c2cf53133933df56366c216d8b762fb5be9b6571408eb3e379c"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case-build.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/case-build.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case-build.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/case-build.stdout.txt.gz",
+      "source_sha256": "1fda6065e851fa824fd951883d7d256fc6b8834aa0d82a2282e16f0d522f474e",
+      "stored_sha256": "76067f61c58e816da494e4e9b50a7332117d0d637c22408a4affcc4ec4d6c9a3"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case-setup.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/case-setup.stderr.txt.gz",
+      "source_sha256": "0fe9a5cef17da58d354dff7f2646f27781e6c8587b1463f380b6447b88258d8d",
+      "stored_sha256": "b1cc82b7aef69a008ef66a2309ca7e386ef66ae7b52ecf9e050d5a2dc4b0076c"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/case-setup.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/case-setup.stdout.txt.gz",
+      "source_sha256": "c3564d1cf8b4a11d5343b1f4402748d3cce54993a04a0882a6031e5f7a76c22c",
+      "stored_sha256": "d53dc7fd74d9345f45b3966e30e2521c169df7f193072a95df5d52491cb87e00"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/common-radiation-input.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/common-radiation-input.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/common-radiation-input.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/common-radiation-input.stdout.txt.gz",
+      "source_sha256": "e904ce8a2534765dcbb3b75438808cd044323f79f12bf7cc2fa3ea29809a1281",
+      "stored_sha256": "3ba2ff7786f19f4a9b6eda8bb47121487e06aa2c67f5c22e3bcebcbd9482fb2b"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/compiler-adaptation.json",
+      "path": "ctsm-qia-run-r/workspace/compiler-adaptation.json.gz",
+      "source_sha256": "1ae93dbe68d46b8565b7cbc1f0c47896c46fb04aaea8ed251cbefd9f97d2126c",
+      "stored_sha256": "f56c272e0c5ca256f1c960a548bd525e1e751e5cdc1f09ce4af72ebbd8908d98"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/copyall-input.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/copyall-input.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/copyall-input.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/copyall-input.stdout.txt.gz",
+      "source_sha256": "6403cec272c1c4e3c47bbc8659852d994d821c884f7112d06d6c342d9e41e913",
+      "stored_sha256": "1ff1c59e04fae7aaff267030465eb0f3c23d6687cc02db747a93a45555eb97d6"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/create-case.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/create-case.stderr.txt.gz",
+      "source_sha256": "0dddcbd64755d36147e9c283919fa444afbc6ac90e5f172b997eb782bedfabba",
+      "stored_sha256": "e0c503db28a937ccb973706f0b4e75227c57407888498d591b5a557d5d4e066c"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/create-case.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/create-case.stdout.txt.gz",
+      "source_sha256": "57cf4a4d73fdbadea59ea455dd83ac7d7243c47d114a3e91f72403c13950a7fb",
+      "stored_sha256": "67d9dafbd46ab114ef96342814d8b62120929a36e7fc1529aed95da44b362658"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/executable-linkage.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/executable-linkage.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/executable-linkage.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/executable-linkage.stdout.txt.gz",
+      "source_sha256": "f4ceee8bd2799a39ddb9595b7942f5532e56a3bc12bfcfb3fe5e49ecdbf1d14c",
+      "stored_sha256": "b35cfbbc7e768673dc4037b3edf3aaefd737bcf5fdc51400d78d030c56085a68"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/initial-canopy-audit.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/initial-canopy-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/initial-canopy-audit.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/initial-canopy-audit.stdout.txt.gz",
+      "source_sha256": "1c92ca2c4d545018e6e2554600359e5f54d047f93b495e05556913d3be68bf31",
+      "stored_sha256": "e8bf5201a15fc5814c29c0167633fed4cfcc162c3a5e846a3163d3c33c45f11c"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/initial-canopy-seed.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/initial-canopy-seed.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/initial-canopy-seed.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/initial-canopy-seed.stdout.txt.gz",
+      "source_sha256": "a709be4524ba8f0d8fb1b1d19ecdf8f638b0540f026bace2aeefadcd7e586721",
+      "stored_sha256": "7c82b85c8b699195eef6c868118bff4dfdf014445b8a37966f4fb5818e24b300"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/inputdata/CN-Qia.official-interpolated-cold.nc",
+      "path": "ctsm-qia-run-r/workspace/inputdata/CN-Qia.official-interpolated-cold.nc",
+      "source_sha256": "5f00fccf0c4f448a89be2cb5beac10132da5531a7e976ad58e3a956af1619b47",
+      "stored_sha256": "5f00fccf0c4f448a89be2cb5beac10132da5531a7e976ad58e3a956af1619b47"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/inputdata/CN-Qia.partial-hydrothermal-init.nc",
+      "path": "ctsm-qia-run-r/workspace/inputdata/CN-Qia.partial-hydrothermal-init.nc",
+      "source_sha256": "c9ad9fa10123a18ccb541819fc83563568c9f47e9211163dd88e5aa2604bbd04",
+      "stored_sha256": "c9ad9fa10123a18ccb541819fc83563568c9f47e9211163dd88e5aa2604bbd04"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/link-adaptation.json",
+      "path": "ctsm-qia-run-r/workspace/link-adaptation.json.gz",
+      "source_sha256": "cca0b84ea1beb9d9f59575ce9d0892869fbb3c8a953e12b70a4bb9ee8af68421",
+      "stored_sha256": "4e266daf8205e95ba823363ef450b55a3720f546aa9cd25161fe5d53f62ac81d"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/machine-adaptation.json",
+      "path": "ctsm-qia-run-r/workspace/machine-adaptation.json.gz",
+      "source_sha256": "b0060691106d94299a500fbb208b8532ecae79f25d898b6315266c4497d87dc8",
+      "stored_sha256": "b3666c69665c517bf761d870e4fd43e3636532748a02c4e78c35af0f1f28ecae"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/machine-query.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/machine-query.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/machine-query.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/machine-query.stdout.txt.gz",
+      "source_sha256": "6d822e490417f3bf4cefc2bfe3cf54e0c06f47d92035cd51316425baef86cc7b",
+      "stored_sha256": "c70b0c46cb568d36a0fc704b2f280cdedde20526cd8286eeed7d686e67fa4faf"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/netcdf-link-flags.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/netcdf-link-flags.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/netcdf-link-flags.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/netcdf-link-flags.stdout.txt.gz",
+      "source_sha256": "8c75034dabe1fdbc7e452c92d6fe2a37edccb72bea1a30677996c28e96409996",
+      "stored_sha256": "bc84214ad2adbb4a4a4531545bfb352e61c7153d9ec2f10b866c9f87314624c7"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/official-model.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/official-model.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/official-model.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/official-model.stdout.txt.gz",
+      "source_sha256": "428d98b2b29552fc64fd4b028bc0309f49a37c018d2fcc5efb47bb66c014fd0d",
+      "stored_sha256": "2b67d3d58c6a1a478b03a1745037fd2dc20fb7a8beae74c9223959086d1b77a5"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/atm.log.261019-195813",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/atm.log.261019-195813.gz",
+      "source_sha256": "2a035d2819d4b4f0fff946edc95aa31b5e3808e0f88858b318f2508361c4ec00",
+      "stored_sha256": "fec032b7bd0da77f8eb81ad0e6ea64a32b80fbc2e72bf3d5c1a0aded3aa2c814"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/case.clm2.h0.2002-12-31-57600.nc",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/case.clm2.h0.2002-12-31-57600.nc",
+      "source_sha256": "094c22dc615b8e908a6f7c8a31fa48114b54d0805494a8b73c1c128c87c66840",
+      "stored_sha256": "094c22dc615b8e908a6f7c8a31fa48114b54d0805494a8b73c1c128c87c66840"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/case.clm2.h0.2003-12-31-57600.nc",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/case.clm2.h0.2003-12-31-57600.nc",
+      "source_sha256": "03f47c71a5228f9ef50675864ccc7bb1af649b0eebb945e2d46a47c39bf32eab",
+      "stored_sha256": "03f47c71a5228f9ef50675864ccc7bb1af649b0eebb945e2d46a47c39bf32eab"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/cpl.log.261019-195813",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/cpl.log.261019-195813.gz",
+      "source_sha256": "332d4598b6a2486d72a7da9e59c95db7dce259a481de053999da8a92fb2d4cdc",
+      "stored_sha256": "e45da39c346b7c60be8f4fe316525a435c938a9cdc7a784e1f32a268ac40ce7d"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/datm_in",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/datm_in",
+      "source_sha256": "b1053b45adc80e3a9d3682ec992d53a817df15e57a0d659a3f3369545d2d72c5",
+      "stored_sha256": "b1053b45adc80e3a9d3682ec992d53a817df15e57a0d659a3f3369545d2d72c5"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/drv_in",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/drv_in",
+      "source_sha256": "1c4f4b954fb7352bf002f7b530191979a30c65b24934581b1edebbe02bc89ca2",
+      "stored_sha256": "1c4f4b954fb7352bf002f7b530191979a30c65b24934581b1edebbe02bc89ca2"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/lnd.log.261019-195813",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/lnd.log.261019-195813.gz",
+      "source_sha256": "e272e80ca3c7cedb20c15b1309467eb00960f2a0c149b39e42e216750f7a7502",
+      "stored_sha256": "6e3e88766b61745b7e22456916725b130070443740ab26fd0a020a348a43b154"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/lnd_in",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/lnd_in",
+      "source_sha256": "9c208707d083a0defa820d8bdd8496b8b7cae0b9c8d98045d958009e0f636fc1",
+      "stored_sha256": "9c208707d083a0defa820d8bdd8496b8b7cae0b9c8d98045d958009e0f636fc1"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/qia.aero.stream",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/qia.aero.stream",
+      "source_sha256": "fe93dc249eba2519ae8bd37f1a44cf21da129859b0bc0194e9f5878e59fc608f",
+      "stored_sha256": "fe93dc249eba2519ae8bd37f1a44cf21da129859b0bc0194e9f5878e59fc608f"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/qia.met.stream",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/qia.met.stream",
+      "source_sha256": "2167c6033ee71620e6e265e5447bfaf12a09f9cc250b3a52c0d892fdaad321ec",
+      "stored_sha256": "2167c6033ee71620e6e265e5447bfaf12a09f9cc250b3a52c0d892fdaad321ec"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/output/case/run/qia.topo.stream",
+      "path": "ctsm-qia-run-r/workspace/output/case/run/qia.topo.stream",
+      "source_sha256": "f66fc43b072a85c51a5e5732e93a729ed4ece09fd6cf632a19562c4642b246ad",
+      "stored_sha256": "f66fc43b072a85c51a5e5732e93a729ed4ece09fd6cf632a19562c4642b246ad"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/partial-common-seed.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/partial-common-seed.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/partial-common-seed.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/partial-common-seed.stdout.txt.gz",
+      "source_sha256": "76a0b115f1e08de194308367016188a6e23f9cbeea9f44b0d1cabda998f8c652",
+      "stored_sha256": "7620c12fe636d7379630d1a43d53c9c358f8dcfb86f8a75f8249b4654b10aedd"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/partial-seed-audit.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/partial-seed-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/partial-seed-audit.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/partial-seed-audit.stdout.txt.gz",
+      "source_sha256": "94b18437efa0d3f5ee91eee3e6f48ca2bbbd98c7e0bc9519064a1e169ab5276d",
+      "stored_sha256": "3b246b979f95f7b2bc8be9a20041babfd1502e5d7133074f3fc161dcd883a597"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/point-xmlchange.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/point-xmlchange.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/point-xmlchange.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/point-xmlchange.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/preview-namelists.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/preview-namelists.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/preview-namelists.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/preview-namelists.stdout.txt.gz",
+      "source_sha256": "6046195f6ab5b823aeb3560e87682eeeaad1d264b5da783b9605748a4ec2e89d",
+      "stored_sha256": "43b967d4623d619b3343810f526bd6b47f6ca08f77c2dd4ba923e86c48a9d8e3"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/relocate.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/relocate.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/resource-adaptation.json",
+      "path": "ctsm-qia-run-r/workspace/resource-adaptation.json.gz",
+      "source_sha256": "52e15903a4c3cfc0b8bbbb556a2fcbe610c6fc4c9e641ee100bc8a188e547e48",
+      "stored_sha256": "776301159e5f84a197174dd15fd8bbe024a8213c117e6d1e69fd9904f831c076"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/topo-time-coordinate.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/topo-time-coordinate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/topo-time-coordinate.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/topo-time-coordinate.stdout.txt.gz",
+      "source_sha256": "f9c3b8af45593f71cfed82886c5a7087b84b92853248512979725b26f021c619",
+      "stored_sha256": "af0317fa040153d0d7f78a7dacf0116759098f70c7e1bd47c110ebc53ea969e7"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/urban-auxiliary-point.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/urban-auxiliary-point.stderr.txt.gz",
+      "source_sha256": "29d33668947c19a1c8f0685b831caf38343ea1116e5e5a876c4edcf8732cf9b9",
+      "stored_sha256": "ca8359c20afbde3fd4e78339ea66fd9894b71b4d5a39263eb51239de116b98a2"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/urban-auxiliary-point.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/urban-auxiliary-point.stdout.txt.gz",
+      "source_sha256": "eb83264b9f7e0d75878d356f15b49716f898bf9df815d89dd68bc55391428b23",
+      "stored_sha256": "cd57ea3411de5ab0f30d725caacf1e7b74f9df16ac9f215688484683a4d63491"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/xmlchange.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/xmlchange.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/xmlchange.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/xmlchange.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/year-boundary-audit.stderr.txt",
+      "path": "ctsm-qia-run-r/workspace/year-boundary-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-r/workspace/year-boundary-audit.stdout.txt",
+      "path": "ctsm-qia-run-r/workspace/year-boundary-audit.stdout.txt.gz",
+      "source_sha256": "6b64581ff281025938266146b111035b27a6b51e37d6a5dad3c70ef175d40487",
+      "stored_sha256": "bd197d2a2bcd774f2385ab279570dbf2d69fc7f7e016809b6c1f9860d9a64599"
+    },
+    {
+      "source": "summary.json",
+      "path": "summary.json.gz",
+      "source_sha256": "07ffbc0f01c3ba0a9dc44e416cb7b89856cd591f230efd0f756833631afdcfad",
+      "stored_sha256": "a14e25e20e2f53d7dd4d1a26a3283910e2c0899a25f410e679d69e0bacd02742"
+    },
+    {
+      "source": "control/release_ctsm_qia_seed_c_dependency.py",
+      "path": "control/release_ctsm_qia_seed_c_dependency.py.gz",
+      "source_sha256": "d3bcedfdb3181f3ba9e82fe274441a370703f26f103699e2742c827bfd72d7fc",
+      "stored_sha256": "40889fdc12ab9f077972ba3e07f9d7cab2a597235eef68100bbdcd78f82f8c72"
+    },
+    {
+      "source": "control/redispatch_ctsm_qia_seed_c.py",
+      "path": "control/redispatch_ctsm_qia_seed_c.py.gz",
+      "source_sha256": "95b03ee40ba7952010d2b539392644f058e25d5a670f85625f720f907d512fb1",
+      "stored_sha256": "7131e930d7a91441e42aa61a286c4970437f18a0a6d48f9ee3e1e8b6d9da1bb3"
+    },
+    {
+      "source": "control/archive_ctsm_qia_seed_r_a.py",
+      "path": "control/archive_ctsm_qia_seed_r_a.py.gz",
+      "source_sha256": "0485eb6caecc63e5261553c7d80b3b5f435085d50a0e5b21c673fc46f4bd2885",
+      "stored_sha256": "17bcfef71fbf84f0b6d2928941be2cb4609871ff12346df2cc67b166292f317e"
+    }
+  ]
+}

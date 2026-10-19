@@ -4,6 +4,14 @@
 xuanze。本机仅编辑、哈希/XML/AST 检查及归档。此项解决一个实际失败步，不代表
 完整气候年、spinup、FLUXNET 或官方科学验收完成。
 
+12:14UTC后续：[同源510原冷前缀](v1-results/qia-fresh-phase-numpy-prefix-b/manifest.json)
+已在EHPC PBS225实际推进至192/17520、source_unchanged，跨过原182失败点。
+原请求和336观察点保留，状态仍running；最大累计水/热/C/N残差分别
+5.87086e-13kg/m²、0.001263890386J/m²、9.69713e-12gC/m²、5.26365e-13gN/m²，
+原账目界不变，未续旧509C失败年。原较早506F严格首48随后实际0、原始同精度
+最大差3.63798e-12，见[首日记录](CLM_QIA_FIRST_DAY.md)，不抵充当前510完整
+回归或新源全年精度。以下为本次修订及11:29调度快照。
+
 ## 原失败与原因
 
 [原509C NumPy冷启动](v1-results/qia-physical-numpy-week-c/manifest.json)在
