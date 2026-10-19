@@ -1,0 +1,84 @@
+{
+  "scope": "Exact original3798 CUDA failure replay,original kernel raw741 and exact rejected surface inputs captured without arithmetic/source changes. Fifth MOST surface call phase101 reports residual.485879W against original100/.005 budget; original failure rethrown,no accepted step.",
+  "archive_sha256": "9ab77c927d065569b8722ca69d2b3690ea975da43b43968d317958a243f545ad",
+  "artifacts": [
+    {
+      "source": "SOURCE_SHA256.json",
+      "path": "SOURCE_SHA256.json.gz",
+      "source_sha256": "1c68b4f6f18c6b89610a1a53a4f2ba864dc0beb39e6c7f7dc4dc36a5a111f74a",
+      "stored_sha256": "d212c62d965006ccfbc60f4757635f7e84472057ef1de0a53b8ad4361235d9b1"
+    },
+    {
+      "source": "binding.json",
+      "path": "binding.json.gz",
+      "source_sha256": "a29161a7452ebfc78491fe6891eb9be2144927e1819419397277fb003a8803de",
+      "stored_sha256": "8106789e7adfaf3914376c3babeadc67f937cb1703255df34a17314e344e7b3b"
+    },
+    {
+      "source": "capture-launch.json",
+      "path": "capture-launch.json.gz",
+      "source_sha256": "1b375b6e03bebb1324742890da36997a24dccef62865f9cb5b1017c53529b3fa",
+      "stored_sha256": "0a931e9be112bc09abfcdefc3d258835f5cd06fdbdf89eb3ba98ff88b8ea162d"
+    },
+    {
+      "source": "capture.log",
+      "path": "capture.log.gz",
+      "source_sha256": "db0359ce60d7371371dd92ab1ad70c05640cdd7188d52a7b0a7b5aee50288ebf",
+      "stored_sha256": "1c1cc5b3eae2e3bce02f5fe50e383fd74e2238976d493ffda11b54223d945b34"
+    },
+    {
+      "source": "input.npz",
+      "path": "input.npz",
+      "source_sha256": "8aa2bdb972aec9be9a371ee83665b097dd77e0d3ba602e6f9a59ee5b29ce63db",
+      "stored_sha256": "8aa2bdb972aec9be9a371ee83665b097dd77e0d3ba602e6f9a59ee5b29ce63db"
+    },
+    {
+      "source": "surface-capture-a/failed-surface.npz",
+      "path": "surface-capture-a/failed-surface.npz",
+      "source_sha256": "ed0f06634389ef2ff5fdcddd82f96cfdc4773fa7735a609193750c499e0a0a91",
+      "stored_sha256": "ed0f06634389ef2ff5fdcddd82f96cfdc4773fa7735a609193750c499e0a0a91"
+    },
+    {
+      "source": "surface-capture-a/leaf-parameters.json",
+      "path": "surface-capture-a/leaf-parameters.json.gz",
+      "source_sha256": "199613c2dd7d397628a40cc28249d3c471c9d4f326f58e80b9e98f8efcf55dda",
+      "stored_sha256": "f1c2ff3f240a43f2cd8c60efec36f160f0f8045337106bf432a296308c3bc717"
+    },
+    {
+      "source": "surface-capture-a/receipt.json",
+      "path": "surface-capture-a/receipt.json.gz",
+      "source_sha256": "8cffe72f669dcdc72ab20e122d70a3e9473f3181035af576cb96cfd422425d33",
+      "stored_sha256": "8869908763c2a0edf02e4bb371688084e258d4820d3e81342d278511b9d63e22"
+    },
+    {
+      "source": "surface-capture-a/traceback.txt",
+      "path": "surface-capture-a/traceback.txt.gz",
+      "source_sha256": "64e6c0eda676c9425e98140030c054ba92e4f4a896d435f4101b0dc5293bee68",
+      "stored_sha256": "5629411baff9598b9e9b9b3ac0995f79319acac5a68299b80cfffa8f30d55a60"
+    },
+    {
+      "source": "control/export_qia_cuda_3798_a.py",
+      "path": "control/export_qia_cuda_3798_a.py.gz",
+      "source_sha256": "efe1f7240a2dbe3515759a9a1ec8a93e335e40ce394699ca77d7839a7c0cf933",
+      "stored_sha256": "6d26bb4ba511cd0c79dd4ef040d80aaa4d4d8921614b87704d71c1b86b23708a"
+    },
+    {
+      "source": "control/capture_qia_cuda_3798_a.py",
+      "path": "control/capture_qia_cuda_3798_a.py.gz",
+      "source_sha256": "e575d1b306a2eb1f579d8b1d4ba1f1c4af45fe01d1a8f63d1992b51e8438d02d",
+      "stored_sha256": "c67dc5e755aa149a88985e7509510d531339702175f758a953dd8c3f33c614e9"
+    },
+    {
+      "source": "control/launch_qia3798_capture_a.py",
+      "path": "control/launch_qia3798_capture_a.py.gz",
+      "source_sha256": "9eb29e4a1e14bc7927b3236734d5c3618ddf1bd9949cda2ed56b3882ef43e6b0",
+      "stored_sha256": "1d68468fb9102dfb62b458647a35c149710333a349c12089d86703ca164ea60f"
+    },
+    {
+      "source": "control/export_qia3798_capture_a.py",
+      "path": "control/export_qia3798_capture_a.py.gz",
+      "source_sha256": "dee735e597faa79857360d4383614bb0bf961e5da60f3cf30c0e296bb867f7c5",
+      "stored_sha256": "9c7e3f901a7bcf819c659de3164efadb2d1bb51969044639651914cbada64ebb"
+    }
+  ]
+}

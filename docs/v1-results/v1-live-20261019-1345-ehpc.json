@@ -1,0 +1,145 @@
+{
+  "scope": "Original read-only EHPC persisted JSON/process metadata. xuanze separately unverified during slow SSH;no inferred completion or failure of its existing workers. No local scientific computation.",
+  "ehpc": {
+    "utc": "2026-10-19T13:45:31.834953+00:00",
+    "host": "manager",
+    "scope": "Read-only process and persisted JSON/hash metadata only;no new model/array computation and no live source/control/state changes.",
+    "records": {
+      "qia-fresh-phase-numpy-year-b/trajectory/report.json": {
+        "scope": "Fresh original cold water/heat/C/N/LAI seed with explicit stem geometry. Initial SAI from geometric interpolation of official same-PFT January monthly climatology, not a station measurement; CN_NONCROP evolves thereafter. Retain locked BIF-based11m/aerodynamic and meteorological-height assumptions; lower crown height uses official same-PFT relative crown fraction. Not spun up, calibrated, or accepted against observations.",
+        "status": "running",
+        "seconds": 7419.176847726107,
+        "source_unchanged": true,
+        "steps_completed": 672,
+        "steps_requested": 17520,
+        "model_npz": "trace-0000672.npz",
+        "model_npz_sha256": "80724f32cd094897502ddf589be8fb0be929d758ea2ecf7ac6bcd9e1382ed0f7",
+        "checkpoint_file": "state-0000672.pkl",
+        "checkpoint_sha256": "9198d1c97ff7d690d47d376c3bfc4a42964758bcee14ba568b49d8a40849b836",
+        "maximum_cumulative_residual_m_h_c_n": [
+          5.870859354217828e-13,
+          0.008344429195858538,
+          3.4580338592604676e-11,
+          9.929522482021724e-13
+        ],
+        "cumulative_numerical_bounds_m_h_c_n": [
+          5.402860404388434e-9,
+          0.018161483703030848,
+          5.763692906283814e-7,
+          2.441606377418114e-8
+        ],
+        "sha256": "97c51d4642d1eda3ea74fd2b4c9485f6eb716e1d62ba82983c465d059440b669"
+      },
+      "ctsm-qia-run-v/configuration.json": {
+        "scope": "Official pinned single-column Qia SP first48 diagnostic with originalR hydrothermal/canopy inputs,restart every timestep and added existing official DAYL history output only. Exact shared raw first48 replay against originalR mandatory; no year or scientific acceptance. Common real meteorology/deposition/site crown,coarse soil and official fresh background defaults; predeclared Python hydrothermal cold fields transferred through standard init_interp, not an all-conditions match. Actual model/output and feed-through require original return codes and subsequent audit; no science/annual acceptance.",
+        "seconds": 185.1436350030126,
+        "pbs_job": "253.manager",
+        "node": "compute002",
+        "failure": null,
+        "official_model_returncode": 233,
+        "upstream_original_bytes_unchanged": true,
+        "sha256": "48592b17a0f8e6cf7bc9aa8f5547269ba0e9422de9047f861806bbf52d6d530d",
+        "stages": [
+          {
+            "stage": "relocate",
+            "returncode": 0,
+            "seconds": 0.3467377140186727
+          },
+          {
+            "stage": "topo-time-coordinate",
+            "returncode": 0,
+            "seconds": 0.15844438294880092
+          },
+          {
+            "stage": "urban-auxiliary-point",
+            "returncode": 0,
+            "seconds": 0.15594832808710635
+          },
+          {
+            "stage": "common-radiation-input",
+            "returncode": 0,
+            "seconds": 0.5668160530040041
+          },
+          {
+            "stage": "copyall-input",
+            "returncode": 0,
+            "seconds": 1.5084405400557443
+          },
+          {
+            "stage": "partial-common-seed",
+            "returncode": 0,
+            "seconds": 2.9315200890414417
+          },
+          {
+            "stage": "initial-canopy-seed",
+            "returncode": 0,
+            "seconds": 0.1365038949297741
+          },
+          {
+            "stage": "machine-query",
+            "returncode": 0,
+            "seconds": 0.19810436200350523
+          },
+          {
+            "stage": "create-case",
+            "returncode": 0,
+            "seconds": 0.47643510706257075
+          },
+          {
+            "stage": "xmlchange",
+            "returncode": 0,
+            "seconds": 0.2584428440313786
+          },
+          {
+            "stage": "point-xmlchange",
+            "returncode": 0,
+            "seconds": 0.2632880510063842
+          },
+          {
+            "stage": "case-setup",
+            "returncode": 0,
+            "seconds": 0.3350549320457503
+          },
+          {
+            "stage": "netcdf-link-flags",
+            "returncode": 0,
+            "seconds": 0.0022628679871559143
+          },
+          {
+            "stage": "preview-namelists",
+            "returncode": 0,
+            "seconds": 0.7117693650070578
+          },
+          {
+            "stage": "case-build",
+            "returncode": 0,
+            "seconds": 162.66832624701783
+          },
+          {
+            "stage": "executable-linkage",
+            "returncode": 0,
+            "seconds": 0.006096631987020373
+          },
+          {
+            "stage": "official-model",
+            "returncode": 233,
+            "seconds": 0.2043589879758656
+          }
+        ]
+      },
+      "ctsm-qia-run-v/physiology-restarts.json": {
+        "exists": false
+      }
+    },
+    "process_snapshot": {
+      "command": [
+        "qstat",
+        "-u",
+        "zhangyq"
+      ],
+      "returncode": 0,
+      "stdout": "\nmanager: \n                                                            Req'd  Req'd   Elap\nJob ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time\n--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----\n235.manager     zhangyq  workq    clm-qia-fr  79939   1   1    2gb 48:00 R 01:18\n253.manager     zhangyq  workq    clm-qia-of  98636   1   1    2gb 00:30 R 00:03\n",
+      "stderr": ""
+    }
+  }
+}

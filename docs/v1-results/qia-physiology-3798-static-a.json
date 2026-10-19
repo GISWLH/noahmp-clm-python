@@ -1,0 +1,365 @@
+{
+  "scope": "Local metadata/hash/AST audit only. No model,pytest,NumPy/scientific arrays/calibration executed locally;all numerical work EHPC PBS,GPU xuanze. Original/currentfailed outputs and everycandidate/missing diagnostic retained. No production runtime changes;current510 full1250/GPU remainder and year/spinup/science incomplete.",
+  "groups": {
+    "qia-fresh-phase-numpy-week-a": 28,
+    "qia-fresh-phase-numpy-year-launch-b": 14,
+    "ctsm-qia-physiology-s-b": 173,
+    "k78-current-b-audit-a": 35,
+    "qia-physical-cuda-year-terminal-d": 17,
+    "qia-cuda-3798-capture-a": 13,
+    "qia3798-numpy-reference-a": 25,
+    "qia-numpy-cuda-week-a": 15,
+    "qia-trait-firstday-a": 56,
+    "qia3798-local-candidates-f": 49,
+    "qia3798-jax-launch-f": 9
+  },
+  "artifacts": 434,
+  "python_artifacts_ast_checked": 72,
+  "original_netcdf_files": [
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.official-interpolated-cold.nc",
+      "sha256": "a46209291414079d0af3b2b643be4b74edb97d0cb2d7c82140c8059e2468b164",
+      "bytes": 114524
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.partial-hydrothermal-init.nc",
+      "sha256": "c9ad9fa10123a18ccb541819fc83563568c9f47e9211163dd88e5aa2604bbd04",
+      "bytes": 40924
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/inputdata/clm5_params.c171117.nc",
+      "sha256": "f255cceecfcdffbd44bc2a4e1fe6777193751baff30688389dd04c56029cbf0f",
+      "bytes": 210400
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/inputdata/surfdata.CN-Qia.engineering.nc",
+      "sha256": "2c7e36fcff1b3a1c20f614abc651dd42979791357e0f22bc23235521083e0a3d",
+      "bytes": 24844
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.h0.2002-12-31-57600.nc",
+      "sha256": "36cd2ec9d54d4e88864d740d3c507f3e2f9bcb22b43e19c78db2886779082aec",
+      "bytes": 127504
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-59400.nc",
+      "sha256": "ec2684b40c4114d1b9c0d65bab125716733e1f459ed1a883d758d0f06c89cfc9",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-61200.nc",
+      "sha256": "7b9afcec449dff48aed941c375aec888ac19e85174d76618178000cab42793aa",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-63000.nc",
+      "sha256": "f22c20842f5f33b57cf0e165ec01e9c644a802c39f016c1743dc773f2d7b001d",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-64800.nc",
+      "sha256": "17b0f027dd2bff79c4b5a3b51827d5c98616df603e1d296d3a9ff0eb03cc274a",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-66600.nc",
+      "sha256": "1a6921e330d136bcbfd4526e51739c592d5c13b33c44174b5d8fbac35f2030a8",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-68400.nc",
+      "sha256": "0ab8404dce81f9201406f3302ef8720c65da00297db7d1a276685df29df57f9e",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-70200.nc",
+      "sha256": "1424b950354e727395055f9e7a5459d3fe5ab5457df84c8688b62e0f063511ec",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-72000.nc",
+      "sha256": "3f0900787872d4bdd15e00074cdbc46109d6f2e5f8b80d32942a1f37e893ea82",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-73800.nc",
+      "sha256": "a549c4678bbaf2bd9c99d95b928ad679906b84ae9d00887269f92626daed4144",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-75600.nc",
+      "sha256": "d6c8c28198494e29d0182bd197bf21542af01858f57ce3b6ce276ab0e7cd1b36",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-77400.nc",
+      "sha256": "e749fb6386b5b0ee10a26b8644db3898f6377f7fae8628857a42f49a4a8c08ab",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-79200.nc",
+      "sha256": "7e1bd78a97ac8b09a658921f0fe9591706e8bdf950be5d50384dca21394c0390",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-81000.nc",
+      "sha256": "0b9058650faeb76546ab716c07627f6b62883b53b1d1d21af42d4f63e45cda73",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-82800.nc",
+      "sha256": "68970b8aedaddddeeffb3fc18a42c5999f539c4a9a6f1f82eac33130082d05c1",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-84600.nc",
+      "sha256": "8964196a762cb1a5f1f4dda1001a5ab5502a3535a7d11512d5f444d368fc99c4",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-00000.nc",
+      "sha256": "759f0b6b2a2275e14726de66e7f8266959dbff91f91555eeaa860ac861b67ec3",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-01800.nc",
+      "sha256": "ddd1e6d6d2ef485d4b83234043a2723a6de89f288a7a0840c17db1b7c0240253",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-03600.nc",
+      "sha256": "21d4da26179e003216886cce0574fb45357bb15e6034cae17d9de549435583e9",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-05400.nc",
+      "sha256": "a7dc962d56385b75cedba00209c5649ed509edfea0bda9806a85e34818c2f4e4",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-07200.nc",
+      "sha256": "9fdc03e505a89c074dd472b10cf7eb88cea8ec2b23063b020f9905e3f1bb61e1",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-09000.nc",
+      "sha256": "7c543702540c34cad100e636a98eba98454d5554093293874a3cc6d286a89885",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-10800.nc",
+      "sha256": "270c196647bad1c48dc410297d7c0cc990ee3c7589319ebdf69571b879040425",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-12600.nc",
+      "sha256": "e56914117347805ee30e89b7f5563ba86e031950027cb2f50ec0c64a2b273073",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-14400.nc",
+      "sha256": "1ae85dae72be0d0fbc73091d21340ccbe38f5f752d4f9a5b937d274edbd07675",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-16200.nc",
+      "sha256": "f1b196e21782d17b026a6d0bf68a253061a7a3ed36c3a2fb25f420d7002b6c50",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-18000.nc",
+      "sha256": "3516276fcf843f59cc70456986c6acbe9c45c950c2b0d1eeb482941c35b4cfbb",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-19800.nc",
+      "sha256": "e00b2e4c96d1f46f73040ce5d2089026e85cb55d983687f68fabf5d0e3e373ae",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-21600.nc",
+      "sha256": "7eca2a3b2b0295db6e1080a1f35f4f2a12e438d6f7599359cacec2eeb847a6a0",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-23400.nc",
+      "sha256": "521bb1a0915542d637c2344bedfff81ef14f2cb70d4a87bf6a9ab9cf1c963c97",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-25200.nc",
+      "sha256": "a21d683cd15b900d67cfd4aa6d55ce9bc5f825b0e387fcd4cb224569e504a071",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-27000.nc",
+      "sha256": "ab82da5356995e048bebea0d2c507a9751c852c77da5f7556cdad43b53443222",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-28800.nc",
+      "sha256": "720444010e20e177977416173716ec6aeb16ebf50839aa64decf841fdc701930",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-30600.nc",
+      "sha256": "cf809c30e5672fff0d454f3176d5a50a0d1f03ee20d16c341fda215d167b50bd",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-32400.nc",
+      "sha256": "a84055795e4c290b90c76d25a3277671e97022aebf274542505e84f199ae26e1",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-34200.nc",
+      "sha256": "e195c52190af9168ead8fe5c01f9729fbdbb90b8a9eadf0b17d186569221a4cc",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-36000.nc",
+      "sha256": "7ff608fa8c54e06a59b120dd8e3d99da16509612f2d7198776dd20c7cc64802a",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-37800.nc",
+      "sha256": "9867ae7bc892b95676b1bd36ec43c6fe52473b1840c0c38d36e22d6bb3826cf9",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-39600.nc",
+      "sha256": "11b9bd5b5c11bff50cdf4a5a8720e1027693c94df672780a1d5331912a3438f4",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-41400.nc",
+      "sha256": "ce43df1f900bccf70ed4a1be1d5bb34b5845554d312b330089ee523861af071c",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-43200.nc",
+      "sha256": "c1f92227af6bef0076be4084744576a4bb9bbe36f4c78969c9277ff2b36af2ba",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-45000.nc",
+      "sha256": "b972acb681c839044f27bb07ba143ab9a5a2fcc2db038d114ef74c8a2a10e2de",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-46800.nc",
+      "sha256": "09668612d88ac77b6d2d17bbbec2395dba8a8ca79c935b35a47053f33eb4f65d",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-48600.nc",
+      "sha256": "f8c294a217b3c9ff72d5cbd6530a11fd2b4e9aeac9b4a61e21ea5cc76f36b4d0",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-50400.nc",
+      "sha256": "3734c31158defd52024779f334b5ead9b448aaaa2e071b9569e06840b1ef2947",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-52200.nc",
+      "sha256": "37750f8e67a5bfa33e982b9ebb8975bff86d161ec865ba39b5e503510ffa12b1",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-54000.nc",
+      "sha256": "b244a77f5ceb079fe2d4f1b85e34c5d370a96cc04f45cb10fce848e3ac34032d",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-55800.nc",
+      "sha256": "2e282654a81b116c25cc2b9285752225f2e308654757b6d2ecfb010f6e91f5e4",
+      "bytes": 115128
+    },
+    {
+      "group": "ctsm-qia-physiology-s-b",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-57600.nc",
+      "sha256": "e1b4a8373e652d53777b40de5e8ef0cdb0d44eb8cb663ec8681144f4da2f0f94",
+      "bytes": 115128
+    }
+  ],
+  "runtime_files_matching_frozen510": 497,
+  "source_manifest_sha256": "23dbd1e41080af5f2742e574aca7899163061bab68ea325b001a984473c23714",
+  "k78_sameprecision_failed_fields": [
+    {
+      "field": "surface/thermal_layer_residual",
+      "dtype_cuda": "float32",
+      "dtype_jax": "float32",
+      "maximum_absolute": 1.52587890625e-05,
+      "bitwise_equal": false,
+      "passed": false,
+      "before_input_only": false,
+      "index": [
+        3,
+        0
+      ],
+      "cuda": -0.1389007568359375,
+      "jax": -0.138916015625
+    }
+  ],
+  "k78_raw_model_and_next_fields": 329,
+  "week_engineering_bias_comparisons": 120,
+  "own336_state_ledgers_trace_exact": true,
+  "official_S_shared_raw_fields": 27,
+  "original_S_restarts": 48,
+  "current_full_canonical_nodes": 1250,
+  "JAX_F_pending_at_launch_snapshot": true,
+  "audit_control_sha256": "644b77e6962f90b076b8a504db625ad201e1cebfe1022a57987e59d089cd0197"
+}

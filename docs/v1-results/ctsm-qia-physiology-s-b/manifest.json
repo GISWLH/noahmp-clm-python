@@ -1,0 +1,1044 @@
+{
+  "scope": "Official S48 model/PBS238actual0,27 raw fields exact R replay and48 raw restartNetCDF plus one raw history. Original stress236 masked-reader failure,correct237 and T241 memory/availability0; all missing/nonfinite preserved. Original archive writer A wrong history count and partialarchive retained. No parameter/source or scientific acceptance.",
+  "archive_sha256": "d2d173926e0e198f3278cccd43486c516027f32a7553da941d3acdce34f23343",
+  "artifacts": [
+    {
+      "source": "ctsm-qia-run-s/audit_ctsm_qia_photo_restart_s.py",
+      "path": "ctsm-qia-run-s/audit_ctsm_qia_photo_restart_s.py.gz",
+      "source_sha256": "c0b718f282ec1d61d33fcc07df8f6eb73acb22ec099367b21403ef9511a27d50",
+      "stored_sha256": "b6b843007949165f3735d1bc4a419164bdfa48cb1920dbed41226bab1740ac27"
+    },
+    {
+      "source": "ctsm-qia-run-s/canopy-seed-audit.json",
+      "path": "ctsm-qia-run-s/canopy-seed-audit.json.gz",
+      "source_sha256": "ed16cf385b5eddc75220282040dfe0d2d0b170c4f830837e5735ae9cb489fa70",
+      "stored_sha256": "1d19ee28262d94a4f79f1459c1a6ea3c65f4a8438ba220423a8fceb4352ca11b"
+    },
+    {
+      "source": "ctsm-qia-run-s/canopy-seed.json",
+      "path": "ctsm-qia-run-s/canopy-seed.json.gz",
+      "source_sha256": "2b47432bd64601eb7fb2641744867412a95c1bf8763a47095a45d1fcf732da43",
+      "stored_sha256": "c398e34cc0b4c9b0039778d642cf3aedcfdb556f9aa05ce240d978a7eff909e1"
+    },
+    {
+      "source": "ctsm-qia-run-s/clm-qia-official-s.o238",
+      "path": "ctsm-qia-run-s/clm-qia-official-s.o238",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-run-s/configuration.json",
+      "path": "ctsm-qia-run-s/configuration.json.gz",
+      "source_sha256": "56ead276662b16d0ae6a0b2fc14f7b52279a7fdb66c7e087c53c6727865e190f",
+      "stored_sha256": "357ead903708d318b92195ba3ad749da70917c1dc826063614e04487007389fc"
+    },
+    {
+      "source": "ctsm-qia-run-s/configuration.log",
+      "path": "ctsm-qia-run-s/configuration.log.gz",
+      "source_sha256": "0d1d5bb16e6481e1c724d6f59d77e8bb1c69064882f4c9fdda3d99ff107224c9",
+      "stored_sha256": "59d6ae472fc3e701d4ff6ae27c74f2d3f1bba5316b9d7968753178dfb5fb15c6"
+    },
+    {
+      "source": "ctsm-qia-run-s/ctsm-qia-run-s-protocol.json",
+      "path": "ctsm-qia-run-s/ctsm-qia-run-s-protocol.json.gz",
+      "source_sha256": "7970deee863db8a14c64394af7d066e011248f9fa911aad2cc91e111f40e3dce",
+      "stored_sha256": "6074ecac909d61aea9c9ea30fc3319de331c7bdd52d921ee21a03bb102e3370a"
+    },
+    {
+      "source": "ctsm-qia-run-s/ctsm_qia_run_s.pbs",
+      "path": "ctsm-qia-run-s/ctsm_qia_run_s.pbs.gz",
+      "source_sha256": "4a5ccb15ec944fc68fe908938c4b8c6d155b40fcef8c0574b2e0255b6f0a5070",
+      "stored_sha256": "2fb7eee1e4e71ffd5739c1201e04fe8ef273dd3e44fda41658e30ca1a0027b67"
+    },
+    {
+      "source": "ctsm-qia-run-s/derive_ctsm_qia_common_radiation_a.py",
+      "path": "ctsm-qia-run-s/derive_ctsm_qia_common_radiation_a.py.gz",
+      "source_sha256": "ecd9afd1f227fdcf9606e1a0f66f497028f9e5910b2d0944862c9d9a7e3e48b4",
+      "stored_sha256": "432feb2b189c14fec93f0d97a00fdd8df46c92224fc53f458c37849ec39bdefc"
+    },
+    {
+      "source": "ctsm-qia-run-s/derive_ctsm_qia_copyall_a.py",
+      "path": "ctsm-qia-run-s/derive_ctsm_qia_copyall_a.py.gz",
+      "source_sha256": "5e072b385096eef0fd13e187c1944bb288ea2e9ca3d4d478a657e586da95abb6",
+      "stored_sha256": "bc0092f28b6ebb5bb7109175a3ea046d22e3077e69d9a801a4ad7ab4897a4c42"
+    },
+    {
+      "source": "ctsm-qia-run-s/make_ctsm_qia_partial_seed_a.py",
+      "path": "ctsm-qia-run-s/make_ctsm_qia_partial_seed_a.py.gz",
+      "source_sha256": "50f2f5bea04a56cafb851adcbe8269a6ce9137f51e8b941d4e0218663f31fd25",
+      "stored_sha256": "72c516d4cfeb5e9584b083a3dd3bc7077b53967dc7545432b719f2bee60bae4e"
+    },
+    {
+      "source": "ctsm-qia-run-s/make_ctsm_urbantv_point_b.py",
+      "path": "ctsm-qia-run-s/make_ctsm_urbantv_point_b.py.gz",
+      "source_sha256": "42a56eb60c5fefec4543e5e245e3d8f4024b38c82dd6e3cbe3b328cd84be6777",
+      "stored_sha256": "168e8f254859626c5ed70fd29b7a953f5fe7b68b254570496fd726c73a804967"
+    },
+    {
+      "source": "ctsm-qia-run-s/node.txt",
+      "path": "ctsm-qia-run-s/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-run-s/official-first48-fields.npz",
+      "path": "ctsm-qia-run-s/official-first48-fields.npz",
+      "source_sha256": "a45065ec67d9a3edb634da136572c122285c000997a516ff1b866b50ff849cd9",
+      "stored_sha256": "a45065ec67d9a3edb634da136572c122285c000997a516ff1b866b50ff849cd9"
+    },
+    {
+      "source": "ctsm-qia-run-s/partial-seed-audit.json",
+      "path": "ctsm-qia-run-s/partial-seed-audit.json.gz",
+      "source_sha256": "f55695d57c1722842ee905ef14b2ae371256575ef27003dbca6967e1f2ba5c66",
+      "stored_sha256": "f40903bf895d4bc64eee1793fd69e3eb0e96fb3efa1db4ca58cb0fcf838d8bdc"
+    },
+    {
+      "source": "ctsm-qia-run-s/partial-seed.json",
+      "path": "ctsm-qia-run-s/partial-seed.json.gz",
+      "source_sha256": "bbeea8717ada6523c6fd9c27c90ebe38b7e2af2255ede608f616bd4515dd7a73",
+      "stored_sha256": "6461eed1d8dc6c6e7ab186053c6d16036fdb08ddf34279d505b968afd8ccc2e9"
+    },
+    {
+      "source": "ctsm-qia-run-s/pbs-exit.txt",
+      "path": "ctsm-qia-run-s/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "ctsm-qia-run-s/physiology-restarts.json",
+      "path": "ctsm-qia-run-s/physiology-restarts.json.gz",
+      "source_sha256": "a296c1077ba121273e51489f22f5629a7a46f919601fbff0d644a663fc3cf33b",
+      "stored_sha256": "8e69162dcbbecee8f3fb4011f0a445f5fa478422b3ff052a5d297d488ccb5a80"
+    },
+    {
+      "source": "ctsm-qia-run-s/prepare_ctsm_qia_run_s.py",
+      "path": "ctsm-qia-run-s/prepare_ctsm_qia_run_s.py.gz",
+      "source_sha256": "4922a6aa8215b97d2120e7c2c85caae4a74b7e38eff370a050632a975e0eb27a",
+      "stored_sha256": "ccfbbfb22cdfa5ebcecdbd0486b9ddfe38a95a865dd10c98a0c45b20fa6b744f"
+    },
+    {
+      "source": "ctsm-qia-run-s/restore_ctsm_topo_time_a.py",
+      "path": "ctsm-qia-run-s/restore_ctsm_topo_time_a.py.gz",
+      "source_sha256": "b6ee583bf5f20dbad1d9ec3ce563a071efb8ab1eea1f77db6cd2ba705fd8059a",
+      "stored_sha256": "d80ba8e7cc4c5ec5a5a77388201bc63fe89402d1af51a5266d14fb8dbf18e93c"
+    },
+    {
+      "source": "ctsm-qia-run-s/run_ctsm_qia_s.py",
+      "path": "ctsm-qia-run-s/run_ctsm_qia_s.py.gz",
+      "source_sha256": "5d482ca13e0f6d334333655746173764d61d778125fae3f994e60afaf6b18382",
+      "stored_sha256": "a9d01ce7925cc227606c3594116fe441d2a75bf7f71890f794f36654e8510c73"
+    },
+    {
+      "source": "ctsm-qia-run-s/set_ctsm_qia_canopy_seed_a.py",
+      "path": "ctsm-qia-run-s/set_ctsm_qia_canopy_seed_a.py.gz",
+      "source_sha256": "1e4ed49ad20af2aed0059f6cf9bbe213c3a13a60a6985fbd2fd9523575981953",
+      "stored_sha256": "3e7dbaecdf32d37b7a5d5322541716ff181bf07e61690dbd46099fe6270000da"
+    },
+    {
+      "source": "ctsm-qia-run-s/urbantv-selection.json",
+      "path": "ctsm-qia-run-s/urbantv-selection.json.gz",
+      "source_sha256": "2f06147f8a9b6b07e0f3e261bf7170adea3c738cfa33c880c3b1fcf69bf50641",
+      "stored_sha256": "0efd175f451b308dd5bb87fe157f1851d3ca09e324c0bb131bd1963e513585ad"
+    },
+    {
+      "source": "ctsm-qia-stress-a/clm-qia-stress-a.o236",
+      "path": "ctsm-qia-stress-a/clm-qia-stress-a.o236",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-stress-a/ctsm_qia_stress_a.pbs",
+      "path": "ctsm-qia-stress-a/ctsm_qia_stress_a.pbs.gz",
+      "source_sha256": "c2ba04692f87db5ceaeac5640105e2797b85fb872d1edf0d7653fbc060b5c46b",
+      "stored_sha256": "51fd92e69091cfb149eb3f2a7103a89ecd8c4245a425ef14c860f4753bf24ff7"
+    },
+    {
+      "source": "ctsm-qia-stress-a/diagnosis.log",
+      "path": "ctsm-qia-stress-a/diagnosis.log.gz",
+      "source_sha256": "d729aac85e073966fe9b97136e499f6f55e5e890db7f62d466c7517cc9c01605",
+      "stored_sha256": "91b85a8bca0b86923b011db86b35d4452786099b6781a66cd18a3f3372fcd519"
+    },
+    {
+      "source": "ctsm-qia-stress-a/diagnosis.stderr.txt",
+      "path": "ctsm-qia-stress-a/diagnosis.stderr.txt.gz",
+      "source_sha256": "69547e987f9e577668e70a5ae2a6c4c2cecdc821a50767f4ad5c1a41983b56d2",
+      "stored_sha256": "fedc6c2afc379ac4b238c65e5e33458d392b1098ca43bdd3cc6f0685dd5fc51a"
+    },
+    {
+      "source": "ctsm-qia-stress-a/diagnosis.stdout.txt",
+      "path": "ctsm-qia-stress-a/diagnosis.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-a/inspect_ctsm_qia_stress_a.py",
+      "path": "ctsm-qia-stress-a/inspect_ctsm_qia_stress_a.py.gz",
+      "source_sha256": "7913ee70757ed55c928eb278bdf38b16079cfba7ecb5a8868c955bfbbcffe48b",
+      "stored_sha256": "05c1ef0720e5210db44b79cd8eb2e8e1918e58bf05a564f7ee999902853bf348"
+    },
+    {
+      "source": "ctsm-qia-stress-a/node.txt",
+      "path": "ctsm-qia-stress-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-stress-a/pbs-exit.txt",
+      "path": "ctsm-qia-stress-a/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "ctsm-qia-stress-a/prepare_ctsm_qia_stress_a.py",
+      "path": "ctsm-qia-stress-a/prepare_ctsm_qia_stress_a.py.gz",
+      "source_sha256": "260860b326b3f129ac1b9eafa9934e0d7d995e50eaaee30a94f6137f2a0d3ea4",
+      "stored_sha256": "114cf85211bba5945a6aa03d7f5013f94b28e7f569f95654b6da36b931f5cbac"
+    },
+    {
+      "source": "ctsm-qia-stress-a/relocate.stderr.txt",
+      "path": "ctsm-qia-stress-a/relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-a/relocate.stdout.txt",
+      "path": "ctsm-qia-stress-a/relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-a/run_ctsm_qia_stress_a.py",
+      "path": "ctsm-qia-stress-a/run_ctsm_qia_stress_a.py.gz",
+      "source_sha256": "266f4c7a8e5028a26e1967f957a2f46806e08134d4d332ed1289eb6d382abb43",
+      "stored_sha256": "160ee1596ef1fbdadca5dfec2fa1c1acdd4d1bcb8a0e03bd77ed68fce96ffafb"
+    },
+    {
+      "source": "ctsm-qia-stress-b/clm-qia-stress-b.o237",
+      "path": "ctsm-qia-stress-b/clm-qia-stress-b.o237",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-stress-b/ctsm_qia_stress_b.pbs",
+      "path": "ctsm-qia-stress-b/ctsm_qia_stress_b.pbs.gz",
+      "source_sha256": "074446cb6af93b00c37b7380bd032d889529892e34a5e90217208394b930fa92",
+      "stored_sha256": "3261f99298f9ac10d9312673918e457e9423c659abc7eadd06608997e8eca41f"
+    },
+    {
+      "source": "ctsm-qia-stress-b/diagnosis.json",
+      "path": "ctsm-qia-stress-b/diagnosis.json.gz",
+      "source_sha256": "0d5d9e082354824620ab1d43683b39b6e60d69ce5d45f5bc9b528368b0c6bfa7",
+      "stored_sha256": "e7c18015c0a643c372308e6fba0a340c6d94e8064b2ddea7888ab8d028faecff"
+    },
+    {
+      "source": "ctsm-qia-stress-b/diagnosis.log",
+      "path": "ctsm-qia-stress-b/diagnosis.log.gz",
+      "source_sha256": "ad6369e8d78a51437faa6e2befde5d7a4d00f60f3f24938d1a7f721ef958fdd4",
+      "stored_sha256": "4d39595a72a52e2c71c1a18229e6f2d08683ce33e1ab26b0973a56be1d909a53"
+    },
+    {
+      "source": "ctsm-qia-stress-b/diagnosis.stderr.txt",
+      "path": "ctsm-qia-stress-b/diagnosis.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-b/diagnosis.stdout.txt",
+      "path": "ctsm-qia-stress-b/diagnosis.stdout.txt.gz",
+      "source_sha256": "94d430d6343777db32f5a24208c83fc52507ae89b1e64a4b941e0a3983d7a196",
+      "stored_sha256": "492a90c8faa01d6748b424f8f542578b1b09ab86493a3a216ba44198ea037009"
+    },
+    {
+      "source": "ctsm-qia-stress-b/inspect_ctsm_qia_stress_b.py",
+      "path": "ctsm-qia-stress-b/inspect_ctsm_qia_stress_b.py.gz",
+      "source_sha256": "9af91f3c5d2f5ac2307ce1bc05384d73251d37cc721f62386e7d834be1f27b98",
+      "stored_sha256": "5e6d24b4ee3807011469cc221a5ea1df05f727f5cb3fd55d1c5bfa858e982011"
+    },
+    {
+      "source": "ctsm-qia-stress-b/node.txt",
+      "path": "ctsm-qia-stress-b/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-stress-b/pbs-exit.txt",
+      "path": "ctsm-qia-stress-b/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "ctsm-qia-stress-b/prepare_ctsm_qia_stress_b.py",
+      "path": "ctsm-qia-stress-b/prepare_ctsm_qia_stress_b.py.gz",
+      "source_sha256": "c4ad40dc303248ecf3de85f1608ce67c16c475ddab5805dd07379fa4104677cc",
+      "stored_sha256": "21551be2574266242ed815b3913fc76ce27c8959b1cb0afe9777a0adb16085d8"
+    },
+    {
+      "source": "ctsm-qia-stress-b/receipt.json",
+      "path": "ctsm-qia-stress-b/receipt.json.gz",
+      "source_sha256": "d0758ac038cad1712fff7598e1db1b40379761de741b43da979a042e9c9b809a",
+      "stored_sha256": "caf767b2e9b96acea96540c5f470be1646d1adb1eedc033edd781d74e31f1d17"
+    },
+    {
+      "source": "ctsm-qia-stress-b/relocate.stderr.txt",
+      "path": "ctsm-qia-stress-b/relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-b/relocate.stdout.txt",
+      "path": "ctsm-qia-stress-b/relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-stress-b/run_ctsm_qia_stress_b.py",
+      "path": "ctsm-qia-stress-b/run_ctsm_qia_stress_b.py.gz",
+      "source_sha256": "af26fc6d968eb25a6ae836c866b6d137245034c4b32eed515b62e03fc0089727",
+      "stored_sha256": "f285809ba1bf9fb84a3651efa9e558526dfa870d12a8be8b6dd86358ce1f8930"
+    },
+    {
+      "source": "ctsm-qia-stress-b/source-inspection-c.json",
+      "path": "ctsm-qia-stress-b/source-inspection-c.json.gz",
+      "source_sha256": "d6938ac85137fbcff1bf1f590500cdb0c0acfa5d4732de95dfe38eb54914a468",
+      "stored_sha256": "0f16c72aa63380310de54e47a5aaad99a9cd08cfffffdfa9984ac4e1329b292b"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/clm-qia-physiology-t-a.o241",
+      "path": "ctsm-qia-physiology-t-a/clm-qia-physiology-t-a.o241",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/ctsm_qia_physiology_t_a.pbs",
+      "path": "ctsm-qia-physiology-t-a/ctsm_qia_physiology_t_a.pbs.gz",
+      "source_sha256": "52bd324d06ccdbfd96548c117a7e208edb67c31e8f873e7f39ff2a7f8f1d83f1",
+      "stored_sha256": "fd3354daecb1f4e47888b10b87cb4a4390e23df2ae463b15cece07b05b2a88dc"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/diagnosis.json",
+      "path": "ctsm-qia-physiology-t-a/diagnosis.json.gz",
+      "source_sha256": "ea0c646dbd6d9fed2f497b0a12ddee6ce27ba5ceee277d53d722d5a41d2a5f1d",
+      "stored_sha256": "1171d82e286004b8aca833f8d5246d33dec584062a9ac0d69e9e0d647d3b27b5"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/diagnosis.log",
+      "path": "ctsm-qia-physiology-t-a/diagnosis.log.gz",
+      "source_sha256": "59be9a7bc769dca7fc2da93417eee3c58adf3a48e6a44517e3083945a0c12fc1",
+      "stored_sha256": "9b3f3f25d9204ae1c7356bc7b3632b5c4b272cf502adf3a8efa9b0c1faeb6adb"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/diagnosis.stderr.txt",
+      "path": "ctsm-qia-physiology-t-a/diagnosis.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/diagnosis.stdout.txt",
+      "path": "ctsm-qia-physiology-t-a/diagnosis.stdout.txt.gz",
+      "source_sha256": "ca05e1f2f912a4507b9a04a8dece155621dd73220936953cfa577bf739556615",
+      "stored_sha256": "4441f6ab14316fa20e4345fbcc377d10a48cc0cbde5c5aef1c9f6fd33030133b"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/dispatch.json",
+      "path": "ctsm-qia-physiology-t-a/dispatch.json.gz",
+      "source_sha256": "805f333df345811db4b143be528217686c9adca056991c99b0d34f548d53346e",
+      "stored_sha256": "ec41d4bead14ccd932b9c06bb42dca56a93ad5fed06c6307fc2ab89cdd643af9"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/inspect_ctsm_qia_physiology_t_a.py",
+      "path": "ctsm-qia-physiology-t-a/inspect_ctsm_qia_physiology_t_a.py.gz",
+      "source_sha256": "63484054fc9d0cc40cadf76ba8de7b764b187c5137103d8b270be836e53859d4",
+      "stored_sha256": "65436a48312b8ae89c9289399f008d065360f1d36184487a7b9b006537209730"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/node.txt",
+      "path": "ctsm-qia-physiology-t-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/pbs-exit.txt",
+      "path": "ctsm-qia-physiology-t-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/receipt.json",
+      "path": "ctsm-qia-physiology-t-a/receipt.json.gz",
+      "source_sha256": "f867365b2a2cb6eb1ccffaa7b38baed0e1594c3824c8948434d7edf7d4e8001f",
+      "stored_sha256": "26fc5b02f9147820081c82f33fb91c500ff29960a660d98c0ded314f9f720920"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/relocate.stderr.txt",
+      "path": "ctsm-qia-physiology-t-a/relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/relocate.stdout.txt",
+      "path": "ctsm-qia-physiology-t-a/relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-physiology-t-a/run_ctsm_qia_physiology_t_a.py",
+      "path": "ctsm-qia-physiology-t-a/run_ctsm_qia_physiology_t_a.py.gz",
+      "source_sha256": "1e50d7620aff010dd06c109079e2a3f7e9fa27d398049b2740ae5e84255220b6",
+      "stored_sha256": "240bde8e751caf614d2d6f7170b7f0ac72121eca84d5409a208de058c401190c"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case/user_nl_clm",
+      "path": "ctsm-qia-run-s/workspace/case/user_nl_clm",
+      "source_sha256": "72c7eff6e31288c2ba1c6420f178b40f32004327dc9d8acf9ae9d73c94702a4d",
+      "stored_sha256": "72c7eff6e31288c2ba1c6420f178b40f32004327dc9d8acf9ae9d73c94702a4d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case/user_nl_cpl",
+      "path": "ctsm-qia-run-s/workspace/case/user_nl_cpl",
+      "source_sha256": "aaa5af09290fec0ebdf1698ac18a4f96b4a890eb1bdf2bead5fe94b1a0ea4410",
+      "stored_sha256": "aaa5af09290fec0ebdf1698ac18a4f96b4a890eb1bdf2bead5fe94b1a0ea4410"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case/user_nl_datm",
+      "path": "ctsm-qia-run-s/workspace/case/user_nl_datm",
+      "source_sha256": "c59c0bd968c76c2cf53133933df56366c216d8b762fb5be9b6571408eb3e379c",
+      "stored_sha256": "c59c0bd968c76c2cf53133933df56366c216d8b762fb5be9b6571408eb3e379c"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case-build.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/case-build.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case-build.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/case-build.stdout.txt.gz",
+      "source_sha256": "c5bcb6fcc1724d4b8eff4664189e707f4edf8b0bbe485a198cd7f47577157ab5",
+      "stored_sha256": "86f9cc1447e9cf146b7eadab31fa0de33896ff4ae18b4a78e61c34b8ed3ba1b8"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case-setup.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/case-setup.stderr.txt.gz",
+      "source_sha256": "2d79440a7d4660efa410ef803eb501d9f0fa90f848d0c859caeafcaab4b402f3",
+      "stored_sha256": "492f486cd74af1ae0aafed48328f98b698aead388f70ac9818fd5ba70bc83755"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/case-setup.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/case-setup.stdout.txt.gz",
+      "source_sha256": "4fd39e83b0baea3a0920f899ec8bd9bc40cdbeec5aa3044d97fb073ee81cd8d5",
+      "stored_sha256": "fad5caec5015900d3f904ff8cc64153edd7c7558c594492315fafdb6e249da97"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/common-radiation-input.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/common-radiation-input.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/common-radiation-input.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/common-radiation-input.stdout.txt.gz",
+      "source_sha256": "65570064581136dd578f9c836f73f3cc407ded1cccdfd937fb18d120b7a05eaa",
+      "stored_sha256": "7657ffe4a88eb4f9aac734d3cfea6e440719c9e1462036e2643dc315842f2e09"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/copyall-input.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/copyall-input.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/copyall-input.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/copyall-input.stdout.txt.gz",
+      "source_sha256": "10e1a020181b7a0edf76f0c2fc65acaf93d7fea77949224b70092e2b625e1364",
+      "stored_sha256": "26adfd818616b538e4e818f4d33c6d40a7d2302c75501e7e0bd9fa9907781165"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/create-case.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/create-case.stderr.txt.gz",
+      "source_sha256": "0dddcbd64755d36147e9c283919fa444afbc6ac90e5f172b997eb782bedfabba",
+      "stored_sha256": "e0c503db28a937ccb973706f0b4e75227c57407888498d591b5a557d5d4e066c"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/create-case.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/create-case.stdout.txt.gz",
+      "source_sha256": "b1d4586aa987a1f0d336ea2f5112e5b65fe0825139922eeb24b3db5be438b056",
+      "stored_sha256": "a65fb9a531bf1ba4743b041d9abfcbc022011f6488d3e170bb4f4c76da31ea4d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/executable-linkage.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/executable-linkage.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/executable-linkage.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/executable-linkage.stdout.txt.gz",
+      "source_sha256": "2216533ed1133aff374fa6b1a79c845c496a6b7ed2dc5896e1247ad55a98aab0",
+      "stored_sha256": "f0c63754d7c40f49dc8dc66c6936543bdf4ec12519098b49e92d473979cda986"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/initial-canopy-audit.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/initial-canopy-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/initial-canopy-audit.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/initial-canopy-audit.stdout.txt.gz",
+      "source_sha256": "5db5195e14edde62950d5b50f510ffe75b28166465fcb3030816bab35fb4c433",
+      "stored_sha256": "a235558cacf22d320e36a835cd25f52341b1a375121e5719c41044d87b3da7de"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/initial-canopy-seed.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/initial-canopy-seed.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/initial-canopy-seed.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/initial-canopy-seed.stdout.txt.gz",
+      "source_sha256": "a709be4524ba8f0d8fb1b1d19ecdf8f638b0540f026bace2aeefadcd7e586721",
+      "stored_sha256": "7c82b85c8b699195eef6c868118bff4dfdf014445b8a37966f4fb5818e24b300"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.official-interpolated-cold.nc",
+      "path": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.official-interpolated-cold.nc",
+      "source_sha256": "a46209291414079d0af3b2b643be4b74edb97d0cb2d7c82140c8059e2468b164",
+      "stored_sha256": "a46209291414079d0af3b2b643be4b74edb97d0cb2d7c82140c8059e2468b164"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.partial-hydrothermal-init.nc",
+      "path": "ctsm-qia-run-s/workspace/inputdata/CN-Qia.partial-hydrothermal-init.nc",
+      "source_sha256": "c9ad9fa10123a18ccb541819fc83563568c9f47e9211163dd88e5aa2604bbd04",
+      "stored_sha256": "c9ad9fa10123a18ccb541819fc83563568c9f47e9211163dd88e5aa2604bbd04"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/inputdata/clm5_params.c171117.nc",
+      "path": "ctsm-qia-run-s/workspace/inputdata/clm5_params.c171117.nc",
+      "source_sha256": "f255cceecfcdffbd44bc2a4e1fe6777193751baff30688389dd04c56029cbf0f",
+      "stored_sha256": "f255cceecfcdffbd44bc2a4e1fe6777193751baff30688389dd04c56029cbf0f"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/inputdata/surfdata.CN-Qia.engineering.nc",
+      "path": "ctsm-qia-run-s/workspace/inputdata/surfdata.CN-Qia.engineering.nc",
+      "source_sha256": "2c7e36fcff1b3a1c20f614abc651dd42979791357e0f22bc23235521083e0a3d",
+      "stored_sha256": "2c7e36fcff1b3a1c20f614abc651dd42979791357e0f22bc23235521083e0a3d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/machine-query.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/machine-query.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/machine-query.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/machine-query.stdout.txt.gz",
+      "source_sha256": "6d822e490417f3bf4cefc2bfe3cf54e0c06f47d92035cd51316425baef86cc7b",
+      "stored_sha256": "c70b0c46cb568d36a0fc704b2f280cdedde20526cd8286eeed7d686e67fa4faf"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/netcdf-link-flags.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/netcdf-link-flags.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/netcdf-link-flags.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/netcdf-link-flags.stdout.txt.gz",
+      "source_sha256": "838aeceb1bc872d0f9cc0684ffe91c15d4b834325b9f4e00f15c4e325121b340",
+      "stored_sha256": "8f1aba9538074f243d49321511c94741073b47010c485fc669e71665e0c15760"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/official-model.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/official-model.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/official-model.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/official-model.stdout.txt.gz",
+      "source_sha256": "46c2f61f87528cd2d96e609244320b28fc890823adf963b293f620e6d6edca3f",
+      "stored_sha256": "f99044ac491021986363cb72ea94a17e3e70f1f53275794d1a1ac1faf70deb25"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/atm.log.261019-205405",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/atm.log.261019-205405.gz",
+      "source_sha256": "9656be856d10fb445cfa4669f9094ecc20dddc1cc2bf8d934d515c5e32f15fbd",
+      "stored_sha256": "eb82e9b19fc45fcc33f6c16955171824fcf8d64a7f870599dd42dc14f22c2859"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.h0.2002-12-31-57600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.h0.2002-12-31-57600.nc",
+      "source_sha256": "36cd2ec9d54d4e88864d740d3c507f3e2f9bcb22b43e19c78db2886779082aec",
+      "stored_sha256": "36cd2ec9d54d4e88864d740d3c507f3e2f9bcb22b43e19c78db2886779082aec"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-59400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-59400.nc",
+      "source_sha256": "ec2684b40c4114d1b9c0d65bab125716733e1f459ed1a883d758d0f06c89cfc9",
+      "stored_sha256": "ec2684b40c4114d1b9c0d65bab125716733e1f459ed1a883d758d0f06c89cfc9"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-61200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-61200.nc",
+      "source_sha256": "7b9afcec449dff48aed941c375aec888ac19e85174d76618178000cab42793aa",
+      "stored_sha256": "7b9afcec449dff48aed941c375aec888ac19e85174d76618178000cab42793aa"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-63000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-63000.nc",
+      "source_sha256": "f22c20842f5f33b57cf0e165ec01e9c644a802c39f016c1743dc773f2d7b001d",
+      "stored_sha256": "f22c20842f5f33b57cf0e165ec01e9c644a802c39f016c1743dc773f2d7b001d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-64800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-64800.nc",
+      "source_sha256": "17b0f027dd2bff79c4b5a3b51827d5c98616df603e1d296d3a9ff0eb03cc274a",
+      "stored_sha256": "17b0f027dd2bff79c4b5a3b51827d5c98616df603e1d296d3a9ff0eb03cc274a"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-66600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-66600.nc",
+      "source_sha256": "1a6921e330d136bcbfd4526e51739c592d5c13b33c44174b5d8fbac35f2030a8",
+      "stored_sha256": "1a6921e330d136bcbfd4526e51739c592d5c13b33c44174b5d8fbac35f2030a8"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-68400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-68400.nc",
+      "source_sha256": "0ab8404dce81f9201406f3302ef8720c65da00297db7d1a276685df29df57f9e",
+      "stored_sha256": "0ab8404dce81f9201406f3302ef8720c65da00297db7d1a276685df29df57f9e"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-70200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-70200.nc",
+      "source_sha256": "1424b950354e727395055f9e7a5459d3fe5ab5457df84c8688b62e0f063511ec",
+      "stored_sha256": "1424b950354e727395055f9e7a5459d3fe5ab5457df84c8688b62e0f063511ec"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-72000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-72000.nc",
+      "source_sha256": "3f0900787872d4bdd15e00074cdbc46109d6f2e5f8b80d32942a1f37e893ea82",
+      "stored_sha256": "3f0900787872d4bdd15e00074cdbc46109d6f2e5f8b80d32942a1f37e893ea82"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-73800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-73800.nc",
+      "source_sha256": "a549c4678bbaf2bd9c99d95b928ad679906b84ae9d00887269f92626daed4144",
+      "stored_sha256": "a549c4678bbaf2bd9c99d95b928ad679906b84ae9d00887269f92626daed4144"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-75600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-75600.nc",
+      "source_sha256": "d6c8c28198494e29d0182bd197bf21542af01858f57ce3b6ce276ab0e7cd1b36",
+      "stored_sha256": "d6c8c28198494e29d0182bd197bf21542af01858f57ce3b6ce276ab0e7cd1b36"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-77400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-77400.nc",
+      "source_sha256": "e749fb6386b5b0ee10a26b8644db3898f6377f7fae8628857a42f49a4a8c08ab",
+      "stored_sha256": "e749fb6386b5b0ee10a26b8644db3898f6377f7fae8628857a42f49a4a8c08ab"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-79200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-79200.nc",
+      "source_sha256": "7e1bd78a97ac8b09a658921f0fe9591706e8bdf950be5d50384dca21394c0390",
+      "stored_sha256": "7e1bd78a97ac8b09a658921f0fe9591706e8bdf950be5d50384dca21394c0390"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-81000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-81000.nc",
+      "source_sha256": "0b9058650faeb76546ab716c07627f6b62883b53b1d1d21af42d4f63e45cda73",
+      "stored_sha256": "0b9058650faeb76546ab716c07627f6b62883b53b1d1d21af42d4f63e45cda73"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-82800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-82800.nc",
+      "source_sha256": "68970b8aedaddddeeffb3fc18a42c5999f539c4a9a6f1f82eac33130082d05c1",
+      "stored_sha256": "68970b8aedaddddeeffb3fc18a42c5999f539c4a9a6f1f82eac33130082d05c1"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-84600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2002-12-31-84600.nc",
+      "source_sha256": "8964196a762cb1a5f1f4dda1001a5ab5502a3535a7d11512d5f444d368fc99c4",
+      "stored_sha256": "8964196a762cb1a5f1f4dda1001a5ab5502a3535a7d11512d5f444d368fc99c4"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-00000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-00000.nc",
+      "source_sha256": "759f0b6b2a2275e14726de66e7f8266959dbff91f91555eeaa860ac861b67ec3",
+      "stored_sha256": "759f0b6b2a2275e14726de66e7f8266959dbff91f91555eeaa860ac861b67ec3"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-01800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-01800.nc",
+      "source_sha256": "ddd1e6d6d2ef485d4b83234043a2723a6de89f288a7a0840c17db1b7c0240253",
+      "stored_sha256": "ddd1e6d6d2ef485d4b83234043a2723a6de89f288a7a0840c17db1b7c0240253"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-03600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-03600.nc",
+      "source_sha256": "21d4da26179e003216886cce0574fb45357bb15e6034cae17d9de549435583e9",
+      "stored_sha256": "21d4da26179e003216886cce0574fb45357bb15e6034cae17d9de549435583e9"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-05400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-05400.nc",
+      "source_sha256": "a7dc962d56385b75cedba00209c5649ed509edfea0bda9806a85e34818c2f4e4",
+      "stored_sha256": "a7dc962d56385b75cedba00209c5649ed509edfea0bda9806a85e34818c2f4e4"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-07200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-07200.nc",
+      "source_sha256": "9fdc03e505a89c074dd472b10cf7eb88cea8ec2b23063b020f9905e3f1bb61e1",
+      "stored_sha256": "9fdc03e505a89c074dd472b10cf7eb88cea8ec2b23063b020f9905e3f1bb61e1"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-09000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-09000.nc",
+      "source_sha256": "7c543702540c34cad100e636a98eba98454d5554093293874a3cc6d286a89885",
+      "stored_sha256": "7c543702540c34cad100e636a98eba98454d5554093293874a3cc6d286a89885"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-10800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-10800.nc",
+      "source_sha256": "270c196647bad1c48dc410297d7c0cc990ee3c7589319ebdf69571b879040425",
+      "stored_sha256": "270c196647bad1c48dc410297d7c0cc990ee3c7589319ebdf69571b879040425"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-12600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-12600.nc",
+      "source_sha256": "e56914117347805ee30e89b7f5563ba86e031950027cb2f50ec0c64a2b273073",
+      "stored_sha256": "e56914117347805ee30e89b7f5563ba86e031950027cb2f50ec0c64a2b273073"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-14400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-14400.nc",
+      "source_sha256": "1ae85dae72be0d0fbc73091d21340ccbe38f5f752d4f9a5b937d274edbd07675",
+      "stored_sha256": "1ae85dae72be0d0fbc73091d21340ccbe38f5f752d4f9a5b937d274edbd07675"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-16200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-16200.nc",
+      "source_sha256": "f1b196e21782d17b026a6d0bf68a253061a7a3ed36c3a2fb25f420d7002b6c50",
+      "stored_sha256": "f1b196e21782d17b026a6d0bf68a253061a7a3ed36c3a2fb25f420d7002b6c50"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-18000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-18000.nc",
+      "source_sha256": "3516276fcf843f59cc70456986c6acbe9c45c950c2b0d1eeb482941c35b4cfbb",
+      "stored_sha256": "3516276fcf843f59cc70456986c6acbe9c45c950c2b0d1eeb482941c35b4cfbb"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-19800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-19800.nc",
+      "source_sha256": "e00b2e4c96d1f46f73040ce5d2089026e85cb55d983687f68fabf5d0e3e373ae",
+      "stored_sha256": "e00b2e4c96d1f46f73040ce5d2089026e85cb55d983687f68fabf5d0e3e373ae"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-21600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-21600.nc",
+      "source_sha256": "7eca2a3b2b0295db6e1080a1f35f4f2a12e438d6f7599359cacec2eeb847a6a0",
+      "stored_sha256": "7eca2a3b2b0295db6e1080a1f35f4f2a12e438d6f7599359cacec2eeb847a6a0"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-23400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-23400.nc",
+      "source_sha256": "521bb1a0915542d637c2344bedfff81ef14f2cb70d4a87bf6a9ab9cf1c963c97",
+      "stored_sha256": "521bb1a0915542d637c2344bedfff81ef14f2cb70d4a87bf6a9ab9cf1c963c97"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-25200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-25200.nc",
+      "source_sha256": "a21d683cd15b900d67cfd4aa6d55ce9bc5f825b0e387fcd4cb224569e504a071",
+      "stored_sha256": "a21d683cd15b900d67cfd4aa6d55ce9bc5f825b0e387fcd4cb224569e504a071"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-27000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-27000.nc",
+      "source_sha256": "ab82da5356995e048bebea0d2c507a9751c852c77da5f7556cdad43b53443222",
+      "stored_sha256": "ab82da5356995e048bebea0d2c507a9751c852c77da5f7556cdad43b53443222"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-28800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-28800.nc",
+      "source_sha256": "720444010e20e177977416173716ec6aeb16ebf50839aa64decf841fdc701930",
+      "stored_sha256": "720444010e20e177977416173716ec6aeb16ebf50839aa64decf841fdc701930"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-30600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-30600.nc",
+      "source_sha256": "cf809c30e5672fff0d454f3176d5a50a0d1f03ee20d16c341fda215d167b50bd",
+      "stored_sha256": "cf809c30e5672fff0d454f3176d5a50a0d1f03ee20d16c341fda215d167b50bd"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-32400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-32400.nc",
+      "source_sha256": "a84055795e4c290b90c76d25a3277671e97022aebf274542505e84f199ae26e1",
+      "stored_sha256": "a84055795e4c290b90c76d25a3277671e97022aebf274542505e84f199ae26e1"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-34200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-34200.nc",
+      "source_sha256": "e195c52190af9168ead8fe5c01f9729fbdbb90b8a9eadf0b17d186569221a4cc",
+      "stored_sha256": "e195c52190af9168ead8fe5c01f9729fbdbb90b8a9eadf0b17d186569221a4cc"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-36000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-36000.nc",
+      "source_sha256": "7ff608fa8c54e06a59b120dd8e3d99da16509612f2d7198776dd20c7cc64802a",
+      "stored_sha256": "7ff608fa8c54e06a59b120dd8e3d99da16509612f2d7198776dd20c7cc64802a"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-37800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-37800.nc",
+      "source_sha256": "9867ae7bc892b95676b1bd36ec43c6fe52473b1840c0c38d36e22d6bb3826cf9",
+      "stored_sha256": "9867ae7bc892b95676b1bd36ec43c6fe52473b1840c0c38d36e22d6bb3826cf9"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-39600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-39600.nc",
+      "source_sha256": "11b9bd5b5c11bff50cdf4a5a8720e1027693c94df672780a1d5331912a3438f4",
+      "stored_sha256": "11b9bd5b5c11bff50cdf4a5a8720e1027693c94df672780a1d5331912a3438f4"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-41400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-41400.nc",
+      "source_sha256": "ce43df1f900bccf70ed4a1be1d5bb34b5845554d312b330089ee523861af071c",
+      "stored_sha256": "ce43df1f900bccf70ed4a1be1d5bb34b5845554d312b330089ee523861af071c"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-43200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-43200.nc",
+      "source_sha256": "c1f92227af6bef0076be4084744576a4bb9bbe36f4c78969c9277ff2b36af2ba",
+      "stored_sha256": "c1f92227af6bef0076be4084744576a4bb9bbe36f4c78969c9277ff2b36af2ba"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-45000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-45000.nc",
+      "source_sha256": "b972acb681c839044f27bb07ba143ab9a5a2fcc2db038d114ef74c8a2a10e2de",
+      "stored_sha256": "b972acb681c839044f27bb07ba143ab9a5a2fcc2db038d114ef74c8a2a10e2de"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-46800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-46800.nc",
+      "source_sha256": "09668612d88ac77b6d2d17bbbec2395dba8a8ca79c935b35a47053f33eb4f65d",
+      "stored_sha256": "09668612d88ac77b6d2d17bbbec2395dba8a8ca79c935b35a47053f33eb4f65d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-48600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-48600.nc",
+      "source_sha256": "f8c294a217b3c9ff72d5cbd6530a11fd2b4e9aeac9b4a61e21ea5cc76f36b4d0",
+      "stored_sha256": "f8c294a217b3c9ff72d5cbd6530a11fd2b4e9aeac9b4a61e21ea5cc76f36b4d0"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-50400.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-50400.nc",
+      "source_sha256": "3734c31158defd52024779f334b5ead9b448aaaa2e071b9569e06840b1ef2947",
+      "stored_sha256": "3734c31158defd52024779f334b5ead9b448aaaa2e071b9569e06840b1ef2947"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-52200.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-52200.nc",
+      "source_sha256": "37750f8e67a5bfa33e982b9ebb8975bff86d161ec865ba39b5e503510ffa12b1",
+      "stored_sha256": "37750f8e67a5bfa33e982b9ebb8975bff86d161ec865ba39b5e503510ffa12b1"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-54000.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-54000.nc",
+      "source_sha256": "b244a77f5ceb079fe2d4f1b85e34c5d370a96cc04f45cb10fce848e3ac34032d",
+      "stored_sha256": "b244a77f5ceb079fe2d4f1b85e34c5d370a96cc04f45cb10fce848e3ac34032d"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-55800.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-55800.nc",
+      "source_sha256": "2e282654a81b116c25cc2b9285752225f2e308654757b6d2ecfb010f6e91f5e4",
+      "stored_sha256": "2e282654a81b116c25cc2b9285752225f2e308654757b6d2ecfb010f6e91f5e4"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-57600.nc",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/case.clm2.r.2003-01-01-57600.nc",
+      "source_sha256": "e1b4a8373e652d53777b40de5e8ef0cdb0d44eb8cb663ec8681144f4da2f0f94",
+      "stored_sha256": "e1b4a8373e652d53777b40de5e8ef0cdb0d44eb8cb663ec8681144f4da2f0f94"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/cpl.log.261019-205405",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/cpl.log.261019-205405.gz",
+      "source_sha256": "95ef32fef642779037b2cba9292592cc0f1baea52622745b77530ac1a12f188e",
+      "stored_sha256": "5722a52cc585fb2648a1099c6677b43777ad9b0f037b66be48170dec5528e8bb"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/datm_in",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/datm_in",
+      "source_sha256": "22e92881ef750d6fbafbeef710909761cbe6d5a65ae9ac3c4ed90e80532de632",
+      "stored_sha256": "22e92881ef750d6fbafbeef710909761cbe6d5a65ae9ac3c4ed90e80532de632"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/drv_in",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/drv_in",
+      "source_sha256": "7562109bdbe433a715bfa11bd1c8c8b55f9bbdb65902c65d78e3b3b94c88b2ed",
+      "stored_sha256": "7562109bdbe433a715bfa11bd1c8c8b55f9bbdb65902c65d78e3b3b94c88b2ed"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/lnd.log.261019-205405",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/lnd.log.261019-205405.gz",
+      "source_sha256": "2678b65a49609413f3fc5fd9d62a239a8c42401c932549ed1b0b74f368a56d50",
+      "stored_sha256": "49d14619539f23de94bd373c1e40ea5cfc7bf3ce923f470624a5ecf7ab927fba"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/lnd_in",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/lnd_in",
+      "source_sha256": "c409bf2f751ac412280a13d1f2b41b4e2a5f8a131572a86aaa66866fe7c6f536",
+      "stored_sha256": "c409bf2f751ac412280a13d1f2b41b4e2a5f8a131572a86aaa66866fe7c6f536"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/qia.aero.stream",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/qia.aero.stream",
+      "source_sha256": "edbb0b5c37c95f0d66af0db7248281633cdccf21981cbf03b02587eec102f404",
+      "stored_sha256": "edbb0b5c37c95f0d66af0db7248281633cdccf21981cbf03b02587eec102f404"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/qia.met.stream",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/qia.met.stream",
+      "source_sha256": "9051c62123f5b6b71185657502f2191aa5734a18540fb08d39afab0c8c404524",
+      "stored_sha256": "9051c62123f5b6b71185657502f2191aa5734a18540fb08d39afab0c8c404524"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/output/case/run/qia.topo.stream",
+      "path": "ctsm-qia-run-s/workspace/output/case/run/qia.topo.stream",
+      "source_sha256": "72b6d40ca72d524af3bf96b3aafae4aa659a573a294c315683c374d6bacaee0e",
+      "stored_sha256": "72b6d40ca72d524af3bf96b3aafae4aa659a573a294c315683c374d6bacaee0e"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/partial-common-seed.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/partial-common-seed.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/partial-common-seed.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/partial-common-seed.stdout.txt.gz",
+      "source_sha256": "76a0b115f1e08de194308367016188a6e23f9cbeea9f44b0d1cabda998f8c652",
+      "stored_sha256": "7620c12fe636d7379630d1a43d53c9c358f8dcfb86f8a75f8249b4654b10aedd"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/partial-seed-audit.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/partial-seed-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/partial-seed-audit.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/partial-seed-audit.stdout.txt.gz",
+      "source_sha256": "f34ff1ec158c45681fe19eb55b520d5073d8b46255866f216d1a254cbb77c750",
+      "stored_sha256": "4bd35ef7495e4d58786fce6341422a2e75661208194211b87d24b7afe8b713d2"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/point-xmlchange.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/point-xmlchange.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/point-xmlchange.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/point-xmlchange.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/preview-namelists.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/preview-namelists.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/preview-namelists.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/preview-namelists.stdout.txt.gz",
+      "source_sha256": "97e220b5c0954db65ca99d36b8444f88d3300938f31703be3827a4148dabac73",
+      "stored_sha256": "a397c033e70e18d1730abe7e538af0cd1e88d8368461daf1c425feeec6147bb9"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/relocate.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/relocate.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/topo-time-coordinate.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/topo-time-coordinate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/topo-time-coordinate.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/topo-time-coordinate.stdout.txt.gz",
+      "source_sha256": "f9c3b8af45593f71cfed82886c5a7087b84b92853248512979725b26f021c619",
+      "stored_sha256": "af0317fa040153d0d7f78a7dacf0116759098f70c7e1bd47c110ebc53ea969e7"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/urban-auxiliary-point.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/urban-auxiliary-point.stderr.txt.gz",
+      "source_sha256": "3745614806861006bae76b88c1b53bab43f45df4e85b7e5da7522e77b90573cd",
+      "stored_sha256": "4749f48e7152a20b73c5f755495b1a531a1aa805b29f18658e07f3820abc0daf"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/urban-auxiliary-point.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/urban-auxiliary-point.stdout.txt.gz",
+      "source_sha256": "eb83264b9f7e0d75878d356f15b49716f898bf9df815d89dd68bc55391428b23",
+      "stored_sha256": "cd57ea3411de5ab0f30d725caacf1e7b74f9df16ac9f215688484683a4d63491"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/xmlchange.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/xmlchange.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/xmlchange.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/xmlchange.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/year-boundary-audit.stderr.txt",
+      "path": "ctsm-qia-run-s/workspace/year-boundary-audit.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "ctsm-qia-run-s/workspace/year-boundary-audit.stdout.txt",
+      "path": "ctsm-qia-run-s/workspace/year-boundary-audit.stdout.txt.gz",
+      "source_sha256": "cfd024b1d040b79f67afd3d8702a122ffae703889e347d4ffa803c72854a84d4",
+      "stored_sha256": "aa7918a4759abb49ed2d1f2caa77b80e22d11fea8986af9eaa328b0537ac56e6"
+    },
+    {
+      "source": "summary.json",
+      "path": "summary.json.gz",
+      "source_sha256": "c3858a1b8e5a1408628f56c17debf6d9ada1f985e1c53bf4043f4a11a99fba14",
+      "stored_sha256": "a7f6ea87e3430972b4ce6c50951150aba1b0960fbe694ac71fdcbad794ecfcc2"
+    },
+    {
+      "source": "control/archive_qia_1318_ehpc_b.py",
+      "path": "control/archive_qia_1318_ehpc_b.py.gz",
+      "source_sha256": "fa41608ee9ecd801eb74d4d3f653d0d62c57c9cb3d06ec934edfadc39557fe01",
+      "stored_sha256": "c8134cacbd81288f3b73ee9f406e68e7eb551311cea2b4ffe3ada2216e2b00e4"
+    },
+    {
+      "source": "control/archive_qia_1318_ehpc_a.py",
+      "path": "control/archive_qia_1318_ehpc_a.py.gz",
+      "source_sha256": "909e3090e50a29c14fbd09adad5f01c33de86d5c4abec9cbad7f6264b71efc7b",
+      "stored_sha256": "ab46312b40fec5da5693ec0958b1f99994da992e38cb315cf54e918dff1acf1e"
+    },
+    {
+      "source": "archive-writer-A/partial-evidence.tar.gz",
+      "path": "archive-writer-A/partial-evidence.tar.gz",
+      "source_sha256": "5baefc356278bfdd9434b2a81d57e09c9a4b7f40c291dd99fbdba725a0d16645",
+      "stored_sha256": "5baefc356278bfdd9434b2a81d57e09c9a4b7f40c291dd99fbdba725a0d16645"
+    }
+  ]
+}
