@@ -1,5 +1,28 @@
 # v1.0.0 执行记录
 
+2026-10-19 20:22UTC：[原水文分解](v1-results/qia-runoff-diagnosis-ab/manifest.json)
+311在未修改535C模型／输入／参数时记录实际48步，所有既有轨迹dtype／shape／
+字节精确复现308。首日.690505203 mm全为ARNO底流、地表0，独立Decimal公式
+最大差3.46945e-18 mm。312在数值读取前因无netCDF4退出1；313使用官方原413MiB
+环境在计算节点临时解包后实际0，官方QRUNOFF=QOVER=.00614143245 mm、QDRAI／
+QDRAI_PERCH／QH2OSFC均0，ZWT3.80188203m、FSAT.146887615。真实lnd_in下边界2
+为零通量；原先不同出流物理不能归为精度误差，也不能按首日评分更改默认。
+
+[Richards垂向参考](CLM_RICHARDS.md)独立实现闭柱混合压力形式和毛细／重力流，
+水／热都由真实面转移守恒更新，不开发跨柱侧向地下水。314水分15实际0，
+315水热21实际0、5.833秒、零失败／错误／跳过。4/10层独立连续水热ODE最大
+含水量差5.82741e-5 m³/m³、温差.00105448 K；质量残差0，热残差最大2.98023e-8
+J/m²，对应原界2.67737e-6 J/m²。解析部分饱和平衡差1.46549e-14 m³/m³，所有
+水分／水热界按例独立检查。保留[A15](v1-results/richards-numpy-a/manifest.json)和
+[B21](v1-results/richards-numpy-b/manifest.json)各自源码、参考方法、日志／XML／退出。
+
+新538R-B仍是NumPy原型，严格干土／全冰、饱和出流、真实柱／JAX/CUDA及1e-6门
+和气候科学验收均待。未将旧1009CPU或532F/535C设备结果抵充新模块。
+[20:22原任务快照](v1-results/richards-xuanze-background-c/manifest.json)保留实际F
+worker及两等待器：已输出部分64位步骤，仍无整组三项终态，不停止／重启。
+[EHPC原年快照](v1-results/richards-ehpc-background-c/manifest.json)仍属旧519H，
+不抵充新物理年。完整年／spinup／多站多年／留出／测高敏感性及发布继续。
+
 2026-10-19 19:45UTC：[535C完整CPU](v1-results/capacity-station-cpu-c/manifest.json)
 EHPC307 compute002实际1009全部0、681.293秒、零失败／错误／跳过、源码／XML
 一致，连同此前306 NumPy154保存。CPU前置证据已

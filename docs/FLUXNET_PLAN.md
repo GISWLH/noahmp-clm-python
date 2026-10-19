@@ -4,6 +4,13 @@
 
 ### 2026-10-19执行更新
 
+20:22：[首日水文分解](CLM_RICHARDS.md)中，311的全部原轨迹精确复现308；
+Python .690505 mm全为ARNO底流，而313读回官方QDRAI0、QOVER.00614143 mm及
+实际零通量下边界。未通过调整Dsmax或修改误差门消除差异。新增垂向水分／
+携焓NumPy原型15／21实际0，但严格干土／全冰、真实柱及设备仍待。旧四例和
+新两例全部评分、固定观测／初态／测高／窗口及校准留出划分保持，原型不计
+任何真实站点科学通过。完整气候年、spinup、多站多年和测高敏感性继续。
+
 19:45：[535C全1009CPU](v1-results/capacity-station-cpu-c/manifest.json)实际0，GPU
 站点前置证据已送达xuanze，仍等旧F整柱实际0。[正式容量及容量＋原PFT光学
 首日两组](v1-results/qia-capacity-firstday-d/manifest.json)308/309模型及310比较均实际0，
