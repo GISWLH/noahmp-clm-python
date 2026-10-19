@@ -1,7 +1,8 @@
 // Ten-layer two-stream component, independent of the NumPy and JAX code.
 // NVRTC device math is built in; no system includes are needed.
 __device__ void shortwave_device_albedos(const float* lai, const float* u,
-                                         float direct_albedo,bool separate_albedo,float* out,bool track_absorption=false) {
+                                         float direct_albedo,bool separate_albedo,float* out,bool track_absorption=false,
+                                         const float* layer_reflectance=nullptr,const float* layer_transmittance=nullptr) {
         float beam0=u[0], diffuse0=u[1], ag=u[2], mu=u[3], refl=u[4], tran=u[5];
         float k=.5f/mu, omega=refl+tran, back=.625f*refl+.375f*tran;
         // Explicit .5/k == mu avoids a second, separately rounded reciprocal.
@@ -9,6 +10,10 @@ __device__ void shortwave_device_albedos(const float* lai, const float* u,
         float a=1.f-omega+back;
         float r[10],t[10],su[10],sd[10],bt[10],beam[11],da[10],ba[10];
         for(int j=0;j<10;++j) {
+            if(layer_reflectance) {
+                refl=layer_reflectance[j];tran=layer_transmittance[j];
+                omega=refl+tran;back=.625f*refl+.375f*tran;a=1.f-omega+back;
+            }
             float width=lai[j]/1024.f;
             t[j]=1.f/(1.f+a*width);
             r[j]=back*width*t[j];
@@ -24,6 +29,7 @@ __device__ void shortwave_device_albedos(const float* lai, const float* u,
                 float nu=su[j]+t[j]*(r[j]*sd[j]+su[j]*bt[j])/den;
                 float nd=sd[j]*bt[j]+t[j]*(sd[j]+r[j]*su[j]*bt[j])/den;
                 float nb=bt[j]*bt[j];
+                if(omega==1.f) {nt=1.f-nr;nd=1.f-nb-nu;}
                 if(track_absorption) {
                     float nda=da[j]*(1.f+t[j]/(1.f-r[j]));
                     float nba=ba[j]*(1.f+bt[j])+da[j]*(sd[j]+su[j]*bt[j])/(1.f-r[j]);
@@ -32,7 +38,6 @@ __device__ void shortwave_device_albedos(const float* lai, const float* u,
                     da[j]=nda;ba[j]=nba;
                 }
                 r[j]=nr;t[j]=nt;su[j]=nu;sd[j]=nd;bt[j]=nb;
-                if(omega==1.f) {t[j]=1.f-r[j];sd[j]=1.f-bt[j]-su[j];}
             }
         }
         beam[0]=beam0;

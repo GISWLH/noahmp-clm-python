@@ -330,6 +330,11 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     previous_steps = identity.get('initial_run', {}).get('previous_ledger_steps', 0)
     previous_segments = identity.get('initial_run', {}).get('previous_segments', 0)
     leaf = LeafParameters(**cases[0]['config']['leaf_parameters'])
+    optics=None
+    if any(c['config'].get('canopy_optics') is not None for c in cases):
+        from noahmp_clm.physics.canopy_optics import CanopyOptics
+        from noahmp_clm.gpu.canopy_optics import pack_canopy_optics
+        optics=np.stack([pack_canopy_optics(CanopyOptics(**(c['config'].get('canopy_optics') or {})),dtype) for c in cases])
     geometry = np.asarray([astuple(MOSTGeometry(**c['config']['most_geometry'])) for c in cases], dtype)
     deposition_schedules = [DepositionSchedule(c['config']) for c in cases]
     nrates = np.asarray([d.nitrogen_rate for d in deposition_schedules], dtype)
@@ -441,6 +446,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
                 for k, (c, d) in enumerate(zip(cases, deposition_schedules))], dtype)
             kwargs = dict(environment=e, calendar=cal, nitrogen_deposition_gn_m2=nitrogen,
                 deposition=deposition, most_geometry=geometry, leaf_parameters=leaf, return_surface=True)
+            if optics is not None:kwargs['canopy_optics']=optics
             before_device = engine.update_forcing(device, env)
             out_device = engine.step(*before_device, f, **kwargs); out = engine.host(out_device)
             next_device = next_station_arrays(before_device, out_device)

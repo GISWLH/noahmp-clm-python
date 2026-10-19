@@ -14,10 +14,11 @@ def validate_shortwave_inputs(lai, u, xp):
         raise ValueError("Unphysical radiation input")
 
 
-def shortwave_kernel_jax(lai, u, ground_albedo_direct=None,*,track_absorption=False):
+def shortwave_kernel_jax(lai, u, ground_albedo_direct=None,*,track_absorption=False,layer_optics=None):
     import jax.numpy as jnp
     from jax import lax
     beam0, diffuse0, ag, mu, refl, tran = u
+    if layer_optics is not None:refl,tran=layer_optics
     direct_albedo = ag if ground_albedo_direct is None else ground_albedo_direct
     k = .5/mu
     omega = refl+tran

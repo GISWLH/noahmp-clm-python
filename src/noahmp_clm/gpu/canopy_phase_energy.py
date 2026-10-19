@@ -295,13 +295,32 @@ def _compiled(max_iterations,tolerance):
     return jax.jit(jax.vmap(partial(phase_energy_kernel_jax,max_iterations=max_iterations,tolerance=tolerance),in_axes=(*([0]*9),None,None,None)))
 
 
-def run_canopy_phase_jax(*arrays,parameters=None,max_iterations=100,tolerance=None,raise_on_failure=True):
+@lru_cache(maxsize=8)
+def _compiled_optics(max_iterations,tolerance):
+    import jax
+    def kernel(a,u,f,soil,stem,c,b,snow,n,p,ice,imp,rad):
+        return phase_energy_kernel_jax(a,u,f,soil,stem,c,b,snow,n,p,ice,imp,
+            max_iterations=max_iterations,tolerance=tolerance,radiation=rad)
+    return jax.jit(jax.vmap(kernel,in_axes=(0,)*9+(None,None,None,0)))
+
+
+def run_canopy_phase_jax(*arrays,parameters=None,max_iterations=100,tolerance=None,raise_on_failure=True,canopy_optics=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,arrays));validate_phase(arrays,j);dtype=arrays[0].dtype
     tol=(.005 if dtype==j.float32 else 5e-5) if tolerance is None else tolerance
     if not isinstance(max_iterations,int) or max_iterations<1 or not np.isfinite(tol) or tol<=0.:raise ValueError('Invalid phase solver controls')
-    out=_compiled(max_iterations,float(tol))(*arrays,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),*_jax_tables(str(dtype)))
+    optical_result=None
+    args=(*arrays,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),*_jax_tables(str(dtype)))
+    if canopy_optics is None:out=_compiled(max_iterations,float(tol))(*args)
+    else:
+        from .canopy_optics import canopy_snow_optics_raw_jax
+        a,u,_,_,stem,_,_,snow,n=arrays;plant=a+stem
+        optical_result=canopy_snow_optics_raw_jax(plant,snow,n,radiation_inputs(plant,u,j),a,canopy_optics)
+        out=_compiled_optics(max_iterations,float(tol))(*args,optical_result[:,:584])
     if not bool(j.all(j.isfinite(out))):raise RuntimeError('Nonfinite phase canopy output')
     result=unpack_phase(out)
+    if optical_result is not None:
+        from .canopy_optics import attach_optical_absorption
+        attach_optical_absorption(result,optical_result)
     if raise_on_failure and not bool(j.all(result['converged'])):raise RuntimeError('Phase canopy did not converge; inspect with raise_on_failure=False')
     return result

@@ -12,7 +12,8 @@ from .snicar import snow_shortwave
 
 
 def canopy_snow_shortwave(leaf_area,pack,swdown,*,vegetated_fraction=1.,
-                          diffuse_fraction=.5,cosine_zenith=.5,ground_albedo=(.15,.3)):
+                          diffuse_fraction=.5,cosine_zenith=.5,ground_albedo=(.15,.3),
+                          canopy_optics=None,photosynthetic_leaf_area=None):
     """Return canopy, snow and soil absorptions plus atmospheric reflection.
 
     Fluxes are W/m2 total ground area. ``canopy`` preserves leaf-area based
@@ -26,8 +27,17 @@ def canopy_snow_shortwave(leaf_area,pack,swdown,*,vegetated_fraction=1.,
     diffuse=snow_shortwave(pack,[0.,0.],[1.,1.],**options)
     def two_band(values): return np.array([values[0],np.sum(values[1:])])
     ad=two_band(direct['spectral_reflected']);af=two_band(diffuse['spectral_reflected'])
-    canopy=canopy_shortwave(leaf_area,swdown,diffuse_fraction=diffuse_fraction,
-        cosine_zenith=cosine_zenith,ground_albedo=af,ground_albedo_direct=ad)
+    if canopy_optics is None:
+        if photosynthetic_leaf_area is not None:raise ValueError('Leaf/stem partition requires explicit canopy optics')
+        canopy=canopy_shortwave(leaf_area,swdown,diffuse_fraction=diffuse_fraction,
+            cosine_zenith=cosine_zenith,ground_albedo=af,ground_albedo_direct=ad)
+    else:
+        from .canopy_optics import canopy_shortwave_pft
+        if photosynthetic_leaf_area is None:raise ValueError('PFT optics require separate photosynthetic leaf area')
+        leaves=np.asarray(photosynthetic_leaf_area,float)
+        if leaves.shape!=np.asarray(leaf_area).shape:raise ValueError('Leaf and plant area shapes must match')
+        canopy=canopy_shortwave_pft(leaves,np.asarray(leaf_area,float)-leaves,swdown,canopy_optics,
+            diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith,ground_albedo=af,ground_albedo_direct=ad)
     top_direct=np.full(2,.5*swdown*(1.-diffuse_fraction))
     top_diffuse=np.full(2,.5*swdown*diffuse_fraction)
     bottom_direct=np.array([b['direct'][-1] for b in canopy['bands']])

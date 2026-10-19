@@ -25,7 +25,8 @@ def validate_canopy_snow(area,cells,counts,inputs,xp):
     validate_snow_optics(cells,counts,snow_boundary,xp)
 
 
-def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table,*,track_absorption=False):
+def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table,*,track_absorption=False,
+                           photosynthetic_leaf_area=None,canopy_optics=None):
     import jax
     import jax.numpy as j
     from jax import lax
@@ -38,8 +39,14 @@ def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table,*,tr
     ad=j.stack((response[0,0,23],sum4(response[0,:,23])))
     af=j.stack((response[1,0,23],sum4(response[1,:,23])))
     beam=s(s(.5*sw)*s(1.-diff));sky=s(s(.5*sw)*diff)
-    canopy=jax.vmap(lambda band:shortwave_kernel_jax(area,j.stack((beam,sky,af[band],mu,
-        j.where(band==0,.1,.45),j.where(band==0,.05,.25))),ad[band],track_absorption=track_absorption))(j.arange(2))
+    if canopy_optics is None:
+        canopy=jax.vmap(lambda band:shortwave_kernel_jax(area,j.stack((beam,sky,af[band],mu,
+            j.where(band==0,.1,.45),j.where(band==0,.05,.25))),ad[band],track_absorption=track_absorption))(j.arange(2))
+    else:
+        from .canopy_optics import mixture_kernel_jax
+        rho,tau,leaf_fraction=mixture_kernel_jax(area,photosynthetic_leaf_area,canopy_optics)
+        canopy=jax.vmap(lambda band:shortwave_kernel_jax(area,j.stack((beam,sky,af[band],mu,rho[band,0],tau[band,0])),
+            ad[band],track_absorption=track_absorption,layer_optics=(rho[band],tau[band])))(j.arange(2))
     bottom_beam=s(s(fv*canopy[:,20])+s(s(1.-fv)*beam))
     bottom_sky=s(s(fv*canopy[:,31])+s(s(1.-fv)*sky))
     snow_boundary=j.concatenate((bottom_beam,bottom_sky,j.stack((agv,agn,mu))))
@@ -52,8 +59,13 @@ def canopy_snow_kernel_jax(area,cells,count,inputs,ice_table,impurity_table,*,tr
     total=lax.fori_loop(0,10,lambda i,x:s(x+leaf[i]),j.zeros_like(sw))
     total_snow=lax.fori_loop(0,5,lambda i,x:s(x+snow[i]),j.zeros_like(sw))
     residual=s(s(s(sw-reflected)-total)-s(total_snow+snow[40]))
-    par=j.where(area>0.,s(canopy[0,:10]*4.6)/j.maximum(area,1e-30),0.)
-    return j.concatenate((leaf,par,snow[:5],j.stack((snow[40],reflected,residual)),ad,af,canopy.ravel(),snow))
+    if canopy_optics is None:
+        par=j.where(area>0.,s(canopy[0,:10]*4.6)/j.maximum(area,1e-30),0.)
+    else:
+        leaf_absorbed=s(canopy[:,:10]*leaf_fraction);stem_absorbed=s(canopy[:,:10]-leaf_absorbed)
+        par=j.where(photosynthetic_leaf_area>0.,s(leaf_absorbed[0]*4.6)/j.maximum(photosynthetic_leaf_area,1e-30),0.)
+    out=j.concatenate((leaf,par,snow[:5],j.stack((snow[40],reflected,residual)),ad,af,canopy.ravel(),snow))
+    return out if canopy_optics is None else j.concatenate((out,leaf_absorbed.ravel(),stem_absorbed.ravel()))
 
 
 def unpack_canopy_snow(out):

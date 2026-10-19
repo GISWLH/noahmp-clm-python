@@ -7,6 +7,21 @@
 旧 H4/K3/M4 数值门已退役为已接受限制，历史复验结论保留在下方。
 本阶段排除城市模型、土地利用变化、整机耦合、河道和侧向地下水。
 
+16:58UTC最终检查点：
+
+- [x] [PFT光学最终D](docs/CLM_CANOPY_OPTICS.md)完整940CPU、设备目标20实际0，47例及完全散射全部624字段差2.00e-36；A整柱BGC3另有实际0，所有B/C失败保留。
+- [ ] [最终D整柱3及完整规范1291](docs/v1-results/pft-optics-full-deferred-d/manifest.json)：整柱GPU0运行，完整GPU在其实际退出后用GPU0执行；旧511实际GPU1任务未停止，只以UID／无子进程守卫替换自己的闲置D等待器。
+- [ ] [原冷NumPy年912快照](docs/v1-results/pft-optics-ehpc-checkpoint-d/manifest.json)，原CUDA1110失败／隔离候选未生产验收，K78及完整年/spinup/多站多年/测高敏感性/科学验收/发布仍待。
+
+16:49UTC当前补充：
+
+- [x] [显式PFT叶／枝光学接入](docs/CLM_CANOPY_OPTICS.md)：独立47例叶PAR最大相对差0.04847%，EHPC937及940CPU实际0；NumPy/JAX/CUDA、相变／MOST／BGC／站点输入与叶片PAR分配连接。
+- [ ] B/C完全散射边界设备失败保留，D统一CUDA与JAX更新顺序后受控624字段差2.00e-36；D完整940CPU／目标20、规范1291及整柱BGC三项仍待。
+- [ ] [原CUDA年F失败1110](docs/CLM_QIA1110_PHASE.md)，NumPy参考同样失败；隔离单侧Jacobian候选22次收敛，未生产／设备验收。NumPy年864快照、K78、完整年/spinup/多站多年/留出及发布仍待。
+- [ ] 日长容量、十日温度记忆、垂直叶N正式连接；非球形PFT叶倾角和冠层积雪组织光学未实现。
+
+下方为历史快照。
+
 15:25：新增[完整冠层输入及首日诊断结果](docs/CLM_CTSM_CANOPY_INPUTS.md)已归档。
 NOAA近似日长容量上界后H−14.2811%、GPP均值+59.7611%/r0.990215；不选择默认值。
 正式PFT光学/日长/温度记忆/垂直叶N连接仍待。NumPy年384快照、CUDA自身有效

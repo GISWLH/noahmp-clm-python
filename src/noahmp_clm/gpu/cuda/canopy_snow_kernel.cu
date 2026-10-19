@@ -1,7 +1,8 @@
 // Included after radiation_kernel.cu and snicar_kernel.cu.
 // Reuse linear unit snow responses for downward direct/diffuse spectra.
 __device__ void canopy_snow_device(const float* lai,const float* cells,int count,const float* inputs,
-                                   const float* ice,const float* impurities,float* out,bool track_absorption=false) {
+                                   const float* ice,const float* impurities,float* out,bool track_absorption=false,
+                                   const float* leaves=nullptr,const float* optics=nullptr) {
     float sw=inputs[0],fv=inputs[1],diff=inputs[2],mu=inputs[3];
     float boundary[7]={1.f,1.f,1.f,1.f,inputs[4],inputs[5],mu},unit[460];
     snow_shortwave_device(cells,count,boundary,ice,impurities,unit);
@@ -10,7 +11,24 @@ __device__ void canopy_snow_device(const float* lai,const float* cells,int count
     float beam=(.5f*sw)*(1.f-diff),sky=(.5f*sw)*diff,canopy[92];
     for(int band=0;band<2;++band) {
         float u[6]={beam,sky,af[band],mu,band==0?.1f:.45f,band==0?.05f:.25f};
-        shortwave_device_albedos(lai,u,ad[band],true,canopy+band*46,track_absorption);
+        float rho[10],tau[10],leaf_fraction[10];
+        if(optics) {
+            float lr=optics[band],lt=optics[2+band],sr=optics[4+band],st=optics[6+band];
+            for(int i=0;i<10;++i) {
+                float stem=lai[i]-leaves[i];
+                rho[i]=lai[i]>0.f?(lr*leaves[i]+sr*stem)/lai[i]:lr;
+                tau[i]=lai[i]>0.f?(lt*leaves[i]+st*stem)/lai[i]:lt;
+                rho[i]=fminf(rho[i],1.f);
+                tau[i]=fminf(tau[i],1.f-rho[i]);
+                float lw=leaves[i]*(1.f-(lr+lt)),sw=stem*(1.f-(sr+st)),weight=lw+sw;
+                leaf_fraction[i]=weight>0.f?lw/weight:0.f;
+            }
+        }
+        shortwave_device_albedos(lai,u,ad[band],true,canopy+band*46,track_absorption,optics?rho:nullptr,optics?tau:nullptr);
+        if(optics)for(int i=0;i<10;++i) {
+            float absorbed_leaf=canopy[band*46+i]*leaf_fraction[i];
+            out[584+band*10+i]=absorbed_leaf;out[604+band*10+i]=canopy[band*46+i]-absorbed_leaf;
+        }
         boundary[band]=fv*canopy[band*46+20]+(1.f-fv)*beam;
         boundary[2+band]=fv*canopy[band*46+31]+(1.f-fv)*sky;
     }
@@ -35,7 +53,8 @@ __device__ void canopy_snow_device(const float* lai,const float* cells,int count
     float total=0.f;
     for(int i=0;i<10;++i) {
         out[i]=fv*(canopy[i]+canopy[46+i]);total+=out[i];
-        out[10+i]=lai[i]>0.f?(canopy[i]*4.6f)/fmaxf(lai[i],1e-30f):0.f;
+        out[10+i]=optics?(leaves[i]>0.f?(out[584+i]*4.6f)/fmaxf(leaves[i],1e-30f):0.f):
+            (lai[i]>0.f?(canopy[i]*4.6f)/fmaxf(lai[i],1e-30f):0.f);
     }
     float bare0=ad[0]*beam+af[0]*sky,bare1=ad[1]*beam+af[1]*sky;
     float reflected=fv*(canopy[43]+canopy[46+43])+(1.f-fv)*(bare0+bare1);
@@ -55,4 +74,11 @@ extern "C" __global__ void run_canopy_snow_stable(const float* area,const float*
                                           const float* inputs,const float* ice,const float* impurities,float* output,int n) {
     for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
         canopy_snow_device(area+row*10,cells+row*35,counts[row],inputs+row*6,ice,impurities,output+row*584,true);
+}
+
+extern "C" __global__ void run_canopy_snow_optics(const float* area,const float* cells,const int* counts,
+    const float* inputs,const float* leaves,const float* optics,const float* ice,const float* impurities,float* output,int n) {
+    for(int row=blockIdx.x*blockDim.x+threadIdx.x;row<n;row+=blockDim.x*gridDim.x)
+        canopy_snow_device(area+row*10,cells+row*35,counts[row],inputs+row*6,ice,impurities,output+row*624,true,
+            leaves+row*10,optics+row*8);
 }

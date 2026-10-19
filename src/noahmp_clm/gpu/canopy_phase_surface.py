@@ -64,13 +64,20 @@ def validate_exchange_extension(extension,n,xp):
         raise ValueError('Invalid separate water velocity/potential temperature extension')
 
 
-def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None,vic=None,stem_area=None):
+def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None,vic=None,stem_area=None,canopy_optics=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,arrays));stem=None if stem_area is None else j.asarray(stem_area)
     validate_phase_surface(arrays,j,stem_area=stem)
     c,g,p,o,a,u,f,v,condensate=arrays;dtype=str(c.dtype)
     plant=a if stem is None else a+stem
-    radiation=_radiation()(plant,c[:,:,j.array([0,3,4,5,6,7,8])],o[:,0],radiation_inputs(plant,u,j),*_jax_tables(dtype))
+    optical_result=None
+    if canopy_optics is None:
+        radiation=_radiation()(plant,c[:,:,j.array([0,3,4,5,6,7,8])],o[:,0],radiation_inputs(plant,u,j),*_jax_tables(dtype))
+    else:
+        from .canopy_optics import canopy_snow_optics_raw_jax
+        optical_result=canopy_snow_optics_raw_jax(plant,c[:,:,j.array([0,3,4,5,6,7,8])],o[:,0],
+            radiation_inputs(plant,u,j),a,canopy_optics)
+        radiation=optical_result[:,:584]
     extra=() if exchange_extension is None else (j.asarray(exchange_extension),)
     if extra:
         validate_exchange_extension(extra[0],len(c),j)
@@ -82,6 +89,9 @@ def run_canopy_phase_surface_jax(*arrays,parameters=None,raise_on_failure=True,e
     out=_compiled(bool(extra),vic is not None,stem is not None)(*arrays[:8],radiation,j.asarray(pack_leaf_parameters(parameters,np.dtype(dtype))),_aging(dtype),condensate,
         extra[0] if extra else None,vic,stem)
     result=unpack_phase_surface(out)
+    if optical_result is not None:
+        from .canopy_optics import attach_optical_absorption
+        attach_optical_absorption(result,optical_result)
     if raise_on_failure and (not bool(j.all(j.isfinite(out))) or not bool(j.all(result['converged']))):
         raise RuntimeError('Layered phase surface failed; inspect with raise_on_failure=False')
     return result

@@ -1,0 +1,516 @@
+{
+  "scope": "EHPC275-278 all4 prospective cold48 actual0,281 all14metrics everycase. ActualPFToptics + previousNOAAcapacityupper yields H+4.00943percent/LEabsolute.0355743W/ETabsolute.00287697mmday; GPPmean+63.6586percent r.989181, runoffstillfails. No defaults/selection/annual/scienceacceptance.",
+  "archive_sha256": "c9591c2f9d4efd97ba3e26cc41d6eb76fe4523cf92e2879a0a9d57d5026b2f62",
+  "artifacts": [
+    {
+      "source": "qia-pft-optics-generic-a/SOURCE_SHA256.json",
+      "path": "qia-pft-optics-generic-a/SOURCE_SHA256.json.gz",
+      "source_sha256": "ee94a8dcacdad117ebf88a0977cd77f915e7cef0118213bf1842e6a3b0356e5f",
+      "stored_sha256": "c71b5e79f3d1db05148bf8744d592416b6f1be03b546151be1f7819bf91b9c18"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/clm-qia-pft-optics-a.o275",
+      "path": "qia-pft-optics-generic-a/clm-qia-pft-optics-a.o275",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/config.json",
+      "path": "qia-pft-optics-generic-a/config.json.gz",
+      "source_sha256": "324f45baa6177c582f227839fcb61bfb24534f9f81c3797f408e7ee4fbdebe28",
+      "stored_sha256": "d37292a41f9f88986593e27e1074b34b9b826565d1b2d07171b645f501cdfe72"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/controller.log",
+      "path": "qia-pft-optics-generic-a/controller.log.gz",
+      "source_sha256": "04be3a4296ae8249ce04d01d157bf06f5ed231aaeaabf33c2b25f2c2082a6959",
+      "stored_sha256": "5dd48b264e4e607090fa2e9cc170bffe22b9709768d3488dd87f548554747a86"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/dispatch.json",
+      "path": "qia-pft-optics-generic-a/dispatch.json.gz",
+      "source_sha256": "0de20c1e60a82fdd57ce87b06c99ce10485f5d6881874b2e68edc7e792f5f1cb",
+      "stored_sha256": "499ca175b6fc796a5929e211ae8254c1a7f6bf2d1fcf5cb2de8877c01b654da7"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/launch.json",
+      "path": "qia-pft-optics-generic-a/launch.json.gz",
+      "source_sha256": "34726b2f677d41a62c552c1efadf6a37fe5c8ed5403bb8084d55891123acc04c",
+      "stored_sha256": "a097863eb6c966107d2e2d27f6b0655e2690a3ba1c8dd3da048b051744ef4235"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/model.log",
+      "path": "qia-pft-optics-generic-a/model.log.gz",
+      "source_sha256": "f0f90a4915ca98917ed12d700e3d1e8d632e2918ce2f446ec98aa600a5294eeb",
+      "stored_sha256": "946be92022bcc276206fac65cc159e2566a2b24ac6dbd1d739787b1af7a8bcb2"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/node.txt",
+      "path": "qia-pft-optics-generic-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/pbs-exit.txt",
+      "path": "qia-pft-optics-generic-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/protocol.json",
+      "path": "qia-pft-optics-generic-a/protocol.json.gz",
+      "source_sha256": "b22e0cbc8d9f2c0aa1476258e2501b8d8ee2bc032d6c7989de3faf1a99756c4a",
+      "stored_sha256": "d1d06efeda53cdaba79f73b39c246b595f3c7745924df624947c6a5620b94fef"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/qia_pft_optics_station_a.pbs",
+      "path": "qia-pft-optics-generic-a/qia_pft_optics_station_a.pbs.gz",
+      "source_sha256": "cd8fd4164d40d7f1af88b824c43cbbbbf0f943a7e135930c8265534bb2553812",
+      "stored_sha256": "514acc1efead032339d0efba8c066c88280c0216c1a57dd4135418ac1630ad39"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/receipt.json",
+      "path": "qia-pft-optics-generic-a/receipt.json.gz",
+      "source_sha256": "cc932d2a4cd3c09d6c98960d28d3b14e90f3c85c84f0a43b2b97725ab89ddad1",
+      "stored_sha256": "459d8cc3f032648434baed9f498b65a701d2840dc27fcc739fd535cdbf60a634"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/run_qia_pft_optics_station_a.py",
+      "path": "qia-pft-optics-generic-a/run_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "54a0e63900249f447fc4463481f2b99e61f79d4ed40cc5747f1f9ae5d344ce07",
+      "stored_sha256": "97cdf7fd192900a49427144dc2ba69415ece50e796f841969c4894f42a5f1aec"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/trajectory/report.json",
+      "path": "qia-pft-optics-generic-a/trajectory/report.json.gz",
+      "source_sha256": "69ddc5f75ddd398e1c0d0c099d14035ad8052f595ce7b3fe91cd171530410397",
+      "stored_sha256": "60ac4b362ce713344b2a4ff3a5a97ba91973f25c5273ece3def913a58937659f"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/trajectory/state-0000000.pkl",
+      "path": "qia-pft-optics-generic-a/trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/trajectory/state-0000048.pkl",
+      "path": "qia-pft-optics-generic-a/trajectory/state-0000048.pkl",
+      "source_sha256": "636565c565dcb171ee4725e257e8451d90d893659a54a8c0d62d7ea4c4659a52",
+      "stored_sha256": "636565c565dcb171ee4725e257e8451d90d893659a54a8c0d62d7ea4c4659a52"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/trajectory/trace-0000000.npz",
+      "path": "qia-pft-optics-generic-a/trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "qia-pft-optics-generic-a/trajectory/trace-0000048.npz",
+      "path": "qia-pft-optics-generic-a/trajectory/trace-0000048.npz",
+      "source_sha256": "82f6c34fe412e7504b328375dd38f78fe21aaf3f6beed00f82f677fee37bde86",
+      "stored_sha256": "82f6c34fe412e7504b328375dd38f78fe21aaf3f6beed00f82f677fee37bde86"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/SOURCE_SHA256.json",
+      "path": "qia-pft-optics-optics-a/SOURCE_SHA256.json.gz",
+      "source_sha256": "ee94a8dcacdad117ebf88a0977cd77f915e7cef0118213bf1842e6a3b0356e5f",
+      "stored_sha256": "c71b5e79f3d1db05148bf8744d592416b6f1be03b546151be1f7819bf91b9c18"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/clm-qia-pft-optics-a.o276",
+      "path": "qia-pft-optics-optics-a/clm-qia-pft-optics-a.o276",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/config.json",
+      "path": "qia-pft-optics-optics-a/config.json.gz",
+      "source_sha256": "49211850e8d9a3807d2054781917871fde421489e203a5c49100b2899dccf589",
+      "stored_sha256": "5538a2fb968b73468c50180fa5935630f0da7e0a54d9d4753dd356f097c3c4a2"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/controller.log",
+      "path": "qia-pft-optics-optics-a/controller.log.gz",
+      "source_sha256": "052336bd5a755d60938cbe407ca84b60af4bb3e77cbede422546643c8e82423b",
+      "stored_sha256": "71742ebe3dbfec30eaba33417512f4f1cdcda1452c35208755c8978442997b1a"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/dispatch.json",
+      "path": "qia-pft-optics-optics-a/dispatch.json.gz",
+      "source_sha256": "170ebf527ec3b15b207d0899bc4b12acc8a6428ef6e8796c121a776606f36698",
+      "stored_sha256": "8c3a58afd2f296ecca6b12c8b6b0dbe4794e411e82f6a7c2307754db0d490139"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/launch.json",
+      "path": "qia-pft-optics-optics-a/launch.json.gz",
+      "source_sha256": "ff8a5e5c9fbc2b85d1b7303da943baadc57d2141505c767171305c8fe8bc82ef",
+      "stored_sha256": "cdd7fc9918682b53c1667d1cd7fdb51ef5b511fe5ac70401544a7e92b73237ef"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/model.log",
+      "path": "qia-pft-optics-optics-a/model.log.gz",
+      "source_sha256": "79851a114ce6725eebdd0a0206a273607707ab29ae7cad5c35585c09065d1d53",
+      "stored_sha256": "d1913184fe14c854828f9cd7148035c6cbfe1d3095b7fc7dc7838f2ba61d766f"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/node.txt",
+      "path": "qia-pft-optics-optics-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/pbs-exit.txt",
+      "path": "qia-pft-optics-optics-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/protocol.json",
+      "path": "qia-pft-optics-optics-a/protocol.json.gz",
+      "source_sha256": "b22e0cbc8d9f2c0aa1476258e2501b8d8ee2bc032d6c7989de3faf1a99756c4a",
+      "stored_sha256": "d1d06efeda53cdaba79f73b39c246b595f3c7745924df624947c6a5620b94fef"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/qia_pft_optics_station_a.pbs",
+      "path": "qia-pft-optics-optics-a/qia_pft_optics_station_a.pbs.gz",
+      "source_sha256": "cd8fd4164d40d7f1af88b824c43cbbbbf0f943a7e135930c8265534bb2553812",
+      "stored_sha256": "514acc1efead032339d0efba8c066c88280c0216c1a57dd4135418ac1630ad39"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/receipt.json",
+      "path": "qia-pft-optics-optics-a/receipt.json.gz",
+      "source_sha256": "49a4b339fcc74ca946b11f61f5a8d0dc5353c7d64fbec4398e5d92ec3df2bbbe",
+      "stored_sha256": "0feeccb4421f206bcd8ae57244bc2ed896e49d2332c0b97a54ab88d3a6117d52"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/run_qia_pft_optics_station_a.py",
+      "path": "qia-pft-optics-optics-a/run_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "54a0e63900249f447fc4463481f2b99e61f79d4ed40cc5747f1f9ae5d344ce07",
+      "stored_sha256": "97cdf7fd192900a49427144dc2ba69415ece50e796f841969c4894f42a5f1aec"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/trajectory/report.json",
+      "path": "qia-pft-optics-optics-a/trajectory/report.json.gz",
+      "source_sha256": "a6dee034a8549478cedeb6ec565e647eea4eb557578af29ddb1e62ad567efef1",
+      "stored_sha256": "51375d8042b13094b3316957dc96fbee14caa009a5285662969b3c42509212f3"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/trajectory/state-0000000.pkl",
+      "path": "qia-pft-optics-optics-a/trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/trajectory/state-0000048.pkl",
+      "path": "qia-pft-optics-optics-a/trajectory/state-0000048.pkl",
+      "source_sha256": "288db0707137e84274c822f2750efae55fed1bc5659f29936967870ec8ae5bc3",
+      "stored_sha256": "288db0707137e84274c822f2750efae55fed1bc5659f29936967870ec8ae5bc3"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/trajectory/trace-0000000.npz",
+      "path": "qia-pft-optics-optics-a/trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "qia-pft-optics-optics-a/trajectory/trace-0000048.npz",
+      "path": "qia-pft-optics-optics-a/trajectory/trace-0000048.npz",
+      "source_sha256": "b4eb4ef1d94c26272970e385deb4d317e0f327b8277c0b1b8d70550346740738",
+      "stored_sha256": "b4eb4ef1d94c26272970e385deb4d317e0f327b8277c0b1b8d70550346740738"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/SOURCE_SHA256.json",
+      "path": "qia-pft-optics-physiology-a/SOURCE_SHA256.json.gz",
+      "source_sha256": "ee94a8dcacdad117ebf88a0977cd77f915e7cef0118213bf1842e6a3b0356e5f",
+      "stored_sha256": "c71b5e79f3d1db05148bf8744d592416b6f1be03b546151be1f7819bf91b9c18"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/clm-qia-pft-optics-a.o277",
+      "path": "qia-pft-optics-physiology-a/clm-qia-pft-optics-a.o277",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/config.json",
+      "path": "qia-pft-optics-physiology-a/config.json.gz",
+      "source_sha256": "575d1b9fbb73b4643118f1990affd4fa7bc52c861cfa98d7f3c329c6c2118e2d",
+      "stored_sha256": "1a106a0fda2a40afc282a71954d896faed34320a3a659817af16605ef7356535"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/controller.log",
+      "path": "qia-pft-optics-physiology-a/controller.log.gz",
+      "source_sha256": "25775d856932cfc89b840885d85152a703d4392b3842d61c709606ee788449d3",
+      "stored_sha256": "359f48aef8d605454685f76bb527ebd967d7d34bf5f099222ee9ad465e66be92"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/dispatch.json",
+      "path": "qia-pft-optics-physiology-a/dispatch.json.gz",
+      "source_sha256": "131504b6c8df14519b4126908626813b2dcfe712ad881b95a66bcb3f0e520c94",
+      "stored_sha256": "02a6dba6ee116b42f14d164d4636955836be206ba11dba37ec068b5a18963eb3"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/launch.json",
+      "path": "qia-pft-optics-physiology-a/launch.json.gz",
+      "source_sha256": "9f9fe3e20abb5e1be7090497b7cfd56531dda01c2f9b14a659f6a38eb206d3e2",
+      "stored_sha256": "342ab2f10abaaaabc5d0a0c166eb10d5a7557253dc677bd05c313f0453651b7d"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/model.log",
+      "path": "qia-pft-optics-physiology-a/model.log.gz",
+      "source_sha256": "58639c9f9ca2e4ab02af8e385e25f2cc970af059c8688db3862b4eda17827620",
+      "stored_sha256": "3948116292a70073a039836765712e0c42f84164fd9a1ef8a9b3f1d8e1b9cd68"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/node.txt",
+      "path": "qia-pft-optics-physiology-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/pbs-exit.txt",
+      "path": "qia-pft-optics-physiology-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/protocol.json",
+      "path": "qia-pft-optics-physiology-a/protocol.json.gz",
+      "source_sha256": "b22e0cbc8d9f2c0aa1476258e2501b8d8ee2bc032d6c7989de3faf1a99756c4a",
+      "stored_sha256": "d1d06efeda53cdaba79f73b39c246b595f3c7745924df624947c6a5620b94fef"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/qia_pft_optics_station_a.pbs",
+      "path": "qia-pft-optics-physiology-a/qia_pft_optics_station_a.pbs.gz",
+      "source_sha256": "cd8fd4164d40d7f1af88b824c43cbbbbf0f943a7e135930c8265534bb2553812",
+      "stored_sha256": "514acc1efead032339d0efba8c066c88280c0216c1a57dd4135418ac1630ad39"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/receipt.json",
+      "path": "qia-pft-optics-physiology-a/receipt.json.gz",
+      "source_sha256": "432fa5fb4275bed236cfe439c87268db01f3d1417726e000a85921b07b9a560b",
+      "stored_sha256": "f784cb18e3eca1c5380e5151fe4b6da3b94364d6bc1c4565fe098f8144c18c82"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/run_qia_pft_optics_station_a.py",
+      "path": "qia-pft-optics-physiology-a/run_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "54a0e63900249f447fc4463481f2b99e61f79d4ed40cc5747f1f9ae5d344ce07",
+      "stored_sha256": "97cdf7fd192900a49427144dc2ba69415ece50e796f841969c4894f42a5f1aec"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/trajectory/report.json",
+      "path": "qia-pft-optics-physiology-a/trajectory/report.json.gz",
+      "source_sha256": "d22c0598694e3830205eb93f058a1f18b7a74abeedb3fa529125799025d20390",
+      "stored_sha256": "573801f08dbbaf177d0458d683b6d54c72193771113617aad397a71e1f1ab139"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/trajectory/state-0000000.pkl",
+      "path": "qia-pft-optics-physiology-a/trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/trajectory/state-0000048.pkl",
+      "path": "qia-pft-optics-physiology-a/trajectory/state-0000048.pkl",
+      "source_sha256": "77f658afb75231cda8414ffd8a5e345abda78806cbb34d71f0301cc5ede7898a",
+      "stored_sha256": "77f658afb75231cda8414ffd8a5e345abda78806cbb34d71f0301cc5ede7898a"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/trajectory/trace-0000000.npz",
+      "path": "qia-pft-optics-physiology-a/trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "qia-pft-optics-physiology-a/trajectory/trace-0000048.npz",
+      "path": "qia-pft-optics-physiology-a/trajectory/trace-0000048.npz",
+      "source_sha256": "380c1be14ae91b207cae9708333666fbc219aca384bb2e9525b0c1a43ae37052",
+      "stored_sha256": "380c1be14ae91b207cae9708333666fbc219aca384bb2e9525b0c1a43ae37052"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/SOURCE_SHA256.json",
+      "path": "qia-pft-optics-combined-a/SOURCE_SHA256.json.gz",
+      "source_sha256": "ee94a8dcacdad117ebf88a0977cd77f915e7cef0118213bf1842e6a3b0356e5f",
+      "stored_sha256": "c71b5e79f3d1db05148bf8744d592416b6f1be03b546151be1f7819bf91b9c18"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/clm-qia-pft-optics-a.o278",
+      "path": "qia-pft-optics-combined-a/clm-qia-pft-optics-a.o278",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/config.json",
+      "path": "qia-pft-optics-combined-a/config.json.gz",
+      "source_sha256": "cfa5bf96421e36ed5b997296dc39ed335bff3f6ffaa89c0f8fa88e3f1e8e9ab6",
+      "stored_sha256": "f2431dc61ced138b9ec4f8444f7805c8a09f3a56e095f7f4255827abc5000279"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/controller.log",
+      "path": "qia-pft-optics-combined-a/controller.log.gz",
+      "source_sha256": "8ed7c10ec67d58e3645e17620e7525204b2897bd4672017c004ea02c3f4cb779",
+      "stored_sha256": "85dfc02175651e1099f912336e879e85c7fc2c4c145efed29eda4e14aee99abc"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/dispatch.json",
+      "path": "qia-pft-optics-combined-a/dispatch.json.gz",
+      "source_sha256": "46676264f0ba9e9f0fa80ef52cabe177e2619a52fde03bac644856301c0eda30",
+      "stored_sha256": "1e52faaa9714bc54595e416ad443e2418d76481c28afd5ec02715425883a08a8"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/launch.json",
+      "path": "qia-pft-optics-combined-a/launch.json.gz",
+      "source_sha256": "8cb45083ddb297ca13d04525cf2df6d7b19582a95619ee933d9ebcd9815db08d",
+      "stored_sha256": "1d1540cfdf1e04d4dbf3ce70c92961a15b28631357669a147c3de23b611caede"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/model.log",
+      "path": "qia-pft-optics-combined-a/model.log.gz",
+      "source_sha256": "5a762b3698c3272a62c2a567f4011e8dd5f36fa1993d78cbaf7e1076319adbb6",
+      "stored_sha256": "db52f33f675df029de25d85ab03d33cce76deaddcdd63b0a82e51df4f3190c38"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/node.txt",
+      "path": "qia-pft-optics-combined-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/pbs-exit.txt",
+      "path": "qia-pft-optics-combined-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/protocol.json",
+      "path": "qia-pft-optics-combined-a/protocol.json.gz",
+      "source_sha256": "b22e0cbc8d9f2c0aa1476258e2501b8d8ee2bc032d6c7989de3faf1a99756c4a",
+      "stored_sha256": "d1d06efeda53cdaba79f73b39c246b595f3c7745924df624947c6a5620b94fef"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/qia_pft_optics_station_a.pbs",
+      "path": "qia-pft-optics-combined-a/qia_pft_optics_station_a.pbs.gz",
+      "source_sha256": "cd8fd4164d40d7f1af88b824c43cbbbbf0f943a7e135930c8265534bb2553812",
+      "stored_sha256": "514acc1efead032339d0efba8c066c88280c0216c1a57dd4135418ac1630ad39"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/receipt.json",
+      "path": "qia-pft-optics-combined-a/receipt.json.gz",
+      "source_sha256": "701f8128288681de75e274ef72cdd4ea3b32e5c5f9cde8465c13bcf200eb447a",
+      "stored_sha256": "03b3e94f74ae75e267b5f06de289fd0cb0dc2b623c6c262df0c247d392f11784"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/run_qia_pft_optics_station_a.py",
+      "path": "qia-pft-optics-combined-a/run_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "54a0e63900249f447fc4463481f2b99e61f79d4ed40cc5747f1f9ae5d344ce07",
+      "stored_sha256": "97cdf7fd192900a49427144dc2ba69415ece50e796f841969c4894f42a5f1aec"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/trajectory/report.json",
+      "path": "qia-pft-optics-combined-a/trajectory/report.json.gz",
+      "source_sha256": "6dac110ee63922238a76bd183d4dcfc1992c6e73e78ba2d9e6d88c176ac25886",
+      "stored_sha256": "d7ed1f31317282b37e7215471238ae0fbd54440d73acf64724915b13670d710b"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/trajectory/state-0000000.pkl",
+      "path": "qia-pft-optics-combined-a/trajectory/state-0000000.pkl",
+      "source_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a",
+      "stored_sha256": "7ec6ab7fae510eb12bf4c8f5c5c1c3d7a69e9364d1319336c62c74811e343f5a"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/trajectory/state-0000048.pkl",
+      "path": "qia-pft-optics-combined-a/trajectory/state-0000048.pkl",
+      "source_sha256": "79fef6615f63c7708061f4f224611e867bd2ecf8042fc1324d9e9815e2612dd6",
+      "stored_sha256": "79fef6615f63c7708061f4f224611e867bd2ecf8042fc1324d9e9815e2612dd6"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/trajectory/trace-0000000.npz",
+      "path": "qia-pft-optics-combined-a/trajectory/trace-0000000.npz",
+      "source_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63",
+      "stored_sha256": "962da1db211a5f43d6bcc6fcc4225817960258ebb4c98311e68c82f7202d8f63"
+    },
+    {
+      "source": "qia-pft-optics-combined-a/trajectory/trace-0000048.npz",
+      "path": "qia-pft-optics-combined-a/trajectory/trace-0000048.npz",
+      "source_sha256": "be21c68385f2d8e53002634df21c6483fdc81fed8ae3a8afddf82445616c243c",
+      "stored_sha256": "be21c68385f2d8e53002634df21c6483fdc81fed8ae3a8afddf82445616c243c"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/clm-pft-optics-comparison-a.o281",
+      "path": "qia-pft-optics-comparison-a/clm-pft-optics-comparison-a.o281",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/compare_qia_pft_optics_station_a.py",
+      "path": "qia-pft-optics-comparison-a/compare_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "491b049f60db773cb237f6445f4fddd8b5d357ece0ada81cab00915d3d2b5319",
+      "stored_sha256": "58cfe13cefcc90dfeaeb9dcff666648ce1b363b3f3ebf2edfec8bcb937009560"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/comparison.json",
+      "path": "qia-pft-optics-comparison-a/comparison.json.gz",
+      "source_sha256": "deaeb7f46f3d2bcc44ba6345d36f97709f5aaee5a3fffa60f39af013c92eb11b",
+      "stored_sha256": "d1b5b44ef4b491724991a4425e5f2c15835d0331ea3e81dd814a9ced942eb257"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/comparison.log",
+      "path": "qia-pft-optics-comparison-a/comparison.log.gz",
+      "source_sha256": "4c50d4a53e05cec48f5be2f1b3878542de3efd6dd35222ad87f7b47c1bd03c3f",
+      "stored_sha256": "f655e0d416e6d8dc3d22135a711834a8aa5a15548fadc5e275430795ae154dd5"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/dispatch.json",
+      "path": "qia-pft-optics-comparison-a/dispatch.json.gz",
+      "source_sha256": "0b01c16da659c58b9c0b5bd82134964d45f19fa9face062db7b00212752ce243",
+      "stored_sha256": "72a1ce018c05a6c329e3ae30dd3229beba36d52a6fb88351441a11a34a45e170"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/node.txt",
+      "path": "qia-pft-optics-comparison-a/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/pbs-exit.txt",
+      "path": "qia-pft-optics-comparison-a/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "qia-pft-optics-comparison-a/qia_pft_optics_comparison_a.pbs",
+      "path": "qia-pft-optics-comparison-a/qia_pft_optics_comparison_a.pbs.gz",
+      "source_sha256": "f45e5c343d4d4e7125904e81d2c130f529c1533231b055a7d06029a505fd32eb",
+      "stored_sha256": "d56e2c85833c4e47ad7ec3b8aa89df8c729a3ec70612e37e872490138caf8972"
+    },
+    {
+      "source": "control/qia-pft-optics-station-a-protocol.json",
+      "path": "control/qia-pft-optics-station-a-protocol.json.gz",
+      "source_sha256": "b22e0cbc8d9f2c0aa1476258e2501b8d8ee2bc032d6c7989de3faf1a99756c4a",
+      "stored_sha256": "d1d06efeda53cdaba79f73b39c246b595f3c7745924df624947c6a5620b94fef"
+    },
+    {
+      "source": "control/dispatch_qia_pft_optics_station_a.py",
+      "path": "control/dispatch_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "0a79aecaa7ce1c2f96285dad213ed5ee32b6d1d141d109350c937a1d0e682231",
+      "stored_sha256": "e1cd200b14a61f4ec97ba57c638bc63d0aefeaf9ab7e2a98ce5d0a7a0697db84"
+    },
+    {
+      "source": "control/dispatch_qia_pft_optics_comparison_a.py",
+      "path": "control/dispatch_qia_pft_optics_comparison_a.py.gz",
+      "source_sha256": "666ede734ee1698412c2972d6d8ae0490a25c30d3551975081fe09dee98b30eb",
+      "stored_sha256": "8cc2647ca92dcfb1be898fd91c531330171e663db242d0c282ab7442c037c8a9"
+    },
+    {
+      "source": "control/archive_qia_pft_optics_station_a.py",
+      "path": "control/archive_qia_pft_optics_station_a.py.gz",
+      "source_sha256": "8665b4edb42ef658201e248256c5694e6bce39ed48f3a50348595d2c7f49f9f6",
+      "stored_sha256": "0271a2fddf7642a9923d9c65dbd2e9bbd1f384a659252c6de249b015676f37da"
+    },
+    {
+      "source": "reference/year-boundary.json",
+      "path": "reference/year-boundary.json.gz",
+      "source_sha256": "a4fae509ffcf461761627d4e5295e98d8b0837a82445e07063d73864b95d8405",
+      "stored_sha256": "8a37fc36f6ab31bf17767d095a9e2c5ba10741895bea0d0581218a4ea72aa6db"
+    }
+  ]
+}

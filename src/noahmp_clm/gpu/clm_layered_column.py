@@ -121,7 +121,7 @@ def _stages(vic=False,external=False,structure=False):
 
 def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None,
-                               canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None):
+                               canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
@@ -139,6 +139,7 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
     stems={} if area is None else dict(stem_area=j.broadcast_to(area[:,1,None]*j.asarray(.1,arrays[0].dtype),(len(c),10)))
+    if canopy_optics is not None:stems['canopy_optics']=canopy_optics
     if most_geometry is None:surface=run_canopy_phase_surface_jax(*surface_arrays,parameters=leaf_parameters,vic=vic,**stems)
     else:
         from .canopy_most_surface import run_most_surface

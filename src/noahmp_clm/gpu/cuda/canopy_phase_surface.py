@@ -23,7 +23,7 @@ def _kernel(extended=False,vic=False,stems=False):
     return module.get_function(name)
 
 
-def run_canopy_phase_surface_cuda(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None,vic=None,stem_area=None):
+def run_canopy_phase_surface_cuda(*arrays,parameters=None,raise_on_failure=True,exchange_extension=None,vic=None,stem_area=None,canopy_optics=None):
     import cupy as cp
     if cp.asarray(arrays[3]).dtype.kind not in 'iu':raise ValueError('Surface options must be integers')
     arrays=tuple(cp.ascontiguousarray(cp.asarray(a,dtype=cp.int32 if k==3 else cp.float32)) for k,a in enumerate(arrays))
@@ -37,14 +37,27 @@ def run_canopy_phase_surface_cuda(*arrays,parameters=None,raise_on_failure=True,
     arguments=(extra[0] if extra else np.uint64(0),vic) if vic is not None else extra
     if stem is not None:arguments=(stem,extra[0] if extra else np.uint64(0),np.uint64(0) if vic is None else vic)
     out=cp.empty((size,741),cp.float32)
+    optical_result=None
+    if canopy_optics is not None:
+        from ..canopy_optics import validate_canopy_optics
+        canopy_optics=cp.ascontiguousarray(cp.asarray(canopy_optics,cp.float32))
+        validate_canopy_optics(a if stem is None else a+stem,a,canopy_optics,cp)
     if size:
         launch=((min((size+31)//32,4096),),(32,))
         optical=cp.ascontiguousarray(c[:,:,cp.array([0,3,4,5,6,7,8])]);counts=cp.ascontiguousarray(o[:,0])
         radiation=cp.empty((size,584),cp.float32)
         plant=a if stem is None else cp.ascontiguousarray(a+stem)
-        _radiation_kernel(True)(*launch,(plant,optical,counts,cp.ascontiguousarray(radiation_inputs(plant,u,cp)),*_tables(),radiation,np.int32(size)))
+        if canopy_optics is None:
+            _radiation_kernel(True)(*launch,(plant,optical,counts,cp.ascontiguousarray(radiation_inputs(plant,u,cp)),*_tables(),radiation,np.int32(size)))
+        else:
+            from .canopy_optics import canopy_snow_optics_raw_cuda
+            optical_result=canopy_snow_optics_raw_cuda(plant,optical,counts,radiation_inputs(plant,u,cp),a,canopy_optics)
+            radiation=cp.ascontiguousarray(optical_result[:,:584])
         _kernel(bool(extra),vic is not None,stem is not None)(*launch,(*arrays,*arguments,radiation,cp.asarray(pack_leaf_parameters(parameters,np.float32)),_aging(),out,np.int32(size)))
     result=unpack_phase_surface(out)
+    if optical_result is not None:
+        from ..canopy_optics import attach_optical_absorption
+        attach_optical_absorption(result,optical_result)
     if raise_on_failure and (not bool(cp.all(cp.isfinite(out))) or not bool(cp.all(result['converged']))):
         raise RuntimeError('CUDA layered phase surface failed; inspect with raise_on_failure=False')
     return result

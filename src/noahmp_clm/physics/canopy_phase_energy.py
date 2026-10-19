@@ -53,7 +53,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         ground_emissivity=.97, ground_albedo=(.15,.3), diffuse_fraction=.5,
         cosine_zenith=.5, fixed_ground_temperature=None, ground_is_ice=False,
         ground_shares_soil=True, snowpack=None, tolerance=5e-5, max_iterations=80,
-        initial_guess=None):
+        initial_guess=None,canopy_optics=None):
     """Joint layer phase/temperature and canopy-air humidity solution.
 
     Condensate and all fluxes refer to total ground area. Leaf/stem areas
@@ -104,13 +104,19 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
     biochemical=water_stress if tr_limit>0. else water_stress*0.
     fractions=coverage(condensate,leaf,stem_area=stem,vegetated_fraction=fv)
     if snowpack is None:
-        sw=canopy_shortwave(area,swdown,ground_albedo=ground_albedo,diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
+        if canopy_optics is None:
+            sw=canopy_shortwave(area,swdown,ground_albedo=ground_albedo,diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
+        else:
+            from .canopy_optics import canopy_shortwave_pft
+            sw=canopy_shortwave_pft(leaf,stem,swdown,canopy_optics,ground_albedo=ground_albedo,
+                diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
         bare_sw=swdown*(1.-.5*sum(ground_albedo));shortwave=np.r_[fv*sw['absorbed'],fv*sw['ground_absorbed']+(1.-fv)*bare_sw]
         reflected=fv*sw['reflected']+(1.-fv)*(swdown-bare_sw);snow_sw=np.empty(0);soil_sw=shortwave[-1]
     else:
         from .canopy_snow_radiation import canopy_snow_shortwave
+        optical_options={} if canopy_optics is None else dict(canopy_optics=canopy_optics,photosynthetic_leaf_area=leaf)
         rad=canopy_snow_shortwave(area,snowpack,swdown,vegetated_fraction=fv,ground_albedo=ground_albedo,
-            diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith)
+            diffuse_fraction=diffuse_fraction,cosine_zenith=cosine_zenith,**optical_options)
         sw=rad['canopy'];snow_sw=rad['snow_absorbed'];soil_sw=rad['soil_absorbed'];reflected=rad['reflected']
         shortwave=np.r_[rad['canopy_absorbed'],snow_sw.sum()+soil_sw]
     lw=_longwave_operator(area,ground_emissivity,fv)
@@ -171,7 +177,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         storage=(final.enthalpy-condensate.enthalpy)/dt;advected=parcel['advected_enthalpy_jm2']/dt
         physical=rn-sensible-latent;physical[:-1]-=storage+advected+transp_heat;physical[-1]-=ground_heat
         atm_water=rho*fv*e.water_velocity*(qc-e.specific_humidity)+ge[1]
-        return dict(condensate=final,thermal_condensate=heated,leaf_temperature=leaf_t,ground_temperature=float(t[-1]),
+        result=dict(condensate=final,thermal_condensate=heated,leaf_temperature=leaf_t,ground_temperature=float(t[-1]),
             canopy_temperature=e.heat_temperature+air_offset,canopy_humidity=qc,gas_exchange=gas,
             gpp=float(fv*leaf@np.where(active,gas['gross'],0.)),leaf_respiration=float(fv*leaf@np.where(active,gas['respiration'],0.)),
             h=float(sensible.sum()),le=float(latent.sum()),rnet=float(rn.sum()),ground_heat=float(ground_heat),
@@ -186,6 +192,9 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
             air_water_residual=float(wet.sum()+tr.sum()+ge.sum()-atm_water),
             air_heat_residual=float(sensible.sum()-atm_h*air_offset-bare_h*(t[-1]-e.heat_temperature)),
             canopy_water_residual=float((final.mass-mass+dt*wet).sum()),phase_coordinates=z[:n].copy())
+        if canopy_optics is not None:
+            result.update(leaf_absorbed_shortwave=sw['leaf_absorbed_bands'],stem_absorbed_shortwave=sw['stem_absorbed_bands'])
+        return result
 
     # Test the atmospheric-temperature branch as well as the old enthalpy.
     # Warm old water alone can be a poor starting temperature for a freezing

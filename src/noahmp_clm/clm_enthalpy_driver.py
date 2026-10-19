@@ -27,7 +27,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
                             deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
                             nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None,
-                            prescribed_sai=None):
+                            prescribed_sai=None,canopy_optics=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     if state.bgc_state is not None:
         from .clm_bgc_driver import step_clm_bgc_column
@@ -35,7 +35,12 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             leaf_dimension=leaf_dimension,canopy_layers=canopy_layers,leaf_parameters=leaf_parameters,nitrogen_factor=nitrogen_factor,
             deposition_rates=deposition_rates,most_geometry=most_geometry,vic_parameters=vic_parameters,
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
-            crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai)
+            crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai,
+            **({} if canopy_optics is None else dict(canopy_optics=canopy_optics)))
+    if canopy_optics is not None:
+        from .physics.canopy_optics import CanopyOptics
+        if not isinstance(canopy_optics,CanopyOptics) or state.canopy_condensate is None:
+            raise ValueError('Explicit PFT optics require CanopyOptics and a layered canopy')
     if crop_management is not None:raise ValueError('Crop management requires an annual crop BGC column')
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
@@ -180,7 +185,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             wet_fraction=wet,water_stress=stress,vegetated_fraction=state.fveg,nitrogen_factor=nitrogen_factor,
             leaf_parameters=leaf_parameters,ground_albedo=(state.albedo,state.albedo),ground_emissivity=state.emiss,
             cosine_zenith=cosine_zenith,diffuse_fraction=diffuse_fraction,
-            infiltration_parameters=vic_parameters if vic_surface else None)
+            infiltration_parameters=vic_parameters if vic_surface else None,
+            **({} if canopy_optics is None else dict(canopy_optics=canopy_optics)))
     if most_geometry is None:surface_result=solve_surface(exchange)
     else:
         from .physics.canopy_most import solve_surface_most

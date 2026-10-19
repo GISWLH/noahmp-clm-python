@@ -28,6 +28,7 @@ from noahmp_clm.physics.decomposition import DecompositionState, DecompositionPa
 from noahmp_clm.physics.phenology import PhenologyState, PhenologyParameters, PhenologyEnvironment
 from noahmp_clm.physics.canopy_most import MOSTGeometry
 from noahmp_clm.physics.photosynthesis import LeafParameters
+from noahmp_clm.physics.canopy_optics import CanopyOptics
 from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
 from fluxnet_solar import solar_geometry
 from fluxnet_deposition import DepositionSchedule
@@ -163,6 +164,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
     identity = dict(forcing_npz_sha256=sha(input_path), forcing_manifest_sha256=sha(input_manifest),
                     configuration_sha256=sha(config_path), source_sha256=source_hashes())
     geometry = MOSTGeometry(**config['most_geometry']); leaf = LeafParameters(**config['leaf_parameters'])
+    optics=None if config.get('canopy_optics') is None else CanopyOptics(**config['canopy_optics'])
     deposition = DepositionSchedule(config)
     output.mkdir(parents=True, exist_ok=True); report_path = output/'report.json'
     started = time.monotonic(); elapsed_before = 0.
@@ -217,7 +219,8 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
             nitrogen = deposition.nitrogen_rate*f.dt
             after, d = step_clm_enthalpy_column(state, f, co2_ppm=float(co2), cosine_zenith=float(mu), diffuse_fraction=float(diffuse),
                 leaf_dimension=config['leaf_dimension_m'], leaf_parameters=leaf, most_geometry=geometry,
-                phenology_environment=environment, deposition_rates=dep, nitrogen_deposition_gn_m2=nitrogen)
+                phenology_environment=environment, deposition_rates=dep, nitrogen_deposition_gn_m2=nitrogen,
+                **({} if optics is None else dict(canopy_optics=optics)))
             incoming, residual, bound = audit_step(state, after, f, d, nitrogen)
             next_net = net+incoming; next_bounds = bounds+bound; cumulative = totals(after)-initial-next_net
             if not np.all(abs(cumulative) <= next_bounds): raise RuntimeError(f'Independent cumulative M/H/C/N budget: {cumulative}, {next_bounds}')

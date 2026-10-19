@@ -18,7 +18,7 @@ def _kernel():
     return module.get_function('run_canopy_phase')
 
 
-def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.005,raise_on_failure=True):
+def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.005,raise_on_failure=True,canopy_optics=None):
     import cupy as cp
     raw=cp.asarray(arrays[-1])
     if raw.dtype.kind not in 'iu':raise ValueError('Snow counts must be integers')
@@ -26,13 +26,24 @@ def run_canopy_phase_cuda(*arrays,parameters=None,max_iterations=100,tolerance=.
     validate_phase(values,cp);a,u,f,soil,stem,c,b,snow,n=values
     if not isinstance(max_iterations,int) or max_iterations<1 or not np.isfinite(tolerance) or tolerance<=0.:raise ValueError('Invalid phase solver controls')
     size=len(a);out=cp.empty((size,PHASE_OUTPUT_SIZE),cp.float32)
+    optical_result=None
+    if canopy_optics is not None:
+        from ..canopy_optics import validate_canopy_optics
+        canopy_optics=cp.ascontiguousarray(cp.asarray(canopy_optics,cp.float32));validate_canopy_optics(a+stem,a,canopy_optics,cp)
     if size:
         launch=((min((size+31)//32,4096),),(32,))
         area=cp.ascontiguousarray(a+stem);ru=cp.ascontiguousarray(radiation_inputs(area,u,cp));rad=cp.empty((size,584),cp.float32)
-        _radiation_kernel(True)(*launch,(area,snow,n,ru,*_tables(),rad,np.int32(size)))
+        if canopy_optics is None:_radiation_kernel(True)(*launch,(area,snow,n,ru,*_tables(),rad,np.int32(size)))
+        else:
+            from .canopy_optics import canopy_snow_optics_raw_cuda
+            optical_result=canopy_snow_optics_raw_cuda(area,snow,n,ru,a,canopy_optics)
+            rad=cp.ascontiguousarray(optical_result[:,:584])
         p=cp.asarray(pack_leaf_parameters(parameters,np.float32))
         _kernel()(*launch,(a,u,f,soil,stem,c,b,rad,p,out,np.int32(size),np.int32(max_iterations),np.float32(tolerance)))
     if not bool(cp.all(cp.isfinite(out))):raise RuntimeError('Nonfinite phase canopy result')
     result=unpack_phase(out)
+    if optical_result is not None:
+        from ..canopy_optics import attach_optical_absorption
+        attach_optical_absorption(result,optical_result)
     if raise_on_failure and not bool(cp.all(result['converged'])):raise RuntimeError('CUDA phase canopy did not converge; inspect with raise_on_failure=False')
     return result
