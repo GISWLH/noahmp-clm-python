@@ -185,7 +185,7 @@ def runoff_jax(incoming,g,p,site,surface_option,subsurface_option):
     return j.stack((surf,s(incoming-surf)))
 
 
-def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,canopy,flux,impurity,vic=None):
+def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,canopy,flux,impurity,vic=None,*,closed_richards=False):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;row=lambda *x:j.asarray(x,c.dtype);dt=forcing[0];phase=o[1]
@@ -201,7 +201,10 @@ def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g
         return drained[:45].reshape(5,9),admitted[:12].reshape(4,3),drained[45].astype(j.int32),out,tracer,ok&(admitted[46]>0.)
     c,g,n,out,tracer,valid=lax.cond(drip>0.,overflow,lambda:(c,g,n,j.zeros(2,c.dtype),j.zeros(5,c.dtype),valid))
     runoff=s(runoff+out);impurity=s(impurity+tracer)
-    drained=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(2),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))),vic)
+    # Zero-input admission diagnoses phase and copies W/H without gravity
+    # transfer. Explicit Richards transport follows the finish stage.
+    mode=0 if closed_richards else 2
+    drained=soil_transport_kernel_jax(g,compact_soil_parameters(p,j),j.stack((j.asarray(mode),phase,o[8])),j.concatenate((row(0.,0.,dt),j.zeros(4,c.dtype))),vic)
     g=drained[:12].reshape(4,3);runoff=s(runoff+drained[44:46]);valid=valid&(drained[46]>0.)
     addition=s(deposition*dt);c=c.at[0,4:].set(j.where(n>0,s(c[0,4:]+addition),c[0,4:]));impurity=s(impurity+j.where(n==0,addition,0.))
     temp=s(j.where(n>0,snow_phase_jax(c[0,0],c[0,1])[0],drained[12])+273.15)
@@ -218,10 +221,11 @@ def finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g
     return c,g,options,store,diag,impurity
 
 
-@lru_cache(maxsize=1)
-def _stages():
+@lru_cache(maxsize=2)
+def _stages(closed_richards=False):
     import jax
-    return jax.jit(jax.vmap(prepare_column_jax)),jax.jit(jax.vmap(finish_column_jax))
+    finish=finish_column_jax if not closed_richards else lambda *a:finish_column_jax(*a,closed_richards=True)
+    return jax.jit(jax.vmap(prepare_column_jax)),jax.jit(jax.vmap(finish))
 
 
 def unpack_column(c,g,o,store,diag,impurity,surface=None):
@@ -231,7 +235,7 @@ def unpack_column(c,g,o,store,diag,impurity,surface=None):
     return result
 
 
-def step_clm_enthalpy_columns_jax(c,g,p,o,site,storage,roots,forcing,*,deposition=None,leaf_parameters=None,return_surface=False):
+def step_clm_enthalpy_columns_jax(c,g,p,o,site,storage,roots,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,soil_hydrology=None):
     """Advance every column on device; forcing is (dt,T,q,wind,p,SW,LW,rain).
 
     Precipitation has m/s units; optional five-species deposition is kg/m2/s.
@@ -242,7 +246,9 @@ def step_clm_enthalpy_columns_jax(c,g,p,o,site,storage,roots,forcing,*,depositio
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
-    validate_column(arrays,forcing,deposition,j);prepare,finish=_stages()
+    validate_column(arrays,forcing,deposition,j)
+    from .clm_richards_column import resolve_column_richards,attach_column_richards
+    hydrology=resolve_column_richards(soil_hydrology,arrays[3],j);prepare,finish=_stages(hydrology is not None)
     pc,pg,po,a,u,f,v,prep,valid,pre_impurity=prepare(*arrays,forcing)
     if not bool(j.all(valid)):raise RuntimeError('CLM precipitation preparation failed')
     surface=run_canopy_surface_jax(pc,pg,arrays[2],po,a,u,f,v,parameters=leaf_parameters)
@@ -252,4 +258,5 @@ def step_clm_enthalpy_columns_jax(c,g,p,o,site,storage,roots,forcing,*,depositio
         surface['snow_cells'],surface['soil_cells'],surface['snow_counts'],canopy,flux,surface['impurity_output_kgm2']+pre_impurity)
     if not bool(j.all(out[4][:,25]>0.)) or not all(bool(j.all(j.isfinite(x))) for x in out):
         raise RuntimeError('CLM post-surface water/heat transfer failed')
-    return unpack_column(*out,surface=surface if return_surface else None)
+    result=unpack_column(*out,surface=surface if return_surface else None)
+    return attach_column_richards(result,arrays[2],arrays[3],forcing,arrays[0],arrays[1],arrays[5],hydrology,'jax')

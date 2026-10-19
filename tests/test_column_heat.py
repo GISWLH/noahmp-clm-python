@@ -127,3 +127,36 @@ def test_annual_thin_snow_crosses_complete_melt_without_line_search_stall():
         kw['snow_absorbed'],kw['soil_absorbed'],k,kw['top_temperature'],kw['top_conductance'])
     np.testing.assert_allclose(np.r_[s.enthalpy,g.enthalpy],href,atol=.003,rtol=1e-9)
     np.testing.assert_allclose(np.r_[s.temperature,g.temperature],tref,atol=1e-7,rtol=0.)
+
+
+@pytest.mark.parametrize('mass_scale',[1.,1e3,1e6,1e9])
+def test_vanishing_snow_exact_latent_endpoint_advances_with_equal_rounded_norm(mass_scale):
+    from noahmp_clm.column import SoilParams
+    from noahmp_clm.physics.snow_heat import conductivity
+    from noahmp_clm.physics.soil import thermal_conductivity
+    packet=json.loads((Path(__file__).parent/'fixtures/vanishing_snow_event.json').read_text())
+    snow=Snowpack(**packet['snow'])
+    snow=Snowpack(snow.mass*mass_scale,snow.enthalpy*mass_scale,snow.thickness*mass_scale)
+    p=dict(packet['soil']);props=p.pop('params');earth=SoilEnthalpyState(**p,params=SoilParams(**props))
+    dt=packet['dt'];kw=packet['kwargs'];s,g,ledger=coupled_heat_step(snow,earth,dt,packet['top_flux'],**kw)
+    # Independently solve the all-liquid endpoint in temperature coordinates.
+    # Its tiny surface heat capacity is retained, rather than clipping mass.
+    z=np.r_[snow.thickness,earth.dz];k=np.r_[conductivity(snow),thermal_conductivity(earth.water/(1000.*earth.dz),earth.params)]
+    cap=np.r_[4180.*snow.mass,(1.-earth.params.smcmax)*2e6*earth.dz+4180.*earth.water]
+    fusion=334000.*np.r_[snow.mass,earth.water]
+    matrix=np.diag(cap/dt);rhs=(np.r_[snow.enthalpy,earth.enthalpy]-fusion)/dt+np.r_[kw['snow_absorbed'],kw['soil_absorbed']];rhs[0]+=packet['top_flux']
+    for j in range(len(z)-1):
+        conduct=1./(.5*z[j]/k[j]+.5*z[j+1]/k[j+1])
+        matrix[j,j]+=conduct;matrix[j+1,j+1]+=conduct;matrix[j,j+1]-=conduct;matrix[j+1,j]-=conduct
+    exchange=kw.get('top_conductance',0.);matrix[0,0]+=exchange
+    if kw.get('top_temperature') is not None:rhs[0]+=exchange*(kw['top_temperature']-TF)
+    expected=np.linalg.solve(matrix,rhs);assert np.all(expected>0.)
+    actual=np.r_[s.temperature,g.temperature]-TF;h=np.r_[s.enthalpy,g.enthalpy]
+    np.testing.assert_allclose(actual,expected,rtol=0.,atol=1e-8)
+    np.testing.assert_allclose(h,fusion+cap*expected,rtol=0.,atol=ledger['convergence_tolerance_jm2'])
+    assert ledger['iterations']<=6
+    assert np.max(abs(ledger['layer_residual_jm2']))<=ledger['convergence_tolerance_jm2']
+    assert abs(ledger['residual_jm2'])<1e-6
+    np.testing.assert_array_equal(s.mass,snow.mass);np.testing.assert_array_equal(g.water,earth.water)
+    print('Vanishing snow event',mass_scale,dict(temperature_error_k=float(abs(actual-expected).max()),
+        energy_residual_jm2=ledger['residual_jm2'],iterations=ledger['iterations']),flush=True)

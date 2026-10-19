@@ -121,6 +121,11 @@ extern "C" __global__ void finish_enthalpy_columns(const float* old_snow,const f
             for(int k=0;k<5;++k)impurity[k]+=drained[62+k]+drained[55+k];
         }
         float su[7]={0.f,0.f,dt,0.f,0.f,0.f,0.f},drained[47];int so[3]={2,phase,o[8]};
+#ifdef CLM_RICHARDS_ZERO_FLUX
+        // Explicit Richards follows this finish stage. Zero-input mode
+        // copies actual stores and diagnoses phase without gravity drainage.
+        so[0]=0;
+#endif
         column_soil_transport_device(g,p,so,su,drained,vic);for(int k=0;k<12;++k)g[k]=drained[k];valid=valid&&drained[46]>0.f;
         runoff[0]+=drained[44];runoff[1]+=drained[45];
         for(int k=0;k<5;++k){float addition=deposition[row*5+k]*dt;if(n>0)c[4+k]+=addition;else impurity[k]+=addition;}

@@ -32,6 +32,7 @@ from noahmp_clm.physics.photosynthesis import LeafParameters
 from noahmp_clm.physics.canopy_optics import CanopyOptics
 from noahmp_clm.physics.vegetation_structure import CanopyStructureParameters,StemAreaScheme
 from noahmp_clm.physics.canopy_capacity import TemperatureMemory,CanopyCapacityParameters,CanopyCapacityEnvironment
+from noahmp_clm.physics.richards import RichardsHydrology
 from fluxnet_solar import solar_geometry
 from fluxnet_deposition import DepositionSchedule
 
@@ -48,6 +49,27 @@ CAPACITY_TRACE={'capacity_mean_temperature_used_k':'mean_temperature_k',
     'capacity_nitrogen_extinction':'nitrogen_extinction',
     'capacity_temperature_count':'temperature_count_after',
     'capacity_temperature_cursor':'temperature_cursor_after'}
+
+
+def hydrology_configuration(config):
+    """Select an explicit vertical boundary; preserve the legacy default."""
+    value=config.get('soil_hydrology')
+    if value is None:return None
+    if (not isinstance(value,dict) or set(value)!={'method','parameters'}
+            or value['method']!='richards_zero_flux' or not isinstance(value['parameters'],dict)):
+        raise ValueError('Soil hydrology requires method richards_zero_flux and a parameters object')
+    controls=value['parameters']
+    if not set(controls)<=set(RichardsHydrology.__dataclass_fields__):
+        raise ValueError('Unknown closed Richards control')
+    for key,v in controls.items():
+        if isinstance(v,bool) or not isinstance(v,(int,float)) or not np.isfinite(v):
+            raise ValueError('Richards controls must be explicit finite numbers')
+        if key=='max_substeps' and type(v) is not int:
+            raise ValueError('Richards max_substeps must be an integer')
+    parameters=RichardsHydrology(**controls)
+    if config['column']['options'].get('OptRunoffSubsurface',3)!=3:
+        raise ValueError('Closed Richards requires subsurface routing flag 3; requested bottom outlets cannot be silently removed')
+    return parameters
 
 
 def capacity_configuration(config):
@@ -139,6 +161,7 @@ def atomic_json(path, value):
 
 def build_state(config):
     """All site choices are supplied explicitly; unknown fields fail loudly."""
+    hydrology_configuration(config)
     c = config['column'].copy()
     c['soil'] = SoilParams(**c['soil']); c['options'] = PhysicsOptions(**c['options'])
     for key in ('dz', 'tsoil', 'smc', 'root_frac'):
@@ -218,6 +241,7 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
     metadata = json.loads(input_manifest.read_text(encoding='utf-8')); config = json.loads(config_path.read_text(encoding='utf-8'))
     with np.load(input_path, allow_pickle=False) as archive: data = dict(archive)
     stamps = validate_input(data, metadata, input_path); n = len(stamps)
+    hydrology=hydrology_configuration(config)
     capacity=capacity_configuration(config)
     if capacity is not None and data['forcing'][0,0]!=capacity[1].time_step_seconds:
         raise ValueError('Forcing interval disagrees with capacity temperature history')
@@ -283,7 +307,8 @@ def run(input_path, input_manifest, config_path, output, *, resume=False, stop_a
                 leaf_dimension=config['leaf_dimension_m'], leaf_parameters=leaf, most_geometry=geometry,
                 phenology_environment=environment, deposition_rates=dep, nitrogen_deposition_gn_m2=nitrogen,
                 capacity_environment=capacity_environment(stamps[index],metadata,capacity is not None),
-                **({} if optics is None else dict(canopy_optics=optics)))
+                **({} if optics is None else dict(canopy_optics=optics)),
+                **({} if hydrology is None else dict(soil_hydrology=hydrology)))
             incoming, residual, bound = audit_step(state, after, f, d, nitrogen)
             next_net = net+incoming; next_bounds = bounds+bound; cumulative = totals(after)-initial-next_net
             if not np.all(abs(cumulative) <= next_bounds): raise RuntimeError(f'Independent cumulative M/H/C/N budget: {cumulative}, {next_bounds}')

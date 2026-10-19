@@ -88,7 +88,14 @@ def coupled_heat_step(snow,soil,dt,top_flux,*,snow_absorbed=None,soil_absorbed=N
             try: value=evaluate(candidate)[0]
             except ValueError:
                 scale*=.5;continue
-            if np.max(np.abs(value))<norm:
+            candidate_norm=np.max(np.abs(value))
+            # A vanishing snow parcel can cross a complete latent plateau
+            # while neighbouring soil H cannot move by one ULP. Landing on
+            # a new exact phase endpoint still advances the active set.
+            # Retain the original final residual/tolerance and iteration cap.
+            phase_event=any(scale==fraction and candidate[j]==boundary and h[j]!=boundary
+                            for fraction,j,boundary in events)
+            if candidate_norm<norm or (phase_event and candidate_norm==norm):
                 h=candidate;accepted=True;break
             scale*=.5
         if not accepted: break

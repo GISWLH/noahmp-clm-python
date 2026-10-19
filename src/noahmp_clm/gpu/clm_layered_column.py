@@ -97,7 +97,7 @@ def prepare_layered_jax(c,g,p,o,site,storage,roots,condensate,forcing,vic=None,g
     return pc,pg,po,a,u,f,v,prep,valid&good,cc,intercepted,old,pre_impurity
 
 
-def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,condensate,flux,impurity,vic=None,canopy_area=None):
+def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,g,n,condensate,flux,impurity,vic=None,canopy_area=None,*,closed_richards=False):
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier;row=lambda *x:j.asarray(x,c.dtype)
@@ -110,21 +110,22 @@ def finish_layered_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,c,
     impurity=s(impurity+s(drained[62:67]+drained[55:60]))
     canopy=row(_sum(cc[:,0]),_sum(cc[:,1]));prep=prep.at[2:4].set(s(prep[2:4]+runoff)).at[4].set(canopy[0])
     out=finish_column_jax(old_c,old_g,p,o,site,old_store,forcing,deposition,prep,
-        drained[:45].reshape(5,9),admit[:12].reshape(4,3),drained[45].astype(j.int32),canopy,flux,impurity,vic)
+        drained[:45].reshape(5,9),admit[:12].reshape(4,3),drained[45].astype(j.int32),canopy,flux,impurity,vic,closed_richards=closed_richards)
     return (*out,cc,post,valid)
 
 
-@lru_cache(maxsize=8)
-def _stages(vic=False,external=False,structure=False):
+@lru_cache(maxsize=16)
+def _stages(vic=False,external=False,structure=False,closed_richards=False):
     import jax
+    finish=finish_layered_jax if not closed_richards else lambda *a:finish_layered_jax(*a,closed_richards=True)
     return (jax.jit(jax.vmap(prepare_layered_jax,in_axes=(0,)*9+(0 if vic else None,0 if external else None,0 if structure else None))),
-            jax.jit(jax.vmap(finish_layered_jax,in_axes=(0,)*15+(0 if vic else None,0 if structure else None))))
+            jax.jit(jax.vmap(finish,in_axes=(0,)*15+(0 if vic else None,0 if structure else None))))
 
 
 def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
                                irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None,
                                canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None,
-                               canopy_capacity=None,capacity_environment=None):
+                               canopy_capacity=None,capacity_environment=None,soil_hydrology=None):
     import jax.numpy as j
     arrays=tuple(map(j.asarray,(c,g,p,o,site,storage,roots,condensate)));forcing=j.asarray(forcing)
     deposition=j.zeros((len(c),5),arrays[0].dtype) if deposition is None else j.asarray(deposition)
@@ -137,7 +138,9 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     from .irrigation import prepare_column_irrigation,attach_column_irrigation
     ground_input,irrigation=prepare_column_irrigation(arrays[1],arrays[2],arrays[3],arrays[4],forcing,
         irrigation_state,irrigation_parameters,irrigation_input,irrigation_check,'jax')
-    vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None,ground_input is not None,area is not None)
+    from .clm_richards_column import resolve_column_richards,attach_column_richards
+    hydrology=resolve_column_richards(soil_hydrology,arrays[3],j)
+    vic=column_vic(arrays[3],arrays[0].dtype,j,vic_parameters);prepare,finish=_stages(vic is not None,ground_input is not None,area is not None,hydrology is not None)
     pc,pg,po,a,u,f,v,prep,valid,cc,pre,old,pre_impurity=prepare(*arrays,forcing,vic,ground_input,area)
     if not bool(j.all(valid)):raise RuntimeError('Layered canopy precipitation preparation failed')
     surface_arrays=(pc,pg,arrays[2],po,a,u,f,v,cc)
@@ -162,4 +165,5 @@ def step_clm_layered_columns_jax(c,g,p,o,site,storage,roots,condensate,forcing,*
     from .tile_drainage import finish_column_tile
     result=attach_column_structure(result,canopy_structure,geometry)
     result=attach_column_capacity(result,capacity_state)
+    result=attach_column_richards(result,arrays[2],arrays[3],forcing,arrays[0],arrays[1],old,hydrology,'jax')
     return finish_column_tile(attach_column_irrigation(result,irrigation),arrays[2],arrays[3],forcing,tile_parameters,'jax')

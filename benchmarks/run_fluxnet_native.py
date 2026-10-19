@@ -20,7 +20,8 @@ import numpy as np
 
 from run_fluxnet_column import (ROOT, TRACE, sha, atomic_json, build_state,
                                 calendar, validate_input,structure_configuration,structure_trace_keys,
-                                capacity_configuration,capacity_environment,capacity_trace_keys,CAPACITY_TRACE)
+                                capacity_configuration,capacity_environment,capacity_trace_keys,CAPACITY_TRACE,
+                                hydrology_configuration)
 from fluxnet_deposition import DepositionSchedule
 from noahmp_clm.column import SoilParams
 from noahmp_clm.physics.canopy_most import MOSTGeometry
@@ -41,6 +42,13 @@ def native_state_count(cases):
     if capacity[0] is not None and len({v[1].time_step_seconds for v in capacity})!=1:
         raise ValueError('Capacity station batches require matching history intervals')
     return 16+3*enabled[0]+4*(capacity[0] is not None)
+
+
+def batch_hydrology(cases):
+    parameters=[hydrology_configuration(c['config']) for c in cases]
+    if any(value!=parameters[0] for value in parameters[1:]):
+        raise ValueError('Split station batches with differing soil hydrology methods or controls')
+    return parameters[0]
 
 
 def checkpoint_arrays(saved,identity,*,shadow=False):
@@ -183,6 +191,7 @@ def load_batch(path):
     if any(len(v['stamps']) != len(first['stamps']) for v in loaded):
         raise ValueError('Batch columns need equal interval counts, with independent local dates')
     state_count=native_state_count(loaded)
+    batch_hydrology(loaded)
     if state_count not in (20,23) and any(v['config']['leaf_parameters'] != first['config']['leaf_parameters'] for v in loaded):
         raise ValueError('Native leaf parameters are shared within a batch; split differing parameter sets')
     return loaded
@@ -342,6 +351,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
     if (initial_run is None) != (initial_mode is None):
         raise ValueError('Supply both initial_run and initial_mode')
     cases = load_batch(batch_path); count = len(cases); n = len(cases[0]['stamps'])
+    hydrology=batch_hydrology(cases)
     state_count=native_state_count(cases)
     dtype = np.float64 if backend == 'jax64' else np.float32
     sources = source_hashes()
@@ -475,6 +485,7 @@ def run(batch_path, output, *, backend='cuda32', compare_jax32=False, resume=Fal
             kwargs = dict(environment=e, calendar=cal, nitrogen_deposition_gn_m2=nitrogen,
                 deposition=deposition, most_geometry=geometry, leaf_parameters=leaf, return_surface=True)
             if optics is not None:kwargs['canopy_optics']=optics
+            if hydrology is not None:kwargs['soil_hydrology']=hydrology
             if state_count in (20,23):
                 kwargs['capacity_environment']=pack_capacity_environment([
                     capacity_environment(c['stamps'][index],c['metadata'],True) for c in cases],dtype=dtype)

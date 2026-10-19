@@ -11,6 +11,29 @@ import numpy as np
 
 
 @dataclass(frozen=True)
+class RichardsHydrology:
+    """Explicit closed vertical soil hydrology for the developing column.
+
+    The lower boundary is zero liquid flux. Surface admission and explicit
+    tile outlets remain separate processes; this is not an aquifer model.
+    """
+    ice_impedance_exponent: float=6.
+    maximum_liquid_fraction: float=.05
+    maximum_temperature_change_k: float=.05
+    max_substeps: int=8192
+
+    def __post_init__(self):
+        if (not math.isfinite(self.ice_impedance_exponent) or self.ice_impedance_exponent<0.
+                or not 0.<self.maximum_liquid_fraction<=.2
+                or not math.isfinite(self.maximum_temperature_change_k) or self.maximum_temperature_change_k<=0.
+                or type(self.max_substeps) is not int or self.max_substeps<1):
+            raise ValueError('Invalid closed Richards hydrology controls')
+
+    def controls(self):
+        return {name:getattr(self,name) for name in self.__dataclass_fields__}
+
+
+@dataclass(frozen=True)
 class HydraulicProfile:
     dz_m: np.ndarray
     porosity: np.ndarray

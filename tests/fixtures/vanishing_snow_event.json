@@ -1,0 +1,72 @@
+{
+  "scope": "ActualEHPC335 failed thermal trial at sixth cold48 step, source553. m2e-15latent event/maxnorm stall. Original332/333 failures retained; no fabricated forcing.",
+  "capture_diagnosis_sha256": "3ff3b4f31e13d789806495af6dae100d5a4aec22d2a367b050e962392ba3e17f",
+  "input_sha256": "7795f37d6d312c85f650ca844b37c127ff73a8e87fd90196b12f80215d623d8f",
+  "snow": {
+    "mass": [
+      2.058899925549973e-15
+    ],
+    "enthalpy": [
+      -2.1078250256323372e-11
+    ],
+    "thickness": [
+      1.243285225977267e-17
+    ],
+    "radius_um": [
+      204.5
+    ],
+    "impurities": [
+      [
+        5.520442556143165e-09,
+        6.900513977140831e-09,
+        3.038450954746756e-08,
+        7.917728295995187e-08,
+        1.877439014345716e-07
+      ]
+    ]
+  },
+  "soil": {
+    "water": [
+      27.90982583755495,
+      83.97148769520832,
+      167.99920514662355,
+      280.1164406048117
+    ],
+    "enthalpy": [
+      10234407.217887955,
+      31793057.51998805,
+      63701333.75230385,
+      106212268.86899488
+    ],
+    "dz": [
+      0.1,
+      0.3,
+      0.6,
+      1.0
+    ],
+    "params": {
+      "name": "nominal-loam-height-sensitivity-only",
+      "smcmax": 0.45,
+      "smcwlt": 0.12,
+      "smcref": 0.28,
+      "satdk": 1e-05,
+      "bexp": 5.5,
+      "quartz": 0.5,
+      "saturated_suction_m": 0.355
+    },
+    "freezing_option": 1
+  },
+  "dt": 1800.0,
+  "top_flux": -13.515391550549047,
+  "kwargs": {
+    "snow_absorbed": [
+      0.0
+    ],
+    "soil_absorbed": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}

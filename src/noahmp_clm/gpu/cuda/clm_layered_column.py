@@ -23,13 +23,15 @@ def _stages():
 def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,*,deposition=None,leaf_parameters=None,return_surface=False,most_geometry=None,vic_parameters=None,
                                 irrigation_state=None,irrigation_parameters=None,irrigation_input=None,irrigation_check=None,tile_parameters=None,
                                 canopy_structure=None,structure_lai_before=None,structure_management=None,prescribed_sai=None,canopy_optics=None,
-                                canopy_capacity=None,capacity_environment=None):
+                                canopy_capacity=None,capacity_environment=None,soil_hydrology=None):
     import cupy as cp
     if cp.asarray(o).dtype.kind not in 'iu':raise ValueError('CLM options must be integers')
     c,g,p,site,storage,roots,condensate,forcing=[cp.ascontiguousarray(cp.asarray(x,cp.float32)) for x in (c,g,p,site,storage,roots,condensate,forcing)]
     o=cp.ascontiguousarray(cp.asarray(o,cp.int32));n=len(c)
     deposition=cp.zeros((n,5),cp.float32) if deposition is None else cp.ascontiguousarray(cp.asarray(deposition,cp.float32))
     validate_layered_column((c,g,p,o,site,storage,roots,condensate),forcing,deposition,cp)
+    from ..clm_richards_column import resolve_column_richards,attach_column_richards
+    hydrology=resolve_column_richards(soil_hydrology,o,cp)
     from ..clm_structure_column import resolve_column_structure,attach_column_structure
     geometry=resolve_column_structure(canopy_structure,(c,g,p,o,site,storage,roots,condensate),forcing,'cuda',
         previous_lai=structure_lai_before,management=structure_management,prescribed_sai=prescribed_sai)
@@ -48,7 +50,7 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     pre_impurity=new(5)
     launch=((min((n+31)//32,4096),),(32,))
     if n:
-        prepare,finish=_stages();base_prepare,base_finish=_column_stages()
+        prepare,finish=_stages();base_prepare,base_finish=_column_stages(hydrology is not None)
         prepare(*launch,(c,g,p,o,site,storage,condensate,forcing,pc0,pg0,po0,cc,totals,prep,pre,old,good,vic_arg,ground_arg,area_arg,np.int32(n)))
         empty=storage.copy();empty[:,:2]=0.;dry=forcing.copy();dry[:,7]=0.
         base_prepare(*launch,(pc0,pg0,p,po0,physical_site,empty,roots,dry,pc,pg,po,a,u,f,v,unused,valid,pre_impurity,vic_arg,np.int32(n)))
@@ -85,4 +87,5 @@ def step_clm_layered_columns_cuda(c,g,p,o,site,storage,roots,condensate,forcing,
     from ..tile_drainage import finish_column_tile
     result=attach_column_structure(result,canopy_structure,geometry)
     result=attach_column_capacity(result,capacity_state)
+    result=attach_column_richards(result,p,o,forcing,c,g,old,hydrology,'cuda')
     return finish_column_tile(attach_column_irrigation(result,irrigation),p,o,forcing,tile_parameters,'cuda')

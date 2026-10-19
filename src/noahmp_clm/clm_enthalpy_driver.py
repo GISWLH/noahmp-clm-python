@@ -27,7 +27,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
                             leaf_dimension=.04,canopy_layers=10,leaf_parameters=None,nitrogen_factor=1.,
                             deposition_rates=None,most_geometry=None,vic_parameters=None,phenology_environment=None,
                             nitrogen_deposition_gn_m2=0.,oxygen_factor=1.,crop_management=None,irrigation_input=None,
-                            prescribed_sai=None,canopy_optics=None,capacity_environment=None):
+                            prescribed_sai=None,canopy_optics=None,capacity_environment=None,soil_hydrology=None):
     """Return a new CLMColumnState and actual extensive closure diagnostics."""
     if state.bgc_state is not None:
         from .clm_bgc_driver import step_clm_bgc_column
@@ -37,7 +37,8 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
             phenology_environment=phenology_environment,nitrogen_deposition_gn_m2=nitrogen_deposition_gn_m2,oxygen_factor=oxygen_factor,
             crop_management=crop_management,irrigation_input=irrigation_input,prescribed_sai=prescribed_sai,
             **({} if canopy_optics is None else dict(canopy_optics=canopy_optics)),
-            **({} if capacity_environment is None else dict(capacity_environment=capacity_environment)))
+            **({} if capacity_environment is None else dict(capacity_environment=capacity_environment)),
+            **({} if soil_hydrology is None else dict(soil_hydrology=soil_hydrology)))
     if canopy_optics is not None:
         from .physics.canopy_optics import CanopyOptics
         if not isinstance(canopy_optics,CanopyOptics) or state.canopy_condensate is None:
@@ -46,6 +47,11 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     if nitrogen_deposition_gn_m2!=0. or oxygen_factor!=1.:
         raise ValueError('Nitrogen deposition/oxygen modifiers require a BGC state')
     f=forcing;opt=state.options
+    if soil_hydrology is not None:
+        from .physics.richards import RichardsHydrology
+        if not isinstance(soil_hydrology,RichardsHydrology):raise TypeError('Expected RichardsHydrology')
+        if opt.OptRunoffSubsurface!=3:
+            raise ValueError('Closed Richards requires subsurface routing flag 3; requested bottom outlets cannot be silently removed')
     memory=state.canopy_capacity_state
     if memory is not None:
         from .physics.canopy_capacity import CanopyCapacityEnvironment,canopy_capacity_profile
@@ -229,8 +235,17 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         ground,out,oh=admit(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
         runoff+=out+flow['runoff_kgm2'];runoff_heat+=oh+flow['runoff_enthalpy_jm2']
         impurity_out+=flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2']
-    ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen,
-        bottom_parameters=vic_parameters if vic_bottom else None)
+    redistribution=None
+    if soil_hydrology is None:
+        ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen,
+            bottom_parameters=vic_parameters if vic_bottom else None)
+    else:
+        from .physics.richards import redistribute_soil_enthalpy
+        before_water=ground.water.copy();before_heat=ground.enthalpy.copy()
+        ground,redistribution=redistribute_soil_enthalpy(ground,f.dt,**soil_hydrology.controls())
+        redistribution.update(method='richards_zero_flux',lower_boundary_condition=2,
+            water_before_kg_m2=before_water,enthalpy_before_j_m2=before_heat)
+        drain=dict(bottom_mass_kgm2=0.,bottom_enthalpy_jm2=0.)
     runoff+=drain['bottom_mass_kgm2'];runoff_heat+=drain['bottom_enthalpy_jm2']
     routing_ground=ground;tile=None;tile_mass=0.
     if state.tile_drainage_parameters is not None:
@@ -246,7 +261,12 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
         surface_temperature=final_temperature,canopy_condensate=condensate,irrigation_state=irrigation_state,
         canopy_capacity_state=next_memory)
-    if vic_surface or vic_bottom:
+    if soil_hydrology is not None:
+        # All pre-tile outlets in this mode are surface admission overflow
+        # or snow runoff. A diagnostic routing fraction cannot create deep
+        # drainage through the explicitly closed vertical boundary.
+        surface=runoff/1000.;deep=0.
+    elif vic_surface or vic_bottom:
         # These are physical outlets, already removed from the state with heat.
         deep=drain['bottom_mass_kgm2']/1000.;surface=(runoff-drain['bottom_mass_kgm2'])/1000.
     else:surface,deep=route_runoff(runoff/1000.,replace(final,ground=routing_ground).parameter_view(),opt.OptRunoffSurface,opt.OptRunoffSubsurface)
@@ -272,6 +292,7 @@ def step_clm_enthalpy_column(state,forcing,*,co2_ppm=420.,cosine_zenith=.5,diffu
         d.update(irrigation=irrigation,irrigation_mm=irrigation_mass,irrigation_enthalpy_jm2=irrigation_heat)
     if tile is not None:
         d.update(tile_drainage=tile,tile_drainage_mm=tile_mass,tile_drainage_enthalpy_jm2=tile['drained_enthalpy_jm2'])
+    if redistribution is not None:d['soil_hydrology']=redistribution
     if capacity_profile is not None:
         d['canopy_capacity']=dict(capacity_profile,temperature_count_before=memory.count,
             temperature_count_after=next_memory.count,temperature_cursor_after=next_memory.cursor,
