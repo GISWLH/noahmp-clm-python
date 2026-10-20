@@ -8,6 +8,7 @@ No upstream implementation is copied. See docs/CLM_RICHARDS.md.
 from dataclasses import dataclass
 import math
 import numpy as np
+from .finite_volume import close_integrated_transport
 
 
 @dataclass(frozen=True)
@@ -242,6 +243,7 @@ def redistribute_liquid(water_kg_m2,profile,dt_seconds,*,absolute_tolerance_kg_m
     integrated=np.asarray([math.fsum(v) for v in transfers])
     forward=np.asarray([math.fsum(max(v,0.) for v in values) for values in transfers])
     reverse=np.asarray([math.fsum(max(-v,0.) for v in values) for values in transfers])
+    integrated,forward,reverse,_=close_integrated_transport(old,maximum,integrated,forward,reverse)
     water=old+np.r_[0.,integrated]-np.r_[integrated,0.]
     residual=float(math.fsum(water)-math.fsum(old));bound=32.*np.finfo(float).eps*max(float(abs(water).sum()+abs(old).sum()),1.)
     if abs(residual)>bound:raise RuntimeError('Richards extensive water budget failed')
@@ -289,6 +291,7 @@ def redistribute_soil_enthalpy(state,dt_seconds,*,ice_impedance_exponent=6.,maxi
         raise ValueError('Invalid extensive Richards transport controls')
     current=state;elapsed=0.;step=min(float(dt_seconds),3600.);accepted=rejected=0
     water_faces=[[] for _ in range(len(state.water)-1)];heat_faces=[[] for _ in water_faces]
+    forward_heat_faces=[[] for _ in water_faces];reverse_heat_faces=[[] for _ in water_faces]
     max_temperature=max_fraction=0.;forward_total=np.zeros(len(water_faces));reverse_total=forward_total.copy()
     while elapsed<dt_seconds:
         if accepted+rejected>=max_substeps:raise RuntimeError('Extensive Richards transport budget exhausted')
@@ -316,11 +319,19 @@ def redistribute_soil_enthalpy(state,dt_seconds,*,ice_impedance_exponent=6.,maxi
             if step<1e-7:raise RuntimeError('Richards thermal-transport substep underflow')
             continue
         for j in range(len(net)):water_faces[j].append(float(net[j]));heat_faces[j].append(float(heat[j]))
+        for j in range(len(net)):
+            forward_heat_faces[j].append(float(forward[j]*parcel_enthalpy[j]))
+            reverse_heat_faces[j].append(float(reverse[j]*parcel_enthalpy[j+1]))
         forward_total+=forward;reverse_total+=reverse
         current=candidate;elapsed+=step;accepted+=1
         max_temperature=max(max_temperature,change);max_fraction=max(max_fraction,fraction)
         if change<.25*maximum_temperature_change_k and fraction<.25*maximum_liquid_fraction:step*=2.
     mass=np.asarray([math.fsum(v) for v in water_faces]);heat=np.asarray([math.fsum(v) for v in heat_faces])
+    forward_heat=np.asarray([math.fsum(v) for v in forward_heat_faces])
+    reverse_heat=np.asarray([math.fsum(v) for v in reverse_heat_faces])
+    mass,forward_total,reverse_total,heat=close_integrated_transport(
+        state.water,1000.*state.dz*state.params.smcmax,mass,forward_total,reverse_total,
+        heat=heat,forward_heat=forward_heat,reverse_heat=reverse_heat)
     final=SoilEnthalpyState(state.water+np.r_[0.,mass]-np.r_[mass,0.],
         state.enthalpy+np.r_[0.,heat]-np.r_[heat,0.],state.dz,state.params,state.freezing_option)
     residual=np.asarray([math.fsum(final.water)-math.fsum(state.water),math.fsum(final.enthalpy)-math.fsum(state.enthalpy)])

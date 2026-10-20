@@ -6,6 +6,7 @@ The explicit closed-column hydrology also uses this flow for heat transport.
 """
 from functools import lru_cache
 import math
+from ..physics.finite_volume import close_integrated_transport
 
 
 def _properties(u,p):
@@ -195,6 +196,8 @@ def _one(old,p,duration,xp,stepper,absolute,relative,budget):
             result['maximum_temporal_error_kg_m2']=xp.maximum(result['maximum_temporal_error_kg_m2'],xp.max(error))
             step*=min(2.,max(.5,.8/math.sqrt(max(ratio,1e-12))))
         head,floor=_head(coordinate,p,xp)
+        total,forward,reverse,_=close_integrated_transport(
+            old,1000.*p[:,0]*p[:,1],total,forward,reverse,xp=xp)
         result.update(water_kg_m2=old+xp.concatenate((xp.zeros(1,old.dtype),total))-xp.concatenate((total,xp.zeros(1,old.dtype))),
             pressure_head_m=head,pressure_floor_active=floor,interface_transfer_kg_m2=total,
             forward_transfer_kg_m2=forward,reverse_transfer_kg_m2=reverse,

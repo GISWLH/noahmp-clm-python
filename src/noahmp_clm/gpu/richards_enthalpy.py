@@ -6,6 +6,7 @@ This development component does not change the production column.
 """
 import math
 from .richards import _sum
+from ..physics.finite_volume import close_integrated_transport
 
 
 def _phase(c,p,option,xp,invert):
@@ -33,6 +34,7 @@ def _add(total,correction,value):
 def _one(c,p,option,duration,xp,invert,redistribute,ice_exponent,fraction_limit,temperature_limit,budget):
     n=len(c);current=c.copy();phase=_phase(current,p,option,xp,invert)
     mass=xp.zeros(n-1,c.dtype);heat=mass.copy();mc=mass.copy();hc=mass.copy();forward=mass.copy();reverse=mass.copy()
+    forward_heat=mass.copy();reverse_heat=mass.copy();fhc=mass.copy();rhc=mass.copy()
     accepted=rejected=hydraulic_steps=hydraulic_rejections=0;elapsed=0.;step=min(duration,3600.)
     max_temperature=xp.asarray(0.,c.dtype);max_fraction=max_temperature;max_hydraulic=max_temperature
     while elapsed<duration:
@@ -66,12 +68,17 @@ def _one(c,p,option,duration,xp,invert,redistribute,ice_exponent,fraction_limit,
             if step<1e-7:raise RuntimeError('Device Richards thermal substep underflow')
             continue
         mass,mc=_add(mass,mc,net);heat,hc=_add(heat,hc,carried);forward=forward+f;reverse=reverse+r
+        forward_heat,fhc=_add(forward_heat,fhc,f*specific[:-1])
+        reverse_heat,rhc=_add(reverse_heat,rhc,r*specific[1:])
         current=candidate;phase=next_phase;elapsed+=step;accepted+=1
         hydraulic_steps+=int(flow['accepted_substeps'][0]);hydraulic_rejections+=int(flow['rejected_substeps'][0])
         max_hydraulic=xp.maximum(max_hydraulic,flow['maximum_nonlinear_residual_kg_m2'][0])
         max_temperature=xp.maximum(max_temperature,change);max_fraction=xp.maximum(max_fraction,fraction)
         if float(change)<.25*temperature_limit and float(fraction)<.25*fraction_limit:step*=2.
     z=xp.zeros(1,c.dtype)
+    mass,forward,reverse,heat=close_integrated_transport(
+        c[:,0],1000.*c[:,2]*p[0],mass,forward,reverse,heat=heat,
+        forward_heat=forward_heat,reverse_heat=reverse_heat,xp=xp)
     water=c[:,0]+xp.concatenate((z,mass))-xp.concatenate((mass,z))
     enthalpy=c[:,1]+xp.concatenate((z,heat))-xp.concatenate((heat,z))
     final=xp.stack((water,enthalpy,c[:,2]),axis=1);last=_phase(final,p,option,xp,invert)
