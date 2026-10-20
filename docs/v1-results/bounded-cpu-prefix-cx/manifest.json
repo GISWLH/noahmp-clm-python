@@ -1,0 +1,336 @@
+{
+  "scope": "Current CN actual EHPC398/399 cold48 reference, preparation397, original1119 NumPy code exact. Not annual, observations or full canonical.",
+  "archive_sha256": "7146a16419f823b9399815d96a594be2f1cc77596f13ef0252121d0a5feeff42",
+  "artifacts": [
+    {
+      "source": "capacity/SOURCE_SHA256.json",
+      "path": "capacity/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0cabf3002a8f8ed7960559d0352bc6529f46a20ce8d75aca406b20ff1efd166",
+      "stored_sha256": "92c38647f942ac82427db9e160135300bb19d317e25c5263a649c9c1e6aeddc6"
+    },
+    {
+      "source": "capacity/bounded_numpy_prefix_cx.pbs",
+      "path": "capacity/bounded_numpy_prefix_cx.pbs.gz",
+      "source_sha256": "f5bda236bd27a5818340a4a2f34f2fc34ef3123e22a7db2b7c7f81d044bfda5e",
+      "stored_sha256": "67cb3301eee36719985eafabe49ee646109c5aa8d18d8906210cb99e0b334d1f"
+    },
+    {
+      "source": "capacity/clm-bounded-prefix-cx.o398",
+      "path": "capacity/clm-bounded-prefix-cx.o398",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "capacity/cold48-report.json",
+      "path": "capacity/cold48-report.json.gz",
+      "source_sha256": "3fa373cff835172d8e57715eeb7c4dc59b468204e313b89b75e32aebd1af9ae4",
+      "stored_sha256": "3940e1bf5fe280b6066ab5dd5924c001881f4436f6dbe3b63650f43e47b96e76"
+    },
+    {
+      "source": "capacity/config.json",
+      "path": "capacity/config.json.gz",
+      "source_sha256": "f340b31c1710100cb06e2e082b61fe0684ed801b429b68d6735c69fe9adebfc7",
+      "stored_sha256": "9a78ef9698bb04fbf234da026eff28aee042bac04a42d3db5ba9decb6fe701aa"
+    },
+    {
+      "source": "capacity/controller.log",
+      "path": "capacity/controller.log.gz",
+      "source_sha256": "14c70e1e5a82dcd9372fa38c75d0a3440142464ee638925001e50a2790915c71",
+      "stored_sha256": "e4f3bf5cbb4e205eb8fbd24b19c35def92c482b9e2e4702442166d2daedd286c"
+    },
+    {
+      "source": "capacity/dispatch.json",
+      "path": "capacity/dispatch.json.gz",
+      "source_sha256": "0ee5c89c41eddd134d06979729f879b94dc75705710751377a0fc9b391787675",
+      "stored_sha256": "a645823c56040e8cdc987ebda66b235f9138f2ace0983c37ba2b4d270bc3f271"
+    },
+    {
+      "source": "capacity/node.txt",
+      "path": "capacity/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "capacity/pbs-exit.txt",
+      "path": "capacity/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "capacity/receipt.json",
+      "path": "capacity/receipt.json.gz",
+      "source_sha256": "7a2821093db9e58d02818cc73e114812caa591c492dc9d0bc9cd138a417b0df6",
+      "stored_sha256": "e1180e66474eb55cde35b1a4ce9ee2b1900f21ddff232c1f8e79c9810f91e661"
+    },
+    {
+      "source": "capacity/run_bounded_numpy_prefix_cx.py",
+      "path": "capacity/run_bounded_numpy_prefix_cx.py.gz",
+      "source_sha256": "e3d76c29f2861ba13083ec1a7ab3a73b747b5da6e094f7f6c54643ddb26f9a68",
+      "stored_sha256": "05dc8b2a38ed7e53cf0cdbbf25e7badc036092b39a28eba4f9fd43f6594b0979"
+    },
+    {
+      "source": "capacity/trajectory/report.json",
+      "path": "capacity/trajectory/report.json.gz",
+      "source_sha256": "3fa373cff835172d8e57715eeb7c4dc59b468204e313b89b75e32aebd1af9ae4",
+      "stored_sha256": "3940e1bf5fe280b6066ab5dd5924c001881f4436f6dbe3b63650f43e47b96e76"
+    },
+    {
+      "source": "capacity/trajectory/state-0000000.pkl",
+      "path": "capacity/trajectory/state-0000000.pkl",
+      "source_sha256": "f3eb806e7369256cbbf7d08df72638f5d75c7e0eec8485e70faf7212ddf79b73",
+      "stored_sha256": "f3eb806e7369256cbbf7d08df72638f5d75c7e0eec8485e70faf7212ddf79b73"
+    },
+    {
+      "source": "capacity/trajectory/state-0000048.pkl",
+      "path": "capacity/trajectory/state-0000048.pkl",
+      "source_sha256": "b321058ef76f5fa327ab92721201643df43db73ada35df50f472891367eeff81",
+      "stored_sha256": "b321058ef76f5fa327ab92721201643df43db73ada35df50f472891367eeff81"
+    },
+    {
+      "source": "capacity/trajectory/trace-0000000.npz",
+      "path": "capacity/trajectory/trace-0000000.npz",
+      "source_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3",
+      "stored_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3"
+    },
+    {
+      "source": "capacity/trajectory/trace-0000048.npz",
+      "path": "capacity/trajectory/trace-0000048.npz",
+      "source_sha256": "edcb056b77d3ef5fdd6dfe37dc3ab1d584cd4afa859ead6ac8631f1a6a7da5ff",
+      "stored_sha256": "edcb056b77d3ef5fdd6dfe37dc3ab1d584cd4afa859ead6ac8631f1a6a7da5ff"
+    },
+    {
+      "source": "capacity_optics/SOURCE_SHA256.json",
+      "path": "capacity_optics/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0cabf3002a8f8ed7960559d0352bc6529f46a20ce8d75aca406b20ff1efd166",
+      "stored_sha256": "92c38647f942ac82427db9e160135300bb19d317e25c5263a649c9c1e6aeddc6"
+    },
+    {
+      "source": "capacity_optics/bounded_numpy_prefix_cx.pbs",
+      "path": "capacity_optics/bounded_numpy_prefix_cx.pbs.gz",
+      "source_sha256": "f5bda236bd27a5818340a4a2f34f2fc34ef3123e22a7db2b7c7f81d044bfda5e",
+      "stored_sha256": "67cb3301eee36719985eafabe49ee646109c5aa8d18d8906210cb99e0b334d1f"
+    },
+    {
+      "source": "capacity_optics/clm-bounded-prefix-cx.o399",
+      "path": "capacity_optics/clm-bounded-prefix-cx.o399",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "capacity_optics/cold48-report.json",
+      "path": "capacity_optics/cold48-report.json.gz",
+      "source_sha256": "c91604f7427b522fafdb18ac1bbca3cb25c27350392347bde9ef202a246059ec",
+      "stored_sha256": "e2600f14404485e2a66be4d15b1061e7f5e01b5b9f034f0849dd4e48c8af2eb3"
+    },
+    {
+      "source": "capacity_optics/config.json",
+      "path": "capacity_optics/config.json.gz",
+      "source_sha256": "0337e852a48c7366a1021266551ca83a7a78a70f655a6fe0d66a843366307b78",
+      "stored_sha256": "e8369523b773182e26d0273988236694c6823b2b245c68075674e45b9bf91da0"
+    },
+    {
+      "source": "capacity_optics/controller.log",
+      "path": "capacity_optics/controller.log.gz",
+      "source_sha256": "077ccaaf0aa1ce5328b57488d6e9809d4aff52b45094624a2cfd08a639527170",
+      "stored_sha256": "1c3f1e0467943a6db899aca70b07904da81c25880c1ec0f12a90512727385799"
+    },
+    {
+      "source": "capacity_optics/dispatch.json",
+      "path": "capacity_optics/dispatch.json.gz",
+      "source_sha256": "a14b8ee6c39b187c98dfbcc639b95420012c769f6c90224f2a82ec4de95c36f8",
+      "stored_sha256": "391fcd01876421e05c0a80b3a54c479260fc7e10f60af0e0d6136da09644ec9b"
+    },
+    {
+      "source": "capacity_optics/node.txt",
+      "path": "capacity_optics/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "capacity_optics/pbs-exit.txt",
+      "path": "capacity_optics/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "capacity_optics/receipt.json",
+      "path": "capacity_optics/receipt.json.gz",
+      "source_sha256": "a1c1f51efcd5ec3076e11087b22c42c6ae310578b3b9f46f24622cb1fc9398cf",
+      "stored_sha256": "db63bab5519cdcb403c7b9a1acfcc9397c862ada4e91b57a3bed10ebf32a9c6b"
+    },
+    {
+      "source": "capacity_optics/run_bounded_numpy_prefix_cx.py",
+      "path": "capacity_optics/run_bounded_numpy_prefix_cx.py.gz",
+      "source_sha256": "e3d76c29f2861ba13083ec1a7ab3a73b747b5da6e094f7f6c54643ddb26f9a68",
+      "stored_sha256": "05dc8b2a38ed7e53cf0cdbbf25e7badc036092b39a28eba4f9fd43f6594b0979"
+    },
+    {
+      "source": "capacity_optics/trajectory/report.json",
+      "path": "capacity_optics/trajectory/report.json.gz",
+      "source_sha256": "c91604f7427b522fafdb18ac1bbca3cb25c27350392347bde9ef202a246059ec",
+      "stored_sha256": "e2600f14404485e2a66be4d15b1061e7f5e01b5b9f034f0849dd4e48c8af2eb3"
+    },
+    {
+      "source": "capacity_optics/trajectory/state-0000000.pkl",
+      "path": "capacity_optics/trajectory/state-0000000.pkl",
+      "source_sha256": "f3eb806e7369256cbbf7d08df72638f5d75c7e0eec8485e70faf7212ddf79b73",
+      "stored_sha256": "f3eb806e7369256cbbf7d08df72638f5d75c7e0eec8485e70faf7212ddf79b73"
+    },
+    {
+      "source": "capacity_optics/trajectory/state-0000048.pkl",
+      "path": "capacity_optics/trajectory/state-0000048.pkl",
+      "source_sha256": "64052ca32f3a26c2da9641b0287ae5c33af67b745571398a62e10642a58fd224",
+      "stored_sha256": "64052ca32f3a26c2da9641b0287ae5c33af67b745571398a62e10642a58fd224"
+    },
+    {
+      "source": "capacity_optics/trajectory/trace-0000000.npz",
+      "path": "capacity_optics/trajectory/trace-0000000.npz",
+      "source_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3",
+      "stored_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3"
+    },
+    {
+      "source": "capacity_optics/trajectory/trace-0000048.npz",
+      "path": "capacity_optics/trajectory/trace-0000048.npz",
+      "source_sha256": "80370b1f27e16a417877a75070c5b27a2720abf8b7785043209868d1935ecd62",
+      "stored_sha256": "80370b1f27e16a417877a75070c5b27a2720abf8b7785043209868d1935ecd62"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/bounded_cold_inputs_cv.pbs",
+      "path": "bounded-cold-inputs-cv/bounded_cold_inputs_cv.pbs.gz",
+      "source_sha256": "b561c7258c6b5c912c856169de70cdba453f6d1f076ec1884db8c6050b81ceae",
+      "stored_sha256": "e28fa20de1111b20e1ed6a0212ace2944a0c9a0dd64178bcc8215e7366738bd6"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/clm-bounded-inputs-cv.o397",
+      "path": "bounded-cold-inputs-cv/clm-bounded-inputs-cv.o397",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/controller.log",
+      "path": "bounded-cold-inputs-cv/controller.log.gz",
+      "source_sha256": "7f282ebaa3ac48a1238866ebaf470af4e45d16d6b771cded35cbbabdad1f2923",
+      "stored_sha256": "bf0921e78d39244b6587b454bcc579df559378b6f0749f1752f15cb9d45186f9"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/dispatch.json",
+      "path": "bounded-cold-inputs-cv/dispatch.json.gz",
+      "source_sha256": "50874e900eeae75325e7e014b6a5779e0652f1790ae6ad6fe5ca66ec188ddf5c",
+      "stored_sha256": "d101ad909af84d904dfcfe40836c8f01dbaca6b2d3bcf111c39278bf468a12eb"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/CN-Qia.json",
+      "path": "bounded-cold-inputs-cv/inputs/CN-Qia.json.gz",
+      "source_sha256": "db8d2b2ccb71134dde4bd0ea27abeae8ab4f205a732923bcae0d4b8bee465f93",
+      "stored_sha256": "d9423cebc685bb87410dd6d3271f2c53b7d92f9c6fd4fea1b599c1217c91fc4b"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/CN-Qia.npz",
+      "path": "bounded-cold-inputs-cv/inputs/CN-Qia.npz",
+      "source_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960",
+      "stored_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/SOURCE_SHA256.json",
+      "path": "bounded-cold-inputs-cv/inputs/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0cabf3002a8f8ed7960559d0352bc6529f46a20ce8d75aca406b20ff1efd166",
+      "stored_sha256": "92c38647f942ac82427db9e160135300bb19d317e25c5263a649c9c1e6aeddc6"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity/batch.json",
+      "path": "bounded-cold-inputs-cv/inputs/capacity/batch.json.gz",
+      "source_sha256": "c70ffaa1f723f0f7d750a78185bc467220154d36c95cf0ee53f90b4c0c0619b4",
+      "stored_sha256": "83ee44c6ec255a9edac913d10930083535cf7c97e619bdb45f32f39fede65b61"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity/cold-reference.npz",
+      "path": "bounded-cold-inputs-cv/inputs/capacity/cold-reference.npz",
+      "source_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e",
+      "stored_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity/config.json",
+      "path": "bounded-cold-inputs-cv/inputs/capacity/config.json.gz",
+      "source_sha256": "f340b31c1710100cb06e2e082b61fe0684ed801b429b68d6735c69fe9adebfc7",
+      "stored_sha256": "9a78ef9698bb04fbf234da026eff28aee042bac04a42d3db5ba9decb6fe701aa"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity_optics/batch.json",
+      "path": "bounded-cold-inputs-cv/inputs/capacity_optics/batch.json.gz",
+      "source_sha256": "dc38f84c1bcacafc43f405020ca778552108d5e6b175355e4d2bb73a68267f91",
+      "stored_sha256": "287d968e1b29613cb2c661ba85e63c0a9091dec4b70b4c29be74fcfb28d7cd54"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity_optics/cold-reference.npz",
+      "path": "bounded-cold-inputs-cv/inputs/capacity_optics/cold-reference.npz",
+      "source_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e",
+      "stored_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/capacity_optics/config.json",
+      "path": "bounded-cold-inputs-cv/inputs/capacity_optics/config.json.gz",
+      "source_sha256": "0337e852a48c7366a1021266551ca83a7a78a70f655a6fe0d66a843366307b78",
+      "stored_sha256": "e8369523b773182e26d0273988236694c6823b2b245c68075674e45b9bf91da0"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/inputs/protocol.json",
+      "path": "bounded-cold-inputs-cv/inputs/protocol.json.gz",
+      "source_sha256": "962d67d389507668633c5d9a6f3cc2f4ebcd6964f6be11e77d76f1c62daf3f59",
+      "stored_sha256": "99555b196d53e8fa7df8c3ddc35200e347d469c8d96f98982273544aa029cab3"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/node.txt",
+      "path": "bounded-cold-inputs-cv/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/pbs-exit.txt",
+      "path": "bounded-cold-inputs-cv/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/prepare_bounded_cold_inputs_cv.py",
+      "path": "bounded-cold-inputs-cv/prepare_bounded_cold_inputs_cv.py.gz",
+      "source_sha256": "9e13d0ca88233dbc3bfe2cf54985d4093e49987cc319fe38d540ec9e0537e279",
+      "stored_sha256": "1cf619c33e9aceacd689e5b46d6534627d6cc406aeddd3778a410e63b9ca66aa"
+    },
+    {
+      "source": "bounded-cold-inputs-cv/receipt.json",
+      "path": "bounded-cold-inputs-cv/receipt.json.gz",
+      "source_sha256": "962d67d389507668633c5d9a6f3cc2f4ebcd6964f6be11e77d76f1c62daf3f59",
+      "stored_sha256": "99555b196d53e8fa7df8c3ddc35200e347d469c8d96f98982273544aa029cab3"
+    },
+    {
+      "source": "control/clm-bounded-native-cn-source.tar.gz",
+      "path": "control/clm-bounded-native-cn-source.tar.gz",
+      "source_sha256": "9f28e8874c2a365fdb9c39764fc33e54a542c8aff4d0a5375906d6c22819e286",
+      "stored_sha256": "9f28e8874c2a365fdb9c39764fc33e54a542c8aff4d0a5375906d6c22819e286"
+    },
+    {
+      "source": "control/qia-bounded-cold-cv-inputs.tar.gz",
+      "path": "control/qia-bounded-cold-cv-inputs.tar.gz",
+      "source_sha256": "985612cf9f140569007603a7521c2299bfdd153e3d363916e9bfdc0ecacdcbbe",
+      "stored_sha256": "985612cf9f140569007603a7521c2299bfdd153e3d363916e9bfdc0ecacdcbbe"
+    },
+    {
+      "source": "control/dispatch_bounded_cold_inputs_cv.py",
+      "path": "control/dispatch_bounded_cold_inputs_cv.py.gz",
+      "source_sha256": "8a08e4702686e870b9d32eddd0999939b93db62d62c7c7ac9284624f62562a5b",
+      "stored_sha256": "37a1e857d01418a89a9334527d2e2a4165ba2efe3dbb5f07f8a271d1af0b61c0"
+    },
+    {
+      "source": "control/dispatch_bounded_numpy_prefix_cx.py",
+      "path": "control/dispatch_bounded_numpy_prefix_cx.py.gz",
+      "source_sha256": "eee2714a42e1d7e92fe53a63f0933c3e124eb6cac9689750e8abc92e63bef38b",
+      "stored_sha256": "942cfbce284b0a1c18e21c9c85526aa81fa19f033a1e3c0451842a77c74e3f5f"
+    },
+    {
+      "source": "control/archive_bounded_cpu_prefix_cz.py",
+      "path": "control/archive_bounded_cpu_prefix_cz.py.gz",
+      "source_sha256": "fd2f6fc2195fe8d61bc65645d05290e4e61367aa38183dc6c0e379231152cf75",
+      "stored_sha256": "a456032da09263e3a533b8f3b54c88ded0c71b56d9ba3df24e0ede0e27e0ed68"
+    }
+  ]
+}

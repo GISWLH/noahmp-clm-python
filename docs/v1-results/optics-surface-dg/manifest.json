@@ -1,0 +1,804 @@
+{
+  "scope": "CurrentCN actual parent1 optics year failed356 of17520; full partialtrajectory/checkpoints retained. Physical1 privatecopied single tendency reproduces originalexception, captures rawsurface finiteoutput residual.0071757077 above original.005 with101reportediterations/70restarts. Diagnosticoutput discarded notadvanced; no source/gate changes, no yearresume or annual/sciencepass.",
+  "archive_sha256": "ebddd08cd6f8900988f7a849b9abf3803b2eda5d0173a7e4a9fe68aab44e87ef",
+  "artifacts": [
+    {
+      "source": "probe/SOURCE_SHA256.json",
+      "path": "probe/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0cabf3002a8f8ed7960559d0352bc6529f46a20ce8d75aca406b20ff1efd166",
+      "stored_sha256": "92c38647f942ac82427db9e160135300bb19d317e25c5263a649c9c1e6aeddc6"
+    },
+    {
+      "source": "probe/configuration.json",
+      "path": "probe/configuration.json.gz",
+      "source_sha256": "0337e852a48c7366a1021266551ca83a7a78a70f655a6fe0d66a843366307b78",
+      "stored_sha256": "e8369523b773182e26d0273988236694c6823b2b245c68075674e45b9bf91da0"
+    },
+    {
+      "source": "probe/control_optics_surface_dg.py",
+      "path": "probe/control_optics_surface_dg.py.gz",
+      "source_sha256": "7202a13930945763b27a278f63a5e90096f08012a04b5a1b1f26f34f83839b6c",
+      "stored_sha256": "49f534fee02b85790b33ab33004bb0c567fa234a6d962d06738014175b40167c"
+    },
+    {
+      "source": "probe/controller.log",
+      "path": "probe/controller.log.gz",
+      "source_sha256": "648b16641323ae8f0e428d4db288c3430b5338d554d12f0187ed75ddc2a285f0",
+      "stored_sha256": "3ca25b53433259f061ca1f468b40b8cbff0ea0b89240670c1db9ad8baf82778a"
+    },
+    {
+      "source": "probe/exit.json",
+      "path": "probe/exit.json.gz",
+      "source_sha256": "ecece60132372768aaf9f4b9d1219a6a736ad543b1f700099146f0187b229247",
+      "stored_sha256": "656b7776f658a5089949b5b73d71001ee195db37279f751583202e6fbad7a765"
+    },
+    {
+      "source": "probe/failed-batch-report.json",
+      "path": "probe/failed-batch-report.json.gz",
+      "source_sha256": "4a3c37b650e755c3bed420d7621f74c446807eb8723733dfe6e313d6b673d4ed",
+      "stored_sha256": "03d40a1327da8b58fb2eb4ff09eb4dcc7b5d90a34efbe3bef6d09148a755d89f"
+    },
+    {
+      "source": "probe/failed-surface-input-output.npz",
+      "path": "probe/failed-surface-input-output.npz",
+      "source_sha256": "02253ae39650f496bbfd42b3c973d90c1b26a6496058b6fe9a7beb31ca4aa897",
+      "stored_sha256": "02253ae39650f496bbfd42b3c973d90c1b26a6496058b6fe9a7beb31ca4aa897"
+    },
+    {
+      "source": "probe/launch.json",
+      "path": "probe/launch.json.gz",
+      "source_sha256": "72dd8dd2512a3fa69d765cc107bbdd15eb22ac0a9808b6675be25ff8e5fbfe5f",
+      "stored_sha256": "81530a9c312b000c15233688c2e15988053e0b5764103c01dd8d7580dff5abae"
+    },
+    {
+      "source": "probe/launch_optics_surface_dg.py",
+      "path": "probe/launch_optics_surface_dg.py.gz",
+      "source_sha256": "00e37634a5beff9689be79f1113dafb61e90d905204927afd5903614c547dc80",
+      "stored_sha256": "a5b231fd87f0b462881bdeafff57319cb37b0bfae12c310c7da74c131ba06a68"
+    },
+    {
+      "source": "probe/model.log",
+      "path": "probe/model.log.gz",
+      "source_sha256": "b3d03013ccf589ec88bf262e55bead5e89fb9bf9c871fb35081d642de97d384d",
+      "stored_sha256": "f488ae06b9ddfb716b00e1fc1a033f70d6f1a6b93f038293efa0405e99a6ee17"
+    },
+    {
+      "source": "probe/probe_optics_surface_dg.py",
+      "path": "probe/probe_optics_surface_dg.py.gz",
+      "source_sha256": "db27c4a977a154233b01cc78bb0ad4905caf12956bfd9abe271849dd0b0be035",
+      "stored_sha256": "0fb5a973c92ba2bbba96e928b3f34f19979c25e162106dfc814df04b08732ead"
+    },
+    {
+      "source": "probe/receipt.json",
+      "path": "probe/receipt.json.gz",
+      "source_sha256": "7742964f5d44728370f29db6c18900aa2b5381b9bcc01a69f233d3a225ba5df4",
+      "stored_sha256": "9f38f9a272cf7e71ea0897ef643f64047e8ab6ba1464aebd47839e6fef5e65e8"
+    },
+    {
+      "source": "probe/surface-diagnostic.json",
+      "path": "probe/surface-diagnostic.json.gz",
+      "source_sha256": "310c7a2ece4a55d2050a26845efbc328ce0bac70d322c54b0cf071ed4ecf3751",
+      "stored_sha256": "48b85d7c9420e1c66d14197b6c7a61c8a7ae6dc7c6405e60223f7a007ca550ad"
+    },
+    {
+      "source": "probe/tendency-inputs-and-ledger.npz",
+      "path": "probe/tendency-inputs-and-ledger.npz",
+      "source_sha256": "67238b45de6961b7188fc2febe74c6e4f09461704b4a4cee8eee8b2c10d07371",
+      "stored_sha256": "67238b45de6961b7188fc2febe74c6e4f09461704b4a4cee8eee8b2c10d07371"
+    },
+    {
+      "source": "probe/traceback.txt",
+      "path": "probe/traceback.txt.gz",
+      "source_sha256": "a0f5837c565d3c162fd921e894534646d9a7670fba7b00092984d53ab87b1f4e",
+      "stored_sha256": "ec23a2dc9a6adb6189c5f238abec80d291fa3cbb5a8a85551c8b3b62c84e5944"
+    },
+    {
+      "source": "probe/worker.json",
+      "path": "probe/worker.json.gz",
+      "source_sha256": "d5449e5ecd4a46d85ac45a711e64e03b77eef3e330c344f7baa7a41994eb7bb0",
+      "stored_sha256": "c6e15d64d76e97aa734a4304a5d76e4ccf7254a5d2965ad1c2ddbd195de1a28e"
+    },
+    {
+      "source": "probe/year-exit.json",
+      "path": "probe/year-exit.json.gz",
+      "source_sha256": "0b236df72caacfa2d2e20448e4890d7544e61c22bd5ccd26e26d83302cd1ec2b",
+      "stored_sha256": "27e47373447144ae0e72f52599fa398ecd5063febc25b6ef07bbd5098b8c54ae"
+    },
+    {
+      "source": "probe/year-receipt.json",
+      "path": "probe/year-receipt.json.gz",
+      "source_sha256": "aa6fc490cad09fd16a5c9fe7bc7a562cf6d2904d930ff324906cfd870a190082",
+      "stored_sha256": "494a9adf7bfac67d57d4218d16bb84b89db8e9ad7550f775574b2e77107f147d"
+    },
+    {
+      "source": "probe/year-traceback.txt",
+      "path": "probe/year-traceback.txt.gz",
+      "source_sha256": "11e5064ee061f47159bf5d51d8a1587965daba96bd1945ed31c0a8c7ddf12117",
+      "stored_sha256": "62cce7415d4142c0986621965b9f5844d775b8e147b890f3f44e5e1cbe128990"
+    },
+    {
+      "source": "original-failed-year/cold-audit.json",
+      "path": "original-failed-year/cold-audit.json.gz",
+      "source_sha256": "b2b719c6d16f5d28e7ad55c0c9f961c0c981dc1a0ce7125713e4e8b202b98064",
+      "stored_sha256": "03da0de133bb5def507b2119d20c1b6978affc9fef2f374432ca6eedb0e09755"
+    },
+    {
+      "source": "original-failed-year/first-continued-step.npz",
+      "path": "original-failed-year/first-continued-step.npz",
+      "source_sha256": "ece019d194813368771a1b33334b8d6e141a10be56f1204823456e00f4a2970c",
+      "stored_sha256": "ece019d194813368771a1b33334b8d6e141a10be56f1204823456e00f4a2970c"
+    },
+    {
+      "source": "original-failed-year/inputs/CN-Qia.json",
+      "path": "original-failed-year/inputs/CN-Qia.json.gz",
+      "source_sha256": "db8d2b2ccb71134dde4bd0ea27abeae8ab4f205a732923bcae0d4b8bee465f93",
+      "stored_sha256": "d9423cebc685bb87410dd6d3271f2c53b7d92f9c6fd4fea1b599c1217c91fc4b"
+    },
+    {
+      "source": "original-failed-year/inputs/CN-Qia.npz",
+      "path": "original-failed-year/inputs/CN-Qia.npz",
+      "source_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960",
+      "stored_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960"
+    },
+    {
+      "source": "original-failed-year/inputs/SOURCE_SHA256.json",
+      "path": "original-failed-year/inputs/SOURCE_SHA256.json.gz",
+      "source_sha256": "c0cabf3002a8f8ed7960559d0352bc6529f46a20ce8d75aca406b20ff1efd166",
+      "stored_sha256": "92c38647f942ac82427db9e160135300bb19d317e25c5263a649c9c1e6aeddc6"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity/batch.json",
+      "path": "original-failed-year/inputs/capacity/batch.json.gz",
+      "source_sha256": "c70ffaa1f723f0f7d750a78185bc467220154d36c95cf0ee53f90b4c0c0619b4",
+      "stored_sha256": "83ee44c6ec255a9edac913d10930083535cf7c97e619bdb45f32f39fede65b61"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity/cold-reference.npz",
+      "path": "original-failed-year/inputs/capacity/cold-reference.npz",
+      "source_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e",
+      "stored_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity/config.json",
+      "path": "original-failed-year/inputs/capacity/config.json.gz",
+      "source_sha256": "f340b31c1710100cb06e2e082b61fe0684ed801b429b68d6735c69fe9adebfc7",
+      "stored_sha256": "9a78ef9698bb04fbf234da026eff28aee042bac04a42d3db5ba9decb6fe701aa"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity_optics/batch.json",
+      "path": "original-failed-year/inputs/capacity_optics/batch.json.gz",
+      "source_sha256": "dc38f84c1bcacafc43f405020ca778552108d5e6b175355e4d2bb73a68267f91",
+      "stored_sha256": "287d968e1b29613cb2c661ba85e63c0a9091dec4b70b4c29be74fcfb28d7cd54"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity_optics/cold-reference.npz",
+      "path": "original-failed-year/inputs/capacity_optics/cold-reference.npz",
+      "source_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e",
+      "stored_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e"
+    },
+    {
+      "source": "original-failed-year/inputs/capacity_optics/config.json",
+      "path": "original-failed-year/inputs/capacity_optics/config.json.gz",
+      "source_sha256": "0337e852a48c7366a1021266551ca83a7a78a70f655a6fe0d66a843366307b78",
+      "stored_sha256": "e8369523b773182e26d0273988236694c6823b2b245c68075674e45b9bf91da0"
+    },
+    {
+      "source": "original-failed-year/inputs/protocol.json",
+      "path": "original-failed-year/inputs/protocol.json.gz",
+      "source_sha256": "962d67d389507668633c5d9a6f3cc2f4ebcd6964f6be11e77d76f1c62daf3f59",
+      "stored_sha256": "99555b196d53e8fa7df8c3ddc35200e347d469c8d96f98982273544aa029cab3"
+    },
+    {
+      "source": "original-failed-year/prefix-controller.log",
+      "path": "original-failed-year/prefix-controller.log.gz",
+      "source_sha256": "27c1969b7a7d4461c56cb026d366d5664e47bf4a66244a4cde08dd921ecb1e1e",
+      "stored_sha256": "257b9ebc5ede40cbe8cdefc255e1066ee79c9528133cdeac630682252accd400"
+    },
+    {
+      "source": "original-failed-year/prefix-exit.json",
+      "path": "original-failed-year/prefix-exit.json.gz",
+      "source_sha256": "6c05a476d4e51b809cd5632db8ed3c43238e91ca91703e785b124096f8b1a38e",
+      "stored_sha256": "5533712bef37e1a7989f37fbd323033c7b372119ad16c45fa8e4f5d3a566d70e"
+    },
+    {
+      "source": "original-failed-year/prefix-launch.json",
+      "path": "original-failed-year/prefix-launch.json.gz",
+      "source_sha256": "b1f1e7d09fc3d3e8aecbf681a30262b51ba399489df3b546fc3cedbd6c8ad71e",
+      "stored_sha256": "c1dc6e607e7970cb8d25d9cb935286575517abf6429281a2fb3c1042e023838f"
+    },
+    {
+      "source": "original-failed-year/prefix-model.log",
+      "path": "original-failed-year/prefix-model.log.gz",
+      "source_sha256": "898eed429247a91e90aca94b70ab8daea2a851fdb7abb2bac8ca8a62df85a9b1",
+      "stored_sha256": "056b5b505532578db3e2a3c0235fb8a09b618e7a07b46ec3ac0cef1cf1016d4c"
+    },
+    {
+      "source": "original-failed-year/prefix-receipt.json",
+      "path": "original-failed-year/prefix-receipt.json.gz",
+      "source_sha256": "183c6059a9c4232d96acb5bcbe27a24ba7ba82f0b9f0ed32a7c974691ced0317",
+      "stored_sha256": "9c379b316e947eb415fe537298d501eb2cf4ec1f9ccb442c3b1de81234a5d4cc"
+    },
+    {
+      "source": "original-failed-year/prefix-report.json",
+      "path": "original-failed-year/prefix-report.json.gz",
+      "source_sha256": "33a1b9cc0714246eeedc9eef85be3d8f33e13ceeeaa9f2e9129d4347cda79604",
+      "stored_sha256": "06000a32a7533c7450c4ac091ed12d37815997bf7ec0ee67e583ef790d072e0d"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00000.npz",
+      "path": "original-failed-year/prefix-steps/call-00000.npz",
+      "source_sha256": "bbaff7994e1ef4c4b1a3f293071757285be6838e95d3ff6d16c5bf006efe82fb",
+      "stored_sha256": "bbaff7994e1ef4c4b1a3f293071757285be6838e95d3ff6d16c5bf006efe82fb"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00001.npz",
+      "path": "original-failed-year/prefix-steps/call-00001.npz",
+      "source_sha256": "3905b6057548148697c24058aa9d6d9cc657dc6f469cd041c3c25e7c885a7013",
+      "stored_sha256": "3905b6057548148697c24058aa9d6d9cc657dc6f469cd041c3c25e7c885a7013"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00002.npz",
+      "path": "original-failed-year/prefix-steps/call-00002.npz",
+      "source_sha256": "5f9eb94a3f184c72afc0fb3a14af8a373625762be88d2e95cd0092b086a09d79",
+      "stored_sha256": "5f9eb94a3f184c72afc0fb3a14af8a373625762be88d2e95cd0092b086a09d79"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00003.npz",
+      "path": "original-failed-year/prefix-steps/call-00003.npz",
+      "source_sha256": "2b582330b410fd00b508fb6f1171a4056c6d87f4cc2e42ae620dfffdbb28d70b",
+      "stored_sha256": "2b582330b410fd00b508fb6f1171a4056c6d87f4cc2e42ae620dfffdbb28d70b"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00004.npz",
+      "path": "original-failed-year/prefix-steps/call-00004.npz",
+      "source_sha256": "a00376284a4b15f8ff4c4203b0d4186072a3225b2e9c8d84a223ca5a03eb8701",
+      "stored_sha256": "a00376284a4b15f8ff4c4203b0d4186072a3225b2e9c8d84a223ca5a03eb8701"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00005.npz",
+      "path": "original-failed-year/prefix-steps/call-00005.npz",
+      "source_sha256": "fc7841e329d95fb5e59f4b29ce9cd7731b33a46284aa14eff0d6fb5feea8aba1",
+      "stored_sha256": "fc7841e329d95fb5e59f4b29ce9cd7731b33a46284aa14eff0d6fb5feea8aba1"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00006.npz",
+      "path": "original-failed-year/prefix-steps/call-00006.npz",
+      "source_sha256": "400da4d4cbaecc70baf6703f055bfa7441e44fd544845742561c1a2ecc1e51f5",
+      "stored_sha256": "400da4d4cbaecc70baf6703f055bfa7441e44fd544845742561c1a2ecc1e51f5"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00007.npz",
+      "path": "original-failed-year/prefix-steps/call-00007.npz",
+      "source_sha256": "9652996785b7f642800929168f130802ee498ffadef39b3ec696743bc433798a",
+      "stored_sha256": "9652996785b7f642800929168f130802ee498ffadef39b3ec696743bc433798a"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00008.npz",
+      "path": "original-failed-year/prefix-steps/call-00008.npz",
+      "source_sha256": "425d6bbeb28d1e84c50f012bfcd7f676272773677c665f74c0550dbc6aba983f",
+      "stored_sha256": "425d6bbeb28d1e84c50f012bfcd7f676272773677c665f74c0550dbc6aba983f"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00009.npz",
+      "path": "original-failed-year/prefix-steps/call-00009.npz",
+      "source_sha256": "997057f433d45820b84ca7a65fc286002dfd64c990ad709d53254e7f970bb22e",
+      "stored_sha256": "997057f433d45820b84ca7a65fc286002dfd64c990ad709d53254e7f970bb22e"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00010.npz",
+      "path": "original-failed-year/prefix-steps/call-00010.npz",
+      "source_sha256": "6dda1e4531527e2a904900a1a0cac1d02b7794a24497e4826d4bbf05d8253ff6",
+      "stored_sha256": "6dda1e4531527e2a904900a1a0cac1d02b7794a24497e4826d4bbf05d8253ff6"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00011.npz",
+      "path": "original-failed-year/prefix-steps/call-00011.npz",
+      "source_sha256": "69a4a87574293fbadccc6c70efaba0726612018edc1e6788d2c697f1343a568b",
+      "stored_sha256": "69a4a87574293fbadccc6c70efaba0726612018edc1e6788d2c697f1343a568b"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00012.npz",
+      "path": "original-failed-year/prefix-steps/call-00012.npz",
+      "source_sha256": "7d11b1ef9363ecd8ffccbcb6aa8b476955ed001f668ee01a33f698be11d45474",
+      "stored_sha256": "7d11b1ef9363ecd8ffccbcb6aa8b476955ed001f668ee01a33f698be11d45474"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00013.npz",
+      "path": "original-failed-year/prefix-steps/call-00013.npz",
+      "source_sha256": "6149eaf1ef664165add538aeeb6d63d94ae61895884cf149451446e01a7f9f3e",
+      "stored_sha256": "6149eaf1ef664165add538aeeb6d63d94ae61895884cf149451446e01a7f9f3e"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00014.npz",
+      "path": "original-failed-year/prefix-steps/call-00014.npz",
+      "source_sha256": "7132930accd85aa7bff454af967559e459596684d8d6f19d3f659921ac3b56ec",
+      "stored_sha256": "7132930accd85aa7bff454af967559e459596684d8d6f19d3f659921ac3b56ec"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00015.npz",
+      "path": "original-failed-year/prefix-steps/call-00015.npz",
+      "source_sha256": "e4cce09372877d27a4a6de00d06e9b9573048aa74e585a3155b5e9f82f8555a7",
+      "stored_sha256": "e4cce09372877d27a4a6de00d06e9b9573048aa74e585a3155b5e9f82f8555a7"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00016.npz",
+      "path": "original-failed-year/prefix-steps/call-00016.npz",
+      "source_sha256": "e37d84b079ae21b54d48564d5e73b7a4a80b1afa319994c41b94aaa5f72175ba",
+      "stored_sha256": "e37d84b079ae21b54d48564d5e73b7a4a80b1afa319994c41b94aaa5f72175ba"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00017.npz",
+      "path": "original-failed-year/prefix-steps/call-00017.npz",
+      "source_sha256": "c9a7eb7139a80fcee55701e940c2489fdd0219df68327458ffa5f568480287a8",
+      "stored_sha256": "c9a7eb7139a80fcee55701e940c2489fdd0219df68327458ffa5f568480287a8"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00018.npz",
+      "path": "original-failed-year/prefix-steps/call-00018.npz",
+      "source_sha256": "24c55c7d5f6875b87f1df7d4140853511d7490e8bfec6e7a1bb4d1fa85781447",
+      "stored_sha256": "24c55c7d5f6875b87f1df7d4140853511d7490e8bfec6e7a1bb4d1fa85781447"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00019.npz",
+      "path": "original-failed-year/prefix-steps/call-00019.npz",
+      "source_sha256": "04c0c57e0049bb0b4a2440f3a39815d369f0cc0dc952ae8348a277b97bf0f9de",
+      "stored_sha256": "04c0c57e0049bb0b4a2440f3a39815d369f0cc0dc952ae8348a277b97bf0f9de"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00020.npz",
+      "path": "original-failed-year/prefix-steps/call-00020.npz",
+      "source_sha256": "fd227d969656243655b51ffbb1281a88705bfcfd9a2169c30b62a34a50201ec5",
+      "stored_sha256": "fd227d969656243655b51ffbb1281a88705bfcfd9a2169c30b62a34a50201ec5"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00021.npz",
+      "path": "original-failed-year/prefix-steps/call-00021.npz",
+      "source_sha256": "2b3236c9a065d35f44ebbba0fc7d430dd0ed1f16e6e77e503a9d28d64bc51d1d",
+      "stored_sha256": "2b3236c9a065d35f44ebbba0fc7d430dd0ed1f16e6e77e503a9d28d64bc51d1d"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00022.npz",
+      "path": "original-failed-year/prefix-steps/call-00022.npz",
+      "source_sha256": "b618b575a8064d489f5c83cb962db45f4d552f79d5cc0a7ce8d8f5d34acd59bc",
+      "stored_sha256": "b618b575a8064d489f5c83cb962db45f4d552f79d5cc0a7ce8d8f5d34acd59bc"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00023.npz",
+      "path": "original-failed-year/prefix-steps/call-00023.npz",
+      "source_sha256": "3ae7ae547eed333e04d25da47f80ee0c2818ec774a357d35e4837c22dfdf3663",
+      "stored_sha256": "3ae7ae547eed333e04d25da47f80ee0c2818ec774a357d35e4837c22dfdf3663"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00024.npz",
+      "path": "original-failed-year/prefix-steps/call-00024.npz",
+      "source_sha256": "862c58951f48437b723e4c4106b5f7f62f0d355f4a7f8dd64fef76c68ff3a069",
+      "stored_sha256": "862c58951f48437b723e4c4106b5f7f62f0d355f4a7f8dd64fef76c68ff3a069"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00025.npz",
+      "path": "original-failed-year/prefix-steps/call-00025.npz",
+      "source_sha256": "3a892c243597682fd63af7e8904c8ede545f5fa647b41f77e78d2b9d1092a46b",
+      "stored_sha256": "3a892c243597682fd63af7e8904c8ede545f5fa647b41f77e78d2b9d1092a46b"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00026.npz",
+      "path": "original-failed-year/prefix-steps/call-00026.npz",
+      "source_sha256": "a3fcac93e35edab5afaf2d1f655473a68e7ab7edb3c4dedd37f2e4d57ff3bec1",
+      "stored_sha256": "a3fcac93e35edab5afaf2d1f655473a68e7ab7edb3c4dedd37f2e4d57ff3bec1"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00027.npz",
+      "path": "original-failed-year/prefix-steps/call-00027.npz",
+      "source_sha256": "ce51132632bdca54128246831cc5c4d382a2c9daff7d2242ebc58665a274d28c",
+      "stored_sha256": "ce51132632bdca54128246831cc5c4d382a2c9daff7d2242ebc58665a274d28c"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00028.npz",
+      "path": "original-failed-year/prefix-steps/call-00028.npz",
+      "source_sha256": "0fa359b1f9448eb3b545011292bd49e1ecb628a26358ddb5538ed7dd41af40d8",
+      "stored_sha256": "0fa359b1f9448eb3b545011292bd49e1ecb628a26358ddb5538ed7dd41af40d8"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00029.npz",
+      "path": "original-failed-year/prefix-steps/call-00029.npz",
+      "source_sha256": "935264df1ac90fab8daafd2ad8dc955933c6314438958a73d570d550d246a497",
+      "stored_sha256": "935264df1ac90fab8daafd2ad8dc955933c6314438958a73d570d550d246a497"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00030.npz",
+      "path": "original-failed-year/prefix-steps/call-00030.npz",
+      "source_sha256": "805c3d78930e937c22ce25fb663c47489ab64569e4c0e6958305fcfcd464d8ce",
+      "stored_sha256": "805c3d78930e937c22ce25fb663c47489ab64569e4c0e6958305fcfcd464d8ce"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00031.npz",
+      "path": "original-failed-year/prefix-steps/call-00031.npz",
+      "source_sha256": "d969c1fd51b709c68a45dfb9e45d26ebe90fb6aa4100cecf611b6479c3e51765",
+      "stored_sha256": "d969c1fd51b709c68a45dfb9e45d26ebe90fb6aa4100cecf611b6479c3e51765"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00032.npz",
+      "path": "original-failed-year/prefix-steps/call-00032.npz",
+      "source_sha256": "1d5d7bae7eb682c8d1e4b48439bf6237752d45549045914a1be861d494dad949",
+      "stored_sha256": "1d5d7bae7eb682c8d1e4b48439bf6237752d45549045914a1be861d494dad949"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00033.npz",
+      "path": "original-failed-year/prefix-steps/call-00033.npz",
+      "source_sha256": "ba048b224292105d86b305aa98f03fe152f37a3eceb0a3635bb91f75ccc46d5e",
+      "stored_sha256": "ba048b224292105d86b305aa98f03fe152f37a3eceb0a3635bb91f75ccc46d5e"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00034.npz",
+      "path": "original-failed-year/prefix-steps/call-00034.npz",
+      "source_sha256": "b31059741747552c09be33be7a04fd07cb43fad64f46371bcb9e50ac18caf162",
+      "stored_sha256": "b31059741747552c09be33be7a04fd07cb43fad64f46371bcb9e50ac18caf162"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00035.npz",
+      "path": "original-failed-year/prefix-steps/call-00035.npz",
+      "source_sha256": "82e0171c54ad8260520d847fdcc635ddc24dfe358d6071960e7d9b98691bb344",
+      "stored_sha256": "82e0171c54ad8260520d847fdcc635ddc24dfe358d6071960e7d9b98691bb344"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00036.npz",
+      "path": "original-failed-year/prefix-steps/call-00036.npz",
+      "source_sha256": "1f8047413ca4afb6353f768978e6947ece765331f56a999f8ff2cb7dc8931a9e",
+      "stored_sha256": "1f8047413ca4afb6353f768978e6947ece765331f56a999f8ff2cb7dc8931a9e"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00037.npz",
+      "path": "original-failed-year/prefix-steps/call-00037.npz",
+      "source_sha256": "f9416bf3ae21bb56dafcc0206aa73e5e0c47901fe404a3ff6921aad31f664d29",
+      "stored_sha256": "f9416bf3ae21bb56dafcc0206aa73e5e0c47901fe404a3ff6921aad31f664d29"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00038.npz",
+      "path": "original-failed-year/prefix-steps/call-00038.npz",
+      "source_sha256": "19922c067501559890def3907b8aff7c2019f8518dcd1b25d0738a61671b3c10",
+      "stored_sha256": "19922c067501559890def3907b8aff7c2019f8518dcd1b25d0738a61671b3c10"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00039.npz",
+      "path": "original-failed-year/prefix-steps/call-00039.npz",
+      "source_sha256": "92e5c381ece575a5776492a1ce316ec0e1dbff58a3e6b5bacc692d829d5e60ad",
+      "stored_sha256": "92e5c381ece575a5776492a1ce316ec0e1dbff58a3e6b5bacc692d829d5e60ad"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00040.npz",
+      "path": "original-failed-year/prefix-steps/call-00040.npz",
+      "source_sha256": "c76d910376cf5f637de8e821fbdd2542a6806b0aedef482f359c09347838101f",
+      "stored_sha256": "c76d910376cf5f637de8e821fbdd2542a6806b0aedef482f359c09347838101f"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00041.npz",
+      "path": "original-failed-year/prefix-steps/call-00041.npz",
+      "source_sha256": "89bc6a9eb4e86b97f826e3092e21857e537e43b477eed85265bf98de4b7b7b82",
+      "stored_sha256": "89bc6a9eb4e86b97f826e3092e21857e537e43b477eed85265bf98de4b7b7b82"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00042.npz",
+      "path": "original-failed-year/prefix-steps/call-00042.npz",
+      "source_sha256": "97f5ef6af38ff6d0ab58875be541fa18267472482c0e1f01de61e8d3eb3afbc8",
+      "stored_sha256": "97f5ef6af38ff6d0ab58875be541fa18267472482c0e1f01de61e8d3eb3afbc8"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00043.npz",
+      "path": "original-failed-year/prefix-steps/call-00043.npz",
+      "source_sha256": "78e3e574ddf3b2476322ea16d84c353cbadcfc078abbc9282cca65ad39c3ce5c",
+      "stored_sha256": "78e3e574ddf3b2476322ea16d84c353cbadcfc078abbc9282cca65ad39c3ce5c"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00044.npz",
+      "path": "original-failed-year/prefix-steps/call-00044.npz",
+      "source_sha256": "8fd8940d46bc3140f162e840d027a344eea327a29a6321ac8fed25ec378c2750",
+      "stored_sha256": "8fd8940d46bc3140f162e840d027a344eea327a29a6321ac8fed25ec378c2750"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00045.npz",
+      "path": "original-failed-year/prefix-steps/call-00045.npz",
+      "source_sha256": "e4a13a071e6f02009d34a2e4953d500d3dbb14aafbc1cfa9e3cb3074c34f4f69",
+      "stored_sha256": "e4a13a071e6f02009d34a2e4953d500d3dbb14aafbc1cfa9e3cb3074c34f4f69"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00046.npz",
+      "path": "original-failed-year/prefix-steps/call-00046.npz",
+      "source_sha256": "a6cbc686b25ea62e64dfcd7983f0c89f0ac075aabab3c9a245ce078b346e2e49",
+      "stored_sha256": "a6cbc686b25ea62e64dfcd7983f0c89f0ac075aabab3c9a245ce078b346e2e49"
+    },
+    {
+      "source": "original-failed-year/prefix-steps/call-00047.npz",
+      "path": "original-failed-year/prefix-steps/call-00047.npz",
+      "source_sha256": "91b9d2350951e6d164bc0a0dc189d0067ab3029c366084a5180f3b32200a6b35",
+      "stored_sha256": "91b9d2350951e6d164bc0a0dc189d0067ab3029c366084a5180f3b32200a6b35"
+    },
+    {
+      "source": "original-failed-year/prefix-verification.json",
+      "path": "original-failed-year/prefix-verification.json.gz",
+      "source_sha256": "684c173dacf0cd1f4784623e25f16d28744bb862392d00206f4f94f917787237",
+      "stored_sha256": "bd23c29d889dd78a0cc78eb2f6cb027736815c1f41d77d7fed456c9ca99e4698"
+    },
+    {
+      "source": "original-failed-year/prefix-worker.json",
+      "path": "original-failed-year/prefix-worker.json.gz",
+      "source_sha256": "c620c1a03f7fc2c243724965ffe0c03933faca2d3208d813e9f1f43c0188223c",
+      "stored_sha256": "ae10a7ed2a2ed2818fdcce954ff789f00ae53428b37055c1d18fdec04df3f10f"
+    },
+    {
+      "source": "original-failed-year/trajectory/batch.json",
+      "path": "original-failed-year/trajectory/batch.json.gz",
+      "source_sha256": "4a3c37b650e755c3bed420d7621f74c446807eb8723733dfe6e313d6b673d4ed",
+      "stored_sha256": "03d40a1327da8b58fb2eb4ff09eb4dcc7b5d90a34efbe3bef6d09148a755d89f"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000000-e60e19cc93764219a1fffd49701c3f48.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000000-e60e19cc93764219a1fffd49701c3f48.json.gz",
+      "source_sha256": "a1247ae626c34682abe1b3101c3b0f7f64f8d453f1d71929262f3d88b0f689a0",
+      "stored_sha256": "9876d330c3bddf6f4b94a61b1d07a01091d5bf6ffe3ff6b0f9ae3f166a978124"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-0ef580257eb74a55bae2c2e006be0051.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-0ef580257eb74a55bae2c2e006be0051.json.gz",
+      "source_sha256": "df6e0174195149ce252571865c8c49bae538273fe8a99c6965f56ae61ca15085",
+      "stored_sha256": "753b19b92b80252e0e12dc34fb60b27f084e3b9aa6dea5ead1ccd6e010eb8a7c"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-47ab1960ad874b4bb1c749276f8a55e2.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-47ab1960ad874b4bb1c749276f8a55e2.json.gz",
+      "source_sha256": "6270e96f3f8433f608c6d0d836b605047c1a61120b233b1bcf75fdb299e52ab7",
+      "stored_sha256": "51cfdc5ed30a0f2e73c448cb8448c6214153ad277e0e568e322db190cc784d3b"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-724c43b0325745ccb63b205e015d0e12.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000048-724c43b0325745ccb63b205e015d0e12.json.gz",
+      "source_sha256": "fcf81cade179bcf72aaae2562ff0acf84a717ec744fa05281fcd4520f2f70698",
+      "stored_sha256": "303ee1f2008caed7b582ee53bb31a2fe4bc03c3e540e54bbde738ad374bbea7f"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000096-2691dd9774e1423fad9caf4aa7e62b69.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000096-2691dd9774e1423fad9caf4aa7e62b69.json.gz",
+      "source_sha256": "0d414d6524bddacbe0d83d8b3ce0873ad547ce83c307f158ff6d98d82be0f7d4",
+      "stored_sha256": "fcb10c608f65ae87ddd9815711cf60ac504eff728c37db85c987cfcebec5f5e1"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000144-733a788eb78d4d649418260779d0e63a.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000144-733a788eb78d4d649418260779d0e63a.json.gz",
+      "source_sha256": "e301da29afc006f7d2007ba96502f3e5ff17d18d51fa6e4aa5bd4615b63f6ace",
+      "stored_sha256": "47d9bf162a946f9a05f7f047027fe0e03bbb0a4d63c7a440b8a615c7d07de9c8"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000192-1169133891ee4aad982cfa97f4e52b5b.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000192-1169133891ee4aad982cfa97f4e52b5b.json.gz",
+      "source_sha256": "2d8423fa062844718eb1134b1a29fe653d1397dc6eaebc274634105c48ced652",
+      "stored_sha256": "5141606eaed345b0789f2e46c1513de3a8137695337f205aab2868814aa5bb2b"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000240-c40013299fef455badbc0fa141210789.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000240-c40013299fef455badbc0fa141210789.json.gz",
+      "source_sha256": "424dcc8c88be6d2ca69db287990b0520b5ce542d154b9a0ed338fc9389a7ead7",
+      "stored_sha256": "0578712a675b685e9531df672f125202a782a71a92efb3d6210ab3c3a23dd8ae"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.json.gz",
+      "source_sha256": "4b2f62eaadc11002d1643b8353916a3d088b533386b0357ec3ec959578813e6e",
+      "stored_sha256": "4ff46d2f04f7236df7bffa34c03767e6e2b97f1ed8af35920579bc2792410d40"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000336-de3e94785d2b42f6b287a55b9cfe33d9.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000336-de3e94785d2b42f6b287a55b9cfe33d9.json.gz",
+      "source_sha256": "faa364bc7ca9d3511e18221b53b7f46d028b647c1914f5a34603d832397e156d",
+      "stored_sha256": "fab9177aa447f0eb60c613e74b33cc8d0e86616cfe8fba2aba49b87d862823a4"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000356-28b6e376acd243d0b69f995224089456.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report-0000356-28b6e376acd243d0b69f995224089456.json.gz",
+      "source_sha256": "c1e519d816f47bffee385fa8fa06131996bd24de964e6fc40416616177661fba",
+      "stored_sha256": "1d2657b93c3a1250b045103daf2bf930164d64e8595eacd4c27c7d89f3454fb1"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report.json",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/report.json.gz",
+      "source_sha256": "c1e519d816f47bffee385fa8fa06131996bd24de964e6fc40416616177661fba",
+      "stored_sha256": "1d2657b93c3a1250b045103daf2bf930164d64e8595eacd4c27c7d89f3454fb1"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000000-e60e19cc93764219a1fffd49701c3f48.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000000-e60e19cc93764219a1fffd49701c3f48.npz",
+      "source_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3",
+      "stored_sha256": "d013921dde96009a84cf0f1b782f5d14deeb9ffa9864425878946be2015c24e3"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-0ef580257eb74a55bae2c2e006be0051.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-0ef580257eb74a55bae2c2e006be0051.npz",
+      "source_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979",
+      "stored_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-47ab1960ad874b4bb1c749276f8a55e2.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-47ab1960ad874b4bb1c749276f8a55e2.npz",
+      "source_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979",
+      "stored_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-724c43b0325745ccb63b205e015d0e12.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000048-724c43b0325745ccb63b205e015d0e12.npz",
+      "source_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979",
+      "stored_sha256": "82e87b56c7417864c8107fca308b83a1de77bb5e2874a2af6b6f42bf7c667979"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000096-2691dd9774e1423fad9caf4aa7e62b69.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000096-2691dd9774e1423fad9caf4aa7e62b69.npz",
+      "source_sha256": "2142882a3ac078a1d5617f86b2751660fd9b061635c9e152055e2447780d7409",
+      "stored_sha256": "2142882a3ac078a1d5617f86b2751660fd9b061635c9e152055e2447780d7409"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000144-733a788eb78d4d649418260779d0e63a.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000144-733a788eb78d4d649418260779d0e63a.npz",
+      "source_sha256": "dccab782a1bcfab7d47926967af8babc1b02b69337d185f2e0cc72cd56991e7c",
+      "stored_sha256": "dccab782a1bcfab7d47926967af8babc1b02b69337d185f2e0cc72cd56991e7c"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000192-1169133891ee4aad982cfa97f4e52b5b.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000192-1169133891ee4aad982cfa97f4e52b5b.npz",
+      "source_sha256": "393dab0aaeb55a6c321a6adb2d295c3f4040acc75e726ab985bbba2074afe8b7",
+      "stored_sha256": "393dab0aaeb55a6c321a6adb2d295c3f4040acc75e726ab985bbba2074afe8b7"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000240-c40013299fef455badbc0fa141210789.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000240-c40013299fef455badbc0fa141210789.npz",
+      "source_sha256": "1558b8a6ae69a376890081860b63b3bbdd2a1b9f812e557bd7173d245ab2db27",
+      "stored_sha256": "1558b8a6ae69a376890081860b63b3bbdd2a1b9f812e557bd7173d245ab2db27"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.npz",
+      "source_sha256": "fd74cd709a142e76add6b3f6e6a52cbde1683b7bb1b2f2664a94c755c97657b5",
+      "stored_sha256": "fd74cd709a142e76add6b3f6e6a52cbde1683b7bb1b2f2664a94c755c97657b5"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000336-de3e94785d2b42f6b287a55b9cfe33d9.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000336-de3e94785d2b42f6b287a55b9cfe33d9.npz",
+      "source_sha256": "4d7290ef23cad182ed24768ea74e123e4274046296f894bbb65b6ff6a3101094",
+      "stored_sha256": "4d7290ef23cad182ed24768ea74e123e4274046296f894bbb65b6ff6a3101094"
+    },
+    {
+      "source": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000356-28b6e376acd243d0b69f995224089456.npz",
+      "path": "original-failed-year/trajectory/qia-bounded-capacity_optics-cold2003/trace-0000356-28b6e376acd243d0b69f995224089456.npz",
+      "source_sha256": "f25222d3330943efa350d4060eb7e081f94eb869938b0374f8df7a3f32220ec4",
+      "stored_sha256": "f25222d3330943efa350d4060eb7e081f94eb869938b0374f8df7a3f32220ec4"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000000-e60e19cc93764219a1fffd49701c3f48.npz",
+      "path": "original-failed-year/trajectory/state-0000000-e60e19cc93764219a1fffd49701c3f48.npz",
+      "source_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e",
+      "stored_sha256": "cfefc8c9a2aac698863ed10a17654879ee09bf86af2e5eef3dfeaf37a0ccee0e"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000048-0ef580257eb74a55bae2c2e006be0051.npz",
+      "path": "original-failed-year/trajectory/state-0000048-0ef580257eb74a55bae2c2e006be0051.npz",
+      "source_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0",
+      "stored_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000048-47ab1960ad874b4bb1c749276f8a55e2.npz",
+      "path": "original-failed-year/trajectory/state-0000048-47ab1960ad874b4bb1c749276f8a55e2.npz",
+      "source_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0",
+      "stored_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000048-724c43b0325745ccb63b205e015d0e12.npz",
+      "path": "original-failed-year/trajectory/state-0000048-724c43b0325745ccb63b205e015d0e12.npz",
+      "source_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0",
+      "stored_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000096-2691dd9774e1423fad9caf4aa7e62b69.npz",
+      "path": "original-failed-year/trajectory/state-0000096-2691dd9774e1423fad9caf4aa7e62b69.npz",
+      "source_sha256": "f80cf457024b1270d8dd298891483a95fa466115be8d40ba92a441b10ae49238",
+      "stored_sha256": "f80cf457024b1270d8dd298891483a95fa466115be8d40ba92a441b10ae49238"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000144-733a788eb78d4d649418260779d0e63a.npz",
+      "path": "original-failed-year/trajectory/state-0000144-733a788eb78d4d649418260779d0e63a.npz",
+      "source_sha256": "ff4a03120271bb3a9d1252cc40c53d363ad88bdf1d19fbb7a81b9609e6d794d6",
+      "stored_sha256": "ff4a03120271bb3a9d1252cc40c53d363ad88bdf1d19fbb7a81b9609e6d794d6"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000192-1169133891ee4aad982cfa97f4e52b5b.npz",
+      "path": "original-failed-year/trajectory/state-0000192-1169133891ee4aad982cfa97f4e52b5b.npz",
+      "source_sha256": "dc6d43cfa3bcc6f3d8a29f2fd75579047f5a781edc38382510ec2eec3081917b",
+      "stored_sha256": "dc6d43cfa3bcc6f3d8a29f2fd75579047f5a781edc38382510ec2eec3081917b"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000240-c40013299fef455badbc0fa141210789.npz",
+      "path": "original-failed-year/trajectory/state-0000240-c40013299fef455badbc0fa141210789.npz",
+      "source_sha256": "f34cdd7019cf384adb6ee7dad113ab3bb0f582799300e266edbd50ed97108100",
+      "stored_sha256": "f34cdd7019cf384adb6ee7dad113ab3bb0f582799300e266edbd50ed97108100"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.npz",
+      "path": "original-failed-year/trajectory/state-0000288-7ef8a064d55b42c8a9c926f0bc1faea4.npz",
+      "source_sha256": "adae932b0ee0f57269851be4388b109c04afe2fd82bb6703f51c79e9136b19b8",
+      "stored_sha256": "adae932b0ee0f57269851be4388b109c04afe2fd82bb6703f51c79e9136b19b8"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000336-de3e94785d2b42f6b287a55b9cfe33d9.npz",
+      "path": "original-failed-year/trajectory/state-0000336-de3e94785d2b42f6b287a55b9cfe33d9.npz",
+      "source_sha256": "f046c6376e882d862311538cce2aa157295cec728b99bf90417a173718ca8383",
+      "stored_sha256": "f046c6376e882d862311538cce2aa157295cec728b99bf90417a173718ca8383"
+    },
+    {
+      "source": "original-failed-year/trajectory/state-0000356-28b6e376acd243d0b69f995224089456.npz",
+      "path": "original-failed-year/trajectory/state-0000356-28b6e376acd243d0b69f995224089456.npz",
+      "source_sha256": "91808580c8a9babad97e04b10445c7715dd1effbd91cfc1b76a22278f86ff7e9",
+      "stored_sha256": "91808580c8a9babad97e04b10445c7715dd1effbd91cfc1b76a22278f86ff7e9"
+    },
+    {
+      "source": "original-failed-year/validated-prefix-report.json",
+      "path": "original-failed-year/validated-prefix-report.json.gz",
+      "source_sha256": "33a1b9cc0714246eeedc9eef85be3d8f33e13ceeeaa9f2e9129d4347cda79604",
+      "stored_sha256": "06000a32a7533c7450c4ac091ed12d37815997bf7ec0ee67e583ef790d072e0d"
+    },
+    {
+      "source": "original-failed-year/validated-prefix-state.npz",
+      "path": "original-failed-year/validated-prefix-state.npz",
+      "source_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0",
+      "stored_sha256": "96752c1c3b078f9880c562e85c7512ea83af750bb3e2e9f4293c1d0fbe982da0"
+    },
+    {
+      "source": "original-failed-year/year-controller.log",
+      "path": "original-failed-year/year-controller.log.gz",
+      "source_sha256": "861a7954feb5782d8dccab3cd29cb106625af1d2113934fcb003b4007a0d2b2b",
+      "stored_sha256": "d7dc597993cde9959f2d77f2e468cf23b3465203101138afddf7c52bb83f6933"
+    },
+    {
+      "source": "original-failed-year/year-exit.json",
+      "path": "original-failed-year/year-exit.json.gz",
+      "source_sha256": "0b236df72caacfa2d2e20448e4890d7544e61c22bd5ccd26e26d83302cd1ec2b",
+      "stored_sha256": "27e47373447144ae0e72f52599fa398ecd5063febc25b6ef07bbd5098b8c54ae"
+    },
+    {
+      "source": "original-failed-year/year-launch.json",
+      "path": "original-failed-year/year-launch.json.gz",
+      "source_sha256": "177e9164e6b746a200e538b65eea2ae274cd0d4648044ee53e57cd20456a7b0d",
+      "stored_sha256": "02f5aeb4cf692488c9a16fe7d80cd2e85af7b72f9804f422f5976ca49920ebd4"
+    },
+    {
+      "source": "original-failed-year/year-model.log",
+      "path": "original-failed-year/year-model.log.gz",
+      "source_sha256": "d73dd29ad7f0412d9de69a39a03f39ca579225b705d966430562e21abfd3e532",
+      "stored_sha256": "3ef72bd5dba71d939f080c42ee692bb15dde2a372ca47b74a0c95283a95bcd82"
+    },
+    {
+      "source": "original-failed-year/year-receipt.json",
+      "path": "original-failed-year/year-receipt.json.gz",
+      "source_sha256": "aa6fc490cad09fd16a5c9fe7bc7a562cf6d2904d930ff324906cfd870a190082",
+      "stored_sha256": "494a9adf7bfac67d57d4218d16bb84b89db8e9ad7550f775574b2e77107f147d"
+    },
+    {
+      "source": "original-failed-year/year-start-audit.json",
+      "path": "original-failed-year/year-start-audit.json.gz",
+      "source_sha256": "0f1a81e0698a89ec9926e44fe88a16281411959f494204a4aca4d3659a6d0ef2",
+      "stored_sha256": "b311ca9043713974e61cb871c26f61c7171da71ae70cad6625dcfb47bebaffee"
+    },
+    {
+      "source": "original-failed-year/year-traceback.txt",
+      "path": "original-failed-year/year-traceback.txt.gz",
+      "source_sha256": "11e5064ee061f47159bf5d51d8a1587965daba96bd1945ed31c0a8c7ddf12117",
+      "stored_sha256": "62cce7415d4142c0986621965b9f5844d775b8e147b890f3f44e5e1cbe128990"
+    },
+    {
+      "source": "original-failed-year/year-worker.json",
+      "path": "original-failed-year/year-worker.json.gz",
+      "source_sha256": "e9f1319020b17488b2ca0cb8a3a3387e163918bd8d7802d9f8389deed2d85df2",
+      "stored_sha256": "9e027dda2641fe11588449bf9245e65fe723943ae9480a77f849046e58686f74"
+    },
+    {
+      "source": "control/archive_optics_surface_dh.py",
+      "path": "control/archive_optics_surface_dh.py.gz",
+      "source_sha256": "2316bb10d00df46f576c469d9460167e296045c6aaad9210ceda474f338696f2",
+      "stored_sha256": "ee71236a3b3a732f1f6f1073a5e954e9424c1ddbc30985cd39e96e25eefb4146"
+    }
+  ]
+}

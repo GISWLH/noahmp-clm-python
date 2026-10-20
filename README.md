@@ -2,6 +2,12 @@
 
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
+2026-10-20 05:42UTC：[当前CN冷态与年度复验](docs/CLM_RICHARDS_SATURATION.md)：
+EHPC398／399和物理CUDA1两组冷48步均实际退出0；独立EHPC400核对原守恒界，
+最大后端土温差3.80133e-5 K、土湿差1.98569e-7 m³/m³。全年capacity仍运行，
+optics在356／17520步实际失败1，地表／冠层求解诊断中，失败年未续。
+完整398GPU／1517、全年／spinup与科学验收仍待，v1.0.0未发布；下文为历史快照。
+
 2026-10-20 04:25UTC：[饱和端点守恒修订](docs/CLM_RICHARDS_SATURATION.md)已完成NumPy先行与三后端模块验证。
 EHPC394定向81／完整1119均实际0；实际故障输入的NumPy前后最大温差0 K、焓差
 1.49e-8 J/m²。xuanze物理CUDA 1上的CN新8＋原水分4＋携焓4均实际父进程0；
