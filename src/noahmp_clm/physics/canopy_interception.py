@@ -3,14 +3,16 @@
 CLM5 hydrology 2.7.2--25 supplies bulk interception, capacity and unloading
 relations. Intercepted precipitation is distributed by exposed leaf+stem area;
 each layer then retains its own equilibrium liquid/ice mass and enthalpy.
-This is an original extensive formulation, not a translation of CTSM code.
-The canopy energy/column drivers do not yet consume this new state.
+This original extensive formulation supplies the layered CLM column drivers.
 """
 from dataclasses import dataclass
 import numpy as np
 from .snowpack import equilibrium,TF,CI,CW,LF
 
 LV=2.5e6
+# The pinned CLM5 namelist uses this exposed-area bound. It limits surface
+# coverage for evaporation; it does not reduce retained water or latent heat.
+MAXIMUM_LEAF_WETTED_FRACTION=.05
 
 
 @dataclass(frozen=True)
@@ -74,7 +76,7 @@ def coverage(state,leaf_area,*,stem_area=0.,vegetated_fraction=1.):
     """Layer wet, transpiring-dry and snow-covered fractions, dimensionless."""
     leaves,stems,area=_geometry(state,leaf_area,stem_area,vegetated_fraction)
     cap=.1*vegetated_fraction*area;snowcap=6.*vegetated_fraction*area
-    wet=np.where(cap>0.,np.minimum(1.,(state.mass/np.maximum(cap,1e-300))**(2./3.)),0.)
+    wet=np.where(cap>0.,np.minimum(MAXIMUM_LEAF_WETTED_FRACTION,(state.mass/np.maximum(cap,1e-300))**(2./3.)),0.)
     dry=(1.-wet)*np.divide(leaves,area,out=np.zeros_like(area),where=area>0.)
     snow=np.where(snowcap>0.,np.minimum(1.,(state.ice/np.maximum(snowcap,1e-300))**.15),0.)
     return dict(wet_fraction=wet,dry_fraction=dry,snow_fraction=snow)

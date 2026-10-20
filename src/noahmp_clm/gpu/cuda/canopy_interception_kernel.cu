@@ -24,7 +24,7 @@ __device__ void canopy_water_device(const float* c,const float* area,const float
             float left=kept-unload,hl=(kept_liquid/(liq>0.f?liq:1.f))*lh,hs=(left/(ice>0.f?ice:1.f))*hi;
             dh[k]=lh-hl;sh[k]=hi-hs;m[k]=kept_liquid+left;h[k]=hl+hs;
             float ni,nl;cw_phase(m[k],h[k],t,ni,nl);
-            float wet=cap>0.f?fminf(1.f,powf(m[k]/cap,(float)(2./3.))):0.f;
+            float wet=cap>0.f?fminf(.05f,powf(m[k]/cap,(float)(2./3.))):0.f;
             out[50+k]=wet;out[60+k]=(1.f-wet)*(area[k*2]/(a[k]>0.f?a[k]:1.f));
             out[70+k]=icap>0.f?fminf(1.f,powf(ni/icap,.15f)):0.f;
             out[80+k]=drip[k];out[90+k]=fall;out[100+k]=unload;

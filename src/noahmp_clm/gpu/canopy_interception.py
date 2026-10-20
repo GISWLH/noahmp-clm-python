@@ -76,7 +76,8 @@ def canopy_water_kernel_jax(c,area,u,v,mode):
         water=s(s(s(s(s(_sum(newm)-_sum(mass))-u[0])-u[1])+gm)+gi)
         energy=s(s(s(s(_sum(newh)-_sum(heat))-ph)+gh)+gih)
         _,ni,_=canopy_phase_jax(newm,newh)
-        wet=j.where(cap>0.,j.minimum(1.,j.power(newm/j.where(cap>0.,cap,1.),2./3.)),0.)
+        # CLM5 bounds exposed wet area independently of retained M/H.
+        wet=j.where(cap>0.,j.minimum(.05,j.power(newm/j.where(cap>0.,cap,1.),2./3.)),0.)
         dry=s(s(1.-wet)*(area[:,0]/j.where(a>0.,a,1.)))
         snow=j.where(icap>0.,j.minimum(1.,j.power(ni/j.where(icap>0.,icap,1.),.15)),0.)
         fields=j.stack((wet,dry,snow,drip,fall,unload,*([zero]*6)))

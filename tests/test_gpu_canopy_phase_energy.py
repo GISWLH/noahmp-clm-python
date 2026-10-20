@@ -46,15 +46,17 @@ def batch(dtype):
 
 
 @pytest.mark.parametrize('fixture',['canopy_phase_humidity_bound.json','canopy_phase_humidity_slow.json'])
-def test_humidity_bound_restart_closes_original_coupled_equations(fixture):
+def test_saved_humidity_boundary_closes_original_coupled_equations(fixture):
     saved=json.loads((Path(__file__).parent/'fixtures'/fixture).read_text())
     arrays=tuple(np.asarray(v,np.int32 if k==8 else np.float64) for k,v in enumerate(saved['arrays']))
     result=reference(arrays,tolerance=1e-7)
-    assert result['restarts']>0 and 0.<result['canopy_humidity']<.19
+    # CLM5's .05 wet-area bound removes the original humidity stall in both
+    # retained inputs. Prescribed-start recovery is checked separately on CPU.
+    assert result['restarts']==0 and 0.<result['canopy_humidity']<.19
     assert abs(result['layer_residual']).max()<=1.01e-7
     assert abs(result['solver_residual']).max()<=1e-7
     assert abs(result['canopy_water_residual'])<1e-12
-    print('humidity restart',fixture,result['iterations'],result['restarts'],result['canopy_humidity'],
+    print('saved humidity boundary',fixture,result['iterations'],result['restarts'],result['canopy_humidity'],
         abs(result['layer_residual']).max(),result['canopy_water_residual'],flush=True)
 
 

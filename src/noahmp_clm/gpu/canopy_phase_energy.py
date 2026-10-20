@@ -82,7 +82,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
     weights=s(s(rho*1004.)*j.concatenate((s(s(fv*area)*u[5]),j.asarray([s(fv*u[4])]))))
     atm=s(s(s(rho*1004.)*fv)*u[3]);bare=s(s(s(rho*1004.)*s(1.-fv))*u[3]);hden=s(_sum(weights)+atm)
     vc=s(s(s(rho*fv)*area)*u[5]);cap=s(s(.1*fv)*area)
-    fw=j.where(cap>0.,j.minimum(1.,j.power(mass/j.where(cap>0.,cap,1.),2./3.)),0.)
+    fw=j.where(cap>0.,j.minimum(.05,j.power(mass/j.where(cap>0.,cap,1.),2./3.)),0.)
     dry=s(s(1.-fw)*(leaf/j.where(area>0.,area,1.)))
     trlimit=j.where(soil[0]>0.,j.minimum(u[16],_sum(j.where(soil[5:9]>0.,soil[1:5],0.))),0.)
     latent_ground=s(2.5e6+j.where(b[2]>0.,334000.,0.));plateau=j.asarray(334000./4180.,u.dtype)

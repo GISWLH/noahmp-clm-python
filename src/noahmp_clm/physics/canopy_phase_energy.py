@@ -4,7 +4,7 @@ The time discretisation first heats each existing condensate parcel, then
 exchanges vapour at that same leaf temperature. Both operations are solved
 together, so final storage plus advected parcel heat equals the pre-vapour
 thermal increment. Ice/liquid phase changes retain the full latent plateau.
-This NumPy development path is not yet used by the default column driver.
+The extensive CLM column driver uses this NumPy reference path.
 """
 import numpy as np
 from .canopy_energy import _saturation, _ice_saturation, _longwave_operator

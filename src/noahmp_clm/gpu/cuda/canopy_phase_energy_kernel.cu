@@ -16,7 +16,7 @@ __device__ void phase_prepare(const float* leaf,const float* u,const float* f,co
     for(int i=0;i<10;++i) {
         v.phase_active[i]=c[2*i]>0.f;
         v.weights[i]=(v.rho*1004.f)*((v.fv*v.area[i])*u[5]);v.vc[i]=((v.rho*v.fv)*v.area[i])*u[5];
-        float cap=(.1f*v.fv)*v.area[i];v.fw[i]=cap>0.f?fminf(1.f,powf(c[2*i]/cap,2.f/3.f)):0.f;
+        float cap=(.1f*v.fv)*v.area[i];v.fw[i]=cap>0.f?fminf(.05f,powf(c[2*i]/cap,2.f/3.f)):0.f;
         v.dry[i]=(1.f-v.fw[i])*(leaf[i]/(v.area[i]>0.f?v.area[i]:1.f));v.sw[i]=rad[i];
     }
     v.weights[10]=(v.rho*1004.f)*(v.fv*u[4]);v.hden=ca_sum(v.weights,11)+v.atm;

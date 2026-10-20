@@ -101,8 +101,8 @@ def test_phase_vapour_parcels_and_deposition_at_the_canopy_freezing_point():
 def test_wet_dry_and_snow_coverage_use_exposed_area_and_phase():
     state=CanopyCondensate.from_temperature([.1,0.,6.],[TF,TF,TF-1.],liquid_fraction=[1.,0.,0.])
     f=coverage(state,[.5,.5,1.],stem_area=[.5,.5,0.])
-    np.testing.assert_allclose(f['wet_fraction'],[1.,0.,1.],rtol=0.,atol=1e-14)
-    np.testing.assert_allclose(f['dry_fraction'],[0.,.5,0.],rtol=0.,atol=1e-14)
+    np.testing.assert_allclose(f['wet_fraction'],[.05,0.,.05],rtol=0.,atol=1e-14)
+    np.testing.assert_allclose(f['dry_fraction'],[.475,.5,.95],rtol=0.,atol=1e-14)
     np.testing.assert_allclose(f['snow_fraction'],[0.,0.,1.],rtol=0.,atol=1e-14)
 
 

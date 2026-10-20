@@ -60,8 +60,10 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         coupled=canopy_snow_shortwave(area,kw['snowpack'],swdown,vegetated_fraction=fv,**radiation);sw=coupled['canopy']
     supply=kw['soil_supply'];root_h=kw['root_enthalpy'];root_limit=min(kw.get('transpiration_limit',np.inf),supply.roots[supply.weights>0.].sum())
     rho=e.pressure/(287.*e.air_temperature*(1.+.61*e.specific_humidity));mol=e.pressure/(8.314462618*e.air_temperature)
-    capacity=.1*fv*area;fw=np.minimum(1.,np.divide(mass,capacity,out=np.zeros(n),where=capacity>0.)**(2./3.))
+    # Independent equation input from the actual pinned CLM5 namelist.
+    capacity=.1*fv*area;fw=np.minimum(.05,np.divide(mass,capacity,out=np.zeros(n),where=capacity>0.)**(2./3.))
     fd=(1.-fw)*np.divide(leaf,area,out=np.zeros(n),where=area>0.)
+    released=np.zeros(n,dtype=bool)
     def evaluate(x,details=False):
         heat=mass*4180.*x[:n]
         liq=np.minimum(mass,np.maximum(0.,heat/334000.));ice=mass-liq
@@ -69,6 +71,12 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         below=(heat<0.)&(mass>0.);above=(heat>334000.*mass)&(mass>0.)
         leaf_t[below]+=heat[below]/(2100.*mass[below]);leaf_t[above]+=(heat[above]-334000.*mass[above])/(4180.*mass[above])
         leaf_t[mass==0.]=273.15+x[:n][mass==0.]
+        # Once a reservoir is independently found exhausted, its plateau H
+        # coordinate is redundant. Use temperature for that row while keeping
+        # the same phase-specific parcel enthalpy and all balance equations.
+        leaf_t[released]=273.15+x[:n][released]
+        delta=x[:n][released]
+        heat[released]=mass[released]*(2100.*np.minimum(delta,0.)+334000.*(delta>0.)+4180.*np.maximum(delta,0.))
         t=np.r_[leaf_t,x[n]];q=x[-1]*.001
         es=611.2*np.exp(17.67*(t-273.15)/(t-29.65));ql=.622*es/(e.pressure-.378*es)
         ei=np.exp(9.550426-5723.265/t+3.53068*np.log(t)-.00728332*t);qi=.622*ei/(e.pressure-.378*ei)
@@ -125,16 +133,33 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
     ambient=initial.copy()
     ambient[:n]=np.where(mass>0.,2100./4180.*(e.air_temperature-273.15) if e.air_temperature<273.15
         else 334000./4180.+e.air_temperature-273.15,e.air_temperature-273.15)
-    candidates=[]
+    # A separate warm-phase start crosses the zero temperature derivative
+    # inside a latent plateau. It depends only on the prescribed atmosphere,
+    # never on a production iterate or solution; all original residual gates
+    # and each optimizer's400-evaluation budget remain unchanged.
+    warm=ambient.copy();warm_temperature=max(275.15,min(340.,e.air_temperature+15.))
+    warm[:n]=np.where(mass>0.,334000./4180.+warm_temperature-273.15,warm_temperature-273.15)
+    candidates=[];candidate_coordinates=[]
     # A reflective trust region can stop on a phase boundary even with large
     # residual. Try the independent rectangular trust region, never seed with
     # production iterates and never accept the optimizer's status by itself.
     for method in ('trf','dogbox'):
-        for guess in (initial,ambient):
+        for guess in (initial,ambient,warm):
             fitted=least_squares(evaluate,guess,method=method,bounds=(lower,upper),x_scale='jac',max_nfev=400,xtol=1e-12,ftol=1e-12,gtol=1e-10)
             candidates.append(evaluate(fitted.x,True))
+            candidate_coordinates.append(fitted.x.copy())
             if np.max(abs(candidates[-1]['residual']))<1e-6:return candidates[-1]
-    result=min(candidates,key=lambda r:np.max(abs(r['residual'])))
+    best=min(range(len(candidates)),key=lambda k:np.max(abs(candidates[k]['residual'])));result=candidates[best]
+    released[:]=(mass>0.)&(result['mass']==0.)
+    if released.any():
+        start=candidate_coordinates[best].copy();start[:n][released]=result['temperature'][:n][released]-273.15
+        new_lower=lower.copy();new_upper=upper.copy();new_lower[:n][released]=200.-273.15;new_upper[:n][released]=350.-273.15
+        for method in ('trf','dogbox'):
+            fitted=least_squares(evaluate,start,method=method,bounds=(new_lower,new_upper),x_scale='jac',max_nfev=400,xtol=1e-12,ftol=1e-12,gtol=1e-10)
+            trial=evaluate(fitted.x,True)
+            # The temperature parametrization is valid only while the rows
+            # selected by this independent solve really remain exhausted.
+            if np.all(trial['mass'][released]==0.) and np.max(abs(trial['residual']))<1e-6:return trial
     assert np.max(abs(result['residual']))<1e-6,(fitted.message,result['residual'])
     return result
 
@@ -181,19 +206,54 @@ def test_plateau_vapor_transfers_both_phases_with_exact_total_heat():
     assert final.temperature[0]==273.15
 
 
-def test_complete_evaporation_releases_the_redundant_plateau_coordinate():
-    # Saved continuous cold-canopy step 14: the fourth layer loses all water
-    # while its trial heat coordinate is on the melting plateau.
+@pytest.mark.parametrize('water_scale',[1.,.01])
+def test_phase_evaporation_retention_and_exhaustion_preserve_owned_parcels(water_scale):
+    # Retain the actual cold-canopy step14. With the CLM5 exposed-area bound
+    # it retains water; a proportional M/H reduction also checks complete
+    # exhaustion without changing initial phase temperature or forcing.
     mass=[0.,0.,0.,.00647506555267528,.01710930969501606,.027346464531692684,.03612239454314759,.04392351269441901,.05119005342416928,.05834543445506625]
     heat=[0.,0.,0.,-5.391749907703349,-34.08079016085131,-70.8682358081651,-112.36370366109665,-157.03485902221186,-205.2610373001825,-259.00956965442833]
-    c=CanopyCondensate(mass,heat);e=CanopyExchange(266.7877205179804,.001486775896997012,101325.,.02,.003,.03,263.,15.)
+    c=CanopyCondensate(np.asarray(mass)*water_scale,np.asarray(heat)*water_scale);e=CanopyExchange(266.7877205179804,.001486775896997012,101325.,.02,.003,.03,263.,15.)
     s=SoilWaterSupply(np.full(4,1e-5),np.full(4,.25),1.5e-5)
-    r=solve_canopy_phase_energy(np.full(10,.3),473.46506474755284,258.53395590685693,e,c,1800.,
-        vegetated_fraction=.8,soil_supply=s,root_enthalpy=np.full(4,334000.+4180.*(263.-273.15)),
+    args=(np.full(10,.3),473.46506474755284,258.53395590685693,e,c,1800.)
+    kw=dict(vegetated_fraction=.8,soil_supply=s,root_enthalpy=np.full(4,334000.+4180.*(263.-273.15)),
         fixed_ground_temperature=263.,ground_is_ice=True,ground_shares_soil=False,ground_evaporation_limit=1e-5)
+    r=solve_canopy_phase_energy(*args,**kw);ref=independent_reference(*args,**kw)
     assert np.max(abs(r['layer_residual']))<5e-5
-    assert r['condensate'].mass[3]==0. and r['condensate'].enthalpy[3]==0.
-    assert r['leaf_temperature'][3]<273.15
+    np.testing.assert_allclose(r['condensate'].mass+1800.*r['wet_evaporation'],c.mass,rtol=0.,atol=1e-14)
+    np.testing.assert_allclose(r['condensate'].mass,ref['mass'],rtol=.1,atol=1e-7)
+    np.testing.assert_allclose(r['condensate'].enthalpy,ref['enthalpy'],rtol=.1,atol=.1)
+    assert abs(r['leaf_temperature']-ref['temperature'][:10]).max()<.05
+    if water_scale==1.:assert r['condensate'].mass[3]>0.
+    else:assert r['condensate'].mass[3]==0. and r['condensate'].enthalpy[3]==0.
+    print('CLM5 cold wetlayer retention/exhaustion',dict(water_scale=water_scale,remaining_fourth_layer_kgm2=float(r['condensate'].mass[3]),maximum_independent_temperature_error_k=float(abs(r['leaf_temperature']-ref['temperature'][:10]).max())),flush=True)
+
+
+@pytest.mark.parametrize('fixture',['canopy_phase_humidity_bound.json','canopy_phase_humidity_slow.json'])
+def test_saved_humidity_recovery_from_prescribed_start(fixture):
+    import json
+    from pathlib import Path
+    from test_gpu_canopy_phase_energy import reference
+
+    saved=json.loads((Path(__file__).parent/'fixtures'/fixture).read_text())
+    arrays=tuple(np.asarray(v,np.int32 if k==8 else np.float64) for k,v in enumerate(saved['arrays']))
+    original=tuple(a.tobytes() for a in arrays)
+    direct=reference(arrays,tolerance=1e-7)
+    # A prescribed numerical guess within the original domain. It changes
+    # neither old M/H nor forcing/traits, and uses no production solution.
+    guess=[120.]*len(arrays[0])+[float(arrays[6][1]),0.]
+    recovered=reference(arrays,tolerance=1e-7,initial_guess=guess)
+    assert recovered['restarts']>0 and 0.<recovered['canopy_humidity']<.19
+    for result in [direct,recovered]:
+        assert abs(result['layer_residual']).max()<=1.01e-7
+        assert abs(result['solver_residual']).max()<=1e-7
+        assert abs(result['canopy_water_residual'])<1e-12
+    np.testing.assert_allclose(recovered['leaf_temperature'],direct['leaf_temperature'],rtol=0.,atol=.05)
+    np.testing.assert_allclose(recovered['condensate'].mass,direct['condensate'].mass,rtol=.1,atol=1e-7)
+    np.testing.assert_allclose(recovered['condensate'].enthalpy,direct['condensate'].enthalpy,rtol=.1,atol=.1)
+    assert original==tuple(a.tobytes() for a in arrays)
+    print('prescribed humidity recovery',fixture,recovered['restarts'],float(abs(recovered['solver_residual']).max()),
+        float(abs(recovered['leaf_temperature']-direct['leaf_temperature']).max()),flush=True)
 
 
 def test_phase_root_reached_by_last_permitted_update_is_accepted():
