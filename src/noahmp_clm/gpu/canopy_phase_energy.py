@@ -244,8 +244,9 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         accepted=accepted|(coordinate_restarts>0)
         original_direction=delta
         def interval_restart(_):
-            # An original centred difference can straddle0 or LF/Cw. Keep
-            # the usual trajectory unless both original recovery paths fail.
+            # A centred stencil can straddle a phase edge. Float32 may
+            # keep accepting tiny descent there; compare a branch-local
+            # step against the best complete merit already obtained.
             def local_column(k):
                 step=j.where(k==11,qstep,step_size)
                 lo=x.at[k].set(j.maximum(lo_bound[k],s(x[k]-step)));hi=x.at[k].set(j.minimum(hi_bound[k],s(x[k]+step)))
@@ -265,7 +266,8 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             def local_backtrack(k,carry):
                 chosen,good=carry;fraction=j.asarray([2.**(-i) for i in range(24)],u.dtype)[k]
                 candidate=j.clip(s(x+s(delta*fraction)),lo_bound,hi_bound);rr,_=evaluate(candidate,phase_active)
-                better=(~good)&(_dot(rr,rr)<norm)
+                merit=chosen_norm if u.dtype==j.float32 else norm
+                better=(~good)&(_dot(rr,rr)<merit)
                 return j.where(better,candidate,chosen),good|better
             def local_step(state):
                 k,carry=state
@@ -273,13 +275,15 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             _,result=lax.while_loop(lambda state:(state[0]<24)&(~state[1][1]),
                 local_step,(j.asarray(0,j.int32),(trial,j.asarray(False))))
             return result
-        trial,phase_rescued=lax.cond(~accepted,interval_restart,lambda _:(trial,j.asarray(False)),operand=None)
+        local_needed=~accepted
+        if u.dtype==j.float32:local_needed=local_needed|(chosen_norm>s(.999*norm))
+        trial,phase_rescued=lax.cond(local_needed,interval_restart,lambda _:(trial,j.asarray(False)),operand=None)
         accepted=accepted|phase_rescued
         wide_rescued=j.asarray(False)
         if u.dtype==j.float64:
             # Match NumPy's final-stall recovery only after the original
             # fine-stencil, humidity, phase and alternate-seed paths fail.
-            # Keep the float32 JAX/CUDA algorithm and arithmetic unchanged.
+            # This wider-stencil recovery remains float64-only.
             def wider_restart(_):
                 def attempt(clipped,carry):
                     chosen,good=carry
@@ -309,7 +313,12 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
             trial,wide_rescued=lax.cond((~accepted)&(~avail),wider_restart,lambda _:(trial,j.asarray(False)),operand=None)
             accepted=accepted|wide_rescued
         retry=(~accepted)&avail
-        return iteration+1,j.where(retry,converted,trial),restarts+(retry|rescued|phase_rescued|wide_rescued).astype(j.int32)+coordinate_restarts,avail&(~retry),~(accepted|retry),phase_active
+        recovery_count=(retry|rescued|phase_rescued|wide_rescued).astype(j.int32)
+        if u.dtype==j.float32:
+            # Weak progress can use humidity and branch-local recovery in
+            # one update. Count both events, matching CUDA's increments.
+            recovery_count=retry.astype(j.int32)+rescued.astype(j.int32)+phase_rescued.astype(j.int32)+wide_rescued.astype(j.int32)
+        return iteration+1,j.where(retry,converted,trial),restarts+recovery_count+coordinate_restarts,avail&(~retry),~(accepted|retry),phase_active
     def condition(state):
         it,x,_,_,failed,phase_active=state;r,_=evaluate(x,phase_active)
         return (it<max_iterations)&(~failed)&(j.max(abs(r))>tolerance)

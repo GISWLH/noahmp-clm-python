@@ -206,9 +206,10 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
             }
             chosen_norm=best_norm;
         }
-        // Retry a derivative confined to the current smooth phase branch
-        // only when the original Newton and humidity steps cannot descend.
-        if(!accepted) {
+        // Tiny accepted descent can persist when a centred stencil crosses
+        // a phase edge. Retry locally after weak progress, accepting only
+        // an improvement of the best complete merit already obtained.
+        if(!accepted||chosen_norm>.999f*norm) {
             float local_jac[144],local_rhs[12],local_delta[12];
             for(int k=0;k<12;++k) {
                 float lo[12],hi[12],rl[12],rh[12],step=k==11?.002f:.02f;
@@ -228,10 +229,10 @@ __device__ void phase_solve(PhaseContext& v,float* out,int max_iterations,float 
             for(int i=0;i<12;++i)local_rhs[i]=-r[i];phase_linear(local_jac,local_rhs,local_delta);
             float local_scale=1.f;for(int i=0;i<12;++i)local_scale=fmaxf(local_scale,fabsf(local_delta[i])/(i<10?20.f:5.f));
             for(int i=0;i<12;++i)local_delta[i]/=local_scale;
-            for(int k=0;k<24&&!accepted;++k){
+            bool local_accepted=false;for(int k=0;k<24&&!local_accepted;++k){
                 float trial[12],rr[12];for(int i=0;i<12;++i)trial[i]=fminf(upper[i],fmaxf(lower[i],x[i]+local_delta[i]*ldexpf(1.f,-k)));
                 phase_evaluate(v,trial,rr,nullptr);float candidate_norm=ca_dot(rr,rr,12);
-                if(!accepted&&candidate_norm<norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;chosen_norm=candidate_norm;++restarts;}
+                if(!local_accepted&&candidate_norm<chosen_norm){for(int i=0;i<12;++i)chosen[i]=trial[i];accepted=true;local_accepted=true;chosen_norm=candidate_norm;++restarts;}
             }
         }
         bool retry=!accepted&&available;
