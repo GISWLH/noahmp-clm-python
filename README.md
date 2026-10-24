@@ -1,5 +1,13 @@
 # noahmp-clm-python
 
+2026-10-24 23:25UTC：[首个EC CUDA完整年](docs/CLM_QIA_FULL_YEAR.md)17520步父0，
+超算1175／1176已核验全部365日／12月、最终23状态及原累计账；这是EC源单站
+冷年，不是当前FL或spinup信用。对观测GPP-NT均值−9.436%、r=.8632，但H／LE
+仍+46.55%／−28.07%，NEE失败，SOC未平衡。[新P2水分胁迫缺口](docs/CLM_BALL_BERRY_STRESS.md)
+已由独立Decimal80量化：气孔530/675工况超界，先修NumPy再同步JAX/CUDA。
+当前K78同精度仍失败，完整404／1552、多站多年／留出／校准和v1.0.0仍未完成。
+GPU仍在xuanze物理CUDA1，CPU参考／分析在超算。
+
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
 2026-10-24 22:12UTC：[气候第二、三周期接续](docs/CLM_MULTISITE_SPINUP.md)已排好：
