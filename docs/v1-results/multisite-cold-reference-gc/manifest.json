@@ -1,0 +1,822 @@
+{
+  "scope": "EHPC445/446\uff1a\u5f53\u524d579\u6e90\uff0c\u4e09\u7ad9\u9884\u8bbe12\u7ec4\u5b8c\u6574\u5e74\u8f93\u5165\u51c6\u5907\u4e0e\u5404\u81ea\u999648\u6b65NumPy\u5b9e\u96450\uff1b\u5b8c\u6574\u914d\u7f6e/\u8ba1\u5212/\u51b723/\u6700\u7ec8\u72b6\u6001/\u8f68\u8ff9/576\u8f93\u5165\u8f93\u51fa\u5305\u54c8\u5e0c\u3002\u5168\u5f3a\u8feb\u6309\u5df2\u51bb\u7ed3SHA\u53e6\u5b58\uff1b\u975e\u5168\u5e74\u3001spinup\u6216\u79d1\u5b66\u9a8c\u6536\u3002",
+  "archive_sha256": "6596ff876d6c2ba603092a3376bfab894c0a08b9cb04e62647ffda1f97f0a2fe",
+  "artifacts": [
+    {
+      "source": "preparation/clm-spinup-input-fu.o445",
+      "path": "preparation/clm-spinup-input-fu.o445",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "preparation/dispatch.json",
+      "path": "preparation/dispatch.json.gz",
+      "source_sha256": "93344e317610be5b6f97095acd3be4b75eb066a82cda48444c2239deba377015",
+      "stored_sha256": "00bb78d69294df4bd0cc5203b2733445af72a6db15a0a1c4df125d933d09170b"
+    },
+    {
+      "source": "preparation/inputs/CN-Cha.json",
+      "path": "preparation/inputs/CN-Cha.json.gz",
+      "source_sha256": "ff89560fc0eeb323bbe2ccecdac6b433df61f90ee00a7cc8038bcf898ac81747",
+      "stored_sha256": "31ba55fd0ddce66da44bab3847279c29cf42be4caa1a159e63f66639251daa57"
+    },
+    {
+      "source": "preparation/inputs/CN-Cng.json",
+      "path": "preparation/inputs/CN-Cng.json.gz",
+      "source_sha256": "a0343b4ddcef2d2c363dcee74b8e32cbbed6ecbda0d9b0bbf544f49f4b771a39",
+      "stored_sha256": "bb30b9e63d6b7fa44f6c5112f97e3f63b50f4fe5176b87f174fab9e2bf0aa78b"
+    },
+    {
+      "source": "preparation/inputs/CN-Qia.json",
+      "path": "preparation/inputs/CN-Qia.json.gz",
+      "source_sha256": "7af00d1d69d1aafbfcef6393e55d482b2678343f81165e1f246b91a07f5cc343",
+      "stored_sha256": "a38578aa0d38a870c48c162d2daab861da97e4bcda01e3318b10f6651116847b"
+    },
+    {
+      "source": "preparation/inputs/SOURCE_SHA256.json",
+      "path": "preparation/inputs/SOURCE_SHA256.json.gz",
+      "source_sha256": "ed7ad0396492b1401ea71cdb9c3291ad25c80042a095c4485f083760ce2b8d69",
+      "stored_sha256": "81577534c597979bd66a2f8f0301e964ee42fbfe1683e41869219a3af07b8c3f"
+    },
+    {
+      "source": "preparation/inputs/batch.json",
+      "path": "preparation/inputs/batch.json.gz",
+      "source_sha256": "02918cd95baf59aa1f9169f2983a0ec337d3bc4d57fa46c111cb5b4ce21525ed",
+      "stored_sha256": "064d4e0859c67b0098fcdfd5a720c449c4e8ccff7fd63628bf9ad476fe265728"
+    },
+    {
+      "source": "preparation/inputs/cold-reference.npz",
+      "path": "preparation/inputs/cold-reference.npz",
+      "source_sha256": "5dbc931239de059bd6447ed8cbb5bdad84951a022017666801f52648f9d48c46",
+      "stored_sha256": "5dbc931239de059bd6447ed8cbb5bdad84951a022017666801f52648f9d48c46"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cha-2003-field-capacity-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Cha-2003-field-capacity-hydraulic.json.gz",
+      "source_sha256": "4aa4305ccb3bdb8bd9a8150ce28d173d3ef058aa49a720c65cae3a6c2e522069",
+      "stored_sha256": "8825564ab560c8cbe30e275da132221b424b70edccd94be1a57bb9c247783f4c"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cha-2003-field-capacity-legacy.json",
+      "path": "preparation/inputs/configs/CN-Cha-2003-field-capacity-legacy.json.gz",
+      "source_sha256": "65eed845274561b4800061b1a1455af92045bf94da9f5ad1bf2c56b64a64d1d7",
+      "stored_sha256": "4c169c5c54b0874b99594cfb196d027ec016162806d989c12bfab3a6703251f7"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cha-2003-wilting-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Cha-2003-wilting-hydraulic.json.gz",
+      "source_sha256": "2174a034c358f9dc34f96de7c8ca1ec2dfde7d0cfa8c3ddd0402eeb392ff283e",
+      "stored_sha256": "053d35089d35eb55bed3fc6985c49e6b1fdc1209965e4d9dd102ae67631c5306"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cha-2003-wilting-legacy.json",
+      "path": "preparation/inputs/configs/CN-Cha-2003-wilting-legacy.json.gz",
+      "source_sha256": "7730fa40624a5a795d81ac00cee093c11d6df744800592f37a8b81d8741715c4",
+      "stored_sha256": "dfb81ddc0e29cf7e4d02fad2219668250d54117b1490cccbdd6ec7c87722d565"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cng-2007-field-capacity-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Cng-2007-field-capacity-hydraulic.json.gz",
+      "source_sha256": "167e5d16a5e164440ded7dafe431e47d4555960fabc252ec24b61f452e1ec80e",
+      "stored_sha256": "e47518cd1b32a9475272414d627d8bce3007293208f408173b391073851207f7"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cng-2007-field-capacity-legacy.json",
+      "path": "preparation/inputs/configs/CN-Cng-2007-field-capacity-legacy.json.gz",
+      "source_sha256": "3aec82a7fce6bceb9a3ee0a3063229dd596789eacb7327b1f18bcb545ab6ce04",
+      "stored_sha256": "22b3f9ee8ee3ca51def7a6ea95fef2a2ac423d7609b887c62d9d251999884893"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cng-2007-wilting-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Cng-2007-wilting-hydraulic.json.gz",
+      "source_sha256": "0ffc149f41150803a8b838ac5e15d70c9dc197e1f2dedfb82f82086845641a9b",
+      "stored_sha256": "cffed0b2f6767719545151b36f14cfefe9c68160743dac1db5c97dc2f7cc605b"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Cng-2007-wilting-legacy.json",
+      "path": "preparation/inputs/configs/CN-Cng-2007-wilting-legacy.json.gz",
+      "source_sha256": "0dcead8ae78e52e2df207bb7a5e2ca30d41b8c3e5a83d8f2347732d8ffdf97a9",
+      "stored_sha256": "f0504fc23bd60e760fe90ee2fc423356adf78e380d3f5403af814f569a8a3d18"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Qia-2003-field-capacity-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Qia-2003-field-capacity-hydraulic.json.gz",
+      "source_sha256": "4295783dee4c59f352f01bccb2cbe89ede4927ebfd899ceae3a9e06fa702ecd7",
+      "stored_sha256": "396e804dee5c924356c8c9cc19d2890126657fac9843de130d4345b77b866fc7"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Qia-2003-field-capacity-legacy.json",
+      "path": "preparation/inputs/configs/CN-Qia-2003-field-capacity-legacy.json.gz",
+      "source_sha256": "56189e7fb8c6c4ee5a22754eb18f5b4e7e58cb49ce8ce671f6090a474ba6f15c",
+      "stored_sha256": "a64c77c321a3f0082a9ee1ec5a2698b5a3a5c4b096be4e88f056cd2a6d5a3cb4"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Qia-2003-wilting-hydraulic.json",
+      "path": "preparation/inputs/configs/CN-Qia-2003-wilting-hydraulic.json.gz",
+      "source_sha256": "de5c16851f71503cb0c3dd954be19d626b766f50e42ed284fcdcbd034b9242db",
+      "stored_sha256": "b06c5ff96d903a044f18f4c7d2d47606ecc164266983b873471f731e9c96e355"
+    },
+    {
+      "source": "preparation/inputs/configs/CN-Qia-2003-wilting-legacy.json",
+      "path": "preparation/inputs/configs/CN-Qia-2003-wilting-legacy.json.gz",
+      "source_sha256": "59b8545009b6a134a951b5983a88940f6cf4de36fa3cd9d81f9c3a37091ffd8e",
+      "stored_sha256": "59a3a7c1c3d9d9e613fbfeab72e022f2880f2fe6a330e0f581e0e5f11daeca9a"
+    },
+    {
+      "source": "preparation/inputs/protocol.json",
+      "path": "preparation/inputs/protocol.json.gz",
+      "source_sha256": "d9de13018bca5651d3c6273fab18a057aa936c375017ef4addcb3e6517c40cc6",
+      "stored_sha256": "ec08cfc787dbba75b9483490299367ff28e13ffeb38b38449ca29256278a8b4c"
+    },
+    {
+      "source": "preparation/multisite_spinup_inputs_fu.pbs",
+      "path": "preparation/multisite_spinup_inputs_fu.pbs.gz",
+      "source_sha256": "ef3386be8153afde57b84950143ecc6f0aa45bb765feebe1e8944877fc8319fd",
+      "stored_sha256": "6b8601f7e578c3b489ef6448fd9e74f7cae13a27b72a12bb08f42c73ff86459a"
+    },
+    {
+      "source": "preparation/node.txt",
+      "path": "preparation/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "preparation/pbs-exit.txt",
+      "path": "preparation/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "preparation/plan.json",
+      "path": "preparation/plan.json.gz",
+      "source_sha256": "643bddbf1b0710efe46e81f6ab97e5b41427cbef30af8efda5eed825e2f6d6fa",
+      "stored_sha256": "718659affba7d75ee2ae4f8ed6e09c013b597d48fa7d8552a3f2db6769e8166a"
+    },
+    {
+      "source": "preparation/prepare.log",
+      "path": "preparation/prepare.log.gz",
+      "source_sha256": "b9d1ee806fcfe70ad9c71b43c8d93a90806a87fb7487ec06d7fa04ac65101f82",
+      "stored_sha256": "2fd37ba3c33c497c16658983bfe4e86712a2ac28c10986122334350e9cccf895"
+    },
+    {
+      "source": "preparation/prepare_multisite_spinup_fu.py",
+      "path": "preparation/prepare_multisite_spinup_fu.py.gz",
+      "source_sha256": "557ccbc11ccbcac87135414b91c8a3c055c97421671f385f2b5f0737b6329b22",
+      "stored_sha256": "0fd3f66fb3b2e5673dfb5a821cc543200241e490423a944c62f44660b7560ce5"
+    },
+    {
+      "source": "preparation/receipt.json",
+      "path": "preparation/receipt.json.gz",
+      "source_sha256": "d9de13018bca5651d3c6273fab18a057aa936c375017ef4addcb3e6517c40cc6",
+      "stored_sha256": "ec08cfc787dbba75b9483490299367ff28e13ffeb38b38449ca29256278a8b4c"
+    },
+    {
+      "source": "numpy-reference/SOURCE_SHA256.json",
+      "path": "numpy-reference/SOURCE_SHA256.json.gz",
+      "source_sha256": "ed7ad0396492b1401ea71cdb9c3291ad25c80042a095c4485f083760ce2b8d69",
+      "stored_sha256": "81577534c597979bd66a2f8f0301e964ee42fbfe1683e41869219a3af07b8c3f"
+    },
+    {
+      "source": "numpy-reference/clm-multisite-cold-fv.o446",
+      "path": "numpy-reference/clm-multisite-cold-fv.o446",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "numpy-reference/dispatch.json",
+      "path": "numpy-reference/dispatch.json.gz",
+      "source_sha256": "113ad42d65a71c7a7dbf804ed7424e2d56c60ee5b511fa664a54905755f27abb",
+      "stored_sha256": "90e72bba8a5f1bb33e58ccba8150bb5bacd30b83e13901efe8b36acf0bb1f042"
+    },
+    {
+      "source": "numpy-reference/inputs/CN-Cha.json",
+      "path": "numpy-reference/inputs/CN-Cha.json.gz",
+      "source_sha256": "ff89560fc0eeb323bbe2ccecdac6b433df61f90ee00a7cc8038bcf898ac81747",
+      "stored_sha256": "31ba55fd0ddce66da44bab3847279c29cf42be4caa1a159e63f66639251daa57"
+    },
+    {
+      "source": "numpy-reference/inputs/CN-Cng.json",
+      "path": "numpy-reference/inputs/CN-Cng.json.gz",
+      "source_sha256": "a0343b4ddcef2d2c363dcee74b8e32cbbed6ecbda0d9b0bbf544f49f4b771a39",
+      "stored_sha256": "bb30b9e63d6b7fa44f6c5112f97e3f63b50f4fe5176b87f174fab9e2bf0aa78b"
+    },
+    {
+      "source": "numpy-reference/inputs/CN-Qia.json",
+      "path": "numpy-reference/inputs/CN-Qia.json.gz",
+      "source_sha256": "7af00d1d69d1aafbfcef6393e55d482b2678343f81165e1f246b91a07f5cc343",
+      "stored_sha256": "a38578aa0d38a870c48c162d2daab861da97e4bcda01e3318b10f6651116847b"
+    },
+    {
+      "source": "numpy-reference/inputs/SOURCE_SHA256.json",
+      "path": "numpy-reference/inputs/SOURCE_SHA256.json.gz",
+      "source_sha256": "ed7ad0396492b1401ea71cdb9c3291ad25c80042a095c4485f083760ce2b8d69",
+      "stored_sha256": "81577534c597979bd66a2f8f0301e964ee42fbfe1683e41869219a3af07b8c3f"
+    },
+    {
+      "source": "numpy-reference/inputs/batch.json",
+      "path": "numpy-reference/inputs/batch.json.gz",
+      "source_sha256": "02918cd95baf59aa1f9169f2983a0ec337d3bc4d57fa46c111cb5b4ce21525ed",
+      "stored_sha256": "064d4e0859c67b0098fcdfd5a720c449c4e8ccff7fd63628bf9ad476fe265728"
+    },
+    {
+      "source": "numpy-reference/inputs/cold-reference.npz",
+      "path": "numpy-reference/inputs/cold-reference.npz",
+      "source_sha256": "5dbc931239de059bd6447ed8cbb5bdad84951a022017666801f52648f9d48c46",
+      "stored_sha256": "5dbc931239de059bd6447ed8cbb5bdad84951a022017666801f52648f9d48c46"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cha-2003-field-capacity-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Cha-2003-field-capacity-hydraulic.json.gz",
+      "source_sha256": "4aa4305ccb3bdb8bd9a8150ce28d173d3ef058aa49a720c65cae3a6c2e522069",
+      "stored_sha256": "8825564ab560c8cbe30e275da132221b424b70edccd94be1a57bb9c247783f4c"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cha-2003-field-capacity-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Cha-2003-field-capacity-legacy.json.gz",
+      "source_sha256": "65eed845274561b4800061b1a1455af92045bf94da9f5ad1bf2c56b64a64d1d7",
+      "stored_sha256": "4c169c5c54b0874b99594cfb196d027ec016162806d989c12bfab3a6703251f7"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cha-2003-wilting-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Cha-2003-wilting-hydraulic.json.gz",
+      "source_sha256": "2174a034c358f9dc34f96de7c8ca1ec2dfde7d0cfa8c3ddd0402eeb392ff283e",
+      "stored_sha256": "053d35089d35eb55bed3fc6985c49e6b1fdc1209965e4d9dd102ae67631c5306"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cha-2003-wilting-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Cha-2003-wilting-legacy.json.gz",
+      "source_sha256": "7730fa40624a5a795d81ac00cee093c11d6df744800592f37a8b81d8741715c4",
+      "stored_sha256": "dfb81ddc0e29cf7e4d02fad2219668250d54117b1490cccbdd6ec7c87722d565"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cng-2007-field-capacity-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Cng-2007-field-capacity-hydraulic.json.gz",
+      "source_sha256": "167e5d16a5e164440ded7dafe431e47d4555960fabc252ec24b61f452e1ec80e",
+      "stored_sha256": "e47518cd1b32a9475272414d627d8bce3007293208f408173b391073851207f7"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cng-2007-field-capacity-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Cng-2007-field-capacity-legacy.json.gz",
+      "source_sha256": "3aec82a7fce6bceb9a3ee0a3063229dd596789eacb7327b1f18bcb545ab6ce04",
+      "stored_sha256": "22b3f9ee8ee3ca51def7a6ea95fef2a2ac423d7609b887c62d9d251999884893"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cng-2007-wilting-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Cng-2007-wilting-hydraulic.json.gz",
+      "source_sha256": "0ffc149f41150803a8b838ac5e15d70c9dc197e1f2dedfb82f82086845641a9b",
+      "stored_sha256": "cffed0b2f6767719545151b36f14cfefe9c68160743dac1db5c97dc2f7cc605b"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Cng-2007-wilting-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Cng-2007-wilting-legacy.json.gz",
+      "source_sha256": "0dcead8ae78e52e2df207bb7a5e2ca30d41b8c3e5a83d8f2347732d8ffdf97a9",
+      "stored_sha256": "f0504fc23bd60e760fe90ee2fc423356adf78e380d3f5403af814f569a8a3d18"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Qia-2003-field-capacity-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Qia-2003-field-capacity-hydraulic.json.gz",
+      "source_sha256": "4295783dee4c59f352f01bccb2cbe89ede4927ebfd899ceae3a9e06fa702ecd7",
+      "stored_sha256": "396e804dee5c924356c8c9cc19d2890126657fac9843de130d4345b77b866fc7"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Qia-2003-field-capacity-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Qia-2003-field-capacity-legacy.json.gz",
+      "source_sha256": "56189e7fb8c6c4ee5a22754eb18f5b4e7e58cb49ce8ce671f6090a474ba6f15c",
+      "stored_sha256": "a64c77c321a3f0082a9ee1ec5a2698b5a3a5c4b096be4e88f056cd2a6d5a3cb4"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Qia-2003-wilting-hydraulic.json",
+      "path": "numpy-reference/inputs/configs/CN-Qia-2003-wilting-hydraulic.json.gz",
+      "source_sha256": "de5c16851f71503cb0c3dd954be19d626b766f50e42ed284fcdcbd034b9242db",
+      "stored_sha256": "b06c5ff96d903a044f18f4c7d2d47606ecc164266983b873471f731e9c96e355"
+    },
+    {
+      "source": "numpy-reference/inputs/configs/CN-Qia-2003-wilting-legacy.json",
+      "path": "numpy-reference/inputs/configs/CN-Qia-2003-wilting-legacy.json.gz",
+      "source_sha256": "59b8545009b6a134a951b5983a88940f6cf4de36fa3cd9d81f9c3a37091ffd8e",
+      "stored_sha256": "59a3a7c1c3d9d9e613fbfeab72e022f2880f2fe6a330e0f581e0e5f11daeca9a"
+    },
+    {
+      "source": "numpy-reference/inputs/protocol.json",
+      "path": "numpy-reference/inputs/protocol.json.gz",
+      "source_sha256": "d9de13018bca5651d3c6273fab18a057aa936c375017ef4addcb3e6517c40cc6",
+      "stored_sha256": "ec08cfc787dbba75b9483490299367ff28e13ffeb38b38449ca29256278a8b4c"
+    },
+    {
+      "source": "numpy-reference/multisite_numpy_cold_fv.pbs",
+      "path": "numpy-reference/multisite_numpy_cold_fv.pbs.gz",
+      "source_sha256": "96019f98b458db866db704eb385129c51cdf871e9acae81668b2c8f08f842fd1",
+      "stored_sha256": "6a7d0b34c7536bea58ca557db074a2cc52df1793678a20688aa2b8e8fb5b36b8"
+    },
+    {
+      "source": "numpy-reference/node.txt",
+      "path": "numpy-reference/node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "numpy-reference/pbs-exit.txt",
+      "path": "numpy-reference/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "numpy-reference/progress.json",
+      "path": "numpy-reference/progress.json.gz",
+      "source_sha256": "547315724852454d2144c64a9ff4afee2dec0616c0a308145be09fb1c72430ae",
+      "stored_sha256": "d199ad8deceeb6055156c83da250e154b41ef6e8e4b7df13ff6a23905c4d8934"
+    },
+    {
+      "source": "numpy-reference/receipt.json",
+      "path": "numpy-reference/receipt.json.gz",
+      "source_sha256": "66e33dd6e95bbe0c72372962356e528909d1f5273b27913f052591b967536dc2",
+      "stored_sha256": "768f68dcaccb1739f3b95116410d833c50bac0eb8e2d83a9e0ff867c4b0a4ef8"
+    },
+    {
+      "source": "numpy-reference/run.log",
+      "path": "numpy-reference/run.log.gz",
+      "source_sha256": "e6f2f3801d97c21cec5099ebbd983f4fa2d061f7e97fb160bf7d2bb3d56ab490",
+      "stored_sha256": "fd02df4dab143fb9c01749cb4be7d89f43086a4906d4379b55df81006d7027dd"
+    },
+    {
+      "source": "numpy-reference/run_multisite_numpy_cold_fv.py",
+      "path": "numpy-reference/run_multisite_numpy_cold_fv.py.gz",
+      "source_sha256": "d830bfd615ea93752f72634abcf5a9c1720e1a464e58a4e0e084f4293f38238b",
+      "stored_sha256": "5ce6c80618fa0608c925bd5f731512b5e40cc941dc9c5178406e42ef879a5b09"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/receipt.json.gz",
+      "source_sha256": "1bb3c9f7c5891e35771389e9f68dcb4a5971df3ec848ebb6123e1510e7b1b69b",
+      "stored_sha256": "4315d55d5330864376c5baa2d15797470e646b85d8970d144544ddfd00983e3c"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "be371236e8e16a047a7524af2a0141ab35efe718d4f71945b259375c780cff57",
+      "stored_sha256": "2273f283919f3081c77bc4e00947b9926afa12ae43031582b917ac8c3a560393"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "ddf4844244073ea0a2dcdf0552d644df23518f2baac3e13e961e5c0f191f501e",
+      "stored_sha256": "ddf4844244073ea0a2dcdf0552d644df23518f2baac3e13e961e5c0f191f501e"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "78ef0b82bd556ba9a22ca27e47573fb9bf99b86966550fcd1074f97ef9b9d9c4",
+      "stored_sha256": "78ef0b82bd556ba9a22ca27e47573fb9bf99b86966550fcd1074f97ef9b9d9c4"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "31338630307b1fd01188fcc4933439282a6291a079995aaca01924705415cf1f",
+      "stored_sha256": "31338630307b1fd01188fcc4933439282a6291a079995aaca01924705415cf1f"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/receipt.json.gz",
+      "source_sha256": "f152db48abcd54a99a1c8ca0c658588199cdb400bf25eb62903421811ee769dc",
+      "stored_sha256": "6f915c821163251171667530a4704ed9c997721f25a020aaf5c92079ec6d44dc"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/report.json.gz",
+      "source_sha256": "32516d9561602738fe5c80f0c56c27b22cddf77ae20d495234962631c8c6763f",
+      "stored_sha256": "62fb826e777e9667e84413be7c5f79e64998e503f51730db6561f961c04644b9"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "58310b73091fd6d1e3b81378a35dd6695d7f93a65287c01b003f3eacd029e672",
+      "stored_sha256": "58310b73091fd6d1e3b81378a35dd6695d7f93a65287c01b003f3eacd029e672"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "c2ebffbb98e1cf2f17433815c2d462358f25ab7da75548d780b1ac0bc78f1d94",
+      "stored_sha256": "c2ebffbb98e1cf2f17433815c2d462358f25ab7da75548d780b1ac0bc78f1d94"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "31338630307b1fd01188fcc4933439282a6291a079995aaca01924705415cf1f",
+      "stored_sha256": "31338630307b1fd01188fcc4933439282a6291a079995aaca01924705415cf1f"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/receipt.json.gz",
+      "source_sha256": "41003f32eb8b046f7c757401ac139d19561f36c085a10be1319e1276731b3364",
+      "stored_sha256": "54ce840d012e9ecdd42001d0ff50e894aacadbf2772b2e7de1ab291ca4f9ebbb"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "be02351dc05ba6627b0285a3fecee5b92dd3ca5becf6887dd734a02fa31cef6d",
+      "stored_sha256": "b5ad69e8dfe96b0f6e2e2a316487cf8a84237c37210c21b2189e667edb76c5a5"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "644361946d9573b8cf91ac43a88a6b7706dd589eb419429b86a8bae8e33c96f7",
+      "stored_sha256": "644361946d9573b8cf91ac43a88a6b7706dd589eb419429b86a8bae8e33c96f7"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "788cad6036a0ee85f5db4df50dcb57653643d460e2095e459e09d58317ed007b",
+      "stored_sha256": "788cad6036a0ee85f5db4df50dcb57653643d460e2095e459e09d58317ed007b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "ff59fe42b29602b4ed3a5bed13eb7107be62926979fb33cdebed9c716f2d9a67",
+      "stored_sha256": "ff59fe42b29602b4ed3a5bed13eb7107be62926979fb33cdebed9c716f2d9a67"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/receipt.json.gz",
+      "source_sha256": "54b69923614d067144fb6e4237acb75dca8300b95f48cd1fc36587a79c87e830",
+      "stored_sha256": "59a8989e6eece38b7c6ff1e11e9be15d96bf9578ad2990d85857778dac6ca15c"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/report.json.gz",
+      "source_sha256": "3def03bf892a1abea3323679da5c9c4264255f9b7a5a03285d1f9495a9275cba",
+      "stored_sha256": "223a6d0967cc26bdfd11c314e87c83333f5655c1c5a96a9a63d4457c77d8d180"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "398e0dcde6a217888d63564b449c382c94a1a9195aeff34fd4ca57d39c67f990",
+      "stored_sha256": "398e0dcde6a217888d63564b449c382c94a1a9195aeff34fd4ca57d39c67f990"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "051d739dade641abc10bea82861efc44a7b58889a2609b1403bc0ffc4d9c2231",
+      "stored_sha256": "051d739dade641abc10bea82861efc44a7b58889a2609b1403bc0ffc4d9c2231"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cha-2003-wilting-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "ff59fe42b29602b4ed3a5bed13eb7107be62926979fb33cdebed9c716f2d9a67",
+      "stored_sha256": "ff59fe42b29602b4ed3a5bed13eb7107be62926979fb33cdebed9c716f2d9a67"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/receipt.json.gz",
+      "source_sha256": "d1c09a3d05aafa9a7ba28b57cae74f771bb113b1ffee3f5ba1c3c9c963588812",
+      "stored_sha256": "71812e81527125f4d54e28aa2d62842adeafdb7d7e4afc0c95d05028674838be"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "1b2f6d908288c1a3911b7c0f5fda6cb2d373a997af72c883093e82b8bbe6f5b6",
+      "stored_sha256": "61fb79b2d0d7e52eae4c966bf06f49581a59964bd00f39ddd042f43ecd0707b1"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "2a85bbea59569b0a025510eae59e93ce2310f17eb3a6fc9d2c872e63701438cd",
+      "stored_sha256": "2a85bbea59569b0a025510eae59e93ce2310f17eb3a6fc9d2c872e63701438cd"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "509495bc25626c064e2a988fccb9c8a9b9c5b261a9b8439273353d6209dd812b",
+      "stored_sha256": "509495bc25626c064e2a988fccb9c8a9b9c5b261a9b8439273353d6209dd812b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "5b8fe4b7f9cb1d72bb18c87a7b7b2041dcb51eb421946bcf60cbd5af8a34fd86",
+      "stored_sha256": "5b8fe4b7f9cb1d72bb18c87a7b7b2041dcb51eb421946bcf60cbd5af8a34fd86"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/receipt.json.gz",
+      "source_sha256": "df31229f74afb08e1971b02faf6d6c93e04e73c775a0341b575ad4ec98ec209d",
+      "stored_sha256": "9bbc37fa37725877e6917cba6183b9a4050b562376d060856a7437e84a317c17"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/report.json.gz",
+      "source_sha256": "c3a48013b524dea9d402ebaab874c6cd3f139d156eae8fe8a7a3f5b879ec5b47",
+      "stored_sha256": "2e5db6b695d3179496f7f4a08c4bee5449c1f4f3799f8466c35d508368e41176"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "678e1cd96378bdc449010b14528c5588ee54518c602dc5ba5d8bec02c65cd721",
+      "stored_sha256": "678e1cd96378bdc449010b14528c5588ee54518c602dc5ba5d8bec02c65cd721"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "6b6bb5fbce370d02c6f2bef6a19ac2e370fc1a23504c5911a969f2916bd9c134",
+      "stored_sha256": "6b6bb5fbce370d02c6f2bef6a19ac2e370fc1a23504c5911a969f2916bd9c134"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "5b8fe4b7f9cb1d72bb18c87a7b7b2041dcb51eb421946bcf60cbd5af8a34fd86",
+      "stored_sha256": "5b8fe4b7f9cb1d72bb18c87a7b7b2041dcb51eb421946bcf60cbd5af8a34fd86"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/receipt.json.gz",
+      "source_sha256": "92be8a484543d35e23dd72efa6ad4a3fe42c2f0ed08e67e3a3ed1688a8476b19",
+      "stored_sha256": "4a2ce6e65bf7f0da2ec7c1c46b2ee88fc3e76853b4c1a73292fa16e11003f043"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "4b25e285ee4bccb73d8679d087c91ff68efa48b90acb64fbd2ce3fd0b4f92ddc",
+      "stored_sha256": "c7cc8b099cf521981a9080621fd96847e43a2f2ae17250aeda1fd2609c209d5b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "624f90bdc010b8947e60b8a9d550dddeb1d3243ee5198bc290cbb59196851037",
+      "stored_sha256": "624f90bdc010b8947e60b8a9d550dddeb1d3243ee5198bc290cbb59196851037"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "7e52514ef8d43bed01e07cc601a99682b0210f47bc029d4b4f63d1c8ce14751e",
+      "stored_sha256": "7e52514ef8d43bed01e07cc601a99682b0210f47bc029d4b4f63d1c8ce14751e"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "bb0fb77fc1249bed9e6ce599f13a8f8fe6c424df9518643ed4cd4d8f842692b2",
+      "stored_sha256": "bb0fb77fc1249bed9e6ce599f13a8f8fe6c424df9518643ed4cd4d8f842692b2"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/receipt.json.gz",
+      "source_sha256": "741d142e3fa5b228c068ad00ccb33f80b38577bf58126794fbb79b6fe63f8eba",
+      "stored_sha256": "8f5a01576dcfe1537a228de15e50bf2910e756043bc9001b58600b8261ed739a"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/report.json.gz",
+      "source_sha256": "ff302c675b9a4e2dd2756b5464b433e5a1a937b0d7627750b56fb7a0c3b0795e",
+      "stored_sha256": "f03adaf7af99a506e29039f564f6cecbeb56b679d461ad1ec4d9f630fb361d12"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "53852c4cad641fe4c8ec28a0b7c35685643b5d532cc9818b5b9a3175bbdc3157",
+      "stored_sha256": "53852c4cad641fe4c8ec28a0b7c35685643b5d532cc9818b5b9a3175bbdc3157"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "58282b878298ff67ff91966ebc654d5a223b253489f9e8d0f59faf5c358fc2ad",
+      "stored_sha256": "58282b878298ff67ff91966ebc654d5a223b253489f9e8d0f59faf5c358fc2ad"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Cng-2007-wilting-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "bb0fb77fc1249bed9e6ce599f13a8f8fe6c424df9518643ed4cd4d8f842692b2",
+      "stored_sha256": "bb0fb77fc1249bed9e6ce599f13a8f8fe6c424df9518643ed4cd4d8f842692b2"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/receipt.json.gz",
+      "source_sha256": "4c97e2064fda863bf2c812a7bda93704fcc7b7168ca336baaf52bbab47e205fd",
+      "stored_sha256": "5007662c4d2879957ae48a59e6b5d4db74adc4594ea73dcb1b9612124f38abf0"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "26ca2eb08efad1a4da605215ceff7e92855b96ce044d5e98ab207b1daa99a999",
+      "stored_sha256": "e9768c03524ed74944dadf840990accbe8acc24725f9326b55d7c8c2f78e412b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "9136a9b309f720d2e0d13ff50e5fb2b046d24964a358acde1dcf3a71d9b18475",
+      "stored_sha256": "9136a9b309f720d2e0d13ff50e5fb2b046d24964a358acde1dcf3a71d9b18475"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "f618b6e677a93a98dc3b2882c1a82d56cc5f385d8511e7acaef0582d489d3ded",
+      "stored_sha256": "f618b6e677a93a98dc3b2882c1a82d56cc5f385d8511e7acaef0582d489d3ded"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "df0a9760483cff193d62e225851496e2a9bb12037b575d983041995f3a74e824",
+      "stored_sha256": "df0a9760483cff193d62e225851496e2a9bb12037b575d983041995f3a74e824"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/receipt.json.gz",
+      "source_sha256": "b9bedfabcc6e0454dc4efade236e969e9f7498144ee105ed9119cc8ac3499a81",
+      "stored_sha256": "9ec4e135a0476c8927d8efcd9466989ae2796adbc1628febaac6a578265460ca"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/report.json.gz",
+      "source_sha256": "bc2956617d1374ae28390ea028eceb6ce41a8e331b5aeb8d2f17b9dc153340db",
+      "stored_sha256": "9baf7b7982cb9f422698dbe62c3812199439e4315aaccdca826f62cc0007d8d6"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "a41210973c9b1bd0d0f37f4385ba74acc9ce1e48e93c0e50df7033fd7cd9c1d4",
+      "stored_sha256": "a41210973c9b1bd0d0f37f4385ba74acc9ce1e48e93c0e50df7033fd7cd9c1d4"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "5ea2b490de7ef97208a896cbae41932d617a384ac7650388ede349b9bd04e25b",
+      "stored_sha256": "5ea2b490de7ef97208a896cbae41932d617a384ac7650388ede349b9bd04e25b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-field-capacity-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "91ae1e9939432e115801efac06e4b390ea31d7d2ba9e496a18f781b47633ce4b",
+      "stored_sha256": "91ae1e9939432e115801efac06e4b390ea31d7d2ba9e496a18f781b47633ce4b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/receipt.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/receipt.json.gz",
+      "source_sha256": "4ec2bd35bb5755b20d65b874ad5d54f1901b0a1e0c623e097b4d26d078b67c87",
+      "stored_sha256": "e5449706acd1f10ebfec793e2dcbbe28365f519172fb3015906febbd440c45c7"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/report.json.gz",
+      "source_sha256": "fd3e01b6db3e19dcd5df11c78389be214cce3db2bb574a444b427c8aff52942a",
+      "stored_sha256": "c7bf581cf824695340ce74fdbdd2124f728b3640d411d885ad16c11b1cf22255"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/state-0000000.pkl",
+      "source_sha256": "d2e600b9eb67fe75a06373c85e3787cd34b90f413e18c43453f96ca69db95e84",
+      "stored_sha256": "d2e600b9eb67fe75a06373c85e3787cd34b90f413e18c43453f96ca69db95e84"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/state-0000048.pkl",
+      "source_sha256": "0e42673a6e7d6b50a40bccd19377860968c0a8e69bd4707ad3d95c4b9634ae12",
+      "stored_sha256": "0e42673a6e7d6b50a40bccd19377860968c0a8e69bd4707ad3d95c4b9634ae12"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-hydraulic/trajectory/trace-0000048.npz",
+      "source_sha256": "2451c5ae83442f624c97866915e2b08199b5acdabbcbc2dc4a11f2fe8a86937b",
+      "stored_sha256": "2451c5ae83442f624c97866915e2b08199b5acdabbcbc2dc4a11f2fe8a86937b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/receipt.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/receipt.json.gz",
+      "source_sha256": "9e715d8efb0004cb8a04e9bdfbff119b51d4c6ae9e877200facd62dc91c19bf6",
+      "stored_sha256": "a2b9fc28b1fbd8f2d15bc275823555875e01ee32ecb1d3d102375c9bdcb4fa0b"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/report.json",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/report.json.gz",
+      "source_sha256": "21c6ebf95521a29993c8f1ac61a9f3d40318a2d43250bc729f96c0cdd2c43027",
+      "stored_sha256": "c6e47d237c14b3ab5788e3e6c9c14eaf95f461b0382260388cd63aa8d99ce58d"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/state-0000000.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/state-0000000.pkl",
+      "source_sha256": "14a88b7355f4c8369169e2b82727ef15c2cd2af4c418f1fb68d38db20ec2bf92",
+      "stored_sha256": "14a88b7355f4c8369169e2b82727ef15c2cd2af4c418f1fb68d38db20ec2bf92"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/state-0000048.pkl",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/state-0000048.pkl",
+      "source_sha256": "2f14c5758003e2605c9548759b93266ab8a5fbc211d8ae7eec7b358868a4e71d",
+      "stored_sha256": "2f14c5758003e2605c9548759b93266ab8a5fbc211d8ae7eec7b358868a4e71d"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/trace-0000000.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/trace-0000000.npz",
+      "source_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486",
+      "stored_sha256": "a0ed94c2c4784622b6cf800265c798bfd9119df5395d6ba237be7c2f548d5486"
+    },
+    {
+      "source": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/trace-0000048.npz",
+      "path": "numpy-reference/runs/CN-Qia-2003-wilting-legacy/trajectory/trace-0000048.npz",
+      "source_sha256": "8ffd3b7e2613e0f53c279b09b1a0f27a78b9d2cdb029588d7c4dbdb8674606b0",
+      "stored_sha256": "8ffd3b7e2613e0f53c279b09b1a0f27a78b9d2cdb029588d7c4dbdb8674606b0"
+    },
+    {
+      "source": "numpy-reference/step-packet-inventory.json",
+      "path": "numpy-reference/step-packet-inventory.json.gz",
+      "source_sha256": "97f34c490c52892609c6200e404c104aa042a9e15e662cbafa23bce0b8f76b7b",
+      "stored_sha256": "79e008ae22f6245daf434f1597aa05bb91ba8d75934dcba3384755311a1181d3"
+    },
+    {
+      "source": "control/multisite-spinup-fu-package.json",
+      "path": "control/multisite-spinup-fu-package.json.gz",
+      "source_sha256": "8ea50df5dedd280159d8e302143a1222ccdd65e7d5c59d8fc1c9a9930cbe92d5",
+      "stored_sha256": "e67f480594c04fd1b9ec8f7deaccc88eb3fbf661246fa6556a2fc819ce339c90"
+    },
+    {
+      "source": "control/prepare_multisite_spinup_fu.py",
+      "path": "control/prepare_multisite_spinup_fu.py.gz",
+      "source_sha256": "557ccbc11ccbcac87135414b91c8a3c055c97421671f385f2b5f0737b6329b22",
+      "stored_sha256": "0fd3f66fb3b2e5673dfb5a821cc543200241e490423a944c62f44660b7560ce5"
+    },
+    {
+      "source": "control/dispatch_multisite_spinup_inputs_fu.py",
+      "path": "control/dispatch_multisite_spinup_inputs_fu.py.gz",
+      "source_sha256": "6e715281e9b1cc35c6187ae7fb550a9ee8246fa9b4a52d65acb7679aa99dbe8c",
+      "stored_sha256": "41232aa172251732cb24101c72938528e5bae578317ea14ad8f8ba8bc1117e8f"
+    },
+    {
+      "source": "control/run_multisite_numpy_cold_fv.py",
+      "path": "control/run_multisite_numpy_cold_fv.py.gz",
+      "source_sha256": "d830bfd615ea93752f72634abcf5a9c1720e1a464e58a4e0e084f4293f38238b",
+      "stored_sha256": "5ce6c80618fa0608c925bd5f731512b5e40cc941dc9c5178406e42ef879a5b09"
+    },
+    {
+      "source": "control/dispatch_multisite_numpy_fv.py",
+      "path": "control/dispatch_multisite_numpy_fv.py.gz",
+      "source_sha256": "c34ad9edb98543ef385985a38654f1b632ebb82764932a60cfeb0f081edb768a",
+      "stored_sha256": "8be30fe53bcc19208af99434ab2c336403cfc506f9aad18356f3026f0310b292"
+    },
+    {
+      "source": "control/archive_science_checkpoint_gc.py",
+      "path": "control/archive_science_checkpoint_gc.py.gz",
+      "source_sha256": "c2328b9f0333dfba538042cf6b67fc83e2105e7d87221c0d2d9f436bd5d1dc06",
+      "stored_sha256": "65a2df50940a458cb63083ab20824b0f9ff31d81ae1660b2a8a10430f9abe512"
+    }
+  ]
+}
