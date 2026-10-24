@@ -63,7 +63,8 @@ extern "C" __global__ void prepare_enthalpy_columns(const float* snow_in,const f
         float liq[4],t[4],weighted[4],view[70]={0.f};view[39]=p[0];view[40]=p[5];view[41]=p[2];view[42]=p[3];view[43]=p[1];view[44]=p[4];
         for(int k=0;k<4;++k) {
             float reconstructed,cap,count,liquid;valid=invert_soil_enthalpy(g[k*3],g[k*3+1],g[k*3+2],p[0],p[1],p[6],phase,t[k],reconstructed,cap,liquid,count)&&valid;
-            liq[k]=liquid/(1000.f*g[k*3+2]);weighted[k]=roots[k]*beta(liq[k],view,o[3]);
+            liq[k]=liquid/(1000.f*g[k*3+2]);
+            weighted[k]=roots[k]*(o[3]==1?beta(liq[k],view,o[3]):clm_soil_beta(liq[k],p,o[3]));
         }
         float stress=clip((weighted[0]+weighted[2])+(weighted[1]+weighted[3]),0.f,1.f);
         float velocity=exchange(f,site[2],store[2],o[5]),z0=clip(site[2],1e-5f,5.f);

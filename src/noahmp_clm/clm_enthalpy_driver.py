@@ -17,7 +17,7 @@ from .physics.canopy_energy import CanopyExchange
 from .physics.precip import partition_precipitation
 from .physics.surface_drag import exchange_velocity
 from .physics.ground_evap import ground_resistance
-from .physics.stress import soil_water_stress
+from .physics.clm_water_stress import soil_water_stress
 from .physics.runoff import route_runoff
 from .physics.canopy_interception import intercept_precipitation
 from .physics.vegetation_structure import step_stem_area,exposed_canopy_geometry

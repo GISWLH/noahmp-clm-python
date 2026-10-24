@@ -12,6 +12,7 @@ from .snow_mass import validate_snow_transfer,snow_transfer_kernel_jax,snow_phas
 from .soil_transport import validate_soil_transport,soil_transport_kernel_jax,compact_soil_parameters
 from .snow_evolution import fresh_snow_jax
 from .enthalpy import invert_soil_enthalpy_jax
+from .clm_water_stress import water_stress_kernel_jax
 
 OPTION_NAMES=('OptSoilSupercoolWater','OptRainSnowPartition','OptSoilWaterTranspiration',
     'OptGroundResistanceEvap','OptSurfaceDrag','OptRunoffSurface','OptRunoffSubsurface','OptSoilPermeabilityFrozen')
@@ -150,7 +151,8 @@ def prepare_column_jax(c,g,p,o,site,storage,roots,forcing,vic=None):
     runoff=s(runoff+flow);valid=valid&good
     inv=invert_soil_enthalpy_jax(g[:,0],g[:,1],g[:,2],p[0],p[1],p[6],phase)
     liquid=inv[3]/s(1000.*g[:,2])
-    stress,_=core._soil_stress(liquid,roots,p[0],p[5],p[2],p[1],o[3])
+    noah_stress,_=core._soil_stress(liquid,roots,p[0],p[5],p[2],p[1],o[3])
+    stress=j.where(o[3]==1,noah_stress,water_stress_kernel_jax(liquid,roots,p,o[3])[0])
     velocity=core._exchange_velocity(wind,tair,qair,ps,site[2],storage[2],o[5])
     z0=j.clip(site[2],1e-5,5.);ustar=s(s(.4*j.maximum(wind,.3))/j.log(10./z0))
     leaf_velocity=s(.01*j.sqrt(ustar/site[10]))

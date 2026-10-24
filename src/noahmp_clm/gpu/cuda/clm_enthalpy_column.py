@@ -10,7 +10,7 @@ from .canopy_surface import run_canopy_surface_cuda
 def _stages(closed_richards=False):
     import cupy as cp
     names=('column_kernel.cu','enthalpy_kernel.cu','snow_mass_kernel.cu','snow_evolution_kernel.cu',
-        'soil_transport_kernel.cu','clm_enthalpy_column_kernel.cu')
+        'soil_transport_kernel.cu','clm_water_stress_kernel.cu','clm_enthalpy_column_kernel.cu')
     source='\n'.join(Path(__file__).with_name(name).read_text(encoding='utf-8') for name in names)
     if closed_richards:source='#define CLM_RICHARDS_ZERO_FLUX\n'+source
     exports=('prepare_enthalpy_columns','finish_enthalpy_columns')

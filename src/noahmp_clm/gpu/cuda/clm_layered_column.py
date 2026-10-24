@@ -13,7 +13,7 @@ from .canopy_phase_surface import run_canopy_phase_surface_cuda
 def _stages():
     import cupy as cp
     names=('column_kernel.cu','enthalpy_kernel.cu','snow_mass_kernel.cu','snow_evolution_kernel.cu',
-        'soil_transport_kernel.cu','canopy_interception_kernel.cu','clm_enthalpy_column_kernel.cu','clm_layered_column_kernel.cu')
+        'soil_transport_kernel.cu','canopy_interception_kernel.cu','clm_water_stress_kernel.cu','clm_enthalpy_column_kernel.cu','clm_layered_column_kernel.cu')
     source='\n'.join(Path(__file__).with_name(n).read_text(encoding='utf-8') for n in names)
     exports=('prepare_layered_transfer','finish_layered_transfer')
     module=cp.RawModule(code=source,options=('--std=c++14','--fmad=false','--prec-div=false','--prec-sqrt=false'),name_expressions=exports)
