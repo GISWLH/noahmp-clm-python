@@ -2,6 +2,13 @@
 
 Noah-MP / CLM **单柱物理**的纯 Python 基线实现（普通版本）。
 
+2026-10-24 20:42UTC：[三站气候态与完整年验证](docs/CLM_MULTISITE_SPINUP.md)推进：
+官方BC／尘埃／N气候态已接入，全部12组NumPy／CUDA首日及独立96步检查实际0。
+第2日日ET／NEE最大后端差5.44e-6mm／6.32e-6gC/m²；这是后端一致性，非观测误差。
+12组气候态完整年NumPy参考在超算运行，零沉降对照另存；CUDA全年已排物理1
+现有年和完整回归实际终态后接续。当前1148 CPU＋原12 GPU已完成，完整404／1552、
+全年／SOC／多站多年／留出／校准及原Qia LE观测−70.11%差距仍待，v1.0.0未发布。
+
 2026-10-24 19:35UTC：当前FL579已完成[完整1148 CPU与原12项GPU](docs/CLM_SOIL_WATER_STRESS.md)，
 物理CUDA1上H／LE参考最大绝对差.00913／.01839 W/m²，原同精度／守恒门保持。
 [三站预设全部12组首日](docs/CLM_MULTISITE_SPINUP.md)NumPy／CUDA及独立576步审查

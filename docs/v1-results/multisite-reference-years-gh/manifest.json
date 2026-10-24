@@ -1,0 +1,786 @@
+{
+  "scope": "\u5f53\u524dFL579\u4e09\u7ad9\u5168\u90e812\u7ec4\u4ece\u5b9e\u9645\u6210\u529f48\u7eed\u81f396\uff0c453-464\u5b9e\u9645PBS0\u3001\u539f7\u5b57\u6bb5\u72b6\u6001\u4e0e\u9996\u6b21\u8f93\u5165\u7cbe\u786e\u3001\u5386\u53f2\u68c0\u67e5\u70b9\u9010\u9879SHA\u5f52\u6863\u6838\u9a8c\uff0c\u6700\u65b0\u72b6\u6001\u4fdd\u7559\u3002\u72ec\u7acb156\u6bb5\u53c2\u8003\u5e74\u94fe466-621\u5df2\u63d0\u4ea4\uff0c\u5feb\u716712\u4e2a\u9996\u6708PBS\u5b9e\u9645R/96-432\u6b65\uff0c\u975e\u5168\u5e74/spinup/\u79d1\u5b66\u9a8c\u6536\u3002\u5b8c\u6574\u539f17520\u8bf7\u6c42\u3001\u6240\u6709\u5bf9\u7167/\u539f\u95e8/\u7d2f\u8ba1\u8d26\u4e0d\u53d8\u3002",
+  "archive_sha256": "0d1560f7329c9583146214e42d4a8fb0047e2db5c3a6b694fb4079a5dc3f6b17",
+  "artifacts": [
+    {
+      "source": "control/all12-pilot-proof.json",
+      "path": "control/all12-pilot-proof.json.gz",
+      "source_sha256": "502b8cb6bccb7202e6315e9b24a8fa164a924523295c656bf9d6cc6877b063a3",
+      "stored_sha256": "c50f38989dfe1eb252b0b371606dd8fd4e369eca3b290b5a29a53a82bd3471c9"
+    },
+    {
+      "source": "control/archive_closed_generations_gh.py",
+      "path": "control/archive_closed_generations_gh.py.gz",
+      "source_sha256": "987ececf275ccdce63b522024dc3222aba6cfc75480615dae8bdbe4391b39e56",
+      "stored_sha256": "fec91f3017bdb322cd2c2f65ebb9603d2b149dba8d1f2f422aa5607156ec53f4"
+    },
+    {
+      "source": "control/controls.json",
+      "path": "control/controls.json.gz",
+      "source_sha256": "34ee656f4708f49810540c31bf80c1dcfeb79ae4981c9f1ec467d34e25075c68",
+      "stored_sha256": "7460650a251fb75ca3ec8f1b64989ac8c12174a8912c9294dea22b299dcc962c"
+    },
+    {
+      "source": "control/multisite_numpy_year_gh.pbs",
+      "path": "control/multisite_numpy_year_gh.pbs.gz",
+      "source_sha256": "10fed691ad553236e739c6e7667b925f8ecc1dd3ab2a4333d5c1d8af06691a17",
+      "stored_sha256": "8d341ecbeeb298340f8a434a04c4cf2b9250eb618a5859f678dee5693d920996"
+    },
+    {
+      "source": "control/pilot-dispatch.json",
+      "path": "control/pilot-dispatch.json.gz",
+      "source_sha256": "5bea4eeb558467bca00a2ee76efe5f41eb0fab483e97d15472b142a2d07f03a2",
+      "stored_sha256": "57d54122424b9a99450f23ec15c04110f5a7eb2d690aa553346970e39e78a9d5"
+    },
+    {
+      "source": "control/plan.json",
+      "path": "control/plan.json.gz",
+      "source_sha256": "0059422be22be790566d6294eea2a2935f5c982eb385b85f7cf14c182773ff0d",
+      "stored_sha256": "6687c0f67f95b1bd662acb45b95766d904022b1ef4bdaec691adf751580dd755"
+    },
+    {
+      "source": "control/run_multisite_numpy_year_gh.py",
+      "path": "control/run_multisite_numpy_year_gh.py.gz",
+      "source_sha256": "d6a8811ddf1f4abe033f513992847cc69f6d73661a01f8690a8c7d169c56b19a",
+      "stored_sha256": "0453fdeca0d00c2921e35b96d3da56d4619517afaa4a258753501c3f34208a8f"
+    },
+    {
+      "source": "control/year-dispatch.json",
+      "path": "control/year-dispatch.json.gz",
+      "source_sha256": "cd11e878c78288b51722069ad68b991e9caa07e37cf2d142c25ddab64ce092a4",
+      "stored_sha256": "9cee126b9f5938218595dda3831cb8fbf8accb941e594354979baa29bcfa15de"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/current-running-report.json",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/current-running-report.json.gz",
+      "source_sha256": "980656ec432efb5d45934ad4dd2a487ef646264d75580810d19896fa0f75027f",
+      "stored_sha256": "a01f38fab3b9c39bf2a0666760ddd8a7812db95f7854a6c13705432043df4645"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "21c06ad7a7eef003a0d7f3044e1db9601bb35e0ab4ea9532d2986f96582ea6a8",
+      "stored_sha256": "3f5ccb82651bd15ec5e893d098b780ccca05c5aa2d833aa88a9a524cdd57b151"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/lineage.json",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/lineage.json.gz",
+      "source_sha256": "4ace8c57bf98b372ed18e8cfbed3f1ff395065b8d0c31c36ae6cfe1166ecbff6",
+      "stored_sha256": "418fff4a7e403eb07b3962f46e1c7c033fd7db6e16359f3019e79c7b0e9c29ef"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "7d0fdedce18cb1b2bb38eb525ee3dc7bf2405bb7d9c95ad4fb226972c2edef8b",
+      "stored_sha256": "078d88c8962d15777e6c5cdd3b42140116eb1ffeda618b7f21cb271aec712036"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "86924dd4c43de393bd96b3a4116881e4ef55fe6191e4e851bf2f663a33a78bc7",
+      "stored_sha256": "30bb75fc3f7a6ff8a36055cfd35fb392c9d57865adadcd8a1423cefad86ddfbc"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "f0d921d143d0aadfdae02909b78a3fd85c4f04d2d0246e9f9948223f43f78401",
+      "stored_sha256": "f0d921d143d0aadfdae02909b78a3fd85c4f04d2d0246e9f9948223f43f78401"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "29b5d245ed89e8a5ca1848c31310049253818f9920e7d87f29c80ee9590e6f49",
+      "stored_sha256": "29b5d245ed89e8a5ca1848c31310049253818f9920e7d87f29c80ee9590e6f49"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cng-2007-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "bdd75edbed4e3331a8a218cadc89394495866328c304c6dd233eb8d9da2d1aae",
+      "stored_sha256": "bdd75edbed4e3331a8a218cadc89394495866328c304c6dd233eb8d9da2d1aae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/current-running-report.json",
+      "path": "cases/CN-Cng-2007-wilting-legacy/current-running-report.json.gz",
+      "source_sha256": "5797c6234173929f9e5f2b83ab143c976bdafaa89cb5ec9446930c8877fb4de1",
+      "stored_sha256": "dabde0c028e692399505503f32b2c20ae095d5d8cf0a5e0b00cbdbd8e008e9bc"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Cng-2007-wilting-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "cf3ad2196f0227cdb3c09818ebf1054c984fd530de89b1095ffe4621572cc60d",
+      "stored_sha256": "58f25b891a94f52ced12200ffd9b3967c642139850c006abdcdd750ae56edc24"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/lineage.json",
+      "path": "cases/CN-Cng-2007-wilting-legacy/lineage.json.gz",
+      "source_sha256": "debb86373dfaf36aff02f8d40a46c08ac20f9ca8e070b1efc8b193f02e614087",
+      "stored_sha256": "1812166b902f0a4beae158875276a4d1293dd0649ebe8b31796c9b77481eb5f6"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/segment-000048-model.log",
+      "path": "cases/CN-Cng-2007-wilting-legacy/segment-000048-model.log.gz",
+      "source_sha256": "03bde75d808846e9d68e72c67db5cc5d64aef02464add997c6636872058017f6",
+      "stored_sha256": "a11bd3d1cdf7b0e5caa49389ad816a05961a664b3df3e8073367dff775feb8fb"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cng-2007-wilting-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Cng-2007-wilting-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Cng-2007-wilting-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "e87536fcdb660a0350193203a1588707b980fdcade5d08580677c2209ac0ef5c",
+      "stored_sha256": "cac5d7f24972439ed8fc0498028dd4f38c31e758d11213160621a279c925c1e2"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cng-2007-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "9fd7b8d98b210d3c7b84c2a09569887b2d49724419113bd26614999d4314e8c2",
+      "stored_sha256": "9fd7b8d98b210d3c7b84c2a09569887b2d49724419113bd26614999d4314e8c2"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cng-2007-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "c508a3ec7fccea75eb7c2792c8863f07ce874f351d33db982a1e72135526cea3",
+      "stored_sha256": "c508a3ec7fccea75eb7c2792c8863f07ce874f351d33db982a1e72135526cea3"
+    },
+    {
+      "source": "cases/CN-Cng-2007-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cng-2007-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "bdd75edbed4e3331a8a218cadc89394495866328c304c6dd233eb8d9da2d1aae",
+      "stored_sha256": "bdd75edbed4e3331a8a218cadc89394495866328c304c6dd233eb8d9da2d1aae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/current-running-report.json",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/current-running-report.json.gz",
+      "source_sha256": "9bed92210d0fa94e8be26ae5d42e516fc15e731b031f841b8d56bc6eb4799cc6",
+      "stored_sha256": "841c58f401e3719f2c29d84432a0cb1e75cef63576e7e0e19ea5388986cc5814"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "9104b5d84aa4baa68749c101744e495b64e20d03b3d6c55e5afa458e58217553",
+      "stored_sha256": "0cf1761760dc87de89b213b8bf43a1c642fceb87c749c462d2acd85596863af9"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/lineage.json",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/lineage.json.gz",
+      "source_sha256": "b6d19b111c836467011cdeb38861480c2c169314323aa3a1407253912e82a1c5",
+      "stored_sha256": "80864b02125a7564933151bc03e762da7fa70c866de171a31a4bb6939834221a"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "ba3f5dd16209f3b7479db3360fe99e138c9167c8061bbd8e3998fcf76e666057",
+      "stored_sha256": "69e63b72e20cd183662832de3b8c37b1c6f7470c57b280891ff72259f3869712"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "e174e6b4ad1ec6968d929ca0b24b6790549054f36ab57ad8adb12e0b53e65fde",
+      "stored_sha256": "9eb7dba46534b1b0edc3f93c050662c34c78e47a47196fc3bd243b11f74f36b7"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "bbfc869158b2cc9b1220b50ead8d3f77cea9e89fdd496cedcca2c19a7e37a183",
+      "stored_sha256": "bbfc869158b2cc9b1220b50ead8d3f77cea9e89fdd496cedcca2c19a7e37a183"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "4fa20ec32ed09dc038828c930120629df5eb3c0eeadf5f01ec3d4c622175003f",
+      "stored_sha256": "4fa20ec32ed09dc038828c930120629df5eb3c0eeadf5f01ec3d4c622175003f"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cng-2007-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "e6a4732a68813b30d235bb27f9e0b886e36ce4d69c554e226b7d584b2af06072",
+      "stored_sha256": "e6a4732a68813b30d235bb27f9e0b886e36ce4d69c554e226b7d584b2af06072"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/current-running-report.json",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/current-running-report.json.gz",
+      "source_sha256": "09c8fa8fd14875e7f9f4da21d29bb5c64dacdb4c36728ea1b2d3a6d4a23447e7",
+      "stored_sha256": "31173386da56e227f13f5bef2eb34863b36996eaddcfe2cbddb9b6d8da9602df"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "8fd84691d76d889f683ee4b685d60960d8a7d632e28511f1b65b369f8779b962",
+      "stored_sha256": "1e7953cc8d5e32fee5a563c834e7972a09ff78c905e73a7e0c1b5723c85198da"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/lineage.json",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/lineage.json.gz",
+      "source_sha256": "36e83b5736c58cc06709a4604fef54c66afbbe14290f7420a4e1574786812060",
+      "stored_sha256": "d0ee908badcfa41984b73a19f1356e9432b490d89e7bfa467f3c8437fb4cc045"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-model.log",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-model.log.gz",
+      "source_sha256": "33871adb1a4cbd4e46654b1a26a65276d55a5e0e6fdd076f95d517e730b7cc04",
+      "stored_sha256": "699124901be5ffe464d9284ee53cfd293645cc14db1f674d411067956ff19ced"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "1b71631f3154e81b7ce2963267925d9dd636b17ce1204475708f43ca4635cfea",
+      "stored_sha256": "03f307b465e527cf13cb804506e06fa5643ecdef7c549b96f33bd8b6c4925345"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "a810a6aab0cb750396cabc08aa687fe5c13fb9bc043c2482a9501a9373d646f0",
+      "stored_sha256": "a810a6aab0cb750396cabc08aa687fe5c13fb9bc043c2482a9501a9373d646f0"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "e76f16d7150ac2ed6c1ad36db7d3b8e7aefba5f26d5c349a9fb9a72c514a14ae",
+      "stored_sha256": "e76f16d7150ac2ed6c1ad36db7d3b8e7aefba5f26d5c349a9fb9a72c514a14ae"
+    },
+    {
+      "source": "cases/CN-Cng-2007-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cng-2007-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "e6a4732a68813b30d235bb27f9e0b886e36ce4d69c554e226b7d584b2af06072",
+      "stored_sha256": "e6a4732a68813b30d235bb27f9e0b886e36ce4d69c554e226b7d584b2af06072"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/current-running-report.json",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/current-running-report.json.gz",
+      "source_sha256": "4564134cfd1dec333c2279107d55fb22e23c8321b68c3a14a764c13e8aa2182f",
+      "stored_sha256": "00d84ef7203c34ea9d45e7d55799b7814cf6a77420ae9ca84f66d00ae86aae0e"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "768f6d0115470f7a2ef8aede43f62e687c30985432e22d31da322326b9bf2f4b",
+      "stored_sha256": "d4f0da2dc26f2c62674cb47ed31d4634ad20bdb93f8791354525a1898d6641f0"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/lineage.json",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/lineage.json.gz",
+      "source_sha256": "1a8f644406c8322918fa9fb25f2059af0036af3cacd2a6d05d99fd1debb6a1d9",
+      "stored_sha256": "62699221f45fd785e75b1be2eaeb9dac4b5f220e6364b9a8acba0d921014d096"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "c6f09beae3b7e9fd751a91f930ea8afc7cc8d29cadc27fc67e25b1ca8a83bf6b",
+      "stored_sha256": "cc0c50430da42408ada151eb01db7ce273dba936e0d93174ba42f6e661a9a899"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "e06efdc16ee799da647cf1034ae456f4e95120edbb1bdd16a3cf4c1011c2f2f3",
+      "stored_sha256": "aa055ee960e86499f3ecf7505c68daa85802b4d2057687482144f5f85d9e6798"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "19855b1eb79d268d41f490c329a0911c618b208bed23bf7a081ba4fca558fff7",
+      "stored_sha256": "19855b1eb79d268d41f490c329a0911c618b208bed23bf7a081ba4fca558fff7"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "55dfa871aa05ed61d3286465f689b9cfd7e3217ee8505733c6b04bfac00ebf96",
+      "stored_sha256": "55dfa871aa05ed61d3286465f689b9cfd7e3217ee8505733c6b04bfac00ebf96"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Qia-2003-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "bce7ee2dc16f80c5816fc5fa7da973bae7bc84ff673022f236ff77fa86d6eb22",
+      "stored_sha256": "bce7ee2dc16f80c5816fc5fa7da973bae7bc84ff673022f236ff77fa86d6eb22"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/current-running-report.json",
+      "path": "cases/CN-Qia-2003-wilting-legacy/current-running-report.json.gz",
+      "source_sha256": "3df3617711ea36f8dc7aba5afebbbd19a68e23da12fc5066e5bd9e5dc7e69915",
+      "stored_sha256": "b12e3d3628ffad8a63f9786058335a1b60cf28f2663d17ab34b7f083f117d031"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Qia-2003-wilting-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "3e808004ea3dc31264351c5bb1789aa9f2c977c86d26040de1275a2fbdff2363",
+      "stored_sha256": "32fc3a935b16fe80f36baf94605aad54fb7e866ca8def93b85fc183946b1ad86"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/lineage.json",
+      "path": "cases/CN-Qia-2003-wilting-legacy/lineage.json.gz",
+      "source_sha256": "2dfe27c14ae4d46d317140439e2003e68d9364ef43e273ec601b55e1ce9e0959",
+      "stored_sha256": "7af2d1db2a129a24ab05c4f93df1a140aa2a9ab829ed6d88bae2ae2379ffc04b"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/segment-000048-model.log",
+      "path": "cases/CN-Qia-2003-wilting-legacy/segment-000048-model.log.gz",
+      "source_sha256": "6ef56b1436594ad47ed87498e77de90639cd2e5bc4e26f23959478e974fcd5d6",
+      "stored_sha256": "71ab2ce96e27965042175d1fa1d1716ea5964754755d1fc4ed706dac961909c4"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Qia-2003-wilting-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Qia-2003-wilting-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Qia-2003-wilting-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "7cc340e2205c7fa3a908f05d55903f952872bd4573411eca90c37bf6d0fa478e",
+      "stored_sha256": "f56ffbcbe87068abf4a941c59475a1f9f479f51c971945292d527f65bf4132d9"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Qia-2003-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "1d598f36e02757391a12d0ff66c6028a6525d252276852db022ebfc189ed8993",
+      "stored_sha256": "1d598f36e02757391a12d0ff66c6028a6525d252276852db022ebfc189ed8993"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Qia-2003-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "34dbf1c009a34864a23d1881924bf55a794a6b9e159842f09fac51a23ec2d4a2",
+      "stored_sha256": "34dbf1c009a34864a23d1881924bf55a794a6b9e159842f09fac51a23ec2d4a2"
+    },
+    {
+      "source": "cases/CN-Qia-2003-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Qia-2003-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "979f80ddc1434694c28ef6495cdf093d389067c2b0b80c3d8136bce90c268b4b",
+      "stored_sha256": "979f80ddc1434694c28ef6495cdf093d389067c2b0b80c3d8136bce90c268b4b"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/current-running-report.json",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/current-running-report.json.gz",
+      "source_sha256": "8535438bf88d2b73a34743619c50b24ddf189be9e402f9cfac8819bd6d48132c",
+      "stored_sha256": "59d863186f12b37f4d670c50a7e4e4c68d4d5dc854c0ff420cc99bf1d4ec341d"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "9f1bffb0529d5e50e82b00a522d2e1f267fbf425cc62facf88fd3327c9934cae",
+      "stored_sha256": "a9543bf7b2dd1992a56fcf4d4cda63c5f022b49eb8aaac6f472bda3fa89cc4a7"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/lineage.json",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/lineage.json.gz",
+      "source_sha256": "68a7de5bf4260674fb1179366410f6ec8e4115df1a30beb8aaa36118c6b3085c",
+      "stored_sha256": "e31ff51a688890fedbe725d54a72a1d3d124d052ef4b0527598abd50ce71d8cc"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "6235dd6ad5d99ac015b51760cdda104d6ea0a37375fb4bcab7cf5611efc1e2c9",
+      "stored_sha256": "fb61426a8f6db9eeade07964d2342fa37a3ec979c771a6e01a67c99cba22117f"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "95d98b50d76cee3117c230724ba6fe669306299a707fc3682a21eab6b74b05a9",
+      "stored_sha256": "154dd79d0cf71137148144a5533aad72bd54abb4f5055b4702a26d589446f510"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "0f06d74e0f672c247ed474fc03e451df3d7cf711290fac756080329bf6f54541",
+      "stored_sha256": "0f06d74e0f672c247ed474fc03e451df3d7cf711290fac756080329bf6f54541"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "2131a29127f814e18efe2aa2f09f83d09188d430c011061a861949bced0a7a39",
+      "stored_sha256": "2131a29127f814e18efe2aa2f09f83d09188d430c011061a861949bced0a7a39"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Qia-2003-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "08d12a50ac2529e718d01753d91302592792d1405cf320b60b2e57e704bab449",
+      "stored_sha256": "08d12a50ac2529e718d01753d91302592792d1405cf320b60b2e57e704bab449"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/current-running-report.json",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/current-running-report.json.gz",
+      "source_sha256": "0fd6139aa70d297e58e4cce89b5cfb3e81ebd0e270cdc4bd8150697574e289d0",
+      "stored_sha256": "f88259a7ff74048c458e80b5cafd8a038324d8fa6b6914cafcea156b2da1a62b"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "7661b273118d1296e4b7682d73369f30d984e00b54ac272420a0b2eff94819a0",
+      "stored_sha256": "c6e90df5d3a5d0acf80a03eefe29b9e69c7e5d5c6a0e828bf92ceb073df4f306"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/lineage.json",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/lineage.json.gz",
+      "source_sha256": "bca0c21925b3a1293f87ec28d6dbe36d733daeed1994d5f7aefc02aeaa1b92bd",
+      "stored_sha256": "9269dbeb2d4d28b87e2042d2a954d1515af181974e7c1db37bf0e1ce056895dd"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-model.log",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-model.log.gz",
+      "source_sha256": "538e72738c86c79a761839a504442e133eaa8a1f914e17710cfb574251cca27d",
+      "stored_sha256": "c0f9f20f160181eb3a2bf9f7e6d0f9f44057072992e6f4dd6ba1d2701e1974d3"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "969f45716ed54e4357c540aaf226d89569f68aa84747c5e5a67834eb6fbe161e",
+      "stored_sha256": "b3f76959f836f1142a9cabf7d66bece406e82dfa72f5f158bbb195293c4b468b"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "372f78479305d9c5bcc14e041dc904d39dc3994f773b0e12849ac1a25b6e08d2",
+      "stored_sha256": "372f78479305d9c5bcc14e041dc904d39dc3994f773b0e12849ac1a25b6e08d2"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "93fecc8f95dfa595b810c6b358e5c500d61c2e86c4c1fdb29ab1195c0e427151",
+      "stored_sha256": "93fecc8f95dfa595b810c6b358e5c500d61c2e86c4c1fdb29ab1195c0e427151"
+    },
+    {
+      "source": "cases/CN-Qia-2003-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Qia-2003-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "f19c63d2c0e1f660cced5677ff396cfbc6109dc12652ced85befe758762d2cf2",
+      "stored_sha256": "f19c63d2c0e1f660cced5677ff396cfbc6109dc12652ced85befe758762d2cf2"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/current-running-report.json",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/current-running-report.json.gz",
+      "source_sha256": "da673cf096e339493a5dc0cb0f478b1036d357c9437791efef21490e50d3a553",
+      "stored_sha256": "473f2d33747d3683e5ee11fc5b6adeebbcdc4d2e28d1b59b5a07800d7744771a"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "c29acf0b7d2b3778d95be37470dd9665820ff38acf08cf936e600d438dbb7924",
+      "stored_sha256": "b55e3820166fb2f5ebcc5bea6cb05685d7c542a5999b75d76129bf6898204062"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/lineage.json",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/lineage.json.gz",
+      "source_sha256": "2665512c1d20d08aaa009e3661538c745a82b0d1d4fc034b9b2c9b063c43672d",
+      "stored_sha256": "375aac622ad64938f7dee3498de63cf569017dd0f97fdcaf9b56033f14d19bf3"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "6838f01780f61e5c4ab52c21ac63e0c20fb746b043b11f5e5c7c2dde72161837",
+      "stored_sha256": "74aba0b40e622aef3a62747ceedd0b3620259b9d6f9d3dae85597373d7896eb2"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "8eee83cbc5629475690ec27e89efa74c0fc24e25d084c672112709e3a0f21db9",
+      "stored_sha256": "f71a9d4d0fdf4fd7315cfdd4d71301689212b5ca63dd77211286b3096153dd48"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "c903c98e40b9faaee6163e848112c0584d0170a34902b47419ba3d683b11dccd",
+      "stored_sha256": "c903c98e40b9faaee6163e848112c0584d0170a34902b47419ba3d683b11dccd"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "e91644e5c615b5856479e408b92363a69be22d3cd4cc15de496769d42d056566",
+      "stored_sha256": "e91644e5c615b5856479e408b92363a69be22d3cd4cc15de496769d42d056566"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cha-2003-wilting-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "aa9fecab9cff5b678433f14b755bd94ef6eb31c4be7c048ad64df31083e11721",
+      "stored_sha256": "aa9fecab9cff5b678433f14b755bd94ef6eb31c4be7c048ad64df31083e11721"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/current-running-report.json",
+      "path": "cases/CN-Cha-2003-wilting-legacy/current-running-report.json.gz",
+      "source_sha256": "d2577b320b7ba6d400edbe5a3035c12474ee85f11c63bfd6e36023dd4b463b94",
+      "stored_sha256": "5023552d7e004f275e0361d69ad6e2df9897cecb6c0185a7b353503eb4cf2b4d"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Cha-2003-wilting-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "1bd5606395ab91ec714338d48e4870d94a95264a3b7f702822eef12a062209bb",
+      "stored_sha256": "31c6fb25ab5ac76048d892a3f251e344b165f8e32635a7635d1f8ef0b84627ce"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/lineage.json",
+      "path": "cases/CN-Cha-2003-wilting-legacy/lineage.json.gz",
+      "source_sha256": "68376a48ba10acd573d578255c9642017ec3bf1098f970168f161157dbf2ac9e",
+      "stored_sha256": "b57bcb479afd8c42adf42ef1560efa7dc6b1c129a2f01272a534002df0358cbe"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/segment-000048-model.log",
+      "path": "cases/CN-Cha-2003-wilting-legacy/segment-000048-model.log.gz",
+      "source_sha256": "4ba774b7f9d84d6f752d16cba9e6327b7063510611e32df57af3b412acd32c85",
+      "stored_sha256": "e9cd2e8804859deeb26e533f240d1782f3e772056fd12b93e3e360717d8f3b98"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cha-2003-wilting-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Cha-2003-wilting-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Cha-2003-wilting-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "7dad1bc4e107f7fe45b5ad02b7f64025e222cce0e0e7649f055969cf550e291f",
+      "stored_sha256": "bef1cef807afab01823c98f625b08d39f50b8b725c10573d3b5384696ded942d"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cha-2003-wilting-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "a49986899f23afb45787cd60f03b79e79daaccfe3cf02fe9845831c36efdb4b7",
+      "stored_sha256": "a49986899f23afb45787cd60f03b79e79daaccfe3cf02fe9845831c36efdb4b7"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cha-2003-wilting-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "6ebd1c0d03b5739d3debb3766eb56e3e7bbb70c45059ecf0eaf179c3c1a17060",
+      "stored_sha256": "6ebd1c0d03b5739d3debb3766eb56e3e7bbb70c45059ecf0eaf179c3c1a17060"
+    },
+    {
+      "source": "cases/CN-Cha-2003-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cha-2003-wilting-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "aa9fecab9cff5b678433f14b755bd94ef6eb31c4be7c048ad64df31083e11721",
+      "stored_sha256": "aa9fecab9cff5b678433f14b755bd94ef6eb31c4be7c048ad64df31083e11721"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/current-running-report.json",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/current-running-report.json.gz",
+      "source_sha256": "e6439df03ecbdd83e0b7366de45e988e569df64d286f7be1df6f9eda82d4d124",
+      "stored_sha256": "812419f5a10ed81e92185ad29e68852415cd618cd8f9d460dc68638e4b911cc3"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/actual-pbs-status.txt",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/actual-pbs-status.txt.gz",
+      "source_sha256": "8c2c1d22b195aee030a6290b8214dbc6912e22c3635802595058c233cb2244c0",
+      "stored_sha256": "f1de8229800206b1c418e2c49ed0979a4873a9889b8be8b8757921b36462f3ce"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/lineage.json",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/lineage.json.gz",
+      "source_sha256": "486bf43382f9139f5016538b490e78a7c73ab082af847d2edfcea7cb20d3bd92",
+      "stored_sha256": "b8aac00f07f4acbb509bdafff519280b8d441656581508607020a76e442d0863"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-model.log",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-model.log.gz",
+      "source_sha256": "412bb48d73a71b9d7b51890ece17d343c05d2b31860dc9c2ef9e92d0259702b3",
+      "stored_sha256": "c9aa8c76cde6e5522ac42d30f62423d32701c597687036272b93561f79849f73"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-pbs.log",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-receipt.json",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/segment-000048-receipt.json.gz",
+      "source_sha256": "4ba36e436cdf1e5978f5fc64efe64a00cbc29635f38a1a7797a9fbd47c0fcfa6",
+      "stored_sha256": "829a9cb441099d3e4d06aab3245d8d709a81b4060f544f42feb5e455f8dc2f8b"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "4927ec984e1e5b3c1a0f19140583fce9cffda744930547d91ad65039527d9217",
+      "stored_sha256": "4927ec984e1e5b3c1a0f19140583fce9cffda744930547d91ad65039527d9217"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "47ce19457375da59d7ad047a45cba2f1f8834982cc318ba9a53b73cfbceba8f4",
+      "stored_sha256": "47ce19457375da59d7ad047a45cba2f1f8834982cc318ba9a53b73cfbceba8f4"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cha-2003-field-capacity-hydraulic/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "01ea746445a441984229bece042a6e76589b0410d0d11c39d72a339cfee34ea5",
+      "stored_sha256": "01ea746445a441984229bece042a6e76589b0410d0d11c39d72a339cfee34ea5"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/current-running-report.json",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/current-running-report.json.gz",
+      "source_sha256": "dba76a1e58c5f2622f74681da2929e4f6170032cbe6465e965a9c32280a84c0d",
+      "stored_sha256": "63bb57b1a14c4a878625708129b86b3d4df5afd2d52b50ccb7cd1349d271cf84"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/actual-pbs-status.txt",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/actual-pbs-status.txt.gz",
+      "source_sha256": "de794fc51ba4defda73b4b96a11cbf4af21c4c40018f09404ed2092d57a08937",
+      "stored_sha256": "328a1a2467b910d4322d517f8296a18bd4f9000f4231d55e678411b2fc964d72"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/lineage.json",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/lineage.json.gz",
+      "source_sha256": "3682ff1891b8644823f33df7b29718fa6225d9773e368c8f861d8b646e74b5a5",
+      "stored_sha256": "6250e40b441aee623f61b64bca7a1db245b580bd297b75939ddf1669c9e8e18d"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-model.log",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-model.log.gz",
+      "source_sha256": "cd6805c18e9c888ddce9251e4f56758c1e9a5c71890c32eee58e389aed91805d",
+      "stored_sha256": "6504ab86a39ce7132f4b638d2ea6d451989ae59a95545a2f3608016563f924ce"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-pbs-exit.txt",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-pbs.log",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-pbs.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-receipt.json",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/segment-000048-receipt.json.gz",
+      "source_sha256": "f0a3873b745719cb501b9bf9726b35499b31c37c371da236273e14cd50f9b3b3",
+      "stored_sha256": "c70642b3ebe5598cf702e1945762a25677ab3f1f5fcdc8635afd4bd952e1bd94"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/generations/closed-000048-to-000096.tar.gz",
+      "source_sha256": "a35483c9b009886f040a53330e4d1d268b20a006868de7e289b0cd7358008472",
+      "stored_sha256": "a35483c9b009886f040a53330e4d1d268b20a006868de7e289b0cd7358008472"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/generation96-after-original-resume/state-0000096.pkl",
+      "source_sha256": "d47f2850af8638ea00684667e96eabaa93d7853943cdb673879447194b576ee2",
+      "stored_sha256": "d47f2850af8638ea00684667e96eabaa93d7853943cdb673879447194b576ee2"
+    },
+    {
+      "source": "cases/CN-Cha-2003-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "path": "cases/CN-Cha-2003-field-capacity-legacy/generation96-after-original-resume/trace-0000096.npz",
+      "source_sha256": "01ea746445a441984229bece042a6e76589b0410d0d11c39d72a339cfee34ea5",
+      "stored_sha256": "01ea746445a441984229bece042a6e76589b0410d0d11c39d72a339cfee34ea5"
+    },
+    {
+      "source": "control/archive_reference_years_gh.py",
+      "path": "control/archive_reference_years_gh.py.gz",
+      "source_sha256": "2de257dd32b10aed40d28b675b7be458bbc2d8604cd729690c3f9bdb4301fb0d",
+      "stored_sha256": "b4a56dacb646ea57311c7cddf59c091d5faa492fa6b4c2c04a6458d0ea29e2e2"
+    },
+    {
+      "source": "snapshot.json",
+      "path": "snapshot.json.gz",
+      "source_sha256": "1b457ae5d69489d51259f8369c36fc91e10619c3004c5db068c278f816d009fd",
+      "stored_sha256": "97c8a63c37889938831ba17472f3c42e8623f837ff6f8f6b5c9709358c8ecaab"
+    }
+  ]
+}
