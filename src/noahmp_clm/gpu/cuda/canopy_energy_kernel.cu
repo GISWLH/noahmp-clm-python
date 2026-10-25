@@ -154,7 +154,7 @@ __device__ void canopy_energy_device(const float* area,const float* u,const floa
             float vapor=qcan*u[2]/(.622f+.378f*qcan);
             for(int j=0;j<10;++j) {
                 float leaf[7]={par[j],temp[j],u[8],vapor/es[j],u[5]*mol_density,
-                    f[j*2]*(dry?0.f:f[j*2+1]),f[j*2+1]};
+                    f[j*2],dry?0.f:f[j*2+1]};
                 leaf_gas_exchange_device(leaf,p,gas+j*12);
                 gs[j]=gas[j*12+9]/mol_density;
             }

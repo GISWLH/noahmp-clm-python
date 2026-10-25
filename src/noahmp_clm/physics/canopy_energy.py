@@ -272,14 +272,13 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
     if fixed_ground_temperature is not None: temperature[-1]=fixed_ground_temperature
     qcan = e.specific_humidity
     molar_density = e.pressure/(R_GAS*e.air_temperature)
-    # Simplified soil-beta closure: water stress downregulates biochemical
-    # capacity as well as the Ball--Berry slope. This is not CLM5's prognostic
-    # plant hydraulics. In particular, an inaccessible root store must not
-    # sustain positive daytime uptake through the minimum stomatal leak.
-    capacity_stress = np.asarray(water_stress,float)
+    # Pass soil beta separately from N. The leaf solver applies it once to
+    # Vcmax, Rd and minimum conductance; this is not prognostic hydraulics.
+    # Inaccessible roots must not sustain daytime carbon uptake.
+    gas_water_stress = np.asarray(water_stress,float)
     if transpiration_limit == 0. or (soil_supply is not None and
             np.where(soil_supply.weights>0.,soil_supply.roots,0.).sum() == 0.):
-        capacity_stress = capacity_stress*0.
+        gas_water_stress = gas_water_stress*0.
     for iteration in range(1,max_iterations+1):
         saturation, dq, es = _saturation(temperature,e.pressure)
         if ground_is_ice:
@@ -287,8 +286,8 @@ def solve_canopy_energy(leaf_area, swdown, lwdown, exchange, *,
         vapor = qcan*e.pressure/(.622+.378*qcan)
         gas = leaf_gas_exchange(sw["absorbed_par"],temperature[:-1],co2_ppm=e.co2_ppm,
             relative_humidity=vapor/es[:-1],boundary_conductance=e.leaf_velocity*molar_density,
-            parameters=leaf_parameters,water_stress=water_stress,
-            nitrogen_factor=np.asarray(nitrogen_factor)*capacity_stress)
+            parameters=leaf_parameters,water_stress=gas_water_stress,
+            nitrogen_factor=nitrogen_factor)
         qnew, water = _humidity(saturation,gas["gs_mol"]/molar_density,area,fv,
                                wet_fraction,rho,e,limits,soil_supply,ground_shares_soil)
         wet, transp, ground_under, ground_bare, kleaf, kunder, kbare, vapor_residual, root_uptake = water

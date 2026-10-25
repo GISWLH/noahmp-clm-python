@@ -1,5 +1,27 @@
 # 三站完整年初态与耦合spinup
 
+## 2026-10-24：水分因子修订后的冷启动预备
+
+[水分因子修订JN](CLM_BALL_BERRY_STRESS.md)已完成NumPy86项、独立675BB／540
+单叶及1156 CPU全量实际0；GPU专项32／37完成。原IV1180的1个旧Brent参考
+测试失败导致1182未执行；JN只修此测试后完整重跑0，[新JR1184](v1-results/climatology-numpy-jr/manifest.json)在超算完成
+三站原全部12组气候态配置的首48／17520步。配置／驱动／沉降／batch沿用原GM
+字节，在新源重新构造并核对全部23冷字段，然后从初态积分、保存576个完整
+输入／输出包，实际F0、472.111169秒，12组均48／17520且源未改。新版CUDA对应
+窗口／独立水热碳氮审计仍待，未计全年／spinup或观测通过。
+
+[旧HP336任务](v1-results/climatology-held-cycles-jx/manifest.json)已核验全部H、无开始／
+执行节点并撤销；[旧GD／GW／HO GPU后继控制](v1-results/superseded-old-gpu-queues-jy/manifest.json)
+也在核验无模型子进程后封存撤销。旧GT／GH活动基线及原EC CUDA年保留原源
+身份；没有把取消视作失败积分或通过，也不把旧年末／失败前缀接为当前轨迹。
+下方22:12UTC队列安排是此次物理修订前的历史，不再是当前待执行计划。
+
+[已完成旧FV576原包的无损存储整理](v1-results/completed-fv-packets-jz/manifest.json)：
+原446实际F0的逐步`.pkl.gz`已按原路径收入单个ZIP，576项CRC／SHA及完整临时
+恢复验证后才移除散文件。原初态／输入／报告／轨迹／检查点／源码不变；以后
+读取旧FV包应从`closed-step-packets-jz.zip`取原相对路径并按其manifest核验。
+这不是重新运行或改变旧科学结果；当前JR的576新包已自始按每组TAR存储。
+
 ## 22:12UTC：第二、三气候周期已排，尚无新周期执行
 
 2026-10-24：[CUDA1循环队列](v1-results/climate-gpu-cycles-hr/manifest.json)2990905已核验

@@ -207,7 +207,7 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
     hjac = hjac.at[10,10].add(hbare)
     mol_density = u[2]/(8.314462618*u[0])
     empty_roots = (soil[0]>0.)&(_sum(jnp.where(soil[5:9]>0.,soil[1:5],0.))==0.)
-    capacity_stress = jnp.where((u[16]==0.)|empty_roots,0.,factors[:,1])
+    gas_water_stress = jnp.where((u[16]==0.)|empty_roots,0.,factors[:,1])
     temperature = initial.at[:10].set(jnp.where(active,initial[:10],u[0]))
     if boundary is not None:
         temperature=temperature.at[10].set(boundary[0])
@@ -236,7 +236,7 @@ def canopy_energy_kernel_jax(area,u,factors,soil,initial,p,*,max_iterations=100,
             es=es.at[10].set(jnp.where(boundary[1]>0.,ies,es[10]))
         vapor = qcan*u[2]/(.622+.378*qcan)
         leaf_input = jnp.stack((par,temp[:10],jnp.full((10,),u[8]),vapor/es[:10],
-            jnp.full((10,),u[5]*mol_density),factors[:,0]*capacity_stress,factors[:,1]),axis=1)
+            jnp.full((10,),u[5]*mol_density),factors[:,0],gas_water_stress),axis=1)
         gas = jax.vmap(leaf_kernel_jax,in_axes=(0,None))(leaf_input,p)
         gs = gas[:,9]/mol_density
         left,right = jnp.minimum(jnp.min(qs),u[1]),jnp.maximum(jnp.max(qs),u[1])

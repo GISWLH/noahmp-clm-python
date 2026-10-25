@@ -101,7 +101,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         raise ValueError('Phase energy requires explicit root supply for transpiration heat')
     rooted=0. if soil_supply is None else np.where(soil_supply.weights>0.,roots,0.).sum()
     tr_limit=min(transpiration_limit,rooted)
-    biochemical=water_stress if tr_limit>0. else water_stress*0.
+    gas_water_stress=water_stress if tr_limit>0. else water_stress*0.
     fractions=coverage(condensate,leaf,stem_area=stem,vegetated_fraction=fv)
     if snowpack is None:
         if canopy_optics is None:
@@ -140,7 +140,7 @@ def solve_canopy_phase_energy(leaf_area, swdown, lwdown, exchange, condensate, d
         wet_sat=liquid_area*qliq[:-1]+(1.-liquid_area)*qice[:-1];ground_sat=qice[-1] if ground_is_ice else qliq[-1]
         gas=leaf_gas_exchange(sw['absorbed_par'],leaf_t,co2_ppm=e.co2_ppm,
             relative_humidity=qc*e.pressure/(.622+.378*qc)/es[:-1],boundary_conductance=e.leaf_velocity*mol,
-            parameters=leaf_parameters,water_stress=water_stress,nitrogen_factor=nitrogen_factor*biochemical)
+            parameters=leaf_parameters,water_stress=gas_water_stress,nitrogen_factor=nitrogen_factor)
         wet_area=np.where(wet_sat>qc,fractions['wet_fraction'],1.)
         wet_demand=vapor_conductance*wet_area*(wet_sat-qc)
         final,parcel=_equilibrium_vapor(heated,dt*wet_demand,leaf_t,liquid_area)

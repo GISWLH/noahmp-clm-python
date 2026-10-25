@@ -2,7 +2,7 @@
 
 Input row: absorbed PAR, leaf K, CO2 ppm, RH relative to leaf saturation,
 boundary conductance mol/m²/s, nitrogen factor, water stress. Parameters follow
-LeafParameters field order. This component is not yet wired to column stepping.
+LeafParameters field order. Shared by standalone and coupled column kernels.
 """
 from dataclasses import astuple
 from functools import lru_cache
@@ -73,10 +73,11 @@ def leaf_kernel_jax(u, p):
         return arrhenius(activation)*numerator/denominator
 
     vc_factor = peaked(72000., 200000., 668.39-1.07*growth)
-    vcmax = p[0]*nitrogen*vc_factor
+    vcmax = lax.optimization_barrier(p[0]*nitrogen*vc_factor)*stress
     jmax = p[1]*nitrogen*peaked(50000., 200000., 659.70-.75*growth)
     product = 3.*p[2]*nitrogen*vc_factor
-    rd = p[3]*peaked(46390., 150650., 490.)
+    rd = lax.optimization_barrier(p[3]*peaked(46390., 150650., 490.))*stress
+    minimum = jnp.maximum(p[7]*stress, 1e-6)
     kc, ko, gamma = 404.9*arrhenius(79430.), 278400.*arrhenius(36380.), 42.75*arrhenius(37830.)
     light = .5*p[4]*par
     total = light+jmax
@@ -90,9 +91,9 @@ def leaf_kernel_jax(u, p):
         gross = jnp.minimum(jnp.minimum(rubisco, rubp), product)
         net = gross-rd
         cs = jnp.maximum(ca-1.4*net/gb, 1e-9)
-        x = p[6]*jnp.maximum(net, 0.)*stress/cs
-        b = gb-p[7]-x
-        c = gb*(p[7]+x*jnp.minimum(rh, 1.))
+        x = p[6]*jnp.maximum(net, 0.)/cs
+        b = gb-minimum-x
+        c = gb*(minimum+x*jnp.minimum(rh, 1.))
         root = jnp.sqrt(b*b+4.*c)
         gs = jnp.where(b >= 0., 2.*c/jnp.maximum(b+root, 1e-30), .5*(root-b))
         residual = net-(ca-ci)/(1.4/gb+1.6/gs)
@@ -104,7 +105,7 @@ def leaf_kernel_jax(u, p):
         residual = evaluate(mid)[-1]
         return jnp.where(residual < 0., mid, lo), jnp.where(residual >= 0., mid, hi)
 
-    hi = ca+rd*(1.4/gb+1.6/p[7])+1.
+    hi = ca+rd*(1.4/gb+1.6/minimum)+1.
     lo, hi = lax.fori_loop(0, 48, bisect, (jnp.zeros_like(hi), hi))
     ci = .5*(lo+hi)
     gross, net, ac, aj, cs, gs, residual = evaluate(ci)

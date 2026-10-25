@@ -79,14 +79,14 @@ def farquhar_rates(ci_ppm, absorbed_par, leaf_temperature, parameters=None, *, n
     return _rates_at_ci(ci, _biochemical_coefficients(par, temperature, nitrogen, p))
 
 
-def _biochemical_coefficients(par, temperature, nitrogen, p):
+def _biochemical_coefficients(par, temperature, nitrogen, p, water_stress=1.0):
     """Coefficients fixed during the ci root solve; inputs validated by caller."""
     growth_c = np.clip(p.growth_temperature - 273.15, 11.0, 35.0)
     vc_factor = _peaked(temperature, 72000., 200000., 668.39 - 1.07 * growth_c)
-    vcmax = p.vcmax25 * nitrogen * vc_factor
+    vcmax = p.vcmax25 * nitrogen * vc_factor * water_stress
     jmax = p.jmax25 * nitrogen * _peaked(temperature, 50000., 200000., 659.70 - .75 * growth_c)
     tpu = p.tpu25 * nitrogen * vc_factor
-    rd = p.respiration25 * _peaked(temperature, 46390., 150650., 490.)
+    rd = p.respiration25 * _peaked(temperature, 46390., 150650., 490.) * water_stress
     kc = 404.9 * _arrhenius(temperature, 79430.)
     ko = 278400. * _arrhenius(temperature, 36380.)
     gamma = 42.75 * _arrhenius(temperature, 37830.)
@@ -128,10 +128,16 @@ def ball_berry_conductance(net_assimilation, surface_co2_ppm, relative_humidity,
     return _ball_berry(a,cs,rh,gb,stress,p)
 
 
+def _minimum_conductance(stress, p):
+    # CLM's 1 umol H2O m-2 s-1 floor, expressed in this module's mol units.
+    return np.maximum(p.minimum_conductance * stress, 1e-6)
+
+
 def _ball_berry(a,cs,rh,gb,stress,p):
-    x = p.ball_berry_slope * np.maximum(a, 0.0) * stress / cs
-    b = gb - p.minimum_conductance - x
-    c = gb * (p.minimum_conductance + x * np.minimum(rh, 1.0))
+    minimum = _minimum_conductance(stress, p)
+    x = p.ball_berry_slope * np.maximum(a, 0.0) / cs
+    b = gb - minimum - x
+    c = gb * (minimum + x * np.minimum(rh, 1.0))
     root = np.sqrt(b*b + 4.0*c)
     # Both forms are algebraically identical; choose the non-cancelling one.
     positive = 2.0*c / np.maximum(b + root, 1e-30)
@@ -146,6 +152,8 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
     The fixed bracket allows ci above ambient (outward respiration).
     Newton steps stay inside it; unresolved entries retain a bisection fallback.
     Return the actual diffusion residual, not a convergence flag alone.
+    Water stress scales Vcmax, Rd and minimum conductance independently of N;
+    it does not additionally scale Jmax, TPU or the Ball--Berry slope.
     """
     p = parameters or LeafParameters()
     par, temp, ca, rh, gb, nitrogen, stress = np.broadcast_arrays(np.asarray(absorbed_par, float),
@@ -157,10 +165,11 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
     if np.any((par<0)|(temp<200)|(temp>350)|(ca<=0)|(rh<0)|(gb<=0)
               |(nitrogen<0)|(nitrogen>1)|(stress<0)|(stress>1)):
         raise ValueError("Unphysical leaf input")
-    coefficients = _biochemical_coefficients(par,temp,nitrogen,p)
+    coefficients = _biochemical_coefficients(par,temp,nitrogen,p,stress)
+    minimum = _minimum_conductance(stress, p)
     rd = coefficients[4]
     lo = np.zeros_like(ca)
-    hi = ca + rd * (1.4 / gb + 1.6 / p.minimum_conductance) + 1.0
+    hi = ca + rd * (1.4 / gb + 1.6 / minimum) + 1.0
 
     def evaluate(ci):
         rates = _rates_at_ci(ci,coefficients)
@@ -194,10 +203,10 @@ def leaf_gas_exchange(absorbed_par, leaf_temperature, *, co2_ppm=420.0,
             da = np.where((ci<=gamma)|(rates['gross']==rates['tpu']),0.,da)
             a = rates['net']
             cs_slope = np.where(ca-1.4*a/gb>1e-9,-1.4/gb,0.)
-            x = p.ball_berry_slope*np.maximum(a,0.)*stress/cs
-            dx = p.ball_berry_slope*stress*(cs-a*cs_slope)/(cs*cs)
+            x = p.ball_berry_slope*np.maximum(a,0.)/cs
+            dx = p.ball_berry_slope*(cs-a*cs_slope)/(cs*cs)
             dx = np.where(a>0.,dx,0.)
-            dg = (gs+gb*np.minimum(rh,1.))/(2.*gs+gb-p.minimum_conductance-x)*dx*da
+            dg = (gs+gb*np.minimum(rh,1.))/(2.*gs+gb-minimum-x)*dx*da
             resistance = 1.4/gb+1.6/gs
             derivative = da+1./resistance-(ca-ci)*1.6*dg/(gs*gs*resistance*resistance)
             delta = np.divide(residual,derivative,out=np.full_like(residual,np.inf),where=derivative>0.)

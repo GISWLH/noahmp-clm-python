@@ -101,7 +101,7 @@ def phase_energy_kernel_jax(leaf,u,f,soil,stem,c,b,snow,count,p,ice,impurity,*,m
         frac=j.where(mass>0.,j.clip(thermal/334000.,0.,mass)/j.where(mass>0.,mass,1.),dry_fraction)
         qs=s(s(frac*qliq[:10])+s(s(1.-frac)*qice[:10]))
         rh=s(q*u[2])/s(.622+s(.378*q))/es[:10]
-        leaf_input=j.stack((par,tleaf,j.full(10,u[8]),rh,j.full(10,s(u[5]*mol)),s(f[:,0]*j.where(trlimit>0.,f[:,1],0.)),f[:,1]),axis=1)
+        leaf_input=j.stack((par,tleaf,j.full(10,u[8]),rh,j.full(10,s(u[5]*mol)),f[:,0],j.where(trlimit>0.,f[:,1],0.)),axis=1)
         gas=jax.vmap(leaf_kernel_jax,in_axes=(0,0 if p.ndim==2 else None))(leaf_input,p)
         amount=s(b[4]*s(s(vc*j.where(qs>q,fw,1.))*s(qs-q)))
         loss=j.minimum(j.maximum(amount,0.),mass);deposit=j.maximum(-amount,0.);remaining=s(mass-loss)

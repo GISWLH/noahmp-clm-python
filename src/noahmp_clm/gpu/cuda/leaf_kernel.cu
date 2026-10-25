@@ -31,9 +31,10 @@ __device__ void evaluate(float ci, const LeafEnvironment& e, const float* p, flo
     float gross = fminf(fminf(ac, aj), e.product);
     float net = gross-e.rd;
     float cs = fmaxf(e.ca-1.4f*net/e.gb, 1e-9f);
-    float x = p[6]*fmaxf(net, 0.f)*e.stress/cs;
-    float b = e.gb-p[7]-x;
-    float c = e.gb*(p[7]+x*fminf(e.rh, 1.f));
+    float minimum=fmaxf(p[7]*e.stress,1e-6f);
+    float x = p[6]*fmaxf(net, 0.f)/cs;
+    float b = e.gb-minimum-x;
+    float c = e.gb*(minimum+x*fminf(e.rh, 1.f));
     float root = sqrtf(b*b+4.f*c);
     float gs = b >= 0.f ? 2.f*c/fmaxf(b+root, 1e-30f) : .5f*(root-b);
     v[0]=gross; v[1]=net; v[2]=ac; v[3]=aj; v[4]=cs; v[5]=gs;
@@ -46,10 +47,10 @@ __device__ void leaf_gas_exchange_device(const float* v, const float* p, float* 
         LeafEnvironment e;
         e.ca=v[2]; e.rh=v[3]; e.gb=v[4]; e.stress=v[6];
         float vc_factor=peaked(t, 72000.f, 200000.f, 668.39f-1.07f*growth);
-        e.vcmax=p[0]*nitrogen*vc_factor;
+        e.vcmax=(p[0]*nitrogen*vc_factor)*e.stress;
         float jmax=p[1]*nitrogen*peaked(t, 50000.f, 200000.f, 659.70f-.75f*growth);
         e.product=3.f*p[2]*nitrogen*vc_factor;
-        e.rd=p[3]*peaked(t, 46390.f, 150650.f, 490.f);
+        e.rd=(p[3]*peaked(t, 46390.f, 150650.f, 490.f))*e.stress;
         e.kc=404.9f*arrhenius(t, 79430.f);
         e.ko=278400.f*arrhenius(t, 36380.f);
         e.gamma=42.75f*arrhenius(t, 37830.f);
@@ -57,7 +58,8 @@ __device__ void leaf_gas_exchange_device(const float* v, const float* p, float* 
         float total=light+jmax;
         float den=total+sqrtf(fmaxf(total*total-4.f*p[5]*light*jmax, 0.f));
         e.transport=den>0.f ? 2.f*light*jmax/fmaxf(den, 1e-30f) : 0.f;
-        float lo=0.f, hi=e.ca+e.rd*(1.4f/e.gb+1.6f/p[7])+1.f;
+        float minimum=fmaxf(p[7]*e.stress,1e-6f);
+        float lo=0.f, hi=e.ca+e.rd*(1.4f/e.gb+1.6f/minimum)+1.f;
         float rates[7];
         for (int iter=0; iter<48; ++iter) {
             float mid=.5f*(lo+hi);

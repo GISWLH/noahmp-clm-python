@@ -83,8 +83,8 @@ def independent_reference(area,swdown,lwdown,e,old,dt,**kw):
         fraction=np.divide(liq,mass,out=np.asarray(leaf_t>273.15,dtype=float),where=mass>0.)
         qs=qi[:-1]+fraction*(ql[:-1]-qi[:-1])
         gas=leaf_gas_exchange(sw['absorbed_par'],leaf_t,co2_ppm=e.co2_ppm,relative_humidity=q*e.pressure/(.622+.378*q)/es[:-1],
-            boundary_conductance=e.leaf_velocity*mol,nitrogen_factor=kw.get('nitrogen_factor',1.)*kw.get('water_stress',1.) if root_limit>0. else 0.,
-            water_stress=kw.get('water_stress',1.),parameters=kw.get('leaf_parameters'))
+            boundary_conductance=e.leaf_velocity*mol,nitrogen_factor=kw.get('nitrogen_factor',1.),
+            water_stress=kw.get('water_stress',1.) if root_limit>0. else 0.,parameters=kw.get('leaf_parameters'))
         wanted=rho*fv*area*e.leaf_velocity*np.where(qs>q,fw,1.)*(qs-q)*dt
         loss=np.minimum(np.maximum(wanted,0.),mass);deposit=np.maximum(-wanted,0.)
         wet=(loss-deposit)/dt

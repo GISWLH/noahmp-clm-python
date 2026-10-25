@@ -41,7 +41,7 @@ __device__ __noinline__ void phase_evaluate(const PhaseContext& v,const float* z
         float dry_fraction=v.phase_active[i]?fminf(1.f,fmaxf(0.f,(z[i]*4180.f)/334000.f)):(t[i]>273.15f?1.f:0.f);
         float m=c[2*i],frac=m>0.f?fminf(m,fmaxf(0.f,thermal[i]/334000.f))/m:dry_fraction;
         float sat=frac*qs[i]+(1.f-frac)*qi[i],rh=((q*u[2])/(.622f+.378f*q))/es[i];
-        float input[7]={v.rad[10+i],t[i],u[8],rh,u[5]*v.mol,v.f[2*i]*(v.trlimit>0.f?v.f[2*i+1]:0.f),v.f[2*i+1]};
+        float input[7]={v.rad[10+i],t[i],u[8],rh,u[5]*v.mol,v.f[2*i],v.trlimit>0.f?v.f[2*i+1]:0.f};
         leaf_gas_exchange_device(input,CLM_LAYER_LEAF_PARAMETERS(v.p,i),gas+12*i);
         float amount=b[4]*((v.vc[i]*(sat>q?v.fw[i]:1.f))*(sat-q));
         float loss=fminf(fmaxf(amount,0.f),m),deposit=fmaxf(-amount,0.f),remaining=m-loss;

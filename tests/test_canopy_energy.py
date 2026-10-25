@@ -60,8 +60,8 @@ def independent_energy_reference(area, swdown, lwdown, e, **kwargs):
         leaf = leaf_gas_exchange(radiation["absorbed_par"],t[:-1],co2_ppm=e.co2_ppm,
             relative_humidity=qc*e.pressure/(.622+.378*qc)/es[:-1],
             boundary_conductance=e.leaf_velocity*mol_density,
-            parameters=kwargs.get("leaf_parameters"),nitrogen_factor=kwargs.get("nitrogen_factor",1.)*biochemical_stress,
-            water_stress=kwargs.get("water_stress",1.))
+            parameters=kwargs.get("leaf_parameters"),nitrogen_factor=kwargs.get("nitrogen_factor",1.),
+            water_stress=biochemical_stress)
         tc = ((heat_weights@t+e.atmosphere_velocity*e.air_temperature)
               /(heat_weights.sum()+e.atmosphere_velocity)) if fv else e.air_temperature
         h = rho*1004.*fv*heat_weights*(t-tc)

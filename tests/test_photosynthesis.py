@@ -63,8 +63,9 @@ def test_dark_closed_form_and_mixed_batch_iterative_reference(minimum):
         co2_ppm=np.r_[ca,420.],relative_humidity=np.r_[rh,.7],boundary_conductance=np.r_[gb,1.],
         water_stress=np.r_[stress,1.],parameters=p)
     np.testing.assert_array_equal(actual['gross'],np.zeros(n))
-    np.testing.assert_allclose(actual['gs_mol'],minimum,rtol=1e-14)
-    expected_ci=ca+actual['respiration']*(1.4/gb+1.6/minimum)
+    effective_minimum=np.maximum(minimum*stress,1e-6)
+    np.testing.assert_allclose(actual['gs_mol'],effective_minimum,rtol=1e-14)
+    expected_ci=ca+actual['respiration']*(1.4/gb+1.6/effective_minimum)
     np.testing.assert_allclose(actual['ci_ppm'],expected_ci,rtol=1e-14,atol=1e-12)
     for key,value in actual.items():
         np.testing.assert_allclose(value,mixed[key][:-1],rtol=1e-11,atol=1e-10,err_msg=key)
