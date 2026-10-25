@@ -1,5 +1,10 @@
 # 当前源码与原三站 HRLDAS 的配对重建
 
+2026-10-25 13:54UTC更新：独立NM CUDA1年度NZ在7275/17520步以分层相变
+表面异常退出，worker返回1；[原始终态证据](v1-results/failed-years-pq/manifest.json)
+保留三站完整末态及累计账，不续失败年。OF全年导出／评价条件未满足；下方
+LQ旧JN源CPU年仍保留自身来源，不以其前缀替代NZ，也不重标当前科学通过。
+
 ## 2026-10-25 12:30UTC：原LQ三条NumPy年仍在超算正常运行
 
 [实际进程／PBS／原报告快照](v1-results/hrldas-lq-status-pj/manifest.json)确认原JN源身份

@@ -1,5 +1,18 @@
 # 柱内垂向水文边界复核（OC，2026-10-25）
 
+2026-10-25 PB-n包化一致性：EHPC1673真实F0／Stageout0，在新593文件候选中
+直接使用1665冻结输入32，完成20次原语、17次完整积分和5768次实际相反演。
+全部1106数值返回字段的dtype／shape／C-order bytes与原NumPy32金样完全相同；
+数值子进程44.649228秒，worker45.265075秒。最大水／热残差仍为
+9.771436453e−6 kg/m²／5.375 J/m²，对应原界.0108337402344／6119.685546875，
+最大界占比.00101008／.00106114，未修改原64eps账。
+974个独立文件前后不变：候选源及清单594、准备及清单24、执行控制11、金样345。
+其中593候选源包含全部586父源；两个CUDA文本
+只作包资源核对，未运行。此轮仅包化／import路径／资源一致性，不计64位包化、
+JAX／CUDA、整柱、native适配或生产集成。
+[270件原始证据](v1-results/clm-drainage-package-pb-n/manifest.json)、
+[原件核验及独立复审](v1-results/clm-drainage-package-pb-n-review/manifest.json)。
+
 2026-10-25后续开发：补齐诊断土柱水位、饱和带及冻层上方滞水带排水的NumPy
 参考组件，再同步JAX／CUDA及整柱连接。[CLM5公开水文方程§2.7.3—2.7.5](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Hydrology/CLM50_Tech_Note_Hydrology.html)
 的这条路径使用零底通量土水求解，随后从实际土层移出径流，不以独立WA水库

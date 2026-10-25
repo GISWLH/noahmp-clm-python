@@ -22,7 +22,9 @@ v0.2.0 的 GPU 移植已获 Wang [验收](docs/GPU_ACCEPTANCE.md)。当前阶段
 | 表面求根永久 GPU 回归 | 旧源重现原失败；候选 CUDA32/JAX32 的 345 字段最大绝对差 0；对独立 NumPy 的 H/LE 最大差 0.002164094/0.000090556 W/m²；[原始结果](docs/CLM_SURFACE_ROOT.md) |
 | 修复相关 GPU 专项 | CUDA1 原 8 个完整模块、31 项均实际退出 0；控制器 7206.43 秒，零失败、错误或跳过，源不变；[完整日志与源](docs/v1-results/surface-root-regression-mx/manifest.json) |
 | 最终候选冷启动 | 12 配置各 48 步；EHPC1586 独立核对 576 对柱步，H/LE 最大绝对差 0.005750100/0.003746741 W/m²；原水热碳氮与杂质条件保持；[完整范围](docs/CLM_MULTISITE_SPINUP.md) |
-| 最终完整 GPU 回归 | CUDA1 于 UTC 07:29 实际启动；13:14 快照 148/408＝116 项本轮实际通过＋32 项有来源和依赖核验的专项；年度 NS5760、NZ6192/17520 步，均运行；分层冠层整柱 H/LE 对 NumPy 最大差 0.000782966/0.002993800 W/m²，同精度最大差0；尚无完整通过结果；[队列与估时](docs/GPU_QUEUE_REPLACEMENT.md) |
+| 最终完整 GPU 回归 | CUDA1 于 UTC 07:29 实际启动；13:54 快照 148/408＝116 项本轮实际通过＋32 项有来源和依赖核验的专项，光学整柱仍运行；剩余粗估约20–43小时，尚无完整通过结果；[队列与估时](docs/GPU_QUEUE_REPLACEMENT.md) |
+| 当前两组 CUDA 年度 | NS12／NZ3 均在7275/17520步以原分层相变表面异常退出，worker 返回1；完整末态和原账已封存，年度剩余估时撤销；[原始失败证据](docs/v1-results/failed-years-pq/manifest.json) |
+| 新排水组件包化 | EHPC1673 F0，20次原语／17次完整NumPy32积分，1106个返回字段dtype、形状、字节与1665金样全相同；未计设备或整柱验证；[范围与原守恒数字](docs/CLM_VERTICAL_HYDROLOGY.md) |
 
 这些后端比较不能替代观测验收。当前完整年度、气候及 SOC spinup、多站多年、
 留出集和校准仍未完成；已有观测差距保留，例如当前源 Qia 一月 H 偏差
