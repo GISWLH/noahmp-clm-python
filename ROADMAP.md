@@ -8,6 +8,11 @@
 [启动与状态证据](docs/v1-results/candidate-launches-nt/manifest.json)。完整回归、
 新全年、气候／SOC收敛、多站多年、留出／校准和v1.0.0验收仍不勾选。
 
+[柱内水文范围复核](docs/CLM_VERTICAL_HYDROLOGY.md)：已接入的零底通量 Richards
+不等于完整含水层／预报水位过程；这些限制保留。EHPC1592 实际读回原 R 全年
+QDRAI=125.3991 mm、QCHARGE=0，下一步核对当前实际年度的同期出口与土水响应，
+不凭参考内部字段或函数名称扩展柱间侧向地下水项目。
+
 2026-10-25 06:05UTC：[私有求根候选](docs/CLM_SURFACE_ROOT.md)的永久回归已完成
 旧源真实失败／新源真实通过，345 同精度字段最大差 0；EHPC1578 原 1156 CPU
 节点全部实际通过、831.98 秒。31 项 GPU 专项尚待完成，不勾选生产推广、

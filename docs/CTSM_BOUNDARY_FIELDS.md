@@ -40,6 +40,11 @@ R 只选了唯一年末 restart；S 的 48 个 restart 中仅选首、末两个�
 时间审计，不把 S 首/末相同推广为全部中间状态相同。ROOTFR 的缺失限定于这
 12 个实际读取文件，不外推为所有 CTSM 文件都没有该字段。
 
+后续[垂向水文复核](CLM_VERTICAL_HYDROLOGY.md)确认 R 实际关闭 aquifer，
+全年 QCHARGE 为0。无 aquifer 路径的 WA=5000 mm 是基线，不能把上表冷文件
+至 restart 的变化直接解释为1000 mm物理补给。R 全年仍有125.3991 mm饱和区
+排水，不能从其首日排水为0推断全年封闭。
+
 这些结果补充[参考边界台账](CTSM_REFERENCE_BOUNDARIES.md)：土质、深度、
 地下水初值/运行状态已有直接字段证据；实际根分数仍未测。后续 EHPC1591
 已完成[总 BC／尘／OC 陆面通量数值读回](CTSM_LAND_DEPOSITION.md)，年度
