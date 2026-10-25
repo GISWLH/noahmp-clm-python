@@ -1,5 +1,21 @@
 # 三站完整年初态与耦合spinup
 
+## 2026-10-25 02:10UTC：真实BGC流审计与全年收尾准备
+
+[EHPC1190](v1-results/current-year-preparation-ks/manifest.json)实际F0，已核验当前JN
+12组冷48＋续48、共1152柱步的全部C/N链、实际输入和原float32预算，另以float64
+库存／交换账独立重算。逐步C/N残差最大.000544274／.0000606328，累计最大
+.0129318／.00210110（分别gC、gN每平方米），全部在原界内；此项仅为C/N审计，
+不宣称对续算每步热边界重新推导。96步各组分解氮因子均1，仍不代表年度条件、
+稳定NPP、气候或SOC收敛，没有应用新初态或条件碳解。
+
+[全年导出KK控制](v1-results/current-year-export-readiness-kt/manifest.json)实际进程3199615
+存活，等待当前KC12组原年真正完成0后才导出完整诊断／初末态／全轨迹。原GPU
+年、缓存和源码不动；没有新增GPU模型进程。KL全365日／12月和210240柱步C/N／
+原水热账／库存／FLUXNET各产品与原QC／测深审计已准备，尚未提交或执行。
+[方法边界和实际数值](CLM_SPINUP_ACCELERATION.md)另列。当前完整407、K78原门、
+完整年／真实重复气候周期／长期SOC／多站多年／留出／校准仍待。
+
 ## 2026-10-25 01:10UTC：当前JN冷窗口独立审计完成，全年续算已启动
 
 [JN三站CUDA12×48](v1-results/ballberry-climatology-cuda-jt/manifest.json)实际父0，
