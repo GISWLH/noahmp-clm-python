@@ -3,6 +3,14 @@
 2026-10-25。GPU 工作继续固定在 xuanze 物理 CUDA1
 （`GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452`），CPU 数值工作在 EHPC。
 
+EHPC测试使用`/home/zhangyq/venvs/noahmp-closeout/bin/python`，将原源码目录和
+既有`/home/zhangyq/noahmp-v1/test-deps`加入`PYTHONPATH`；pytest／SciPy测试
+依赖在后者，不假定已安装进venv。线程数按PBS分配设置，当前短测试为单核。
+Windows仅做编辑、Git、原件哈希／归档和静态检查，不跑物理数值。
+PBS临时目录在终态后可能自动清理，后续只读验证应从已固定SHA的原stage／源包
+重新展开；不能把上一作业的临时路径当持久结果。测试计数按实际结果状态与
+总结读取，测试名称中出现`skipped`不表示该测试跳过。
+
 **10:47 UTC 排期更新：回归140/408，NS1728、NZ1968/17520步。**
 实际进程环境均绑定物理CUDA1，采样利用率100%、显存已用6702MiB；当前分层
 冠层模块仍未完整闭合。回归剩余估计保持22.08–44.54小时；NS最近1056→1728
