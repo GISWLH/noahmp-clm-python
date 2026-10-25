@@ -1,0 +1,510 @@
+{
+  "scope": "Original current NM running NS3120 prefix; actual complete January/February observations and original65-day ownQC0 instantaneous evaluation, with all scientific failures. Not annual, spinup, calibration or release acceptance.",
+  "archive_sha256": "3c15d8ac67c13affb9c4bb085ac9194be6d1e24e8c499ce36c6e3c1a89ab267d",
+  "artifacts": [
+    {
+      "source": "README.md",
+      "path": "README.md.gz",
+      "source_sha256": "f256d876b4b79b87e65e46caea8029939d83712339348e3533c8ca6a50d52af0",
+      "stored_sha256": "efa67bef71ee49e1d4a02c97b24d0d208868b3208255cf02f18c514aef9c7c1a"
+    },
+    {
+      "source": "actual-manager/compute-extract.stderr.txt",
+      "path": "actual-manager/compute-extract.stderr.txt.gz",
+      "source_sha256": "bbb03c9493e29d1c4c447061d85b7afb73a17d82a499094caa14a9df23efd3fe",
+      "stored_sha256": "82d7444c9c9071e6f8328840bc46395eb9f52e4f26de891e2cd80510b39be5c4"
+    },
+    {
+      "source": "actual-manager/compute-extract.stdout.txt",
+      "path": "actual-manager/compute-extract.stdout.txt.gz",
+      "source_sha256": "4f2533d530790acc0cb96870663f0c0a25200cc4fe369af8925bc55a358c5255",
+      "stored_sha256": "edb3a746bac7ca6a3bcc36b038181abc5eb4135f77e8b5237ddc1bbe22447a25"
+    },
+    {
+      "source": "actual-manager/dispatch.json",
+      "path": "actual-manager/dispatch.json.gz",
+      "source_sha256": "f4874f133aa946f8fbd348104db3e81bd00e13b5ee0ca503d15c7c67def36351",
+      "stored_sha256": "cfc5cbf50134296916d4efd9b436760c8ab0ac9c77616e4098a8309fda24a901"
+    },
+    {
+      "source": "actual-manager/qstat-final.txt",
+      "path": "actual-manager/qstat-final.txt.gz",
+      "source_sha256": "e6b2381fa7a82e56b0526474f0bcdbbc4c3be0363c5c68385aaf38e1e707fb6b",
+      "stored_sha256": "2ac1c43b5c49db0ae98a670ee03ff5b63181dad8391de2868a9f14cf839589ba"
+    },
+    {
+      "source": "actual-manager/qsub-exit.json",
+      "path": "actual-manager/qsub-exit.json.gz",
+      "source_sha256": "7995aeec7943bef3fd99bcd67a655471bb0c1272f13e736629d9db14d22e3b95",
+      "stored_sha256": "25c99cdf3fef3933e11cd759576cb14f508bef81424b1fb5a35f96bc6462b30e"
+    },
+    {
+      "source": "actual-manager/qsub.stderr.txt",
+      "path": "actual-manager/qsub.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-manager/qsub.stdout.txt",
+      "path": "actual-manager/qsub.stdout.txt.gz",
+      "source_sha256": "b8cbcff56e0e9ae8bfce2e7e0a83044124467343ee1eaba6806ad0bed207461a",
+      "stored_sha256": "9d55413d01b4fcd8c4070950f9d58177eab388b65e33939cb9c5f022589514ec"
+    },
+    {
+      "source": "actual-manager/stage-inventory.json",
+      "path": "actual-manager/stage-inventory.json.gz",
+      "source_sha256": "3bb36ffbb50b452f396b20714488f0209b1746bc3d36b523ac5fc9957290afc4",
+      "stored_sha256": "bf520378df1acd57c4e014d54a7c6f5fa32cb29ca883a7c3cdd6b5ff8dc0b211"
+    },
+    {
+      "source": "controls/BINDINGS.json",
+      "path": "controls/BINDINGS.json.gz",
+      "source_sha256": "00d4aff78f2179dbe5465abee117238592e23b266e72dbe2961c66d782ba46fe",
+      "stored_sha256": "bc178b2eb4cf0b674dd20f693bc5cfca45f7636670f3a83cd5c4bf4b8b7eb343"
+    },
+    {
+      "source": "controls/dispatch_pg.py",
+      "path": "controls/dispatch_pg.py.gz",
+      "source_sha256": "4bc650bdf214d3cddba092b087f8f2c91cb687c3811fd56cb5ae09ea24c3578a",
+      "stored_sha256": "2d5852a4da3f52e7c9257992aefd1c6d519b17a28832b980e2b7fac56e60bac1"
+    },
+    {
+      "source": "controls/evaluate_pg.py",
+      "path": "controls/evaluate_pg.py.gz",
+      "source_sha256": "acc32499b91357064bc82cedbaa29e81285c2e8c736a0f0845f0842e465c6b62",
+      "stored_sha256": "192fc223ee8f87f75265d90dad32f8b802e264cfa56cdbcaf5f6998f951f5e74"
+    },
+    {
+      "source": "controls/job.pbs",
+      "path": "controls/job.pbs.gz",
+      "source_sha256": "ab902fb27401d03d3964d37facd861bbd70f0459a0b975a9729d20327c2cbd51",
+      "stored_sha256": "0845891beb15e619ec2f8fff007a0969b2751a168fca915ca051b00454ac578a"
+    },
+    {
+      "source": "controls/operators/CN-Cha-soil-operator.json",
+      "path": "controls/operators/CN-Cha-soil-operator.json.gz",
+      "source_sha256": "56b41a9c173f28c56f71b453a15626dac329d443582cdc2d5080428180ce91ac",
+      "stored_sha256": "f6ce8912f91955b9856ced9e1c4219eebb79049be1462eef619ab0b23ed71f01"
+    },
+    {
+      "source": "controls/operators/CN-Cng-soil-operator.json",
+      "path": "controls/operators/CN-Cng-soil-operator.json.gz",
+      "source_sha256": "0a9b838cc545e1976d55a00bf019b5ebc2ea086726f7ed993a1e0d07d2d7cd78",
+      "stored_sha256": "b9d44884cf682c0218d9c25216eee46531f90df3af7904446f27e30daed19f9c"
+    },
+    {
+      "source": "controls/operators/CN-Qia-soil-operator.json",
+      "path": "controls/operators/CN-Qia-soil-operator.json.gz",
+      "source_sha256": "49ff2b416241d3f58bdbb73f4d91ba19a81f3b0357ba2cebbffed904415f7095",
+      "stored_sha256": "4bc1d58a30e67da87001bc72b254a3a15fee335de778d9b7519fa242903a2c90"
+    },
+    {
+      "source": "controls/stage-inventory.json",
+      "path": "controls/stage-inventory.json.gz",
+      "source_sha256": "3bb36ffbb50b452f396b20714488f0209b1746bc3d36b523ac5fc9957290afc4",
+      "stored_sha256": "bf520378df1acd57c4e014d54a7c6f5fa32cb29ca883a7c3cdd6b5ff8dc0b211"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-field-capacity-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Cha-2003-field-capacity-hydraulic-clim/observations.json.gz",
+      "source_sha256": "9320bf74e6b4022e4ec0c01e73c9ae57ff9050dabf2a3253787250cfab9d4108",
+      "stored_sha256": "9320bf74e6b4022e4ec0c01e73c9ae57ff9050dabf2a3253787250cfab9d4108"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-field-capacity-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Cha-2003-field-capacity-hydraulic-clim/summary.json.gz",
+      "source_sha256": "7ed89b0e8c93f10694d51e7bb708aa62f16fa93146e238385d359eaef88bb698",
+      "stored_sha256": "9182d3a92e60d39d260524591def1d4fa993be5c01a763a4021d1db70185fab7"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-field-capacity-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Cha-2003-field-capacity-legacy-clim/observations.json.gz",
+      "source_sha256": "9320bf74e6b4022e4ec0c01e73c9ae57ff9050dabf2a3253787250cfab9d4108",
+      "stored_sha256": "9320bf74e6b4022e4ec0c01e73c9ae57ff9050dabf2a3253787250cfab9d4108"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-field-capacity-legacy-clim/summary.json",
+      "path": "evaluation/CN-Cha-2003-field-capacity-legacy-clim/summary.json.gz",
+      "source_sha256": "0f4601c336d29466621e951ddc8e66b4a9da7fd342d09bbc1cd097d71d2f2239",
+      "stored_sha256": "d08abfe98920d599f81fbe8096cb58c37b71dcd685015d33ad050c764fc2091a"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-wilting-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Cha-2003-wilting-hydraulic-clim/observations.json.gz",
+      "source_sha256": "2b8109c2a57b99ba01094a9a2363c4d415d609922ed70148e1306a7f4c9b2b3e",
+      "stored_sha256": "2b8109c2a57b99ba01094a9a2363c4d415d609922ed70148e1306a7f4c9b2b3e"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-wilting-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Cha-2003-wilting-hydraulic-clim/summary.json.gz",
+      "source_sha256": "f2e334ca89712bc34a854fd10d9be136f39cc7dee9088563f9f3b0703f40f396",
+      "stored_sha256": "67f1f9c722da2e4f7865500c973d290ed0add06256a0ce9290554db6478d2e82"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-wilting-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Cha-2003-wilting-legacy-clim/observations.json.gz",
+      "source_sha256": "2b8109c2a57b99ba01094a9a2363c4d415d609922ed70148e1306a7f4c9b2b3e",
+      "stored_sha256": "2b8109c2a57b99ba01094a9a2363c4d415d609922ed70148e1306a7f4c9b2b3e"
+    },
+    {
+      "source": "evaluation/CN-Cha-2003-wilting-legacy-clim/summary.json",
+      "path": "evaluation/CN-Cha-2003-wilting-legacy-clim/summary.json.gz",
+      "source_sha256": "d8e7e56ded748970fcf0ff846bea3669be975362ca29329c82e7256805c21264",
+      "stored_sha256": "6acec18e0e13ec4ba710ddd412109ef8a5bb6777dd4acd9b76657ea6d72f9788"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-field-capacity-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Cng-2007-field-capacity-hydraulic-clim/observations.json.gz",
+      "source_sha256": "93a3901509439a8dea13a948fd32a7936da664bcc822c8ef977745fea3258f2c",
+      "stored_sha256": "93a3901509439a8dea13a948fd32a7936da664bcc822c8ef977745fea3258f2c"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-field-capacity-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Cng-2007-field-capacity-hydraulic-clim/summary.json.gz",
+      "source_sha256": "d252d30a22def3b91e64b8f5db296cee8b67e433ecfe6c76de66ebdc0f86a325",
+      "stored_sha256": "01e0a775bafd7c7ad83c7e01c2f691011fb4497b3a792b02e756361bac2656a1"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-field-capacity-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Cng-2007-field-capacity-legacy-clim/observations.json.gz",
+      "source_sha256": "8f87a29823f14a19a9a3e9fc4165f1943f1a3d5cd378395adf204423b6855966",
+      "stored_sha256": "8f87a29823f14a19a9a3e9fc4165f1943f1a3d5cd378395adf204423b6855966"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-field-capacity-legacy-clim/summary.json",
+      "path": "evaluation/CN-Cng-2007-field-capacity-legacy-clim/summary.json.gz",
+      "source_sha256": "9bd81bf31d4a8dce49d86c5f22ce26ee9aa7faef182afc4f49220fc7be65eb35",
+      "stored_sha256": "6a821fb9f211530f02295890d7fc26e1ddbf76950e6e10a65b174a182868d12b"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-wilting-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Cng-2007-wilting-hydraulic-clim/observations.json.gz",
+      "source_sha256": "9aa08b050727d8e0808f430f095588f07a60b8a35633efa0affee24a666d9790",
+      "stored_sha256": "9aa08b050727d8e0808f430f095588f07a60b8a35633efa0affee24a666d9790"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-wilting-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Cng-2007-wilting-hydraulic-clim/summary.json.gz",
+      "source_sha256": "0a59cf09324a3335e352a74438aafc754a333f3c9f8f2db7891807a6eeaf06eb",
+      "stored_sha256": "d038944289a673f760d949296838b7b5d917f115a06fc30c60f2de59edb806e9"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-wilting-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Cng-2007-wilting-legacy-clim/observations.json.gz",
+      "source_sha256": "3b4ce51c7c8ed96d4547aaa35286d70e9a9be1604dc8c0419a57f4d9a3767c00",
+      "stored_sha256": "3b4ce51c7c8ed96d4547aaa35286d70e9a9be1604dc8c0419a57f4d9a3767c00"
+    },
+    {
+      "source": "evaluation/CN-Cng-2007-wilting-legacy-clim/summary.json",
+      "path": "evaluation/CN-Cng-2007-wilting-legacy-clim/summary.json.gz",
+      "source_sha256": "4b220f1d2dce6e6b19764cc46769c86dbea4068186ea2699493992c8b6aa12ba",
+      "stored_sha256": "6e874709e0d2d2509e628a7f60bf0df36bf288a4df41a9ccfab40ea765505fd1"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-field-capacity-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Qia-2003-field-capacity-hydraulic-clim/observations.json.gz",
+      "source_sha256": "abef49415e5757b09a13afd59c798c657715a938e0579f9a8821df9bdc51211f",
+      "stored_sha256": "abef49415e5757b09a13afd59c798c657715a938e0579f9a8821df9bdc51211f"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-field-capacity-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Qia-2003-field-capacity-hydraulic-clim/summary.json.gz",
+      "source_sha256": "11fcc065a69a6298300b5e735f31220a9f65f806cc23b890986a807b50274b32",
+      "stored_sha256": "350e21da39e4a469b822a0ad988bb51e36dc81cfe2ec84d82185aec38a6bd4ac"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-field-capacity-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Qia-2003-field-capacity-legacy-clim/observations.json.gz",
+      "source_sha256": "409c7d52a0e18a87ec644ed0fd3472a835da23186de57af34c60d551ce93e325",
+      "stored_sha256": "409c7d52a0e18a87ec644ed0fd3472a835da23186de57af34c60d551ce93e325"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-field-capacity-legacy-clim/summary.json",
+      "path": "evaluation/CN-Qia-2003-field-capacity-legacy-clim/summary.json.gz",
+      "source_sha256": "529538905e08122c5ef74a6009f4344767e735f8e579e77e637de2a4d9ef5252",
+      "stored_sha256": "e36672c1c02d748171c6c5dd60e171d1c08e576e5d79db574e8080aa29112960"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-wilting-hydraulic-clim/observations.json.gz",
+      "path": "evaluation/CN-Qia-2003-wilting-hydraulic-clim/observations.json.gz",
+      "source_sha256": "922c83633ec5d80043bafaf5b09339d84461a3bba05df40b76e57666c134a667",
+      "stored_sha256": "922c83633ec5d80043bafaf5b09339d84461a3bba05df40b76e57666c134a667"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-wilting-hydraulic-clim/summary.json",
+      "path": "evaluation/CN-Qia-2003-wilting-hydraulic-clim/summary.json.gz",
+      "source_sha256": "b1c6cd1eface0455f314004b8eeeb7765f1e7f315b3dc0cda20544fd4bc530b1",
+      "stored_sha256": "15cbb2e4f06c131e3b50cbc2f9aba960b19b73a77a9c5b6caf799f7e24bf0ac2"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-wilting-legacy-clim/observations.json.gz",
+      "path": "evaluation/CN-Qia-2003-wilting-legacy-clim/observations.json.gz",
+      "source_sha256": "77735ebc3828c5f191919281005a424303fced038cdbb2bbffd92e7557eab1d0",
+      "stored_sha256": "77735ebc3828c5f191919281005a424303fced038cdbb2bbffd92e7557eab1d0"
+    },
+    {
+      "source": "evaluation/CN-Qia-2003-wilting-legacy-clim/summary.json",
+      "path": "evaluation/CN-Qia-2003-wilting-legacy-clim/summary.json.gz",
+      "source_sha256": "7692a2d284d9bb91cfa28f4e545a6f9a8d73239ace82660aaa414765c2b34f7a",
+      "stored_sha256": "e39eb7eaedeff2742ac88df66da3118173664338e1999ae5f9249a477fa4a3b1"
+    },
+    {
+      "source": "evaluation/controller.log",
+      "path": "evaluation/controller.log.gz",
+      "source_sha256": "2b6060e11d5acbeac1c005984b864f4c71ad9c86964fc58b95c6d4c59a4f328c",
+      "stored_sha256": "e26c3cc7231e13a876608efacb1dffdf0f51e2409a7c09c9a65bfc7ee30ea865"
+    },
+    {
+      "source": "evaluation/receipt.json",
+      "path": "evaluation/receipt.json.gz",
+      "source_sha256": "26454f290812a1804de1153a2cbe946b35f0a7a4b32955de0a2611fe74a84791",
+      "stored_sha256": "9e6cb8a7a7a2f3836f1c1e7b7f15f7b22018063a45957f48773d766adb798f45"
+    },
+    {
+      "source": "evaluation/worker-exit.txt",
+      "path": "evaluation/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "inventory.json",
+      "path": "inventory.json.gz",
+      "source_sha256": "5c26f0c2f0b82bde7d62826afccf3b9d744f5d2813a7220d99dd5fbdeb55dfe0",
+      "stored_sha256": "07d8502a67925496b658f3096a2c7d37efbb8c25439566f769d0a95ad5567724"
+    },
+    {
+      "source": "quantified.json",
+      "path": "quantified.json.gz",
+      "source_sha256": "0deecf0a9d60d6c41f2b65368e599e56d06c45bbe528f17ec674ba2103212a31",
+      "stored_sha256": "4e97d1496a50982301e6456be4a15503f1162802d82991f7c65f3613c38a9029"
+    },
+    {
+      "source": "root/current-nm-months-pg-qstat.txt",
+      "path": "root/current-nm-months-pg-qstat.txt.gz",
+      "source_sha256": "c5e249cfbac4b01e77eb40cb314b24caed64559ace60ae5717776b5f179ce15b",
+      "stored_sha256": "5c93c1f78bcaad6df560f2d252156c1a5281cffa5a86b4934414ca669fef41c2"
+    },
+    {
+      "source": "root/current-nm-months-pg-snapshot-attempt-a.stderr.txt",
+      "path": "root/current-nm-months-pg-snapshot-attempt-a.stderr.txt.gz",
+      "source_sha256": "9b00c44468736b874fa656d15593c256d045f2ccd12e349c536338f1402a4e29",
+      "stored_sha256": "7b15ddc059af80fe25ba0bfa6a352e6e58f3db94e21644ba9a177ff5419ee6cf"
+    },
+    {
+      "source": "root/current-nm-months-pg-snapshot-binding.json",
+      "path": "root/current-nm-months-pg-snapshot-binding.json.gz",
+      "source_sha256": "c2a1e1aeb73be798435a83c9a2108f93bdf1c6f55447c5a5e8ad6517f41f3efa",
+      "stored_sha256": "9c8518102b3892480dda4464141d2ab62991abb2e48bcf151015287358d12537"
+    },
+    {
+      "source": "root/current-nm-months-pg-stage-binding.json",
+      "path": "root/current-nm-months-pg-stage-binding.json.gz",
+      "source_sha256": "bcdcec70ca3fc33e8d802c574ecad0bc9521d0b71e64728195c2e9df6f6fe803",
+      "stored_sha256": "b673ecea7f023baa0a6a8efb502c8a344a5fdc6e6afdcad8fdb4328c1d6f218f"
+    },
+    {
+      "source": "root/package_current_nm_months_pg.py",
+      "path": "root/package_current_nm_months_pg.py.gz",
+      "source_sha256": "57570abe83470dcae814bc274f2182980518913ccaf0f6806d0c0279c6a3370d",
+      "stored_sha256": "9723684f586d629adb1e2a2c3dc96636b365860e17a5624647a63ea501674e9b"
+    },
+    {
+      "source": "root/snapshot_current_nm_months_pg.py",
+      "path": "root/snapshot_current_nm_months_pg.py.gz",
+      "source_sha256": "1eb40e6feca613c1fdbca0f82f97cf7734be222172fd0a4ebf8bc1df441b37fc",
+      "stored_sha256": "10290b1b56c33b4c45d7f3b7e0d8bd3a95f12f69ddae825b40fb74b72febe76c"
+    },
+    {
+      "source": "root/snapshot_current_nm_months_pg_attempt_a.py",
+      "path": "root/snapshot_current_nm_months_pg_attempt_a.py.gz",
+      "source_sha256": "df183f842e75730170bc210ffac21347da2ffb295e01b31e2b62112db5b8f63f",
+      "stored_sha256": "b91b9be4d35b8c00443bc1949b9d154cbcddebc85553f18012f7fbd78fa892f3"
+    },
+    {
+      "source": "snapshot/SOURCE_SHA256.json",
+      "path": "snapshot/SOURCE_SHA256.json.gz",
+      "source_sha256": "a39f48772a6751c4ec12f9a2034c6015105a26d81f17480d654ffb21ee7ced5f",
+      "stored_sha256": "57cc5392d7951091b8d7a40cb58c6914b88e920a56738d2c22154c46b2af72c5"
+    },
+    {
+      "source": "snapshot/inventory.json",
+      "path": "snapshot/inventory.json.gz",
+      "source_sha256": "272d71e00a7f1ae635137073b627134287be1dbd9c2ac91349ffdeaed94631fa",
+      "stored_sha256": "3bb36d2480098dfc6db40c672bb06b4eef2a09eb21129766bd6a66c20e91f8c6"
+    },
+    {
+      "source": "snapshot/original-year-worker.json",
+      "path": "snapshot/original-year-worker.json.gz",
+      "source_sha256": "992e1ebc5c3ba042bfd18f9694bf22f4f487580e4780f84b903b1e0da97703a2",
+      "stored_sha256": "f9f3cb286cc661fc3f70135c0790f598120bd7d3a2f969ee52ad3d84bcdf60d5"
+    },
+    {
+      "source": "snapshot/snapshot.json",
+      "path": "snapshot/snapshot.json.gz",
+      "source_sha256": "c6c8df92f1a25f4df2f79c1afc54b13289f2dab0e8202884a4a3229c836e7dc2",
+      "stored_sha256": "4291408de82ad6302de66c9797138b56ac17f252b0f7d89917c958197fe43f83"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cha-2003-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "92237cc1126bfd2a92b9e21f319f111672cd8a88e1afa44ac260132688e70869",
+      "stored_sha256": "1b10610cca0ac52980f3e4347787ef930ef511fc664ce051956130ceb9983ad5"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cha-2003-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "3cb3316cf71186ca840821fa3d8da4ba683297c110480f96e2324713978c63b7",
+      "stored_sha256": "3cb3316cf71186ca840821fa3d8da4ba683297c110480f96e2324713978c63b7"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cha-2003-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "a3c21bca55aa445c0fcc4aebd27a389884c12b1b641e640027c762a7e12b8924",
+      "stored_sha256": "8aeab74777575239d95bb3807f4580a83361190dd7dd48b5b0d1c8be775dde9f"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cha-2003-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "3cb3316cf71186ca840821fa3d8da4ba683297c110480f96e2324713978c63b7",
+      "stored_sha256": "3cb3316cf71186ca840821fa3d8da4ba683297c110480f96e2324713978c63b7"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cha-2003-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "cac91c8fe2cd8304121972746ef9d6afdce577455f03fb3232cbfa2b4fe08b6d",
+      "stored_sha256": "8f46c0fc6da0a30311c01892bebb329c8d2d6e04232b87e884bc0407eb9293a9"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cha-2003-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "df329677e08e4795e314b4b36b1f6d50d1b07d2bc02906a6980e48fda20bccbe",
+      "stored_sha256": "df329677e08e4795e314b4b36b1f6d50d1b07d2bc02906a6980e48fda20bccbe"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cha-2003-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "956f5b80c97aeb81b12c52d842863e00a7316c5c9b58d24722920e057a6cc5f5",
+      "stored_sha256": "77bdc43a2be3861aa9824a0d5d6ef586a32ed464e6624c9242f38a8e82f56f14"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cha-2003-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cha-2003-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "df329677e08e4795e314b4b36b1f6d50d1b07d2bc02906a6980e48fda20bccbe",
+      "stored_sha256": "df329677e08e4795e314b4b36b1f6d50d1b07d2bc02906a6980e48fda20bccbe"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cng-2007-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "941a72c167e7f0aead055d1427e66c3ed411ed83e364e1ac21a7d85dfdae85b3",
+      "stored_sha256": "3b6d8d28667114019db4fe1b47e52c65428fbe949ecd3d382debae25147ae963"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cng-2007-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "0ff7af82730ef4592fa7c8c627dc100d6073815be99904829ea8e1a63074b802",
+      "stored_sha256": "0ff7af82730ef4592fa7c8c627dc100d6073815be99904829ea8e1a63074b802"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cng-2007-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "3bfb8cd954e9b93cfbf5589811febc80a6e81e15cc6d2b9429990c8d24f0d810",
+      "stored_sha256": "6004c01cf22eac25c4bec245210194378c9614d3a106c9e107cc1a27a6636fb6"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cng-2007-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "8727e33c79983ef2d102c17471e1494cdfdd3ca91478a9b720765af23b215421",
+      "stored_sha256": "8727e33c79983ef2d102c17471e1494cdfdd3ca91478a9b720765af23b215421"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cng-2007-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "411ee7c4551de92c6bc11c3d725fe6d7cb1516994d95012ec5f6dab29ff55f37",
+      "stored_sha256": "25bc4367c2a4d179abc04072f0a3769a1f0a8ed1d1af6286c231360e230e1e65"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cng-2007-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "00cf47edbaf07ba37d5e8900f5b8455eb5884b6647da05f9f8d88881aa980195",
+      "stored_sha256": "00cf47edbaf07ba37d5e8900f5b8455eb5884b6647da05f9f8d88881aa980195"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Cng-2007-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "f89e62c7eb266304c9d743837ba7041a4a5c941ff37b1aac2b59c2e39cf585f9",
+      "stored_sha256": "12c082de795a47d4778b5c5bdd8e3215307afa9693e69c357673389c1e3fe34d"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Cng-2007-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Cng-2007-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "dd6c206b0a0173be4a55e5abebc72b1f1b3f9f398ff140d99210aa56662a19a4",
+      "stored_sha256": "dd6c206b0a0173be4a55e5abebc72b1f1b3f9f398ff140d99210aa56662a19a4"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Qia-2003-field-capacity-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "5245705faba964e6e491d28db95d5b8b3b07e9a193e065419681335a217239db",
+      "stored_sha256": "80a5009c1fd4e1071e2c416cb04322a514255f54bc42275b28afc7d0a893678a"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Qia-2003-field-capacity-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "246ade275d72457faa4f926a19b489d4342962f9269564a84a01984312e688ad",
+      "stored_sha256": "246ade275d72457faa4f926a19b489d4342962f9269564a84a01984312e688ad"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Qia-2003-field-capacity-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "359d143ec5af5b0f5979a05b9e8c61cabe250d8393ed735f63c0efadd077ac30",
+      "stored_sha256": "f404e159f6d048e73585f9b3b65cf26d6a215492c79af7823d98dfcc8af8bfe9"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Qia-2003-field-capacity-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "10bae51fb9fe339b683cb54cf321eeabaa2e082bd4ebf4678a4c75d54bdd6995",
+      "stored_sha256": "10bae51fb9fe339b683cb54cf321eeabaa2e082bd4ebf4678a4c75d54bdd6995"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Qia-2003-wilting-hydraulic-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "cc36a2d9ee32fc6171ce286c422f346242fe7296bd3bc523fae7647ddc887304",
+      "stored_sha256": "9d81de0a53ca36bbcb0f4c4721e62e0c1ddc5883bf18301f91cdbe83f99b3fb7"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Qia-2003-wilting-hydraulic-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "e9ee278426dbf1a0dc4b5972706594f17f45d93e526566ec6f2aa08ab3cdc3cc",
+      "stored_sha256": "e9ee278426dbf1a0dc4b5972706594f17f45d93e526566ec6f2aa08ab3cdc3cc"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json",
+      "path": "snapshot/trajectory/CN-Qia-2003-wilting-legacy-clim/report-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.json.gz",
+      "source_sha256": "a0787c7543e305c4fab03b54c259e03b810b8f78e2e27b3f7a98f7255266eea4",
+      "stored_sha256": "d3f7f211ce59f3c20f13226b40287e9517fba02d6438a09a5ebc7354d8ad550e"
+    },
+    {
+      "source": "snapshot/trajectory/CN-Qia-2003-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/CN-Qia-2003-wilting-legacy-clim/trace-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "ebd26381c327b00fee009b4c40e2f46a598cade3b8440bd9b9753e17ca46f5b5",
+      "stored_sha256": "ebd26381c327b00fee009b4c40e2f46a598cade3b8440bd9b9753e17ca46f5b5"
+    },
+    {
+      "source": "snapshot/trajectory/batch.json",
+      "path": "snapshot/trajectory/batch.json.gz",
+      "source_sha256": "90e00937c1035149aa3e9ed96d39707cede0aa324ee2ba1eba250e9b28fddffb",
+      "stored_sha256": "72dc03504d3fc9406f1b102f66cfb070492769fd086d29648d451ae7ec047ba6"
+    },
+    {
+      "source": "snapshot/trajectory/state-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "path": "snapshot/trajectory/state-0003120-b8947f6e2ecb4148a239865d5c1a0fb1.npz",
+      "source_sha256": "73b16f8832e1409c5d1105505a3a11932880600cae4722a5f220c64d2ef41edf",
+      "stored_sha256": "73b16f8832e1409c5d1105505a3a11932880600cae4722a5f220c64d2ef41edf"
+    },
+    {
+      "source": "source-input-reference.json",
+      "path": "source-input-reference.json.gz",
+      "source_sha256": "00d4aff78f2179dbe5465abee117238592e23b266e72dbe2961c66d782ba46fe",
+      "stored_sha256": "bc178b2eb4cf0b674dd20f693bc5cfca45f7636670f3a83cd5c4bf4b8b7eb343"
+    }
+  ]
+}

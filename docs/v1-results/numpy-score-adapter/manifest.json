@@ -1,0 +1,480 @@
+{
+  "scope": "Read-only CPU-to-original-OO input adapter: 13 tests of eight recorded intervals, original cumulative conservation bounds and explicit rejection paths. No new physics, loss, complete year or spinup acceptance.",
+  "archive_sha256": "9764bcbce3fa41ef11199569b99586d1a8349cd34657d633837c5759c2c118d1",
+  "artifacts": [
+    {
+      "source": "RESULTS.md",
+      "path": "RESULTS.md.gz",
+      "source_sha256": "fb999a8842397b9671baa0444bd810949b7ea8894c2def8097be8610738f4ac8",
+      "stored_sha256": "084b6d4eeb2e2ab0d5b842963376234765bb344f23513532df8fb8d8ad3d9c5b"
+    },
+    {
+      "source": "actual-pbs-qstat.stderr.txt",
+      "path": "actual-pbs-qstat.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-pbs-qstat.txt",
+      "path": "actual-pbs-qstat.txt.gz",
+      "source_sha256": "e1f01e7bb8e3499f142b73b4541f609d1b76e3cfa48911c79b647ed48ccb4fab",
+      "stored_sha256": "32d107be3f12df3a8b6a88c80338028f28acbcf183e47e6683bd955d2f08b092"
+    },
+    {
+      "source": "archive_numpy_score_adapter.py",
+      "path": "archive_numpy_score_adapter.py.gz",
+      "source_sha256": "0fcb216528be2a0a42c40baa60ea19c1666f8a99cc8bdaee05c945cf36d219d3",
+      "stored_sha256": "fd5b16f1c90dccec8cd21fc0140a10dd56c823d67f3711220a52559d953f59ed"
+    },
+    {
+      "source": "current/SOURCE_SHA256.json",
+      "path": "current/SOURCE_SHA256.json.gz",
+      "source_sha256": "a39f48772a6751c4ec12f9a2034c6015105a26d81f17480d654ffb21ee7ced5f",
+      "stored_sha256": "57cc5392d7951091b8d7a40cb58c6914b88e920a56738d2c22154c46b2af72c5"
+    },
+    {
+      "source": "current/controller.log",
+      "path": "current/controller.log.gz",
+      "source_sha256": "1e50fd09a954760b0cb4a0427288c775644bb9ffc0c880fc38b1df08744c379b",
+      "stored_sha256": "5a2dd4fbcf51fc06fbda94b5947f8fa53ba75c8c6dd861f634a71e70f1b0a07d"
+    },
+    {
+      "source": "current/dependencies/oo/CONTROLS_SHA256.json",
+      "path": "current/dependencies/oo/CONTROLS_SHA256.json.gz",
+      "source_sha256": "6f2b3be0643803669a3379ea5ff173dcd960046c020c1da71c8da1635a2e0e52",
+      "stored_sha256": "7bff98e223c79e5977881c76e38f721aa76fb0e4539417651ebd43ce4561a1f9"
+    },
+    {
+      "source": "current/dependencies/oo/INTERFACE_DRAFT.md",
+      "path": "current/dependencies/oo/INTERFACE_DRAFT.md.gz",
+      "source_sha256": "c252edb1ed7385fb85186684c37e2f80d83e3bc4ade154a3265a094328807879",
+      "stored_sha256": "db13907d77824afaebd3249292fe3f9d71b828964dd9e1cd7c0cb62dc4c6c529"
+    },
+    {
+      "source": "current/dependencies/oo/OBJECTIVE.json",
+      "path": "current/dependencies/oo/OBJECTIVE.json.gz",
+      "source_sha256": "f158d2a3e1e0c160d76618df21e66fa2a035a5b5632506ec897d1b93d1e31b0f",
+      "stored_sha256": "1743d0fa2b485348d59e5f7fd223e012ba69ab06089bad891206d75d13c54ef9"
+    },
+    {
+      "source": "current/dependencies/oo/OM_PLAN.json",
+      "path": "current/dependencies/oo/OM_PLAN.json.gz",
+      "source_sha256": "fc2b5866e9368dc80ec9ca6e9dfe1e91dbac139908db79abc11bc4d70180f8c3",
+      "stored_sha256": "1db8b3c5dcb8b939e76eadc2de6faa1d32424beed656659806a7bddd26bd068c"
+    },
+    {
+      "source": "current/dependencies/oo/ON_QSTAT_FINAL.txt",
+      "path": "current/dependencies/oo/ON_QSTAT_FINAL.txt.gz",
+      "source_sha256": "9adacafe5030eb211637a6465c2bfbc45bfd0a4c007d5cfdf65a60d26b4c5a4c",
+      "stored_sha256": "4e2a5fcc61b6eedd6dde81d58a7dcd39e3adc0d45b049cbd02375783b8404e7c"
+    },
+    {
+      "source": "current/dependencies/oo/ON_RECEIPT.json",
+      "path": "current/dependencies/oo/ON_RECEIPT.json.gz",
+      "source_sha256": "f6c748dc4ff46571d765c5eefe45aff7ac9c6b63f75de810e26b4a7e4f748baf",
+      "stored_sha256": "88811aa788ec6183b4f8ff16e4827de88bb76b8c65ffcb59df72f9fff6c3b5c1"
+    },
+    {
+      "source": "current/dependencies/oo/ON_REFERENCE.json",
+      "path": "current/dependencies/oo/ON_REFERENCE.json.gz",
+      "source_sha256": "2e113b7bc76fb294c3cc0ee29c701a15755ac6b0ddb44295e800b0b0e965d4be",
+      "stored_sha256": "4908a4821a7d5e7fbea1bced2f580bc7e635433735e1d111285222621e5aa0d8"
+    },
+    {
+      "source": "current/dependencies/oo/ORIGINAL_CONFIG.json",
+      "path": "current/dependencies/oo/ORIGINAL_CONFIG.json.gz",
+      "source_sha256": "927ec061bcc6dad7cce47945549b56bb7908687c01c64ebe4ef4da4604533f7a",
+      "stored_sha256": "6924f38fe1c5b04c9327f3a79acd2490303a4369c7711c347557ca363a30e4bf"
+    },
+    {
+      "source": "current/dependencies/oo/ORIGINAL_GIT_PROOF.tar.gz",
+      "path": "current/dependencies/oo/ORIGINAL_GIT_PROOF.tar.gz",
+      "source_sha256": "9b2e8a4adb23ab984f37bbb8e4e568fe5864f63692aae218e1d992544a950948",
+      "stored_sha256": "9b2e8a4adb23ab984f37bbb8e4e568fe5864f63692aae218e1d992544a950948"
+    },
+    {
+      "source": "current/dependencies/oo/README.md",
+      "path": "current/dependencies/oo/README.md.gz",
+      "source_sha256": "5648f150203acdde808027f3365b95eaa38865c82f749811edb1bef67c6cf9d5",
+      "stored_sha256": "fc8dd6878b2f43ae40c978d754563c9d9a0e0a63f56329c62a7717a517bb5737"
+    },
+    {
+      "source": "current/dependencies/oo/RUN_CONTRACT_REGISTRY.json",
+      "path": "current/dependencies/oo/RUN_CONTRACT_REGISTRY.json.gz",
+      "source_sha256": "0faaf1f47a094d6a924f3aec6328954e19d72c203fd645b366587a7d4250181f",
+      "stored_sha256": "3b4a743e291f72e17162ec24123a9fcd84c45d1dcbcf1ebbec58b5139fa421f7"
+    },
+    {
+      "source": "current/dependencies/oo/SOURCE_BINDINGS.json",
+      "path": "current/dependencies/oo/SOURCE_BINDINGS.json.gz",
+      "source_sha256": "d874c582c5cce5d8622f412bbaf2496b2344f2c1b89f1c88ecccafbd0749706d",
+      "stored_sha256": "08594d65b3e63f5261c04f4e842f33e2915c9d6fda5217163b031f6e73073682"
+    },
+    {
+      "source": "current/dependencies/oo/STATIC_REVIEW.json",
+      "path": "current/dependencies/oo/STATIC_REVIEW.json.gz",
+      "source_sha256": "b0a06e94100cc467ab7a270860b3cb030b608ba6e4cad1461181961e6571b80e",
+      "stored_sha256": "2d9aaa1e1c65858556ab4193b6d8df4b57f20fc6366d9d29df5ac0196e54de54"
+    },
+    {
+      "source": "current/dependencies/oo/authority_oo.py",
+      "path": "current/dependencies/oo/authority_oo.py.gz",
+      "source_sha256": "e20b113de432f0c28fa5cf99d03a04730e6b3372ca660f3c29604ae2a5aaddd3",
+      "stored_sha256": "a52623671e5b40a3c747f93b146c30783037aba03a603f97b43bb01d26ad2c85"
+    },
+    {
+      "source": "current/dependencies/oo/evidence_oo.py",
+      "path": "current/dependencies/oo/evidence_oo.py.gz",
+      "source_sha256": "85a85bf2adbedf6eb5a740741312f4b96ed8967e9326760e02840cddec2124ba",
+      "stored_sha256": "967c8eaedc363ee75387a53bf42fd299140bf463e634aef77ffe9d4fd5988031"
+    },
+    {
+      "source": "current/dependencies/oo/oracle_oo.py",
+      "path": "current/dependencies/oo/oracle_oo.py.gz",
+      "source_sha256": "6edd3d7d248905062562f01516b6097a6e1b896a1a00e2976640e12730172cfa",
+      "stored_sha256": "6db281d82f50ee1ff66e7971c0db04e17302242bf60fd7bb909969bf07886ace"
+    },
+    {
+      "source": "current/dependencies/oo/prepare_oo.py",
+      "path": "current/dependencies/oo/prepare_oo.py.gz",
+      "source_sha256": "6c648a9a44690077c086743aa8cd02182ff84dacb88f79df5bb9f221590f3460",
+      "stored_sha256": "5757e6c02dbcb423085e0aec6d1dd97d62f647be77de86cda848a0b40b3f7c83"
+    },
+    {
+      "source": "current/dependencies/oo/reference_oo.py",
+      "path": "current/dependencies/oo/reference_oo.py.gz",
+      "source_sha256": "0d7b7e6a4b8988fbaee64017f90ef418d68f6f85ba910648fb575fad0ff4085f",
+      "stored_sha256": "2c8311f3b1d84d89aef3a6942557ab9c43cd63b3b8a8744c56c6c72404abd6de"
+    },
+    {
+      "source": "current/dependencies/oo/score_math_oo.py",
+      "path": "current/dependencies/oo/score_math_oo.py.gz",
+      "source_sha256": "915978ae23e57337de5c474d0177f1192df9a0f2000accf2054ea6ce1c38fdca",
+      "stored_sha256": "494fcb3db0cf282d42b6db093c3324323766dc98962eee2649daac9d6d3e9345"
+    },
+    {
+      "source": "current/dependencies/oo/scorer_oo.py",
+      "path": "current/dependencies/oo/scorer_oo.py.gz",
+      "source_sha256": "6891c08a2138595e4acf6323b6f612c0b79fe412d25e8f5e6815e369f46d01c4",
+      "stored_sha256": "190e2d7ccba89c5b898da54ec045a833117678d07762d1f10876a6a76b3d5246"
+    },
+    {
+      "source": "current/dependencies/oo/test_native_evidence_oo.py",
+      "path": "current/dependencies/oo/test_native_evidence_oo.py.gz",
+      "source_sha256": "3ebed7d3e47fece560f2bfa68ce992808c89ee65d88e802122e1284dfcc49c60",
+      "stored_sha256": "63d22c38f940f69f74db630bd6c0784c1f057183f194704aaa580cb595397379"
+    },
+    {
+      "source": "current/dependencies/oo/test_reference_integration_oo.py",
+      "path": "current/dependencies/oo/test_reference_integration_oo.py.gz",
+      "source_sha256": "32a6f0c18f9f25cb8d0a58e80c24570383c4c69c603746a5515eba1b4b96d605",
+      "stored_sha256": "55dcd12a4d80d92ae20d2d28b628e7739a1b7b59141a9af8c901818fb28c16db"
+    },
+    {
+      "source": "current/dependencies/oo/test_score_math_oo.py",
+      "path": "current/dependencies/oo/test_score_math_oo.py.gz",
+      "source_sha256": "b4e132cd1138287fc737d6533c77a1a50c1f671b843cca01f6a5273a9adb9343",
+      "stored_sha256": "337fb47a14e2c480f44204228fb8930886e0035be51bfb31c3d8703bcef818d5"
+    },
+    {
+      "source": "current/dependencies/pf/BINDINGS_PF.json",
+      "path": "current/dependencies/pf/BINDINGS_PF.json.gz",
+      "source_sha256": "e0e9452a20f8a7a3edced98a880378a6571bb027b863c5459055822aaaed812a",
+      "stored_sha256": "9e0714f3f4a08630f0e2953e9029dc0fcb5fabfb2cfc3d9ed759323a14dab5cb"
+    },
+    {
+      "source": "current/dependencies/pf/CONTROLS_SHA256.json",
+      "path": "current/dependencies/pf/CONTROLS_SHA256.json.gz",
+      "source_sha256": "32ca64c70a5705f2bd4ae9c78c9c549cc5f553d1a6da153b8a20b041baedf08b",
+      "stored_sha256": "a632ef5604a0cb88e454475f34f45b2fb56935dba6d8b3b6c2e8da806334df91"
+    },
+    {
+      "source": "current/dependencies/pf/README.md",
+      "path": "current/dependencies/pf/README.md.gz",
+      "source_sha256": "c85006c6d20dc7f1c01f3d6df84ff074281f64449992a3a63f7c40f53c55a30f",
+      "stored_sha256": "e4979f4e4cc8ed95857c537d1370ec9d2753b1eb301ddda3ecd126f9aff06265"
+    },
+    {
+      "source": "current/dependencies/pf/capture_bgc_pf.py",
+      "path": "current/dependencies/pf/capture_bgc_pf.py.gz",
+      "source_sha256": "fe0fb9ab580046527a15a3446149b15f0f7a14e31833016601dddd9a8ca101f2",
+      "stored_sha256": "3d53444bb8547c927f503da4fbd8ff1e6d9b2ecba348fdc8ae0daa59cba0d8df"
+    },
+    {
+      "source": "current/dependencies/pf/cpu_trace_budget.py",
+      "path": "current/dependencies/pf/cpu_trace_budget.py.gz",
+      "source_sha256": "7563c0cfc98ce77aa04e51eb27ba1143c7976648f439193533273725bbcc3a57",
+      "stored_sha256": "3da9e750796b59ea896c474b1889aa34dc2c8721de52671f886e70883157b901"
+    },
+    {
+      "source": "current/dependencies/pf/own_spinup_pf.py",
+      "path": "current/dependencies/pf/own_spinup_pf.py.gz",
+      "source_sha256": "44832febc8429e5d972602991291fff0e8c2653eaffff49aa607f1ceb97a2680",
+      "stored_sha256": "96a6e024b6877cdff7e42c4b66cdba2f547649d7917846982e8225161fdac2dc"
+    },
+    {
+      "source": "current/dependencies/pf/pb/BINDINGS.json",
+      "path": "current/dependencies/pf/pb/BINDINGS.json.gz",
+      "source_sha256": "594b0fc5eefa7d1fe90c1b1dc818c77a050875da3f054b994ef8d61c3981b732",
+      "stored_sha256": "b78e68759faf823e854dabe33927b3b8804a6404827a55b07b3308dfef63f54b"
+    },
+    {
+      "source": "current/dependencies/pf/pb/CONTROLS_SHA256.json",
+      "path": "current/dependencies/pf/pb/CONTROLS_SHA256.json.gz",
+      "source_sha256": "165913db4fd39f10c47d174b74c42f8f877216c347fe46535489c5ecc013e7be",
+      "stored_sha256": "bd0da6ad1442c74c950408be33d388538462dc36458aff4fd77aa1efab08d11b"
+    },
+    {
+      "source": "current/dependencies/pf/pb/IDENTITIES.json",
+      "path": "current/dependencies/pf/pb/IDENTITIES.json.gz",
+      "source_sha256": "7e79dcc13a0808f3d03b6f24aacb233b386c141ad1c0f21ae428692c6273ff28",
+      "stored_sha256": "32ce47699294c65632c15574d292e27fba7b3cd6db81b37d466f8290791333f1"
+    },
+    {
+      "source": "current/dependencies/pf/pb/README.md",
+      "path": "current/dependencies/pf/pb/README.md.gz",
+      "source_sha256": "e08dd3278c7ef0269c157cf450574a12abca9e14cae06b4439bcc3986a665a51",
+      "stored_sha256": "44a1808fd3a0787739ae31d4a89f78f40567266d34de8966fecb41a27b745982"
+    },
+    {
+      "source": "current/dependencies/pf/pb/chain_contract_pb.py",
+      "path": "current/dependencies/pf/pb/chain_contract_pb.py.gz",
+      "source_sha256": "80d05f16a4fd4ba04ec5eb96e9cdb68560884f2b4680664f6fbc5bfb26b8d722",
+      "stored_sha256": "b947ef7dc1094856b6e54bf33604607a7ac9eaf05ce8173c717a4ad84bd2507d"
+    },
+    {
+      "source": "current/dependencies/pf/pb/numpy_chain_pb.py",
+      "path": "current/dependencies/pf/pb/numpy_chain_pb.py.gz",
+      "source_sha256": "86f057d42e734c71a78b31c73726a29e89fe5554274585e6839776882ffdadae",
+      "stored_sha256": "8c48fb754518f425fd331a063c11a97d5962298081bf152f0ec44965356af7b8"
+    },
+    {
+      "source": "current/dependencies/pf/pb/original-run_fluxnet_column.py",
+      "path": "current/dependencies/pf/pb/original-run_fluxnet_column.py.gz",
+      "source_sha256": "de8ee3ef797a1e0756df8075d1571a3d22cfff7fabf3537a8a5238ec602c65be",
+      "stored_sha256": "719d934f5829559f6f04fbaa9da25b83e2cc051d051533341bb946b0ffc296aa"
+    },
+    {
+      "source": "current/dependencies/pf/pb/test_numpy_chain_pb.py",
+      "path": "current/dependencies/pf/pb/test_numpy_chain_pb.py.gz",
+      "source_sha256": "e8147e1682af4553e617128342b626f0978ec8a0bd75bdff3852b0b7e6d238c8",
+      "stored_sha256": "e0400a4dd20abcdbab28d061f0c77b9482ef1911d22b33e1103273bf57b45000"
+    },
+    {
+      "source": "current/dependencies/pf/seed_pairs_op.py",
+      "path": "current/dependencies/pf/seed_pairs_op.py.gz",
+      "source_sha256": "68a3be81eec3d4c30b11de952359c79e31200bcf72a1ad261857d4c15eff9287",
+      "stored_sha256": "37279829a8a1c8e6fcc34e7e75e9b392d68696e482306dae9c53da14f23913c3"
+    },
+    {
+      "source": "current/dependencies/pf/synthetic_packets_pf.py",
+      "path": "current/dependencies/pf/synthetic_packets_pf.py.gz",
+      "source_sha256": "2e6f7f28f63fb4a89c7e8cf013c3f52e695fc550d6f9f1f536a2e7abcb9d8ea3",
+      "stored_sha256": "4e2b7917b4ad5aa12f33a83e2c78b6fa5bb86286ae51b843553cdb544013818c"
+    },
+    {
+      "source": "current/dependencies/pf/test_own_spinup_pf.py",
+      "path": "current/dependencies/pf/test_own_spinup_pf.py.gz",
+      "source_sha256": "a3947eade067f40312647399c4d529e65947fd62179189af798a04c417e79634",
+      "stored_sha256": "ea7ba0d2ed128efb7f12d63cec44671252a7e87972cc6b4eaf937583bac069e2"
+    },
+    {
+      "source": "current/diagnostics.json",
+      "path": "current/diagnostics.json.gz",
+      "source_sha256": "7b4ec70131cb87a5e2f7cb4d330082b92ad3f787bd644f068b624f8ff83f76a1",
+      "stored_sha256": "bab1c9fdbdd37ad62802e543732e7bcf3673b94b8b6489d688450f9d66f1ccb0"
+    },
+    {
+      "source": "current/execution/CONTROLS_SHA256.json",
+      "path": "current/execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "8b48e2f7ceebfcf582ccd9072a202abc636b3e1019d2b618081a28e1dbac3cf1",
+      "stored_sha256": "5f9a079d4a685727ce2676f982e72eabaddc905029bec36a9103fc5978e62c87"
+    },
+    {
+      "source": "current/execution/RUN_BINDINGS.json",
+      "path": "current/execution/RUN_BINDINGS.json.gz",
+      "source_sha256": "9bbc1604b0fa86907f8a7ea637293e46388adb51bff0286c717f13e6eae9ef47",
+      "stored_sha256": "79ee4036a9231ef65caeeec7dc0d83e905830e907fc67da1a13fc81390e59fc7"
+    },
+    {
+      "source": "current/execution/dispatch_score_adapter_tests.py",
+      "path": "current/execution/dispatch_score_adapter_tests.py.gz",
+      "source_sha256": "46cf4518ccdd203139d55fe082ef0263e2d463f92e9158dd93784722bfccd5f0",
+      "stored_sha256": "7f454b88755e08ea36f916782eccd8a9ca2a7718947c49935268377c5e989ef3"
+    },
+    {
+      "source": "current/execution/run_score_adapter_tests.py",
+      "path": "current/execution/run_score_adapter_tests.py.gz",
+      "source_sha256": "58489a4f62750c5569de280e2ecbe8138843aebcc80e7b54ecf9b9a0c7f698d0",
+      "stored_sha256": "6def51476367b62e415dd0dd5bcc8a5ef18caf21cd4fb525710d8c9d8dd98262"
+    },
+    {
+      "source": "current/execution/score_adapter_tests.pbs",
+      "path": "current/execution/score_adapter_tests.pbs.gz",
+      "source_sha256": "b3a117cedaec4600e6c8efee0dba4a69d0eb439a476c7b497163f9b05239da79",
+      "stored_sha256": "75c25cef6e4dc4c0b50f3340bc41db8d8ce483fafa1e1dbef391a39b1bcc0944"
+    },
+    {
+      "source": "current/preparation/BINDINGS.json",
+      "path": "current/preparation/BINDINGS.json.gz",
+      "source_sha256": "0f98c3bfb77d70569581718ce06d52c76f169d0f008dc53384007c062c7d791d",
+      "stored_sha256": "cb1c88c8b61ffda178d32a55ab516bf8ef7653862a3b5c80e0c67a93788a50bd"
+    },
+    {
+      "source": "current/preparation/CONTROLS_SHA256.json",
+      "path": "current/preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "9b1ce69ce9dd8c15549a4fe7a5bb6e17e14a076a401a7282859bb63f8a704fca",
+      "stored_sha256": "f569a8d8616f8deccdbfa75200de83bb66147ba829bd45d07dac771de5db033b"
+    },
+    {
+      "source": "current/preparation/README.md",
+      "path": "current/preparation/README.md.gz",
+      "source_sha256": "37c6a14f2b8011e96be6aa79a95e002ed9b612f47fbd181c824466770c02ea33",
+      "stored_sha256": "8778940af955d32362387a9c6e83a546e65f74c0634a1c953680f083fd5baad0"
+    },
+    {
+      "source": "current/preparation/STATIC_CHECK.json",
+      "path": "current/preparation/STATIC_CHECK.json.gz",
+      "source_sha256": "48d14246c4d1e6056554cd32f140aa5a14a26a534fcbefec2fce617ead94b9fd",
+      "stored_sha256": "e51ef1754f55f14a227f604c7c5e7082e78d821874a2ef7aa50644eb69231b94"
+    },
+    {
+      "source": "current/preparation/cpu_score_inputs.py",
+      "path": "current/preparation/cpu_score_inputs.py.gz",
+      "source_sha256": "c6848c5532307ac1f82c320ab8e7292383dcc7b1ae4c2f068bf97a0e9977e6f2",
+      "stored_sha256": "71b61b5e676aa979f904ccac768186ab441f20bbfa43c1e81c8f3095a9aefbb2"
+    },
+    {
+      "source": "current/preparation/cpu_trace_budget.py",
+      "path": "current/preparation/cpu_trace_budget.py.gz",
+      "source_sha256": "7563c0cfc98ce77aa04e51eb27ba1143c7976648f439193533273725bbcc3a57",
+      "stored_sha256": "3da9e750796b59ea896c474b1889aa34dc2c8721de52671f886e70883157b901"
+    },
+    {
+      "source": "current/preparation/test_cpu_score_inputs.py",
+      "path": "current/preparation/test_cpu_score_inputs.py.gz",
+      "source_sha256": "d20cb76e9d3a4e1bc2d9252969e63fadcc85aab927b7e5f0c02b7fa0d3cb7d77",
+      "stored_sha256": "273775266c92ed24a390ebe7fd1312ac1d1263984bfd0c57f618fadc79d474fa"
+    },
+    {
+      "source": "current/receipt.json",
+      "path": "current/receipt.json.gz",
+      "source_sha256": "45ae262e227332d5051d7d38f322798ba9a84980f4f4b1ad241f3ac76e5ba1f5",
+      "stored_sha256": "fff89d0962fb6a219c5afb4854d5d7c3ea00e131b88d2308291d1b8f9160ec6e"
+    },
+    {
+      "source": "current/unittest-command.json",
+      "path": "current/unittest-command.json.gz",
+      "source_sha256": "aaeb836926c4cbe1020190cafd87dd5409a36ca84bd23dd66d4859f398556dd9",
+      "stored_sha256": "07721694f8049fadad81d3aae74ed4db044a5c4e3754314b7c4f87476c40264f"
+    },
+    {
+      "source": "current/unittest-parent-exit.txt",
+      "path": "current/unittest-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "current/unittest-statuses.json",
+      "path": "current/unittest-statuses.json.gz",
+      "source_sha256": "1db08a5d141415f1ce53e1494c095c8822b7883d8df46665e9ac274b8f35fd69",
+      "stored_sha256": "912745bb5e90854d57e8ea18cdb3c22592fb2700e7f6a869fa48be13a4b559c2"
+    },
+    {
+      "source": "current/unittest.stderr.txt",
+      "path": "current/unittest.stderr.txt.gz",
+      "source_sha256": "fa80ea9d5561b0d9b4f9a30d206f2d2dca7ea89685dbe7faa83df8123df6bd00",
+      "stored_sha256": "fa5ca9bde04c8d5a0282d43b520ed6f70488a4409cb1f5e5eabf9a079ac9d77a"
+    },
+    {
+      "source": "current/unittest.stdout.txt",
+      "path": "current/unittest.stdout.txt.gz",
+      "source_sha256": "d60ec7c3bb2d75fce25919326f31826446784924cc887447e784ff3284a0a489",
+      "stored_sha256": "bb6bd9a1297ca8f499ccad8a24a3148243f3267f9bfaf731206aca1b827c6c95"
+    },
+    {
+      "source": "current/worker-exit.txt",
+      "path": "current/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "inventory.json",
+      "path": "inventory.json.gz",
+      "source_sha256": "e1506b999b3c33bb7cb303ca8759109f8785185c1269f55ca5b277cdfdfb3940",
+      "stored_sha256": "152043aabe5fd9d540bc051234e9c87e5c6a5ce9f3f48792434a1d73f21a11da"
+    },
+    {
+      "source": "manager/compute-extract.stderr.txt",
+      "path": "manager/compute-extract.stderr.txt.gz",
+      "source_sha256": "bbb03c9493e29d1c4c447061d85b7afb73a17d82a499094caa14a9df23efd3fe",
+      "stored_sha256": "82d7444c9c9071e6f8328840bc46395eb9f52e4f26de891e2cd80510b39be5c4"
+    },
+    {
+      "source": "manager/compute-extract.stdout.txt",
+      "path": "manager/compute-extract.stdout.txt.gz",
+      "source_sha256": "3608549bd56928f8e8f3b801fa84184ae26499c5d5e13f0fc114d4b785455653",
+      "stored_sha256": "360d338251c59a0a8024cfd375226b598433b9832117e22e9480fe535bd0031a"
+    },
+    {
+      "source": "manager/compute-file-hashes.txt",
+      "path": "manager/compute-file-hashes.txt.gz",
+      "source_sha256": "de8e0f2ba111b38e6f25a7f2e4c7ea15e5178612fbd5f02f207632d5cb6fcc03",
+      "stored_sha256": "1e4f8872d864c77267d24a12359912fec38fe597b09e3f080ed2e95090f89c89"
+    },
+    {
+      "source": "manager/dispatch.json",
+      "path": "manager/dispatch.json.gz",
+      "source_sha256": "1f4b37d151170e8f07a116ab2d5d960bfeea6c7e1e7ea1e621d94eb177109f01",
+      "stored_sha256": "5fff5cfadb030009847524b97b615aa8d30bff1c3596530bef72ad76dbb3e040"
+    },
+    {
+      "source": "manager/pbs-output-presence.json",
+      "path": "manager/pbs-output-presence.json.gz",
+      "source_sha256": "646f7d248489333d47ed1d1f7dfa77fdff50d7285d935fb29ca45491a02f1234",
+      "stored_sha256": "9c99f609e2196072db1056367075e2ea9d7261dead27b2e2ce62ad385d3e8e28"
+    },
+    {
+      "source": "manager/qsub-actual-exit.json",
+      "path": "manager/qsub-actual-exit.json.gz",
+      "source_sha256": "7995aeec7943bef3fd99bcd67a655471bb0c1272f13e736629d9db14d22e3b95",
+      "stored_sha256": "25c99cdf3fef3933e11cd759576cb14f508bef81424b1fb5a35f96bc6462b30e"
+    },
+    {
+      "source": "manager/qsub.stderr.txt",
+      "path": "manager/qsub.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "manager/qsub.stdout.txt",
+      "path": "manager/qsub.stdout.txt.gz",
+      "source_sha256": "dcd76e9f3d64721ec737d9974be25929fc567a56572bff7650050e2488a2b85e",
+      "stored_sha256": "c4da6c3245c00b10ddcf7c626d52a778073226a12f1aae0d49544068f0b3fb26"
+    },
+    {
+      "source": "original-result-binding.json",
+      "path": "original-result-binding.json.gz",
+      "source_sha256": "e8497b1a37238fd36780aa934b51eb3cf8be0553048aecb4379cadb68390badb",
+      "stored_sha256": "7af964016c990088d11a0ca82176a24e6c72abcbe0a4afa3571f445e0b65cb1f"
+    },
+    {
+      "source": "original-stage-binding.json",
+      "path": "original-stage-binding.json.gz",
+      "source_sha256": "8689a1a3391d158c78806aca4c951e52642e39d72ee0ab32dc6841c25b4a60d9",
+      "stored_sha256": "5b913254debe8c090026810718c4826675760eb36116243bf80f16159ea9d793"
+    },
+    {
+      "source": "original-stage-inventory.json",
+      "path": "original-stage-inventory.json.gz",
+      "source_sha256": "cf9e36b8d655b0c60a74cd134a2d4580ac07fef70a64496d65f055314fcc8008",
+      "stored_sha256": "ed7eedc914d95a9006ad9f100cc3c1771339c0a364496cdedf8bd5ddb860a2a0"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    }
+  ]
+}
