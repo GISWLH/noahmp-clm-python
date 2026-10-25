@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "blocking_findings": [],
+  "scope": "Read-only review of the two newly added OU documentation sections against the original closed archive; no numerical arrays decoded and no model/job or production change.",
+  "documents_sha256": {
+    "docs/CLM_CALIBRATION.md": "797e8c608f792868780530d711d9fd839476d20dcc7fbf12cb854f6a1b1acfc7",
+    "docs/FLUXNET_PLAN.md": "7e33a6f70d27ae4a36a09517c1089c541fd0dc516b7a186f4e89f39633f37267"
+  },
+  "evidence_archive_sha256": "e47b2fec32c435323b4ed3ab759085e470b18bb1f4f12bb902354a4697ac2a73",
+  "actual_pbs_job": "1600.manager",
+  "actual_pbs_state": "F",
+  "actual_pbs_exit": 0,
+  "training_years": 4,
+  "fields_per_year": 38,
+  "field_byte_proofs": 152,
+  "first_year_files_exactly_reused": 4,
+  "leap_years": 2,
+  "steps_each_leap_year": 17568,
+  "original_case_references": 8,
+  "candidate_configuration_SHA_references": 184,
+  "timing_meanings": {
+    "synthetic_tests_seconds": 0.319,
+    "input_preparation_seconds": 2.3903819611296058,
+    "complete_worker_seconds": 3.2087668131571263
+  },
+  "metadata_scope": "First-year metadata unchanged, including inherited original full-period summaries; second-year summaries explicitly provenance, not annual statistics.",
+  "launch_claim": false,
+  "model_steps": 0,
+  "numerical_execution": false
+}
