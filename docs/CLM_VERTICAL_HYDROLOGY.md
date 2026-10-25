@@ -127,6 +127,21 @@ JAX／CUDA、整柱、年度或完整模块验收。
 [独立原stdout、19220个IPC标量和有符号账核验](v1-results/clm-drainage-common-thermal-pb-j-independent-review-wo.json.gz)
 确认645份原库／模块文件未改，961帧的W/H/T/液冰往返精确，原时钟0→960。
 
+[PB-k滞水完整NumPy64／32链](v1-results/clm-drainage-perched-pb-k/manifest.json)在
+EHPC1649真实F0／Stageout0：18项测试（两精度各9项）、20条诊断，29.748889秒。
+每个试步后实际相反演，整步／两半步拒绝、逐层供体切换、缺液／几何cap分账、
+Kahan库存及原硬水热界均执行；原主带6个依赖和5份参考原件逐字不变。
+对J共享热闭包官方水文，64位第二／三层出流偏差−3.516691%／+0.386163%，
+前沿−0.314654%；32位对应−3.787384%／+0.418871%、前沿−0.338374%，均在P0
+10%内。原J和新1mm诊断仍false，保留原值，不增加毫米级合并条件。
+
+冻结选项2也完成两精度各1800秒完整滞水积分，对PB-c参考的温差最大
+0.000127706 K；这是对既有NumPy参考的验证，不称独立官方选项2认证。
+32位最大水／热残差绝对值9.771436e−6 kg/m²／3.4609375 J/m²，对应原界
+0.01083374／3261.5239；64位最大约1.24e−14／7.450581e−9，均在各自原界内。
+此轮没有执行JAX／CUDA、整柱或年度，不能将已准备设备源码计作同步通过。
+[独立原件、XML、20条诊断及范围复核](v1-results/clm-drainage-perched-pb-k-independent-review-wo.json.gz)。
+
 [PB原型实际结果](v1-results/clm-saturated-drainage-pb/manifest.json)已在EHPC
 1606真实F0／Stageout0完成18项测试，pytest 56.76秒。它包含实际局部物理积分，
 没有整柱、站点年或GPU运行。独立DOP853＋quad无冻土参考的迁移前沿差为
