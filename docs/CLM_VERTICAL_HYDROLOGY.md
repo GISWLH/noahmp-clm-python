@@ -24,6 +24,31 @@ worker45.132005秒；975源／控制／参考／金样文件前后不变，594�
 CPU入口合同和NumPy32一致性；实际JAX／CUDA、64位完整积分、native整柱guard／
 适配和生产接入仍未完成，不能把sentinel负测试计为设备计算。
 
+PB-p-b隔离适配随后在EHPC1695真实F1／Stageout0：24项中23通过、1失败，
+零错误／跳过；数值父进程17.434406秒、worker18.476799秒。新入口接收实际
+水／焓库存，先相反演及纯诊断，再依滞水／主排水顺序推进；尚未接入生产柱。
+唯一失败为nonuniform_dz-float64，第二个主排水半步被原输入域validate拒绝，
+尚未取得该案最终预算或物理比较；同案float32通过，后续单案捕获见下。
+不将域异常称为10%物理偏差失败，也不跳过或修改原guard。
+
+16份已完成独立参考记录及原20组金样保留；纯诊断／单步647返回字段的
+dtype／shape／bytes与金样一致，不等同于前轮17完整积分重跑。暖态64主出口
+.5462453722 kg/m²；32位滞水压力案为8.26828289、独立参考8.28549276 kg/m²，
+最大逐层出流／携焓绝对差.01774577 kg/m²／6434.90394 J/m²，温差8.28708e−5K。
+该案原水／热残差3.17022e−6 kg/m²／2.001953125 J/m²，小于原界
+.0108337402／3261.523193；完成记录均保持各自原硬界。1033源／控制／金样文件
+前后不变。[139件原结果](v1-results/clm-drainage-adapter-pb-p-b/manifest.json)
+及[独立实际复核](v1-results/closed-diagnostics-pw-pbp-review/manifest.json)
+仅支持上述CPU组件范围，未运行JAX／CUDA、native整柱或年度。
+
+[PB-q单案捕获](v1-results/clm-drainage-nonuniform-pb-q/manifest.json)在EHPC1702
+真实F1／Stageout0复现原ValueError。唯一拒绝谓词为第二层ice_negative：
+T=290K、dz=.375m，W=164.92674916302653、liquid=164.92674916302656 kg/m²，
+ice=−2.84217094304e−14 kg/m²，恰为−1 ULP。液水与原体积到质量的回乘逐值相同，
+其余全部原谓词false，重建bad与原bad一致。原参考1次返回、适配1次失败，
+630原文件及控制不变；诊断完成不表示该测试通过。下一候选只令NumPy64暖态
+直接使用总水质量、冰量0；原冷态、输入检查及水热守恒门保持，修订验证仍待。
+
 2026-10-25后续开发：补齐诊断土柱水位、饱和带及冻层上方滞水带排水的NumPy
 参考组件，再同步JAX／CUDA及整柱连接。[CLM5公开水文方程§2.7.3—2.7.5](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Hydrology/CLM50_Tech_Note_Hydrology.html)
 的这条路径使用零底通量土水求解，随后从实际土层移出径流，不以独立WA水库
