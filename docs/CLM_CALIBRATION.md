@@ -52,8 +52,35 @@ EHPC1620—1627全部实际F0／Stageout0：384原物理步、384完整BGC记录
 最大绝对残差1.018852e−11／5.907640e−13，对应原界4.119928e−8／1.743953e−9。
 Cng完整窗口耗时94.866—96.469秒，Qia447.327—464.481秒；只报告该48步窗口，
 不作全年吞吐推断。[原终态／384记录字节复核](v1-results/numpy-baseline-cold48-ph-independent-review-wo.json.gz)。
-下一步是同年resume各自剩17472步，保留原冷态和全局累计账；部分年末态不能
-喂完整年cycle／train2验证。正式完整年、被接受spinup及参数得分继续为0。
+后续[PJ同年续算已实际启动](v1-results/numpy-baseline-resume-pj-launch/manifest.json)：
+EHPC1633—1640八根各1CPU／2GiB／6小时窗口，原48→528后每480步仅在实际
+F0／Stageout0／worker0及完整原账闭合后接下一窗，末窗192步，到17520自动停止。
+每根最多37窗、合计最多139776个新增柱步；失败不自动重试，不接cycle2或训练年。
+12:25:50UTC八worker真实R，Cng四根已保存96、Qia四根48，新增完整窗口及年均0。
+八个独立零步探针与正式首输入均已保存：七元状态各20数组，Cng各116／Qia各107
+标量，最大内容差均0。Qia无物候状态／参数，两个None与Cng展开字段的计数不同；
+原SCOPE统一写116的措辞保留并在此更正。原runner恢复时重写pickle容器，八根
+原始pickle SHA不同、NPZ相同；没有把容器非规范序列化误报物理漂移或宣称原字节
+均相同。正式七元、18字段全前缀、全局累计账及BGC连续核查在每窗实际闭合完成。
+[隔离控制独审](v1-results/numpy-baseline-resume-pj-independent-review-wo.json.gz)、
+[原启动状态与容器核验](v1-results/numpy-baseline-resume-pj-launch-root-review.json.gz)。
+部分年末态不能喂完整年cycle／train2验证；正式完整年、被接受spinup及参数得分
+继续为0。两端每次提交前均检查至少12GiB／20000空闲inode，尚不保证全部历史
+归档永久占用量；资源不足将有界停止，不能清理活动状态以继续。
+
+随后[PJ四根Cng首窗实际闭合](v1-results/numpy-baseline-resume-pj-first-closed/manifest.json)：
+1633—1636均F0／Stageout0，分别48→528，新增1920柱步／1920 BGC记录。
+正式七元20数组／116标量、18字段旧前缀、首状态／forcing／kwargs及各528条
+BGC全链端点最大差均0；此处是正式窗口证据，不再仅是独立零步探针。
+四窗耗时927.868／1003.813／971.412／963.785秒，峰RSS54276—55852 KiB。
+最大端点水／热残差绝对值5.657697e−13 kg/m²／2.328306e−8 J/m²，对应原界
+4.131509e−9／.00568400465；C／N为6.310508e−13 gC/m²／1.597195e−13 gN/m²，原界
+2.070546e−7／1.810435e−8。原逐步、累计及最大值账全部保持。
+12:43:14UTC已按各根真实成功分别接1643／1646／1644／1645，仍为同年第二窗；
+Qia首窗尚未闭合。没有完整年、SOC收敛、评分或全年吞吐结论。
+[实际闭合独审](v1-results/numpy-baseline-resume-pj-first-closed-independent-review-wo.json.gz)
+核对四份原F0、44个不可变ZIP的2112条记录（新1920）、正式接续与原账，未在本机
+解码物理数组或重跑模型。
 
 [PI原NumPy BGC数据桥](v1-results/numpy-bgc-bridge-pi/manifest.json)在EHPC1630实际
 F0／Stageout0：11项测试2.354秒。读取PH已有384记录，2304字段／6912值及120个

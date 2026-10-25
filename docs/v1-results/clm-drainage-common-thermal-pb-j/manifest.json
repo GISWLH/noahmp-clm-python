@@ -1,0 +1,354 @@
+{
+  "scope": "One original-public-library hydrology profile with 960 actual 90-second steps and explicit shared NM64 liquid-parcel heat/phase closure. Full raw IPC, signed water/energy ledgers and correction channels retained. Original1616 dynamic PB result reused, scientific gates separate from process success. No new GPU, full-column, annual or production acceptance.",
+  "archive_sha256": "1360fb8305ddf55fd18a941416a0dbec8da112735ddb3fcef5d5b7dc28077b16",
+  "artifacts": [
+    {
+      "source": "SCOPE.md",
+      "path": "SCOPE.md.gz",
+      "source_sha256": "5fc356d78c32048a049cae4da1cd9fd366f82f4397a7cd24e1fe1415f25a8e05",
+      "stored_sha256": "722e1f65a74f0a9221ef271082a41a4f9eb1acde4ff244eef321badb9c2114e9"
+    },
+    {
+      "source": "archive_drainage_common_thermal_pbj.py",
+      "path": "archive_drainage_common_thermal_pbj.py.gz",
+      "source_sha256": "a3db469d305cf10e7ca92ceda5345c01190b8436dcc17a9e63022f6bfdcad0a4",
+      "stored_sha256": "284e6f56c0a4d48ee757181df886ec1c1af62ddb9a92fc1eb67dd6e6d7edf57a"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "c2b55a80546ec117a09023535525c0e1062c18078bc9eec3bc8f132699e25fa2",
+      "stored_sha256": "c91d1114501c048cef00956235990123aae4e78937c172949f8edc30a919eb11"
+    },
+    {
+      "source": "caller-linkage-command.json",
+      "path": "caller-linkage-command.json.gz",
+      "source_sha256": "7db9073aa06aaf3f4e1a87446fb2c59c27393afbee508f06568c675c735ad3e0",
+      "stored_sha256": "b8fe01edd8921ec0463fe4d1d39176be0e2afb7f55dba2b587d5dfe7df3b9ae0"
+    },
+    {
+      "source": "caller-linkage.stderr.txt",
+      "path": "caller-linkage.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "caller-linkage.stdout.txt",
+      "path": "caller-linkage.stdout.txt.gz",
+      "source_sha256": "2ccebe9f3ca5e052297a18dae16b287ec21610673690e98c856c8c48dad22795",
+      "stored_sha256": "11624c42d0ba2a1f6d06430a90a33fa7d9b0d42178a8a23ead78c8fab5c7fb6d"
+    },
+    {
+      "source": "closed-run.json",
+      "path": "closed-run.json.gz",
+      "source_sha256": "25036b6869dfb85baac6d4dc101aedfd73f09b4aa79767d9118a4eebaae71b56",
+      "stored_sha256": "1faf70728af86e536ec9f9012dea056471b140f04d86dc3f286f77633857a4cd"
+    },
+    {
+      "source": "common-thermal-readout.json",
+      "path": "common-thermal-readout.json.gz",
+      "source_sha256": "1ce544ef7e8fc4c4e8843136f992120fa93e3f7795ca79b29d7f1b3ee51eb61e",
+      "stored_sha256": "aedd9b9be89f09e494f3ed3f322bc205f568e72075ec3be64dd1172b5413f159"
+    },
+    {
+      "source": "compare-command.json",
+      "path": "compare-command.json.gz",
+      "source_sha256": "812d80a90e616d0a2796474e0ce41344f71d7cc755d63d180b3a01e2837e45a8",
+      "stored_sha256": "873fd8f1efffc1f2d5eda72d285d65fd26e3490ff7931af6726dae3e65cb02f8"
+    },
+    {
+      "source": "compare.stderr.txt",
+      "path": "compare.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "compare.stdout.txt",
+      "path": "compare.stdout.txt.gz",
+      "source_sha256": "79f3fb8cc2041bebbc6578bee4df29bf7056b2c6d824c3a86c1f8fbb8e572aa5",
+      "stored_sha256": "c88970b59c2c008e342bff8198499ff13bb897f5b981f352e60c5e25e7289210"
+    },
+    {
+      "source": "comparison/comparisons.json",
+      "path": "comparison/comparisons.json.gz",
+      "source_sha256": "bac6643dbc4e07151386c51f3237e936c70e7da0ff8ff2a2cb2bbf736da37c80",
+      "stored_sha256": "daf4f8ad2eb7e2ea4bf00b74847a011c303c7095eeda01130eb9bc266475f2ea"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/fixture.txt",
+      "path": "comparison/perched_common_thermal_960/fixture.txt.gz",
+      "source_sha256": "83b2f656d64c764542cbff623c3b4bd44cc9c8fe7b7a1efd309b4cc54c37007f",
+      "stored_sha256": "ef0d726ce3b48d89dbe899c57e18affff1826a4b9f116405f4d6996c819cf49b"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/hydrology.nml",
+      "path": "comparison/perched_common_thermal_960/hydrology.nml.gz",
+      "source_sha256": "46c541c9b3e020ce4f8444bea34d44c971ca7d459efbe1bb702ba25b12b9adb4",
+      "stored_sha256": "69de5f6c069e734fb0802d33b5d765eb63a8e61470d03e5fdb58bdef85bd0775"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/ipc-input.txt",
+      "path": "comparison/perched_common_thermal_960/ipc-input.txt.gz",
+      "source_sha256": "bf70c9b25f97f58b86b54af973da6a97fac295ad0a066c9ea8415747959c1155",
+      "stored_sha256": "00ee4b0cace742ca915f199eb6b21c88e91018a96517a0764e79fc558af3f949"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/official-exit.json",
+      "path": "comparison/perched_common_thermal_960/official-exit.json.gz",
+      "source_sha256": "de23e4c38cd048a4bc63626e203452599a6b2fb4dec15fba0244e4548c7e2df8",
+      "stored_sha256": "beabfbfe4ca963836b941ff59f4bfaacbb26bb68eb249f6256161305f50868d3"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/official.stderr.txt",
+      "path": "comparison/perched_common_thermal_960/official.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/official.stdout.txt",
+      "path": "comparison/perched_common_thermal_960/official.stdout.txt.gz",
+      "source_sha256": "8d552123aaab24f51bd9144bb26c0153589bde154d2edee4cf16f9c88a7f420a",
+      "stored_sha256": "66d0252a89c9ee93c743d909064f74ee7020666f33829f8bc5de51c2d3706568"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/profile.json",
+      "path": "comparison/perched_common_thermal_960/profile.json.gz",
+      "source_sha256": "45c1467ef4051926018c50818617014b302e58ab8b680ebe551a4e8bef40ef4f",
+      "stored_sha256": "95108dbe382d392d8acf5fcf5d830cd36e8840eea3fbfdf05dc3fbb10ef97d9b"
+    },
+    {
+      "source": "comparison/perched_common_thermal_960/step-ledgers.jsonl",
+      "path": "comparison/perched_common_thermal_960/step-ledgers.jsonl.gz",
+      "source_sha256": "45b342b9404ee0ef3e96c41674ec2ab9569ac95633d2903a257e2bd1ae650caf",
+      "stored_sha256": "0566e4d4d7210f72d50caa13ef98910ec62ce9d59c9bbe1a3506fef1e4798158"
+    },
+    {
+      "source": "compile-original-caller-command.json",
+      "path": "compile-original-caller-command.json.gz",
+      "source_sha256": "82db44309ea6a929cf2e80e4b840fec2d42314f8af768174ef7db9c7fea8627b",
+      "stored_sha256": "eb8e1771703d846c1ffc9cd470a0677970bbafa0a118170cb13597d64598dec3"
+    },
+    {
+      "source": "compile-original-caller.stderr.txt",
+      "path": "compile-original-caller.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "compile-original-caller.stdout.txt",
+      "path": "compile-original-caller.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "compiler-version-command.json",
+      "path": "compiler-version-command.json.gz",
+      "source_sha256": "7dc346553956802f44f250bfe2822e27c0b7c3be9173945787eca10878114dbd",
+      "stored_sha256": "6d16850738d1bd3f887cfaf1c2841efbfc98879a679dbde83bbc3abd95b4ad36"
+    },
+    {
+      "source": "compiler-version.stderr.txt",
+      "path": "compiler-version.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "compiler-version.stdout.txt",
+      "path": "compiler-version.stdout.txt.gz",
+      "source_sha256": "d6e1da85a5659e5ff48b68fdccb813a5a8d049e3ba0118059896484656682672",
+      "stored_sha256": "dca8d992b4b19ca56d84996bcd131cfbc5d4062dd7b46bc7a997496fa3762f68"
+    },
+    {
+      "source": "complete-result-inventory.json",
+      "path": "complete-result-inventory.json.gz",
+      "source_sha256": "2c5e7a0035235050d48a78ac25f8f8385720e405decfef9d1e4cd4afc1f90dd2",
+      "stored_sha256": "a29c12d979a8acb572c9385ce2beaaa16e0254bc4d393dd3c6cde296ee6defd2"
+    },
+    {
+      "source": "controls/CONTROLS_SHA256.json",
+      "path": "controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "bc7958ea6e910faf8c68db1b4ca0f5aaa2c24da37fbddb607d4c6206c993ced1",
+      "stored_sha256": "855c45c6dd86dc5377429c3acfa2a7440d8cbdd477980ead12c5359fb6f8f564"
+    },
+    {
+      "source": "controls/README.md",
+      "path": "controls/README.md.gz",
+      "source_sha256": "e02020fbe877d5af6bb5e9c8156536b50d175c73d737f5510793a139aa4fb577",
+      "stored_sha256": "192f328709aef46cac65ebf621248d9d99f059ed99f7784e6d19bac24e22d292"
+    },
+    {
+      "source": "controls/REFERENCE_BINDINGS.json",
+      "path": "controls/REFERENCE_BINDINGS.json.gz",
+      "source_sha256": "82a1406cd1ab659c7d8429d93b137b56744a835d5d0e69afd1c2032a10c2cad3",
+      "stored_sha256": "ce1c096433d75532e51aa6ad8330606059d4e4ee17617afceb89a12e33bad61b"
+    },
+    {
+      "source": "controls/caller-original-to-ipc.diff",
+      "path": "controls/caller-original-to-ipc.diff.gz",
+      "source_sha256": "ce5bddd6b2b8fe9341b02497456d7a86677a0bde69ac1aa0406a742e0c20c0c4",
+      "stored_sha256": "71bd7cfb8fb97dbc68672cee44b1dbeefce1b9f305a0371c60695e005e5b9aaa"
+    },
+    {
+      "source": "controls/compare_official_pb.py",
+      "path": "controls/compare_official_pb.py.gz",
+      "source_sha256": "ad50d8b7c6725b2c5de2edbc1435874206de538fbd34e6463565b5669595c704",
+      "stored_sha256": "6fb29a99162238bf34dfb1071ca224036d04bd0c9414a556f2d2d38b2f414e77"
+    },
+    {
+      "source": "controls/dispatch_reference_pb.py",
+      "path": "controls/dispatch_reference_pb.py.gz",
+      "source_sha256": "8aa27135151381c364d6eaa438741eaa199deae84a22a7e0ebdb8f3ad81b48ea",
+      "stored_sha256": "9c69a87d93cc4bf5cd41f1c20ffb256d99511b829cd9d46adb7eb3e7c7d79707"
+    },
+    {
+      "source": "controls/drainage_caller.f90",
+      "path": "controls/drainage_caller.f90",
+      "source_sha256": "1d37898c60c81f3a762b7f0363276d716405051430c05aa176c068e09fea2050",
+      "stored_sha256": "1d37898c60c81f3a762b7f0363276d716405051430c05aa176c068e09fea2050"
+    },
+    {
+      "source": "controls/reference-pb-d-comparisons.json",
+      "path": "controls/reference-pb-d-comparisons.json.gz",
+      "source_sha256": "bc0e42df6dca48677f4fa4e247c5d88ef06b4e44fdeead857b31a8c1ec1c3cd2",
+      "stored_sha256": "33154241fe06231b79b976bb407a9371b9b657c4a2f5731efddf8800c4cdf0dd"
+    },
+    {
+      "source": "controls/reference-pb-e-comparisons.json",
+      "path": "controls/reference-pb-e-comparisons.json.gz",
+      "source_sha256": "bcfc6264888fd02b11c895c92538d852e508c0b1d34197914ba2c6bead188021",
+      "stored_sha256": "7fd9c32187a6452b11c6672942410b18c3e3598271ec51bc5f0f40c59cb2617e"
+    },
+    {
+      "source": "controls/reference_pb.pbs",
+      "path": "controls/reference_pb.pbs.gz",
+      "source_sha256": "a506a367ece3899502666dca5be9034c09d34f18cd46935b0de4a7ed8f52dd19",
+      "stored_sha256": "4b79e2f155ae2b7b126b4fdac8e48856411a750961970dc4d2d132c89c1d7f71"
+    },
+    {
+      "source": "controls/run_reference_pb.py",
+      "path": "controls/run_reference_pb.py.gz",
+      "source_sha256": "912eedf6044227fb247771558b3410d0b254189fb80afe6cabfd711d3dc8330b",
+      "stored_sha256": "e7c91de29276dc6d71d78e9633baef53cf3dd281c13e740abadd2ec44dddc95d"
+    },
+    {
+      "source": "controls/saturated_drainage_pb.py",
+      "path": "controls/saturated_drainage_pb.py.gz",
+      "source_sha256": "d2742cfc98aa65b31fe4fa918cbf6f514b4583f47e8fe60a64b7f316339808b8",
+      "stored_sha256": "cc76e320bb560190158deab46caa02fb5e690165a70127f0cb589f35c3a6dfed"
+    },
+    {
+      "source": "official-object-identity.json",
+      "path": "official-object-identity.json.gz",
+      "source_sha256": "e2590fa67f722c195f4730c08e3cff63d0b29b2131099279c24538c4113a5ff3",
+      "stored_sha256": "df92103716d1c8391abcc771a8bdc15fd61598d8d0e4b37fd8e948df95b8b80d"
+    },
+    {
+      "source": "preparation-provenance/clm-drainage-common-thermal-pb-j-final-porosity-review.json",
+      "path": "preparation-provenance/clm-drainage-common-thermal-pb-j-final-porosity-review.json.gz",
+      "source_sha256": "e305dcb754b527ab2d1dd473ea726fcc790056c403b0f365733c1168d430f8fd",
+      "stored_sha256": "02cfe244e64d21716db57fe3577337acfd629779f380d26c6015cd67dd7899e0"
+    },
+    {
+      "source": "preparation-provenance/clm-drainage-common-thermal-pb-j-static-before-final-porosity.json",
+      "path": "preparation-provenance/clm-drainage-common-thermal-pb-j-static-before-final-porosity.json.gz",
+      "source_sha256": "20f8aec95b47f1f65fb60a1e5044175b712292b347cebb54115062de1f104c92",
+      "stored_sha256": "9754f1d0626dafd975f9c1a3024739d669f9fd9ea4a8eb7945a597d59fce6553"
+    },
+    {
+      "source": "preparation-provenance/clm-drainage-common-thermal-pb-j-static-preparation.json",
+      "path": "preparation-provenance/clm-drainage-common-thermal-pb-j-static-preparation.json.gz",
+      "source_sha256": "18b8bb424ca8b084622ae40d7cd4df5ad06293f1ad824509d67c0b5270bc4d6d",
+      "stored_sha256": "c8de683f2ea15734e0b09986975759863493d76e46a80b366cb57ce98ea340af"
+    },
+    {
+      "source": "preparation-provenance/prepare_drainage_common_thermal_pbj.py",
+      "path": "preparation-provenance/prepare_drainage_common_thermal_pbj.py.gz",
+      "source_sha256": "ea8da8b1275a43f1a915a59e0167c7f2cbe6304270c91bc3cee06480a53663b0",
+      "stored_sha256": "9e80e0d5a42d1458bba3bf866ac8660d6a0f3b767514e7f72075732b1a17b649"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "69ef7a2a469c0fbe4ddebc3e67d75d80abedd475ed8d2ac73fc415fd838f7ade",
+      "stored_sha256": "a576004cc819e5d479946c729a75c9544cc518373abc5fddcdeae087dbf869f6"
+    },
+    {
+      "source": "relocate-command.json",
+      "path": "relocate-command.json.gz",
+      "source_sha256": "b606dae4fa345f1dac5d5b80755532c134d72597815e9ef35f63cf0367300c60",
+      "stored_sha256": "3c838cae436c1f0eaef8fff993ca6bacc04b32f55bd2ad16f45e51e15ff2a088"
+    },
+    {
+      "source": "relocate.stderr.txt",
+      "path": "relocate.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "relocate.stdout.txt",
+      "path": "relocate.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "scheduler/actual-qstat.txt",
+      "path": "scheduler/actual-qstat.txt.gz",
+      "source_sha256": "0530699c74cd73a3dbc88f3fc22e442d1fb56666c8789c81ce9167fc46b8db82",
+      "stored_sha256": "ab174bf6d0a8aeb2985a3a27735a5fc792758958052b36334894804c05f9c5aa"
+    },
+    {
+      "source": "scheduler/compute-extract.stderr.txt",
+      "path": "scheduler/compute-extract.stderr.txt.gz",
+      "source_sha256": "bbb03c9493e29d1c4c447061d85b7afb73a17d82a499094caa14a9df23efd3fe",
+      "stored_sha256": "82d7444c9c9071e6f8328840bc46395eb9f52e4f26de891e2cd80510b39be5c4"
+    },
+    {
+      "source": "scheduler/compute-extract.stdout.txt",
+      "path": "scheduler/compute-extract.stdout.txt.gz",
+      "source_sha256": "dfd0f11bd0fe71e5d16c909ec947620e137a317010d841328a83b028ef6bf85c",
+      "stored_sha256": "dec8592911a11876dedbf78ad4325fc30d687580891626e0b26eaa43608936b0"
+    },
+    {
+      "source": "scheduler/compute-file-hashes.txt",
+      "path": "scheduler/compute-file-hashes.txt.gz",
+      "source_sha256": "d4a1697bf3bbc87f03e42d91c4cd1e8bab5d4cf9690d100d7aa114c6c49030a1",
+      "stored_sha256": "e2c1b5ad2c8a809afdc99fb5d533cc1669a364a6a1b25bb6f29fe740076f4ff4"
+    },
+    {
+      "source": "scheduler/controller.log",
+      "path": "scheduler/controller.log.gz",
+      "source_sha256": "94ceb4088a5609c098775a876498b0ac9e315641930f4cadf3d26b51c1f07a26",
+      "stored_sha256": "e36693b5b57a1c6424c7393c043ad6dd56ed3d85a466da65d8a6b7c0ba71de7b"
+    },
+    {
+      "source": "scheduler/dispatch.json",
+      "path": "scheduler/dispatch.json.gz",
+      "source_sha256": "966d1cd4066bf4647eac602061d7d0af245ea1be64835cd19b8ecdc55a328d57",
+      "stored_sha256": "6ae10e2207e7a5fb0ce06ff0c4c8e9985bed1a41ab529935b749b7d80878b334"
+    },
+    {
+      "source": "scheduler/pbs-exit.txt",
+      "path": "scheduler/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "scheduler/qsub.stderr.txt",
+      "path": "scheduler/qsub.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "scheduler/qsub.stdout.txt",
+      "path": "scheduler/qsub.stdout.txt.gz",
+      "source_sha256": "e005eb12b6dcec789ef47dc328104aa3c618abd5a340f5dcd28bbc7299be0573",
+      "stored_sha256": "f0b09e985e63c597ae7e03d973e97c375c0ffa1b965fcec4ecb0a0a4f626d0db"
+    },
+    {
+      "source": "scheduler/stage-inventory.json",
+      "path": "scheduler/stage-inventory.json.gz",
+      "source_sha256": "a714c28c640ce9f808a50be0431efc200a46fed74684e775a2c8b719c02dcaf3",
+      "stored_sha256": "c084ab1dc8dda0414b87dbfcec25207b7e056ecb1a1e70329a172f01c7123bb6"
+    }
+  ]
+}
