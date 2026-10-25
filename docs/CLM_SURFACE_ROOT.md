@@ -3,6 +3,13 @@
 2026-10-25。生产物理仍是 JN；评价器另含 NK 的严格 SOC 边界修订。
 以下 ML 为私有四文件候选，未推广、未续失败年。
 
+同日最终 NM 候选（ML4＋NF3＋NK2，584 文件，清单 `a39f4877…17ced5f`）
+在 EHPC1585 实际 F0：**1168 项 CPU 全部通过**，pytest **835.74 秒**，完整
+worker 839.832968 秒。实际收集与执行逐节点核验，原 1156 项全部保留，新增
+12 项仅为严格 SOC 边界；零失败／错误／跳过，源包与全部文件前后不变。
+[最终候选全量 CPU 证据](v1-results/climatology-final-cpu-nr/manifest.json)。
+这是单次最终候选全量执行，旧 NI 记录仍保持原源身份。
+
 05:57UTC：EHPC1578 已实际 F0，ML4 加三个永久回归文件的冻结候选完成全部
 1156 项 CPU 测试，pytest 831.98 秒、包含收集与源核验的 worker 836.606392 秒，
 零失败／错误／跳过。[完整 CPU 日志与冻结源](v1-results/surface-root-cpu-ni/manifest.json)。
