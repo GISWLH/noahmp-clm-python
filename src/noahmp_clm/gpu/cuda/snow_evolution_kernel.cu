@@ -28,10 +28,13 @@ __device__ float snow_dry_growth(float radius,float dt,const float* parameters) 
 }
 
 __device__ void snow_fresh_properties(float offset,float wind,float* out) {
-    float thermal=offset>-15.f?50.f+1.7f*powf(fmaxf(fminf(offset,2.f)+15.f,0.f),1.5f):
-        (-3.833f*offset)-(.0333f*offset)*offset;
-    float loading=wind>.1f?266.861f*powf((1.f+tanhf(wind/5.f))/2.f,8.8f):0.f;
-    out[0]=fminf(917.f,fmaxf(30.f,thermal+loading));
+    // Local double evaluation rounds the analytic density once to the state
+    // precision; float tanh differences must not perturb new-snow geometry.
+    double t=(double)offset,u=(double)wind;
+    double thermal=offset>-15.f?50.+1.7*pow(fmax(fmin(t,2.)+15.,0.),1.5):
+        (-3.833*t)-(.0333*t)*t;
+    double loading=wind>.1f?266.861*pow((1.+tanh(u/5.))/2.,8.8):0.;
+    out[0]=(float)fmin(917.,fmax(30.,thermal+loading));
     out[1]=54.5f+5.f*fminf(30.f,fmaxf(0.f,offset+30.f));
 }
 

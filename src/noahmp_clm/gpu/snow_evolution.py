@@ -60,13 +60,26 @@ def aging_parameters_jax(offset,gradient,density,table):
 
 
 def fresh_snow_jax(offset,wind):
+    import jax
     import jax.numpy as j
     from jax import lax
     s=lax.optimization_barrier
-    thermal=j.where(offset>-15.,s(50.+s(1.7*j.power(j.maximum(s(j.minimum(offset,2.)+15.),0.),1.5))),
-        s(s(-3.833*offset)-s(s(.0333*offset)*offset)))
-    loading=j.where(wind>.1,s(266.861*j.power(s(s(1.+j.tanh(wind/5.))/2.),8.8)),0.)
-    return j.stack((j.clip(s(thermal+loading),30.,917.),s(54.5+s(5.*j.clip(s(offset+30.),0.,30.)))))
+    offset=j.asarray(offset);dtype=offset.dtype;wind=j.asarray(wind,dtype=dtype)
+    active_wind=wind>j.asarray(.1,dtype=dtype)
+    radius=s(54.5+s(5.*j.clip(s(offset+30.),0.,30.)))
+    # Evaluate this analytic density in double before rounding to the state
+    # precision. Float32 tanh differences otherwise perturb snow geometry.
+    # The local context preserves callers with the default X64 flag disabled.
+    context=getattr(jax,'enable_x64',None)
+    if context is None:
+        from jax.experimental import enable_x64 as context
+    with context():
+        t=offset.astype(j.float64);u=wind.astype(j.float64)
+        thermal=j.where(offset>-15.,s(50.+s(1.7*j.power(j.maximum(s(j.minimum(t,2.)+15.),0.),1.5))),
+            s(s(-3.833*t)-s(s(.0333*t)*t)))
+        loading=j.where(active_wind,s(266.861*j.power(s(s(1.+j.tanh(u/5.))/2.),8.8)),0.)
+        density=j.clip(s(thermal+loading),30.,917.).astype(dtype)
+        return j.stack((density,radius))
 
 
 def snow_evolution_kernel_jax(c,o,u,table):

@@ -159,7 +159,9 @@ def surface_kernel_jax(c,g,p,o,a,u,f,v,radiation,leaf,aging,condensate=None,exch
         prefer_initial_branch,lambda:(right,fr,count))
     def step(carry):
         k,left,right,fl,fr,details,count=carry
-        width=s(right-left);trial=s(left-s(fl*width)/j.where(fr!=fl,s(fr-fl),1.))
+        width=s(right-left);secant=s(left-s(fl*width)/j.where(fr!=fl,s(fr-fl),1.))
+        # Match the NumPy fallback without changing root or budget gates.
+        trial=j.where(k<20,secant,s(left+s(.5*width)))
         trial=j.clip(trial,s(left+s(.05*width)),s(right-s(.05*width)))
         # The 5% margin can round to an endpoint in a narrow float32 bracket.
         trial=j.where((trial<=left)|(trial>=right),s(left+s(.5*width)),trial)

@@ -132,7 +132,10 @@ template<class Solver> __device__ void surface_device(const float* c,const float
         }
     }
     for(int k=0;k<60&&fabsf(out[361])>tol&&bracketed&&(right-left)>tol;++k) {
-        float span=right-left,trial=left-(fl*span)/(fr!=fl?fr-fl:1.f);
+        float span=right-left;
+        // Match the NumPy reference: after20 secants, bisect the same
+        // bracket. This guarantees progress within the unchanged60 rounds.
+        float trial=k<20?left-(fl*span)/(fr!=fl?fr-fl:1.f):left+.5f*span;
         trial=fminf(right-.05f*span,fmaxf(left+.05f*span,trial));
         // A percentage margin may round back to the endpoint. Contract it.
         if(trial<=left||trial>=right)trial=left+.5f*span;
