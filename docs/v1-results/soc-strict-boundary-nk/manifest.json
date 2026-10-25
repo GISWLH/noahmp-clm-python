@@ -1,0 +1,138 @@
+{
+  "scope": "Only enforce Wang strict <5% per century; original near-zero, cancellation, provenance and water/heat rules retained. Synthetic assessment boundary tests, no real spinup or physical model credit. Private candidate, production unchanged.",
+  "archive_sha256": "0ee0356df093b5163f8b9c8e3b366a4919ac0fa6c521157973b0328968d7eb19",
+  "artifacts": [
+    {
+      "source": "actual-qstat.txt",
+      "path": "actual-qstat.txt.gz",
+      "source_sha256": "ee879549ec90b4b404d12ebafb0e570601a8c674a01afd2907e2110cd89e9dd6",
+      "stored_sha256": "278888213feda2e89b41c9bca4c4c382343d6193ff1de1119e915384993668ad"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "dff6b978866d22e111311505e5257d18c300101cc9ca59a09970fdc43293443c",
+      "stored_sha256": "5f835d33aae727c7a67ca5fe574e14dbcfca36082589b06f0fed888bd422a5d8"
+    },
+    {
+      "source": "control/archive_cpu_candidates_nl.py",
+      "path": "control/archive_cpu_candidates_nl.py.gz",
+      "source_sha256": "311e83a8e5c6ab169d7b3d1b57582d9047746194ad94202d812f30709a0e6169",
+      "stored_sha256": "ff47015a0283751fdb2c7d57db9950136d86e43d230e177df3699c6a838134fc"
+    },
+    {
+      "source": "control/dispatch_soc_strict_boundary_nk.py",
+      "path": "control/dispatch_soc_strict_boundary_nk.py.gz",
+      "source_sha256": "5e46b6631001e47723c7eaa3be41d68bb9071de727f7cc9b70d30d6f64ad88b7",
+      "stored_sha256": "28facac92ef6bf926d2d87a23fe0b2a6ab8c5ed5aeb0c20ad72ac04c930d9d8f"
+    },
+    {
+      "source": "control/manager/dispatch.json",
+      "path": "control/manager/dispatch.json.gz",
+      "source_sha256": "536a0864268b3404a68691ed482ed9b665cef4107e12e611ed2cb09c4037126f",
+      "stored_sha256": "441c53b53f2a8e70469c20be11807b084b5a9047eee1831d6a571366808f3f6e"
+    },
+    {
+      "source": "control/manager/job.pbs",
+      "path": "control/manager/job.pbs.gz",
+      "source_sha256": "cd30eeda71f12945aa887e2fd5e2a21d8c7164baf200f542f54ea22b9fe1651a",
+      "stored_sha256": "ca7fe3380613a69d15c2401830a03c91e59a0ab2321c552fe4952112f130dc7f"
+    },
+    {
+      "source": "control/run_soc_strict_boundary_nk.py",
+      "path": "control/run_soc_strict_boundary_nk.py.gz",
+      "source_sha256": "e39e14a7bfaf0b1581573efe40155934fb8dd5c87b66ee87009e4f1d02c81799",
+      "stored_sha256": "55f9f4a2d16889c325cf14acdde99f49cedc836ce80e8e3b3dfc2a15389c1da7"
+    },
+    {
+      "source": "control/soc-strict-boundary-nk-patch.tar.gz",
+      "path": "control/soc-strict-boundary-nk-patch.tar.gz",
+      "source_sha256": "f80580c77ff5672821f511239b6bcc7c2ccf56c594770f89698b871355d313aa",
+      "stored_sha256": "f80580c77ff5672821f511239b6bcc7c2ccf56c594770f89698b871355d313aa"
+    },
+    {
+      "source": "control/soc-strict-boundary-nk-plan.json",
+      "path": "control/soc-strict-boundary-nk-plan.json.gz",
+      "source_sha256": "91500d1601f1255206323b1a22dbc6532ec8c8f5d6f62101bae016ce66938ea6",
+      "stored_sha256": "b4c8af2fbaee1d73a4881032063abc710e8dca7f7bdb126dcf74ecebfdf179aa"
+    },
+    {
+      "source": "negative/SOURCE_SHA256.json",
+      "path": "negative/SOURCE_SHA256.json.gz",
+      "source_sha256": "89013ebbc3599c9951a4ac8a125687ac613eaff5c636d0d9e8894456da64da55",
+      "stored_sha256": "f2302d433d3f8888c3982978c4006011b48181959b910d4c5585074e14485531"
+    },
+    {
+      "source": "negative/actual.json",
+      "path": "negative/actual.json.gz",
+      "source_sha256": "2766866105d02d714ef3849c8de5874b6d80d17f4c4361842aa7c67e6d9cbc4b",
+      "stored_sha256": "d1898a18b06ee4bc1875b749f88436985b2d0829254d31be65839c0612ef13e0"
+    },
+    {
+      "source": "negative/collection.log",
+      "path": "negative/collection.log.gz",
+      "source_sha256": "ea0eed51809623ec5af9a567c56be906b55d0dbdf295a7a019fcfda5fcb91fb4",
+      "stored_sha256": "5007b4e44c2ecb00767e9a7a1a608516af4387a46d61c86fde404ff77ef5bb63"
+    },
+    {
+      "source": "negative/junit.xml",
+      "path": "negative/junit.xml.gz",
+      "source_sha256": "fa6a64a83130cc1f7acc72e10f8200d670e934f9e7941b434b2ca417286f016a",
+      "stored_sha256": "7fb2772d3c2536b255cf94104492acd5a028d6331386523214f377739cb3ce12"
+    },
+    {
+      "source": "negative/pytest.log",
+      "path": "negative/pytest.log.gz",
+      "source_sha256": "f351aeac55701ee58433bdfe72d5a5b49f26ef48465c46cc13dd8fb123ed808b",
+      "stored_sha256": "3cdc4c16a6f066a545f2923646b276093fbb4e32be2e21dea7f32d402c920f88"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "positive/SOURCE_SHA256.json",
+      "path": "positive/SOURCE_SHA256.json.gz",
+      "source_sha256": "6e53dccbb6f0648e6bddbb9401dec6ebd2fb2e72a20fc4a69a385322b6c8cf07",
+      "stored_sha256": "339d4ee3f2ca0dd28cd8f012decd6c6ad221992cc34ec31c91c954322af446bc"
+    },
+    {
+      "source": "positive/actual.json",
+      "path": "positive/actual.json.gz",
+      "source_sha256": "0e17d32514ffcd4a1e7366d25aa28d6be05ad0fab4356e336b88ac212a0cf73b",
+      "stored_sha256": "b7e8b0711fe347144c2287c3e188987f5df36558511f1ab9302d3ab769e876d3"
+    },
+    {
+      "source": "positive/collection.log",
+      "path": "positive/collection.log.gz",
+      "source_sha256": "08700ba6da931a0fa5f9761aaa1c7964887e578ee0ede2bf8c30231b2a2de95b",
+      "stored_sha256": "ba6980c14364179ed90380f8603fd5307fed94df8b7506ac280cd38822922908"
+    },
+    {
+      "source": "positive/junit.xml",
+      "path": "positive/junit.xml.gz",
+      "source_sha256": "db7cca88259daab5a5d2355aa21281c7b45e7ddccf4b22a82b32a8afe0aa13fb",
+      "stored_sha256": "ff571190e75a8e9f919b2232297bc238f32479dc8dd39914d2e6d984f0b47d25"
+    },
+    {
+      "source": "positive/pytest.log",
+      "path": "positive/pytest.log.gz",
+      "source_sha256": "e8d614d81283ec18b9e025959c87c1a2f42c6a558f942efa1ca895f2178e2b09",
+      "stored_sha256": "b2001155bdcfa6d51c1fa1e453ed715629c4472286e1e61e623ae3ffbe38681d"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "ba8ba1fce2477be66e349b6969a1b824d27707873a4d19926928c69ec9d912db",
+      "stored_sha256": "dfa20ca77b6d885e3360437e8b17c1b288eaefa202b20364b276ab9ed65a11bf"
+    },
+    {
+      "source": "worker.log",
+      "path": "worker.log.gz",
+      "source_sha256": "7559347f7b5a5a43998a377dbdb0b4ce491cdef803e6800344833f50c624c774",
+      "stored_sha256": "e07304556ccbd3614bc9545ab491b224d2bd06c1522319b1ee10ffb0a4382d57"
+    }
+  ]
+}

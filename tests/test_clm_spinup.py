@@ -206,3 +206,27 @@ def test_incomplete_or_unbound_cycles_are_rejected(tmp_path,fault):
         p=folder/'state-0000000-seed.npz';(folder/'state-0000000-other.npz').write_bytes(p.read_bytes())
     native.atomic_json(global_path,g)
     with pytest.raises(ValueError):audit.assess_cycles(batch,inputs,folders,manifest)
+
+
+@pytest.mark.parametrize('sign',[-1.,1.])
+@pytest.mark.parametrize('percent,expected',[(2.5,True),(5.,False),(10.,False)])
+@pytest.mark.parametrize('observed_century',[False,True])
+def test_carbon_convergence_is_strictly_below_five_percent(sign,percent,expected,observed_century):
+    # Integer or half-integer C changes give exact boundary percentages. The
+    # annualized-rate contract and actual 100-cycle contract remain separate.
+    a=endpoints();a['soil_carbon_gc_m2']=np.array([0.,0.,0.,0.,2000.,0.,0.])
+    b=deepcopy(a)
+    b['soil_carbon_gc_m2'][4]+=sign*percent*(20. if observed_century else .2)
+    if observed_century:
+        history=[[a['soil_carbon_gc_m2']]]*100+[[b['soil_carbon_gc_m2']]]
+        result=audit.observed_carbon_century(history,['site'])[0]
+        assert result['actual_100_cycle_change_percent']==sign*percent
+        assert result['actual_100_cycle_soc_change_percent']==sign*percent
+        assert result['actual_100_cycle_criterion_met'] is expected
+        assert result['actual_100_cycle_soc_criterion_met'] is expected
+    else:
+        result=audit.compare_endpoints(a,b)
+        assert result['signed_total_soil_carbon_rate_percent_per_100_climate_years']==sign*percent
+        assert result['signed_soc_rate_percent_per_100_climate_years']==sign*percent
+        assert result['total_soil_carbon_rate_criterion_met'] is expected
+        assert result['soc_rate_criterion_met'] is expected

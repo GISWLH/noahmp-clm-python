@@ -2,7 +2,8 @@
 
 Original source/input/transaction hashes and carried numerical ledgers are
 required. Annualized soil-C rates and an actually observed 100-cycle change
-are different outputs. No physical time stepping or observational scoring.
+are different outputs. The accepted soil-C drift is strictly below 5% per
+century; equality is not convergence. No physical time stepping or observational scoring.
 """
 from pathlib import Path
 from datetime import datetime
@@ -48,11 +49,11 @@ def compare_endpoints(before,after):
         soil_carbon_change_gc_m2=delta.tolist(),total_soil_carbon_change_gc_m2=change,
         total_soil_carbon_before_gc_m2=total,total_soil_carbon_after_gc_m2=float(b.sum()),
         signed_total_soil_carbon_rate_percent_per_100_climate_years=rate,
-        total_soil_carbon_rate_criterion_met=None if rate is None else abs(rate)<=LIMITS['soil_carbon_percent_per_century'],
+        total_soil_carbon_rate_criterion_met=None if rate is None else abs(rate)<LIMITS['soil_carbon_percent_per_century'],
         carbon_pool_names=POOLS,total_carbon_scope='All seven litter/wood/SOM pools; SOC is separately restricted to fast/slow/passive.',
         soil_organic_carbon_before_gc_m2=soc_before,soil_organic_carbon_after_gc_m2=soc_after,soil_organic_carbon_change_gc_m2=soc_change,
         signed_soc_rate_percent_per_100_climate_years=soc_rate,
-        soc_rate_criterion_met=None if soc_rate is None else abs(soc_rate)<=LIMITS['soil_carbon_percent_per_century'],
+        soc_rate_criterion_met=None if soc_rate is None else abs(soc_rate)<LIMITS['soil_carbon_percent_per_century'],
         per_pool_rate_percent_per_100_climate_years=[None if x<=LIMITS['soil_carbon_near_zero_gc_m2'] else float(10000.*y/x) for x,y in zip(a,delta)],
         rate_scope='One complete repeated climate year, scaled to 100 years; not an observed century. Near-zero carbon has only absolute changes, no relative pass.')
     return result
@@ -198,8 +199,8 @@ def observed_carbon_century(carbon_history,cases):
         soc=None if old is None or old[4:].sum()<=LIMITS['soil_carbon_near_zero_gc_m2'] else float(100.*(now[4:].sum()-old[4:].sum())/old[4:].sum())
         per_pool=[None]*7 if old is None else [None if a<=LIMITS['soil_carbon_near_zero_gc_m2'] else float(100.*(b-a)/a) for a,b in zip(old,now)]
         result.append(dict(case=case,observed_complete_climate_years=cycles,actual_100_cycle_change_percent=change,
-            actual_100_cycle_criterion_met=None if change is None else abs(change)<=LIMITS['soil_carbon_percent_per_century'],
-            actual_100_cycle_soc_change_percent=soc,actual_100_cycle_soc_criterion_met=None if soc is None else abs(soc)<=LIMITS['soil_carbon_percent_per_century'],
+            actual_100_cycle_criterion_met=None if change is None else abs(change)<LIMITS['soil_carbon_percent_per_century'],
+            actual_100_cycle_soc_change_percent=soc,actual_100_cycle_soc_criterion_met=None if soc is None else abs(soc)<LIMITS['soil_carbon_percent_per_century'],
             carbon_pool_names=POOLS,actual_100_cycle_per_pool_change_percent=per_pool))
     return result
 
