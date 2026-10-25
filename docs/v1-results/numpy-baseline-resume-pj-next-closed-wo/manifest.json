@@ -1,0 +1,3126 @@
+{
+  "scope": "Eight actual closed Cng windows 528 to 1008 to 1488; raw per-file deltas against published first528 packet. Original compressed archives retained on EHPC. No model or array decoding during collection. Original worker numerical audits only.",
+  "archive_sha256": "1a8bcae59182f65fe0d72073c1f519bac0d93bb795e11c27160f3be7000fadff",
+  "artifacts": [
+    {
+      "source": "INTEGRITY.json",
+      "path": "INTEGRITY.json.gz",
+      "source_sha256": "6ed63315531c9cf0c6a777770bd49fb3f7bf8911ab91d5c4c4f7e3f8d12719bf",
+      "stored_sha256": "027579707aa577dcfba2a81cdee8b91677182b02363019686b7a223f58041330"
+    },
+    {
+      "source": "SUMMARY.json",
+      "path": "SUMMARY.json.gz",
+      "source_sha256": "970db784e4905a00bc3902e459c81187cf82e540ebd16f790f04ce5ad9516176",
+      "stored_sha256": "e2263c5b99f225ec08dee8aeed4f90eb6a5e2639c5bd1ebef54200a7743357cf"
+    },
+    {
+      "source": "collector.py",
+      "path": "collector.py.gz",
+      "source_sha256": "4a9b51470a65c609caccb676de7079ee06056f3eff4cab0135c32f88e3a600dd",
+      "stored_sha256": "65cc8e0661baeb8e6160dbdaa03980407057f1c7a28e84077e86767bc6df0d55"
+    },
+    {
+      "source": "controls/ADAPTATION.json",
+      "path": "controls/ADAPTATION.json.gz",
+      "source_sha256": "85be29f6b58eea7c8b9cf84aec3fff5e1ce4a85a4c04695294988ddeb59ba4bd",
+      "stored_sha256": "9dc7a818ddbfde79feb7964efedb138730675f66d522796613c9a921ed8b121d"
+    },
+    {
+      "source": "controls/CONTROLS_SHA256.json",
+      "path": "controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "0f044fd60a1c870396075f63e1f87ff724ada6362072fe882fcd43fe1e7c3770",
+      "stored_sha256": "04071c812b591dc5f0211dcfc1be6448ffe4905d14a3699fe46d68fac09c401a"
+    },
+    {
+      "source": "controls/PJ_BINDINGS.json",
+      "path": "controls/PJ_BINDINGS.json.gz",
+      "source_sha256": "280b97b9c31e61102aed7e5305da13181d51aaf02c80d7207da5b2dbdf9bec0f",
+      "stored_sha256": "5fecaa2a10e11486a3c64d72cedc5fcfe480363539256c631bc9421fe5b6ff2b"
+    },
+    {
+      "source": "controls/README.md",
+      "path": "controls/README.md.gz",
+      "source_sha256": "1d79f98b7049f6b002d15adeae2b842f24a4dd3b1f61351a91c0252179123354",
+      "stored_sha256": "3dcdb87581b199e1eab66fbbe1be0993e9f19ab300a021c00fae72c7dae7a0c7"
+    },
+    {
+      "source": "controls/controller_pj.py",
+      "path": "controls/controller_pj.py.gz",
+      "source_sha256": "6abd686c1f841660d7320354bd60ccd264f9632741df5792f799ea272e3db7ab",
+      "stored_sha256": "e33daf4d97aaeb84f944ba1f729485f6bdf920f95e43cc583b0aee724bb6a951"
+    },
+    {
+      "source": "controls/deploy_pj.py",
+      "path": "controls/deploy_pj.py.gz",
+      "source_sha256": "65798f50e5d1d18e5753b06119d1d996d2f79ed285025b4b96008119344f2cb7",
+      "stored_sha256": "c5e76d80927cfa1ff0d7baabca220008265c74b223c5b0e38176d79df335504c"
+    },
+    {
+      "source": "controls/resume_pj.py",
+      "path": "controls/resume_pj.py.gz",
+      "source_sha256": "675a64f3ab79bb3afc8ed4fcb5a6560f88b3ec0b9ebe8f140a6960eb7c8c6401",
+      "stored_sha256": "b73d7e4568cd03230810dab206682466ea1ecf65b2fe6fb25a99f30a701256da"
+    },
+    {
+      "source": "controls/run_window_job_pj.py",
+      "path": "controls/run_window_job_pj.py.gz",
+      "source_sha256": "ae780ce05b22024a49aa25054454adf33b31d6c07c2cec86065c53a21ca9b209",
+      "stored_sha256": "c36b8604f8d41072f330fd2b52f15ecf592828a907f43c30e99531ba1ab70c9b"
+    },
+    {
+      "source": "controls/run_window_pj.py",
+      "path": "controls/run_window_pj.py.gz",
+      "source_sha256": "304b660e310f9b06ad001aec762ea002a668e2177eb7ce99ce286c722850084b",
+      "stored_sha256": "cd44ccd93e0c2d2bec84ff8c108bad4ee16b75ebe0d5828ffbdc1eb832bc37c4"
+    },
+    {
+      "source": "controls/window_pj.pbs",
+      "path": "controls/window_pj.pbs.gz",
+      "source_sha256": "d68a80eb2ad6faf98fdd30ac4f7c9fb53a4c213d88d4f51cd3afccf82adc41c9",
+      "stored_sha256": "d7527d30e99507fa6af93b99395df54b8d3b5998b99d3f28dc397ddfdbddef3b"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/DELTA.json",
+      "path": "deltas/case-0/stop-0001008/DELTA.json.gz",
+      "source_sha256": "e2547a287369d723849ecaf61698693a829d983325b081301bbc127dc2d42d2e",
+      "stored_sha256": "09110f3aedb91bba37dc4b8b83dce6d75eac16e45513fb5d58267d16fcda8aca"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-0/stop-0001008/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "2018f72704c9c5df5c455639d035f39bc671b27fd46422aedb9e5a5cb8a885be",
+      "stored_sha256": "b5e53a8f1df3b73e0947b18aeec4bfb3a0ea62310456e0229467ea0724a777b7"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/BGC_STREAMS.json",
+      "path": "deltas/case-0/stop-0001008/files/BGC_STREAMS.json.gz",
+      "source_sha256": "f0eb37ba059fc96e2fad246c893f50e84d2d186fc84f71b83e9496736d0aaaba",
+      "stored_sha256": "898c11bf1344792e020e3e904709e6c95c982d5c6ae877bc2b7b138146dee956"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json.gz",
+      "source_sha256": "b13f1154c02e49b838d19163bd849741e181ef7e58b5627a1160d0c18e8d604b",
+      "stored_sha256": "dc986aa28e31e874bf09123d20aae0dd718d39cc5d970e1f37127e8958cf219c"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "source_sha256": "d6063b92c28f49de644d0d80d1a96c0d25a21bd23ab3af5556c02efd85290432",
+      "stored_sha256": "d6063b92c28f49de644d0d80d1a96c0d25a21bd23ab3af5556c02efd85290432"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "source_sha256": "3cf8e4162539844b03fcdc5f18b7f6c9fc0b11224e299a4687eb80f3292e4f5f",
+      "stored_sha256": "3cf8e4162539844b03fcdc5f18b7f6c9fc0b11224e299a4687eb80f3292e4f5f"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "source_sha256": "1620bcf51d6ed3b5c5841af849b61f46011e05fa98d1f259945d54650b353de7",
+      "stored_sha256": "1620bcf51d6ed3b5c5841af849b61f46011e05fa98d1f259945d54650b353de7"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "source_sha256": "2d2537779d30469f1da84d0a0af442f698c7b824c35cfbad4ccc894179521bf1",
+      "stored_sha256": "2d2537779d30469f1da84d0a0af442f698c7b824c35cfbad4ccc894179521bf1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "source_sha256": "ea40c6851ef692c7e710af207b9ed7c9a4be0e95d47be1213ab554610c1f2426",
+      "stored_sha256": "ea40c6851ef692c7e710af207b9ed7c9a4be0e95d47be1213ab554610c1f2426"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "source_sha256": "95bbe1f0a2411287d47347c94b23ee78aeef846a61d6935baebd1f65a720ca4f",
+      "stored_sha256": "95bbe1f0a2411287d47347c94b23ee78aeef846a61d6935baebd1f65a720ca4f"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "source_sha256": "b6d12f7afda90d0a6a66ab411b71e939162436f8198d46948783d29bbb9bd15d",
+      "stored_sha256": "b6d12f7afda90d0a6a66ab411b71e939162436f8198d46948783d29bbb9bd15d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "source_sha256": "58b75f9fdd96e9d46727ed88917be0ed31258d561bba4bd1b37bf547f6e4f1b7",
+      "stored_sha256": "58b75f9fdd96e9d46727ed88917be0ed31258d561bba4bd1b37bf547f6e4f1b7"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "source_sha256": "a865925fe89c71bf3a88727a78002799486d81f3c49a602663d07405e8c2cd9f",
+      "stored_sha256": "a865925fe89c71bf3a88727a78002799486d81f3c49a602663d07405e8c2cd9f"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "path": "deltas/case-0/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "source_sha256": "b00b9d6e9be3b7168623088503585ee2e772975a96c91f00ba58f70811891ac2",
+      "stored_sha256": "b00b9d6e9be3b7168623088503585ee2e772975a96c91f00ba58f70811891ac2"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/closure-records/stop-0001008.json",
+      "path": "deltas/case-0/stop-0001008/files/closure-records/stop-0001008.json.gz",
+      "source_sha256": "adaec679ff7b1c4d364adf1e77f1b781eedde631693ed13e26e616c22b490d13",
+      "stored_sha256": "bb1e630bf14acfd49601bacc23056b1f493db95f8fcdfbc57d40b6b451e06151"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/controller.log",
+      "path": "deltas/case-0/stop-0001008/files/controller.log.gz",
+      "source_sha256": "9ee02b693449b10ba89bf1d5e0de67ba203587fa3503f80dc454acabf62f2f67",
+      "stored_sha256": "eed6c71c62cfbcb068319608bf856076ff29497b8243dbf8d4209c7b71d26d83"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/receipt.json",
+      "path": "deltas/case-0/stop-0001008/files/receipt.json.gz",
+      "source_sha256": "b2cea8145da0bb26c36e0740c589fb1203db2c2e4078317fbf00120cd7e2fc62",
+      "stored_sha256": "586daaf0470a909351dc19f3949a8d77e6dcaaf291606af1ce243887265096d8"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/chain-state.json",
+      "path": "deltas/case-0/stop-0001008/files/run/chain-state.json.gz",
+      "source_sha256": "159dec9de3bb0091823b3c6d74f532e6b636769cf6561313964c366cd5c8c221",
+      "stored_sha256": "a8c2cd28c8f6e2d78eb9ada151544dabe1dbd0597299b7c4ab9d6d2e0ccab7d4"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/generations.zip",
+      "path": "deltas/case-0/stop-0001008/files/run/generations.zip",
+      "source_sha256": "92236aa03257a63133dbd59b1e1b794df7b3234fdce4a9b795f8b5a41662341a",
+      "stored_sha256": "92236aa03257a63133dbd59b1e1b794df7b3234fdce4a9b795f8b5a41662341a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/receipt.json",
+      "path": "deltas/case-0/stop-0001008/files/run/receipt.json.gz",
+      "source_sha256": "3a2cd80469de749aaf2fd51410c34725c33cd363be868347d065fea9e809398f",
+      "stored_sha256": "b43a37da3734aad9f94fdb414f981005a70e9a78af12c17708dd568bfb404242"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/capture-SHA256.json",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/capture-SHA256.json.gz",
+      "source_sha256": "236d8528e9803fca21484b797be770a3cd572cfec436d7482a34cd32168a760c",
+      "stored_sha256": "7af487a32792b4fd4d128e18f981cb1a51f3857e298c5e5765797ca92ff863d3"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "source_sha256": "e41433ac908c9e96c0ba51379f1b77cd28554b08fd8fb0ccfb95a85ca996138a",
+      "stored_sha256": "e41433ac908c9e96c0ba51379f1b77cd28554b08fd8fb0ccfb95a85ca996138a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "source_sha256": "097d615d402bd3d88aaefed222600af6a8ebb4312f0e4066919f0faa5fd75aaf",
+      "stored_sha256": "097d615d402bd3d88aaefed222600af6a8ebb4312f0e4066919f0faa5fd75aaf"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/model.log",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/model.log.gz",
+      "source_sha256": "1e6d70afa19482ff1a07f5d43191591ab20e5df555c60d72320858c25ec5f9d0",
+      "stored_sha256": "5e0071bc1a60d2d08204d08a783246b3fb9eb3431fd2b9a433d5481d29efd693"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/receipt.json",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/receipt.json.gz",
+      "source_sha256": "3a2cd80469de749aaf2fd51410c34725c33cd363be868347d065fea9e809398f",
+      "stored_sha256": "b43a37da3734aad9f94fdb414f981005a70e9a78af12c17708dd568bfb404242"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json.gz",
+      "source_sha256": "7e885a2cce0f667fc96d51d40d9f276e7094c87a874be60c29e5a16d8e447481",
+      "stored_sha256": "9c797656bb3d04bae04268b9c4e26d0705b9e79696b936e4fa9d7a50c3b28758"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/report.json",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/report.json.gz",
+      "source_sha256": "2b2f12f011259f20d502fc68a5a5c7567e8b13ea1819fa84cf581166ce529d29",
+      "stored_sha256": "f46b5048658764dd4f2619c7159abc409ae8250c0be16026b8501611828f41d2"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "source_sha256": "66550de51c4fbb3de476f86393d3604bece03c018a0f387931d5a52e6ef06207",
+      "stored_sha256": "66550de51c4fbb3de476f86393d3604bece03c018a0f387931d5a52e6ef06207"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "source_sha256": "feeaacea94042a48b17c2defbd864e48c9e38b7f913612e04e2a95673e11476c",
+      "stored_sha256": "feeaacea94042a48b17c2defbd864e48c9e38b7f913612e04e2a95673e11476c"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/report.json",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/report.json.gz",
+      "source_sha256": "2024cac34aaa7d3dd2ac7fea10cfc32f8ea5d0ea034732e5b198251521bea413",
+      "stored_sha256": "0f1877298c7222ad4a3880bbf0fd414d7740f06e61a8611baa4b013c31469e4a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "source_sha256": "66550de51c4fbb3de476f86393d3604bece03c018a0f387931d5a52e6ef06207",
+      "stored_sha256": "66550de51c4fbb3de476f86393d3604bece03c018a0f387931d5a52e6ef06207"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "source_sha256": "1d24bcf44f1aa6ed07ed8beaa5d4580237a72abd9c5bc3cb5e5d4e15b35035d5",
+      "stored_sha256": "1d24bcf44f1aa6ed07ed8beaa5d4580237a72abd9c5bc3cb5e5d4e15b35035d5"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "source_sha256": "fccac67bb8b0502f88b4d46f3c3d15ead92d9dd99ca1d0c956c3b424227538c1",
+      "stored_sha256": "fccac67bb8b0502f88b4d46f3c3d15ead92d9dd99ca1d0c956c3b424227538c1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "source_sha256": "8b49cf752e683d13c0a88cb2289a00ba6cdebf3836ffae4af9069bf111f2bc06",
+      "stored_sha256": "8b49cf752e683d13c0a88cb2289a00ba6cdebf3836ffae4af9069bf111f2bc06"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "source_sha256": "a71ed418d482aa9da3adf35f4fd6c6e3790d29c9c52f637e7f5bb7b49081b440",
+      "stored_sha256": "a71ed418d482aa9da3adf35f4fd6c6e3790d29c9c52f637e7f5bb7b49081b440"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "source_sha256": "942cfcd1d2a011b74ea7dbdc46479b9737f1cc4fcb93481187ed62e7e7ae9cdc",
+      "stored_sha256": "942cfcd1d2a011b74ea7dbdc46479b9737f1cc4fcb93481187ed62e7e7ae9cdc"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "source_sha256": "ce19cb7af42334a9b61350b0958d5cf9166756113990186d4abe3f60e97cb27a",
+      "stored_sha256": "ce19cb7af42334a9b61350b0958d5cf9166756113990186d4abe3f60e97cb27a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "source_sha256": "9b37361c2553440e9f3cd07a743873bbbde86aee185b09ee26b7c07d1e05f8d5",
+      "stored_sha256": "9b37361c2553440e9f3cd07a743873bbbde86aee185b09ee26b7c07d1e05f8d5"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "source_sha256": "a0faeba41b7af9c04b4206c163e015162b9d88656bd8d30ec5077cc0629b4082",
+      "stored_sha256": "a0faeba41b7af9c04b4206c163e015162b9d88656bd8d30ec5077cc0629b4082"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "source_sha256": "3e973c60021c1f78546e2d97c63dce49c6cc877e3d826051e727372de5d8ac3a",
+      "stored_sha256": "3e973c60021c1f78546e2d97c63dce49c6cc877e3d826051e727372de5d8ac3a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "e03521cbca838dcd888b53ef2bcbb475c9547ab4272efa0bb874f93ac27a91b6",
+      "stored_sha256": "e03521cbca838dcd888b53ef2bcbb475c9547ab4272efa0bb874f93ac27a91b6"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "source_sha256": "60c91a9eebb75ec89842c79fcacc838fbf32964c4c114f24dcca44847054ce7d",
+      "stored_sha256": "60c91a9eebb75ec89842c79fcacc838fbf32964c4c114f24dcca44847054ce7d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "source_sha256": "84cbefacae4318c6803168b83f7a059ae03bebd5c3cfd6c62b29d90d7ca838fa",
+      "stored_sha256": "84cbefacae4318c6803168b83f7a059ae03bebd5c3cfd6c62b29d90d7ca838fa"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "source_sha256": "99f8b7b0c52ce2153136b855f77ce11cc62eca42a949f34d58344056703dff0b",
+      "stored_sha256": "99f8b7b0c52ce2153136b855f77ce11cc62eca42a949f34d58344056703dff0b"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "source_sha256": "7c0a7ba6c4dc79bfb03cd9b776b7c8c37162abef2e73cf0ebc62a54cf9eb4706",
+      "stored_sha256": "7c0a7ba6c4dc79bfb03cd9b776b7c8c37162abef2e73cf0ebc62a54cf9eb4706"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "source_sha256": "928f1f7d1a07a9cb30514b89aa4cddb77ee00c3e227b11a7e8345b75b855daef",
+      "stored_sha256": "928f1f7d1a07a9cb30514b89aa4cddb77ee00c3e227b11a7e8345b75b855daef"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "source_sha256": "b8aaaa019148f18ef6b1506d6ee76074a55639250bfd68f9f501b39cfae53071",
+      "stored_sha256": "b8aaaa019148f18ef6b1506d6ee76074a55639250bfd68f9f501b39cfae53071"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "source_sha256": "b4798330554314e7ac59feb4ccf2245be29ffa773ff117a585bad17107bff47f",
+      "stored_sha256": "b4798330554314e7ac59feb4ccf2245be29ffa773ff117a585bad17107bff47f"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "source_sha256": "048272565e5931e8e49abbf5196fa4b4cc8dbb7ccffbe1e60efd51b77fff5fca",
+      "stored_sha256": "048272565e5931e8e49abbf5196fa4b4cc8dbb7ccffbe1e60efd51b77fff5fca"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "source_sha256": "3765621ec70397342d3f62ec43fd83dd23a20b4fa06d6326518b1f90f35040c1",
+      "stored_sha256": "3765621ec70397342d3f62ec43fd83dd23a20b4fa06d6326518b1f90f35040c1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "path": "deltas/case-0/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "source_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf",
+      "stored_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/terminals.json",
+      "path": "deltas/case-0/stop-0001008/files/terminals.json.gz",
+      "source_sha256": "c9c690eb0a990905f3e23a7366cade41604aa4d79a5e1d0c3086c7881f1b9c97",
+      "stored_sha256": "428152c20c11f26bb79339ee09e856fb2a7ecb3886ff276cbd518e279a3b88bf"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/terminals/1643.manager/parent-exit.txt",
+      "path": "deltas/case-0/stop-0001008/files/terminals/1643.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/terminals/1643.manager/qstat.stdout",
+      "path": "deltas/case-0/stop-0001008/files/terminals/1643.manager/qstat.stdout.gz",
+      "source_sha256": "ad82b3cbd2f0ac2273e056974d57feb6f4b8a8c52c7cb51392a086fdf08bed7c",
+      "stored_sha256": "986d17dd7c4d439baafbb76344c853f77c3dd0d67ba50d59cd5197b903eb566e"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/terminals/1643.manager/worker-exit.txt",
+      "path": "deltas/case-0/stop-0001008/files/terminals/1643.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-audit.json",
+      "path": "deltas/case-0/stop-0001008/files/window-audit.json.gz",
+      "source_sha256": "14739d4bae96f126931746279d06f0592a2c0036a7e1d232a9d845507692c3c3",
+      "stored_sha256": "e7dc86e358ae6c1cad6043fcae71351ed989e682db6f4cf31e2d1e43349c11ef"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "b957d9c1d2c65d471f6b39f9f57fde037b2f044e413369b9e5b99c3a66a596de",
+      "stored_sha256": "f58b3cc2cff2469010afc4a051984a35da33d75b1e0381a7e81777860b7aaee9"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json.gz",
+      "source_sha256": "d85c75b1518247b5ba92d53f917a9c9bb8d96629393c9d17ff93d47af9c11042",
+      "stored_sha256": "726e688ec05d63ef806cc1527ab1f51f529f95a3989aff7ac01e03d48e3ad502"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/controller.log",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/controller.log.gz",
+      "source_sha256": "64642adf497c001802671e080d40d7e3aeb33a285f7ecaafbd3a61c5b07916af",
+      "stored_sha256": "3034118b327b1602426b1abebcbf2cc8f3c14a7d9ed9184de380b58ca678bb15"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/receipt.json",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/receipt.json.gz",
+      "source_sha256": "68b09a153df32b287a0688a84d7855b1e54b1f94c850337467c54c16110f41fb",
+      "stored_sha256": "8c5dbdf695e3a7a25d6e250996e53bb1ffb9b7ad1f89b34edd7cfd37465ccb15"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/window-audit.json",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/window-audit.json.gz",
+      "source_sha256": "39f14d075e7a05b5d88cb0807b1e15ad31f1968b5b96fe25841106b74aef4a27",
+      "stored_sha256": "d3f64bb7f1044c181b36418c1c59c7fcf9f3fbd930c4f4e425314740ddd9f262"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/worker-exit.txt",
+      "path": "deltas/case-0/stop-0001008/files/window-history/stop-0000528/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001008/result-originals/terminals.json",
+      "path": "deltas/case-0/stop-0001008/result-originals/terminals.json.gz",
+      "source_sha256": "b3ceaf786a536b5caa55e765ef9d7cbadeda6cbfa0d8d9f0e5914e02ee1ab509",
+      "stored_sha256": "64c382f18459b4725542a3e3660d2fef2fbb21c9b3c4c3f74fc6891859770523"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/DELTA.json",
+      "path": "deltas/case-0/stop-0001488/DELTA.json.gz",
+      "source_sha256": "b2810d4c3e0372804496de3e3e68bf34a842739842fedaa68c13c1dff44b87c7",
+      "stored_sha256": "7eb46d7fa878c9d9c344a058c9dc563fb5fe2e85b42c73fbf839e59ae1ede2da"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-0/stop-0001488/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "a81bad3b8d8f10f04148c224728c316f5f2469450fe5fabdfc3f9f630f24ea8c",
+      "stored_sha256": "bd2c67f7b837295924c5a225c99e96af4bb4414f47184db5cd577b41628f9622"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/BGC_STREAMS.json",
+      "path": "deltas/case-0/stop-0001488/files/BGC_STREAMS.json.gz",
+      "source_sha256": "b0a0256c958889bb9dc9d28c4c12e4ca2f231c3b714bd9dc9143690297538dd9",
+      "stored_sha256": "158e6e77df4a001aa44372779ef3dccf9f64114ebacf0efe9a26dfb63d2e2ab8"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json.gz",
+      "source_sha256": "093e719800c73c7b92edc3a90cccaa501d9623cf760835e7121a5ebae5b0803e",
+      "stored_sha256": "2d46d706f7023c84cfbbe4baa3c62df64287781895c0f5441dde4b0cac8e6743"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "source_sha256": "f83f6d9f7d3b32f87d79f843eafea8ffd08a86f98074c546069788725b7e2906",
+      "stored_sha256": "f83f6d9f7d3b32f87d79f843eafea8ffd08a86f98074c546069788725b7e2906"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "source_sha256": "03844971c72825982e11237f340c1a41e66d1500ae1132c2925e657721957981",
+      "stored_sha256": "03844971c72825982e11237f340c1a41e66d1500ae1132c2925e657721957981"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "source_sha256": "7a54caf756785f1881c37b6b1da06cc70db27f0d6bd13ac350dfd9efb5718d09",
+      "stored_sha256": "7a54caf756785f1881c37b6b1da06cc70db27f0d6bd13ac350dfd9efb5718d09"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "source_sha256": "560bc693dae4b708b025862a229604be765b9486d9f01f7f7979a2de9c7ab317",
+      "stored_sha256": "560bc693dae4b708b025862a229604be765b9486d9f01f7f7979a2de9c7ab317"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "source_sha256": "5333860682c5c24e099ab56ccfb1d4cf7dc429b2e428a4f18f53f8cf899441e9",
+      "stored_sha256": "5333860682c5c24e099ab56ccfb1d4cf7dc429b2e428a4f18f53f8cf899441e9"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "source_sha256": "2c837ec2c59016ac623bb50b04d0b49ae72086c5281d979a66121eda932985e3",
+      "stored_sha256": "2c837ec2c59016ac623bb50b04d0b49ae72086c5281d979a66121eda932985e3"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "source_sha256": "d436b65cf68e77bb8ec4ce21f9fbaa7bf72d3b1c1995276b394c16e834806e8d",
+      "stored_sha256": "d436b65cf68e77bb8ec4ce21f9fbaa7bf72d3b1c1995276b394c16e834806e8d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "source_sha256": "62bb8f27fa95871d8a0608c229f2d736f742336b84cd8229e35a8013d1046f1f",
+      "stored_sha256": "62bb8f27fa95871d8a0608c229f2d736f742336b84cd8229e35a8013d1046f1f"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "source_sha256": "b96befeab4c1f9d0eac3b72795d64805639ac146d7301b238fd54e237842744b",
+      "stored_sha256": "b96befeab4c1f9d0eac3b72795d64805639ac146d7301b238fd54e237842744b"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "path": "deltas/case-0/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "source_sha256": "db55991b47e5067b13be8c91e2ce68214cece882a0a1129c0fdf89c838ac74ce",
+      "stored_sha256": "db55991b47e5067b13be8c91e2ce68214cece882a0a1129c0fdf89c838ac74ce"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/closure-records/stop-0001488.json",
+      "path": "deltas/case-0/stop-0001488/files/closure-records/stop-0001488.json.gz",
+      "source_sha256": "8e2680d0b232356e64852bda8fca57c13d355dffe188ef31dd7b21ccce347669",
+      "stored_sha256": "ec9f6c081454a590241582820c4fd975eac56a5e732f273cf771e6266d241c54"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/controller.log",
+      "path": "deltas/case-0/stop-0001488/files/controller.log.gz",
+      "source_sha256": "e1ad973d997e56cfb526f961ca712c88443790c42095e434a48ac58aa8e8bb4a",
+      "stored_sha256": "83b12fa16e3a992705c747b6c1f7adf92b44ffc30163c4e6d1d643050268fe13"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/receipt.json",
+      "path": "deltas/case-0/stop-0001488/files/receipt.json.gz",
+      "source_sha256": "0591b33b519ba58d8aca57c4bab9e3f9a3277557b1ec3c6d8cb56de18b585f70",
+      "stored_sha256": "bf044a07e9f8d3db7bba5078c88bdbe836147d95441d26fced00fe2bb7bd7f34"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/chain-state.json",
+      "path": "deltas/case-0/stop-0001488/files/run/chain-state.json.gz",
+      "source_sha256": "408ef749e4d473ec6c43ed6f7d9c023b1b1106c4b59634cef04d9f49b0840e85",
+      "stored_sha256": "08aeb52c6c87404f728115824c307a201f0888eca589b08b8423f37071d99ed3"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/generations.zip",
+      "path": "deltas/case-0/stop-0001488/files/run/generations.zip",
+      "source_sha256": "3ffe44cce057fe048255b80e699485ffd33de9c7e704938645e7e0304f7bef9b",
+      "stored_sha256": "3ffe44cce057fe048255b80e699485ffd33de9c7e704938645e7e0304f7bef9b"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/receipt.json",
+      "path": "deltas/case-0/stop-0001488/files/run/receipt.json.gz",
+      "source_sha256": "f1d3bc63415df36bf28c71d13ef7fc0f3e0881d5b1852f3573a21c3c537682c9",
+      "stored_sha256": "1e207c8afbbd39b935e2c94a9d179a1f25bb3f44186c026fa1d72287a979912d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/capture-SHA256.json",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/capture-SHA256.json.gz",
+      "source_sha256": "05017b8ee0e54fd9f12c26722f70d2e28b4a82653ed01086110836344f419ef2",
+      "stored_sha256": "6973c0ff09724f362adfc3f6bd69ed3fef9933d5832442e583b560e8e8f51430"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "source_sha256": "2af16e55f73472f38dfe1e597f5e08126b5b46c5735be6d6861b0b7f1c5eaf22",
+      "stored_sha256": "2af16e55f73472f38dfe1e597f5e08126b5b46c5735be6d6861b0b7f1c5eaf22"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "source_sha256": "f1523a7e03212ebd25d898da0cfa3a37407100119629892a25331158a1774f5d",
+      "stored_sha256": "f1523a7e03212ebd25d898da0cfa3a37407100119629892a25331158a1774f5d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/model.log",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/model.log.gz",
+      "source_sha256": "9bb4ec2071fcb0fd5edecc57d7220aa042de16bd29237c138a9b98949194d530",
+      "stored_sha256": "bc5bb1921978c6088e0507064d93b12857e1592414b35520317f7a2d5a71f589"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/receipt.json",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/receipt.json.gz",
+      "source_sha256": "f1d3bc63415df36bf28c71d13ef7fc0f3e0881d5b1852f3573a21c3c537682c9",
+      "stored_sha256": "1e207c8afbbd39b935e2c94a9d179a1f25bb3f44186c026fa1d72287a979912d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json.gz",
+      "source_sha256": "765ea34e7169ef7c75c8b6dd84d488c6521004e4e73191bd4a479c52b0112437",
+      "stored_sha256": "7f50c745fe1c2651a40eef0b5b8903b7fdea5d348e1afca84711d061b52499f0"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/report.json",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/report.json.gz",
+      "source_sha256": "9a8e12a29ecbf8b9296c300077bf52e79a7aa1ef973dcf924028082edb998ce3",
+      "stored_sha256": "822de552466b633631c23bfbe9d36e95f34d6fa84bb27dc42e94b7884339cbf7"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "source_sha256": "8e21b7311b25ea697758da3aa6dd90c9c5a069974a3c3172bf6946c2c1979583",
+      "stored_sha256": "8e21b7311b25ea697758da3aa6dd90c9c5a069974a3c3172bf6946c2c1979583"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "source_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf",
+      "stored_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/report.json",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/report.json.gz",
+      "source_sha256": "4547427847772f6b18d9ac6bbe2cff450c7417654ad166cc750d18c04376b07e",
+      "stored_sha256": "81fa0d78c69bbbd1de973a31b79065d35903a3a3c0f1e88a53a5e479add16428"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "8e21b7311b25ea697758da3aa6dd90c9c5a069974a3c3172bf6946c2c1979583",
+      "stored_sha256": "8e21b7311b25ea697758da3aa6dd90c9c5a069974a3c3172bf6946c2c1979583"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "source_sha256": "94fa1818ff5a6b897821110f09690fa0e8c8442135c7f6e31950b7956d5295b9",
+      "stored_sha256": "94fa1818ff5a6b897821110f09690fa0e8c8442135c7f6e31950b7956d5295b9"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "source_sha256": "71e7fe6a30babbf3ea3626d1bc5dcfaa606415d13b9aa9b7f49139de353fd163",
+      "stored_sha256": "71e7fe6a30babbf3ea3626d1bc5dcfaa606415d13b9aa9b7f49139de353fd163"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "source_sha256": "d0e7bedeffb427ecd0eda9acb2143421e85b8ef9d8d4f6adf9f9e71ce26cf9a1",
+      "stored_sha256": "d0e7bedeffb427ecd0eda9acb2143421e85b8ef9d8d4f6adf9f9e71ce26cf9a1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "source_sha256": "d51cf1be5a351f91e1d101de1729477ad60ca108d939824b6c92a3869e2abd0e",
+      "stored_sha256": "d51cf1be5a351f91e1d101de1729477ad60ca108d939824b6c92a3869e2abd0e"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "source_sha256": "f88837525cbcadb0c32ca811c335fdc8a38892e308f159c5f3a3d8a1d5f719b3",
+      "stored_sha256": "f88837525cbcadb0c32ca811c335fdc8a38892e308f159c5f3a3d8a1d5f719b3"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "source_sha256": "01e411b8fb4e33ed6bf3dfacdf58f9dd0d6bdf6d54fa841fcb27da139ca99dde",
+      "stored_sha256": "01e411b8fb4e33ed6bf3dfacdf58f9dd0d6bdf6d54fa841fcb27da139ca99dde"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "source_sha256": "d818c4577c5af7d6715a09e309d1a6002aeeb6722376cb34b069fe2165c642d1",
+      "stored_sha256": "d818c4577c5af7d6715a09e309d1a6002aeeb6722376cb34b069fe2165c642d1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "source_sha256": "823fe8b7f43969a9db3e2aebe88b160fe51a37529d438f4e3ac4ecdc10622bf4",
+      "stored_sha256": "823fe8b7f43969a9db3e2aebe88b160fe51a37529d438f4e3ac4ecdc10622bf4"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "source_sha256": "317f060b787ba1c4dda0fb37e8b1cf2a37a112bdfad95c4ef4b88eba7614fc60",
+      "stored_sha256": "317f060b787ba1c4dda0fb37e8b1cf2a37a112bdfad95c4ef4b88eba7614fc60"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "source_sha256": "68c457a10028d392e5908cb90e2f3172f50e4ec9d0a6aeff082f669a9e5a7895",
+      "stored_sha256": "68c457a10028d392e5908cb90e2f3172f50e4ec9d0a6aeff082f669a9e5a7895"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "source_sha256": "250014742dc3fa6f9e0bc0071e3f493de037851ead5d3f96234962c0534a293a",
+      "stored_sha256": "250014742dc3fa6f9e0bc0071e3f493de037851ead5d3f96234962c0534a293a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "source_sha256": "df7d0ef6445a17a89688233e40f5874389272e76f200180c2d04fb1dbd824b57",
+      "stored_sha256": "df7d0ef6445a17a89688233e40f5874389272e76f200180c2d04fb1dbd824b57"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "source_sha256": "911312b0429a7ad8b446bba9d2efd032c2f659dd1236a91159d16a92cca3ffdd",
+      "stored_sha256": "911312b0429a7ad8b446bba9d2efd032c2f659dd1236a91159d16a92cca3ffdd"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "source_sha256": "b201de8f76acd788d33002a4c11faf66ebfe4889726812c6f425453cca994814",
+      "stored_sha256": "b201de8f76acd788d33002a4c11faf66ebfe4889726812c6f425453cca994814"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "source_sha256": "63f5ce9806691f5e829ef2ab7b99df284cd63547674fbc49a507017d18af2f9a",
+      "stored_sha256": "63f5ce9806691f5e829ef2ab7b99df284cd63547674fbc49a507017d18af2f9a"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "source_sha256": "b67fc8aaebe7496d04c9fbce4b6a020f8f63942ca119651fe63c469b15ce6a38",
+      "stored_sha256": "b67fc8aaebe7496d04c9fbce4b6a020f8f63942ca119651fe63c469b15ce6a38"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "source_sha256": "7e070a70221ce8c76dd5f0949bbfa6e7dde38235a16c342a07af5e855062d7d1",
+      "stored_sha256": "7e070a70221ce8c76dd5f0949bbfa6e7dde38235a16c342a07af5e855062d7d1"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "source_sha256": "ff0e152b79730df28ad62c182be691e0ae13ff8b034cebfeaee1e83daf0248fc",
+      "stored_sha256": "ff0e152b79730df28ad62c182be691e0ae13ff8b034cebfeaee1e83daf0248fc"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "source_sha256": "201f1c8ff7320578b0bf5797eebba22a3eb4396d2a19ced901407102311bb852",
+      "stored_sha256": "201f1c8ff7320578b0bf5797eebba22a3eb4396d2a19ced901407102311bb852"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "path": "deltas/case-0/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "source_sha256": "fad38aaa2d1e395bf5b7f74788509938149f5a78f9191dd8c5e869a7e93dbd0d",
+      "stored_sha256": "fad38aaa2d1e395bf5b7f74788509938149f5a78f9191dd8c5e869a7e93dbd0d"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/terminals.json",
+      "path": "deltas/case-0/stop-0001488/files/terminals.json.gz",
+      "source_sha256": "8e070d8e48f6b5890acd6fbaf477d8e9441e0208b575f3cb29a0fce0e67d6237",
+      "stored_sha256": "3eb735bf2c593f87e7519b32375b5ad7f98c6b994ffd9c123c4f3b3197f1a5aa"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/terminals/1648.manager/parent-exit.txt",
+      "path": "deltas/case-0/stop-0001488/files/terminals/1648.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/terminals/1648.manager/qstat.stdout",
+      "path": "deltas/case-0/stop-0001488/files/terminals/1648.manager/qstat.stdout.gz",
+      "source_sha256": "34c5aba7db2e56ea8dd344e056c4671a8b352317d5bfa3fbdbe186027c995cf3",
+      "stored_sha256": "e07410c2af8808acab29ce1227fd73f8b094442dd0bf6654c68341787b2a9c15"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/terminals/1648.manager/worker-exit.txt",
+      "path": "deltas/case-0/stop-0001488/files/terminals/1648.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-audit.json",
+      "path": "deltas/case-0/stop-0001488/files/window-audit.json.gz",
+      "source_sha256": "1bc7c661309a118ee4189ee1f9956ddbca2513c81b0b71f893c25b7246941bd3",
+      "stored_sha256": "28c4f96f6fbe16d7d112bcfc4d9ab3cd2ee5ac605d53ea61239a3260991214bc"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "2018f72704c9c5df5c455639d035f39bc671b27fd46422aedb9e5a5cb8a885be",
+      "stored_sha256": "b5e53a8f1df3b73e0947b18aeec4bfb3a0ea62310456e0229467ea0724a777b7"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json.gz",
+      "source_sha256": "f0eb37ba059fc96e2fad246c893f50e84d2d186fc84f71b83e9496736d0aaaba",
+      "stored_sha256": "898c11bf1344792e020e3e904709e6c95c982d5c6ae877bc2b7b138146dee956"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/controller.log",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/controller.log.gz",
+      "source_sha256": "9ee02b693449b10ba89bf1d5e0de67ba203587fa3503f80dc454acabf62f2f67",
+      "stored_sha256": "eed6c71c62cfbcb068319608bf856076ff29497b8243dbf8d4209c7b71d26d83"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/receipt.json",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/receipt.json.gz",
+      "source_sha256": "b2cea8145da0bb26c36e0740c589fb1203db2c2e4078317fbf00120cd7e2fc62",
+      "stored_sha256": "586daaf0470a909351dc19f3949a8d77e6dcaaf291606af1ce243887265096d8"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/window-audit.json",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/window-audit.json.gz",
+      "source_sha256": "14739d4bae96f126931746279d06f0592a2c0036a7e1d232a9d845507692c3c3",
+      "stored_sha256": "e7dc86e358ae6c1cad6043fcae71351ed989e682db6f4cf31e2d1e43349c11ef"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/worker-exit.txt",
+      "path": "deltas/case-0/stop-0001488/files/window-history/stop-0001008/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-0/stop-0001488/result-originals/terminals.json",
+      "path": "deltas/case-0/stop-0001488/result-originals/terminals.json.gz",
+      "source_sha256": "c9c690eb0a990905f3e23a7366cade41604aa4d79a5e1d0c3086c7881f1b9c97",
+      "stored_sha256": "428152c20c11f26bb79339ee09e856fb2a7ecb3886ff276cbd518e279a3b88bf"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/DELTA.json",
+      "path": "deltas/case-1/stop-0001008/DELTA.json.gz",
+      "source_sha256": "2faeed14c63622d1b910c1c45312eafb867558cb7fe0142f99e47b0b1804f799",
+      "stored_sha256": "9f9f44a504046b53336d476e5427e5587699e382945462d5b1aec8647f5ff255"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-1/stop-0001008/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "20d7e09aa4eb56e0d4862c95995d9baa53b696ef019dd61abafd42c7661d780d",
+      "stored_sha256": "953b28dce1274316094fb6d8967f2f47d296d9ac1779ebf5ab1314e5b18dcfb8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/BGC_STREAMS.json",
+      "path": "deltas/case-1/stop-0001008/files/BGC_STREAMS.json.gz",
+      "source_sha256": "f5ecc794f1cb932e34787935f6e7591c1070666349191c89e912e9f20d814565",
+      "stored_sha256": "6b6ab876f3e02fd9558475d156acd3b18c45aa368366ddff59ee1b414c2f4f4a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json.gz",
+      "source_sha256": "6f595618bfed85ec97f10583423ce773eec870bf726b93f129327dcd4734cce4",
+      "stored_sha256": "73cfc3f37fd88aa50c150dfdd700ee2609bb66066edd7861f08957256ea11479"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "source_sha256": "01da228610cf9000039082f9b4528c454f0f77734b0b09ac4ed2ea4e2ecccee0",
+      "stored_sha256": "01da228610cf9000039082f9b4528c454f0f77734b0b09ac4ed2ea4e2ecccee0"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "source_sha256": "fc7b0e838755f3b4a06dc653f10c5e26397a987477dbe13e9bdfb28e2239f2bc",
+      "stored_sha256": "fc7b0e838755f3b4a06dc653f10c5e26397a987477dbe13e9bdfb28e2239f2bc"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "source_sha256": "0c7788d628b7a094993759724da42bf5519c7a892c0a2c3061b12277a9ed9dad",
+      "stored_sha256": "0c7788d628b7a094993759724da42bf5519c7a892c0a2c3061b12277a9ed9dad"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "source_sha256": "b29aa87b8ce80b8bdba55ac70b2d7e98fa035137860d5a9477fbe8d14626e189",
+      "stored_sha256": "b29aa87b8ce80b8bdba55ac70b2d7e98fa035137860d5a9477fbe8d14626e189"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "source_sha256": "a0d4382e537ee82eed6b15a69e5bff7862aad144af8c87528767e23f66629a27",
+      "stored_sha256": "a0d4382e537ee82eed6b15a69e5bff7862aad144af8c87528767e23f66629a27"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "source_sha256": "3f68ed6b2dfbc260270df4c5c8d9aa932a56fa1724fdd2ffb536c8608e6af768",
+      "stored_sha256": "3f68ed6b2dfbc260270df4c5c8d9aa932a56fa1724fdd2ffb536c8608e6af768"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "source_sha256": "a9626d5cfdc423350a8e58502f18169121f2f40ead2c815229daf3de909a5957",
+      "stored_sha256": "a9626d5cfdc423350a8e58502f18169121f2f40ead2c815229daf3de909a5957"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "source_sha256": "fd140a840f75f933b35adb64618bdc6f63fb54d37e2a8e1a9d3a476b411e541f",
+      "stored_sha256": "fd140a840f75f933b35adb64618bdc6f63fb54d37e2a8e1a9d3a476b411e541f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "source_sha256": "be1a060dddf18e3ad966b8859cc1e051bf601dfa08d998e8afe473bc019e3f7c",
+      "stored_sha256": "be1a060dddf18e3ad966b8859cc1e051bf601dfa08d998e8afe473bc019e3f7c"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "path": "deltas/case-1/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "source_sha256": "09c8036016f12767431f3bdd7c248be46d3dd85989f99ed1348221982d8f68c9",
+      "stored_sha256": "09c8036016f12767431f3bdd7c248be46d3dd85989f99ed1348221982d8f68c9"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/closure-records/stop-0001008.json",
+      "path": "deltas/case-1/stop-0001008/files/closure-records/stop-0001008.json.gz",
+      "source_sha256": "1b6fce16729907831d56fcd644bad41f917f6b80dcc308fc75e11889bf530de7",
+      "stored_sha256": "0dcdaf841617a2d1ab1844e7cb5da86fa388588533f32eb7419e64f562e3db2a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/controller.log",
+      "path": "deltas/case-1/stop-0001008/files/controller.log.gz",
+      "source_sha256": "c898a407428633d772cb467b3f311cd8a0ace9980134598ac84accd3f48a9f99",
+      "stored_sha256": "4cfbd942406ded18cc305b89b1e8d221fb745834eddcc20bfcd57f31a4bf1310"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/receipt.json",
+      "path": "deltas/case-1/stop-0001008/files/receipt.json.gz",
+      "source_sha256": "e4778523719984dd1c21eb6ed12c5e0680fc43947426911a8e03b542621f45f2",
+      "stored_sha256": "c5363949510d80f2a7b31b243503a184d4cda197cd28daa0fe042afd5967610a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/chain-state.json",
+      "path": "deltas/case-1/stop-0001008/files/run/chain-state.json.gz",
+      "source_sha256": "9feefd816b2d74f8cd8a378e038ddb45ae2dae9ff42e8d2372e45e6439c50d5a",
+      "stored_sha256": "74a4775d5101accc4f0173dcd1a7110d9ad39f447dc162fdb6838f9a011722e2"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/generations.zip",
+      "path": "deltas/case-1/stop-0001008/files/run/generations.zip",
+      "source_sha256": "18777f5b1c88b860104ae70fdad41cd6eb9aa8b9298a703500b8c271c48810a1",
+      "stored_sha256": "18777f5b1c88b860104ae70fdad41cd6eb9aa8b9298a703500b8c271c48810a1"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/receipt.json",
+      "path": "deltas/case-1/stop-0001008/files/run/receipt.json.gz",
+      "source_sha256": "761e8979821161f10e74ff15523ce27ffab2b39ee3de90fefc9bebc7c2f4d94d",
+      "stored_sha256": "4609cf7fe60e4dcf4cc49af2a132ab7ddbec8a92c1699831b874ac1a3228b89e"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/capture-SHA256.json",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/capture-SHA256.json.gz",
+      "source_sha256": "0ec11c6dc5322827cc77b06793951dcfe53fbec44be2e7922f70f240c22900a8",
+      "stored_sha256": "e5c4aaaa20b1752ab53f4a2a1c108ca0c37863e19c612a70576e69a38cd6c01b"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "source_sha256": "efef15d54994b70116ffd5b9ac2cbb25bba1a4d67bebe25e753b2c01171242b0",
+      "stored_sha256": "efef15d54994b70116ffd5b9ac2cbb25bba1a4d67bebe25e753b2c01171242b0"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "source_sha256": "6e59401087e686f8f30f523ad7a418201d953cec7837be30b11e518dbc41496f",
+      "stored_sha256": "6e59401087e686f8f30f523ad7a418201d953cec7837be30b11e518dbc41496f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/model.log",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/model.log.gz",
+      "source_sha256": "46d299b708dec2129d65d1f91f7df618a106f071413b0dd85cbc9b4f6b392a34",
+      "stored_sha256": "a12496beb6a0d4d22d9e51584e94ab515e714ce6c65d1b1e4ee8c1af18a1cd52"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/receipt.json",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/receipt.json.gz",
+      "source_sha256": "761e8979821161f10e74ff15523ce27ffab2b39ee3de90fefc9bebc7c2f4d94d",
+      "stored_sha256": "4609cf7fe60e4dcf4cc49af2a132ab7ddbec8a92c1699831b874ac1a3228b89e"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json.gz",
+      "source_sha256": "c53042d3e793376e937c4dff8b291301fab9a02eb91df1a78d992ea42502c423",
+      "stored_sha256": "315b1cf33fa9efaaba3989186fab7bbd094402fdebf32be93756d920ac71cdd3"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/report.json",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/report.json.gz",
+      "source_sha256": "15961e7c651f87fb4a23506daf5fea72d84929ce739b8941fe67a1de4842512a",
+      "stored_sha256": "0d46fa7b89efa3dc93e50fcaa88707c2a7877537ba8efc74823ca2d419485385"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "source_sha256": "148f39b5c6f4b88bfe2c99ca7847876dade0ba673847378f546d9aa898c296d3",
+      "stored_sha256": "148f39b5c6f4b88bfe2c99ca7847876dade0ba673847378f546d9aa898c296d3"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "source_sha256": "feeaacea94042a48b17c2defbd864e48c9e38b7f913612e04e2a95673e11476c",
+      "stored_sha256": "feeaacea94042a48b17c2defbd864e48c9e38b7f913612e04e2a95673e11476c"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/report.json",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/report.json.gz",
+      "source_sha256": "fbf746bfda6e8f2436e7779f57093563887f00ba5ae8f4abb2e7e0361a1662e8",
+      "stored_sha256": "391cf5f23b2ed6d2e1f9c0dc9497c443d10812f12df7e4c94e9079d878350bf2"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "source_sha256": "148f39b5c6f4b88bfe2c99ca7847876dade0ba673847378f546d9aa898c296d3",
+      "stored_sha256": "148f39b5c6f4b88bfe2c99ca7847876dade0ba673847378f546d9aa898c296d3"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "source_sha256": "88b8666895ac387cf58696733ff754bb32e97353618358abee3e2aced3312b99",
+      "stored_sha256": "88b8666895ac387cf58696733ff754bb32e97353618358abee3e2aced3312b99"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "source_sha256": "f4be1343d7cef6a7ce0647d746fadbc660485233531ffbf1f1fad39238db2bc8",
+      "stored_sha256": "f4be1343d7cef6a7ce0647d746fadbc660485233531ffbf1f1fad39238db2bc8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "source_sha256": "15b960db8447d5148fa5c220f0a04328dcc50b597446e7b9c1da6b822c8dc64f",
+      "stored_sha256": "15b960db8447d5148fa5c220f0a04328dcc50b597446e7b9c1da6b822c8dc64f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "source_sha256": "b424d8502226e94cf2514e4c2e5137c6b3066a1ba36027105f11e710e2aeec16",
+      "stored_sha256": "b424d8502226e94cf2514e4c2e5137c6b3066a1ba36027105f11e710e2aeec16"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "source_sha256": "3dfc67e85f454ef4b6b516e2bff14d39cf4c4e2bd876f4e63404bfb9fce3fa9b",
+      "stored_sha256": "3dfc67e85f454ef4b6b516e2bff14d39cf4c4e2bd876f4e63404bfb9fce3fa9b"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "source_sha256": "ca02abbe250a9530a52ab705f12c21a73eda91fd7dee6c2e3ae77fdecabdb38e",
+      "stored_sha256": "ca02abbe250a9530a52ab705f12c21a73eda91fd7dee6c2e3ae77fdecabdb38e"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "source_sha256": "aa5dde0188ddc47c7167162b20a57a2c2be1aa78aa1ae46816f2e2a7b0b1deb6",
+      "stored_sha256": "aa5dde0188ddc47c7167162b20a57a2c2be1aa78aa1ae46816f2e2a7b0b1deb6"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "source_sha256": "843bcbd3bc399f43781b673b6c78dfe0bce044d9b454e11d09bd1d3f2c2d1c55",
+      "stored_sha256": "843bcbd3bc399f43781b673b6c78dfe0bce044d9b454e11d09bd1d3f2c2d1c55"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "source_sha256": "848e9e800710c283614857a34a0cdfdeeeb2d35e7f62710c2e437dc6b7675b23",
+      "stored_sha256": "848e9e800710c283614857a34a0cdfdeeeb2d35e7f62710c2e437dc6b7675b23"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "6cdb220f992e5684368225e991e9c9af57b3502b031ec0ffcec4e7b0bab59698",
+      "stored_sha256": "6cdb220f992e5684368225e991e9c9af57b3502b031ec0ffcec4e7b0bab59698"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "source_sha256": "60c91a9eebb75ec89842c79fcacc838fbf32964c4c114f24dcca44847054ce7d",
+      "stored_sha256": "60c91a9eebb75ec89842c79fcacc838fbf32964c4c114f24dcca44847054ce7d"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "source_sha256": "84cbefacae4318c6803168b83f7a059ae03bebd5c3cfd6c62b29d90d7ca838fa",
+      "stored_sha256": "84cbefacae4318c6803168b83f7a059ae03bebd5c3cfd6c62b29d90d7ca838fa"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "source_sha256": "99f8b7b0c52ce2153136b855f77ce11cc62eca42a949f34d58344056703dff0b",
+      "stored_sha256": "99f8b7b0c52ce2153136b855f77ce11cc62eca42a949f34d58344056703dff0b"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "source_sha256": "7c0a7ba6c4dc79bfb03cd9b776b7c8c37162abef2e73cf0ebc62a54cf9eb4706",
+      "stored_sha256": "7c0a7ba6c4dc79bfb03cd9b776b7c8c37162abef2e73cf0ebc62a54cf9eb4706"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "source_sha256": "928f1f7d1a07a9cb30514b89aa4cddb77ee00c3e227b11a7e8345b75b855daef",
+      "stored_sha256": "928f1f7d1a07a9cb30514b89aa4cddb77ee00c3e227b11a7e8345b75b855daef"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "source_sha256": "b8aaaa019148f18ef6b1506d6ee76074a55639250bfd68f9f501b39cfae53071",
+      "stored_sha256": "b8aaaa019148f18ef6b1506d6ee76074a55639250bfd68f9f501b39cfae53071"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "source_sha256": "b4798330554314e7ac59feb4ccf2245be29ffa773ff117a585bad17107bff47f",
+      "stored_sha256": "b4798330554314e7ac59feb4ccf2245be29ffa773ff117a585bad17107bff47f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "source_sha256": "048272565e5931e8e49abbf5196fa4b4cc8dbb7ccffbe1e60efd51b77fff5fca",
+      "stored_sha256": "048272565e5931e8e49abbf5196fa4b4cc8dbb7ccffbe1e60efd51b77fff5fca"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "source_sha256": "3765621ec70397342d3f62ec43fd83dd23a20b4fa06d6326518b1f90f35040c1",
+      "stored_sha256": "3765621ec70397342d3f62ec43fd83dd23a20b4fa06d6326518b1f90f35040c1"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "path": "deltas/case-1/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "source_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf",
+      "stored_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/terminals.json",
+      "path": "deltas/case-1/stop-0001008/files/terminals.json.gz",
+      "source_sha256": "46e030b1d4d7405b2f90d34ca494779b4bcb561c55a541486fd67c37cc32d189",
+      "stored_sha256": "98970f044de36950a46439b4ecae2a9412c580c4f941095b934eaed8df022cf4"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/terminals/1646.manager/parent-exit.txt",
+      "path": "deltas/case-1/stop-0001008/files/terminals/1646.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/terminals/1646.manager/qstat.stdout",
+      "path": "deltas/case-1/stop-0001008/files/terminals/1646.manager/qstat.stdout.gz",
+      "source_sha256": "17cc678e633767c21647d65d3b82a81dbb987774953495182153e589790a0465",
+      "stored_sha256": "b3b7d8f515c88621da355bacd1af3c3b376ec69bc9c808b3cf50a6f3c3fc1e73"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/terminals/1646.manager/worker-exit.txt",
+      "path": "deltas/case-1/stop-0001008/files/terminals/1646.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-audit.json",
+      "path": "deltas/case-1/stop-0001008/files/window-audit.json.gz",
+      "source_sha256": "b298b700720be700ca44f7cc08d2fe9f7c9baa106f7813ff4460900c9941b6e6",
+      "stored_sha256": "1a97c33885666dfbbcdea3690607007403cdf7a2a9d1cb50b06fc46dcd488a28"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "4826d5ba67b7ea1923569702f4f4db285684fa0a1ddf2534f9fe14af81e852a7",
+      "stored_sha256": "4c7245a1568396a9c24f9479f57da3c02f3e8db3f84897d0f342e41ed7b5a8b4"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json.gz",
+      "source_sha256": "5254c6251b093f650abe8389a262dabff4705ba3621e9794bc1e5ebbceb5aaa3",
+      "stored_sha256": "8176a2f96107991deb5899fa31b971a47c2383b716e794803f0b9f477cbc7ada"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/controller.log",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/controller.log.gz",
+      "source_sha256": "50c5d0251a315c7f8dcc5f0c1e6595cfe6c5569c646c992e1f14a75daa8db0fa",
+      "stored_sha256": "af9a842b61308b7066356e0e829040e6e9d31f3c85396bfadb53372cd831b35a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/receipt.json",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/receipt.json.gz",
+      "source_sha256": "7b89b2caae60a4bd80b862f9469f285efb2183999919b8aac4af9505503453fd",
+      "stored_sha256": "8be317d741dda6fcad84d9273fbdc6dcf0966b06feb927bda0c0b0ab84b25b0b"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/window-audit.json",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/window-audit.json.gz",
+      "source_sha256": "f4f3826c5068a1f257decf70bd9d8a1c06eb618a1ecc49bb4acbb0e4c8a40ca0",
+      "stored_sha256": "bf487ea49bb7b4dd4d482ae4c6ebbcf8d6ca8debccf8393b7b793c37c1eecf0f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/worker-exit.txt",
+      "path": "deltas/case-1/stop-0001008/files/window-history/stop-0000528/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001008/result-originals/terminals.json",
+      "path": "deltas/case-1/stop-0001008/result-originals/terminals.json.gz",
+      "source_sha256": "3024b3ab7e4c2793c275f94c8717fb273509ebf2c1b3d653f557f21b207d3da9",
+      "stored_sha256": "9680ff2a8fc2aded80601dab6d795b78554e8d0981a20ae8991d021b14031592"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/DELTA.json",
+      "path": "deltas/case-1/stop-0001488/DELTA.json.gz",
+      "source_sha256": "623ac7d51ce7bc972fc0b2d7695bf7f213cd3bf3f39ed34380472324c12aec20",
+      "stored_sha256": "4a8ebae3d6165a03e6caae17f6ca217e44a8e7f6b583cab3f742be28abfe10fc"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-1/stop-0001488/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "229d90ba5c9afe608dba4ecd8f3ec66dee249985fb71e95087074e2057ef343a",
+      "stored_sha256": "bc4d6dca3c4bff0355df0d212970424ad22a2ca366801fbcc626f33db889ea0f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/BGC_STREAMS.json",
+      "path": "deltas/case-1/stop-0001488/files/BGC_STREAMS.json.gz",
+      "source_sha256": "b9f775275965c12e411d35260804c3a732016a263fdfa2e66beb1921614ae20b",
+      "stored_sha256": "98899d47cf350bf14b94b97d4e08e9471bd7b25b891ff8ac0e3564ffe422032b"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json.gz",
+      "source_sha256": "921a353e3bff57dd9b98a1616081fddfd08f4defadb84749cec17aa0ba965787",
+      "stored_sha256": "d94b4265c485ab6a3cf8e1e6c4fd393c2b4262b7be172758ff523fe4fed71fd8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "source_sha256": "1d75b71899465ae8e07875f16ebc890ad9495a1312e3cd879112c38445b992a9",
+      "stored_sha256": "1d75b71899465ae8e07875f16ebc890ad9495a1312e3cd879112c38445b992a9"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "source_sha256": "cb291849b52cdb2e6d234fdc8dd8bdfaab8b3382f61b3f110acc16e6628b9ebc",
+      "stored_sha256": "cb291849b52cdb2e6d234fdc8dd8bdfaab8b3382f61b3f110acc16e6628b9ebc"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "source_sha256": "f8e120230b4a15f4d8eac43733e29b4e62b7de026f8bceff45b75e3c89002adf",
+      "stored_sha256": "f8e120230b4a15f4d8eac43733e29b4e62b7de026f8bceff45b75e3c89002adf"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "source_sha256": "688ac64ddf2b173e0ae4c4d9fdc8e42bba5658947a1f556401c1658bb190dd80",
+      "stored_sha256": "688ac64ddf2b173e0ae4c4d9fdc8e42bba5658947a1f556401c1658bb190dd80"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "source_sha256": "80f0d45a1aea7e18393b2c6dbbd0e29774b5541fcc2c509555d76a3efbcde301",
+      "stored_sha256": "80f0d45a1aea7e18393b2c6dbbd0e29774b5541fcc2c509555d76a3efbcde301"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "source_sha256": "cb05f8eb73f3740772ca0c3cf72e932155b15f5a194afc078fe934ca420b7c22",
+      "stored_sha256": "cb05f8eb73f3740772ca0c3cf72e932155b15f5a194afc078fe934ca420b7c22"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "source_sha256": "2d7ae0e3c2eb7b07a45e7087592f564b105a145b1f1ea262587ade2f7becbe18",
+      "stored_sha256": "2d7ae0e3c2eb7b07a45e7087592f564b105a145b1f1ea262587ade2f7becbe18"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "source_sha256": "c398a12940da4b271f7d7e3a4b4018f39c797fc739c16f541f4aa02801f02d49",
+      "stored_sha256": "c398a12940da4b271f7d7e3a4b4018f39c797fc739c16f541f4aa02801f02d49"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "source_sha256": "ec1db6c79dda2453a77196afe36e8597731164fd1e8ad512bf860f4e6b74d5b8",
+      "stored_sha256": "ec1db6c79dda2453a77196afe36e8597731164fd1e8ad512bf860f4e6b74d5b8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "path": "deltas/case-1/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "source_sha256": "ff9dc278b50c5f0782f8d6802ac630b14c3d3196e55b050a9a32adcecebbd190",
+      "stored_sha256": "ff9dc278b50c5f0782f8d6802ac630b14c3d3196e55b050a9a32adcecebbd190"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/closure-records/stop-0001488.json",
+      "path": "deltas/case-1/stop-0001488/files/closure-records/stop-0001488.json.gz",
+      "source_sha256": "cd12c8474ea1500a2662752011aa0ce31075be8d7e9df79ec56f338ab08fb5cf",
+      "stored_sha256": "f8f23b4b4feb73ba11bc315e5bc8e47db35e8ffe44d25931efc7eb491ccd3509"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/controller.log",
+      "path": "deltas/case-1/stop-0001488/files/controller.log.gz",
+      "source_sha256": "546b8fe66d26d54ea982d8a0f4744071e084ef6b6e22923fc4c0b2787074b185",
+      "stored_sha256": "b035886a4f8227181d875ea68c182db372e45b76b429c33a4c42f2722ffab03d"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/receipt.json",
+      "path": "deltas/case-1/stop-0001488/files/receipt.json.gz",
+      "source_sha256": "691fb93037392b00b99302775adaa927aa998991e3de7253d6a6dd7096c94e58",
+      "stored_sha256": "b606e1842870a0ce69ee8e45d36856a907deee8ce94d83d94cf32122ae69cffa"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/chain-state.json",
+      "path": "deltas/case-1/stop-0001488/files/run/chain-state.json.gz",
+      "source_sha256": "bca38215efb8547043eb1e0418beb00230201f26c7cc78bd934a38f426bc9637",
+      "stored_sha256": "1a22115ece7fa8e944b7bf72da38536ae9ec283bdb6e0deffb2c5096d4141898"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/generations.zip",
+      "path": "deltas/case-1/stop-0001488/files/run/generations.zip",
+      "source_sha256": "24ff43fd6e2af17b7db5432795ffb5754053aee99c4c05df18958556e6cb5121",
+      "stored_sha256": "24ff43fd6e2af17b7db5432795ffb5754053aee99c4c05df18958556e6cb5121"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/receipt.json",
+      "path": "deltas/case-1/stop-0001488/files/run/receipt.json.gz",
+      "source_sha256": "504de6507a3506262a6bb12ae9d3d0688a8d9a9c051a71f2825383515c36dc1a",
+      "stored_sha256": "d841e49923419683c862b499bda6e36aa0369255d30f385a783eef35a78312ef"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/capture-SHA256.json",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/capture-SHA256.json.gz",
+      "source_sha256": "c81fe146eaccfedf977c05ca1e3c456dec2cb454ff1135ce100455b4a0fc508d",
+      "stored_sha256": "72cf44150eca4bff52d766f30b1a6f5c0abf2ef040350cf111bb6b36fff3b8f8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "source_sha256": "bbd13b2b8f38cd869b998a6eac68c7bb1d24b7b23f8938e4d73070fc44ac06c6",
+      "stored_sha256": "bbd13b2b8f38cd869b998a6eac68c7bb1d24b7b23f8938e4d73070fc44ac06c6"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "source_sha256": "3470e9129a2a2a1218198fa1d86b6317d1a5a489554de97ad7768d631ba8a0f3",
+      "stored_sha256": "3470e9129a2a2a1218198fa1d86b6317d1a5a489554de97ad7768d631ba8a0f3"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/model.log",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/model.log.gz",
+      "source_sha256": "4508c45e9714d2d785c31aaabb0b9c669b188387f9a34ae3181a0cd862c2888d",
+      "stored_sha256": "1df354c2f931eefd90f04f6fcf442e8141415b852163b4e5209155e6023733b2"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/receipt.json",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/receipt.json.gz",
+      "source_sha256": "504de6507a3506262a6bb12ae9d3d0688a8d9a9c051a71f2825383515c36dc1a",
+      "stored_sha256": "d841e49923419683c862b499bda6e36aa0369255d30f385a783eef35a78312ef"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json.gz",
+      "source_sha256": "65f359a11280bcaa061d433f1e3ccc2261b5123db4117f92d9eb88cece3435e0",
+      "stored_sha256": "ec84d9239ad7d12a7d59519e3772d1d88470f4a5c29e5bc30d4317db17d6dc52"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/report.json",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/report.json.gz",
+      "source_sha256": "eb88cfa91b6bf76a94c52c86cb3952fdbd291b83c73ee2d9bbdbc077f3c62c91",
+      "stored_sha256": "cd598c5bdace83cc0ff52802eb1950aeee9b0f3eeb8a96d93b8ca2b8c5b2cadb"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "source_sha256": "8ee289fe6af74f67fcea844693b289e29faf8937cf9675304a06514e86fede71",
+      "stored_sha256": "8ee289fe6af74f67fcea844693b289e29faf8937cf9675304a06514e86fede71"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "source_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf",
+      "stored_sha256": "ef7bb4ab93839b1b836a19bd1ea263d22cc18db95d13cfe760bd70998c528eaf"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/report.json",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/report.json.gz",
+      "source_sha256": "f6b4a5d265d40dab83487d259624b8ec6da922ebad7ba74f24b11bbf7a612c61",
+      "stored_sha256": "5670ea6956b3ddedf0e77115fb36e236a980da08616cebc0a8da08b12b665989"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "8ee289fe6af74f67fcea844693b289e29faf8937cf9675304a06514e86fede71",
+      "stored_sha256": "8ee289fe6af74f67fcea844693b289e29faf8937cf9675304a06514e86fede71"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "source_sha256": "3498e574ea1d0588a678a5461effde469c96f650f60df2656547310bf08e1514",
+      "stored_sha256": "3498e574ea1d0588a678a5461effde469c96f650f60df2656547310bf08e1514"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "source_sha256": "2b6c3bec561c097857c77e6ed7cc664d437f71319dc4b01744f6e5ed520dbe3d",
+      "stored_sha256": "2b6c3bec561c097857c77e6ed7cc664d437f71319dc4b01744f6e5ed520dbe3d"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "source_sha256": "93147f832b1b30826192273362c6da69d8d83901b96d2994c67f5f311f28aa07",
+      "stored_sha256": "93147f832b1b30826192273362c6da69d8d83901b96d2994c67f5f311f28aa07"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "source_sha256": "f5e7d56ea4a54b0c0c2e8b7f65e633bff217f2667cdb20be54765a6e3319ce6a",
+      "stored_sha256": "f5e7d56ea4a54b0c0c2e8b7f65e633bff217f2667cdb20be54765a6e3319ce6a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "source_sha256": "0c28b99fb3f71091a74a27b3693adef64463eeec366c2bb5da0c3301cf521c0f",
+      "stored_sha256": "0c28b99fb3f71091a74a27b3693adef64463eeec366c2bb5da0c3301cf521c0f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "source_sha256": "fd4e4c4651f43353c372adcf995d2c7e2b55acebe56e026e902a2f27f03dead5",
+      "stored_sha256": "fd4e4c4651f43353c372adcf995d2c7e2b55acebe56e026e902a2f27f03dead5"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "source_sha256": "ab4370650aa4f17f29ba706824298dae3bbc0d99480ac8e8fc8ea649b291ae4a",
+      "stored_sha256": "ab4370650aa4f17f29ba706824298dae3bbc0d99480ac8e8fc8ea649b291ae4a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "source_sha256": "ed48f7ecf9611f9afa3de010bdbc28fcf3eda2222669bbc769873a47f40c9e83",
+      "stored_sha256": "ed48f7ecf9611f9afa3de010bdbc28fcf3eda2222669bbc769873a47f40c9e83"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "source_sha256": "afebb77173cce7a0cf5ba4efcf031a83030b26258f07ba3427ae7c0c618b5cc6",
+      "stored_sha256": "afebb77173cce7a0cf5ba4efcf031a83030b26258f07ba3427ae7c0c618b5cc6"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "source_sha256": "bc33a20a09120c6f306172783aa03d50cec36c56e9610453973530cdd875cffa",
+      "stored_sha256": "bc33a20a09120c6f306172783aa03d50cec36c56e9610453973530cdd875cffa"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "source_sha256": "250014742dc3fa6f9e0bc0071e3f493de037851ead5d3f96234962c0534a293a",
+      "stored_sha256": "250014742dc3fa6f9e0bc0071e3f493de037851ead5d3f96234962c0534a293a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "source_sha256": "df7d0ef6445a17a89688233e40f5874389272e76f200180c2d04fb1dbd824b57",
+      "stored_sha256": "df7d0ef6445a17a89688233e40f5874389272e76f200180c2d04fb1dbd824b57"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "source_sha256": "911312b0429a7ad8b446bba9d2efd032c2f659dd1236a91159d16a92cca3ffdd",
+      "stored_sha256": "911312b0429a7ad8b446bba9d2efd032c2f659dd1236a91159d16a92cca3ffdd"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "source_sha256": "d8e8e764378671a513d5c53bcfce6a186009c595328a98e704648a7822786dd2",
+      "stored_sha256": "d8e8e764378671a513d5c53bcfce6a186009c595328a98e704648a7822786dd2"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "source_sha256": "77f20fc0de650a9721cbaea502bd84eed636fa34e9ca4bb07749c5fa08f8fc70",
+      "stored_sha256": "77f20fc0de650a9721cbaea502bd84eed636fa34e9ca4bb07749c5fa08f8fc70"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "source_sha256": "5ada116e6999287c96ab4b8604c133c237c1438a8dd0a1962829207885e9d937",
+      "stored_sha256": "5ada116e6999287c96ab4b8604c133c237c1438a8dd0a1962829207885e9d937"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "source_sha256": "420e0a8d7c332456c03ec0938de1149f5a9ba9520bb685ef7c24d810d1c90acb",
+      "stored_sha256": "420e0a8d7c332456c03ec0938de1149f5a9ba9520bb685ef7c24d810d1c90acb"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "source_sha256": "284734690fb8ced802fa698673377a0bc85259572fb3ced740f653af341eb4cc",
+      "stored_sha256": "284734690fb8ced802fa698673377a0bc85259572fb3ced740f653af341eb4cc"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "source_sha256": "83d0dfdbe260652c41081726e1021a19b134b3388f2f68b319f183c3725b5da4",
+      "stored_sha256": "83d0dfdbe260652c41081726e1021a19b134b3388f2f68b319f183c3725b5da4"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "path": "deltas/case-1/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "source_sha256": "9c01237beabc5b09a603fcb9f9521861e6fe0335f26ecf08f8d5fd28bd52bd9c",
+      "stored_sha256": "9c01237beabc5b09a603fcb9f9521861e6fe0335f26ecf08f8d5fd28bd52bd9c"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/terminals.json",
+      "path": "deltas/case-1/stop-0001488/files/terminals.json.gz",
+      "source_sha256": "3b30d40f6690173669b2e06e1a26b2b6a4b347b70085096d99823d6f5f0f78c4",
+      "stored_sha256": "55e6d46f2c5112ed45149c91d58160b3b330e8858abbba77cd59770e56cdf94f"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/terminals/1652.manager/parent-exit.txt",
+      "path": "deltas/case-1/stop-0001488/files/terminals/1652.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/terminals/1652.manager/qstat.stdout",
+      "path": "deltas/case-1/stop-0001488/files/terminals/1652.manager/qstat.stdout.gz",
+      "source_sha256": "c423a1aa73a69b11f429f5bba083372e245ea4099f541deb83da5c21080d980d",
+      "stored_sha256": "10edaf283e9036bec0614f3dfadb94bac295de15e3f2adbcd26717c70973d096"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/terminals/1652.manager/worker-exit.txt",
+      "path": "deltas/case-1/stop-0001488/files/terminals/1652.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-audit.json",
+      "path": "deltas/case-1/stop-0001488/files/window-audit.json.gz",
+      "source_sha256": "d6a82e6373cb2cc4d9c7469b1abad2c340f610d8a75c292b3c2e1d98539b79e3",
+      "stored_sha256": "0857baa69c329b2d665e2cfaa081974eb89dce910f192875bf24eb87a03ecc9e"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "20d7e09aa4eb56e0d4862c95995d9baa53b696ef019dd61abafd42c7661d780d",
+      "stored_sha256": "953b28dce1274316094fb6d8967f2f47d296d9ac1779ebf5ab1314e5b18dcfb8"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json.gz",
+      "source_sha256": "f5ecc794f1cb932e34787935f6e7591c1070666349191c89e912e9f20d814565",
+      "stored_sha256": "6b6ab876f3e02fd9558475d156acd3b18c45aa368366ddff59ee1b414c2f4f4a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/controller.log",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/controller.log.gz",
+      "source_sha256": "c898a407428633d772cb467b3f311cd8a0ace9980134598ac84accd3f48a9f99",
+      "stored_sha256": "4cfbd942406ded18cc305b89b1e8d221fb745834eddcc20bfcd57f31a4bf1310"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/receipt.json",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/receipt.json.gz",
+      "source_sha256": "e4778523719984dd1c21eb6ed12c5e0680fc43947426911a8e03b542621f45f2",
+      "stored_sha256": "c5363949510d80f2a7b31b243503a184d4cda197cd28daa0fe042afd5967610a"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/window-audit.json",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/window-audit.json.gz",
+      "source_sha256": "b298b700720be700ca44f7cc08d2fe9f7c9baa106f7813ff4460900c9941b6e6",
+      "stored_sha256": "1a97c33885666dfbbcdea3690607007403cdf7a2a9d1cb50b06fc46dcd488a28"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/worker-exit.txt",
+      "path": "deltas/case-1/stop-0001488/files/window-history/stop-0001008/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-1/stop-0001488/result-originals/terminals.json",
+      "path": "deltas/case-1/stop-0001488/result-originals/terminals.json.gz",
+      "source_sha256": "46e030b1d4d7405b2f90d34ca494779b4bcb561c55a541486fd67c37cc32d189",
+      "stored_sha256": "98970f044de36950a46439b4ecae2a9412c580c4f941095b934eaed8df022cf4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/DELTA.json",
+      "path": "deltas/case-2/stop-0001008/DELTA.json.gz",
+      "source_sha256": "2c2042ff037afcd74f793365cae055483b414925e83530c4e5b1020fcb9fe8ba",
+      "stored_sha256": "35b9743e5d0b7817c7c592b038746e7b990416554e945cfc4ea05c646600b1f3"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-2/stop-0001008/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "0ec15e5d73fd56046972f22665e2f22c72164d4cbe5970f8ee741af3b35599b8",
+      "stored_sha256": "a88bdc013c57ad32ca3c0442e86d4040bf1aaa40acbfcdedba0339a36e6910b4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/BGC_STREAMS.json",
+      "path": "deltas/case-2/stop-0001008/files/BGC_STREAMS.json.gz",
+      "source_sha256": "ce50dc9bd36728b8bff59a4836a39fae6016e4737387eeeb114126d99a1dbc58",
+      "stored_sha256": "993788a1762e48dfe1e7142d74c54123dc728a69f0ee2e690e96dfb6cbf899d4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json.gz",
+      "source_sha256": "c3aa9e3f57df8c9610b4bf67db7998e2058f8cddcfa13972c3f631d962a98023",
+      "stored_sha256": "e41ccf7e766e5e56101d47f5a9c61c46380edd2b3292b23a73ca0932d915831b"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "source_sha256": "d8d95f7209eced73b9eb5809e15fcaee4bfd06e38a369d7c33749e4c5327b261",
+      "stored_sha256": "d8d95f7209eced73b9eb5809e15fcaee4bfd06e38a369d7c33749e4c5327b261"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "source_sha256": "0ae93a3470162a38846dbe35cab39e370b8b60362733d8a3a2b9ed56e9ff4742",
+      "stored_sha256": "0ae93a3470162a38846dbe35cab39e370b8b60362733d8a3a2b9ed56e9ff4742"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "source_sha256": "f1c4c6b8df71229a3d7d73f2884854c45937291aeab2e184be776a313c52f945",
+      "stored_sha256": "f1c4c6b8df71229a3d7d73f2884854c45937291aeab2e184be776a313c52f945"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "source_sha256": "3e22aa11a5c57896b67b60e126888052f5dcb030f18973d06fe464126ed032f0",
+      "stored_sha256": "3e22aa11a5c57896b67b60e126888052f5dcb030f18973d06fe464126ed032f0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "source_sha256": "57cca08adb3ed142d2a080b0c4a2718256f00d7998276bf2494fc07852c92cc1",
+      "stored_sha256": "57cca08adb3ed142d2a080b0c4a2718256f00d7998276bf2494fc07852c92cc1"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "source_sha256": "f2ab0c10e077d26f8f7823198901b5ff1390463bb6652f64c2e865cf86e4e62f",
+      "stored_sha256": "f2ab0c10e077d26f8f7823198901b5ff1390463bb6652f64c2e865cf86e4e62f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "source_sha256": "64fe4fa7ac05b0636f1be83337ea7ebb7591bc4a01f3ced18632224ee75be22a",
+      "stored_sha256": "64fe4fa7ac05b0636f1be83337ea7ebb7591bc4a01f3ced18632224ee75be22a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "source_sha256": "7be9ac0842d0bab2277f8597d198b0f21beee2ecde2e1b795e522822e59e254f",
+      "stored_sha256": "7be9ac0842d0bab2277f8597d198b0f21beee2ecde2e1b795e522822e59e254f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "source_sha256": "dcf096d6839c15271345b7fbcce594dbf407c8dbe43a2e7391eefbd052b5d376",
+      "stored_sha256": "dcf096d6839c15271345b7fbcce594dbf407c8dbe43a2e7391eefbd052b5d376"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "path": "deltas/case-2/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "source_sha256": "c51707da5d6092e53a28b42b4b201f153476c38cd105e868365a15b19988593c",
+      "stored_sha256": "c51707da5d6092e53a28b42b4b201f153476c38cd105e868365a15b19988593c"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/closure-records/stop-0001008.json",
+      "path": "deltas/case-2/stop-0001008/files/closure-records/stop-0001008.json.gz",
+      "source_sha256": "7259d479129711a20389d443084514ec3b87a25bb65be0e6315c8c8f82a41e3a",
+      "stored_sha256": "0cd6328d1941c8fa190ac70836a5006783a75a4891d275fe69ab79ced074f8fb"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/controller.log",
+      "path": "deltas/case-2/stop-0001008/files/controller.log.gz",
+      "source_sha256": "bfa22817667109dd520ed9a0a15a7bc8f758f2ba836d97afdceac37a5d25f77a",
+      "stored_sha256": "61a0403df4a84ab6e664738381e2a42f739c14578ff40d59be6d20f140dff2ef"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/receipt.json",
+      "path": "deltas/case-2/stop-0001008/files/receipt.json.gz",
+      "source_sha256": "b4566873c80a888a024ba37ea04955b71885f677f8c689cc97fd0a5da6f6c66a",
+      "stored_sha256": "b58ea19f5630a236515cba8f29dd6a7e1a61f62a4380832dacb195bf8d6b099e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/chain-state.json",
+      "path": "deltas/case-2/stop-0001008/files/run/chain-state.json.gz",
+      "source_sha256": "823f5d429d4857b76f145283d99cecc3b09f2df9ae3f22177c50241cd486123b",
+      "stored_sha256": "96d60fb8232e96e415e3492b712beec7457ab0e2103fb4b9196aa14094456125"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/generations.zip",
+      "path": "deltas/case-2/stop-0001008/files/run/generations.zip",
+      "source_sha256": "114ec12483ea08862535a32e20075292a91a84169e9b8a4339a410fa5e11b065",
+      "stored_sha256": "114ec12483ea08862535a32e20075292a91a84169e9b8a4339a410fa5e11b065"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/receipt.json",
+      "path": "deltas/case-2/stop-0001008/files/run/receipt.json.gz",
+      "source_sha256": "27d4a64d706c3e550036191d55171faf88ae2c9de8ead79d09e05badf7678140",
+      "stored_sha256": "82e4c0a3eb611558533303abc89f6f1f873487a255f30536c4ae269f49dd5dda"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/capture-SHA256.json",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/capture-SHA256.json.gz",
+      "source_sha256": "5df36cfbb8a2bf83fcddfa0335fb0f1b33d88d2463b319b4a2d53e6ec1336959",
+      "stored_sha256": "cb30ffff61afbaff9176af2a37cf80d9ae8d4d121167a0472a1c07d533a05add"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "source_sha256": "777a1f436da2c1584bbd9cc2b96790963fb0e7eb82be7d6115704e5a7a83dadf",
+      "stored_sha256": "777a1f436da2c1584bbd9cc2b96790963fb0e7eb82be7d6115704e5a7a83dadf"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "source_sha256": "96ae1d1d732d77c21589595e791d9db57197e4c258c2b01e469ddeabf926ddc4",
+      "stored_sha256": "96ae1d1d732d77c21589595e791d9db57197e4c258c2b01e469ddeabf926ddc4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/model.log",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/model.log.gz",
+      "source_sha256": "2a97b2d7be98a9c7fb517fd9f9e9a7c1a5c054e263e7d635012d4bfffb07de49",
+      "stored_sha256": "357b52db4b750a670e3ec134675509be567ef5f6f04093a613126273ae99e6e9"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/receipt.json",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/receipt.json.gz",
+      "source_sha256": "27d4a64d706c3e550036191d55171faf88ae2c9de8ead79d09e05badf7678140",
+      "stored_sha256": "82e4c0a3eb611558533303abc89f6f1f873487a255f30536c4ae269f49dd5dda"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json.gz",
+      "source_sha256": "e05563526f268bc523a1bbfd8de819ef0e3a75e5406584fbc7cae47abdf0b738",
+      "stored_sha256": "e1c65641a5439e5433e16d6bca343ae3f9c86b7f84f0655d1920c214361ada24"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/report.json",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/report.json.gz",
+      "source_sha256": "6fa69533c1a802de252c1a07565fcd1fbb7e0bd547aa889c2723c1f6417f74d7",
+      "stored_sha256": "92e59f72f5a15b93dbd70446f309f1b0a4e7b5f5f4fd8b186daee9f0461dc2b7"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "source_sha256": "d6a7b0122307bec6a5599e6b2b22681a8c5e5d5add7e034814edcd725fe21d4f",
+      "stored_sha256": "d6a7b0122307bec6a5599e6b2b22681a8c5e5d5add7e034814edcd725fe21d4f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "source_sha256": "62313df6906f3d3644177bdec62ab51f8834d8c5cec064126e3beac9d7064939",
+      "stored_sha256": "62313df6906f3d3644177bdec62ab51f8834d8c5cec064126e3beac9d7064939"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/report.json",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/report.json.gz",
+      "source_sha256": "48b8ffab228221047c15dfacc9d78d7fb11a93004e8f1c6568685ca6467d7c80",
+      "stored_sha256": "5f4fba628cd27f6ef2ea1fc02226a0a8b73192e217ea9a18d09d82fff851774e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "source_sha256": "d6a7b0122307bec6a5599e6b2b22681a8c5e5d5add7e034814edcd725fe21d4f",
+      "stored_sha256": "d6a7b0122307bec6a5599e6b2b22681a8c5e5d5add7e034814edcd725fe21d4f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "source_sha256": "09e0143a0879b9eaeb2ad790d7c4a86bff0aa69a8d0e6f622e7b4f97ce436f87",
+      "stored_sha256": "09e0143a0879b9eaeb2ad790d7c4a86bff0aa69a8d0e6f622e7b4f97ce436f87"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "source_sha256": "821ee14944bf1d4a16a1d2e21a7aa8f0ba68ce979791243d2f2bf250ecfe9953",
+      "stored_sha256": "821ee14944bf1d4a16a1d2e21a7aa8f0ba68ce979791243d2f2bf250ecfe9953"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "source_sha256": "1849c6d1fc25b5798908add1cddd88c2e108e54de186a8e49f08b0c05eb1ed10",
+      "stored_sha256": "1849c6d1fc25b5798908add1cddd88c2e108e54de186a8e49f08b0c05eb1ed10"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "source_sha256": "2ed2c0ddfaee1dbf83154bddedd98293cdbd00b4479336ad91014c09a479b93d",
+      "stored_sha256": "2ed2c0ddfaee1dbf83154bddedd98293cdbd00b4479336ad91014c09a479b93d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "source_sha256": "e9d299f36153ff7276c45e5886737435dad4d4ef1999f75fca8b1e706db79b8b",
+      "stored_sha256": "e9d299f36153ff7276c45e5886737435dad4d4ef1999f75fca8b1e706db79b8b"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "source_sha256": "bc54ace6d0e141e89990a120de956c72c78c3c63c50359419073444406d2abbe",
+      "stored_sha256": "bc54ace6d0e141e89990a120de956c72c78c3c63c50359419073444406d2abbe"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "source_sha256": "4ddd2501ac2d0ddda52d09b26adcf055397b335a4b4732bbea0817d6a17657b0",
+      "stored_sha256": "4ddd2501ac2d0ddda52d09b26adcf055397b335a4b4732bbea0817d6a17657b0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "source_sha256": "c980a03c36fe05c7b9186041a527b35a24d69fb7e78bd7f328f14bbbf0e9dfd9",
+      "stored_sha256": "c980a03c36fe05c7b9186041a527b35a24d69fb7e78bd7f328f14bbbf0e9dfd9"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "source_sha256": "c0a551d669be0604867e0622579e25de0d9c0627de7a21057d0270d8aeac5a85",
+      "stored_sha256": "c0a551d669be0604867e0622579e25de0d9c0627de7a21057d0270d8aeac5a85"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "13ff3f943e8855f221c3dd42e9d1e0fbf71f377fecb7992dfac5bdddc7a59e08",
+      "stored_sha256": "13ff3f943e8855f221c3dd42e9d1e0fbf71f377fecb7992dfac5bdddc7a59e08"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "source_sha256": "abcd165f256e508468903e5465e21241b8e5c72735794a2ad4ae281e7e21c41c",
+      "stored_sha256": "abcd165f256e508468903e5465e21241b8e5c72735794a2ad4ae281e7e21c41c"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "source_sha256": "7938f8538053a551c84f02bc1a2f5c79d7c0bd3d4dd4e08ffce90eff5259065e",
+      "stored_sha256": "7938f8538053a551c84f02bc1a2f5c79d7c0bd3d4dd4e08ffce90eff5259065e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "source_sha256": "d21aaf2747dc613f2a4e8e1f9a4b35a475f72e63ce1f3669e51e0188fb6592ab",
+      "stored_sha256": "d21aaf2747dc613f2a4e8e1f9a4b35a475f72e63ce1f3669e51e0188fb6592ab"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "source_sha256": "938b0d783f669bf0e7ffc8ce573190a07a9095441d96c51c2395cf2c2b4a2bb8",
+      "stored_sha256": "938b0d783f669bf0e7ffc8ce573190a07a9095441d96c51c2395cf2c2b4a2bb8"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "source_sha256": "0ed63ec9aca1a05b088c5a3cdb01562f2cd87ca2267136a821735ccfd59a2de0",
+      "stored_sha256": "0ed63ec9aca1a05b088c5a3cdb01562f2cd87ca2267136a821735ccfd59a2de0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "source_sha256": "2e1dead9855b1cd1714f41e18111ac7a3a04143652b26eb375fda3897e1fc532",
+      "stored_sha256": "2e1dead9855b1cd1714f41e18111ac7a3a04143652b26eb375fda3897e1fc532"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "source_sha256": "ba109770128f359a6217f6859227b31aeaf738e519369e6d2869c57d05cdc61c",
+      "stored_sha256": "ba109770128f359a6217f6859227b31aeaf738e519369e6d2869c57d05cdc61c"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "source_sha256": "50574970ee93e66c20db3277eb939cfb82c8507218263a57efac632b1c73f4db",
+      "stored_sha256": "50574970ee93e66c20db3277eb939cfb82c8507218263a57efac632b1c73f4db"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "source_sha256": "c1491959c51d052435f0efd181077bf6081781ce5280775fc19cbfcb2dc8e843",
+      "stored_sha256": "c1491959c51d052435f0efd181077bf6081781ce5280775fc19cbfcb2dc8e843"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "path": "deltas/case-2/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "source_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a",
+      "stored_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/terminals.json",
+      "path": "deltas/case-2/stop-0001008/files/terminals.json.gz",
+      "source_sha256": "ef505200db58ac454079b12507aee67133162fef832fcef2668e37c7b8aee29b",
+      "stored_sha256": "224990aeb3bbdfcf94cd953e3a59de72d0111938f59700cd9bf1894108a4ff36"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/terminals/1644.manager/parent-exit.txt",
+      "path": "deltas/case-2/stop-0001008/files/terminals/1644.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/terminals/1644.manager/qstat.stdout",
+      "path": "deltas/case-2/stop-0001008/files/terminals/1644.manager/qstat.stdout.gz",
+      "source_sha256": "27a293e356f16013b80a0d13079e185f7e62aa4f2892345516034b62c8dc8cad",
+      "stored_sha256": "4285741037845801e59fb35824ea7dc343a794657b7d4e32d31807fff9e67140"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/terminals/1644.manager/worker-exit.txt",
+      "path": "deltas/case-2/stop-0001008/files/terminals/1644.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-audit.json",
+      "path": "deltas/case-2/stop-0001008/files/window-audit.json.gz",
+      "source_sha256": "69ab39337e087a794d0ef732d0b91c05c1ba2ee7d11ba5704e28de9952b0fb7e",
+      "stored_sha256": "556ef6ddcce3d89c9c46616982c55fe68443ea3d59cd14edbebcafdb40291e3e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "ffc4943a625ff7c8e7b2ce33ce98edd2c78da3303555ba70c7f29a12b8e81850",
+      "stored_sha256": "9163491e897a1ecd543bb1c52541c2041afbc298c867fbc93cf004afeb35c2d2"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json.gz",
+      "source_sha256": "a74d18c67211579c17508de66ca67a23c6e1c1d905718c3bcf8b8378035057bc",
+      "stored_sha256": "c5b17c6d94ffa1724c073e9a9c5ce99533da1df72ff817296a19afdc5757bf69"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/controller.log",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/controller.log.gz",
+      "source_sha256": "74b575eaeaa0099131ded9266cae654a2b7588918bd4201ddbb33b9544ff3e0a",
+      "stored_sha256": "b5969c8ad231c176b67c100526e2aaf82a1b772be5e3728d0fc092031b93a656"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/receipt.json",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/receipt.json.gz",
+      "source_sha256": "9c37a157f40391cf3dbe7428b9d614c34dd9c3e9c240ec8467b6eee847fe4963",
+      "stored_sha256": "c3b977898fc58abefc7a79a438951ea5c420410d93cdd212434945cd6aa800e6"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/window-audit.json",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/window-audit.json.gz",
+      "source_sha256": "d33a483629d559e9c93faa71dec52fde1df23ff9197ca29cb06984385da39301",
+      "stored_sha256": "89c2f88074508387fe8cea90fbac8885a5ffbc77c74690c08e585319e0460e4a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/worker-exit.txt",
+      "path": "deltas/case-2/stop-0001008/files/window-history/stop-0000528/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001008/result-originals/terminals.json",
+      "path": "deltas/case-2/stop-0001008/result-originals/terminals.json.gz",
+      "source_sha256": "0534aca4246a85286d67afdd9637a1935ea1b239b217d5ad9a53108377c9fc24",
+      "stored_sha256": "caa8b543588cfad01271698a661584456008f7a943c608b210e53cf69f54a786"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/DELTA.json",
+      "path": "deltas/case-2/stop-0001488/DELTA.json.gz",
+      "source_sha256": "a5f660f94f2f58b303a9098425533a9a798625200b63243cbe586ca90a4108a0",
+      "stored_sha256": "8a286dd459db858a60ea6f15ec2731c4fe579f3f6be2250165169a8117bd5474"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-2/stop-0001488/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "428365ab9e987e7f397667beca38f3884c439c0bf64d85a5d531c797fe4cbd6a",
+      "stored_sha256": "7c980204f7a0e15eff8368cafb1229617f57b1aa8d050d08557bd297a1c2b230"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/BGC_STREAMS.json",
+      "path": "deltas/case-2/stop-0001488/files/BGC_STREAMS.json.gz",
+      "source_sha256": "f954d64954b90d9f3fd4128e08891940a76645aa9d7da291da3be159dc91b722",
+      "stored_sha256": "2d79acf18576fcbfa198d18a27607d47b06df1474a3acc29161f929e4d66b4d0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json.gz",
+      "source_sha256": "c2de8f67c1ea06ccfe00421fd8b76714bb895e2e66624c5430cc039f659d3d4a",
+      "stored_sha256": "456bf6e9563091bc88005cdb4ca6a8da2e4f972e2ad4213446c27d40244003c0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "source_sha256": "818e65f04627f335c5ec46a76587ba4641df59510387e612ce0b1f988cca8259",
+      "stored_sha256": "818e65f04627f335c5ec46a76587ba4641df59510387e612ce0b1f988cca8259"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "source_sha256": "0bc9b3381ced23783514a2aaddfd9860bcb5b599837e2765535e2a1b67b0e45c",
+      "stored_sha256": "0bc9b3381ced23783514a2aaddfd9860bcb5b599837e2765535e2a1b67b0e45c"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "source_sha256": "22e3cf1ce6734de24778828f6432b5f37fec3ad857cf495e35f693ea4fdfb4bf",
+      "stored_sha256": "22e3cf1ce6734de24778828f6432b5f37fec3ad857cf495e35f693ea4fdfb4bf"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "source_sha256": "df81df1731601647ce23559930276215aa90cc15310f6c09a90743f864905f75",
+      "stored_sha256": "df81df1731601647ce23559930276215aa90cc15310f6c09a90743f864905f75"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "source_sha256": "17a83b029a92490b7f9b25d38a2b22e536d0cc402b1c18d008b28b318375bcbe",
+      "stored_sha256": "17a83b029a92490b7f9b25d38a2b22e536d0cc402b1c18d008b28b318375bcbe"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "source_sha256": "c53d189e1e6381dcd390fe7c832a0342affe8e2e68ea93ff715c366fc20192f9",
+      "stored_sha256": "c53d189e1e6381dcd390fe7c832a0342affe8e2e68ea93ff715c366fc20192f9"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "source_sha256": "4d0f6b940bf4eaf2b3a8acf518a640143bae797f109d7dc19b2e8efcfd44dd16",
+      "stored_sha256": "4d0f6b940bf4eaf2b3a8acf518a640143bae797f109d7dc19b2e8efcfd44dd16"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "source_sha256": "6db70104b0292b70336f285107ccad8d6f93f1ab9c337d9d770791e457a4e7ef",
+      "stored_sha256": "6db70104b0292b70336f285107ccad8d6f93f1ab9c337d9d770791e457a4e7ef"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "source_sha256": "f6e1ff4861adac752376d889f2d9949d899d3000293b423f9e15c98953e9ec3f",
+      "stored_sha256": "f6e1ff4861adac752376d889f2d9949d899d3000293b423f9e15c98953e9ec3f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "path": "deltas/case-2/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "source_sha256": "83c295e410ba2d664c3b2e9a963e2aa6bcac5041d499a38bb14fae679b1e4345",
+      "stored_sha256": "83c295e410ba2d664c3b2e9a963e2aa6bcac5041d499a38bb14fae679b1e4345"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/closure-records/stop-0001488.json",
+      "path": "deltas/case-2/stop-0001488/files/closure-records/stop-0001488.json.gz",
+      "source_sha256": "a6a7685412a8b472c952227dbd47698ba7f0f85b4e2fec56a9d05e0cac72655d",
+      "stored_sha256": "0e0e8420b5e7892c4e5fadb87420e24a5ef56ff5985fdfab1ef1f9ddf84f70e0"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/controller.log",
+      "path": "deltas/case-2/stop-0001488/files/controller.log.gz",
+      "source_sha256": "4c5d498dfe529909db992ef5bf26b5a42ecef680ce8cc473511c4b4443f3696f",
+      "stored_sha256": "e806f495c51926d6841d468bd2de3c18259a831195a6bd629984ebf53caa36fd"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/receipt.json",
+      "path": "deltas/case-2/stop-0001488/files/receipt.json.gz",
+      "source_sha256": "f9fd839f9da77f8fe6160ed55771216c006351590d0adb17c9f11fa04e489e78",
+      "stored_sha256": "5be020ee37d006938fb655701e33b43fd43f30265142fcb1c9a9b173f1747849"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/chain-state.json",
+      "path": "deltas/case-2/stop-0001488/files/run/chain-state.json.gz",
+      "source_sha256": "a67d0346f34af8006d40bba39711ff9b29dac69f11c2214d6f1c6487956bfcb8",
+      "stored_sha256": "7feca7e054b3db937454f989d53b0922843453b2d93fa6d6b3f44cea9d0018e1"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/generations.zip",
+      "path": "deltas/case-2/stop-0001488/files/run/generations.zip",
+      "source_sha256": "6e226b12e3d98fb140963f3c2311e9b37ac0988f3c5b5dc8454b8fcb53a5bf07",
+      "stored_sha256": "6e226b12e3d98fb140963f3c2311e9b37ac0988f3c5b5dc8454b8fcb53a5bf07"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/receipt.json",
+      "path": "deltas/case-2/stop-0001488/files/run/receipt.json.gz",
+      "source_sha256": "af23c1bfff275300a7c2279de67de98deb0492601b6e25a77598811620e0ed14",
+      "stored_sha256": "d06b5ca73fa68dd5427c33d7da12f795d177d15fca92d8784f2bbd8b81be3b95"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/capture-SHA256.json",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/capture-SHA256.json.gz",
+      "source_sha256": "a0e7703394a21c38c22fa0d9f218e74f07ad78295cd9d57c9c2e04424332ab11",
+      "stored_sha256": "12d95ef3d6fdadcf57983154a0331d634ece7efa3bb6b36c7069d15a25e78f67"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "source_sha256": "7780436685bb0826a888cee3f33861fc3955b74e15adfd98311d9ac26844cb47",
+      "stored_sha256": "7780436685bb0826a888cee3f33861fc3955b74e15adfd98311d9ac26844cb47"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "source_sha256": "80d4d2d50ebda6ffa535be9a5978775a41e63cda89c3b27342e59a119cd377c1",
+      "stored_sha256": "80d4d2d50ebda6ffa535be9a5978775a41e63cda89c3b27342e59a119cd377c1"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/model.log",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/model.log.gz",
+      "source_sha256": "e81ca5e907b36fce6167de95c1d0bdb9fdd3b38d3cf638b034bc26b6636591e9",
+      "stored_sha256": "46e3a5c677cfc268e07821746a2d5651c81b4ea48bb28db163166a4cf398e8ec"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/receipt.json",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/receipt.json.gz",
+      "source_sha256": "af23c1bfff275300a7c2279de67de98deb0492601b6e25a77598811620e0ed14",
+      "stored_sha256": "d06b5ca73fa68dd5427c33d7da12f795d177d15fca92d8784f2bbd8b81be3b95"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json.gz",
+      "source_sha256": "0cb30d4571d20f105d09b29acde975099711c9dba8eaa74ccf6c227dec093640",
+      "stored_sha256": "200cb2a908eb80d17eca49e43349ef1ad48eae943ceb6c2fdd559715b0693b50"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/report.json",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/report.json.gz",
+      "source_sha256": "785847af160fcd2496b1b919b80c23a7a10561f0bc6b747bfca3869d97822acf",
+      "stored_sha256": "3160dcc86e02197baa976802411a95093772408335a02d7ce15af5ed41e376e8"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "source_sha256": "e4ff588dd9f9147b77852dd428f7e990cc3b70b7fc1f7145b84a8885235fd70d",
+      "stored_sha256": "e4ff588dd9f9147b77852dd428f7e990cc3b70b7fc1f7145b84a8885235fd70d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "source_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a",
+      "stored_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/report.json",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/report.json.gz",
+      "source_sha256": "3d6b19c1d86d38c0f80e9dc70259b8b0d6a2f31943ee5ef0d3b995a35499f660",
+      "stored_sha256": "95c39d51e90a1d149e3ed3bc6214835c05fc2b7f0dfd5685961186dfda3415f4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "e4ff588dd9f9147b77852dd428f7e990cc3b70b7fc1f7145b84a8885235fd70d",
+      "stored_sha256": "e4ff588dd9f9147b77852dd428f7e990cc3b70b7fc1f7145b84a8885235fd70d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "source_sha256": "3d84d63a1de96098346f19846e5047b7994560135f74a0947f7e91f7acab54ff",
+      "stored_sha256": "3d84d63a1de96098346f19846e5047b7994560135f74a0947f7e91f7acab54ff"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "source_sha256": "c9c66f77eeea3d581c6d1aea3bc5f382b0dfb00a7d38c0b689f4d28030601062",
+      "stored_sha256": "c9c66f77eeea3d581c6d1aea3bc5f382b0dfb00a7d38c0b689f4d28030601062"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "source_sha256": "7d20e37aab562f6f76881a808a30b68490a419510a739e39ce127517f4f11f88",
+      "stored_sha256": "7d20e37aab562f6f76881a808a30b68490a419510a739e39ce127517f4f11f88"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "source_sha256": "c7258a7e2e6ec84aa42421a1016900428d38bea793e441e12a612de34724e16d",
+      "stored_sha256": "c7258a7e2e6ec84aa42421a1016900428d38bea793e441e12a612de34724e16d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "source_sha256": "35859113bcd82fd96314fd79f37b9741d4f1e9fcc0f5ea6b7f348d0bf23a44d5",
+      "stored_sha256": "35859113bcd82fd96314fd79f37b9741d4f1e9fcc0f5ea6b7f348d0bf23a44d5"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "source_sha256": "a6c7f57ca79379be0d2c8c001a311fc9d49340bcd46351ea1e38e0f27e3f9b89",
+      "stored_sha256": "a6c7f57ca79379be0d2c8c001a311fc9d49340bcd46351ea1e38e0f27e3f9b89"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "source_sha256": "29b5e458832b952498e7a6a138985196c0994864b9da7ed2121b1afc267b1924",
+      "stored_sha256": "29b5e458832b952498e7a6a138985196c0994864b9da7ed2121b1afc267b1924"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "source_sha256": "8f66d772b161618755a592870f335d43f222131a3d4b4d1056c9128d623b6c6a",
+      "stored_sha256": "8f66d772b161618755a592870f335d43f222131a3d4b4d1056c9128d623b6c6a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "source_sha256": "6b3e1349fb546fb3a60df7d1acd2c19e7ba3483bef61cb630926f7d08e2e5b1f",
+      "stored_sha256": "6b3e1349fb546fb3a60df7d1acd2c19e7ba3483bef61cb630926f7d08e2e5b1f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "source_sha256": "58ec0fcc7b641f30819fe5c5b0f9cca6670c3ed1bf3f57015ec9b406419aad8d",
+      "stored_sha256": "58ec0fcc7b641f30819fe5c5b0f9cca6670c3ed1bf3f57015ec9b406419aad8d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "source_sha256": "257f76507c253014a12e070abee6658fa903db27ce52af87e1643f2ad246e904",
+      "stored_sha256": "257f76507c253014a12e070abee6658fa903db27ce52af87e1643f2ad246e904"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "source_sha256": "0236d7d7e5a96e74d77bc78e625bfa9dd7aab0deb8c02b2a6f423e92ce77ea2b",
+      "stored_sha256": "0236d7d7e5a96e74d77bc78e625bfa9dd7aab0deb8c02b2a6f423e92ce77ea2b"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "source_sha256": "edbc7de9cac23c09edf7453335a8d4d963e515bf251507bed6da0abff240399f",
+      "stored_sha256": "edbc7de9cac23c09edf7453335a8d4d963e515bf251507bed6da0abff240399f"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "source_sha256": "e9d17507cbea1da0c802cb139f6f94aa6e01af29b37bdbdc6891863f76fd1fe4",
+      "stored_sha256": "e9d17507cbea1da0c802cb139f6f94aa6e01af29b37bdbdc6891863f76fd1fe4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "source_sha256": "c8bd3aa9717d32938c2e9d9af12ca97e7cb860382d6a6eff1a8216dce9d7cdb4",
+      "stored_sha256": "c8bd3aa9717d32938c2e9d9af12ca97e7cb860382d6a6eff1a8216dce9d7cdb4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "source_sha256": "50110678330c8515fd7bf0df53eaeb01dfd9b17f25e920bf42cee15e8fb8fd8d",
+      "stored_sha256": "50110678330c8515fd7bf0df53eaeb01dfd9b17f25e920bf42cee15e8fb8fd8d"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "source_sha256": "9863f90ede9ef37f17630cc124a9fef8468e52f7e11b899a2c43a4fbf65c5cbd",
+      "stored_sha256": "9863f90ede9ef37f17630cc124a9fef8468e52f7e11b899a2c43a4fbf65c5cbd"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "source_sha256": "1bb805c84e4317c5eb2cbd70c048567c255e324f7ee8321068cac132fa0b809e",
+      "stored_sha256": "1bb805c84e4317c5eb2cbd70c048567c255e324f7ee8321068cac132fa0b809e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "source_sha256": "7321735bc4a82cb9a7b5ba7588e9d44cf9aa0b1836b9983f0aaeec464767d090",
+      "stored_sha256": "7321735bc4a82cb9a7b5ba7588e9d44cf9aa0b1836b9983f0aaeec464767d090"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "path": "deltas/case-2/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "source_sha256": "ccaa40c7bac42ad88b7159d9e1249c218fadba7645eced6c213d87cdcaecfdea",
+      "stored_sha256": "ccaa40c7bac42ad88b7159d9e1249c218fadba7645eced6c213d87cdcaecfdea"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/terminals.json",
+      "path": "deltas/case-2/stop-0001488/files/terminals.json.gz",
+      "source_sha256": "fcf70444fecf5b7be1b9a80fa0ffedb9a23acb5bdecd6fbe4d6cae0ffccbaa7c",
+      "stored_sha256": "39b8eecfaa8df0d5814b6d1a22050fce6dd8a131082c92a704eb9fdd070c1f34"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/terminals/1650.manager/parent-exit.txt",
+      "path": "deltas/case-2/stop-0001488/files/terminals/1650.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/terminals/1650.manager/qstat.stdout",
+      "path": "deltas/case-2/stop-0001488/files/terminals/1650.manager/qstat.stdout.gz",
+      "source_sha256": "5852d65c44fb72805166dd112048e4e958ac3084fe8096793525300b78f64027",
+      "stored_sha256": "e22a52838e04d9ac85d10aa6caf457503475703985bb882ab20165f846d7709a"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/terminals/1650.manager/worker-exit.txt",
+      "path": "deltas/case-2/stop-0001488/files/terminals/1650.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-audit.json",
+      "path": "deltas/case-2/stop-0001488/files/window-audit.json.gz",
+      "source_sha256": "f17d7d2c10565bf2582865d88c58143ef2c4188c7dbfe01c609ece1a119a4795",
+      "stored_sha256": "3a6a17e1faecd59d25066ea9422477273439614e17fca0354616d2bf815d812b"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "0ec15e5d73fd56046972f22665e2f22c72164d4cbe5970f8ee741af3b35599b8",
+      "stored_sha256": "a88bdc013c57ad32ca3c0442e86d4040bf1aaa40acbfcdedba0339a36e6910b4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json.gz",
+      "source_sha256": "ce50dc9bd36728b8bff59a4836a39fae6016e4737387eeeb114126d99a1dbc58",
+      "stored_sha256": "993788a1762e48dfe1e7142d74c54123dc728a69f0ee2e690e96dfb6cbf899d4"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/controller.log",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/controller.log.gz",
+      "source_sha256": "bfa22817667109dd520ed9a0a15a7bc8f758f2ba836d97afdceac37a5d25f77a",
+      "stored_sha256": "61a0403df4a84ab6e664738381e2a42f739c14578ff40d59be6d20f140dff2ef"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/receipt.json",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/receipt.json.gz",
+      "source_sha256": "b4566873c80a888a024ba37ea04955b71885f677f8c689cc97fd0a5da6f6c66a",
+      "stored_sha256": "b58ea19f5630a236515cba8f29dd6a7e1a61f62a4380832dacb195bf8d6b099e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/window-audit.json",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/window-audit.json.gz",
+      "source_sha256": "69ab39337e087a794d0ef732d0b91c05c1ba2ee7d11ba5704e28de9952b0fb7e",
+      "stored_sha256": "556ef6ddcce3d89c9c46616982c55fe68443ea3d59cd14edbebcafdb40291e3e"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/worker-exit.txt",
+      "path": "deltas/case-2/stop-0001488/files/window-history/stop-0001008/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-2/stop-0001488/result-originals/terminals.json",
+      "path": "deltas/case-2/stop-0001488/result-originals/terminals.json.gz",
+      "source_sha256": "ef505200db58ac454079b12507aee67133162fef832fcef2668e37c7b8aee29b",
+      "stored_sha256": "224990aeb3bbdfcf94cd953e3a59de72d0111938f59700cd9bf1894108a4ff36"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/DELTA.json",
+      "path": "deltas/case-3/stop-0001008/DELTA.json.gz",
+      "source_sha256": "9b6438fe7dfb91d3bd20777e16a6cfa1b6bb290f9eed1bf698655a42d2fbae47",
+      "stored_sha256": "1edc37964a5fe3378d93917db161926492615923d1d65b568ddcb4939533df7b"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-3/stop-0001008/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "764552b7004414b7fea2b42d65060f5df7b4d62fa9090a9ff58d7b21fec1e103",
+      "stored_sha256": "46628cd0815f389a3c2c612a8c55f046cd36a0c24d9676c3907516c8ed6f9508"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/BGC_STREAMS.json",
+      "path": "deltas/case-3/stop-0001008/files/BGC_STREAMS.json.gz",
+      "source_sha256": "1bc6ca60bf3a7756759869d84363618d2e7c079ecb71feb87cdf4a11c6914e4a",
+      "stored_sha256": "ee955425d9690db7fcb0463547409201f0096074c2b17bdcfe88fcd7981849f2"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/BGC_STREAM.json.gz",
+      "source_sha256": "d802008410f46115d795fc8266d5724225a675a2ab64cb88bb04cd566cb3d8ed",
+      "stored_sha256": "ecfe68a897615af998a8245f4e2d6942929e56f6e8f3238c17c0278a85d2ccaa"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000528-0000576.zip",
+      "source_sha256": "e25501ddab133d43194f4157378970f0e91bce7b8e3b26237eecafc63273e618",
+      "stored_sha256": "e25501ddab133d43194f4157378970f0e91bce7b8e3b26237eecafc63273e618"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000576-0000624.zip",
+      "source_sha256": "38a165077ac838ea50aed2e5f74860bd7b7f8b80131120b80080f270df56f58e",
+      "stored_sha256": "38a165077ac838ea50aed2e5f74860bd7b7f8b80131120b80080f270df56f58e"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000624-0000672.zip",
+      "source_sha256": "2dfdf9c749813b5de5a86daa9a97702f8a9e2a785fec79bee57961780c5454fb",
+      "stored_sha256": "2dfdf9c749813b5de5a86daa9a97702f8a9e2a785fec79bee57961780c5454fb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000672-0000720.zip",
+      "source_sha256": "4b26549beb7a557439c05f012c90f562ae73ab126de94c0d40d274978f243ace",
+      "stored_sha256": "4b26549beb7a557439c05f012c90f562ae73ab126de94c0d40d274978f243ace"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000720-0000768.zip",
+      "source_sha256": "7ba99960745cc9bf206b91094876ec840b5d775dec21f9334e4eb8945c8c4262",
+      "stored_sha256": "7ba99960745cc9bf206b91094876ec840b5d775dec21f9334e4eb8945c8c4262"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000768-0000816.zip",
+      "source_sha256": "24e32aa6cfcb72c65eb15399d0f4a124b420ea309b5aff9557c8cf598448fb47",
+      "stored_sha256": "24e32aa6cfcb72c65eb15399d0f4a124b420ea309b5aff9557c8cf598448fb47"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000816-0000864.zip",
+      "source_sha256": "714e51665a8e03f6d44fc6a46dd53dede536ab117dfdfb24c35ae14d1495d7cf",
+      "stored_sha256": "714e51665a8e03f6d44fc6a46dd53dede536ab117dfdfb24c35ae14d1495d7cf"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000864-0000912.zip",
+      "source_sha256": "f6b968fe1e652f74402565250d7d241d35924c98bc9cd92a892fcffaaac2d4ab",
+      "stored_sha256": "f6b968fe1e652f74402565250d7d241d35924c98bc9cd92a892fcffaaac2d4ab"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000912-0000960.zip",
+      "source_sha256": "ad76a033e7b520d8d56937d862eb28c57dd0a79cf5322e42d816c52771baaea6",
+      "stored_sha256": "ad76a033e7b520d8d56937d862eb28c57dd0a79cf5322e42d816c52771baaea6"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "path": "deltas/case-3/stop-0001008/files/bgc-windows/start-0000528/bgc-0000960-0001008.zip",
+      "source_sha256": "d5600fee4ba7f9a59cd2ff3b557721bd4b98c9d47a9416a14abca67b7591690a",
+      "stored_sha256": "d5600fee4ba7f9a59cd2ff3b557721bd4b98c9d47a9416a14abca67b7591690a"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/closure-records/stop-0001008.json",
+      "path": "deltas/case-3/stop-0001008/files/closure-records/stop-0001008.json.gz",
+      "source_sha256": "cada2393ef9f728f35613a2497a57fb469044febcb05c96410cb0bc4c2cfe88a",
+      "stored_sha256": "5aefd929ed04bb0e3ce73f16facc2d907987f8db496f73559e2947189b8557a8"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/controller.log",
+      "path": "deltas/case-3/stop-0001008/files/controller.log.gz",
+      "source_sha256": "b2f35855a801080a49496494369849d3d04d10516c3b84a2273f598f329913fb",
+      "stored_sha256": "81bdc79902815a438ae755b93b93ebcfb4a3dcf448c9cd64347e0956622e46eb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/receipt.json",
+      "path": "deltas/case-3/stop-0001008/files/receipt.json.gz",
+      "source_sha256": "7a2a089e76c8e7286a79bdddcac7bc863500e8b7d970d8108f2a84f89bf6395f",
+      "stored_sha256": "d2c363acaf51b8c8c40b1ea8f30452448db4b0f8191cbdec65ba785c60817f36"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/chain-state.json",
+      "path": "deltas/case-3/stop-0001008/files/run/chain-state.json.gz",
+      "source_sha256": "9f7a41bf1d9be08b811ce15e2b2f00db5f4e5b374e3f92d8e5e474690df6d2f1",
+      "stored_sha256": "6b28bf6bf3146c3a3752f8a89038ce36a59c552de12329989a1104a840dabdfb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/generations.zip",
+      "path": "deltas/case-3/stop-0001008/files/run/generations.zip",
+      "source_sha256": "18a6d0d99cb63329ae801593a264e7f8f2b77859f3e37513f1993d157f818150",
+      "stored_sha256": "18a6d0d99cb63329ae801593a264e7f8f2b77859f3e37513f1993d157f818150"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/receipt.json",
+      "path": "deltas/case-3/stop-0001008/files/run/receipt.json.gz",
+      "source_sha256": "0ae2048c44cecf1ec0fde5270d6571473f8de37fefd16068ca0a29734523bfe5",
+      "stored_sha256": "e38dba80cdbbdb44138ac6b4e0a4dc56470cbbcd38947626ef5f540d634db5cb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/capture-SHA256.json",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/capture-SHA256.json.gz",
+      "source_sha256": "140924cee4b3f77143157a1979aa93422cc0a7cb0d6c157acedd5564bd98cecd",
+      "stored_sha256": "cc22eaf63728fc54ad58e26b8b7c591c8425940a6b887c7058933ca1c6f9f57c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/first-call-input.pkl",
+      "source_sha256": "50530589e44d8321862144a535b48764f618758146e891863eb87d81591ad84d",
+      "stored_sha256": "50530589e44d8321862144a535b48764f618758146e891863eb87d81591ad84d"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/first-call.pkl",
+      "source_sha256": "64596dc9d40e7c62e96fe9a38d8da4d93d8be29b0f94e0e4ebdd878f7f3be250",
+      "stored_sha256": "64596dc9d40e7c62e96fe9a38d8da4d93d8be29b0f94e0e4ebdd878f7f3be250"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/model.log",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/model.log.gz",
+      "source_sha256": "b8e61f741034c9646fa88e278c2438c39634f512be19eff59dae9d3a708dd01d",
+      "stored_sha256": "0853ff62af364e0c45c1571a8495e156d81889a446dfda75a76a090981591975"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/receipt.json",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/receipt.json.gz",
+      "source_sha256": "0ae2048c44cecf1ec0fde5270d6571473f8de37fefd16068ca0a29734523bfe5",
+      "stored_sha256": "e38dba80cdbbdb44138ac6b4e0a4dc56470cbbcd38947626ef5f540d634db5cb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/SHA256.json.gz",
+      "source_sha256": "5ed5ff95b5369e3419d3bb91815330b153437a0b41d61414d2bac60fc4a8530b",
+      "stored_sha256": "c70a84ab9945c8b918b0040326b5244324d4cd577d61032da7c16b23ec68648d"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/report.json",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/report.json.gz",
+      "source_sha256": "ec5fbc5d91239370867651221eeda9ed4644b8bd8b8b2606afb7d26edf91e738",
+      "stored_sha256": "539abce65dcc511dced9d170badee1a3da6d7511e62cfc85a009bc4d11b32175"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/state-0000528.pkl",
+      "source_sha256": "283722e0b39eec52010895f7d4d9223df0d3cbe5094cf71b034039813ac03a5c",
+      "stored_sha256": "283722e0b39eec52010895f7d4d9223df0d3cbe5094cf71b034039813ac03a5c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/segment-0000528/start-originals/trace-0000528.npz",
+      "source_sha256": "62313df6906f3d3644177bdec62ab51f8834d8c5cec064126e3beac9d7064939",
+      "stored_sha256": "62313df6906f3d3644177bdec62ab51f8834d8c5cec064126e3beac9d7064939"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/report.json",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/report.json.gz",
+      "source_sha256": "c3d9ef3a2e06858389fed98760729bf02191bf014be13add1d150b8546600e3b",
+      "stored_sha256": "dcae4c605562a680f906a2ee04c70fa9c31ea0379c57dd046de309be47eeed08"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000528.pkl",
+      "source_sha256": "283722e0b39eec52010895f7d4d9223df0d3cbe5094cf71b034039813ac03a5c",
+      "stored_sha256": "283722e0b39eec52010895f7d4d9223df0d3cbe5094cf71b034039813ac03a5c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000576.pkl",
+      "source_sha256": "0909b2a345ccceec9099cc4fc4f61fb65cad3bbbc279785a11cb8dfe11af2e4b",
+      "stored_sha256": "0909b2a345ccceec9099cc4fc4f61fb65cad3bbbc279785a11cb8dfe11af2e4b"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000624.pkl",
+      "source_sha256": "80363a86d743d9e8f8fa71f7ff67ed44314fc97d6d7c6decf733c57c68acd5ca",
+      "stored_sha256": "80363a86d743d9e8f8fa71f7ff67ed44314fc97d6d7c6decf733c57c68acd5ca"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000672.pkl",
+      "source_sha256": "c6d2753389b7807e31744b0a08e2be57ee6ffd01061411f26c2996c118480ca4",
+      "stored_sha256": "c6d2753389b7807e31744b0a08e2be57ee6ffd01061411f26c2996c118480ca4"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000720.pkl",
+      "source_sha256": "003000d45ae01e4d11e70e2f2cd9e5e5029c7a1e2f1bec01423b4ce3914c8210",
+      "stored_sha256": "003000d45ae01e4d11e70e2f2cd9e5e5029c7a1e2f1bec01423b4ce3914c8210"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000768.pkl",
+      "source_sha256": "1146b5b2309f792337b2d9a40a8334287485f758e4816e20a32732dbb5b7bfe0",
+      "stored_sha256": "1146b5b2309f792337b2d9a40a8334287485f758e4816e20a32732dbb5b7bfe0"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000816.pkl",
+      "source_sha256": "3d12afe21d8c4a31d5a094e158efc2bbc08e2092cf20ff33bbbfd62e757b487c",
+      "stored_sha256": "3d12afe21d8c4a31d5a094e158efc2bbc08e2092cf20ff33bbbfd62e757b487c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000864.pkl",
+      "source_sha256": "393e10b18affd721756f1902f5687c4917fe3e649e2f7fd1327f3efcbd2fa6d7",
+      "stored_sha256": "393e10b18affd721756f1902f5687c4917fe3e649e2f7fd1327f3efcbd2fa6d7"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000912.pkl",
+      "source_sha256": "7f93cfae65078a9d1aa98eb5ac8882f54cacdfbce408406b5d439f156d9b7454",
+      "stored_sha256": "7f93cfae65078a9d1aa98eb5ac8882f54cacdfbce408406b5d439f156d9b7454"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0000960.pkl",
+      "source_sha256": "a8076d0b8b8f5cd80d74106f32103c8b85e657275a90ec27b140e5b6a8648d6d",
+      "stored_sha256": "a8076d0b8b8f5cd80d74106f32103c8b85e657275a90ec27b140e5b6a8648d6d"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "76009f5eb0b1d58bf5470dc55cac8f5e69106913af5f95d6b49b718b3b197855",
+      "stored_sha256": "76009f5eb0b1d58bf5470dc55cac8f5e69106913af5f95d6b49b718b3b197855"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000576.npz",
+      "source_sha256": "abcd165f256e508468903e5465e21241b8e5c72735794a2ad4ae281e7e21c41c",
+      "stored_sha256": "abcd165f256e508468903e5465e21241b8e5c72735794a2ad4ae281e7e21c41c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000624.npz",
+      "source_sha256": "7938f8538053a551c84f02bc1a2f5c79d7c0bd3d4dd4e08ffce90eff5259065e",
+      "stored_sha256": "7938f8538053a551c84f02bc1a2f5c79d7c0bd3d4dd4e08ffce90eff5259065e"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000672.npz",
+      "source_sha256": "d21aaf2747dc613f2a4e8e1f9a4b35a475f72e63ce1f3669e51e0188fb6592ab",
+      "stored_sha256": "d21aaf2747dc613f2a4e8e1f9a4b35a475f72e63ce1f3669e51e0188fb6592ab"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000720.npz",
+      "source_sha256": "938b0d783f669bf0e7ffc8ce573190a07a9095441d96c51c2395cf2c2b4a2bb8",
+      "stored_sha256": "938b0d783f669bf0e7ffc8ce573190a07a9095441d96c51c2395cf2c2b4a2bb8"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000768.npz",
+      "source_sha256": "0ed63ec9aca1a05b088c5a3cdb01562f2cd87ca2267136a821735ccfd59a2de0",
+      "stored_sha256": "0ed63ec9aca1a05b088c5a3cdb01562f2cd87ca2267136a821735ccfd59a2de0"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000816.npz",
+      "source_sha256": "2e1dead9855b1cd1714f41e18111ac7a3a04143652b26eb375fda3897e1fc532",
+      "stored_sha256": "2e1dead9855b1cd1714f41e18111ac7a3a04143652b26eb375fda3897e1fc532"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000864.npz",
+      "source_sha256": "ba109770128f359a6217f6859227b31aeaf738e519369e6d2869c57d05cdc61c",
+      "stored_sha256": "ba109770128f359a6217f6859227b31aeaf738e519369e6d2869c57d05cdc61c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000912.npz",
+      "source_sha256": "50574970ee93e66c20db3277eb939cfb82c8507218263a57efac632b1c73f4db",
+      "stored_sha256": "50574970ee93e66c20db3277eb939cfb82c8507218263a57efac632b1c73f4db"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0000960.npz",
+      "source_sha256": "c1491959c51d052435f0efd181077bf6081781ce5280775fc19cbfcb2dc8e843",
+      "stored_sha256": "c1491959c51d052435f0efd181077bf6081781ce5280775fc19cbfcb2dc8e843"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "path": "deltas/case-3/stop-0001008/files/run/trajectory/trace-0001008.npz",
+      "source_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a",
+      "stored_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/terminals.json",
+      "path": "deltas/case-3/stop-0001008/files/terminals.json.gz",
+      "source_sha256": "fc3c198dcf5c53cf93812f31373d2d87ac2425b3cf87dd1712eba3b3a9bba571",
+      "stored_sha256": "5f4d329de990f81614a1a3c4836f376122568bace5a01ed69c2cbb8cc1ce73fe"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/terminals/1645.manager/parent-exit.txt",
+      "path": "deltas/case-3/stop-0001008/files/terminals/1645.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/terminals/1645.manager/qstat.stdout",
+      "path": "deltas/case-3/stop-0001008/files/terminals/1645.manager/qstat.stdout.gz",
+      "source_sha256": "eeca6323665b6d11f1336a0315b6c350354bb30fd6a949aadacb12f22c08ca76",
+      "stored_sha256": "4ca60fd20e3d82cc6ccb02f11f5af3d8f799b2c6f355d83cbc8855208a3b9120"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/terminals/1645.manager/worker-exit.txt",
+      "path": "deltas/case-3/stop-0001008/files/terminals/1645.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-audit.json",
+      "path": "deltas/case-3/stop-0001008/files/window-audit.json.gz",
+      "source_sha256": "eb3cd2322d42436c1feb8516ddaf2c86a45cead82c7a0356dd14a4a99771fc3c",
+      "stored_sha256": "e4728e232b81ff30cb9c1b080e114a04f2996ce9301b1584d1eb495698645234"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "c98dd6e02e714763987a9bce6ff265b01f73c4f7639be132eb90a53b8dd92449",
+      "stored_sha256": "0510da9ca98b5b2d8ff5b1fc215eb66ed7d520ab4db92308f2f1ef1ca40c9ff3"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/BGC_STREAMS.json.gz",
+      "source_sha256": "bdda255830e4b67c08728a6dc58bf76275990dca476081146e03f736c9f21aa0",
+      "stored_sha256": "1bc2e9690c13468444d1637cb852cb8ae0d9985dcaf0af9c2f7f7ee1c6f74e57"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/controller.log",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/controller.log.gz",
+      "source_sha256": "3d3fcb18e136f78b7d4cd8105101fb43383f83fdac37b08b56ce5e3e7592a7fd",
+      "stored_sha256": "1aac21f30c0187d97a865a346cc72e61d05ff1eb5f4ae77b7ce7d7f9ddf73999"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/receipt.json",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/receipt.json.gz",
+      "source_sha256": "8fed34a6a7365031d0c87aa6b2dcc8a5f280ff0cf5d32324c6a6d9855ff03d5b",
+      "stored_sha256": "2f69d6acbf135af479cadd4a1779b3ba4b0db20175c785f311a368c71f76e2b4"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/window-audit.json",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/window-audit.json.gz",
+      "source_sha256": "163795a4e867dc7c50bcfce56677ad0d328b4c369df6da31107489ce00a76ca8",
+      "stored_sha256": "e819f9e060612c01dbb15436266d89267ad68a3ac93b5068470cf12700f8ae7c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/worker-exit.txt",
+      "path": "deltas/case-3/stop-0001008/files/window-history/stop-0000528/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001008/result-originals/terminals.json",
+      "path": "deltas/case-3/stop-0001008/result-originals/terminals.json.gz",
+      "source_sha256": "acd2592cbe1fd5ae20fd6b413ced622dcf0001dfad4cb5ced3c6fd0aa1b2a582",
+      "stored_sha256": "184d07e05175e3f0f625e3a458758318aa9f9a4fa8557ba7609c870d125679d0"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/DELTA.json",
+      "path": "deltas/case-3/stop-0001488/DELTA.json.gz",
+      "source_sha256": "c0f190e4710efd16e986827acfd7ed98040625bfe7edb4d9495cd22064c2fb11",
+      "stored_sha256": "a32c4f23ee5e1783e1f9d9c88925936c684d51b42ce6ac360a3028b0f25930f9"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/ARTIFACT_SHA256.json",
+      "path": "deltas/case-3/stop-0001488/files/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "bef09d9d10956b5e61cd64de112fb295f93fdc5b859bd1e1354e12a04b24b572",
+      "stored_sha256": "f44fbd178e600e453d0b058df2e0ee11a07c580d07e0bdc966080c617fbfd23b"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/BGC_STREAMS.json",
+      "path": "deltas/case-3/stop-0001488/files/BGC_STREAMS.json.gz",
+      "source_sha256": "0409afb4b34b883ccacab5fcf958fc9b33fb2989baaec662efccae05812acde2",
+      "stored_sha256": "14d64899304a1a96ce18f79ccdd121daebdcae9406b7daf775daf93278ee09f0"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/BGC_STREAM.json.gz",
+      "source_sha256": "70cbf573b01bb03f24c62bb3ee52ea5765e500e64eaffcaf49b762d799df3df4",
+      "stored_sha256": "dace9b84027696bdf7d89eb93bb9f768cf09f7f2ddd0147003cfd1700f1ae9db"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001008-0001056.zip",
+      "source_sha256": "783019630ef784ce1c719c0e1b02ce6dcea658278fbb72337fc1294f379c7470",
+      "stored_sha256": "783019630ef784ce1c719c0e1b02ce6dcea658278fbb72337fc1294f379c7470"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001056-0001104.zip",
+      "source_sha256": "ca4e4811a30cb04d56b8e224db88f6d3b621e71d1c80cdd2e2dab5f93f64d7ad",
+      "stored_sha256": "ca4e4811a30cb04d56b8e224db88f6d3b621e71d1c80cdd2e2dab5f93f64d7ad"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001104-0001152.zip",
+      "source_sha256": "0875d714244accfc8f69bb1e001958f0fc7667a3fe3529d574a22c006950599c",
+      "stored_sha256": "0875d714244accfc8f69bb1e001958f0fc7667a3fe3529d574a22c006950599c"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001152-0001200.zip",
+      "source_sha256": "a5350135b90c6e0bfb3e81787d6637aab3a52fc74e7b177856bcdeec136285bf",
+      "stored_sha256": "a5350135b90c6e0bfb3e81787d6637aab3a52fc74e7b177856bcdeec136285bf"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001200-0001248.zip",
+      "source_sha256": "b86cdf5b7a0daaa72e7b96231fd690104f04cb334bf921699ae3a952eb6964c6",
+      "stored_sha256": "b86cdf5b7a0daaa72e7b96231fd690104f04cb334bf921699ae3a952eb6964c6"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001248-0001296.zip",
+      "source_sha256": "db89f3e350359c3dd1c752cb9a35998e18b17f227f35907c0732664430543d26",
+      "stored_sha256": "db89f3e350359c3dd1c752cb9a35998e18b17f227f35907c0732664430543d26"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001296-0001344.zip",
+      "source_sha256": "8b0c1e729152ee974cb235a25862d44c25d5ae78967e7ecf79b2abcc0f87bdc7",
+      "stored_sha256": "8b0c1e729152ee974cb235a25862d44c25d5ae78967e7ecf79b2abcc0f87bdc7"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001344-0001392.zip",
+      "source_sha256": "faf29481d2f5cc41119c8066b6ccd8603ac4444128ff893dcb02d43a40564f95",
+      "stored_sha256": "faf29481d2f5cc41119c8066b6ccd8603ac4444128ff893dcb02d43a40564f95"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001392-0001440.zip",
+      "source_sha256": "76ec1d6ee4f4cc32d992df0af26d39a95e480f4d675955d6ad1f25c8308d0fde",
+      "stored_sha256": "76ec1d6ee4f4cc32d992df0af26d39a95e480f4d675955d6ad1f25c8308d0fde"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "path": "deltas/case-3/stop-0001488/files/bgc-windows/start-0001008/bgc-0001440-0001488.zip",
+      "source_sha256": "98e533ce1f2ea95452ed3b5b80813adbe2648f8cf21bba0a9fd50181835ee67a",
+      "stored_sha256": "98e533ce1f2ea95452ed3b5b80813adbe2648f8cf21bba0a9fd50181835ee67a"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/closure-records/stop-0001488.json",
+      "path": "deltas/case-3/stop-0001488/files/closure-records/stop-0001488.json.gz",
+      "source_sha256": "e58577215012eb09f7a675f131631601adbb22f5ac6b72b7e59d69055194a545",
+      "stored_sha256": "3963d8c8ba9f09e7e3d62ff49f14c4f987d4ba259f01655e8380193849157426"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/controller.log",
+      "path": "deltas/case-3/stop-0001488/files/controller.log.gz",
+      "source_sha256": "f3a31d1b25d79bc1a96351d62b67818fc21918d90e1e09193d9ad7cbcf3bb9db",
+      "stored_sha256": "062e6c5bfeba0bc89f1c123ac25834956556ef12e899dc07ea3c8b3b7aae97e0"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/receipt.json",
+      "path": "deltas/case-3/stop-0001488/files/receipt.json.gz",
+      "source_sha256": "35e50ebda4c49b3d71ecffed5dda142d5975249d1f964780bdc314df6729901c",
+      "stored_sha256": "658dbaba7196b840b5f045504ad5ef289ff8d3235ed637971ef75cc643426328"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/chain-state.json",
+      "path": "deltas/case-3/stop-0001488/files/run/chain-state.json.gz",
+      "source_sha256": "43e2d4fdfdb3d8b9245798dc910be5bd03cb41ef45c9cd7fbbdf300203962031",
+      "stored_sha256": "3b21e2ae0800e74660b20942f5821e8d48033278847258f26619871d61d3ec95"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/generations.zip",
+      "path": "deltas/case-3/stop-0001488/files/run/generations.zip",
+      "source_sha256": "1bc4ea827e4030c3531efae985e5c040e2f12e88e199f120d71a7285b662a7c2",
+      "stored_sha256": "1bc4ea827e4030c3531efae985e5c040e2f12e88e199f120d71a7285b662a7c2"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/receipt.json",
+      "path": "deltas/case-3/stop-0001488/files/run/receipt.json.gz",
+      "source_sha256": "93ecd421f74376d3f126d5f3228da286af82a4b578fae422a20a0aa05084fb58",
+      "stored_sha256": "62e0ed0dc48d91204f87aa12ae07c1c945097ad4c2b69d36a7d62b2872696075"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/capture-SHA256.json",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/capture-SHA256.json.gz",
+      "source_sha256": "de2c107c742a4424b3470f798930f4232b65277b0f6f0002029db72a087ca01d",
+      "stored_sha256": "58fe766923cf979be115700b1126de098ca4fabd90432564a57ebfec82444fb8"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/first-call-input.pkl",
+      "source_sha256": "da3e5440f05b2e0d0f396722f1257a4684015da1644e02f39efe515bfac6a501",
+      "stored_sha256": "da3e5440f05b2e0d0f396722f1257a4684015da1644e02f39efe515bfac6a501"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/first-call.pkl",
+      "source_sha256": "747a7133bb5804528ee01dc6a948f53d542f01b350e5406fed53675b591c5c90",
+      "stored_sha256": "747a7133bb5804528ee01dc6a948f53d542f01b350e5406fed53675b591c5c90"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/model.log",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/model.log.gz",
+      "source_sha256": "55a14d3e2ceae3976f099a60ab6c4acff22f1a9003a5030aa9dd2f581325d1a6",
+      "stored_sha256": "830df88f634c72155f7437e6d4ea5975d4ab2b3c5178f40c792ae810e8aa77a3"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/receipt.json",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/receipt.json.gz",
+      "source_sha256": "93ecd421f74376d3f126d5f3228da286af82a4b578fae422a20a0aa05084fb58",
+      "stored_sha256": "62e0ed0dc48d91204f87aa12ae07c1c945097ad4c2b69d36a7d62b2872696075"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/SHA256.json.gz",
+      "source_sha256": "b321ac5559a0e5db68e913e608868a4954abcb977d716e9e8b392b5f5eec8ac0",
+      "stored_sha256": "9a8d7ddb514a53851989b8b8e1f88c7cc1c55603dbebb0b724814edf963af8cb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/report.json",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/report.json.gz",
+      "source_sha256": "de2d580ea64d84c749b816bcc0da21e26e0f48ff8eeb0a8ebbc130d64b912800",
+      "stored_sha256": "f3e8429b730744c097224218950f1c62a70e9b6cb811802016fc4164beb5341e"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/state-0001008.pkl",
+      "source_sha256": "ab3fa9d53e5572654b148098ef09fe06b03c2b9cc1abfbf03380374865e9fa24",
+      "stored_sha256": "ab3fa9d53e5572654b148098ef09fe06b03c2b9cc1abfbf03380374865e9fa24"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/segment-0001008/start-originals/trace-0001008.npz",
+      "source_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a",
+      "stored_sha256": "1805dba3e812f6d989f223c25d325cd4724d1786a083ce2e6c16d7e9ea40561a"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/report.json",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/report.json.gz",
+      "source_sha256": "178b7aac05bc6776a71d45ffdd515462f61970d9a73c2db24ebfa9932a58908d",
+      "stored_sha256": "eb6301cd82dea79429838dc7858b8c88005a9cc361502d76641112bd90ca5f6f"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001008.pkl",
+      "source_sha256": "ab3fa9d53e5572654b148098ef09fe06b03c2b9cc1abfbf03380374865e9fa24",
+      "stored_sha256": "ab3fa9d53e5572654b148098ef09fe06b03c2b9cc1abfbf03380374865e9fa24"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001056.pkl",
+      "source_sha256": "669267b00ebc035fa81c1fbee937b7e3ed0875c86f3035f86be8b4cbaa713a53",
+      "stored_sha256": "669267b00ebc035fa81c1fbee937b7e3ed0875c86f3035f86be8b4cbaa713a53"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001104.pkl",
+      "source_sha256": "30f2b2bfe06cb87e9f52bedfd935af56ae18975e6a5bc985d76a1caef705ef65",
+      "stored_sha256": "30f2b2bfe06cb87e9f52bedfd935af56ae18975e6a5bc985d76a1caef705ef65"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001152.pkl",
+      "source_sha256": "77f2f50d76b38a172c63dba925ca990a4589aef62d442ab3bf3f5e0e0a57ecb5",
+      "stored_sha256": "77f2f50d76b38a172c63dba925ca990a4589aef62d442ab3bf3f5e0e0a57ecb5"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001200.pkl",
+      "source_sha256": "267b035c15ab6072ae07da5a1b1fb0f2b1e7bda92601b68cc323bd35aecb32f7",
+      "stored_sha256": "267b035c15ab6072ae07da5a1b1fb0f2b1e7bda92601b68cc323bd35aecb32f7"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001248.pkl",
+      "source_sha256": "779f7e7e7a705b2206b66e23004ffafd51736f132355be9962e2f7bc9dfa0663",
+      "stored_sha256": "779f7e7e7a705b2206b66e23004ffafd51736f132355be9962e2f7bc9dfa0663"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001296.pkl",
+      "source_sha256": "f48610a161ff84f40bbfb3e1c083286c093d350006f6fdbc0d7bc7fc1dbd0cea",
+      "stored_sha256": "f48610a161ff84f40bbfb3e1c083286c093d350006f6fdbc0d7bc7fc1dbd0cea"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001344.pkl",
+      "source_sha256": "962ad70690396eb412f4244cd97d776eda5031d4b7582cfca4baff6bbaddc306",
+      "stored_sha256": "962ad70690396eb412f4244cd97d776eda5031d4b7582cfca4baff6bbaddc306"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001392.pkl",
+      "source_sha256": "08957fc41ad5ffd17b2c0d7b004cd3dca2b535d21c9514e7e1728785138b1e66",
+      "stored_sha256": "08957fc41ad5ffd17b2c0d7b004cd3dca2b535d21c9514e7e1728785138b1e66"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001440.pkl",
+      "source_sha256": "87415b50ed3c9bc35b2669ea1655a2d68edc893174ac03b43591679cbde4fdb2",
+      "stored_sha256": "87415b50ed3c9bc35b2669ea1655a2d68edc893174ac03b43591679cbde4fdb2"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/state-0001488.pkl",
+      "source_sha256": "292ad811dd76fb1e69a35187439dc5e42797db0665c3deaa4aa6d250f3ad5f0f",
+      "stored_sha256": "292ad811dd76fb1e69a35187439dc5e42797db0665c3deaa4aa6d250f3ad5f0f"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001056.npz",
+      "source_sha256": "257f76507c253014a12e070abee6658fa903db27ce52af87e1643f2ad246e904",
+      "stored_sha256": "257f76507c253014a12e070abee6658fa903db27ce52af87e1643f2ad246e904"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001104.npz",
+      "source_sha256": "0236d7d7e5a96e74d77bc78e625bfa9dd7aab0deb8c02b2a6f423e92ce77ea2b",
+      "stored_sha256": "0236d7d7e5a96e74d77bc78e625bfa9dd7aab0deb8c02b2a6f423e92ce77ea2b"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001152.npz",
+      "source_sha256": "edbc7de9cac23c09edf7453335a8d4d963e515bf251507bed6da0abff240399f",
+      "stored_sha256": "edbc7de9cac23c09edf7453335a8d4d963e515bf251507bed6da0abff240399f"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001200.npz",
+      "source_sha256": "c9253bd734bbdcf686bd76dbfb95617c64496f5098799c8ae6499d672a167952",
+      "stored_sha256": "c9253bd734bbdcf686bd76dbfb95617c64496f5098799c8ae6499d672a167952"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001248.npz",
+      "source_sha256": "566b3769d5c49c92ccfe00bd7880ffa323938c3e5136e4d5a0432ef4a8bd5d26",
+      "stored_sha256": "566b3769d5c49c92ccfe00bd7880ffa323938c3e5136e4d5a0432ef4a8bd5d26"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001296.npz",
+      "source_sha256": "668bb9d27be19458ee5030930ee92a05be3ce8e803bd4a5b003130200f0a1645",
+      "stored_sha256": "668bb9d27be19458ee5030930ee92a05be3ce8e803bd4a5b003130200f0a1645"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001344.npz",
+      "source_sha256": "8f975d775e1025baa9b6a667de6a6267191530374e09733e587d9c18650f9da4",
+      "stored_sha256": "8f975d775e1025baa9b6a667de6a6267191530374e09733e587d9c18650f9da4"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001392.npz",
+      "source_sha256": "19c0e3a8df343c2b9fe2c3c772dcf6be2035cc08e02c304f7d8d8c6201c99dcc",
+      "stored_sha256": "19c0e3a8df343c2b9fe2c3c772dcf6be2035cc08e02c304f7d8d8c6201c99dcc"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001440.npz",
+      "source_sha256": "d9d7aa53f697de9dc0998fbe72e5bb40408a88945e01b5c05efa929829db898e",
+      "stored_sha256": "d9d7aa53f697de9dc0998fbe72e5bb40408a88945e01b5c05efa929829db898e"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "path": "deltas/case-3/stop-0001488/files/run/trajectory/trace-0001488.npz",
+      "source_sha256": "201a0208b7a7ed56d0100dae531862998c121dea37b8e0ef66f657230ac0fa76",
+      "stored_sha256": "201a0208b7a7ed56d0100dae531862998c121dea37b8e0ef66f657230ac0fa76"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/terminals.json",
+      "path": "deltas/case-3/stop-0001488/files/terminals.json.gz",
+      "source_sha256": "37706d10308f1c851d3212fd5a1c99a9565d30b72f7854979b10c8e31799f533",
+      "stored_sha256": "66687b52882fc0aff7e4695ab6f12181d732149fed26b8a7cc56eadd9dc80245"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/terminals/1651.manager/parent-exit.txt",
+      "path": "deltas/case-3/stop-0001488/files/terminals/1651.manager/parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/terminals/1651.manager/qstat.stdout",
+      "path": "deltas/case-3/stop-0001488/files/terminals/1651.manager/qstat.stdout.gz",
+      "source_sha256": "d52b5d598574ce99400a1c326edff4901d4231af251aca4f2bbc0ea1cb208f8d",
+      "stored_sha256": "2586ddd5174c6787ddd930d83923ff77d1dc2011bdd14f90113d945cce9a6e32"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/terminals/1651.manager/worker-exit.txt",
+      "path": "deltas/case-3/stop-0001488/files/terminals/1651.manager/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-audit.json",
+      "path": "deltas/case-3/stop-0001488/files/window-audit.json.gz",
+      "source_sha256": "681c124483899226602e7a1c5310b6fe2fa2ff346558db4761edf824487a6a36",
+      "stored_sha256": "650cb15e7ddb8dd5ebe9d6e4d4348367165199861cd37871c55e89d4bc6e3f26"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/ARTIFACT_SHA256.json.gz",
+      "source_sha256": "764552b7004414b7fea2b42d65060f5df7b4d62fa9090a9ff58d7b21fec1e103",
+      "stored_sha256": "46628cd0815f389a3c2c612a8c55f046cd36a0c24d9676c3907516c8ed6f9508"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/BGC_STREAMS.json.gz",
+      "source_sha256": "1bc6ca60bf3a7756759869d84363618d2e7c079ecb71feb87cdf4a11c6914e4a",
+      "stored_sha256": "ee955425d9690db7fcb0463547409201f0096074c2b17bdcfe88fcd7981849f2"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/controller.log",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/controller.log.gz",
+      "source_sha256": "b2f35855a801080a49496494369849d3d04d10516c3b84a2273f598f329913fb",
+      "stored_sha256": "81bdc79902815a438ae755b93b93ebcfb4a3dcf448c9cd64347e0956622e46eb"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/receipt.json",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/receipt.json.gz",
+      "source_sha256": "7a2a089e76c8e7286a79bdddcac7bc863500e8b7d970d8108f2a84f89bf6395f",
+      "stored_sha256": "d2c363acaf51b8c8c40b1ea8f30452448db4b0f8191cbdec65ba785c60817f36"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/window-audit.json",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/window-audit.json.gz",
+      "source_sha256": "eb3cd2322d42436c1feb8516ddaf2c86a45cead82c7a0356dd14a4a99771fc3c",
+      "stored_sha256": "e4728e232b81ff30cb9c1b080e114a04f2996ce9301b1584d1eb495698645234"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/worker-exit.txt",
+      "path": "deltas/case-3/stop-0001488/files/window-history/stop-0001008/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "deltas/case-3/stop-0001488/result-originals/terminals.json",
+      "path": "deltas/case-3/stop-0001488/result-originals/terminals.json.gz",
+      "source_sha256": "fc3c198dcf5c53cf93812f31373d2d87ac2425b3cf87dd1712eba3b3a9bba571",
+      "stored_sha256": "5f4d329de990f81614a1a3c4836f376122568bace5a01ed69c2cbb8cc1ce73fe"
+    },
+    {
+      "source": "launch/CONTROLLER_STARTED.json",
+      "path": "launch/CONTROLLER_STARTED.json.gz",
+      "source_sha256": "6f3f7504eded174e693180a89d2f7a2a04e36494e139f1eedb163f1bd13c21f5",
+      "stored_sha256": "5b840fe99cab6eb98f5d30a0070d6c5c148538cfe356dc9ad38ea55577215c29"
+    },
+    {
+      "source": "launch/LAUNCH.json",
+      "path": "launch/LAUNCH.json.gz",
+      "source_sha256": "c3b33ea148e9481bcef6f79b34414ef47626b6b8b966d00ad1586ca4cb25ca07",
+      "stored_sha256": "8807c419e6ca0aea8004d065c8228d0658e2fb702c2aafb2dccdd4a6271c73c1"
+    },
+    {
+      "source": "snapshot/PROGRESS.json",
+      "path": "snapshot/PROGRESS.json.gz",
+      "source_sha256": "299ecba8547a4a046f5daf20184ea5eb170a81a127b3d308ca497c9a1444cf9a",
+      "stored_sha256": "b6670b375a81eb2049f7e42064d101697edd647ea2b59bc0f8af94744fa16531"
+    }
+  ]
+}

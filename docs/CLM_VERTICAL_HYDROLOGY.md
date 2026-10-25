@@ -161,13 +161,52 @@ Kahan库存及原硬水热界均执行；原主带6个依赖和5份参考原件�
 1.209846e−7 J/m²／该例原界1.638991e−5，各自原C/N／杂质界也保持。
 
 这两步BGC氮需求与吸收实际均0，只证明实际根区环境、叶N容量映射和原C/N账
-贯通，不证明活跃氮竞争或非零吸收反馈；相应补案尚待。PB-l是隔离新源候选，
+贯通，不证明活跃氮竞争或非零吸收反馈；后续PB-m补案单列如下。PB-l是隔离新源候选，
 不是生产接入或官方整柱认证，不改变当前NM冻结年度，也没有JAX／CUDA或年度
 验收信用。
 [静态源码独审](v1-results/clm-drainage-column-pb-l-static-independent-review-wo.json.gz)与
 [实际闭合独审](v1-results/clm-drainage-column-pb-l-actual-independent-review-wo.json.gz)
 核对了586／583份源码、9＋3份控制、实际F0／Stageout0、12项XML与13条原诊断，
 没有将重放次数计作新增柱步或把零需求案例计作活跃N反馈。
+
+[PB-m贫氮真实柱补案](v1-results/clm-drainage-active-n-pb-m/manifest.json)在EHPC1658
+实际F0／Stageout0，只运行新增1项／两个1800秒柱步，3.567872秒；没有重跑原12项，
+PB-l586源和生理参数不变。初始叶氮因子0.5、矿质N .01 gN/m²，每步原定沉降
+1e−5 gN/m²。两步GPP为0.344987349／0.389217152 gC/m²，潜在N需求
+2.404907766／2.395433719 gN/m²，真实吸收0.009997444545／9.986776596e−6；
+微生物固持为1.255545537e−5／1.322340403e−8 gN/m²。两步新矿化均0，第二步
+起始矿质库0、供应仅来自固定沉降，不能据此声称新矿化反馈已测。
+
+叶氮因子真实推进0.5→0.5020829198→0.5020850006，第二步使用实际周转后C/N。
+1028次原光合生化函数调用的实际Vcmax与记录的N／温度／水分因子乘积最大差
+1.421085e−14，逐次在原代数界内；不把跨步Vcmax差归为纯N效应。真实post-drain
+根环境、原allocation／decomposition／plant重算一致。原M/H/C/N硬账均满足；
+第二步热残差1.897387556e−4 J/m²／原界2.099679343e−4（90.37%），没有放宽界。
+[独审](v1-results/clm-drainage-active-n-pb-m-independent-review-wo.json.gz)和
+[根标量复核](v1-results/clm-drainage-active-n-pb-m-root-review.json.gz)分别重求氮池及
+供氮账，两步总N残差各−2.524757e−14 gN/m²／约3.85547e−11原界。此补案支持
+局部真实机制和接线，不构成官方／年度／设备或一般BGC科学验收。
+
+[PO-b设备验证参考输入](v1-results/drainage-gold-po-b/manifest.json)在EHPC1665实际
+F0／Stageout0／父0：9项序列化与比较合同检查、20个案例，实测40次原语、34次
+完整NumPy积分及5768次成功32位相反演，88.146098秒。80个NPZ／2372个数组的
+dtype、shape和原payload SHA均核验；输入、输出、源、控制及金样封条均固定。
+NumPy32／64是相同名义配方、分别构造并明确记录输入量化，不称相同原始输入；
+完整积分最大出口相对偏差为水2.596848%、热2.596600%，最大温差0.000842511 K，
+前沿最大绝对差0.000227440m，原10%／近零绝对门和各自原硬账均满足。
+32位最大完整积分水残差9.771436e−6 kg/m²／原界.0108337402、热−5.375 J/m²／
+原界6119.68555；64位最大水／热绝对残差1.465494e−14／1.169974e−8，分别在原界
+2.557954e−11／1.139880e−5内。
+
+[首次1659失败](v1-results/drainage-gold-po-failed/manifest.json)原件保留：8项检查完成，
+首例实测1原语／1完整积分／13次相反演后，JSON元数据中的float32标量不可序列化，
+实际F1／Stageout0。PO-b仅转换元数据标量为Python float、增加一项序列化回归，
+使用独立目录重新执行；物理、输入、硬界不变，首例66个重复数组payload精确一致。
+[完整差异、原失败、字节核验及设备交接](v1-results/drainage-gold-po-supplement/manifest.json)
+保持身份。这些是NumPy金样，JAX32／CUDA32尚未运行；未来两设备必须读取同一份
+固定float32输入，全部数值返回按原1e−6、离散返回精确，不能用这批CPU结果抵充。
+[独立原件及范围核验](v1-results/drainage-gold-po-b-independent-review-wo.json.gz)
+确认5768为实际成功NumPy32逆算返回；64位路径未插桩，原counter为0不表示未逆算。
 
 [PB原型实际结果](v1-results/clm-saturated-drainage-pb/manifest.json)已在EHPC
 1606真实F0／Stageout0完成18项测试，pytest 56.76秒。它包含实际局部物理积分，

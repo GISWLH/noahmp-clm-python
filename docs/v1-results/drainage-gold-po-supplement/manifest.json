@@ -1,0 +1,108 @@
+{
+  "scope": "Metadata, actual stdlib verification and prepared GPU handoff supplement. Preserves initial unexecuted36 package and PO-b diff; original345 actualgold and48 failed evidence unchanged. No new numeric execution or GPU.",
+  "archive_sha256": "fe4287a5d8ae31a33452c7beec10fc2bf3541366c79f35e275991b24560ca381",
+  "artifacts": [
+    {
+      "source": "README.md",
+      "path": "README.md.gz",
+      "source_sha256": "a6bd18a81767787a4366c2c216763e79140965e5722f313e3156b8b63ea35839",
+      "stored_sha256": "cd1cd922f2ab54dfc9d2433b7c2d7fcd9290c7b64cb3b38e9689f4d2d8804070"
+    },
+    {
+      "source": "already-in-original-evidence.json",
+      "path": "already-in-original-evidence.json.gz",
+      "source_sha256": "de50d04f8fb5f169114183dd89598cc40eaac64f7b440cd8562bd2af52645d7e",
+      "stored_sha256": "5026e217537ebf9224cc58b39f73aa132ac922c7ad5b5bb37d2c25b1987b6c2d"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "ad4f5afdf7d2eb0c6f0a1d334593ef9287817dc064335261f0f210de1adf6b0f",
+      "stored_sha256": "ac72d04173bc46957825fc77455a24634557d8dd336e9c028135514318eb0ff6"
+    },
+    {
+      "source": "drainage-device-handoff-po-b-prepared-package.json",
+      "path": "drainage-device-handoff-po-b-prepared-package.json.gz",
+      "source_sha256": "889df32cfc826afb9434947db6da881aa471fb15d10f99d3f2f9b1dee72984ee",
+      "stored_sha256": "0e35dcb988cbab8da8e1ef504100cb8086bedb01b205293edec8f60521adb863"
+    },
+    {
+      "source": "drainage-device-handoff-po-prepared-initial-evidence.tar.gz",
+      "path": "drainage-device-handoff-po-prepared-initial-evidence.tar.gz",
+      "source_sha256": "9e18ce8d8ddb66245bf7752f3b777db70628041bcdb996a90c2addfbdc83857c",
+      "stored_sha256": "9e18ce8d8ddb66245bf7752f3b777db70628041bcdb996a90c2addfbdc83857c"
+    },
+    {
+      "source": "drainage-device-handoff-po-prepared-initial-package.json",
+      "path": "drainage-device-handoff-po-prepared-initial-package.json.gz",
+      "source_sha256": "dcd21b0a0af4b89f6121c03cd3ac5052c872a816296700d7108c9d260ff8dacf",
+      "stored_sha256": "654b95c8847062770f0e7681a18654456e8310515b5f0f4d1291a8a9915dad94"
+    },
+    {
+      "source": "drainage-gold-po-b-local-verification.json",
+      "path": "drainage-gold-po-b-local-verification.json.gz",
+      "source_sha256": "2486769563d2136fb5cda0b13a999a9aa1ae902f382cf20dc38b509db7bcb4e5",
+      "stored_sha256": "e8deed3626d2728b5136708359ecd5fa2aa4b2a737b5581f794eae6e25cc7cf4"
+    },
+    {
+      "source": "drainage-gold-po-b-queue-handoff.json",
+      "path": "drainage-gold-po-b-queue-handoff.json.gz",
+      "source_sha256": "0bfb7232ce379964bfe430a3eea1887b25b226b2c1355f77e08558a0ffbf4c22",
+      "stored_sha256": "73e801283e82f16b28019ee548625fb476e0e1b35dc85bdbf2bf7500c284eae9"
+    },
+    {
+      "source": "drainage-gold-po-b-stage-package.json",
+      "path": "drainage-gold-po-b-stage-package.json.gz",
+      "source_sha256": "389c5d1b33313040958bbc7d0f1d516c51cb83b306541f7b258b93958647323a",
+      "stored_sha256": "b4e23b1af82e8895be32537efce1326f2075632b263e7d64bbb3b13b322b6e8e"
+    },
+    {
+      "source": "drainage-gold-po-stage-package.json",
+      "path": "drainage-gold-po-stage-package.json.gz",
+      "source_sha256": "f7fc00d679e367aaa605920231dfb83b2cab36d0168bf14494daa5374f432442",
+      "stored_sha256": "13b361f864442287b0fb3d73c631eac2803be1b69312f788504a62dff4b48a72"
+    },
+    {
+      "source": "drainage-handoff-po-to-po-b.diff",
+      "path": "drainage-handoff-po-to-po-b.diff.gz",
+      "source_sha256": "65802856b97fdc6316b0e68da6f3a92b321ec196fb797d5156827c76e1b1bf49",
+      "stored_sha256": "0cf6cac844b8acd154ee8390da54a771b3620d01f142a2920fc611a88ab16f8a"
+    },
+    {
+      "source": "package_drainage_gold_supplement_po.py",
+      "path": "package_drainage_gold_supplement_po.py.gz",
+      "source_sha256": "502247900afb4789c94bae5f46d8c342c5aa1a4235282e89f2a5d06a75b1ebd9",
+      "stored_sha256": "0f19ef00c59cef8ab36c0a864e05856d773b0d62fadc414393e44e9c9fc172e4"
+    },
+    {
+      "source": "prepare_drainage_gold_stage_po.py",
+      "path": "prepare_drainage_gold_stage_po.py.gz",
+      "source_sha256": "e5559bb76bf707724d61d5ad17819cc90f57a5268f428506b807a303c604346c",
+      "stored_sha256": "4c19ef024e2b3869bfec5c948f7e1656393d6c223abc93f48fc30fe31c5f5b33"
+    },
+    {
+      "source": "prepare_drainage_gold_stage_po_b.py",
+      "path": "prepare_drainage_gold_stage_po_b.py.gz",
+      "source_sha256": "ff388e126b660041f09292ae9f198e360fb0196155bac39735e0bc4f02b8861e",
+      "stored_sha256": "b736ef541e6d47ba4c2526a2ac96f5cfe2ef6054a998e58ded5146e283b190c1"
+    },
+    {
+      "source": "prepare_drainage_handoff_po_b.py",
+      "path": "prepare_drainage_handoff_po_b.py.gz",
+      "source_sha256": "57295ef0cd859a6920944476ee515c3278d616062996f208019046e57d67c885",
+      "stored_sha256": "8c4f3e21fdd8c8baae532b5d53f85d377de1b850544994608fbe8e612a5900c5"
+    },
+    {
+      "source": "stage-review.json",
+      "path": "stage-review.json.gz",
+      "source_sha256": "0d5bab144539483936b413404113ea013beff9fc2eec74b400fea63a70c1fd16",
+      "stored_sha256": "187621500c05d7a9e79b5c46d85c75e6b0ab4e0a1b682c265aaa3e7436787b60"
+    },
+    {
+      "source": "verify_drainage_gold_po_b.py",
+      "path": "verify_drainage_gold_po_b.py.gz",
+      "source_sha256": "a4d9dc0d65f721f7bf67d7d362a7c375e8773ed382798a1fd4f34012ce48619b",
+      "stored_sha256": "39d82e762c208d94f83f6c29f93321f0ff92dc09a9b89166f1fc96671f81b1d1"
+    }
+  ]
+}
