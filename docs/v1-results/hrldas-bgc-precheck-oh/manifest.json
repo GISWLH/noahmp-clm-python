@@ -1,0 +1,210 @@
+{
+  "scope": "Fixed sealed NY cold48, original KG15 inputs and NM584 read back through exact OF three-case C/N helper. Original1590 independent paired audit retained, no reference/model rerun. Exact input/CN chain and original float32 bounds, independent float64 residuals. This bounded48step helper precheck is not an annual audit or scientific acceptance.",
+  "archive_sha256": "061cfea8c1af9df43e455128e7799e0051ad480dba1d8b75c5197cbc82fdbfc5",
+  "artifacts": [
+    {
+      "source": "README.md",
+      "path": "README.md.gz",
+      "source_sha256": "fc4853c42bdd936a368f64a3fdb1efb24c2b95865fd5e9092ea5e95de9c4dccf",
+      "stored_sha256": "28e8b6c76938a3ea7bf5889df7ebdcaebf63377301a96c9d3c3abdc2f9a6f7db"
+    },
+    {
+      "source": "actual-qstat.txt",
+      "path": "actual-qstat.txt.gz",
+      "source_sha256": "c77f52ef21503834bda0e2fccfe578db6d3cea3bdd826e1bbee282c61cb00ba9",
+      "stored_sha256": "2ff0bd70a25c3c558e5a24d3ac017cdd47454e0bd4aa4643c1ff5e43292e9128"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "fa0e3b045bd7f31660314dea6fe705d4ec25f48f631e5f6ccec9e834f68878d0",
+      "stored_sha256": "48f765a6f7b964d88c7ed389c6660e69f998c81bc7e4db3d1d86daf0763f9158"
+    },
+    {
+      "source": "control/CONTROLS_SHA256.json",
+      "path": "control/CONTROLS_SHA256.json.gz",
+      "source_sha256": "f774dff677eb9fe68807274ba675bb918b8d8eebf34c14a6eda30219d3498d98",
+      "stored_sha256": "562f2b31fe9743f2793d320d10161d787b3ef415449fbccaa2836279d0a190ef"
+    },
+    {
+      "source": "control/archive_bgc_precheck_oh.py",
+      "path": "control/archive_bgc_precheck_oh.py.gz",
+      "source_sha256": "fc951f123c3daccdf43716a703119ecedcfa61069a4a541702bbd2b0cb533106",
+      "stored_sha256": "3f004f590a7b4a50948e4353d628b31957f2ad8693ae8c26cd7e5876d3cd46d2"
+    },
+    {
+      "source": "control/audit_bgc_stream_of.py",
+      "path": "control/audit_bgc_stream_of.py.gz",
+      "source_sha256": "1a1da961c93c9c9648934c2ee2939658942e38150cd29751eb803fd3c98c4958",
+      "stored_sha256": "24441cf3454496d6581cb620726699048269b594156804c6fbeecc272bee1a27"
+    },
+    {
+      "source": "control/bgc-adaptation.json",
+      "path": "control/bgc-adaptation.json.gz",
+      "source_sha256": "261b0564751f4a5871ff45a0332f14db337b45b3cad3df18dc72810660a4f0bc",
+      "stored_sha256": "af2828f0e0a564b276dd0a8f70f3c8c5925bfbbfdbce79fe1f7e66ac81b03688"
+    },
+    {
+      "source": "control/bgc_precheck_oh.pbs",
+      "path": "control/bgc_precheck_oh.pbs.gz",
+      "source_sha256": "ae7424b4d6dbc24a5905bab12828023d60ea85d18038adc87fab2614b4ec4b53",
+      "stored_sha256": "c0004b982a30d433405cf77d7f76453a5f6afc143eaeb4910e6911ac2ea1f4fb"
+    },
+    {
+      "source": "control/dispatch.json",
+      "path": "control/dispatch.json.gz",
+      "source_sha256": "7007047bcc19c6eeeb091c4107a3c1947364915101495cdceb43f9accbba164b",
+      "stored_sha256": "7ad3b25301936667242f2665abcdc405387122e51e2a7c648ea374ae5588f09b"
+    },
+    {
+      "source": "control/dispatch_bgc_precheck_oh.py",
+      "path": "control/dispatch_bgc_precheck_oh.py.gz",
+      "source_sha256": "7ee3072ab7f797472e9f83b197f1b2d43c96bd86e64d81d09346248245ac2f4f",
+      "stored_sha256": "35693f471d697f8b5cfbe7ec66e52051350ea284929da2b131879ef1f47271b3"
+    },
+    {
+      "source": "control/input-manifest.json",
+      "path": "control/input-manifest.json.gz",
+      "source_sha256": "a71255175d4af0e58478d90b485af9f725045a420a17c4abe9f74192c7ea6631",
+      "stored_sha256": "4c5a169fcb6239fd0f66eaf259eaf24e329301844b82ba1142838f41c6cae67f"
+    },
+    {
+      "source": "control/original-audit_bgc_stream_km.py",
+      "path": "control/original-audit_bgc_stream_km.py.gz",
+      "source_sha256": "5c461e2b9a50469e34a764b796366e19c0aba9322297f3611ac0d730ebd8f4b2",
+      "stored_sha256": "d760ba3cf5d3065e835f3bbd3362cbc99060d3e6cd0a71911b8dca787a23a7ee"
+    },
+    {
+      "source": "control/package_bgc_precheck_oh.py",
+      "path": "control/package_bgc_precheck_oh.py.gz",
+      "source_sha256": "e1ec614a3e3d186a92fe7c5821bdc340c359123840d86f7759bc01acae101799",
+      "stored_sha256": "2a24f7beb46085f123adf392124515122e436bd6d955b9c576a5f56ba9c66bd6"
+    },
+    {
+      "source": "control/pbs-exit.txt",
+      "path": "control/pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "control/qsub-stderr.txt",
+      "path": "control/qsub-stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "control/qsub-stdout.txt",
+      "path": "control/qsub-stdout.txt.gz",
+      "source_sha256": "6964f8dd8bf49f17fc441481e84f3d2fd4d93f264fa53fc3b93cbfe200f0dbe8",
+      "stored_sha256": "2822e8ebacfa4f41b49bddb81fb7b6f3533f1d25f8e3413619a6c24e1fdc63ba"
+    },
+    {
+      "source": "control/reference-reuse.json",
+      "path": "control/reference-reuse.json.gz",
+      "source_sha256": "46a563fe8274f09a9ab63bc153c86fad039acc50e3d388c7c76c948922c4abfd",
+      "stored_sha256": "70e99052c4b002e922598346dc653530af28c9a849f197485af654fac4e3dfc9"
+    },
+    {
+      "source": "control/result.tar.gz",
+      "path": "control/result.tar.gz",
+      "source_sha256": "161b77e2028955d38d8a9c0aafb41d511f0bd6e29c3a01d60908d2ee09279ea4",
+      "stored_sha256": "161b77e2028955d38d8a9c0aafb41d511f0bd6e29c3a01d60908d2ee09279ea4"
+    },
+    {
+      "source": "control/run_bgc_precheck_oh.py",
+      "path": "control/run_bgc_precheck_oh.py.gz",
+      "source_sha256": "f47de2b2332c0be63e41895d74bca5dfca83dab8d86de840a352f7f4b8e4a04b",
+      "stored_sha256": "2d3c07082f0e2483fa48d3d1716f574facf83c671664e565b8a766e49458afdd"
+    },
+    {
+      "source": "control/submit_staged_bgc_precheck_oh.py",
+      "path": "control/submit_staged_bgc_precheck_oh.py.gz",
+      "source_sha256": "6a214e47b53941516dec46aaba5ee5cb32536dce096a0afc4ff11a1bc403aa53",
+      "stored_sha256": "b088d19e42ea9f424e7973349580a3337d8d64bd06d2983538306ba5905b9057"
+    },
+    {
+      "source": "dispatch-history.json",
+      "path": "dispatch-history.json.gz",
+      "source_sha256": "4d7a8a1afa8999a4f86a3177759d95de7b1b0e51f08074d1e032bd7a82ffadbb",
+      "stored_sha256": "79afe0b6490b901d8cbc8a9b447d07dffe5f630a2103d34c88d3bd1b4683e46d"
+    },
+    {
+      "source": "node.txt",
+      "path": "node.txt.gz",
+      "source_sha256": "2013f70941095a32ac4ee430c022ab2a4bf135457c9201c1f894717ac3b4181e",
+      "stored_sha256": "015badb6097b4d6886f2dc1297007f3a0f992b06d70a6813f2d9f89261faea79"
+    },
+    {
+      "source": "original/closed-artifact-inventory.json",
+      "path": "original/closed-artifact-inventory.json.gz",
+      "source_sha256": "a72c08b937a3443d8f90a418bda6dae9bf49d467ee8ba5cd4efd0b245eec6d11",
+      "stored_sha256": "79da59cedf5147ae79293f316fcfe22f9b20a5168baece2904e49e0d9111d1cf"
+    },
+    {
+      "source": "original/closed-evidence.tar.gz",
+      "path": "original/closed-evidence.tar.gz",
+      "source_sha256": "f55e98083b65b71cc7fe309d155ac305348a0cf709eb0b55123711ed32b2e152",
+      "stored_sha256": "f55e98083b65b71cc7fe309d155ac305348a0cf709eb0b55123711ed32b2e152"
+    },
+    {
+      "source": "original/closed-package.json",
+      "path": "original/closed-package.json.gz",
+      "source_sha256": "66f3b046e4a25de5449756623df26e065b3ad3c6d6c9d5a7726284af597574e7",
+      "stored_sha256": "644bd47700a5f2e89de53e39a8473d167d0b79568ddfb00e6ff1f4e371414831"
+    },
+    {
+      "source": "prior1590-CN-Cha-suction-climate-cycle.json",
+      "path": "prior1590-CN-Cha-suction-climate-cycle.json.gz",
+      "source_sha256": "ba54172b7bb0898aa414df94cc1ee45c53424bd3274fbb49cf419ad4d88ffdb3",
+      "stored_sha256": "4f5afb1669c7506425895c708232a7b3e58559dc0712a1b76a96ff91cbb98d01"
+    },
+    {
+      "source": "prior1590-CN-HaM-suction-climate-cycle.json",
+      "path": "prior1590-CN-HaM-suction-climate-cycle.json.gz",
+      "source_sha256": "e1e884fbfe61fe544c657c36d5c648ecff72b663e7d76ec2a5dccba727b99a7f",
+      "stored_sha256": "7072005b8942c1574c45a4d4b7aadd20b9d42bb576ae21e496b0fbdf34337a64"
+    },
+    {
+      "source": "prior1590-CN-Qia-suction-climate-cycle.json",
+      "path": "prior1590-CN-Qia-suction-climate-cycle.json.gz",
+      "source_sha256": "4211c9e01507fa513046cf9544a62e431632f55939b076cd89900dcdb59197d3",
+      "stored_sha256": "2ee60f79139d3fadac5602018f112478b47d8a9cfda7dacdeee8b4c732da2542"
+    },
+    {
+      "source": "prior1590-actual-qstat.txt",
+      "path": "prior1590-actual-qstat.txt.gz",
+      "source_sha256": "15ccced8bd2634a83acadf0d89c9ebefe94e518fe4042bec013005e875c717a3",
+      "stored_sha256": "53ed2c873e61927b8774363ba0dc1dd14bd5d5fb24dc61645f0cdcb5e4675355"
+    },
+    {
+      "source": "prior1590-pbs-exit.txt",
+      "path": "prior1590-pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "prior1590-receipt.json",
+      "path": "prior1590-receipt.json.gz",
+      "source_sha256": "d5469cf7d7547142e4698facfa0edbbb9773ba1f006e9e659e1544f76e53052d",
+      "stored_sha256": "fb47b3128affb5adcb36c57026613c9dfd1b85432b87dffe6fefb36538241291"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "6442678e28f234b5f3d6983629e10d86f17ed534ac8f1e174032977843016991",
+      "stored_sha256": "6d8d3222731dac52d134a875f3c41e07dcbc36404aed9da4bde653b3113bb243"
+    },
+    {
+      "source": "worker-exit.txt",
+      "path": "worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "worker.log",
+      "path": "worker.log.gz",
+      "source_sha256": "ab0a135f526dd7b3d039a8216c158fa6657de051fae23ff96321115954b1c7bb",
+      "stored_sha256": "20a631fb4066dfff9511a092ec5c47cfa3a269cf59195bfb025ffa481d85344c"
+    }
+  ]
+}
