@@ -51,6 +51,36 @@ PB水／热残差8.881784e−15 kg/m²／4.656613e−9 J/m²，分别小于原�
 2.017941e−11／6.075061e−6；[逐原stdout及596份水账核验](v1-results/clm-drainage-official-pb-e-root-review.json.gz)。
 主排水与诊断的隔离后端同步继续，滞水演进需同热相边界证据；整柱尚未接入。
 
+后续[PB-f隔离后端原语](v1-results/clm-drainage-backends-pb-f/manifest.json)在EHPC1629
+实际F0／Stageout0，22项测试、10份NumPy诊断，子进程1.815942秒。此前1628的
+20通过／2失败原件保留；仅修零厚度预期键和浅基岩用例初态两处测试错误，三个
+物理文件和阈值逐字不变。冻结率主试步最大水残差1.021405e−14 kg/m²／原界
+2.557954e−11，热残差6.228220e−9 J/m²／原界1.139880e−5。
+[独立核验](v1-results/clm-drainage-backends-pb-f-independent-review-wo.json.gz)确认
+此轮仅执行NumPy，原语自比差0不能计作JAX／CUDA同精度证据。
+
+[PB-g完整主排水自适应流程](v1-results/clm-drainage-adaptive-pb-g/manifest.json)在EHPC1632
+实际F0／Stageout0，8项测试／5份诊断，子进程7.372660秒。实际逐试步相反演、
+整步／两半步拒绝、Kahan库存及硬水热账均执行；暖／冻短积分对PB-c库存／携热
+最大差0。两日跨层第三层对原官方256步偏差−3.504916%，对独立连续ODE为
++2.606307%；非零层均在10%内，零量用.001 kg/m²绝对门。该例水／热残差为
+9.992007e−16 kg/m²／−1.169974e−8 J/m²，原界2.557954e−11／1.139880e−5。
+只完成NumPy64主带，JAX64／JAX32／CUDA32尚未执行，滞水设备积分及整柱未完成；
+明确拒绝将64位输入静默转为32位相反演。
+[原stdout与完整范围核验](v1-results/clm-drainage-adaptive-pb-g-root-review.json.gz)。
+
+[PB-h更细官方参考及冰阻诊断](v1-results/clm-drainage-hydraulic-pb-h/manifest.json)在EHPC1631
+实际F0／Stageout0：只新增384／960两条原官方剖面，共1344真时钟步，以及两次
+固定初态冰阻系数的NumPy诊断。旧192步及动态PB-c复用原1616，不重算或重计。
+新960步官方第二／三层出口8.55054468／11.93394038 kg/m²；原动态PB-c对照为
+−3.516691%／+12.165109%，仍未满足第三层10%要求，总量+5.619280%不抵充。
+只固定率系数取样初态时，两层偏差降为−3.516691%／+0.411631%；更细控制为
+−4.041743%／+0.431023%。实际温冰仍变化、Sy诊断始终2m、缺液和几何cap均0，
+说明冰阻反馈是该压力案例的重要贡献，但不能将诊断替代实际模块或称同热边界。
+官方384→960总量不单调，不据此宣称渐近阶。全部1344份原有符号水账独立复核，
+最大残差1.365574e−14 kg/m²；两诊断最大水／热残差7.105427e−15／4.656613e−9，
+均在原界内，没有外加热或改供体。[原渠道与边界核验](v1-results/clm-drainage-hydraulic-pb-h-root-review.json.gz)。
+
 [PB原型实际结果](v1-results/clm-saturated-drainage-pb/manifest.json)已在EHPC
 1606真实F0／Stageout0完成18项测试，pytest 56.76秒。它包含实际局部物理积分，
 没有整柱、站点年或GPU运行。独立DOP853＋quad无冻土参考的迁移前沿差为
