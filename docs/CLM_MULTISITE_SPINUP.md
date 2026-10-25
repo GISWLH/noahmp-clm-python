@@ -1,5 +1,11 @@
 # 三站完整年初态与耦合spinup
 
+2026-10-25 04:48UTC：原冷年真实父 1／2657 停止状态不变；不从失败状态续年。
+[ML 根回退同步](CLM_SURFACE_ROOT.md)已过 CUDA 单点及 EHPC MN1540 原参考／守恒，
+JAX 与原同精度／K78／模块回归仍待。绕行完成 [MQ1541 全部配置一月诊断](CLM_JANUARY_DIAGNOSTIC.md)：
+55 完整日／一月、二月与全年未测，Qia H −23.0784%～−38.5546%、
+LE −11.4192%～−31.5122%，科学差距保留。没有气候／SOC 收敛或多年验收。
+
 ## 2026-10-25 04:19UTC：JN12组冷年2657真实失败及独立输入参考
 
 [MH完整失败原件](v1-results/climatology-failed-year-mh/manifest.json)：KC实际父1，

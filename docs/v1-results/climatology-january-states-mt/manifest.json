@@ -1,0 +1,66 @@
+{
+  "scope": "All twelve January states and day/night fluxes; read-only diagnostics. Original year failed; all twelve fixed January state/forcing/closedBGC and prespecified SW>10 day/night statistics only. No causal attribution, parameter fit, failedyear continuation or scientific acceptance.",
+  "archive_sha256": "0458191c691531c7baaede0889aca23dc4348531ea839e516db1c5d2304538e7",
+  "artifacts": [
+    {
+      "source": "actual-qstat.txt",
+      "path": "actual-qstat.txt.gz",
+      "source_sha256": "15a3f652cb89be4dc3b5aa2edc1a17383258bc6b68c229ed5f9da219dbdc12e4",
+      "stored_sha256": "bf0f955d4357edfbfb0f76d55f5281c726a60990234fcc498193937d8176eb0e"
+    },
+    {
+      "source": "clm-january-states.o1542",
+      "path": "clm-january-states.o1542",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "control/archive_january_states_mu.py",
+      "path": "control/archive_january_states_mu.py.gz",
+      "source_sha256": "00e8afa03f0290e7e7b55c95f9db112c21ef084973d3fa85ac6ea60ae5d65700",
+      "stored_sha256": "16f2b2d8b6754468d0f9535d05279f405d099bb0360c8bff83de5aea3c09c6ed"
+    },
+    {
+      "source": "diagnose_january_states_mt.py",
+      "path": "diagnose_january_states_mt.py.gz",
+      "source_sha256": "8acaa0e342842dca080422601d25d3dd0d6e5e63f15b6ee97c687e6722a97465",
+      "stored_sha256": "40b5475df13478503d488b4b09d09b0b27571eae2261678ecb0a570a55638c99"
+    },
+    {
+      "source": "diagnostic.json",
+      "path": "diagnostic.json.gz",
+      "source_sha256": "63d4f008e37fede87b96d8f3fa6f8c5afab565bf1d74e046c9758eaa942485f3",
+      "stored_sha256": "432661c7759840999f231fff425a7f0743ce704927a5434d520f196d8190e6b9"
+    },
+    {
+      "source": "dispatch.json",
+      "path": "dispatch.json.gz",
+      "source_sha256": "6b4ee97772ca29b9f0e18fe67432a4edcbf46ef426f431b94f06c54b8bd551e7",
+      "stored_sha256": "2ac66145a2c4f5d7873c45785f64e1bdffe3df07c5f7fc33d552b6179dd88149"
+    },
+    {
+      "source": "job.pbs",
+      "path": "job.pbs.gz",
+      "source_sha256": "d7bfc98938315fd98737aa23e98eafe460ffe674ea66d2cb98f6a72ab932cd95",
+      "stored_sha256": "323694c744fca077dd27303919fa04c721cd834cee207b6a0988f16343c7c740"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "prior-actual-qstat.txt",
+      "path": "prior-actual-qstat.txt.gz",
+      "source_sha256": "22a572f0e54d1a488b5f5433b8863974225468aae405805f9075b9ffcb44ebb9",
+      "stored_sha256": "4f6d508f357bb1238fb9c5b3c597b809f520da750a9ce59334b90a8c51b5ff19"
+    },
+    {
+      "source": "worker.log",
+      "path": "worker.log.gz",
+      "source_sha256": "ea67c4fbe7aba1e1dc0ee5b5ccd319787522099d474a1b9d39f914e5522c14e0",
+      "stored_sha256": "cc323a05664e63d62043a60bdbdd018353346f841f18c044698ee4dde8c96bbc"
+    }
+  ]
+}
