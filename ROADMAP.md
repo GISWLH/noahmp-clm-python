@@ -11,6 +11,7 @@
 - [x] [选项2完整暖冻及匹配热闭包水文参考](docs/CLM_VERTICAL_HYDROLOGY.md)：EHPC1642两项完整32／64积分通过；1647原公开水文960步在共享NM64热闭包下供体差−3.5167%／+.3862%、前沿−.31465%，满足P0。共享闭包不称官方热真值，原额外1mm诊断false保留。
 - [x] [PJ四根Cng首窗闭合](docs/CLM_CALIBRATION.md)：1633—1636真F0，48→528新增1920步；正式7tuple／18前缀／BGC端点最大差0，原硬账保持，仅同年继续。
 - [x] [滞水完整NumPy64／32链](docs/CLM_VERTICAL_HYDROLOGY.md)：EHPC1649 F0，18项／20诊断；对共享热闭包官方水文的32位分层出流偏差−3.7874%／+.4189%、前沿−.3384%，原硬账保持。选项2完整1800秒也实测；JAX／CUDA及整柱未计通过。
+- [x] [真实NumPy土柱候选接线](docs/CLM_VERTICAL_HYDROLOGY.md)：EHPC1654 F0，12项；主出口0.546245 kg/m²、瓦片另0.208333 kg/m²，原全柱硬水热／C/N／杂质账满足，旧None／Richards全返回数组逐字节、标量数值一致。隔离586新源，不改变NM年；原BGC氮需求／吸收均0，非零反馈补案仍待。
 - [ ] [局部饱和带排水](docs/CLM_VERTICAL_HYDROLOGY.md)的整柱及完整设备同步；新匹配热闭包参考不抵充这些验证或当前冻结年度。
 
 2026-10-25，MX 专项闭合后：[表面求根／新雪密度修订](docs/CLM_SURFACE_ROOT.md)

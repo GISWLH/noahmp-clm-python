@@ -142,6 +142,33 @@ Kahan库存及原硬水热界均执行；原主带6个依赖和5份参考原件�
 此轮没有执行JAX／CUDA、整柱或年度，不能将已准备设备源码计作同步通过。
 [独立原件、XML、20条诊断及范围复核](v1-results/clm-drainage-perched-pb-k-independent-review-wo.json.gz)。
 
+[PB-l真实NumPy土柱候选](v1-results/clm-drainage-column-pb-l/manifest.json)在EHPC1654
+实际F0／Stageout0：12项、13条诊断，7.022044秒。候选由NM584派生为586源文件，
+583份原件精确保持，只改NumPy柱驱动并新增两个模块，完整差异与旧driver原字节
+保留。它有独立显式配置，按原零底通量Richards→滞水→重新诊断主带→瓦片排水
+顺序更新真实库存及携焓，不调用legacy重力排水／ARNO，不增加独立含水层库存。
+两真实土壤出口和瓦片排水归深径流，原底边界通量仍0；下一步表温、根区环境
+和BGC读取最终实际相态。床岩要求等于柱底；NumPy实际3／6层均完成，未将整柱
+悄悄限制为设备当前4层接口，新配置在未同步native入口明确拒绝。
+
+暖柱主出流0.546245372 kg/m²；暴雨地表160.000000、主出流0.546245372；
+瓦片案例另出0.208333333 kg/m²；冻柱滞水仅1.922025e−7 kg/m²，是近零出口。
+融尽雪／五种杂质账、旧None／Richards全返回数组逐字节／标量数值一致及零坡
+一致性都实测。
+实际完成15个耦合柱步＝13候选＋2原NM，其中10个新CLM物理步、2个BGC步；
+额外10次Richards／10次PB-c／1次tile重算用于核查接线，分别统计，不重复计柱步。
+最大水残差绝对值1.212364e−13 kg/m²／该例原界1.223555e−11，最大热残差
+1.209846e−7 J/m²／该例原界1.638991e−5，各自原C/N／杂质界也保持。
+
+这两步BGC氮需求与吸收实际均0，只证明实际根区环境、叶N容量映射和原C/N账
+贯通，不证明活跃氮竞争或非零吸收反馈；相应补案尚待。PB-l是隔离新源候选，
+不是生产接入或官方整柱认证，不改变当前NM冻结年度，也没有JAX／CUDA或年度
+验收信用。
+[静态源码独审](v1-results/clm-drainage-column-pb-l-static-independent-review-wo.json.gz)与
+[实际闭合独审](v1-results/clm-drainage-column-pb-l-actual-independent-review-wo.json.gz)
+核对了586／583份源码、9＋3份控制、实际F0／Stageout0、12项XML与13条原诊断，
+没有将重放次数计作新增柱步或把零需求案例计作活跃N反馈。
+
 [PB原型实际结果](v1-results/clm-saturated-drainage-pb/manifest.json)已在EHPC
 1606真实F0／Stageout0完成18项测试，pytest 56.76秒。它包含实际局部物理积分，
 没有整柱、站点年或GPU运行。独立DOP853＋quad无冻土参考的迁移前沿差为

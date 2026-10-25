@@ -1,0 +1,619 @@
+--- a/src/noahmp_clm/clm_enthalpy_driver.py
++++ b/src/noahmp_clm/clm_enthalpy_driver.py
+@@ -49,7 +49,10 @@
+     f=forcing;opt=state.options
+     if soil_hydrology is not None:
+         from .physics.richards import RichardsHydrology
+-        if not isinstance(soil_hydrology,RichardsHydrology):raise TypeError('Expected RichardsHydrology')
++        from .physics.clm_hydrology import CLMVerticalHydrology
++        if not isinstance(soil_hydrology,(RichardsHydrology,CLMVerticalHydrology)):
++            raise TypeError('Expected RichardsHydrology or CLMVerticalHydrology')
++        if isinstance(soil_hydrology,CLMVerticalHydrology):soil_hydrology.validate_ground(state.ground)
+         if opt.OptRunoffSubsurface!=3:
+             raise ValueError('Closed Richards requires subsurface routing flag 3; requested bottom outlets cannot be silently removed')
+     memory=state.canopy_capacity_state
+@@ -235,10 +238,16 @@
+         ground,out,oh=admit(ground,flow['drainage_kgm2'],flow['drainage_enthalpy_jm2'])
+         runoff+=out+flow['runoff_kgm2'];runoff_heat+=oh+flow['runoff_enthalpy_jm2']
+         impurity_out+=flow['runoff_impurities_kgm2']+flow['drainage_impurities_kgm2']
+-    redistribution=None
++    redistribution=None;clm_drainage=None
+     if soil_hydrology is None:
+         ground,drain=drain_soil(ground,f.dt,permeability_option=opt.OptSoilPermeabilityFrozen,
+             bottom_parameters=vic_parameters if vic_bottom else None)
++    elif isinstance(soil_hydrology,CLMVerticalHydrology):
++        from .physics.clm_hydrology import advance_clm_hydrology
++        ground,redistribution,clm_drainage=advance_clm_hydrology(ground,f.dt,soil_hydrology)
++        # These are real distributed soil outlets, not bottom-boundary flux.
++        runoff+=clm_drainage['drained_kg_m2'];runoff_heat+=clm_drainage['drained_enthalpy_j_m2']
++        drain=dict(bottom_mass_kgm2=0.,bottom_enthalpy_jm2=0.)
+     else:
+         from .physics.richards import redistribute_soil_enthalpy
+         before_water=ground.water.copy();before_heat=ground.enthalpy.copy()
+@@ -261,7 +270,11 @@
+     final=replace(state,ground=ground,snow=snow,canopy_water_kgm2=canopy,canopy_enthalpy_jm2=canopy_heat,
+         surface_temperature=final_temperature,canopy_condensate=condensate,irrigation_state=irrigation_state,
+         canopy_capacity_state=next_memory)
+-    if soil_hydrology is not None:
++    if clm_drainage is not None:
++        # No legacy diagnostic repartition: both outlets were really removed.
++        deep=clm_drainage['drained_kg_m2']/1000.
++        surface=(runoff-clm_drainage['drained_kg_m2'])/1000.
++    elif soil_hydrology is not None:
+         # All pre-tile outlets in this mode are surface admission overflow
+         # or snow runoff. A diagnostic routing fraction cannot create deep
+         # drainage through the explicitly closed vertical boundary.
+@@ -293,6 +306,14 @@
+     if tile is not None:
+         d.update(tile_drainage=tile,tile_drainage_mm=tile_mass,tile_drainage_enthalpy_jm2=tile['drained_enthalpy_jm2'])
+     if redistribution is not None:d['soil_hydrology']=redistribution
++    if clm_drainage is not None:
++        from .physics.clm_saturated_drainage import diagnose_water_tables
++        clm_drainage['diagnosis_final_after_tile']=diagnose_water_tables(final.ground,soil_hydrology.drainage)
++        d.update(clm_drainage=clm_drainage,
++            saturated_outflow_kgm2=clm_drainage['saturated_mass_kg_m2'],
++            saturated_outflow_enthalpy_jm2=clm_drainage['saturated_enthalpy_j_m2'],
++            perched_outflow_kgm2=clm_drainage['perched_mass_kg_m2'],
++            perched_outflow_enthalpy_jm2=clm_drainage['perched_enthalpy_j_m2'])
+     if capacity_profile is not None:
+         d['canopy_capacity']=dict(capacity_profile,temperature_count_before=memory.count,
+             temperature_count_after=next_memory.count,temperature_cursor_after=next_memory.cursor,
+--- /dev/null
++++ b/src/noahmp_clm/physics/clm_saturated_drainage.py
+@@ -0,0 +1,480 @@
++"""Isolated NumPy saturated/perched drainage proposal; no production registration.
++
++Equations are implemented independently from CLM5 technical note 2.7.106--110.
++The soil owns all water and enthalpy. A migrating drainage front is a local
++coordinate, not an additional water reservoir or a pressure-head measurement.
++See README.md before using the explicitly exposed band integrator.
++"""
++from dataclasses import dataclass
++import math
++
++import numpy as np
++
++from noahmp_clm.physics.soil_enthalpy import SoilEnthalpyState, withdraw_liquid
++from noahmp_clm.physics.snowpack import TF, RHO_ICE, RHO_WATER
++
++
++@dataclass(frozen=True)
++class DrainageParameters:
++    bedrock_depth_m: float
++    slope_radians: float
++    baseflow_mm_s_per_m: float = .001
++    perched_scale_per_m: float = 1.e-5
++    saturation_threshold: float = .9
++    minimum_specific_yield: float = .02
++    retained_liquid_kg_m2: float = .01
++    ice_impedance_exponent: float = 6.
++
++    def __post_init__(self):
++        if any(isinstance(v, (bool, np.bool_)) or not math.isfinite(v) for v in vars(self).values()):
++            raise ValueError('Drainage parameters must be finite real numbers, not booleans')
++        if (self.bedrock_depth_m <= 0. or not 0. <= self.slope_radians < math.pi / 2.
++                or self.baseflow_mm_s_per_m < 0. or self.perched_scale_per_m < 0.
++                or not 0. < self.saturation_threshold < 1.
++                or not 0. < self.minimum_specific_yield < 1.
++                or self.retained_liquid_kg_m2 < 0. or self.ice_impedance_exponent < 0.):
++            raise ValueError('Invalid drainage geometry, rate, threshold or reserve')
++
++
++@dataclass(frozen=True)
++class IntegrationControls:
++    maximum_step_seconds: float = 1800.
++    relative_tendency_tolerance: float = .001
++    water_absolute_tolerance_kg_m2: float = 1.e-7
++    energy_absolute_tolerance_j_m2: float = .05
++    front_absolute_tolerance_m: float = 1.e-8
++    maximum_temperature_change_k: float = .05
++    maximum_band_storage_fraction: float = .2
++    maximum_attempts: int = 8192
++
++    def __post_init__(self):
++        for name, value in vars(self).items():
++            if name == 'maximum_attempts':
++                if type(value) is not int or value < 1:
++                    raise ValueError('Positive integer attempt limit required')
++            elif isinstance(value, (bool, np.bool_)) or not math.isfinite(value) or value <= 0.:
++                raise ValueError('Positive finite integration controls required')
++        if self.relative_tendency_tolerance > .1:
++            raise ValueError('Temporal tolerance may not exceed .1')
++        if self.maximum_band_storage_fraction > .5:
++            raise ValueError('A drainage trial may not consume more than half the remaining band storage')
++
++
++def _geometry(soil, parameters):
++    if not isinstance(soil, SoilEnthalpyState) or not isinstance(parameters, DrainageParameters):
++        raise TypeError('Actual SoilEnthalpyState and DrainageParameters required')
++    if (not 0. < parameters.minimum_specific_yield < soil.params.smcmax
++            or not math.isfinite(soil.params.saturated_suction_m)
++            or soil.params.saturated_suction_m <= 0.
++            or not math.isfinite(soil.params.bexp) or soil.params.bexp <= 0.
++            or not math.isfinite(soil.params.satdk) or soil.params.satdk < 0.):
++        raise ValueError('Positive Campbell retention and nonnegative conductivity required')
++    edges = np.r_[0., np.cumsum(soil.dz)]
++    tolerance = 16. * np.finfo(float).eps * max(float(edges[-1]), 1.)
++    matches = np.flatnonzero(abs(edges[1:] - parameters.bedrock_depth_m) <= tolerance)
++    if len(matches) != 1:
++        raise ValueError('Bedrock must coincide with exactly one existing soil interface')
++    active = int(matches[0]) + 1
++    return edges, edges[:-1] + .5 * soil.dz, active
++
++
++def _phase_fields(soil):
++    liquid = soil.liquid
++    ice = soil.water - liquid
++    # Geometry only: use actual ice volume. No water is added or removed here.
++    saturation = (liquid / RHO_WATER + ice / RHO_ICE) / (soil.dz * soil.params.smcmax)
++    ice_fraction = np.minimum(1., ice / (RHO_ICE * soil.dz * soil.params.smcmax))
++    return liquid, ice, saturation, ice_fraction
++
++
++def _theta_level(saturation, centers, edges, count, bottom, threshold):
++    """CLM theta proxy, including its first-layer-interface convention."""
++    dry = np.flatnonzero(saturation[:count] <= threshold)
++    if not len(dry) or int(dry[-1]) == 0:
++        return min(float(edges[1]), float(bottom))
++    j = int(dry[-1])
++    if j == count - 1:
++        return float(bottom)
++    fraction = (threshold - saturation[j]) / (saturation[j + 1] - saturation[j])
++    return min(float(bottom), max(0., float(centers[j] + fraction * (centers[j + 1] - centers[j]))))
++
++
++def _perched_theta_level(saturation, centers, count, bottom, threshold):
++    """Perched crossing has no main-table first-interface special case.
++
++    With every layer above threshold, there is no bracketed crossing: use the
++    physical surface bound. This explicit degenerate convention is not claimed
++    equivalent to the pinned routine's unguarded first-pair extrapolation.
++    """
++    dry = np.flatnonzero(saturation[:count] <= threshold)
++    if not len(dry):
++        return 0.
++    j = int(dry[-1])
++    if j == count - 1:
++        return float(bottom)
++    fraction = (threshold - saturation[j]) / (saturation[j + 1] - saturation[j])
++    return min(float(bottom), max(0., float(centers[j] + fraction * (centers[j + 1] - centers[j]))))
++
++
++def diagnose_water_tables(soil, parameters):
++    """Diagnose soil-contained and frost-perched bands without changing stocks.
++
++    A single shallowest warm-to-frozen transition is represented. A separately
++    perched outlet is absent when the main saturated body already intersects
++    that frost level. Frost depth is the frozen layer's center, not its top.
++    """
++    edges, centers, active = _geometry(soil, parameters)
++    _, _, saturation, ice_fraction = _phase_fields(soil)
++    temperature = soil.temperature
++    main = _theta_level(saturation, centers, edges, active,
++                        parameters.bedrock_depth_m, parameters.saturation_threshold)
++    transitions = np.flatnonzero((temperature[:active - 1] > TF) & (temperature[1:active] <= TF)) + 1
++    frost_index = int(transitions[0]) if len(transitions) else None
++    frost = None if frost_index is None else float(centers[frost_index])
++    perched = None
++    if frost is not None and main >= frost:
++        candidate = _perched_theta_level(saturation, centers, frost_index + 1,
++                                         frost, parameters.saturation_threshold)
++        if candidate < frost:
++            perched = candidate
++    return dict(water_table_m=main, bedrock_depth_m=parameters.bedrock_depth_m,
++                saturated_thickness_m=max(0., parameters.bedrock_depth_m - main),
++                frost_table_m=frost, frost_layer_index=frost_index,
++                perched_water_table_m=perched,
++                perched_thickness_m=0. if perched is None else frost - perched,
++                warm_to_frozen_transition_count=int(len(transitions)),
++                total_volume_saturation_ratio=saturation, ice_pore_fraction=ice_fraction,
++                active_layer_count=active,
++                definition='theta threshold proxy; not a pressure-head water table')
++
++
++def specific_yield(depth_m, porosity, suction_m, exponent, floor):
++    """Equation 2.7.110, with an explicit positive yield floor."""
++    if (not all(math.isfinite(v) for v in (depth_m, porosity, suction_m, exponent, floor))
++            or depth_m < 0. or not 0. < floor < porosity < 1. or suction_m <= 0. or exponent <= 0.):
++        raise ValueError('Invalid specific-yield arguments')
++    raw = -porosity * math.expm1(-math.log1p(depth_m / suction_m) / exponent)
++    return max(floor, raw)
++
++
++def integrated_yield(start_m, end_m, porosity, suction_m, exponent, floor):
++    """Integral of Sy dz [m]; analytic primitive split at the yield floor.
++
++    This is the storage relation used to migrate a front inside a layer, not
++    an arbitrary layer-proportional withdrawal rule.
++    """
++    specific_yield(start_m, porosity, suction_m, exponent, floor)
++    if not math.isfinite(end_m) or end_m < start_m:
++        raise ValueError('Ordered finite yield-integration limits required')
++    if end_m == start_m:
++        return 0.
++    log_floor = -exponent * math.log1p(-floor / porosity)
++    if log_floor >= math.log1p(end_m / suction_m):
++        return floor * (end_m - start_m)
++    floor_depth = suction_m * math.expm1(log_floor)
++    split = min(end_m, max(start_m, floor_depth))
++    result = floor * (split - start_m)
++    length = end_m - split
++    if length:
++        power = 1. - 1. / exponent
++        log_ratio = math.log1p(length / (suction_m + split))
++        scaled = log_ratio if power == 0. else math.expm1(power * log_ratio) / power
++        integral_retention = math.exp(-math.log1p(split / suction_m) / exponent) * (suction_m + split) * scaled
++        result += porosity * (length - integral_retention)
++    if result <= 0. or not math.isfinite(result):
++        raise ArithmeticError('Nonpositive or nonfinite integrated yield')
++    return result
++
++
++def _stored_mass(soil, parameters, a, b):
++    p = soil.params
++    return RHO_WATER * integrated_yield(a, b, p.smcmax, p.saturated_suction_m,
++                                        p.bexp, parameters.minimum_specific_yield)
++
++
++def _invert_storage(soil, parameters, left, right, mass):
++    if mass == 0.:
++        return left
++    if mass >= _stored_mass(soil, parameters, left, right):
++        return right
++    lo, hi = left, right
++    for _ in range(64):
++        mid = .5 * (lo + hi)
++        if mid == lo or mid == hi:
++            break
++        if _stored_mass(soil, parameters, left, mid) < mass:
++            lo = mid
++        else:
++            hi = mid
++    return min((lo, hi), key=lambda z: abs(_stored_mass(soil, parameters, left, z) - mass))
++
++
++def potential_outflow(soil, front_m, bottom_m, kind, parameters):
++    """Potential water rate kg/m2/s, with explicit geometric/ice diagnostics."""
++    edges, _, _ = _geometry(soil, parameters)
++    if (kind not in ('saturated', 'perched')
++            or any(isinstance(v, (bool, np.bool_)) or not math.isfinite(v) for v in (front_m, bottom_m))
++            or not 0. <= front_m <= bottom_m <= parameters.bedrock_depth_m):
++        raise ValueError('Invalid drainage band')
++    overlap = np.maximum(0., np.minimum(edges[1:], bottom_m) - np.maximum(edges[:-1], front_m))
++    _, _, _, frozen = _phase_fields(soil)
++    thickness = bottom_m - front_m
++    if thickness == 0.:
++        return 0., dict(overlap_m=overlap, ice_factor=1., effective_conductivity_m_s=0.)
++    # Inclusive lower interface selects the shallower cell at an exact edge.
++    # Diagnose the spatial stencil separately from the geometrical band length.
++    front_layer = int(np.searchsorted(edges[1:], front_m, side='left'))
++    bottom_layer = int(np.searchsorted(edges[1:], bottom_m, side='left'))
++    weights = np.zeros_like(overlap)
++    if kind == 'saturated':
++        # The empirical main-drainage impedance samples complete cells starting
++        # with the cell above the front-containing cell, through all soil cells.
++        # It is not an average over only the submerged geometric cell fraction.
++        weights[max(front_layer - 1, 0):] = soil.dz[max(front_layer - 1, 0):]
++        factor = 10. ** (-parameters.ice_impedance_exponent * float(np.dot(weights, frozen)) / float(weights.sum()))
++        rate = parameters.baseflow_mm_s_per_m * math.tan(parameters.slope_radians) * thickness * factor
++        conductivity = None
++    else:
++        adjacent = .5 * (frozen + np.r_[frozen[1:], frozen[-1]])
++        factors = 10. ** (-parameters.ice_impedance_exponent * adjacent)
++        weights[front_layer:bottom_layer + 1] = soil.dz[front_layer:bottom_layer + 1]
++        factor = float(np.dot(weights, factors)) / float(weights.sum())
++        conductivity = soil.params.satdk * factor
++        rate = RHO_WATER * parameters.perched_scale_per_m * math.sin(parameters.slope_radians) * conductivity * thickness
++        if front_layer >= bottom_layer:
++            rate = 0.  # No donor below the crossing cell and at/above the barrier.
++    if not math.isfinite(rate):
++        raise ValueError('Drainage rate overflow')
++    return float(rate), dict(overlap_m=overlap, ice_factor=factor,
++                            effective_conductivity_m_s=conductivity,
++                            impedance_layer_weights_m=weights,
++                            front_layer_index=front_layer, bottom_layer_index=bottom_layer)
++
++
++def _perched_transfer(soil, front, bottom, duration, parameters):
++    """Liquid outlet from below the crossing cell, carrying actual donor heat.
++
++    Perched storage is not the main connected-front integral. The diagnosed
++    main theta level determines its retention-based specific yield, while the
++    perched level bounds the outlet thickness and advances with removed mass.
++    No unfilled depth is traversed when there is no available donor liquid.
++    """
++    rate, geometry = potential_outflow(soil, front, bottom, 'perched', parameters)
++    requested = rate * duration
++    if not math.isfinite(requested):
++        raise ValueError('Drainage requested mass overflow')
++    main_depth = diagnose_water_tables(soil, parameters)['water_table_m']
++    p = soil.params
++    sy = specific_yield(main_depth, p.smcmax, p.saturated_suction_m,
++                        p.bexp, parameters.minimum_specific_yield)
++    capacity = RHO_WATER * sy * (bottom - front)
++    desired = min(requested, capacity)
++    remaining = desired
++    demand = np.zeros_like(soil.water)
++    available = np.maximum(0., soil.liquid - parameters.retained_liquid_kg_m2)
++    if rate:
++        for j in range(geometry['front_layer_index'] + 1, geometry['bottom_layer_index'] + 1):
++            take = min(remaining, float(available[j]))
++            demand[j] = take
++            remaining -= take
++            if remaining <= 0.:
++                break
++    actual = math.fsum(map(float, demand))
++    next_front = min(bottom, front + actual / (RHO_WATER * sy))
++    after, heat = withdraw_liquid(soil, demand) if np.any(demand) else (soil, np.zeros_like(demand))
++    return after, next_front, dict(layer_mass_kg_m2=demand, layer_enthalpy_j_m2=heat,
++        requested_kg_m2=requested, actual_kg_m2=actual,
++        unavailable_liquid_kg_m2=max(0., desired - actual),
++        band_exhaustion_kg_m2=max(0., requested - desired),
++        liquid_limited=actual < desired, specific_yield_depth_m=main_depth,
++        first_eligible_donor_layer=geometry.get('front_layer_index', -1) + 1)
++
++
++def _euler_transfer(soil, front, bottom, kind, duration, parameters):
++    """Frozen-rate trial: connected Sy integral or separate perched donors."""
++    if kind == 'perched':
++        return _perched_transfer(soil, front, bottom, duration, parameters)
++    edges, _, _ = _geometry(soil, parameters)
++    rate, _ = potential_outflow(soil, front, bottom, kind, parameters)
++    requested = rate * duration
++    if not math.isfinite(requested):
++        raise ValueError('Drainage requested mass overflow')
++    remaining = requested
++    demand = np.zeros_like(soil.water)
++    available = np.maximum(0., soil.liquid - parameters.retained_liquid_kg_m2)
++    next_front = front
++    liquid_limited = False
++    for j in range(len(demand)):
++        left = max(next_front, float(edges[j]))
++        right = min(bottom, float(edges[j + 1]))
++        if right <= left or remaining <= 0.:
++            continue
++        capacity = _stored_mass(soil, parameters, left, right)
++        take = min(remaining, capacity, float(available[j]))
++        demand[j] = take
++        next_front = _invert_storage(soil, parameters, left, right, take)
++        remaining -= take
++        if take < capacity:
++            liquid_limited = remaining > 0.
++            break  # Never skip a depleted front layer to mine deeper water.
++        next_front = right
++    if np.any(demand):
++        after, heat = withdraw_liquid(soil, demand)
++    else:
++        after, heat = soil, np.zeros_like(demand)
++    actual = math.fsum(map(float, demand))
++    unmet = max(0., requested - actual)
++    return after, next_front, dict(layer_mass_kg_m2=demand, layer_enthalpy_j_m2=heat,
++        requested_kg_m2=requested, actual_kg_m2=actual,
++        unavailable_liquid_kg_m2=unmet if liquid_limited else 0.,
++        band_exhaustion_kg_m2=0. if liquid_limited else unmet,
++        liquid_limited=liquid_limited)
++
++
++def _finish_budget(initial, last_trial, masses, heats):
++    mass = np.array([math.fsum(float(a[j]) for a in masses) for j in range(len(initial.water))])
++    heat = np.array([math.fsum(float(a[j]) for a in heats) for j in range(len(initial.water))])
++    final = SoilEnthalpyState(initial.water - mass, initial.enthalpy - heat,
++                             initial.dz, initial.params, initial.freezing_option)
++    eps = np.finfo(float).eps
++    mass_bound = 64. * eps * max(float(abs(initial.water).sum() + abs(final.water).sum() + abs(mass).sum()), 1.)
++    heat_bound = 64. * eps * max(float(abs(initial.enthalpy).sum() + abs(final.enthalpy).sum() + abs(heat).sum()), 1.)
++    mass_residual = math.fsum([*map(float, final.water), *map(float, -initial.water), *map(float, mass)])
++    heat_residual = math.fsum([*map(float, final.enthalpy), *map(float, -initial.enthalpy), *map(float, heat)])
++    mass_accumulation = float(np.max(abs(final.water - last_trial.water)))
++    heat_accumulation = float(np.max(abs(final.enthalpy - last_trial.enthalpy)))
++    if (abs(mass_residual) > mass_bound or abs(heat_residual) > heat_bound
++            or mass_accumulation > mass_bound or heat_accumulation > heat_bound):
++        raise RuntimeError('Drainage extensive water/enthalpy ledger failed')
++    return final, dict(layer_mass_kg_m2=mass, layer_enthalpy_j_m2=heat,
++        drained_kg_m2=math.fsum(map(float, mass)), drained_enthalpy_j_m2=math.fsum(map(float, heat)),
++        water_residual_kg_m2=mass_residual, energy_residual_j_m2=heat_residual,
++        water_bound_kg_m2=mass_bound, energy_bound_j_m2=heat_bound,
++        accumulation_water_difference_kg_m2=mass_accumulation,
++        accumulation_energy_difference_j_m2=heat_accumulation)
++
++
++def advance_saturated_band(soil, duration_seconds, front_m, bottom_m, kind, parameters,
++                           controls=IntegrationControls()):
++    """Advance an explicit drainage front, returning soil, front and hard ledger.
++
++    Low-level isolated-physics API. A front supplied here is not evidence of a
++    diagnosed field water table. The high-level entry diagnoses its own bands.
++    Adaptive explicit step doubling accepts two half steps, not the full step.
++    """
++    _geometry(soil, parameters)
++    potential_outflow(soil, front_m, bottom_m, kind, parameters)
++    if (isinstance(duration_seconds, (bool, np.bool_)) or not math.isfinite(duration_seconds)
++            or duration_seconds <= 0. or not isinstance(controls, IntegrationControls)):
++        raise ValueError('Positive finite duration and IntegrationControls required')
++    current, front, elapsed = soil, float(front_m), 0.
++    step = min(duration_seconds, controls.maximum_step_seconds)
++    accepted = rejected = 0
++    masses, heats, requests, unavailable, exhausted = [], [], [], [], []
++    cumulative_mass = np.zeros_like(soil.water)
++    cumulative_heat = np.zeros_like(soil.enthalpy)
++    mass_compensation = np.zeros_like(soil.water)
++    heat_compensation = np.zeros_like(soil.enthalpy)
++    max_ratio = 0.
++    while elapsed < duration_seconds:
++        if accepted + rejected >= controls.maximum_attempts:
++            raise RuntimeError('Drainage adaptive attempt budget exhausted')
++        rate, _ = potential_outflow(current, front, bottom_m, kind, parameters)
++        if rate == 0.:
++            elapsed = duration_seconds
++            break
++        step = min(step, duration_seconds - elapsed)
++        coarse, coarse_front, _ = _euler_transfer(current, front, bottom_m, kind, step, parameters)
++        half, half_front, first = _euler_transfer(current, front, bottom_m, kind, .5 * step, parameters)
++        fine, fine_front, second = _euler_transfer(half, half_front, bottom_m, kind, .5 * step, parameters)
++        ratios = []
++        for old, a, b, tolerance in (
++                (current.water, coarse.water, fine.water, controls.water_absolute_tolerance_kg_m2),
++                (current.enthalpy, coarse.enthalpy, fine.enthalpy, controls.energy_absolute_tolerance_j_m2)):
++            scale = tolerance + controls.relative_tendency_tolerance * np.maximum(abs(a - old), abs(b - old))
++            ratios.append(float(np.max(abs(a - b) / scale)))
++        front_scale = controls.front_absolute_tolerance_m + controls.relative_tendency_tolerance * max(abs(coarse_front - front), abs(fine_front - front))
++        ratios.append(abs(coarse_front - fine_front) / front_scale)
++        ratios.append(float(np.max(abs(fine.temperature - current.temperature))) / controls.maximum_temperature_change_k)
++        # Full and half trials can both hit the same finite-storage cap. Their
++        # difference alone would then falsely accept a large, inaccurate step.
++        if kind == 'perched':
++            p = current.params
++            main_depth = diagnose_water_tables(current, parameters)['water_table_m']
++            remaining_storage = RHO_WATER * specific_yield(main_depth, p.smcmax,
++                p.saturated_suction_m, p.bexp, parameters.minimum_specific_yield) * (bottom_m - front)
++        else:
++            remaining_storage = _stored_mass(current, parameters, front, bottom_m)
++        fraction_scale = (controls.maximum_band_storage_fraction * remaining_storage
++                          + controls.water_absolute_tolerance_kg_m2)
++        ratios.append((first['actual_kg_m2'] + second['actual_kg_m2']) / fraction_scale)
++        ratio = max(ratios)
++        if ratio > 1.:
++            rejected += 1
++            step *= max(.1, .8 / math.sqrt(ratio))
++            if step < 1.e-8:
++                raise RuntimeError('Drainage temporal/thermal substep underflow')
++            continue
++        for one in (first, second):
++            masses.append(one['layer_mass_kg_m2']); heats.append(one['layer_enthalpy_j_m2'])
++            requests.append(one['requested_kg_m2']); unavailable.append(one['unavailable_liquid_kg_m2'])
++            exhausted.append(one['band_exhaustion_kg_m2'])
++            for value, total, compensation in ((one['layer_mass_kg_m2'], cumulative_mass, mass_compensation),
++                                                (one['layer_enthalpy_j_m2'], cumulative_heat, heat_compensation)):
++                increment = value - compensation
++                updated = total + increment
++                compensation[:] = (updated - total) - increment
++                total[:] = updated
++        # Keep the actual advancing state on the cumulative extensive ledger;
++        # thousands of small withdrawals must not accumulate stock roundoff.
++        canonical = SoilEnthalpyState(soil.water - cumulative_mass, soil.enthalpy - cumulative_heat,
++                                      soil.dz, soil.params, soil.freezing_option)
++        eps = np.finfo(float).eps
++        for canonical_value, trial_value in ((canonical.water, fine.water), (canonical.enthalpy, fine.enthalpy)):
++            rounding = 64. * eps * max(float(abs(canonical_value).sum() + abs(trial_value).sum()), 1.)
++            if np.max(abs(canonical_value - trial_value)) > rounding:
++                raise RuntimeError('Accepted drainage trial disagrees with cumulative extensive state')
++        current, front = canonical, fine_front
++        elapsed += step
++        accepted += 1
++        max_ratio = max(max_ratio, ratio)
++        # A completely blocked front cannot resume without an external process.
++        if second['liquid_limited'] and second['actual_kg_m2'] == 0.:
++            blocked_rate, _ = potential_outflow(current, front, bottom_m, kind, parameters)
++            unmet = blocked_rate * (duration_seconds - elapsed)
++            requests.append(unmet); unavailable.append(unmet)
++            elapsed = duration_seconds
++        step = min(controls.maximum_step_seconds, step * min(2., max(.5, .8 / math.sqrt(max(ratio, 1.e-12)))))
++    final, ledger = _finish_budget(soil, current, masses, heats)
++    ledger.update(kind=kind, initial_front_m=float(front_m), migrated_front_m=front,
++        band_bottom_m=float(bottom_m), elapsed_seconds=elapsed,
++        potential_requested_kg_m2=math.fsum(requests), unavailable_liquid_kg_m2=math.fsum(unavailable),
++        band_exhaustion_kg_m2=math.fsum(exhausted), accepted_substeps=accepted,
++        rejected_substeps=rejected, maximum_accepted_error_ratio=max_ratio)
++    return final, front, ledger
++
++
++def drain_saturated_soil(soil, duration_seconds, parameters, controls=IntegrationControls()):
++    """Diagnose and remove local subsurface outlets; no aquifer, bottom exchange.
++
++    Perched drainage precedes main drainage. Main geometry is rediagnosed from
++    the actual post-perched state. A second outlet never reuses removed water.
++    This entry is not registered in the production driver or any GPU backend.
++    """
++    before = diagnose_water_tables(soil, parameters)
++    current = soil
++    bands = []
++    if before['perched_water_table_m'] is not None:
++        current, _, result = advance_saturated_band(current, duration_seconds,
++            before['perched_water_table_m'], before['frost_table_m'], 'perched', parameters, controls)
++        bands.append(result)
++    after_perched = diagnose_water_tables(current, parameters)
++    current, _, result = advance_saturated_band(current, duration_seconds,
++        after_perched['water_table_m'], parameters.bedrock_depth_m, 'saturated', parameters, controls)
++    bands.append(result)
++    final, ledger = _finish_budget(soil, current,
++        [v['layer_mass_kg_m2'] for v in bands], [v['layer_enthalpy_j_m2'] for v in bands])
++    ledger.update(diagnosis_before=before, diagnosis_after_perched=after_perched,
++                  diagnosis_after=diagnose_water_tables(final, parameters), bands=bands,
++                  no_additional_water_reservoir=True, production_integrated=False)
++    return final, ledger
+--- /dev/null
++++ b/src/noahmp_clm/physics/clm_hydrology.py
+@@ -0,0 +1,73 @@
++"""Explicit NumPy soil-column transport plus actual subsurface outlets.
++
++No independent aquifer store or inter-column exchange is introduced. The
++transport lower boundary and drainage bedrock coincide with the soil bottom.
++This separate configuration does not inherit or extend Richards controls.
++"""
++from dataclasses import dataclass,field
++import numpy as np
++from .richards import RichardsHydrology,redistribute_soil_enthalpy
++from .clm_saturated_drainage import (DrainageParameters,IntegrationControls,
++    diagnose_water_tables,drain_saturated_soil)
++from .soil_enthalpy import SoilEnthalpyState
++
++
++@dataclass(frozen=True)
++class CLMVerticalHydrology:
++    drainage: DrainageParameters
++    transport: RichardsHydrology=field(default_factory=RichardsHydrology)
++    integration: IntegrationControls=field(default_factory=IntegrationControls)
++
++    def __post_init__(self):
++        if (not isinstance(self.drainage,DrainageParameters)
++                or not isinstance(self.transport,RichardsHydrology)
++                or not isinstance(self.integration,IntegrationControls)):
++            raise TypeError('CLMVerticalHydrology requires separate drainage, transport and integration controls')
++
++    def validate_ground(self,ground):
++        if not isinstance(ground,SoilEnthalpyState):
++            raise TypeError('CLMVerticalHydrology requires extensive SoilEnthalpyState')
++        depth=float(ground.dz.sum())
++        if abs(self.drainage.bedrock_depth_m-depth)>16*np.finfo(float).eps*max(depth,1.):
++            raise ValueError('CLM transport zero-flux bottom and drainage bedrock must equal the full soil-column depth')
++        # Validates the original arbitrary-layer geometry/material domain.
++        diagnose_water_tables(ground,self.drainage)
++
++
++def advance_clm_hydrology(ground,dt_seconds,configuration):
++    """Return the actual transported/drained state and separate M/H ledgers.
++
++    Frozen coefficients are never borrowed from another state. Drainage sees
++    actual post-Richards phase; main drainage rediagnoses after perched flow.
++    Neither this operator nor its component creates bottom-boundary flux.
++    """
++    if not isinstance(configuration,CLMVerticalHydrology):raise TypeError('Expected CLMVerticalHydrology')
++    configuration.validate_ground(ground)
++    transported,transport=redistribute_soil_enthalpy(ground,dt_seconds,**configuration.transport.controls())
++    transport.update(method='richards_zero_flux',lower_boundary_condition=2,
++        water_before_kg_m2=ground.water.copy(),enthalpy_before_j_m2=ground.enthalpy.copy())
++    final,outlets=drain_saturated_soil(transported,dt_seconds,configuration.drainage,configuration.integration)
++    zero=np.zeros_like(ground.water)
++    named={kind:next((b for b in outlets['bands'] if b['kind']==kind),None) for kind in ('saturated','perched')}
++    mass={k:(zero.copy() if b is None else b['layer_mass_kg_m2']) for k,b in named.items()}
++    heat={k:(zero.copy() if b is None else b['layer_enthalpy_j_m2']) for k,b in named.items()}
++    # A single independent combined extensive budget, with the existing
++    # drainage operation-count bound. Component bounds are also retained.
++    rm=float(final.water.sum()-ground.water.sum())+outlets['drained_kg_m2']
++    rh=float(final.enthalpy.sum()-ground.enthalpy.sum())+outlets['drained_enthalpy_j_m2']
++    eps=np.finfo(float).eps
++    mb=64*eps*max(float(abs(final.water).sum()+abs(ground.water).sum())+abs(outlets['drained_kg_m2']),1.)
++    hb=64*eps*max(float(abs(final.enthalpy).sum()+abs(ground.enthalpy).sum())+abs(outlets['drained_enthalpy_j_m2']),1.)
++    if abs(rm)>mb or abs(rh)>hb:raise RuntimeError('CLM transport/drainage combined hard M/H budget failed')
++    ledger=dict(outlets,operator_order=('richards_zero_flux','perched','saturated'),
++        water_before_transport_kg_m2=ground.water.copy(),enthalpy_before_transport_j_m2=ground.enthalpy.copy(),
++        water_after_transport_kg_m2=transported.water.copy(),enthalpy_after_transport_j_m2=transported.enthalpy.copy(),
++        saturated_layer_mass_kg_m2=mass['saturated'],perched_layer_mass_kg_m2=mass['perched'],
++        saturated_layer_enthalpy_j_m2=heat['saturated'],perched_layer_enthalpy_j_m2=heat['perched'],
++        saturated_mass_kg_m2=float(mass['saturated'].sum()),perched_mass_kg_m2=float(mass['perched'].sum()),
++        saturated_enthalpy_j_m2=float(heat['saturated'].sum()),perched_enthalpy_j_m2=float(heat['perched'].sum()),
++        combined_water_residual_kg_m2=rm,combined_energy_residual_j_m2=rh,
++        combined_water_bound_kg_m2=mb,combined_energy_bound_j_m2=hb,
++        zero_flux_bottom_mass_kg_m2=0.,zero_flux_bottom_enthalpy_j_m2=0.,
++        candidate_column_connected=True,production_integrated=False)
++    return final,transport,ledger
