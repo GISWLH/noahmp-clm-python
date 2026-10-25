@@ -1,5 +1,30 @@
 # 分层冠层焓—叶温—空气湿度联立（开发中）
 
+2026-10-25当前NM年度缺口：NS12／NZ3均在7275/17520步以分层相变表面异常
+失败。[PR一次隔离诊断](v1-results/failed-surface-probe-pr/manifest.json)从原NZ7275
+保存状态构造新调用，在CUDA1复现原RuntimeError：第一次MOST表面调用中Qia
+冠层相变和最终收敛均false，Cha／HaM均true；raw741全部有限。真实worker退出1，
+1批／3柱尝试、0成功返回、0年度续步；155.964998秒包含编译／求解／捕获，
+不是纯kernel计时。1252个源／控制／证据文件前后不变，原kernel与门限未改。
+六个捕获包保留91个数组的dtype／shape／原payload，23个保存状态／账字段
+与新请求逐字节一致；实际九参数、exchange和VIC与kernel编码一致，有效32位
+叶系数另存，[原件核验](v1-results/failed-surface-probe-pr-review/manifest.json)仅为
+字节／元数据审计。原年度没有保存失败调用输入，不能将这份新捕获冒称原缺失原件。
+随后[同输入NumPy参考PT-b](v1-results/surface-7275-numpy-reference-pt/manifest.json)
+在EHPC1681真实F1／Stageout0闭合，三次尝试、两次原完整返回。Qia原NumPy64
+在第一次地温试探的冠层Newton第30轮停滞，残差13.75804 W/m²，非导入或封存
+错误；对应CUDA原raw733为13.204845 W/m²、physical11最大相同，原门.005与
+.00525 W/m²均未满足。联合热标志raw341=1，不能归因联合热门或仅归因GPU精度。
+raw508=11、raw732=2是原实现计数，不当成实际调用次数；原source584及7控不变。
+
+Cha／HaM原science和硬账均满足：H绝对差3.317475e−4／7.824422e−5 W/m²，
+LE差8.695779e−7／4.630656e−5 W/m²，表面温度差5.449295e−6／1.635760e−5 K。
+相应CUDA水／热残差为6.705523e−7 kg/m²／7.201363 J/m²、
+5.848706e−7 kg/m²／.982910 J/m²，分别小于原水／热界.004513980／1669.892262、
+.002065176／913.765780。[完整返回与原件复核](v1-results/surface-7275-numpy-reference-pt-review/manifest.json)
+不认证Qia、GPU全年或观测通过。NumPy与GPU保留各自原容差、初猜和缓存行为，
+下一步仅观察失败迭代已有残差／Jacobian；具体根因和修复仍待，未改公式或放宽门。
+
 新增 `physics/canopy_phase_energy.py` 的 NumPy 开发入口
 `solve_canopy_phase_energy`。逐层截留冰水的热状态现已进入辐射、Farquhar/
 Ball–Berry、叶—气感热、水汽、共享根水和诊断空气温湿的同一方程系统。

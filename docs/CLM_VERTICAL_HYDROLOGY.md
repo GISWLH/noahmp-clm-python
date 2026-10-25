@@ -13,6 +13,17 @@ JAX／CUDA、整柱、native适配或生产集成。
 [270件原始证据](v1-results/clm-drainage-package-pb-n/manifest.json)、
 [原件核验及独立复审](v1-results/clm-drainage-package-pb-n-review/manifest.json)。
 
+PB-o随后在EHPC1678真实F0／Stageout0完成12项CPU输入前置检查测试，
+零失败／错误／跳过；这些检查证明非法dtype／shape／phase控制在后端导入、
+转换和相计算前被拒绝，保留调用方显式pack32。再用原1673执行器和1665输入32
+重复20原语／17完整积分，5768次相反演、1106字段仍全部dtype／shape／bytes相同；
+原水／热最大残差与界不变。pytest0.30秒、测试父进程.714678秒、数值43.779411秒，
+worker45.132005秒；975源／控制／参考／金样文件前后不变，594候选内包含原586。
+[274件原件](v1-results/clm-drainage-guard-pb-o/manifest.json)及
+[控制／实际结果独审](v1-results/clm-drainage-guard-pb-o-review/manifest.json)仅支持新排水组件的
+CPU入口合同和NumPy32一致性；实际JAX／CUDA、64位完整积分、native整柱guard／
+适配和生产接入仍未完成，不能把sentinel负测试计为设备计算。
+
 2026-10-25后续开发：补齐诊断土柱水位、饱和带及冻层上方滞水带排水的NumPy
 参考组件，再同步JAX／CUDA及整柱连接。[CLM5公开水文方程§2.7.3—2.7.5](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Hydrology/CLM50_Tech_Note_Hydrology.html)
 的这条路径使用零底通量土水求解，随后从实际土层移出径流，不以独立WA水库
