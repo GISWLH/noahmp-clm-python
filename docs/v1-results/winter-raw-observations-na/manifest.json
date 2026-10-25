@@ -1,0 +1,78 @@
+{
+  "scope": "Read-only raw variable availability/QC/month means. No model, fitting, changed original prepared data/operator, inferred complete energy balance or scientific acceptance. All1488 original H/LE values and own QC per site verified against unchanged original prepared NPZ. Raw month completeness is independent of value availability. Available-sample means are never called complete-month means. No NETRAD-QC=0 claim, no energy-balance residual or new observed acceptance.",
+  "archive_sha256": "d565468a517e4f662fdfe665bcf2b0ed87fe5188a2c99fba2932a61c22647cbd",
+  "artifacts": [
+    {
+      "source": "actual-qstat.txt",
+      "path": "actual-qstat.txt.gz",
+      "source_sha256": "d07ee237260f8e247ee4e89a1b87d07af40e439314d5b938d70ee78d5e15f6b0",
+      "stored_sha256": "eb727e38b99f7ae1f89479f2dfbe758edcd1590124c9f827830eedab86deb823"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "be5ab6d98c123031e4af72f37926cebcab004072098f47d2a390464717ee200e",
+      "stored_sha256": "a7b7fc85bc43989ae025a8b9819b9c9a4e77e1f8cae718b97dd15766dccfeb6b"
+    },
+    {
+      "source": "control/archive_winter_raw_observations_na.py",
+      "path": "control/archive_winter_raw_observations_na.py.gz",
+      "source_sha256": "c3232d442ca88b9404f1686459a0f65e393338b6453b8e67adfd4ccd12396ab5",
+      "stored_sha256": "aa26faa2494beb8d7bdf491e3ae9c9d41e9b2ffa7454a55ec31a0d59fa6ee868"
+    },
+    {
+      "source": "control/dispatch_winter_raw_observations_na.py",
+      "path": "control/dispatch_winter_raw_observations_na.py.gz",
+      "source_sha256": "7fbb1a932d25f6d4c4ac8497f297feca6359789bb76c5d1ec7990fe266903f7d",
+      "stored_sha256": "6a36826bc3767f090ba58e4e15ecbebf30e1d32c7dcb265d6d505de119077ad9"
+    },
+    {
+      "source": "control/winter-raw-observations-na-inputs.json",
+      "path": "control/winter-raw-observations-na-inputs.json.gz",
+      "source_sha256": "fbb3a616c2110eaf6a92ac7ca335442594963572cbd69baf67d117a52601907c",
+      "stored_sha256": "7299b9918e5544ccbc30655f60b7279f7b7a0841856ba85264fd4c0680cb7fef"
+    },
+    {
+      "source": "dispatch.json",
+      "path": "dispatch.json.gz",
+      "source_sha256": "e0f02b0b837d136f9e96b72d31ef3d9943a5815d2b786da990612b6bbc0bbaca",
+      "stored_sha256": "d3c0a69022ea6eba0c72a17c7904012c8371037a0222c5d2a01eb858e3ca4b97"
+    },
+    {
+      "source": "inspect_winter_raw_observations_na.py",
+      "path": "inspect_winter_raw_observations_na.py.gz",
+      "source_sha256": "fe0335ebf38c7a474535a877b6fe37956bef9343317fca3b4f7a338316541b10",
+      "stored_sha256": "7cc4694d4e0ebf84acfb302e3b293f504aa94a05517493688222157da2e89de9"
+    },
+    {
+      "source": "job.pbs",
+      "path": "job.pbs.gz",
+      "source_sha256": "4f8259e9928ffd813ff2b56f45e25ae935f735e1a70f6dbcca7c6374da4c699a",
+      "stored_sha256": "e1528e72ed2aa31c7b42e8f1e48897111e0bf527a16939a34f96d2ba1548ee1c"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "queued-host-resource-correction.json",
+      "path": "queued-host-resource-correction.json.gz",
+      "source_sha256": "3219c90506e46e1da52be4387f03829e81f6f1936da3005f60d9f81cecb4631f",
+      "stored_sha256": "08eaf32a2f129bea50cd207147613a9d50d43d55f359035bb1a92a5face59dfa"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "f6c18ad7787093572d47934825e1ede0cac2eaa70ba2c588097047daacd75732",
+      "stored_sha256": "d9b4c934461e3f2cbe1cdbd85412d62eb41ccefacb833a6583bf708329caf371"
+    },
+    {
+      "source": "worker.log",
+      "path": "worker.log.gz",
+      "source_sha256": "ff5b591d4e6920722073fff4ceba2d73c9fffe79951e84f58e23409843407f61",
+      "stored_sha256": "5a6ab47531e6bcd1333039b76c07e2e521efe0fe61dda189862f28076abcacb7"
+    }
+  ]
+}

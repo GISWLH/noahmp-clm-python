@@ -1,0 +1,42 @@
+{
+  "scope": "Closed MW/MZ duplicate evidence compaction only. Actual initial NB exit1 missing HOME MZ archive is retained; actual source was /tmp. Recovery completed with full TMP restores and byteexact original files before unlink. Both complete original archives remain in HOME and already published copies. 21 duplicate scattered files removed, source/inputs/active states/MI/MP untouched. df inode remained zero; no claim quota resolved.",
+  "archive_sha256": "0706c2bb2fc903bd9698b3637dd4ca2a78fcb71015df862d56e352ac630ddf24",
+  "artifacts": [
+    {
+      "source": "controls/compact_closed_winter_nb.py",
+      "path": "controls/compact_closed_winter_nb.py.gz",
+      "source_sha256": "ab9f95079e243ef2628e3215f2ba048fa4229cb1053fd6a42ca6ebc51dc8628f",
+      "stored_sha256": "0971735989fa7b6f467f72b0aa7fcd663330c5e93d2279321c1400a661f63bfa"
+    },
+    {
+      "source": "controls/finish_closed_winter_nb.py",
+      "path": "controls/finish_closed_winter_nb.py.gz",
+      "source_sha256": "cfb931e2b9005237d16e8ceaa7ed376341e0e3e103dcf52e62777828a5e9f77e",
+      "stored_sha256": "e222db027252dfbfc066137437aef0d14fa35d01283127275df402474d73487e"
+    },
+    {
+      "source": "initial-attempt-failure.json",
+      "path": "initial-attempt-failure.json.gz",
+      "source_sha256": "60000765ec9b7642353bd48ab82e0a9898d8ce21980a770c26e1728cc1aa07fb",
+      "stored_sha256": "accd1e0758f3cfc49511f66464e7a256eca3117a71b5ebbbd8eef2b8dd8ccaab"
+    },
+    {
+      "source": "receipt.json",
+      "path": "receipt.json.gz",
+      "source_sha256": "00d7947fe53323f030793cab439c55ad94eadb17d58041481eeb2e8e27c78d3d",
+      "stored_sha256": "df16d69edbc002e0194aad360f8ed607402d30bf0190b5ab8cae010a75936499"
+    },
+    {
+      "source": "surface-root-fixture-mz/ARCHIVE_LOCATION.json",
+      "path": "surface-root-fixture-mz/ARCHIVE_LOCATION.json.gz",
+      "source_sha256": "956b566d06eb2f359596e5df5ec33a94cd49fe4852a5cc4d3e052231b4a8e23f",
+      "stored_sha256": "67fdaf990578661c48a8ca0462e49710a8e6d372f39206aae15cdda467c8c8a7"
+    },
+    {
+      "source": "winter-causality-mw/ARCHIVE_LOCATION.json",
+      "path": "winter-causality-mw/ARCHIVE_LOCATION.json.gz",
+      "source_sha256": "7b1384ad63dd0502a17851a20034c0d0d31bdababcc3587dbc48ada807bc6a94",
+      "stored_sha256": "eac1e3e02cbb9a2dc9ec698dbb59217ed8e91c9a4d749c2c3029bd8526f1a8ed"
+    }
+  ]
+}

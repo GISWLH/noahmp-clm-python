@@ -1,5 +1,30 @@
 # GPU 阶段 3b 阻塞记录
 
+## 2026-10-25 05:12UTC：双端单点已过，冬季科学诊断与配额处置并行
+
+05:22 后续：[MV1550 原 K78](v1-results/surface-root-k78-mv/manifest.json)实际 F0，
+345 字段差 0、原硬守恒满足，MX31 原节点在 CUDA1 启动；生产推广／新冷年仍待。
+
+[MP1544](v1-results/surface-root-pair-mp/manifest.json)实际 F0，ML 私有候选两端
+十二组原科学／硬守恒门与原同精度满足，全 345 字段最大差 0；原 K78 已进入
+JAX 计算，模块回归／生产推广仍待，不续原失败年。当前 JN 完整 GPU 回归
+137/407 已结束项通过，MOST 三项真实父 0，下一模块在物理 CUDA1。
+
+[MW1543](CLM_JANUARY_DIAGNOSTIC.md)继续绕行科学诊断：Cng 完整一月 H/LE
+全部 QC3；Cha 土壤热释放 12.54–16.43 W/m²；零土阻仅固定边界代数诊断。
+原填补月不可作为独立校准目标，后端一致不豁免观测偏差。
+
+[MY 完整恢复证据](v1-results/closed-recent-evidence-my/manifest.json)保留 MQ／MT
+完整原归档，65 个重复文件经全量恢复、逐字节对照后移除，各原目录留恢复指针。
+随后 HOME 文件配额又满，新观测诊断上传实际报 ENOSPC；GPU 和现有三个 EHPC
+年段继续。[NB](v1-results/closed-winter-evidence-nb/manifest.json)对 MW／MZ 完整
+恢复后移除 21 个重复文件；首轮因 MZ 原包实际在 `/tmp`、不在 HOME 而退出 1，
+保留该失败再完成恢复，没有丢失 MZ 原件或把原失败改为成功。
+[NC](v1-results/closed-cpu-evidence-nc/manifest.json)再对两个已关闭 CPU 全测目录
+全量恢复、逐字节核验，移除 320 个重复文件，保留原包和恢复指针。两次指针
+新建／fsync／读回与随后 MV 新脚本 SCP 均实际成功；`df` 仍报 0 空闲 inode，
+不声称配额计数已恢复。未清理活动状态／输入／源码、venv 或其他项目。
+
 ## 2026-10-25 04:48UTC：GPU 二分回退已过 CUDA 参考，完整月科学差距保留
 
 [ML 私有表面根候选](CLM_SURFACE_ROOT.md)定位到 NumPy 已有 20 次后中点回退、

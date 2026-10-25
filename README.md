@@ -1,11 +1,13 @@
 # noahmp-clm-python
 
-2026-10-25 04:48UTC：[私有 GPU 根回退同步](docs/CLM_SURFACE_ROOT.md)已过 CUDA1
-单点与 EHPC MN1540 十二组原 NumPy／守恒检查，H 最大绝对差 0.002164094 W/m²；
-JAX／原同精度／K78／模块回归及生产推广待验，原失败年不接续。
-[当前完整一月诊断](docs/CLM_JANUARY_DIAGNOSTIC.md)MQ1541 实际 F0，全部十二组
-55 日／一月保留科学差距，Qia H −23.0784%～−38.5546%、LE −11.4192%～−31.5122%；
-没有完整年／气候或 SOC 收敛／多年／留出／校准／v1.0.0 验收。GPU 固定 CUDA1。
+2026-10-25 05:22UTC：[私有 GPU 根回退同步](docs/CLM_SURFACE_ROOT.md)两端单点与
+EHPC MP1544 原参考／守恒均完成，CUDA/JAX 全 345 字段最大差 0；H 相对 NumPy
+最大绝对差 0.002164094 W/m²。原 K78 的 MV1550 也实际 F0、345 字段差 0；
+31 项相关模块回归已在 CUDA1 启动，生产推广与新冷年待验。
+[完整一月诊断](docs/CLM_JANUARY_DIAGNOSTIC.md)保留科学差距：Qia H −23.0784%～
+−38.5546%、LE −11.4192%～−31.5122%；MW1543 另确认 Cng 一月 H/LE 全为 QC3
+填补值，Cha 土壤热库存释放约 12.54–16.43 W/m²，不能用后端差 0 代替观测验收。
+GPU 固定 CUDA1、CPU 在 EHPC；全年／spinup／多年／留出／校准及 v1.0.0 仍未完成。
 
 2026-10-25 04:19UTC：[当前12组CUDA冷年](docs/CLM_MULTISITE_SPINUP.md)真实父1，
 2657/17520；原年／全局账已封存，不从失败年继续，原剩余时间估计已撤回。
