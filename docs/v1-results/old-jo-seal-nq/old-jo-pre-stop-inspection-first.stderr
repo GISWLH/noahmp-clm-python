@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/lhwang/work/noahmp-v1/seal_old_jo_nq.py", line 258, in <module>
+    print(json.dumps(snapshot(), indent=2), flush=True)
+                     ^^^^^^^^^^
+  File "/home/lhwang/work/noahmp-v1/seal_old_jo_nq.py", line 72, in snapshot
+    rows = inventory()
+           ^^^^^^^^^^^
+  File "/home/lhwang/work/noahmp-v1/seal_old_jo_nq.py", line 60, in inventory
+    value = identity(int(path.name))
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lhwang/work/noahmp-v1/seal_old_jo_nq.py", line 48, in identity
+    cwd=str((path / 'cwd').resolve()))
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lhwang/anaconda3/lib/python3.12/pathlib.py", line 1240, in resolve
+    s = self._flavour.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 435, in realpath
+  File "<frozen posixpath>", line 495, in _joinrealpath
+PermissionError: [Errno 13] Permission denied: '/proc/2181456/cwd'
