@@ -1,0 +1,654 @@
+{
+  "scope": "CurrentJN GPU407 stillinprogress: onlyterminaloriginalfile sessions exported withactualparent/pytest/phases/XML/source/dtype/integer/originalgates/barriers, inheritedIV37 originunchanged withall566byteproof. Allobservedworkers physicalCUDA1. Bothyear snapshots retain ownsource identities andincompletestatus; no full407/1563/year/spinup/observational/science/releasepass.",
+  "archive_sha256": "379966a0df22783a0ef0b18e0d60993f6627cc40ddd02ab4cae65654a0a165cf",
+  "artifacts": [
+    {
+      "source": "control/archive_current_gpu_lx.py",
+      "path": "control/archive_current_gpu_lx.py.gz",
+      "source_sha256": "4ebc96f21899c4ca1d5e10e29337ec7ecbbb239d1d8c3dac83641acf6fde577a",
+      "stored_sha256": "36a47b494d3f86cf87b9232a524aa51b5e0c078faa53d6d07e1977ecaf402b8e"
+    },
+    {
+      "source": "control/ballberry_jo_full_worker.py",
+      "path": "control/ballberry_jo_full_worker.py.gz",
+      "source_sha256": "020b9edce8c17a8529e57afa7f53c550b24280be549601b0294d1446e4928544",
+      "stored_sha256": "06da262a9e792bfe9cb4104854f5abd37eaf2b41c0db99221af78ec843793e44"
+    },
+    {
+      "source": "control/bounded_cache_guard_gd.py",
+      "path": "control/bounded_cache_guard_gd.py.gz",
+      "source_sha256": "4744d25ffde851c942816edf4e7078ce2179b48faa2fdb7c08d0b05100f4bd58",
+      "stored_sha256": "ae6abb92ee3684d8fb448be46cbc11f3e37e627bbb1200913a27ad2b4f76f5e9"
+    },
+    {
+      "source": "control/collect_ballberry_jo.py",
+      "path": "control/collect_ballberry_jo.py.gz",
+      "source_sha256": "da3283fa9d792224cac29256e4bed39f7509d5b251d8f7b01500ab140ca853f0",
+      "stored_sha256": "d0eb58afcbdd5a508d291df0877ce487f6ad51033aa4a6c16478aa957178ae74"
+    },
+    {
+      "source": "control/control_ballberry_jo_full.py",
+      "path": "control/control_ballberry_jo_full.py.gz",
+      "source_sha256": "5ee21a8f29d298eaf4f52be1197cd53d0821f6b76491fe5ba94fbafff00ad6c8",
+      "stored_sha256": "39e35c88c080b7e3ec6ecd7f394563c258f9673f8d0544ece921b78dae93755e"
+    },
+    {
+      "source": "control/launch_ballberry_jo_full.py",
+      "path": "control/launch_ballberry_jo_full.py.gz",
+      "source_sha256": "a8d75bc25d867da791c27d9d0dafaf8fb8fdf66654d4124e597d9ab98085fb9a",
+      "stored_sha256": "b4faa946ad1a5fa62df565d02a81e4fd93c0bb90bf1d15254b09528e497030c2"
+    },
+    {
+      "source": "gpu/SOURCE_SHA256.json",
+      "path": "gpu/SOURCE_SHA256.json.gz",
+      "source_sha256": "e29944bea36767f6d12b42b6ffcabeec278d3983e6ef864068c04fefbd7205a5",
+      "stored_sha256": "f995d74018e66c65a703c031315c5e05b13b113105c4617051c39f18e9ccd7fa"
+    },
+    {
+      "source": "gpu/collection-exit.json",
+      "path": "gpu/collection-exit.json.gz",
+      "source_sha256": "7995aeec7943bef3fd99bcd67a655471bb0c1272f13e736629d9db14d22e3b95",
+      "stored_sha256": "25c99cdf3fef3933e11cd759576cb14f508bef81424b1fb5a35f96bc6462b30e"
+    },
+    {
+      "source": "gpu/collection.json",
+      "path": "gpu/collection.json.gz",
+      "source_sha256": "522be9c62aa9aa6cad64d4e614ac20f4d221f4cb90bea1deb9ecb63e9ad7b658",
+      "stored_sha256": "0ecaf7e9e68bd5d15e36c491d33d8732761e6c3e0332db1c90ec47cd310d8fe3"
+    },
+    {
+      "source": "gpu/completed/test_gpu_batch_shape-exit.json",
+      "path": "gpu/completed/test_gpu_batch_shape-exit.json.gz",
+      "source_sha256": "8b4be202b7a158e0eb5f9d5f5bf0db6ac253582ba57e8e84634a5dd08933ebfa",
+      "stored_sha256": "52588d23e34d408a72c770dbe0097e59aa65e8b0509796425f8c223bcf5f13ec"
+    },
+    {
+      "source": "gpu/completed/test_gpu_batch_shape-expected.json",
+      "path": "gpu/completed/test_gpu_batch_shape-expected.json.gz",
+      "source_sha256": "6fbb363a4c1c6fb44eb2c00dc5de5221b93668f409157799ac67528147563830",
+      "stored_sha256": "f99f5bc1c660c3387439b6ca45783254be9aae868052ee159e279b61a3945dfb"
+    },
+    {
+      "source": "gpu/completed/test_gpu_batch_shape-receipt.json",
+      "path": "gpu/completed/test_gpu_batch_shape-receipt.json.gz",
+      "source_sha256": "50221e98a380380922910f1353385df5baa4c7ded3567b250c2d98a7a0bf7d23",
+      "stored_sha256": "8e3ccf16f74e3b2b4347e1179884ec7a6e78c24b6aa71de27dda9fcdb802a7d6"
+    },
+    {
+      "source": "gpu/completed/test_gpu_batch_shape.log",
+      "path": "gpu/completed/test_gpu_batch_shape.log.gz",
+      "source_sha256": "ff13c50fbdd89608b0772925fd19a29929433cb0910ed8668ab987ca9c2e736d",
+      "stored_sha256": "13a5712cef978c49caee31c5e158d8323e3dcaf8d580142773ae4184abcfd735"
+    },
+    {
+      "source": "gpu/completed/test_gpu_batch_shape.xml",
+      "path": "gpu/completed/test_gpu_batch_shape.xml.gz",
+      "source_sha256": "74a3bcb3dc41dc0ac17f531188f7e4851c8862d2b4f96880900b6f98cb1e4857",
+      "stored_sha256": "f11566147c0c803cbd04745d90e897cb6283b674df09a09e835c2e45330eb208"
+    },
+    {
+      "source": "gpu/completed/test_gpu_benchmark_checksum-exit.json",
+      "path": "gpu/completed/test_gpu_benchmark_checksum-exit.json.gz",
+      "source_sha256": "bccbb720013377a98879b5f35562b2b862175f1c749533e808d037a1f15e8af7",
+      "stored_sha256": "2240e57a5f1db74a579da210e93ff31bd44eeb369709db39a2a3887ca57d288f"
+    },
+    {
+      "source": "gpu/completed/test_gpu_benchmark_checksum-expected.json",
+      "path": "gpu/completed/test_gpu_benchmark_checksum-expected.json.gz",
+      "source_sha256": "9b318555cb014e6c9804ab76858bb48b4c9974b0b8c59925f165be2e5d43d206",
+      "stored_sha256": "a29b78ee64fd3b5cafb20197ffaafd43c3aafc8849f6b2f554de3775786dcb1b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_benchmark_checksum-receipt.json",
+      "path": "gpu/completed/test_gpu_benchmark_checksum-receipt.json.gz",
+      "source_sha256": "02441ed3b2fb57f9779a028d1856674162af5270a08a7d6bb45401a814c81284",
+      "stored_sha256": "aaf9c2dea22afcd5d2e2ba07cd0e7b86569117a7031e3ad0a73eea891b01408a"
+    },
+    {
+      "source": "gpu/completed/test_gpu_benchmark_checksum.log",
+      "path": "gpu/completed/test_gpu_benchmark_checksum.log.gz",
+      "source_sha256": "b68cef419c9a749e24c599f296edeee2eeba691e798a3711a749cd9f2abf96e7",
+      "stored_sha256": "18b3bbdb76aabe4b6b7db7f2e52bf7aff7098e6e246d3b4a1eb1c0a074e2c7db"
+    },
+    {
+      "source": "gpu/completed/test_gpu_benchmark_checksum.xml",
+      "path": "gpu/completed/test_gpu_benchmark_checksum.xml.gz",
+      "source_sha256": "2cd831de4f30fcb5de9bba551e22fb03bf7efbebb8a8a337e0d490f57f6483fa",
+      "stored_sha256": "7021275114fec95efc997813848187c5e65c116f34330e2ccc7825b004cdc181"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_boundary-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_boundary-exit.json.gz",
+      "source_sha256": "7f2b87735e62dedcf8df0fbec9820cdbde2d16e65aba90c9aab4721824ed3eef",
+      "stored_sha256": "e8229af94e245a03a9d2892d73bce206178340bc8174821e4cad5a0a42ab0939"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_boundary-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_boundary-expected.json.gz",
+      "source_sha256": "0ea858b4d88837dc02212dc743f126213469ea6ef5b781de1fe496c0b82b6d9b",
+      "stored_sha256": "8ae46d913b7c2e580e135bdbb268c30081476d42799e51783c8f2caed76afbc8"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_boundary-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_boundary-receipt.json.gz",
+      "source_sha256": "fd4b6240d30d4e7042a35f35526e6af3244a6925d3fcd43292c6d47bcfc9390d",
+      "stored_sha256": "23295fa93bf66b4861ee0dd4c1567a694a573a94ea7204c574c5aab0d8c83a67"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_boundary.log",
+      "path": "gpu/completed/test_gpu_canopy_boundary.log.gz",
+      "source_sha256": "b199f232a73d1e6bff994d067f5a69d72fd57f8787f12f7d93da5bcd1c2b6ef8",
+      "stored_sha256": "864d46823f075bc598ab9f153a5035ccbc382401b65a62d20b1ecfd174a105b4"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_boundary.xml",
+      "path": "gpu/completed/test_gpu_canopy_boundary.xml.gz",
+      "source_sha256": "7f7f1ca6a43f29e116e4d66150baadf3da698b71e6610bec09b7cb6c31bd79df",
+      "stored_sha256": "3c708e8d417cf26c770fbcba5f1da4a4e395291a7e187df4d9dd6f0a8904fdec"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity-exit.json.gz",
+      "source_sha256": "5e385818e977e74224d236f29ec03f53c5cb284b2e5cb6e1aadfc3d1bcb5190c",
+      "stored_sha256": "6e325c2ab9a3953189dfa6c521ec223a88d6a25cda371fa7187bed9f4f76b723"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity-expected.json.gz",
+      "source_sha256": "29f74dd649698b9905bbc3bea6fd30cc7aabc10d59e8e37d62be5a31a2f1b75c",
+      "stored_sha256": "2e96406a1d5bc9bd7f5dc7c61e4304af550dcc03c23642529272b2c1e5ff0cbe"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity-receipt.json.gz",
+      "source_sha256": "8cefab9aed86fb14fb1ff3dca34fe98163a3896f3a1899d7adcf792caac3aa7d",
+      "stored_sha256": "b6e1e56e2c08f78e3b356673ef52fe7a452a41b69e093b3a47c73677c56f8eb9"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity.log",
+      "path": "gpu/completed/test_gpu_canopy_capacity.log.gz",
+      "source_sha256": "cbbb2604e66398a93daf610e9faca2c445332f051fcdc6653c731a4f6faa56ab",
+      "stored_sha256": "3f104fd337d93fad2e537d257285ca458dcaa7234eabc117d3444d326985bac2"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity.xml",
+      "path": "gpu/completed/test_gpu_canopy_capacity.xml.gz",
+      "source_sha256": "712637ee8bc82852d7c7df0de3805d83844d414ed9440fae2ef8faa0e94bafda",
+      "stored_sha256": "b395469c14a13df5db1dea415c95da8855b8e65c648fc98c43a2decbefd9c330"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity_layers-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity_layers-exit.json.gz",
+      "source_sha256": "b72f232c0c287e7496ed579698543b936bcdce2dbfeff77fe8277d0b4a2b2da6",
+      "stored_sha256": "d011d9b27739e7041d28a260d16ea77973b0269b5182a900dcd713277ec8e6d7"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity_layers-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity_layers-expected.json.gz",
+      "source_sha256": "bda64dba8ba195c3ba19063f98552a469d9734317caab8747b345db626a01b48",
+      "stored_sha256": "7903a332900f30568e90a5a81451c43696db84a1c6b3901a84edb4a736f6eeb3"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity_layers-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_capacity_layers-receipt.json.gz",
+      "source_sha256": "2a68cd7f9587d42d0b66a50a500909a8ac6e316c6714782a355065cd2406848a",
+      "stored_sha256": "234ce2825d5f26f1509e113ef57f17fb45a2438bcd1ac6f0c6516cedc87e9017"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity_layers.log",
+      "path": "gpu/completed/test_gpu_canopy_capacity_layers.log.gz",
+      "source_sha256": "9d330661bad89bf5843e26b0f346e6be868d48e73d572423feacd94833d184b5",
+      "stored_sha256": "f204dc1a68f58ee85622e2086ae64cca2b23a335a3ad2e8ea004b17665f53c6b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_capacity_layers.xml",
+      "path": "gpu/completed/test_gpu_canopy_capacity_layers.xml.gz",
+      "source_sha256": "531cea74cef8635ca3cf41f6073bb2059b65dd698eb860cbe667b2af2f7c5838",
+      "stored_sha256": "db6c20e73d1fce61fe4ea890042e1ed32d414f35bc07524d1d8d2f701e539514"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_interception-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_interception-exit.json.gz",
+      "source_sha256": "dc1f1628181e3957f7f4502b362a3438d1a3a64f40690a7c267e6b889f09d63b",
+      "stored_sha256": "cd26c4ef6cf8bf691d7f622f260edb8eea6e452c691fd7f4f94247c30fed4911"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_interception-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_interception-expected.json.gz",
+      "source_sha256": "6c538c7ff62082f01c42a438f547e025607d101f7169ef9dea6db7fbe9a4a63c",
+      "stored_sha256": "2b2d63cad12cc0712fa1c62314f52425ac2b1f46e5ec588724f26d181b12bd5a"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_interception-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_interception-receipt.json.gz",
+      "source_sha256": "ef4cc685a3be6bb289416ab9a0a5513da3b05445646d3a5b09b7f556c316b03f",
+      "stored_sha256": "af3d68fe9a169cd7fb19f7f96327920a4da4b71c4348b91a957cc104b00ea66c"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_interception.log",
+      "path": "gpu/completed/test_gpu_canopy_interception.log.gz",
+      "source_sha256": "d2da832461fe496534983351fca1a5e796a5286e7316233fe7369f23ac202e76",
+      "stored_sha256": "c910a276863f33e86012d7e6b0234329ce44d05ae89623983c047a42a04a2bba"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_interception.xml",
+      "path": "gpu/completed/test_gpu_canopy_interception.xml.gz",
+      "source_sha256": "b7051cc88042c67c39a332dca2a81c813281fb973ad8a5dabc1f87f6bf07b81e",
+      "stored_sha256": "9c7a0dfe5da1be455d7228dc736c6dbc385aebff823dfea2524179291adbfebf"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_most-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_most-exit.json.gz",
+      "source_sha256": "f7511902578d94c59e11d7139a3757f0fb0778a55aaa721e5680e02c75f8eccc",
+      "stored_sha256": "c527859a5f7b0d0d2ad47b2f801bbff30f6c8e867960136572af3522b7b1af5a"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_most-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_most-expected.json.gz",
+      "source_sha256": "e1121073a8952acafa6dd31b5d6d17632572a16b91d144c8f5299c2b73dfe333",
+      "stored_sha256": "c9b835e372c9b1955257786c7cc8cff59a6c2dfd6640f6a5f33adce129a2829a"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_most-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_most-receipt.json.gz",
+      "source_sha256": "ef8de46321a86d862ac11d488e3c715080a1908c2566444f76323e5c6ec0ff98",
+      "stored_sha256": "b0aa302a880c54c28ac706cc0a66a520509208ee617bb2feff113c687268c6d2"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_most.log",
+      "path": "gpu/completed/test_gpu_canopy_most.log.gz",
+      "source_sha256": "4ea086057095ae2d4a828e7680893c74e96dc6a5f702d0db618478c06912f15c",
+      "stored_sha256": "340984d50c736c7323a3e96b4589db9bedade57f8391a46fee465c1643fd1b5c"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_most.xml",
+      "path": "gpu/completed/test_gpu_canopy_most.xml.gz",
+      "source_sha256": "b2ae32f3569b950d7f42273cddc03ab2bc66496367e36a18dd748d1d601f0c5d",
+      "stored_sha256": "2b7a84a7e4aed64a40b21c9256dc5674c13d1d61845d3d672c9e6f62bca348f2"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_optics-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_optics-exit.json.gz",
+      "source_sha256": "640491cb969b2a1e997e4b4e8d766daa01297d7f46ea9901aab5e837980dd307",
+      "stored_sha256": "f0822d09cfa819b31b392b12923d621a31c4e206654ceacdf99e5c9d1dc3df5b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_optics-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_optics-expected.json.gz",
+      "source_sha256": "1a3dd1d6e1c0982b8749838777a19ec67bf0076f9fec853005ed50bbe10a6525",
+      "stored_sha256": "0e92999712392a33bd105953535b65e0da858c1fde6cd9fd884b90abc165e6a2"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_optics-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_optics-receipt.json.gz",
+      "source_sha256": "a1e93e7b13b7b8ed12d98aacff9d109f3f9bbb9da1e4b12aff223ca118476fa0",
+      "stored_sha256": "ef2b20dfb247959f941d8058903f87ebfae46012c3863b2df5a70621498c5186"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_optics.log",
+      "path": "gpu/completed/test_gpu_canopy_optics.log.gz",
+      "source_sha256": "56fcef191869ee359a6b506ca7b6496d9c14a068bd9655178dc0b55247bbf3af",
+      "stored_sha256": "02e7e15049bbff836d5d478a155813fa800d6f204292ad90444fea2a8a69b881"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_optics.xml",
+      "path": "gpu/completed/test_gpu_canopy_optics.xml.gz",
+      "source_sha256": "7dea66141ec82db02034dbc87446c6b79174b7050825d5408d0a8b353143539a",
+      "stored_sha256": "80838201428c456381aa0a4277d878df397a01081c4efab03e064dac0ea6dd18"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_surface-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_surface-exit.json.gz",
+      "source_sha256": "a595d60c1381afb8cf476b7918c10ddab96495cd444ce059db9a54bcd5865cd2",
+      "stored_sha256": "9b6b0ad9189861d3024ef9b57ca04ca2f7fd90a576d0d5209f90139b00889871"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_surface-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_surface-expected.json.gz",
+      "source_sha256": "52e8a9ae68ec0b4a6747e1d3f38b3811302b0077e1c2991c8655cd38f011e9db",
+      "stored_sha256": "1234a7df008bbf2617117ab766ff027518ea7824487d270236be84154fe88156"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_surface-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_surface-receipt.json.gz",
+      "source_sha256": "2be4462c9da096968e860ce695d25334712eef85ed771798223cfeb5fb2a6a06",
+      "stored_sha256": "fb30a2acb01420561000297c0c4731f5d1f81b2202311ab3c2f667fe4e178a4f"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_surface.log",
+      "path": "gpu/completed/test_gpu_canopy_phase_surface.log.gz",
+      "source_sha256": "90d0cdd472f9fd06ea8389bf5ef54b0afa143de833d5cdb1e04cc3ed23216c85",
+      "stored_sha256": "e8766cb4c9e82c7782e566e7a7478be96f964c9c3359d67c73133105fce07681"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_surface.xml",
+      "path": "gpu/completed/test_gpu_canopy_phase_surface.xml.gz",
+      "source_sha256": "0db642547fae3ac82d91ddaff970ee8cb23ef50d5d8b2adca3f031a1c77286bd",
+      "stored_sha256": "e3487da94a7672782985af1ee753c967045a1e38e4aa6d3a80ad202a54efccb4"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_weak_descent-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_weak_descent-exit.json.gz",
+      "source_sha256": "b626ef3e5d1fcf7b56b8d02c675ce48afabae8a6d27041ec6b114504190f2b68",
+      "stored_sha256": "ddab914a53cfb6dd0f4ad46e89d91b1480457c76fcc6b3f0f8d9b9c1d872ab70"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_weak_descent-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_weak_descent-expected.json.gz",
+      "source_sha256": "c9e63b04a8c275aeeab59a75cbe5fd23b80a8242809d903ce7da2f35f87ebb84",
+      "stored_sha256": "cd8748dcbd206f6afaab0bacec2ba40d9b1aa25ea231676edd13dfb9c2b4f606"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_weak_descent-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_phase_weak_descent-receipt.json.gz",
+      "source_sha256": "7dc33005f9a523aaaf121f36c0bc431c3a809b7ebca929095f9c1b7ee97d2398",
+      "stored_sha256": "41246a55348d2dde72758fe9546ead84c7d5445f6134e9962c9e5b4213b15d81"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_weak_descent.log",
+      "path": "gpu/completed/test_gpu_canopy_phase_weak_descent.log.gz",
+      "source_sha256": "f2f5d537a5f562ae619e48bdcffe2a2e50202da32ead5d89194031686c0e8fc4",
+      "stored_sha256": "af2a557bfab2c04bdea111391fdeb58dc9c05f2ac88e3f98f99572a8757c7cd2"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_phase_weak_descent.xml",
+      "path": "gpu/completed/test_gpu_canopy_phase_weak_descent.xml.gz",
+      "source_sha256": "b8ca39cd945dc676cc1a67ef30821b8be07bddf5be62899d1a0742a56e4c1b45",
+      "stored_sha256": "f96305d31daeed889a42f02891dcf4adc6b35d54d438b4fab24c1b9b7e7aabc1"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_radiation-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_radiation-exit.json.gz",
+      "source_sha256": "823890c9747d918cc0f81943fe6e92c4cd1444555ce81e23c5d32a501c67df68",
+      "stored_sha256": "9f0515bab1a8e2146bee65467805d41fae7484d2ee82da1ac3204d10fda129fb"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_radiation-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_radiation-expected.json.gz",
+      "source_sha256": "363cea0a781e0b5b2eec2fac61591b13ab98c77d71eeac9d25c33fd217d7990d",
+      "stored_sha256": "4f4f096b8f79987ae0e6b50602777b86ca2882f981f6785aaadf53e13805b2d8"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_radiation-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_radiation-receipt.json.gz",
+      "source_sha256": "40bf3166dfe323573d410a5b915d50bb25600bead23f9ff7ce02b36ea21ebd2f",
+      "stored_sha256": "47caceca586d5a370694c8bd7c0ba392de129d5665833c2e5574517eecb45e45"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_radiation.log",
+      "path": "gpu/completed/test_gpu_canopy_radiation.log.gz",
+      "source_sha256": "e33c548da86336782cc0cf7769e63226d3ab57051a91a9ac0025e334d563f19d",
+      "stored_sha256": "b5dac444f641ba06a7b1b4a21eb7d582a118b85ccd5311ef96da9d0e9b5164e8"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_radiation.xml",
+      "path": "gpu/completed/test_gpu_canopy_radiation.xml.gz",
+      "source_sha256": "41cd45900cb94d051d7b94106e703a04f11bf49ce548de6a9fc216dc907b20e3",
+      "stored_sha256": "11370b9b4bf9de317a09396957eb34a6b80794edd2f36e032df371c64d31ae0c"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_snow_radiation-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_snow_radiation-exit.json.gz",
+      "source_sha256": "928e4d014be522f08e8c01a0be2e871808529bc0f98f3c496590bbf6d3a0246a",
+      "stored_sha256": "ccd68aea70d5c5d5633b63e7ed0d8deb9b0ac58045e5c91db6502f5815cf4197"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_snow_radiation-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_snow_radiation-expected.json.gz",
+      "source_sha256": "5aa4c3d3fe2dd518da63778ce3980bd4699266d6c5b028275887947aed51cae1",
+      "stored_sha256": "d2147e7e43367c1bfd3e9fd620b6da184df07f42b0036b4d76d9d9f731a2f9f6"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_snow_radiation-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_snow_radiation-receipt.json.gz",
+      "source_sha256": "9270e75f426476ccca9c9a66c44728df4eb3b1a4771581c6b0088ff1082c739a",
+      "stored_sha256": "5142566ac34fc051870f691475064ea50db9b6df2ca4fbac14277ee195de6263"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_snow_radiation.log",
+      "path": "gpu/completed/test_gpu_canopy_snow_radiation.log.gz",
+      "source_sha256": "b2c45ff592a7937a0cd496560a0dc85efd13689a7ce7b3086fc90a91dbefcd45",
+      "stored_sha256": "073a557295e942f321fe1458384b4837b4c6780a0120316606d9fd0edfdef7e9"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_snow_radiation.xml",
+      "path": "gpu/completed/test_gpu_canopy_snow_radiation.xml.gz",
+      "source_sha256": "12896930b6f2ae9620caafccd0e216528661c828f8f275f1c28021401f9b2071",
+      "stored_sha256": "40da38d2b3272ccda443606c94146715a6ce1f65910e5f3873c83e25d7e8ff8f"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_surface-exit.json",
+      "path": "gpu/completed/test_gpu_canopy_surface-exit.json.gz",
+      "source_sha256": "5e6bfbb6203a73d787e39962bdddc2dd009e4005b16f7a11aa4c895ee965822e",
+      "stored_sha256": "91fb34cf5b7a295973809beff25b53a95a41bbe6fdd90a2c222537a8729f2817"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_surface-expected.json",
+      "path": "gpu/completed/test_gpu_canopy_surface-expected.json.gz",
+      "source_sha256": "e36ba3b3dca710d8fe5dcd271c272e052df0e1ed8c5feff9af16af20aff3935b",
+      "stored_sha256": "210741e2c2ea1d822ed8e802af247764b909a3b2503617d71de1622758eb2bd9"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_surface-receipt.json",
+      "path": "gpu/completed/test_gpu_canopy_surface-receipt.json.gz",
+      "source_sha256": "27e5bd934fb60a1abcbe2d10bb3374701722f1f5cbd13d1ed035fb456b274ed8",
+      "stored_sha256": "c3cb13eb30affca2fff8ea0f4e6281b2b9e21039ba1f0fccab9813e0c2af72ff"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_surface.log",
+      "path": "gpu/completed/test_gpu_canopy_surface.log.gz",
+      "source_sha256": "0262874bee0241a08a58a55e58c3b5a9ffe6bf408e2e639ca2a7b2e11eabd9f1",
+      "stored_sha256": "c3df9a15be77072b5c13eba1dbcd5b9548bfae17c0c5e8dbafd1ee9593583cc3"
+    },
+    {
+      "source": "gpu/completed/test_gpu_canopy_surface.xml",
+      "path": "gpu/completed/test_gpu_canopy_surface.xml.gz",
+      "source_sha256": "2eccf9d5d81c297e5797b52d8271937aaffeb09a7510ffecc91bc9fcc4ac2179",
+      "stored_sha256": "35bd9944d1092c36386ce55f999e460bbe3697221a1534f54fd0ecd642222011"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_bgc_column-exit.json",
+      "path": "gpu/completed/test_gpu_clm_bgc_column-exit.json.gz",
+      "source_sha256": "79e7bb0091e9bdf8b35c516593519b5496f55290ab0fd3b4434f5d234f55f816",
+      "stored_sha256": "bf5adb6e5177e040ca6f4bd9079ebfdb79419f10304296ea7ad38d11c37efc0e"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_bgc_column-expected.json",
+      "path": "gpu/completed/test_gpu_clm_bgc_column-expected.json.gz",
+      "source_sha256": "c82a869159f63a36ea465a13b8d8dcc281291c020181d5458aaafd7dca99a342",
+      "stored_sha256": "3f8f9949f43ca7a4ede3430d095f34bdaa449e59c845564fc1e72e524663586b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_bgc_column-receipt.json",
+      "path": "gpu/completed/test_gpu_clm_bgc_column-receipt.json.gz",
+      "source_sha256": "381b29e5890b5a91b95b604b042256b6b2e15ed66c676b3636f6f02177301e0c",
+      "stored_sha256": "9b982bfe018bd384b5128a59a27fc8bfdc384b36ade4542007662db8aec613e9"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_bgc_column.log",
+      "path": "gpu/completed/test_gpu_clm_bgc_column.log.gz",
+      "source_sha256": "e1c84c05a13653330d51c3009b947ceeb1b31bc71b00195efe36ee2ba3e92405",
+      "stored_sha256": "192ff69090eafd10f601345602023aac3ee1772020d141614ad63c61b484e048"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_bgc_column.xml",
+      "path": "gpu/completed/test_gpu_clm_bgc_column.xml.gz",
+      "source_sha256": "6a9753298242c3bed7d5e766b360f6b40366d2bc2c449aa8c40783662b41f8bd",
+      "stored_sha256": "11644e35f87affdab35f3cdd1e291c2607a71e614a574a12dcc19382893ddccf"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_column-exit.json",
+      "path": "gpu/completed/test_gpu_clm_column-exit.json.gz",
+      "source_sha256": "c683bc416a0a7d164e1d7ea3ce6e6fd2b37c30ea7d5e83fa8c397fd4486b9c70",
+      "stored_sha256": "00284b033c73a203cbcc9cd97dd02b5413e1513a2b3a9aed1cf02ed040af00b7"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_column-expected.json",
+      "path": "gpu/completed/test_gpu_clm_column-expected.json.gz",
+      "source_sha256": "fdebe7a5738d4256578aae91e2e5fee2364d6fa6d7998305b1519096acada80e",
+      "stored_sha256": "6e5cc69b468bcb032c43eb95ce90021dfd2da9b3c44aa97f5dff923d1066a4b3"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_column-receipt.json",
+      "path": "gpu/completed/test_gpu_clm_column-receipt.json.gz",
+      "source_sha256": "3dce60e9b669ee97cdde4fa1c7349c644647fd766e57312f2ab8126f174ef337",
+      "stored_sha256": "58957fabf24808ab0819a7338f0d9128ed574cc662d207800c045b6beb7218ba"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_column.log",
+      "path": "gpu/completed/test_gpu_clm_column.log.gz",
+      "source_sha256": "2a49f1a26e31431fae439b4eb81fc7062e8743478642e7fc3af44ffb6d00f637",
+      "stored_sha256": "926e31149ff65846912c1767f8b09132dcfee0e6efd80def22aa16f1768d1901"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_column.xml",
+      "path": "gpu/completed/test_gpu_clm_column.xml.gz",
+      "source_sha256": "e441af1f92f81715f925383b1ed62f65bafbc10c3fde12084f028b116e55c4fb",
+      "stored_sha256": "88f935b6f1df62d5319da79bb144ad2b8b9be009cde1f2c3ee30410b5a7693fd"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_crop_column-exit.json",
+      "path": "gpu/completed/test_gpu_clm_crop_column-exit.json.gz",
+      "source_sha256": "3a0516f21f09c756682ef3f98c6b32ed9e4a8a9b1d2c685f25fa296a01fb452c",
+      "stored_sha256": "efa1451acac74bbc04bb6821147b6759448a9a8bd59482168ac740fa95543a1b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_crop_column-expected.json",
+      "path": "gpu/completed/test_gpu_clm_crop_column-expected.json.gz",
+      "source_sha256": "c5b678d9915adb03523b0092c5f811df26197a6aa8084c095feb523f00d46438",
+      "stored_sha256": "218432eed3f85f1761391baac45a497227df4ea55b3795e98632b9501a0bc2e1"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_crop_column-receipt.json",
+      "path": "gpu/completed/test_gpu_clm_crop_column-receipt.json.gz",
+      "source_sha256": "dafcde0495de37dbde6c7817123721ce3d82a412b584f74eff96586a5613c8c6",
+      "stored_sha256": "199e975067f3817245fdd9274554de0083e82928f29cabee0da279c7939998e5"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_crop_column.log",
+      "path": "gpu/completed/test_gpu_clm_crop_column.log.gz",
+      "source_sha256": "6546d342901ce162e0060835c9db47f4df87578d3fe739fa96261c0bca0d623a",
+      "stored_sha256": "fcef2db6afea9185bf0827c2672ebac48bc074ebf2276d5a0c6c14c1b91ed473"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_crop_column.xml",
+      "path": "gpu/completed/test_gpu_clm_crop_column.xml.gz",
+      "source_sha256": "0d280b65347f698c856b3dd26020198f0423aaedabaf1a18aeaab0ed56fecb33",
+      "stored_sha256": "89933e259506ea7ce397567eb2e108cfafb827824e680d517c7082636b0f0476"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_freezing-exit.json",
+      "path": "gpu/completed/test_gpu_clm_freezing-exit.json.gz",
+      "source_sha256": "977f2c7e40d753e8d0b0ad6593a13783fe98f073649fa6065b8b5aff94129112",
+      "stored_sha256": "9afebec58ea0d7bffce86bd349bbb7267af84dba9511eadb465ad307f11fce54"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_freezing-expected.json",
+      "path": "gpu/completed/test_gpu_clm_freezing-expected.json.gz",
+      "source_sha256": "ef837f84978fe7f15c3c851235118de724cc6219041518542f6fc810b20a1d23",
+      "stored_sha256": "ee2a6a68838c975f5672604e1e0629a92e327e4c8659668122073819a08464fd"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_freezing-receipt.json",
+      "path": "gpu/completed/test_gpu_clm_freezing-receipt.json.gz",
+      "source_sha256": "316b1f1830f4b56e36e239ee54e2bd9a9ee9b52fa52074b05a70168f352728a6",
+      "stored_sha256": "46c8fdd7f9c211e0db5eaebef6d9108e6a7f7e29d7e36de4d886aaaf12da2a88"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_freezing.log",
+      "path": "gpu/completed/test_gpu_clm_freezing.log.gz",
+      "source_sha256": "6f3b9d45f061be81f89734c5da1939bc5ae65efceaaf73a9149fb57bc901156a",
+      "stored_sha256": "ea984003e0553753cba1ca8ebb2d6530c7d5dbeeec893e8fd584ee4ef516b72b"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_freezing.xml",
+      "path": "gpu/completed/test_gpu_clm_freezing.xml.gz",
+      "source_sha256": "2149be07ee1b3fa8bd227a9cbe8fb1b84b2205eb4a271a317aef167cc678e775",
+      "stored_sha256": "2830c078be0892704857b06988d15560515ddf591e181312f863f3c6dbf41563"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_glacier_column-exit.json",
+      "path": "gpu/completed/test_gpu_clm_glacier_column-exit.json.gz",
+      "source_sha256": "1bf4b846ff6babf732aa27fde6161ad8e5ed178ed622fa2234cb6879fbb80eca",
+      "stored_sha256": "14e861b28f263c91b5171627a823c58f9946a71952f1bb5e2005d61025ee96bd"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_glacier_column-expected.json",
+      "path": "gpu/completed/test_gpu_clm_glacier_column-expected.json.gz",
+      "source_sha256": "c7b173efe8dc782f8a6ef45eb281aa8154c3ab0f5f3c9b2edb6f3450d6ab6e95",
+      "stored_sha256": "3a3a5b6971e6ceceaa5c4348f626882c02ff2858c22c132ed93b7d4bd246c0ed"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_glacier_column-receipt.json",
+      "path": "gpu/completed/test_gpu_clm_glacier_column-receipt.json.gz",
+      "source_sha256": "ea645ec5582d5978c96bfa8100df2930048ec96c7362ca347c17b390fa388833",
+      "stored_sha256": "f9de672bf20a3d1266bb257c717d06e84b0b4c3a03f53c2a549698158966fc0e"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_glacier_column.log",
+      "path": "gpu/completed/test_gpu_clm_glacier_column.log.gz",
+      "source_sha256": "87d8336ad1342763f4c283ddabc683c9dfb977afc5bb54cb30828cbca577646c",
+      "stored_sha256": "49c857d455118cf55cd50b80445700a4ba691eaf44761b3b4a4f74ec77ffb5fc"
+    },
+    {
+      "source": "gpu/completed/test_gpu_clm_glacier_column.xml",
+      "path": "gpu/completed/test_gpu_clm_glacier_column.xml.gz",
+      "source_sha256": "43deae6b7f0f9fd9f6c935475172bd52407e5a677861696d2acd930d1461c626",
+      "stored_sha256": "bd1ee0414efa4fd40480a99f4affc85653b77379612e1db251a4eee88cf2fdf4"
+    },
+    {
+      "source": "gpu/execution-plan.json",
+      "path": "gpu/execution-plan.json.gz",
+      "source_sha256": "eb02dc75b53a74c65459b76b84d3a1a5d907047583e0517c080798adc5639df3",
+      "stored_sha256": "635e456cad8a501cccf7813713ab4724e29ca13a5f9d43e1da15bce62b248835"
+    },
+    {
+      "source": "gpu/inheritance-proof.json",
+      "path": "gpu/inheritance-proof.json.gz",
+      "source_sha256": "8a2ca9626571545bef355582f6e6497536debf3d0175c72a3d68e31e14791ca8",
+      "stored_sha256": "89c5f56f2187fd634ca1ea8afee2487ef93d0e6213722c4315d61f754bd8bebe"
+    },
+    {
+      "source": "gpu/launch.json",
+      "path": "gpu/launch.json.gz",
+      "source_sha256": "82f14939df6be2829a98068d933c310c0e072e172b78c7ba9b291da36e8a8556",
+      "stored_sha256": "5c05445f49decce63d31abbfc9d45def5b000813f1d59887b4fda3f1db2bd497"
+    },
+    {
+      "source": "gpu/package.json",
+      "path": "gpu/package.json.gz",
+      "source_sha256": "df6b0cb09d0e8fd1e724404a958d4bd6b722ea07aec513ff5efd97f60e8afef1",
+      "stored_sha256": "200b70b1e2d947bc91dc1e8fcd2049da5e3b9a5d49adec798a8907b759627458"
+    },
+    {
+      "source": "gpu/progress-at-snapshot.json",
+      "path": "gpu/progress-at-snapshot.json.gz",
+      "source_sha256": "64fba3d5cef3894d7c8bbedff965c627c31c8b5bce5eed03aceba163717255a3",
+      "stored_sha256": "4fc0018e503c3518f1cd9f7800f07efad73b76456d31cb830c70b5a4d699ed20"
+    },
+    {
+      "source": "gpu/source-location.json",
+      "path": "gpu/source-location.json.gz",
+      "source_sha256": "2b7ac9cfa4c490e34e0bfffd5a612f558fd3a30e899d4d324a960e22a6b8bfc6",
+      "stored_sha256": "919fa62c5b53c96eff973b868ddf93ef2d02b63cd0fd0ce67b2f0d804e23ace4"
+    },
+    {
+      "source": "snapshot.json",
+      "path": "snapshot.json.gz",
+      "source_sha256": "acbb887977aeaf6b07a9c6e718a66250ec15885dbc8398989bdfea5e4d71e941",
+      "stored_sha256": "6baee802b286c921c8678294b5d5aaf3d4ba7bc4f1aa48b6d96eefe1d9e8d73a"
+    },
+    {
+      "source": "years/ballberry-climatology-cuda-jt-batch-at-snapshot.json",
+      "path": "years/ballberry-climatology-cuda-jt-batch-at-snapshot.json.gz",
+      "source_sha256": "dc5385b1951c57bbc337037e85d8f915c16c06ae22b4d27ac11587676b56ee79",
+      "stored_sha256": "566692905e05fc6205431cef2e8c994c6c0394ff535f7994ff9d434fe224a4f4"
+    },
+    {
+      "source": "years/qia-phase-capacity_optics-cuda-year-ej-batch-at-snapshot.json",
+      "path": "years/qia-phase-capacity_optics-cuda-year-ej-batch-at-snapshot.json.gz",
+      "source_sha256": "c4dcefdf43d2540f890a45919abfc5e0a23db223a5a57b92530e5a245d886b72",
+      "stored_sha256": "e6efb874295271c642b38d1c650080fb998048eb74177c8e08daeabc5fd9bbd5"
+    }
+  ]
+}

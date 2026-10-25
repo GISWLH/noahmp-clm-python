@@ -1,5 +1,14 @@
 # noahmp-clm-python
 
+2026-10-25 03:22UTC：[当前HRLDAS三站首周](docs/HRLDAS_CURRENT_SOURCE.md)1188／1189
+实际F0、1008完整柱步及原守恒审计完成；科学仍失败，Qia H−34.6918%、Cha H
+r=.615229、三站LE r=.688349—.796819。归档／文件配额失败已保留并修订存储接续，
+三站从各自真实成功384到432全部实际F0，全年仍未完成。
+[当前GPU快照](docs/v1-results/current-gpu-progress-lx/manifest.json)121/407通过，
+12组冷年2064/17520，全部在xuanze物理CUDA1；CPU参考／分析在EHPC。
+[K78实际输入交叉重放](docs/CLM_K78_PRECISION.md)已隔离首雪厚度位差，原生产
+1.52588e-5J/m²残差失败尚未修复。完整年／气候／SOC／多年／留出／校准及v1.0.0仍待。
+
 2026-10-25 01:48UTC：[当前源码HRLDAS三站配对](docs/HRLDAS_CURRENT_SOURCE.md)已在
 超算1188按原强迫／配置从全新冷态推进，独立1008步审计1189排其成功之后；
 尚无新科学评分。xuanze物理CUDA1当前GPU91/407项通过、12组冷年624/17520步，

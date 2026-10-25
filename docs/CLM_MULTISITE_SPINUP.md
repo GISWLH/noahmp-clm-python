@@ -1,5 +1,16 @@
 # 三站完整年初态与耦合spinup
 
+## 2026-10-25 03:22UTC：冷年继续，官方配对首周差距已量化
+
+[当前CUDA1快照](v1-results/current-gpu-progress-lx/manifest.json)原12组JN冷年
+2064/17520、源和全部原账保持；完整GPU121/407、已结束文件无失败。全年
+导出KK仍等待真实年终0，KL全年／C/N／各观测产品审计尚未执行，没有新的
+气候周期、稳定NPP或SOC条件初始化／收敛信用。
+[三站另一套官方配对NumPy配置](HRLDAS_CURRENT_SOURCE.md)已完成各336／总1008步
+与独立守恒审计，Qia H−34.6918%、Cha H r=.615229、三站LE r=.688349—.796819。
+其新接续由各自真实成功384到432全部实际F0，物理／全局七字段账没有重置；
+与FLUXNET原12组的配置和状态分别保留，不把其局部分数或存储恢复当spinup。
+
 ## 2026-10-25 02:10UTC：真实BGC流审计与全年收尾准备
 
 [EHPC1190](v1-results/current-year-preparation-ks/manifest.json)实际F0，已核验当前JN
