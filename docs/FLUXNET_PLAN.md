@@ -6,6 +6,12 @@
 BGC细记录未落盘，不能从现存累计账冒充逐步重建。隔离诊断不续失败年度，
 其他EHPC候选自身真实年度继续按原F0／Stageout0门推进。
 
+2026-10-25 15:02UTC [EHPC原年度只读状态](v1-results/cpu-year-status-pv/manifest.json)：
+PJ四根Cng控制器闭合3888、四根Qia闭合528；这次未独立重建后继窗口，不增加
+全年／spinup／评分信用。旧JN的HRLDAS Cha连续真实F0／Stageout0至17520，原
+报告status仍running；Qia／HaM尚在运行，LU1536仍H。单站请求步数完成不替代
+原三站独立全年评价，更不替代当前NM或多站多年科学验收。
+
 2026-10-25：[当前NM的完整1—2月](CLM_CURRENT_MONTHS_PG.md)在EHPC1617实际
 F0／Stageout0完成评价，12配置共24完整月、4556项日／月积分核对。Qia二月H
 −54.2595%～−36.8458%；Cha二月H +18.4945%～+22.3613%，LE近零绝对偏差

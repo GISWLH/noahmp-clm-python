@@ -19,6 +19,8 @@
 - [x] [排水包化NumPy32一致性](docs/CLM_VERTICAL_HYDROLOGY.md)：EHPC1673 F0／Stageout0，20原语／17完整积分、1106数值返回字段dtype／shape／bytes完全一致；593候选及586父源、控制和金样不变。未执行JAX／CUDA／64位或整柱。
 - [x] [新排水组件输入前置检查](docs/CLM_VERTICAL_HYDROLOGY.md)：EHPC1678 F0／Stageout0，12项CPU合同检查及原20案／17完整积分通过，1106字段仍逐字节同金样；原硬账不改。实际设备及native整柱适配未完成。
 - [ ] [当前NM两组年度失败](docs/v1-results/failed-years-pq/manifest.json)：NS12／NZ3均在7275/17520以原CUDA分层相变表面异常退出，worker1；原末态／账／输入已封存，不续失败年，诊断和修复验证待完成。
+- [x] [Qia失败帧定位证据](docs/CLM_CANOPY_PHASE_ENERGY.md)：EHPC1688真实F1／Stageout0，原Newton第30轮残差13.75804 W/m²保持；干冠层十层质量0、相变活动掩码全false，已有Jacobian有限且数值秩12、条件数约1.40e9。另进程代数分析0不抵充模型成功，因果与修复仍待。
+- [ ] [超算原年度状态](docs/v1-results/cpu-year-status-pv/manifest.json)：15:02只读确认旧JN的Cha连续F0／Stageout0至17520，原报告仍running、独立年度评价未完成；PJ基线控制器Cng四根3888、Qia四根528，不将活动前缀计作全年或收敛。
 
 2026-10-25，MX 专项闭合后：[表面求根／新雪密度修订](docs/CLM_SURFACE_ROOT.md)
 已精确集成开发分支。CUDA1 原 31 项／8 模块实际退出均 0，7206.43 秒；
