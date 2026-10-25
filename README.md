@@ -1,5 +1,11 @@
 # noahmp-clm-python
 
+2026-10-25 06:05UTC：[私有表面求根候选](docs/CLM_SURFACE_ROOT.md)新增永久回归
+在旧源保留真实失败、新源实际通过，CUDA/JAX 全 345 字段最大差 0；H／LE
+对 NumPy 最大绝对差 0.002164094／0.000090556 W/m²。EHPC 全部 1156 CPU
+测试实际通过、831.98 秒。相关 GPU 专项仍在 CUDA1 执行，生产物理尚未推广，
+全年／spinup／多年／留出／校准及 v1.0.0 未完成。
+
 2026-10-25 05:22UTC：[私有 GPU 根回退同步](docs/CLM_SURFACE_ROOT.md)两端单点与
 EHPC MP1544 原参考／守恒均完成，CUDA/JAX 全 345 字段最大差 0；H 相对 NumPy
 最大绝对差 0.002164094 W/m²。原 K78 的 MV1550 也实际 F0、345 字段差 0；
