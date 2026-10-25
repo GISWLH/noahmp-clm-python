@@ -1,0 +1,1752 @@
+{
+  "scope": "PA metadata-only: 12 tests, OU4/OM184 exact byte join, 46 original NM load_batch checks. No physics, cold state, carry, spinup, prediction, score or GPU.",
+  "archive_sha256": "a5a6c49284f675d16824c9e7c24e68548840ba4c20b7a490e405923a1d95f7d9",
+  "artifacts": [
+    {
+      "source": "actual-pbs-qstat.stderr.txt",
+      "path": "actual-pbs-qstat.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-pbs-qstat.txt",
+      "path": "actual-pbs-qstat.txt.gz",
+      "source_sha256": "50356c2e86b35348faca2debcd6e7274aa2c5171f9e87efad5dc01b2f7ffcfaf",
+      "stored_sha256": "e72036b47b31e70dea852c24ed5fb9053cfe5cba8fd7ebe62a187b9369bc3caa"
+    },
+    {
+      "source": "archive_training_chain_pa.py",
+      "path": "archive_training_chain_pa.py.gz",
+      "source_sha256": "0ce006afb7486d1788da8fe7b1e785208d603af00c3f3bb166552a6e9acfa252",
+      "stored_sha256": "08b326e60ff7f567c4fed7ece7a265963b7428d4275b5106eccf32b6aff31793"
+    },
+    {
+      "source": "current/SOURCE_SHA256.json",
+      "path": "current/SOURCE_SHA256.json.gz",
+      "source_sha256": "a39f48772a6751c4ec12f9a2034c6015105a26d81f17480d654ffb21ee7ced5f",
+      "stored_sha256": "57cc5392d7951091b8d7a40cb58c6914b88e920a56738d2c22154c46b2af72c5"
+    },
+    {
+      "source": "current/assembly-command.json",
+      "path": "current/assembly-command.json.gz",
+      "source_sha256": "8f49f2c5149f8216a507dbe54268729e8e5d86c9c22832dd141df6421eb17d53",
+      "stored_sha256": "be6dc750f79e677e40cbfcb28f063817df105b3a1dc48274e20301503196f2c1"
+    },
+    {
+      "source": "current/assembly-parent-exit.txt",
+      "path": "current/assembly-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "current/assembly.stderr.txt",
+      "path": "current/assembly.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "current/assembly.stdout.txt",
+      "path": "current/assembly.stdout.txt.gz",
+      "source_sha256": "4dcabbbc2dbad665faa863ad2c38f384d3c3e3f55a252665266a8425a31e6ebc",
+      "stored_sha256": "f7b13c8179013a4ba14a39c2b0be06bd797b752af7711c5ae637aae7b243c5bb"
+    },
+    {
+      "source": "current/assembly/ASSEMBLY_INPUTS.json",
+      "path": "current/assembly/ASSEMBLY_INPUTS.json.gz",
+      "source_sha256": "1140ddd90417fac1d5dfde7cf821a9871ece313a46b6863a2fb47a896ee3728c",
+      "stored_sha256": "ea161682667bc378c239249ceaae5778f15d393ba9bc24d40a0d78e9b5024718"
+    },
+    {
+      "source": "current/assembly/ASSEMBLY_SHA256.json",
+      "path": "current/assembly/ASSEMBLY_SHA256.json.gz",
+      "source_sha256": "026af03aa966de9d212ce11fa4dc8c8e78908299a96328217d4b954fa75f35e8",
+      "stored_sha256": "5732904230e002c213d9fd4d688ee5ec2653e595c470d8160d4a3a0b3a1363de"
+    },
+    {
+      "source": "current/assembly/CHAIN_PLAN.json",
+      "path": "current/assembly/CHAIN_PLAN.json.gz",
+      "source_sha256": "a62035c4bdb90e2145cb1c93128bb10a77f7a63239741a491b247ce7803a3d94",
+      "stored_sha256": "e21d945e988e632a366829108e14f5f79f1d01fabc04a5786efa29d9188254cc"
+    },
+    {
+      "source": "current/assembly/CONFIG_IDENTITIES.json",
+      "path": "current/assembly/CONFIG_IDENTITIES.json.gz",
+      "source_sha256": "889ac522f32ce39f80eb7ec6fac5471cb50e37d5371d0d8e7229514e7dd7899d",
+      "stored_sha256": "44d5b8daf2552ddb102c7139f76d125ea6b32f2eb019043ed76e64076091c54a"
+    },
+    {
+      "source": "current/assembly/OM_PLAN.json",
+      "path": "current/assembly/OM_PLAN.json.gz",
+      "source_sha256": "fc2b5866e9368dc80ec9ca6e9dfe1e91dbac139908db79abc11bc4d70180f8c3",
+      "stored_sha256": "1db8b3c5dcb8b939e76eadc2de6faa1d32424beed656659806a7bddd26bd068c"
+    },
+    {
+      "source": "current/assembly/OU_CASE_YEAR_REFERENCE_ONLY.json",
+      "path": "current/assembly/OU_CASE_YEAR_REFERENCE_ONLY.json.gz",
+      "source_sha256": "cb1a92e9b6cf38c0915238cbfb15eb025e0e0345d04eb18583b2ff8b554fa0d0",
+      "stored_sha256": "bced169ed24c84c28529dbd7c445c61d204d714100d5edceaffc855ba7bc4e88"
+    },
+    {
+      "source": "current/assembly/OU_YEAR_IDENTITIES.json",
+      "path": "current/assembly/OU_YEAR_IDENTITIES.json.gz",
+      "source_sha256": "174f6960d95ecb55f7c2757bb8389fb27647c176c6853c88a0f4d62ba0e94a36",
+      "stored_sha256": "e81cffc054d4887b2c0c6f23e433ec4caa21645fd8d7ace133b895ee9f18e88a"
+    },
+    {
+      "source": "current/assembly/batches/om-baseline/first-year.json",
+      "path": "current/assembly/batches/om-baseline/first-year.json.gz",
+      "source_sha256": "2737d87be54d537b4402e6fb00eb3e19e10257ce7a64aa0e0e6a1fbabb3c471c",
+      "stored_sha256": "2bc012fe407f7c60455da052bf918bf2b3e7dd23ca42a04c8f0dd2c9ce4ddff4"
+    },
+    {
+      "source": "current/assembly/batches/om-baseline/second-year.json",
+      "path": "current/assembly/batches/om-baseline/second-year.json.gz",
+      "source_sha256": "c42f426098d3b23c595fd930c4eb1ee0470b8e31117d93032761e1907d3712ca",
+      "stored_sha256": "217ab750e9af45fc75110961474dc18e752a46ea60cd5f856618b516a7bfca85"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-01/first-year.json",
+      "path": "current/assembly/batches/om-lhs-01/first-year.json.gz",
+      "source_sha256": "3e3be8c82e39f1cc24de6786ec15bd226334ac9d6230fc9454adaa1e42614f83",
+      "stored_sha256": "612f42233b36d0dc541dfbd7e89d45501af96dc3b40b759f4d1caa39782cd57a"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-01/second-year.json",
+      "path": "current/assembly/batches/om-lhs-01/second-year.json.gz",
+      "source_sha256": "568ba412b6b117e956402dd32eca539920a1a5e7d621ec1e5e13d35087e66420",
+      "stored_sha256": "0a82cf4e9b8419362c830fc8bd1cf422bd9eded915edbf92116077dbd0f66f3d"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-02/first-year.json",
+      "path": "current/assembly/batches/om-lhs-02/first-year.json.gz",
+      "source_sha256": "412b17a76dabea6a6f40dee7e15f5c2cd653256f713b2ed2a6fbbbe5fa421591",
+      "stored_sha256": "381f55bb940e9058ab46eaa307627bf46f1f646e721de73b39179f36db7b8d41"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-02/second-year.json",
+      "path": "current/assembly/batches/om-lhs-02/second-year.json.gz",
+      "source_sha256": "2fa8789738d355859e3a488b6f07e5ea62ddf43ca0ab65c11c3a147361f5f1bb",
+      "stored_sha256": "f364dc9308b8b5e4ebaea28067501a6940de487ee9f78aa82f8e9df69041af72"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-03/first-year.json",
+      "path": "current/assembly/batches/om-lhs-03/first-year.json.gz",
+      "source_sha256": "b5bc936e726e4a8d1983a00bd96550ec2b4a2315988539d7161fc414b8452506",
+      "stored_sha256": "db09e4db3128d4cef8b6d6b490c200d98900a9aadfbec39b62867ed9de691b76"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-03/second-year.json",
+      "path": "current/assembly/batches/om-lhs-03/second-year.json.gz",
+      "source_sha256": "3fb5d63e0310024870ee99c793b767fc8fc3df3dfbf901339030511c030bcc96",
+      "stored_sha256": "b6fd5c9bb11f91586c5feb67c5a8a863f65411f18b0206e2223164b56754dcd2"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-04/first-year.json",
+      "path": "current/assembly/batches/om-lhs-04/first-year.json.gz",
+      "source_sha256": "a6254e0495bb38195d83347e547985f9e4142b6da97df5ecc1c94c5fc4dc27c4",
+      "stored_sha256": "7508d6ae8d2efc78e24d4a52859fb3ac195111b61e1a1ff53cac4144e7d86995"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-04/second-year.json",
+      "path": "current/assembly/batches/om-lhs-04/second-year.json.gz",
+      "source_sha256": "7993d5f76b48d9df287a63f8555865f08d86bce97afe562338f34c47e19472d6",
+      "stored_sha256": "30a28d49e6620ba779cd48151f4b137e054499ad05ed358fb256a9dea2e8cc30"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-05/first-year.json",
+      "path": "current/assembly/batches/om-lhs-05/first-year.json.gz",
+      "source_sha256": "8ad9db5fde41a9f0a53f0ab5f812549239b3d3685067a7c40213f187ea59352f",
+      "stored_sha256": "e56f01eb3d773b9193222059124f8743dc7b4d7d1da0ea76afdbefe4046283c7"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-05/second-year.json",
+      "path": "current/assembly/batches/om-lhs-05/second-year.json.gz",
+      "source_sha256": "442b3b0e60327d1aad66091661b86ad027978acd345fdc58014cdcc596e5c621",
+      "stored_sha256": "186438fa7cef39d4f351a590da58f5188eb7a2e699dd97454005d9e6ff47c5ed"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-06/first-year.json",
+      "path": "current/assembly/batches/om-lhs-06/first-year.json.gz",
+      "source_sha256": "b150ab7b1baf6c17b81396a28e9989eba5a1ce38da34c0def2f94190690f9cdc",
+      "stored_sha256": "5845fc983bac5dc797e186e2c19b5881e0aa5fcd19521ba77e46d6a5ba355de9"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-06/second-year.json",
+      "path": "current/assembly/batches/om-lhs-06/second-year.json.gz",
+      "source_sha256": "03b0ccc58abc4d4f3a71cff6899e46e0b813f24bd44207f6af2b08f9fa3a8545",
+      "stored_sha256": "379d1c0052cb327528cd563ccb941d91552f847f4f7bf2d0a50ab8c593616b46"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-07/first-year.json",
+      "path": "current/assembly/batches/om-lhs-07/first-year.json.gz",
+      "source_sha256": "9ba96a6bde006743ccc50d07fac57a518ca4b33180d79583015b453c1bdaee82",
+      "stored_sha256": "01b25c3f235ae921c7a0cf0de687157c3e2ed279bbe0db6ab9e9255e6e7dec1b"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-07/second-year.json",
+      "path": "current/assembly/batches/om-lhs-07/second-year.json.gz",
+      "source_sha256": "4108c1d7dbf4cba587f36d3e7ef1bdb8cf4f1946dda32f27827d4e6ca89d6658",
+      "stored_sha256": "6d87a09da411dbd9c3b9e845795e18b940b49831d35fd16b16d1b9f1ba9fa0bd"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-08/first-year.json",
+      "path": "current/assembly/batches/om-lhs-08/first-year.json.gz",
+      "source_sha256": "81353bca9127bf48490fcfa12e8f5882407c2274b9728703c3d21c72e5704e42",
+      "stored_sha256": "72e30a52fcb16c234460dd283e93dafccf0fee2f7feff49d116d223cb4bbe227"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-08/second-year.json",
+      "path": "current/assembly/batches/om-lhs-08/second-year.json.gz",
+      "source_sha256": "4c57b70fc766b17f359cec6953750cd34825d2a59b39c4f9fea2d6b8f850155e",
+      "stored_sha256": "e89cdf38738e12a62ab0b2ee174b06eef8013d7f42ea7f51ff42268b99c741da"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-09/first-year.json",
+      "path": "current/assembly/batches/om-lhs-09/first-year.json.gz",
+      "source_sha256": "75a41fd880f92ace29f5495e4a92bb86ef3816dde7886318ec7efc3139df0370",
+      "stored_sha256": "d714a44fb00cea736e985c2a23a1015e26b91f4e512d41aa73d7ece4a2d5136b"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-09/second-year.json",
+      "path": "current/assembly/batches/om-lhs-09/second-year.json.gz",
+      "source_sha256": "a5ee103594fc2ff067f651022d07bc78517019558cb69b2fc86097f942b8d6de",
+      "stored_sha256": "f196f1cf19bca629fa8934c12c0a55be91a90815be836cc6c3f4eaf85fcd1ce2"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-10/first-year.json",
+      "path": "current/assembly/batches/om-lhs-10/first-year.json.gz",
+      "source_sha256": "63c01246daa975cbf6279b3aa4a628f6cd79d9817f3278edcc0d8f6c20d50966",
+      "stored_sha256": "40b9f2d40e73fda94ac5c016bd7838962ed5da11d284c19c1ffe02d36576f3db"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-10/second-year.json",
+      "path": "current/assembly/batches/om-lhs-10/second-year.json.gz",
+      "source_sha256": "0a56f8b5b8769299b2a71cd921c1ad2e1313801e31b96f26319c014779e17eef",
+      "stored_sha256": "a963cc18f4e33bfe396bf0bbc6f4f7f024f6354dfd8a2855b228fe40a4c13c6d"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-11/first-year.json",
+      "path": "current/assembly/batches/om-lhs-11/first-year.json.gz",
+      "source_sha256": "98fec953694754fac8376df42726ba1625706124b151d47e1439e70b54775698",
+      "stored_sha256": "b700d54ca9b88646f4ee52d591380586617e973da55271b4449a4f1e13093a1f"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-11/second-year.json",
+      "path": "current/assembly/batches/om-lhs-11/second-year.json.gz",
+      "source_sha256": "4e2ac24830cc092c80142790eea2cfe06492eb9400a75e4df2a7cc64ad7b356c",
+      "stored_sha256": "3dfa0d6b2882111c8184613733e47dc7e72322c9b1beaff5849164eb38dab0f1"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-12/first-year.json",
+      "path": "current/assembly/batches/om-lhs-12/first-year.json.gz",
+      "source_sha256": "6aa348c98b1bc66cede88de5ae96d0cac6e7783cd1740808dfec54304daa30da",
+      "stored_sha256": "5d37823e2400cec5e36fa5b648730cedaf35354a8aa0010ef8a94592890c81c6"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-12/second-year.json",
+      "path": "current/assembly/batches/om-lhs-12/second-year.json.gz",
+      "source_sha256": "e31acf86530098f5cda16f6f5a4e16ac3d6002745d50d75d7b30e2caa0faa7e5",
+      "stored_sha256": "10aa70e343ce9b6dc2dec6827aafca4cf53e0a1f73f96da9029befaa89e1bc37"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-13/first-year.json",
+      "path": "current/assembly/batches/om-lhs-13/first-year.json.gz",
+      "source_sha256": "cf60afbb30f91f42cbddae79e686818f1d356d8df3575f1bc0cce6a673cbaadc",
+      "stored_sha256": "58abfeb8b556c961a771a4bbad10e9b489b4674d63a302a76a46755a4707c629"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-13/second-year.json",
+      "path": "current/assembly/batches/om-lhs-13/second-year.json.gz",
+      "source_sha256": "aecb3e8922f4d2fa0c6a30cd727d238075c0c9acc9327a1cc7483678bf8c308d",
+      "stored_sha256": "ea44503d920e2beca76775d75107b5f0fcf96d208e2567dab2bd1de5d695398b"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-14/first-year.json",
+      "path": "current/assembly/batches/om-lhs-14/first-year.json.gz",
+      "source_sha256": "7162a68151510ff695b78e70072490324c3faf187ae6fae7d8feee56be013ab2",
+      "stored_sha256": "8925ba23f3039fbebc4d349dc56146354d642015749457a79a8c1cfcb477952f"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-14/second-year.json",
+      "path": "current/assembly/batches/om-lhs-14/second-year.json.gz",
+      "source_sha256": "5a07361643c0e764984cd4ba1227f30659dd090f3105b40c34abf187f1aed517",
+      "stored_sha256": "fbb21d0db98d997334e2a6d1289f76d0510d5f27c5a75ad973b7d10d6d3acb13"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-15/first-year.json",
+      "path": "current/assembly/batches/om-lhs-15/first-year.json.gz",
+      "source_sha256": "fb697c909687c4fa9d1822c08682b81c2b71f85eb0c46f184a184ba5ed237522",
+      "stored_sha256": "b580fa15b05f8888fd140195c4fe0eb5fa35fbe1bd87c99151596bc2e1d6fda2"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-15/second-year.json",
+      "path": "current/assembly/batches/om-lhs-15/second-year.json.gz",
+      "source_sha256": "798052058e83063721af6ef66ce276a73ce8202a8edd72efe8ed0cc3ae94a159",
+      "stored_sha256": "183d358d481f0506cd4ad8691a6cdfd6dbeb7d9423fb92b1b260934f576f5098"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-16/first-year.json",
+      "path": "current/assembly/batches/om-lhs-16/first-year.json.gz",
+      "source_sha256": "bdd61c260d607a521000e4acb59518ea3e44e3a9dd5f6f19c80e7bc7dbdf821f",
+      "stored_sha256": "587ca81fa8ea8328e684d27ce0cdf87ac971593a9f777b9499cf04ea149c5327"
+    },
+    {
+      "source": "current/assembly/batches/om-lhs-16/second-year.json",
+      "path": "current/assembly/batches/om-lhs-16/second-year.json.gz",
+      "source_sha256": "4436832ae3e942dda642817847cb6e26693d5ec7d5c62616af7638985c393813",
+      "stored_sha256": "a70a68a123c49bc42b76c42b5f5c16c172d0e266dc5dcaba309f0e1a6ae37fad"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-b_s-high/first-year.json",
+      "path": "current/assembly/batches/om-oat-b_s-high/first-year.json.gz",
+      "source_sha256": "9542882e543b4ddbd96f779b65d74689cc9d1201113a989ad711448516479ccf",
+      "stored_sha256": "95b24ce3377d596dbd2cafce2ad13c6aada32828f7c473645e8f22d6fa11039e"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-b_s-high/second-year.json",
+      "path": "current/assembly/batches/om-oat-b_s-high/second-year.json.gz",
+      "source_sha256": "4866343418482e798e5d7be01f78e3bc7b75fcbc786cff8f690258c29836167a",
+      "stored_sha256": "a4d223f399f234c200b660e5d2b43bf38bd9449d5cc2a121c0d8ee9a9172a50d"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-b_s-low/first-year.json",
+      "path": "current/assembly/batches/om-oat-b_s-low/first-year.json.gz",
+      "source_sha256": "b9baab4699be9e36521f88968ae10608a5f11b3e5410f7f7f56ac0141edddd35",
+      "stored_sha256": "545d9ae34980510f0ca4fa13eade9e95b9aeeda4f006b2c7d76e83f7c983ca7a"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-b_s-low/second-year.json",
+      "path": "current/assembly/batches/om-oat-b_s-low/second-year.json.gz",
+      "source_sha256": "28dc4a032184e8db05abfd1b32f7e174abe6d2cd40acefa355ce159eb0a6b8ea",
+      "stored_sha256": "c674c0b866884b1803cab8b86dd46b7269a82f635c7851c68bd72fb3e72d78cb"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-mr_b-high/first-year.json",
+      "path": "current/assembly/batches/om-oat-mr_b-high/first-year.json.gz",
+      "source_sha256": "d7465d67028538e9f05fba342e23b94fffcca150311992a4279c9325fc08acd0",
+      "stored_sha256": "8face8ce2fa81c3f8e6b58c83d551f85e2448e15d80311a8391bc6274684acc3"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-mr_b-high/second-year.json",
+      "path": "current/assembly/batches/om-oat-mr_b-high/second-year.json.gz",
+      "source_sha256": "c09a6cf26a996538c89c5a29aad5fd182aa5534247f317f6601d34556459b0aa",
+      "stored_sha256": "02eec70ec7c70365c4c51f4081a1f021baac265851430cad1927304d770a82d0"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-mr_b-low/first-year.json",
+      "path": "current/assembly/batches/om-oat-mr_b-low/first-year.json.gz",
+      "source_sha256": "9cdf0bdee34d2017fcee45b80431591a589012085988a08da674c78135e7d0ef",
+      "stored_sha256": "c53a5db64e4297d275881af382e59aea7f213df408d91995783ff4169c265866"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-mr_b-low/second-year.json",
+      "path": "current/assembly/batches/om-oat-mr_b-low/second-year.json.gz",
+      "source_sha256": "4d79fdf73ece0462e603abbabbc4d7a92af62d915c9e5b54e73c1002625aaedc",
+      "stored_sha256": "b7c27bf7a31ba44867ab51844159d4cf239c74e8a3ae33f5bc203334ec136d2b"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-q10-high/first-year.json",
+      "path": "current/assembly/batches/om-oat-q10-high/first-year.json.gz",
+      "source_sha256": "c1e632a1a9162a021b0092d65188029026c5a7b973553091e2bff0d3cfd8f38f",
+      "stored_sha256": "2da4a8b7ba51cda83f4ba262fbf90ad4bd2a3bb620f274724d1cedecba420262"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-q10-high/second-year.json",
+      "path": "current/assembly/batches/om-oat-q10-high/second-year.json.gz",
+      "source_sha256": "f482e09901563c9876736221b9b3ab0f31ee058ff93f810fe3c55f02350e080b",
+      "stored_sha256": "a7f845b26b3a02e0b39c9d4ba3a1e8a1aa9b6c9633e42537976a48fe115d574f"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-q10-low/first-year.json",
+      "path": "current/assembly/batches/om-oat-q10-low/first-year.json.gz",
+      "source_sha256": "801498c9434d9222134a313b1d1274e679dd348694eb3d1fb6afd3a495ed4a75",
+      "stored_sha256": "8f4e11fd2b15da8c043b065bf30e815077829eef0b9528114f2ed84ec954c5f8"
+    },
+    {
+      "source": "current/assembly/batches/om-oat-q10-low/second-year.json",
+      "path": "current/assembly/batches/om-oat-q10-low/second-year.json.gz",
+      "source_sha256": "f5056143b66da7b52f12b6613ad5c3d03d4755d56cefbfc956cf044a44b5c586",
+      "stored_sha256": "520b9dd739dc376f46f210add9ec14d0cc854546c427146c19ea4abf36b29432"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "3c0ae91787775728c347fcb4ff5a29c77911b1d72579789255d1a1ee9389c094",
+      "stored_sha256": "ecaeca9e46113bb6f2b6cd4194eec2b520084caf8748d5873b9397c976e9400d"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "c5641e25a36c6bf08bbf8e6d7d99f7367ca168970ed890f9f9e803b8a5d68171",
+      "stored_sha256": "142a09c380330f8cae759f45fd8fd428b5a2d1ac553d9e866b07e462172e6033"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "f563ee83604aa1af471260bf4bbd416603d5ed3abb4d4982b6b0022d408b0dbc",
+      "stored_sha256": "10e47f8890cc026f463e7deb6317bedf75de9eaf5f83ea7f21f2946a1d349131"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "7a2445cf0495b7d533ca7e8fa5c1e6fe292d0532711249b221865677c2964d61",
+      "stored_sha256": "c0837413925e94c579d10e8ef56d1a1621817811065cfddb603994f3af4f5519"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "7dfc09e0f48c8e3672d4a44b0efde3468d5d084c1c346505b090f2fab16e5a4c",
+      "stored_sha256": "384953cd7c5763298fe5683244da5902835c9db28b6df5941fe79d52632d9a7f"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "201cdcfb89229baeb30040def2ea8df245a9641c7906c391c31af3b631b92298",
+      "stored_sha256": "d9c71b2d79cb6fde91e956d9d9e5252638dc3eaff9879a5d606a958bb8c7f59f"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "53cefc66528a3b0e9c496ad0123c344bab0fbdd40251fdfe00aee58e3e869264",
+      "stored_sha256": "22c3888008cd12ea2d3c6fc0c82e0f0ba0017fdfe60c8eaefbdbb5800fea9840"
+    },
+    {
+      "source": "current/assembly/configs/om-baseline/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-baseline/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "80b804c7c6bc6533ea0891679d7703b0ba445efe20df890f31c555ca0841d692",
+      "stored_sha256": "7a326d2cc485f208161ad65ea09c65c9cf2c0ce1c69e6403f517fb4d489b3179"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "6a9db76770af38d4ed5b27917ba8f215539bb7648bfe5b3786e9e1b3441c1a88",
+      "stored_sha256": "03b979f8d6b20e087614eb9d5360f3f055ba82f097970f662446b5cf32c052dc"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "f4583694ac638c3795e137cf30943feae5205567870b5628f4c25a61f14e62d5",
+      "stored_sha256": "31ac02a82f72014c22ec13f6a16c07d33cd19f463472af4da6fb6e4262e76d63"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "b18003cbfb84e065b7366817b03eae5012ec21bcd704c7fadb1e5c11171bf9e1",
+      "stored_sha256": "db40d3af91592c256e3b6b48c890482ed767e9f2fc69a29bb7487b6b470f982f"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "2c9b57e2ef4fe6a2453bf4285e72338bee83f23c9de0c4637e919ad2a1435c9a",
+      "stored_sha256": "17d9ca39084265b6410f9635ce128dd5017603387cc1415a5b235d390c439e74"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "01717c89c8adfe42834d032284300a4602754b787e822c1e7f845e51c889562d",
+      "stored_sha256": "4552205994f1a737204bbaeb9bff47f538e63ee90b1ef5d5db7cf7bf959ded8e"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "9234ae8a5b8edc52a5ec1879af59346130819771b032711f9448538c9f572d4b",
+      "stored_sha256": "fd8d165efc01d3a9615a8ef0f3d03f99443f81c46d9d6352d6cbedacf5d22bf2"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "f32d60d9245c4964c8fd7eeaa193a38c2b3314736dd6afd4504ee14b199da379",
+      "stored_sha256": "1b90ef219b3889c33558cc2377c899039d50ade3c85e451917c6f1aad2d82f0e"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-01/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-01/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "48e9975f6d65c9d04b993625e16ad93cd3142d1f1def657adaa238dca5980f9e",
+      "stored_sha256": "3369bda7b7e0d424aa7c6a40e50deff4c7fa3b7bcda1bfaf17d3afd307844e66"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "1f9dfb76a40ea5085978f114cd305ab70e8397c35b4a4fe0071f0128fe731df6",
+      "stored_sha256": "084dfe3c504a22d4081684efdfcfff88486e4d7e5dcb72d101d0c64e12c539e4"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "b4bbdc8e2a99fac15bf3ec68c9a7193fbb80ea320f30439e2e05fac1b5eff864",
+      "stored_sha256": "f896dc86b7a10b79d00b71ae9ffda685ea70e5753794312ced5b95b1908fd35d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "8c3aed8e4196a0e6433cec54caf6b7739e69f987be3a640b0003a01b3aa3c35c",
+      "stored_sha256": "eda5a4ff527b9ff16afe1056fb10dab483a076eb7bf9125faf9eb6c40ff07ada"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "7f7faad3beb3f51f1da43a94ea3ff93931a165b66fa658fd82c7c95decd272b6",
+      "stored_sha256": "d5533d2c8582385044304c644ceb1e2a3555b3f15b8659c12e75b0bed6f7f0a4"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "4392675fa8b56e5d16af7e333a7df3c83f55c5be0fbd116820bb7a67d0e65194",
+      "stored_sha256": "8ef0501e24a5a4efe18e5bb77af1cea5f1f128980d0c27b5252c2119c05f94b5"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "f72ab558a8282cf7ad82dfda0c0477f3854cba3f651ae20dcd2899ea22ae8bbe",
+      "stored_sha256": "39f5bf8535a16c485ae4ca73acc2b922a8075c61e7d537059a898100b8530846"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "908f6b8d91e27b687a1121c85f952e6f41b8b48ccb40fb3a38e430493b310634",
+      "stored_sha256": "cc78d70aa4086a969c059c0b64f6dc53e083a31905fe3bd19ee43423172cb535"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-02/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-02/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "3b97e69916b8ca72017d114e39625759563f30316f36ce2df8c9e3b9da99ff61",
+      "stored_sha256": "6691564d5a8f6c8099770075e075258a9958329a9290cb303a12432ada97e1ee"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "03c272f812063c6190a9e2864d2e08a38307db62cab2dd433e2420d3e6ebb20c",
+      "stored_sha256": "29187c9869a69a32292983bfb2ad50cc337047814fd5f6cca9f4a1fd5ca627f2"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "6e7bdd358df8ceb7859bd5cf4d5852f0950363015e88cc71f68ea24e1abf6db6",
+      "stored_sha256": "c876339ea2bdc630f2adce845497f8f988b5e89c6e00707ca752851a26b75d92"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "670a3fc8fb5dc7c1971794c99ef9f190de7df1980b2d4bf3c4d1e62dc2204cd4",
+      "stored_sha256": "3e1b779d5e8d278f9dc971a58f160ce7cc3f3512596406ba744138fce5eeb9b2"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "e1f00af2cebac1b71073682de448da479f4519b284a2c2d94e33d289391ee395",
+      "stored_sha256": "68f1245eb2124d0926a31dab101deac1f7c5b22ed39dafa106cb2a54580218e3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "9e5d15639eb2993652d6184a3bf982da23f8a614fc735cc483612ec4d6f23062",
+      "stored_sha256": "52efee0a119f753d9b096e73ec8c45bea83c73e0eabd15ee60eafe101be58519"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "5534a3fc03f103f8392ce0020290553fbc4c80533d465b14702f34c649e87141",
+      "stored_sha256": "5270a3362b65ba99df2c0e4e0b4dac9ab3bad564ed0e9d3971230ef52da9b558"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "a5b440c2a31bc87437813f807cf93e48c40c412de535a612532e0e0c84476bc4",
+      "stored_sha256": "01793060bf520282c83b9a484fc744e67fd82e8e0361eb35951016bcbf400c52"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-03/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-03/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "90d3d547dd58c6b6ed27a3fc39fc0143b6c82f73976c4b757b159d6468cfb96d",
+      "stored_sha256": "0e6507a8895f9772abbf5eb9476d8837b2737ac94071a36b6e0aa31a57f6261f"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "79e0fb28a184878923bda856d9a6f553b8515decc1b02550b5bc0c54362e46a3",
+      "stored_sha256": "22e5a30a61399fdba8987882592c995b57f09507739841ad3f75a6b26b4bda69"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "32ea4fbd42dd270ff24ea6a3e32d0dd7cec40919302739920b387b43624702af",
+      "stored_sha256": "23b7244b23c44dda7ba3929a42345eb9d0631ab9600b405d843ae5d72411732b"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "967cab655411495d63fcf9b5abe53315ee6d4f9234908f94da0fb7928cc44893",
+      "stored_sha256": "7c07f8c1dda7e7f2816be5f99af5a87a9cc4094897d2d80ab193a28e010bc67c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "5fb6624517193ac72cb38152ec47c9d75c29de0d29dc9780580930982c3091c6",
+      "stored_sha256": "ab5dade75f70dcdc47e090a87f8c5611eef0b1472cc235d49524c468b9f50cca"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "dcea519193922fcffee4f4638dfd0a4d0f13453685789083b034228689cb777b",
+      "stored_sha256": "07b567234eb0dbbc4d67019312d99b25f3ac51e9873e0c2843dcb65a3b94110d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "822eaca4315462a9465aa95e8be899a6b7288cc29d02d9b3d37e2974334a4027",
+      "stored_sha256": "c90f271627607b3572e6afd5ea74b860b7cac3dfcbe40f490d794fda0bfb6e33"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "fa306401cac236ee55b001ae0c1fdd24b8dc289eb6d56f5a84fa08593ac591cc",
+      "stored_sha256": "d48b9975914ffb78a72c57e8f3e06671322df1553ea30a0b96b785f08f3f6619"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-04/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-04/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "a9718526b21d24184b5eacf270a33b3208c605bbe808677b01e29a824148fd35",
+      "stored_sha256": "7dedee4e765193c25eb6a3d37897f0398c5248774f08d2181d7392c4c4b535f7"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "853431859a4d668b338fb9c39698396150de035e299fb7bb391a16c5b81942b4",
+      "stored_sha256": "5c7dc04534899bda6a33b4f3dead243958176362da5248e0a4a62b9e3bc72162"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "18e08910c0925d873b541cbbd4803628c17448600d37493cf451fccd3c9c8492",
+      "stored_sha256": "b8406939d0c528cdb9bb770b02b774f29fdce1b895d73d152c22a76d21c83743"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "a1d9ee25364a97f7182b6655a17f07deb56a6354b2c6cc98b48384e5df83d654",
+      "stored_sha256": "358c653fdd9e652509553e0a0a703ada5fdd271f13614db60ad7a014b21c5ad7"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "8489a0ac267607fbd5dc8307d50076da292d49486d96dec4dd6148a90b294983",
+      "stored_sha256": "0a9d26821bf0212cc9159e67bbef2710672668cadf2f8386b9018e18dd437e12"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "eefcf1de474b59381ae1d61e75d1aa15b2231904c82e945c8db432b8d08d6254",
+      "stored_sha256": "dbee5f4e0ff2c2586d2f01ae99422542ede1185473af7337424647c8379f9d8e"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "6671b7ab9f5c0d6eb6d00ce67686efd64f01abbf500f2ff78280bcd17201b98e",
+      "stored_sha256": "d47e6c2970af04f0dcfeb5880ee399f592374c2b27006c2b18006270df93b2d8"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "5326d8987b63aa1723201f88211c1cd1393d10e0369ee7aefc4be2d2ff150b03",
+      "stored_sha256": "3bd0010b96bdb0bb3c8b7f9802c0152a2a9b91b410d91beaebaef6d779ff73f7"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-05/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-05/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "9c02953394263fd3fc3f9816325222964265bcd605b2a25a29df611097860c22",
+      "stored_sha256": "b9da218999d4444f642ea2ac4532091d5e64c02f5da67eafdcad4f541e4c7c2a"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "7a52dd748f7761afb99a343382eea067d892a0292265a557d4f312a8243ca8e9",
+      "stored_sha256": "97a5185993e08ca1c9b87a787b45de422f0f3fe09d1faa404f459d179d986d27"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "338090bd8acf1ad400c32614a11fbdc262609fe3b4253b5b45d9d08b783ed437",
+      "stored_sha256": "64b2459cf4824fc97ef5d88e6555584069df67c5c97923e44d45f6580a5c745f"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "997198c0af889e36d5d7e02b0184c0f3a2b452d45efbf1897e08694d38ad67e7",
+      "stored_sha256": "0a1df33446d185b15d8f420b3733974fee72eea5ede523552699ea8bb58c6c8e"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "74faed2d60eaa8d428fde6ba1e64ea96a6d356bab485bc6fdfa26b0f886d6f52",
+      "stored_sha256": "dfc42515b129a4d18c8503221474931cdae87b662b3b58e7f627c4de3b35a654"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "8fd7e4d85bc7460b619340ff8bae47c764ec872eab0cf17651c1f38119180cb6",
+      "stored_sha256": "981cca81220d91a9d97cb33746ee0fbb3f1c86c6f1508b6e6a98975e77571e59"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "7c7d1368f4ca0a941dacb1ca0cf1464818df3546f2a6aaf6984289199d4ca6c3",
+      "stored_sha256": "287754a3fe9f2a16010948d1b9859ffc88a380a3b18dd857d936f5f6891535c0"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "f452879c2731f5aec34fb01f52fc46ee5eb4f86d4a035c5a2e9d7b0eac60a6d5",
+      "stored_sha256": "796c46e39d296ba2aff1976188531e79bd26098e2a13c9439ef1872e0e10854c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-06/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-06/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "e260b08ca0d6b4fad08145cd9bf72bfdb62b1d0ec9f729d65d45b081009b1073",
+      "stored_sha256": "9abc33f8062fd0a4845d71b71f622f04e525e93928cddeee8a843bfd301a1fbc"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "317551e3926b7e4d18aa01ca288cb087c4e813b719905eed1151d2bafa4f3a0d",
+      "stored_sha256": "5601f5afda6f18e5b89925748b2cf4f28fb979048ff67f9967ebfeb6819b936d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "568fcbf892b668ff1dcfb3a0e07dc2e1e5db003f17d601c34046f2dba65af8f0",
+      "stored_sha256": "e0d5e075f5829f3a946166d3b1823586205c22a894e0e7a3f931de72148db6fc"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "890b99c0ea9f7d649529d70bfa3ffa75e737ecc8e944e38e033029db89593b89",
+      "stored_sha256": "49743de87d5172407d6204bbc52b4bbadec1de81021219aac289435ae038fce3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "a8ce319fea349d272c035544cdb56786ca9d51e63b7f8dacbe6e973da8fa86af",
+      "stored_sha256": "fe809c2584934427562b9ab81bed7d681f28367b2be0de287c6121ff65beecb5"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "982775b4272d9675a02b22e2d9b9a2515352b932e68bce60136900c9c3ed0ff8",
+      "stored_sha256": "5c8dadd54feb54de6eb47b035ea5de2204d4fd959e3faf460e111d5a98b09dd8"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "2ca608dd45fe47e1a830989518bcc3428443c8757be020a57a9086c3ba2f18a2",
+      "stored_sha256": "1f49c52c18eb22e078e9a3d34f3bc30b9663ef6b816b76199722043e3cdc7d27"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "cdf5380be6fcddf85189a30e4debdebafa6cf1b5809f0bea368d0fbc0f314be3",
+      "stored_sha256": "31a325bbf3070b586681f5a83a2dfe17fd4badc7f2ad9e8138bee49ee1d7e0d9"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-07/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-07/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "3e32fe16ea6bed665e74d3a608d7a57de25d8fc6df45a718127c54a6920a811e",
+      "stored_sha256": "9e3ae0b95d45f14fc962423a00bab5992ceb2b0831e41112aed7700253c51ec3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "30eeb210d2cc1d3a8e1a49ac793b8a6c40b1dd24e8030eef3a3ee35016c6e96b",
+      "stored_sha256": "57bcd402189ecc240a5f8d16706ed64cca0f1ff61590b61a7df867c8111ec4d4"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "1894de17cf7d124fee0cb18748e88bd0847efb54061e9815f1bb52bd505aa9fd",
+      "stored_sha256": "273ada07f87d3790d3c97d2f4ba8d40b6cda19418755d77e1646d3837e015d3d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "ad984e717dcb23c0a88697f56c81cc8dcda32522ec518d3f58977751c1cde556",
+      "stored_sha256": "e17225ba293c1a487f4073c6078d20a49f382d3d2e973f10e4fe318fd27431c4"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "480103787a47150a1241543fa9fc288bb6e137ee8ac87f24aba30e7f370f1a84",
+      "stored_sha256": "432c020d5e0013f60accda38e4f40c337049f27066a608ce8a3d44188d87c1c3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "fc72ca011b6bede6e1c7e24ec292710afb28908dd27d898c84a3a69471ca88a9",
+      "stored_sha256": "7c77f6639238849fad2470b7c8bf58f88cb6fb40f68c518ae0b8c89d5d5f2c4b"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "f70b553e29315c76afb1befe47e8cf2b3d51c33806d95cea9a37962c5fd95ebb",
+      "stored_sha256": "5112e22afd12a66bc6a9cdce9b69e396feb54745b8d9155dc338e99f596a083d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "bddd182b75cd4477e87374c3064c0387734afebfb84d43231ec241f15d09f2f9",
+      "stored_sha256": "886b87bcdd71ac92c1fe2b44706072783d218da1811c7252addd247c646384c0"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-08/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-08/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "33f326c981783cbd9083109a72cfd75971810d09e132fe061d3ef42c09b75598",
+      "stored_sha256": "63d0224678320b731675fbbbba4d14fd592d9dcddbf77b3312a51392b1a3cf99"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "31ddc93a70b6697a518d65213adc388e445e1e572c623d72a7f3a98add9179fa",
+      "stored_sha256": "ac21a5418acaea92ac274cd35ce9829729d131a27b8860d6397750ab20edc445"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "181c7f4269f396ed8ce644d87ef3d1562d9311ae5e10a41d935b277edf25f5ab",
+      "stored_sha256": "e4230a7e223c6506b11473de2db00e29f3cbd5e12c46a07c28248dfaf7f074d4"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "4b0de8ad5f1e26456b7135029a7ae90bf7fe806b5ad9c7d707c2bd37397712c1",
+      "stored_sha256": "a51a9137ebe8bbed9d234f9a09bb5e92c08d9ed44a80f72bec2ea51d4d311a3d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "cc8a507d2e71abda3f70ceac54f2db71f465f9fb97f2afe4a695729a387ea4e6",
+      "stored_sha256": "7902e16c383fb25add584f5ecfce7938bef4349fcde74550fb07dc74e3770906"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "0f66f66e6c4a01c9cc3084e96613508b9c94587442e19d783391ca07730ac198",
+      "stored_sha256": "823df50c1a09f0274668e9532c4aa700628c910aefb52ddf2d83acd71d8b9c27"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "1c1fd0c2b8e42705421ceaea18cb5fa2b6522be9aa65770a1179a971f60b59e2",
+      "stored_sha256": "87ac120a89665ab296a1d1f9d4b86a84231eea7255ca24ebd6c9193f6bb2126c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "9f4001f18187fde84fe0d9cf0b19955edc424b6a2aa587a4bc966d5cb75d8ae2",
+      "stored_sha256": "73c887cc618df275f791e78a139cfa24ae49fd929d8d3ffc7bb55805eec5de26"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-09/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-09/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "415042a260e239091e67c2af6e072bc04d494f86e589e2119a332eaa247aaf44",
+      "stored_sha256": "384993c59170723732615bf937022b603566a9773480f6a7dff0fc042bb12a6d"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "cf7a21cbc8ecb7dde5cdfb37f109170a144f5ad6f73f6282ca6689f687c9e7cb",
+      "stored_sha256": "0717fe05a2906acfdf8fe6b6ac88afc1cddc62dfe6068d8e84c3c5177b7ea0f1"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "1f6c3a195f41df66847cd5d4f1949020874a6769568d0a4baca30ac38db34799",
+      "stored_sha256": "c2e46be4342caa6361c5c896d9dd820fd34c71fbc5a4b87630d8f2d3d99cb913"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "1f5d65b7d714d6f0380ebadbbbad5a400ff4c41281ac57c2b5e1505d066445f1",
+      "stored_sha256": "2dcb96181c9a0c131abc9bd08d1128744d33905387ea527c7331cf76d0d72d05"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "70b418dae8aade6a7492aa8ca5cc2ee929782b70e4e5c72f20693da16f202547",
+      "stored_sha256": "0a943d2bf4c3e4eeb45b9904863738f007c3f9aa104c7ea88006c5f44129c2e9"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "6e07e39e55451c52215de6cbe800fa5b7c2315771fc32fd688f4e8097262bb09",
+      "stored_sha256": "edd8dda150f8eefc00b40a0fbecde145c7dbede6b9a65564adb240c9fa09a022"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "4101fea203640743fff0e2300100405b6a0ab2357f5750e6692f348303f1a126",
+      "stored_sha256": "56498e70cc68a272b704385d6490f437b6f290258d5995d198985de9e8f72a4c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "6173b196296a7427cbc2713b5efa07a19318b3580f2c620ee694b5e5fc019f22",
+      "stored_sha256": "9d46e175dd94a80cbc73f9569a3a9d799ef5644bc150aecd9f88a809e70baf5c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-10/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-10/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "8d75eaaab31ec15295838964c3f9dde6a3ce0afdd7027aa61a13884c2954594c",
+      "stored_sha256": "870240ec762c53c83561eaccffdc8b2896522d27402d7319471b017730e3dd27"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "375ab687f2d2621549b4ebf122154e4491d5d74ad84eaa876a8269333f514517",
+      "stored_sha256": "c7c4b66d23b46890da30c7ecdbbb9accf76da94f7a8d20147e5bfd57891e7a5b"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "6c934cf5c3803856fc9e6ccfd38e404c78e7bcd726a40722268d101f4b2f353a",
+      "stored_sha256": "3ed8b8be2cbe5f2d03c7bb72e59a57af3ce00f480018ab95ad6796ce8a4305fc"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "457c9cac33863038ddeb1e043a8e48f31d2b73d3a5272961ea3a0283c78f0b94",
+      "stored_sha256": "87f27825b310d277d9f185e7bb9d1a8e8da1fb942c0e17f1cac717dfaee14750"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "87d7f386236b209b70cb90596c062bfa7fd8e66d159c0b3f396a9305ebc1772c",
+      "stored_sha256": "b7f6ec14a88591605f31aaa2e29157245b44c797cca449ad1c56d5655855e4c1"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "35dc4d381004d517b9a007831766da3cb60e3d75580acf0599def1e78391e101",
+      "stored_sha256": "7271e857e9dae86e3cd1dbf18407ad0e48c73bcfa63cb12bf1ad5b7989d625ec"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "2a2622f351129f79060054cbe4994f90dd4f52cbdffd1e0c55b8203e39901516",
+      "stored_sha256": "e59d81eb2c5b930e2d2e5d8dc28417442d9d08049fa9b60910d7e04a62cfd5cd"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "5d031c34c74483b870fa7ccb8318bee5bf56ca82a7fc788549f0f6c9ff27e882",
+      "stored_sha256": "d8e20accf66508a79fbf7b5affce49ca734b502a61ae78b572dc0a57d54796bb"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-11/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-11/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "05e69588a0951908e8451e37aa1a99d640d75c75d340e8a3d5022684c9aaa414",
+      "stored_sha256": "38134e4b7bd63d18d05ee1b380f25d08c1bb0f96bf3b9b899b3db737ac3df6de"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "c151f76a0f65b5a092b9927536b5539687c5920a6c3cb567d683ef9ec9756c4e",
+      "stored_sha256": "6dc26c01415be142fd7d32ab0af800578ba3f8dd0d6b7ed0ec2cb08c5e52d6ea"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "d8e5c2d4cf0798cff9400fe92b3b3251fd8c5f0db35c4d9b58bcfc0ac2d2b70e",
+      "stored_sha256": "5ab4cda026e5e518f5f7df088bfd8bb5d4049b5ce4a75e1308ecfbb0404eedcb"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "b90c3ffd6ab9c9af31f233f618f5d2b91ed25f7554240a362bf2e5f7022f0a12",
+      "stored_sha256": "f57335d12602ee49d49511a2cc0c8d992fd5ac1989ef525c23c7c4c4e507b3a3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "c401380c499e35e148df3447c6fd98e7359a29fc181398f08dd3d4772726ab93",
+      "stored_sha256": "9891e82917e200598e8a6e8d37bcbaedfa689d5e6c4e8572daa63fc0b00a46df"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "8f1d287772a397aa470fe331d21f3e31c5071eee956c0024b6e84b9bce89c1df",
+      "stored_sha256": "dec4a9f100ddaf57547908d83516b26c21382888deef1eaa604e002b38322a77"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "c7a4c2fd67deec98a7f771e09ad1177780550e94d06602c6d1f39f1dacff4dcd",
+      "stored_sha256": "a5900d2f1afb8b20524711fbef14847a7c2f84f71851848f7b9397d2c658ad9a"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "dbd91e9bd0ae8fffba4a71133ed21adc211a15036ddad9555e731448d8ca2215",
+      "stored_sha256": "a4861558e456fff2063db06e8aa1599fbc2c594603908d595869a4322330cdba"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-12/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-12/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "0637fbdc9153b3576da6a6adfed34011e0769a892abd142ac91d972445a51167",
+      "stored_sha256": "26b38e595c631bb9e46a06f4b68e2095cc94cab0fb6b020a54f5de15c7d37c56"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "bb784e2e435285db5eefd0c6a31ac3076e35abdd833e85cb0889d8bc2ab0601f",
+      "stored_sha256": "d8f0ed8cd556904f28362a0b4bb137ead51554c2ee3b84305faa2cae31e24275"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "7510059475ba2eca6c5bb86e4a05e9996177c4aa06f4fa3b706e6936d7ffbaee",
+      "stored_sha256": "cc5ffaac48dd2b6066349ab5a94ff977c242ac193dcbd630b3a94ed24cdd2a46"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "96d0cf7bbc80f598e62aca40fb8b1a4b6a2ec5b1f4d2e17744987c705ed3d3ba",
+      "stored_sha256": "f10a8e6b0d2d1ba0ef8e8022a53cc50a48cc62614fcfbc6a2009ad61602c16af"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "ba82f1782e3b879704330d0958fa20ec5273294e192caf0d0c73d0eecc23c90e",
+      "stored_sha256": "851d3f201aa4d91400848afdbc5c776245edaa02d36b586d6e421968a9ec11e6"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "7781397d598b7ad1e51867a3d4958caa67214e3c58d8d34c0240d47e4fb478de",
+      "stored_sha256": "74fa16e7636d2d656ae0267d0e777e9a07e387d18cccb34f2711ecb7dd4404c1"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "d61cff361beb2071847ceb749a89071a4517ee0954f0db119a5117fcf5fae5d3",
+      "stored_sha256": "964fcbd4686d2a78f253749f57cbcb4dcd803973bf288bac662033cede1a9420"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "cd8462c5442a9e4f381d672d0db0aa165fc4a59aaf31fb8fe8827bc79c063e33",
+      "stored_sha256": "0a2d24d76f44bfbc11f4d1db65bde7692a1ade60aea363fdd7d3fd8baaa34c86"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-13/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-13/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "b1aec04310288486132959227e68cbb5fec431af996c6591917912639c8d5973",
+      "stored_sha256": "f4ebbf5ca889ff68a538635319fa5d7ed1a3a9dc6392b19a6bcad3423d42f437"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "7fe2c183569038bf5e128a6cc7cd633654c7187dfafa0e8e54e545a00e47fe5d",
+      "stored_sha256": "69e3e9e0a863b44553bf7486ce951566d0b89de53c80004227aa580d338d99eb"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "98d13ae1dfe8921a197089d92d038a97c9e91ed351fd38c899615f9e2a01dbba",
+      "stored_sha256": "148b1f4ec7d4a1e5dea36ac19f6f541bf559b79c90a5667394da330c0331ce93"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "be810dc0a0501252cd1971b1e3060896a4f9bd0ba3a06cf39b1da371119f0931",
+      "stored_sha256": "1c8224716fc3d215d23fafb4513f2fc18a0e41f0070ac7100e99be6700e892fa"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "7df9c1a1b8861240275db118fb071a3d1ee017807a5eab7af46f50e57706ea17",
+      "stored_sha256": "f07ccc1c7fcbe05dbe125c461f2a96669816fac984101c3d344436b2863df5c2"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "33bb548392677948d3b42470098a2fdc589883491f654e0586bb8bf9542a3270",
+      "stored_sha256": "cd67e9d89d2c5f3c70464f1747667ac5dcc430870d2d29f12ac0e50e751df8c8"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "fdfebe79874694439d848159016b98fe10e40a7aac21cc3ff813219283a933ee",
+      "stored_sha256": "7eed5c642e267ef5719bc110a5794162d4e887b788b7ed3fb9043aefd78cbe6f"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "3225be8dbf7da2848e95d468e55ca38f80a4bd11ddb3a4059b9e854f3da191c5",
+      "stored_sha256": "5d294e2754be0419cdbc163930e3a446deb2c2d3a623802fbd22bb3c1dd832e7"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-14/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-14/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "763dcb907929cf569144c0f2ec364e1258d894b2e6bdc235cd4701ecbd69491d",
+      "stored_sha256": "32cf9d65464484a8456625faccc423f9330b1947213d66f4abb9f749c8d567b9"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "dec574b095b612a177e1f25e58056be20c0f18c7bb7469feac7427a40eb85e63",
+      "stored_sha256": "56c385687497305f490c17f1ad3bbd0e1d1724263cf63c84ce699af3213c648a"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "963e0ceb19e0bd72549441c8328298b3d3c90fce761ea2f6b6b7e0ae4f67d3de",
+      "stored_sha256": "a8c04768505a80ff45bf5be8d8456e4b1f394b269910c4274b3323ddf5876c85"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "f78270acf4e687ebc707ef131ff62c62c509f23af655f8727cf8179710fd89cb",
+      "stored_sha256": "5c6615700ac462d866d781c1b05314b02c7079eae049ff776f297ff56b9354d3"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "165ca4a31529e9719e4637eea90a0c4b6f37931163b52a084eceed01222ffd32",
+      "stored_sha256": "49ed3762285bb13e7a0c8a7b7fc4615766fcd7b89b155a84eae1d9691e0ae1e7"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "3105d4cc66aedcdd82757909f83ba5f4818723a153e7cd6df434f650bf9b3722",
+      "stored_sha256": "80c04c820ac8da0494486cf0a80fb84f8628b3294c9cec5ea7b5478b1ec7d7e5"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "0a691bce1d77dce4af4500187a975f38edb0f6b888cf005f85a3b4c301eb2044",
+      "stored_sha256": "964f4de0dc2d86c13e32923baec57f0fa3da47cf181bd2539ac06fc5a9409cb9"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "81ad2feabd2fc10771687bfc5b29ad8996eb7cdcb28ca16979bd540f064e3dd1",
+      "stored_sha256": "b3b986c35f4b71c03fa80d6439d7e60110ec0369ab7766e3f0f2c02d40071553"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-15/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-15/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "f5940c96bee63ad5f8369a056685e6728fd30da9d451d244af3ddf7c53051455",
+      "stored_sha256": "3b608889dac36055ef841126fff471ec925f88c7e41cf676195ec41f1ae49fea"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "53c2645076f51a137ef8ec3edc7640ad050b27f0fea936693d5dab71e903d603",
+      "stored_sha256": "1581dd3ef6848ed0cf87ceaae8d7ed9a362cfe5dff076232008f4644c727de4b"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "27f33e5ebced73cb3a5fa8f6584589b7911ba555e73dbadeb1a71952bc6896c6",
+      "stored_sha256": "19e718a0ba4a4fd2daaf6c85a236a66ddb20960ebfd999d9eb925e283a5a443c"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "999fb6cbfdf612118e9aee1088ea2574e0c4e1d973cf1d124d0109dc53a17305",
+      "stored_sha256": "e1add999600b6d9e3217ee5621c5550563187d8cb5f775e2ec0dd166a1d7318b"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "aeed03f5799ef4c83f45863ce31fb72a59233b7d86e9e8e6a461eee90c03c6eb",
+      "stored_sha256": "248897f91e1c713c4b8efa2e42fedff7f099384bca061cbe4090725e9dec37d0"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "22ce1d402dd1d076895c407384228a829437a1503ddcfb87076b6cf3d41dbbdf",
+      "stored_sha256": "ed37466919e149af9eaaa6586aad53c3ec413071738218b54919488c0c4ae906"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "d05cb6ad262e91d0d1e5e87a7da96666d68101130f72f0c9d1e039233ad775b8",
+      "stored_sha256": "d7734ae93262473fadc712efd387977f84d83a81426e8dee8966e5b3ef2dba5f"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "6ab4577e9d9b7db3fda3d6359c832870b42a4f756d90411f412957dea33c7c4f",
+      "stored_sha256": "55567c62af6c27dd265fcc37997874dfd272627101aee8b4bdfbd30f9ea064df"
+    },
+    {
+      "source": "current/assembly/configs/om-lhs-16/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-lhs-16/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "fb0558f17941ca9aeab7634114283e1050b8425454f58dfe781b924a7f508274",
+      "stored_sha256": "e4ac8bad790a1a9476e2337323345b7a1bb996a55edad6c563ac07772cb4cc28"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "4e29f158d6b48c00ce73e349e5bdc97022906c974f664a1c90a92b8564e80148",
+      "stored_sha256": "fd1d95db2db9202365e299eb90ceca0a46c64f0d6dc7ff71d74a9c60fb22da8d"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "5eec3dfbf4d954a1a194aa51c9814aac5bc746e63bd9bf6f4d6e9c20d422d697",
+      "stored_sha256": "29c4f4245658667442b87a3e4aee49c0f0a2ec111b7cb574066781944b93bca8"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "eeebb8695618a1890fe74afba7ecc0adcebd12fe2580330289479f355ca2b451",
+      "stored_sha256": "d7f59234427ae75c1b3dad0bb859946ee6a3f8553f86bfc045508ea2e648f61e"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "39284acdca20c9498b84788d697b92aa7cbcee022f49f93818d2298629cbdcd0",
+      "stored_sha256": "7d52ba5e16654ac98599f9c6f71e147132cfdbdf947f8dea8f899b146a3067a3"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "6ab9b63029e19d22057e8e53921eaabf12c53070d70f832506ab9b89bbf5ed4a",
+      "stored_sha256": "dea0b7688d74bd1cf094477c35834913b7e4b508e73ad9cd9ea6745f3cf6f9e6"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "fdc4695d8b0cc8d91bb4fbf74f955397ad6dc0c454f3ac115bfb571b85619bed",
+      "stored_sha256": "dacdae0524b7f0a8d949ab032ff2400331ed9255275d8596eeba8e6d1e0db56d"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "378123d6b88e7059e2937b046dce0115ed160151aa7ef072a19ad47fe4e0d9fd",
+      "stored_sha256": "25d3795f20176614b48e1bfcbfcf5a60db59f1080f07ee8726f44430b27f4d50"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-high/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "6aaf40938dda01dadb1148977868a90265e6ab05a79db4381b1feb0ee08a042d",
+      "stored_sha256": "6c4b3aef966e8fba995b8f0cc4e4d3c89d7156bda962b857378cea1750d8ccd0"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "c81428fb3866bbb458e8325ca7a790b290c6487b2ad49eb8f98b61d2d71a4f74",
+      "stored_sha256": "47713fc7ad474f25f5724c3c6da35796026d86c37052f70cb3ba191c14426c6d"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "7a90917213d75819d77c1cffcc3a9338bd783f17dd452dc0a16a5c9dc73bacd2",
+      "stored_sha256": "8a0b89a8b0f1b6f5308a1387d213b97b65db66dcc7cdf6a28925e5dbaee9f76d"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "dadf86b1444d1d6f91b798fe8ad27f3e8fbe208b400f46d61aaf2241d1f92c31",
+      "stored_sha256": "eaa96747b0182dfaf0471f78b7c33ebf314674eb67505c6cbcdad02ea232b8c9"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "7a01e2e8f8001d15dbe8d67c941f656b994586ba7b56eef0838c0fd0a250f062",
+      "stored_sha256": "c75fcf3d429f919b719a94350aa94e41167e6f006dc0afec962efd279d9b31e9"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "b89ccc1d84c708656d6061904e9cdb6e3f2cae8637f3128b197fa2a13ccd5fa8",
+      "stored_sha256": "e38dad0d2b56a4513df4738fd5992eea2e6ce4772f08be0eacef37791a198197"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "8c377a5ee403f4325c33a16b558ed3a67e065f20e1ba7692acd3112e68b02370",
+      "stored_sha256": "ebadbacec63e2bcdb7a77f401eeb171cdaa2f0a115ee3ffe0070bc93b3ad2ab3"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "ce4900338e4099be5652c0ac0549f8818fa798e225178e06110c3c9994149882",
+      "stored_sha256": "d0c76ef3841b6caeff5102f5cca0c1068f40109d5ed6902cc288047f49d79a95"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-b_s-low/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "140699beaf9ea51ee95a22ecc9213b5a5eb3b8df929c73701f0e841ec5b8b33e",
+      "stored_sha256": "7aa1a0f6d1baeca753a144672ee4d7b3dfba706ef3fd1e613a2383a262914153"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "6af9d5a5e07ece77c6038cd2e0bd44fdc51a6b8ef3bf218212f883693234d975",
+      "stored_sha256": "b030600930de7e481e104d540be4568904d62992532827b70dadd1469883fdc1"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "3e21dbcf1c8d8b210358630345fcec97403ddb9f165db59f5aff5b83b8e802f7",
+      "stored_sha256": "b966f4565cfac4201b90bac9463b31b7d5e50052499effb07ecc93fa2903516a"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "93b49dda40fb5dedb93ea60b05048c2b9352971251e233c05e30dfdeba76f888",
+      "stored_sha256": "c9cd4863a822dae2ae51cd546c3f275602323e4aba329720c5e665fe91daf37f"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "f09e991209c771d5d45513c44a1970ddb2be0fa307c5b3ec789dfd84cff691d4",
+      "stored_sha256": "e0ffb6daac50a39fa96b1811500275b3e30359df69416bdf237ef7476dbc8322"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "a73ef4f0ec93c91a54b4b227bbb913b9bd16b2dc965d10d111196b590d9e9f63",
+      "stored_sha256": "3a189aad34774ae8e4b2a49c93df30c4f3c16c70201e11f80838429ed888de1a"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "1f934e30f27e735c4e8ca851500da58edc2ebd577eef4e609f4a0416be3bf3ef",
+      "stored_sha256": "ae0bdf616a6ad38add2752163331f6a847d4602c3022f9193be31240144ac961"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "d5100432d6341c83d4ad8805d5e4ae6072e101234fa6952a0fc1559e35255897",
+      "stored_sha256": "ec28c3b5668ae1bb25827f4e6a219b5bbca5c5a3476f35b22dd46092204f67a7"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-high/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "36961740e19509508e292e944394a886593c6db65b669562a66f3acf30a8222f",
+      "stored_sha256": "77965b6d556e47d5471fe27348f1a160e98ecdba750527b3fe551b48c8f33819"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "39c2090071a42be675e608eeb6350f4160abcc5395a187e2dbbb8009bea1a4fd",
+      "stored_sha256": "cf868feb4d059e57cd88ae9a21ed9e5b1037c79c87259ae78b34e107b7b3e666"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "9dc2c34865c4247b640ef82a1ff84f8c9152f848fa6ccbd3c925bdf8f8255812",
+      "stored_sha256": "862e7660ed6937e8f3938ce7b91262c055228e6de3d2909226fd2f354556c6f8"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "257bd6bb1584a051cf2e0081c948f58b44fad2f97943cb8b79595f6fb63040f0",
+      "stored_sha256": "2ccc91b0b799694df6b6d38fb189b3bb117f273c0c257ae82835582f0a1945e5"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "f9f0e66d4ec3e1dcc0a77d0de26e651ac5427c5578938c1165accfb73dce2612",
+      "stored_sha256": "d635b972631d9025a9adf3ba6160026ea9ae4309fa916c683a31db9b88f19c3f"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "1a1693d57057a004db88021f5c596262322b1c1cd4d0ef5fa553a75641246217",
+      "stored_sha256": "64d92d042c2a2af280edf23c6e7f4c54abadf35bcd2de660ecbcbbebf47a0609"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "c286a249c9cdbc7f7add6e4923f1b0fd3d6d9861360f4cc833b1508377ea21f9",
+      "stored_sha256": "482a73b27aa6a49d0eead0218a22ec9458f58af4d31883214a74a1ccc6d8879e"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "35a4a4c68fb53a4e8165f0aeeb948be791088e4cd2ac523f8d9067f50099adff",
+      "stored_sha256": "98a2be57fee26c8beec97e88e3557686c7ffbdd230c6fca0ffe00e59be526070"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-mr_b-low/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "23c5ea862165d178d4503473af5338d5fb1b6894963d3cdbdd2fea571fe6be21",
+      "stored_sha256": "14db083e7204585d3e085763d7fa4a146c6f4ce62384a50dab0e7527d1ddb894"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "c5fb37fb85e4eab7d5baa5b4a9980c94a54e6797711c56441c3df0c50a3b7901",
+      "stored_sha256": "ac068defc23ec0815ad982efed5646594566e1fb02cc955363a13d01f573c064"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "6852d5fe2bd8a8b6b54a24fd011ee1131887b884da42cf9f8502aaa4a1185888",
+      "stored_sha256": "039baad2ff054b7a2f286615958a841a8c63c2ae7719922277c5fcf3e71e9657"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "b29870402efbae670217234c20181f1ba1396e9a920e5941eb5ef7b80e41eda7",
+      "stored_sha256": "24682d7474c6aa936653c9c11edd8f6f9f1ba465788237d07ad33e993a280215"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "e52d9014be0c41a7fb2d6a31ec345adadd3fc368be1c05c425ba0eb5bbbcd3e7",
+      "stored_sha256": "60c810e61a5ea66da172a7273acba310435b8467d29bc8e428800b3337d6e06f"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "3c9696c561ec8830c326eb4359897f3e6d17f5b42e109feda8f291e6db3b9504",
+      "stored_sha256": "bb26784a10a1e8b2e7915a6484bbdfe6c89f876d5f940c98f6150e888e58fce0"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "f30c150fa7a26cefa3d9ac3f62d428ab343b711b80af8c204c262a06f0dc6670",
+      "stored_sha256": "72a7d2d25db8d1c1a606213aa916bee9500ddd23381cd22327120c145a4e7978"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "3886874a0d27e65bb32566e7550941221298efaf874ee6b113b5dd37451862a5",
+      "stored_sha256": "5c61bebaf75ac3b6b49bdd452d9bc1eeba208f5cd74e2c69523d55476102eb46"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-high/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "e35f25f84cccdc71097ea8de353f14531f625a8541faab642c3c13eb8077ebf6",
+      "stored_sha256": "fd9ddb7b586fe913fe6c6b22d3328a984b3cdf0ba32175af2a6b0d9d1be2c68a"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "398df769cd271c4fb5f55bf059a5fad3201d1ab0ee5c2ba5fe98b1ba3921bdf7",
+      "stored_sha256": "8b7166a303c3ceb81abcf63b4e3572f7d9436c15ba6868869cf1c490b05d97aa"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "195ae6d2d17283cafcabe2a4de1f9ba70009b22899e19a496e95fa6819897d46",
+      "stored_sha256": "ac88d7a0e76c6a7aa5bd854dc1a2fff594e188f3eb95503e8bfb261beb9eb533"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "ed653ddfd79e38811308e8f8de07abbd270d9debbece2dd4bb1ee7fea0192c75",
+      "stored_sha256": "2b5c232a9b7e199fead44fc29cd55d6070a4af1a7b0dd19a078eeaadae79405e"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Cng-2007-wilting-legacy-clim.json.gz",
+      "source_sha256": "1c1e51d0c2011ff620cf3b674fa468ea1b61c993bebe2eca77e89b6fd1b14a15",
+      "stored_sha256": "d1f73764daec08b417536e65b320478cb2c1358327800f05dfa6e5e7a66c9e74"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-field-capacity-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-field-capacity-hydraulic-clim.json.gz",
+      "source_sha256": "508519a23e6785d777d80f69d0c9a4aab1f8a87fb9ef15573d63f5e050784772",
+      "stored_sha256": "db7036321e384e1127c016020a88dd977f43365af4a4d46ea8fc486d1ec0c291"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-field-capacity-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-field-capacity-legacy-clim.json.gz",
+      "source_sha256": "0eacd515a72026594f082673804aeaa62a9cde32968007e894d9c62d48089286",
+      "stored_sha256": "a26885ff531358b8d66d7cc93ea9a5032a80650aea603869be4bf771de6f8047"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-wilting-hydraulic-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-wilting-hydraulic-clim.json.gz",
+      "source_sha256": "6214bcc340c7ac5e87e22e0518afdb4b2df1b3da4635edc87624379c1b53106b",
+      "stored_sha256": "741591693c89a543435818a350019ae92ff910bf99b82db00a2258caaacdc8d0"
+    },
+    {
+      "source": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-wilting-legacy-clim.json",
+      "path": "current/assembly/configs/om-oat-q10-low/CN-Qia-2003-wilting-legacy-clim.json.gz",
+      "source_sha256": "d02726ae4adf8a95ba24705d805d313dee493c0027b52f34c9b419cd3b61aaa0",
+      "stored_sha256": "cc104001ce39ccd3847ee735cc582e903819882037c837e8ab5cf0133425d323"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Cng-2007.json",
+      "path": "current/assembly/year-inputs/CN-Cng-2007.json.gz",
+      "source_sha256": "a0343b4ddcef2d2c363dcee74b8e32cbbed6ecbda0d9b0bbf544f49f4b771a39",
+      "stored_sha256": "bb30b9e63d6b7fa44f6c5112f97e3f63b50f4fe5176b87f174fab9e2bf0aa78b"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Cng-2007.npz",
+      "path": "current/assembly/year-inputs/CN-Cng-2007.npz",
+      "source_sha256": "d6efd341d72513b0e0f68b56c4234ec715883b8654a008babff761d91e454b0d",
+      "stored_sha256": "d6efd341d72513b0e0f68b56c4234ec715883b8654a008babff761d91e454b0d"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Cng-2008.json",
+      "path": "current/assembly/year-inputs/CN-Cng-2008.json.gz",
+      "source_sha256": "401118d0407e9c7e5a0b9a6928a64d06f92f94165bec7d5c835293a1ccf90859",
+      "stored_sha256": "1bc9f303269bb582284950be067da59e77edeec99b08fe9b11ff1b241e3b3111"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Cng-2008.npz",
+      "path": "current/assembly/year-inputs/CN-Cng-2008.npz",
+      "source_sha256": "adb411ec3fb04d81dfdd9c07aded1d5038607446535092c170635a1b66d566e8",
+      "stored_sha256": "adb411ec3fb04d81dfdd9c07aded1d5038607446535092c170635a1b66d566e8"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Qia-2003.json",
+      "path": "current/assembly/year-inputs/CN-Qia-2003.json.gz",
+      "source_sha256": "7af00d1d69d1aafbfcef6393e55d482b2678343f81165e1f246b91a07f5cc343",
+      "stored_sha256": "a38578aa0d38a870c48c162d2daab861da97e4bcda01e3318b10f6651116847b"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Qia-2003.npz",
+      "path": "current/assembly/year-inputs/CN-Qia-2003.npz",
+      "source_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960",
+      "stored_sha256": "237dacf7f7d62d48f44cc28ed8213a94731419c77b98b1d9c77d94d3b3272960"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Qia-2004.json",
+      "path": "current/assembly/year-inputs/CN-Qia-2004.json.gz",
+      "source_sha256": "be81209393d6e959acb013ee20f8c9916f8ab1c23d0adae7f44d89249b46ae90",
+      "stored_sha256": "9d96b12290bf84cf574fac5d196a31bb3910ea74490d1359198b7023063e8f98"
+    },
+    {
+      "source": "current/assembly/year-inputs/CN-Qia-2004.npz",
+      "path": "current/assembly/year-inputs/CN-Qia-2004.npz",
+      "source_sha256": "91285e109d19d1d4e9f47719cffd91b9aceed60007bbb1ea521d9c2731b15bc6",
+      "stored_sha256": "91285e109d19d1d4e9f47719cffd91b9aceed60007bbb1ea521d9c2731b15bc6"
+    },
+    {
+      "source": "current/controller.log",
+      "path": "current/controller.log.gz",
+      "source_sha256": "6cad27a1687984225ce4e4b8af5cca1fa7deafa1816f64d3cbc0c06356065fee",
+      "stored_sha256": "f9a19d372c4b71d7edfb9e35aec351ab66da18618587998791ee948f382db0e8"
+    },
+    {
+      "source": "current/execution/CONTROLS_SHA256.json",
+      "path": "current/execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "d2025723a4e3f9a2b2a458b69dbcb9ee74c6c10b795e5a908a82a113cc1d1b3d",
+      "stored_sha256": "1a4d457bed1023ed3160ba879e46330e7895b08048e7f07dc7dd52523782e4cd"
+    },
+    {
+      "source": "current/execution/RUN_BINDINGS.json",
+      "path": "current/execution/RUN_BINDINGS.json.gz",
+      "source_sha256": "60a8512b4eefcc037b27159e647515ed5492d4030427d73da185b4774dd63a7e",
+      "stored_sha256": "8d81b05555628ff9419fc73f8e5d1e7cd2b2b2a6f0f3c857a56a105ca6d875cf"
+    },
+    {
+      "source": "current/execution/dispatch_metadata_pa.py",
+      "path": "current/execution/dispatch_metadata_pa.py.gz",
+      "source_sha256": "adcce305f1e50419133903007cc1e5abae7c995c409c2b0f095ff88ab2957118",
+      "stored_sha256": "fcb47f817442f9dd4fc77bea28ec3861ca7c0ba371d9d74f2bb3d1e75d608acf"
+    },
+    {
+      "source": "current/execution/metadata_pa.pbs",
+      "path": "current/execution/metadata_pa.pbs.gz",
+      "source_sha256": "3f176ed31b5e638a18d4dffae9112ab578d56aec230457966cfdb517c181867f",
+      "stored_sha256": "b8511dba5c466fbc7647cb19d391e944b588b0a57101f2b81155dba68ae0337f"
+    },
+    {
+      "source": "current/execution/run_metadata_pa.py",
+      "path": "current/execution/run_metadata_pa.py.gz",
+      "source_sha256": "c5ffbd8b1c7604c0128f0dace51885d5edf963b4dacd1a8db6ffc09ac8e40922",
+      "stored_sha256": "e83d8ae6db6ecff79676d866e2079fa004590226100f37827cace3c387de37b6"
+    },
+    {
+      "source": "current/metadata_pa.pbs",
+      "path": "current/metadata_pa.pbs.gz",
+      "source_sha256": "3f176ed31b5e638a18d4dffae9112ab578d56aec230457966cfdb517c181867f",
+      "stored_sha256": "b8511dba5c466fbc7647cb19d391e944b588b0a57101f2b81155dba68ae0337f"
+    },
+    {
+      "source": "current/native-metadata-command.json",
+      "path": "current/native-metadata-command.json.gz",
+      "source_sha256": "479b07092e0d367f8cc2cb1e8cbcaff3151ccce8a07d7cd0375341a0b21b1ab8",
+      "stored_sha256": "6aae1ba711c341651a79dbdd4fafbeba77b882bc81d2e03a781dcc8f6caebe12"
+    },
+    {
+      "source": "current/native-metadata-parent-exit.txt",
+      "path": "current/native-metadata-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "current/native-metadata-report.json",
+      "path": "current/native-metadata-report.json.gz",
+      "source_sha256": "80f2ce17fcfaaacf335ae8c8cfa290c0e75514deac5d1791319a6695b7f8bd26",
+      "stored_sha256": "a3754fc258277aa6511a6bf39144cd16d300dd10223634d6cabb6f747d79e550"
+    },
+    {
+      "source": "current/native-metadata.stderr.txt",
+      "path": "current/native-metadata.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "current/native-metadata.stdout.txt",
+      "path": "current/native-metadata.stdout.txt.gz",
+      "source_sha256": "5568575613eaaa73b87cdc78c6fe7bce62a205fae4844dec33a5789e81de4260",
+      "stored_sha256": "42011ae0ba9b42a95e2d000cfe42dddb694edb362c2b80d451846be2b2d0abb2"
+    },
+    {
+      "source": "current/preparation/BINDINGS.json",
+      "path": "current/preparation/BINDINGS.json.gz",
+      "source_sha256": "d525018134f84a965c821c74f00383ed534d1f9c57c35c2f1fcd158fde1e857f",
+      "stored_sha256": "d125aeb70c5afa16feb69ff71886142d3c097bc63eaf87a06cbe5f7870860483"
+    },
+    {
+      "source": "current/preparation/CONTROLS_SHA256.json",
+      "path": "current/preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "e604e237b6aa909057fd0c3875fd05bdc755b4733008efe3ed9b60a069e250db",
+      "stored_sha256": "19d36551462e0e378376427fec314b36391f241ccc91351eb0e79a71676248ab"
+    },
+    {
+      "source": "current/preparation/README.md",
+      "path": "current/preparation/README.md.gz",
+      "source_sha256": "6dce2ef04079c432808b7b4fc66064ef0fcab40d24687ef8fe0ca5fd561e80fa",
+      "stored_sha256": "bdc091c25b7fad95a257c2e65ffed0a3ac511d11edf24b14c879be80d97af3b4"
+    },
+    {
+      "source": "current/preparation/assemble_training_batches_pa.py",
+      "path": "current/preparation/assemble_training_batches_pa.py.gz",
+      "source_sha256": "5a0bde7855a9a524ce61832d86299349fd89861112f3140f8964556d9f589de9",
+      "stored_sha256": "34e00938bc73353be4233592a780385ab48c52327d741a61e35d1dcb04575730"
+    },
+    {
+      "source": "current/preparation/test_training_batches_pa.py",
+      "path": "current/preparation/test_training_batches_pa.py.gz",
+      "source_sha256": "257b55cc7efbada891f3846911e33d222a544b96a5ed11070348936835ea70ea",
+      "stored_sha256": "e3a4f8347beda364b15bddaa78a1806abb2e357c5fc175fac2f84570f1f14161"
+    },
+    {
+      "source": "current/preparation/validate_native_batches_pa.py",
+      "path": "current/preparation/validate_native_batches_pa.py.gz",
+      "source_sha256": "97622137fccc9412e14a4d982ef3d8b1e5fd7edc89c864d2b1512558c35dcd88",
+      "stored_sha256": "6fa920c9fd50fc4abe62c19d594dc34ee32e8fc537744fa16778bc9c33a44532"
+    },
+    {
+      "source": "current/receipt.json",
+      "path": "current/receipt.json.gz",
+      "source_sha256": "9a678edacbec23682403a92aeb999422d2af7c2af9d6d5dafecfb3db638a461e",
+      "stored_sha256": "fe7da9c49856082c3f2cb2a6cfdf52dc3f1abdfd7c82368067a85f61dc63b18a"
+    },
+    {
+      "source": "current/root-review.json",
+      "path": "current/root-review.json.gz",
+      "source_sha256": "815ce8c623dd73c7d5e6004c4796b876790ce39b357db2a1f881b2a786cc4e0d",
+      "stored_sha256": "0c97b062e39d6aaca9ed5bfd6482234831725e7e6316933f66dfa4b0f1691dca"
+    },
+    {
+      "source": "current/unittest-command.json",
+      "path": "current/unittest-command.json.gz",
+      "source_sha256": "a6d46f567ee8068ffbdfdb4ca8df88b9676cd55e9df76a07f58f3f6cdbbfadd3",
+      "stored_sha256": "7b0bf05a9e4b178007d5265a1dafb0fb60e41f7c4e14c3a632411211bd046384"
+    },
+    {
+      "source": "current/unittest-parent-exit.txt",
+      "path": "current/unittest-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "current/unittest.stderr.txt",
+      "path": "current/unittest.stderr.txt.gz",
+      "source_sha256": "2f57ea22d21e24f42c01fa8dff3253ada3e89a5f275d79e12fbcf99542b478bf",
+      "stored_sha256": "d26c3604f06aa10a81e411acacc80c34ded1c9114002656980f3404dd1f80c32"
+    },
+    {
+      "source": "current/unittest.stdout.txt",
+      "path": "current/unittest.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "current/worker-exit.txt",
+      "path": "current/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "inventory.json",
+      "path": "inventory.json.gz",
+      "source_sha256": "4c02585b4e363261415b40d84e3efb8f32aad032dacde7af54fdafa7a2726e96",
+      "stored_sha256": "884c0dd43a5d0b1745191ad56decf60a07c04a95f88c4645057210c7acb915c2"
+    },
+    {
+      "source": "manager/compute-extract.stderr.txt",
+      "path": "manager/compute-extract.stderr.txt.gz",
+      "source_sha256": "bbb03c9493e29d1c4c447061d85b7afb73a17d82a499094caa14a9df23efd3fe",
+      "stored_sha256": "82d7444c9c9071e6f8328840bc46395eb9f52e4f26de891e2cd80510b39be5c4"
+    },
+    {
+      "source": "manager/compute-extract.stdout.txt",
+      "path": "manager/compute-extract.stdout.txt.gz",
+      "source_sha256": "a802ad53b4126922ac2463340952ff6493e2cd1e5abc9f70f18a84f49a261398",
+      "stored_sha256": "b7fcacd5b160fc68d446d1a75318b8e3386af66ef55e65da0a36f3502f402402"
+    },
+    {
+      "source": "manager/compute-file-hashes.txt",
+      "path": "manager/compute-file-hashes.txt.gz",
+      "source_sha256": "b20878ab35736a94fb635e4601c03f981478371b0427554428683e3325b513aa",
+      "stored_sha256": "34dd8b0246f1a8ca185efd7196cfb33bca3c53aa0be69b369b27017488806499"
+    },
+    {
+      "source": "manager/dispatch.json",
+      "path": "manager/dispatch.json.gz",
+      "source_sha256": "c88dffd87c0819135d86867d56edf1add4a0b63cf935a3b377c510b379629ff8",
+      "stored_sha256": "57c3b017846538641395c51d49fab0c92f612f87fb03b9ea1adaaa42d6f85adf"
+    },
+    {
+      "source": "manager/pbs-output-presence.json",
+      "path": "manager/pbs-output-presence.json.gz",
+      "source_sha256": "6bd02c0b15a03635eca85b0b2bf9dc4b0f9428d13842f5883454c7d28f698407",
+      "stored_sha256": "61859e09d63d0ba2465233560b5b198bc01223584d43f6f3d99164bad35d5ea6"
+    },
+    {
+      "source": "manager/qsub-actual-exit.json",
+      "path": "manager/qsub-actual-exit.json.gz",
+      "source_sha256": "7995aeec7943bef3fd99bcd67a655471bb0c1272f13e736629d9db14d22e3b95",
+      "stored_sha256": "25c99cdf3fef3933e11cd759576cb14f508bef81424b1fb5a35f96bc6462b30e"
+    },
+    {
+      "source": "manager/qsub.stderr.txt",
+      "path": "manager/qsub.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "manager/qsub.stdout.txt",
+      "path": "manager/qsub.stdout.txt.gz",
+      "source_sha256": "20eb305eae8dfae2b61969011d52aa21025ec8e9cf2ad0fabcf9cc27bd11725a",
+      "stored_sha256": "cf7a7e9085a2c9f29742d574c3f803bab4a36a721543e788f4a92c93f8774693"
+    },
+    {
+      "source": "original-result-binding.json",
+      "path": "original-result-binding.json.gz",
+      "source_sha256": "01a965f3abec2301d23055747de994a3695ca8b4d3ab7659bb14f30f57fe691a",
+      "stored_sha256": "c752ac3e9a966664479e93e7cecfdca4647ae86076eec6ee5473e337c51eb851"
+    },
+    {
+      "source": "original-stage-binding.json",
+      "path": "original-stage-binding.json.gz",
+      "source_sha256": "33718ad124e5e9885b5285ccbe206341ae4350548b849e71bb54a889f9c137f6",
+      "stored_sha256": "9695f42064e7086e8ffe292864afc6f72aa769c4cf3fde60446f6f63f80d50d1"
+    },
+    {
+      "source": "original-stage-inventory.json",
+      "path": "original-stage-inventory.json.gz",
+      "source_sha256": "2100b3d9fcca8b49d14902bee61b71bc37b782731b7709b9584f06b24929b48d",
+      "stored_sha256": "d5107ba41b426730c322ac394e36234f3c3fd195fd2e7d878f8002fa1c187717"
+    },
+    {
+      "source": "pbs-exit.txt",
+      "path": "pbs-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    }
+  ]
+}

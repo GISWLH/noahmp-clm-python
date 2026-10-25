@@ -22,7 +22,7 @@ v0.2.0 的 GPU 移植已获 Wang [验收](docs/GPU_ACCEPTANCE.md)。当前阶段
 | 表面求根永久 GPU 回归 | 旧源重现原失败；候选 CUDA32/JAX32 的 345 字段最大绝对差 0；对独立 NumPy 的 H/LE 最大差 0.002164094/0.000090556 W/m²；[原始结果](docs/CLM_SURFACE_ROOT.md) |
 | 修复相关 GPU 专项 | CUDA1 原 8 个完整模块、31 项均实际退出 0；控制器 7206.43 秒，零失败、错误或跳过，源不变；[完整日志与源](docs/v1-results/surface-root-regression-mx/manifest.json) |
 | 最终候选冷启动 | 12 配置各 48 步；EHPC1586 独立核对 576 对柱步，H/LE 最大绝对差 0.005750100/0.003746741 W/m²；原水热碳氮与杂质条件保持；[完整范围](docs/CLM_MULTISITE_SPINUP.md) |
-| 最终完整 GPU 回归 | CUDA1 于 UTC 07:29 实际启动；07:38 快照 73/408＝41 项本轮实际通过＋32 项有来源和依赖核验的专项；尚无完整通过结果；[队列与估时](docs/GPU_QUEUE_REPLACEMENT.md) |
+| 最终完整 GPU 回归 | CUDA1 于 UTC 07:29 实际启动；10:20 快照 140/408＝108 项本轮实际通过＋32 项有来源和依赖核验的专项；灌溉整柱 H/LE 对 NumPy 最大差 0.002150218/0.000183041 W/m²；尚无完整通过结果；[队列与估时](docs/GPU_QUEUE_REPLACEMENT.md) |
 
 这些后端比较不能替代观测验收。当前完整年度、气候及 SOC spinup、多站多年、
 留出集和校准仍未完成；已有观测差距保留，例如当前源 Qia 一月 H 偏差
