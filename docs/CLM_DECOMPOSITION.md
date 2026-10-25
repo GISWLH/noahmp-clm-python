@@ -1,4 +1,8 @@
-# 土壤/凋落物碳氮分解（原生组件完成，整柱BGC待连接）
+# 土壤/凋落物碳氮分解
+
+当前 NumPy、JAX、CUDA 组件与[整柱 BGC](CLM_BGC_COLUMN.md)已经连接。
+以下组件检查点的历史结果保持原范围；真实多年 GPP/NEE、完整耦合 SOC 准平衡
+和 FLUXNET 科学验收仍待完成，进度见[正常耦合 spinup](CLM_MULTISITE_SPINUP.md)。
 
 按[CLM5分解说明](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Decomposition/CLM50_Tech_Note_Decomposition.html)
 的CENTURY框架独立实现：三种凋落物及粗木库进入快、慢、被动三种SOM库。
