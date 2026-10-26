@@ -1,5 +1,13 @@
 # CLM 单柱开发阻塞记录
 
+## 2026-10-26 19:xx：P2.8 extensive NumPy 验收 staging ENOSPC
+
+为验证现有 extensive 五层雪/SNICAR 入口，1882.manager 在 pytest 前因 manager
+`/tmp` 对 compute002 不可见而 Exit94；1883.manager 改用共享 `/home` 后因
+fileset inode ENOSPC、stage 解包无法创建目录而 Exit94。两次均 0 pytest、0 模型
+执行、源/fixture 未改，原件保留。绕行方案是直接使用 compute002 已存在的源目录，
+只把结果写入 `$TMPDIR`；不再向满 fileset 解包 stage。
+
 ## 2026-10-26 17:17UTC后：PBS服务阻塞解除
 
 [19件管理员非敏感恢复原件](v1-results/pbs-root-recovery-qr/manifest.json)保存原
