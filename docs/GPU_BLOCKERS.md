@@ -1668,3 +1668,6 @@ numpy 比较继续使用 `rtol=1e-4, atol=1e-6`，JAX float32 比较继续使用
    H2 float64 混合选项门和相关回归。保存原始失败与新结果，只有原门槛实际
    全绿才能关闭本阻塞。不得通过隐藏 residual、删测试、加 skip/xfail 或更改
    `1e-4` / `1e-5` 容差来关闭它。
+
+## 2026-10-26 19:xx：compute002 源目录不同步（1885）
+直接读取既有 /home/zhangyq/noahmp-v1 的绕行作业1885在首个 sha256 guard Exit93：该目录缺少当前 src/noahmp_clm/physics/snicar.py 和选定测试（仅存在嵌套 old-source 副本），pytest未启动。与1882 stage不可见、1883 fileset ENOSPC属于同一无法从当前节点取得完整当前源的阻塞；三次均0科学执行，保留原件，不再盲目重投。需要管理员提供compute002可见的当前584源提取或释放共享fileset后才能执行P2.8验收。
