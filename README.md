@@ -23,6 +23,7 @@ v0.2.0 的 GPU 移植已获 Wang [验收](docs/GPU_ACCEPTANCE.md)。当前阶段
 | 修复相关 GPU 专项 | CUDA1 原 8 个完整模块、31 项均实际退出 0；控制器 7206.43 秒，零失败、错误或跳过，源不变；[完整日志与源](docs/v1-results/surface-root-regression-mx/manifest.json) |
 | 最终候选冷启动 | 12 配置各 48 步；EHPC1586 独立核对 576 对柱步，H/LE 最大绝对差 0.005750100/0.003746741 W/m²；原水热碳氮与杂质条件保持；[完整范围](docs/CLM_MULTISITE_SPINUP.md) |
 | 最终完整 GPU 回归 | 已结束：399/408＝本轮367/376通过＋32项已核验专项；9失败、零error/skip，18.136小时，584源不变。MOST计数2项、Richards柱4项、站点3项仍待处理，撤销旧剩余估时；[终态与原始回执](docs/CLM_GPU_TERMINAL_QB.md) |
+| 后续 MOST 私有专项 | 原3节点实际全部通过，EHPC1859 F0/Stageout0独立闭合313同精度字段最大差0、8次原硬账全部返回；不重写历史全量结果或计作年度通过；[范围与实际数值](docs/CLM_CANOPY_MOST.md) |
 | 当前两组 CUDA 年度 | NS12／NZ3 均在7275/17520步以原分层相变表面异常退出，worker 返回1；隔离Qia调用及EHPC独立NumPy均在冠层Newton失败，残差13.205／13.758 W/m²，年度估时撤销；[原件与诊断](docs/CLM_CANOPY_PHASE_ENERGY.md) |
 | 新排水适配候选 | EHPC1704 F0/Stageout0，24项全过；PB-t CUDA/JAX各8案实际0返回，16案物理与原硬账满足，但同精度仅4/8通过，EHPC1828保留F1；[范围与数字](docs/CLM_VERTICAL_HYDROLOGY.md) |
 

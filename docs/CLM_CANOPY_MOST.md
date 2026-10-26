@@ -1,5 +1,25 @@
 # 冠层 MOST 通量反馈（开发中）
 
+2026-10-26：[私有QH原3节点GPU实测](v1-results/nq-most-cache-bridge-qn/manifest.json)
+全部通过，pytest1213.27秒、controller1249.276秒；原worker/parent均0，3进程已
+退出。实际2次EHPC参考严格按完整输入/dtype/shape/bytes匹配缓存，不在GPU主机
+运行NumPy物理；4次原native调用完整返回，source584/defaultflags/控制前后不变。
+
+[独立超算审计1859](v1-results/nq-most-audit-qp/manifest.json)真实F0/Stageout0，
+313个CUDA32/JAX32返回字段dtype/shape/整数/1e−6全部满足，最大绝对差0；
+4次返回的8个原M/H/杂质/冠层/CN审计全部返回，0模型/GPU/新参考调用。
+float32对独立NumPy的H/LE绝对差.00018922838/.0016084906 W/m²，GPP/NEE
+2.06858e−8/2.88631e−8 gC/m²；float64 H/LE差4.71214e−11/3.11648e−11 W/m²。
+32位水/热残差2.39368e−6 kg/m²/17.3630 J/m²，原界.00402619/2562.1011；
+C/N残差.000160117/1.60187e−7，原界.459764/.0195057，杂质0。
+
+实际restart=0、int32、迭代11/12，合法。私有测试只将两个耦合场景的“必须
+恰好重启1次”改为整数且0≤restart≤iterations；原制造停滞案例仍保留确实
+触发重启与无根拒绝的覆盖，原物理/收敛/同精度/硬账门不变。此3节点新证据
+不重写历史NM399/408或科学/年度结论，私有3文件尚未同步生产工作区。
+两个Richards参考文件与本专项无关；实际QI/QN/审计都使用QH源，581文件与
+NM逐字节相同，3处差异和5个原审计helper的单独哈希已在审计中核对。
+
 依据 [CLM5 技术说明 2.5](https://escomp.github.io/CTSM/release-clm5.0/tech_note/Fluxes/CLM50_Tech_Note_Fluxes.html)
 的公开方程独立实现，未复制 CTSM 代码。测风、温度、湿度高度、位移高度、
 三种粗糙度与边界层高度分别显式输入；塔站评估必须填入实际元数据。

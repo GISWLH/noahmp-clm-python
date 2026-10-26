@@ -1,5 +1,11 @@
 # 2026-10-26 最新终态与后续短测
 
+18:19UTC更新：MOST-QN唯一原3节点全部通过，1213.27秒，原进程全部退出；
+EHPC1859实际F0/Stageout0独立核对313字段同精度最大差0和8次原硬账全部返回，
+[私有专项证据](CLM_CANOPY_MOST.md)。它不是新完整408或年度通过。
+随后新SSH直连被服务器关闭，备用NAS路线单次banner超时255；下一排水PC-d
+仍0上传/0部署/0GPU启动。只做有界连接诊断，不改服务或占用其他用户GPU。
+
 17:50UTC：PBS已恢复，八条CPU基线原成功父窗实际接续；独立NumPy MOST参考
 [1843实际F0](v1-results/nq-most-reference-qi/manifest.json)，两次完整参考/原输入
 已封存。当前唯一新GPU任务MOST-QN在xuanze物理CUDA1，controller886777、

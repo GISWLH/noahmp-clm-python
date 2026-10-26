@@ -1,0 +1,607 @@
+{
+  "scope": "Unique original MOST3node GPU capture0, four complete native calls and two exact independent EHPC cached references; source/default flags unchanged, CUDA1 released. Separate independent QP audit required; historical NQ9failures retained.",
+  "archive_sha256": "0b34e84dc1ecfa6fef611eace0c1dc0b93b058761d9dd3f20c93c8c469f5e5e3",
+  "artifacts": [
+    {
+      "source": "SCOPE.md",
+      "path": "SCOPE.md.gz",
+      "source_sha256": "d77ebf18b046efddaf70c83f8de03fd9c07a2d9eda40a0ef6fdee860611d6e86",
+      "stored_sha256": "fa3dc082470e34b0c4776e13b7a5751693dec86813437de521e8cde0f886d1e9"
+    },
+    {
+      "source": "actual-gpu/controller/controller-progress.json",
+      "path": "actual-gpu/controller/controller-progress.json.gz",
+      "source_sha256": "2d9ba6e682f629c8200a35b3a8400bc2288db8960c3fb84334ffd010be4addf1",
+      "stored_sha256": "22c1118842deb5d002c25e662c99eb0f482dc7bef0207c15ca3ffac3f81864d6"
+    },
+    {
+      "source": "actual-gpu/controller/controller-receipt.json",
+      "path": "actual-gpu/controller/controller-receipt.json.gz",
+      "source_sha256": "bbe0e9e2e85507ffda047c9f8da36a2f0229c616f4e263893be257c7379f3d33",
+      "stored_sha256": "a2d35515b109b5566331d91146eecc57acca61fa6933499dff68b6f018f15c3a"
+    },
+    {
+      "source": "actual-gpu/controller/most-parent.stderr",
+      "path": "actual-gpu/controller/most-parent.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/controller/most-parent.stdout",
+      "path": "actual-gpu/controller/most-parent.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/most/device-launch.json",
+      "path": "actual-gpu/most/device-launch.json.gz",
+      "source_sha256": "5690221c3f358e0a43ccb099158c0b795af0ead6b9913d5ef168dbff041b0bd3",
+      "stored_sha256": "6ff2ff4a6338aa2ca76d6cd2e5497600693d9cf513b5fd1edad4ad6880a6c8ed"
+    },
+    {
+      "source": "actual-gpu/most/device-parent-exit.txt",
+      "path": "actual-gpu/most/device-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-gpu/most/device-parent-receipt.json",
+      "path": "actual-gpu/most/device-parent-receipt.json.gz",
+      "source_sha256": "53d4ee9358b1d9c072eee1efcee47214a824a75d5ccc21525580f5ae319157eb",
+      "stored_sha256": "2e9a4fcfe24e8cb376a08f3db7c4002d5f5443eb5f5350d66e841fc4e7d0f652"
+    },
+    {
+      "source": "actual-gpu/most/device.stderr.txt",
+      "path": "actual-gpu/most/device.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/most/device.stdout.txt",
+      "path": "actual-gpu/most/device.stdout.txt.gz",
+      "source_sha256": "435271e47296c1329823793b4509d493f14689a502b9ca69808ed44dd09a045c",
+      "stored_sha256": "918986dd1b648e4304281e06c9d8b2d7887e1225e4adc408e0072eccfee99884"
+    },
+    {
+      "source": "actual-gpu/most/device/capture-receipt.json",
+      "path": "actual-gpu/most/device/capture-receipt.json.gz",
+      "source_sha256": "7e87eaa3ad8bd77eeb087c666bc458d390e69bd9857cd6d811994384076d2fcb",
+      "stored_sha256": "686ab9a7a32b0edf4e103497c433ec840cc26e057c736689816092356880c3c0"
+    },
+    {
+      "source": "actual-gpu/most/device/collected-original3.json",
+      "path": "actual-gpu/most/device/collected-original3.json.gz",
+      "source_sha256": "fd758fc9e793118b09054e2ef8d81ea86b0f7e1ef7857a7c6850e472d86fe6ab",
+      "stored_sha256": "ff3e45dc9022e167e3e0c4d3eda57771024db75d91a4764003bf1bc28d977ca7"
+    },
+    {
+      "source": "actual-gpu/most/device/native/cuda-float32-parity-input.json",
+      "path": "actual-gpu/most/device/native/cuda-float32-parity-input.json.gz",
+      "source_sha256": "7433de87369b12de22f6a1f157903f3549c640f044c36ae2ecb9e482824357c8",
+      "stored_sha256": "0bb6cf0dd0b4711b30474ab0a6528f813094936b90c41123e3200ee820dba483"
+    },
+    {
+      "source": "actual-gpu/most/device/native/cuda-float32-parity-input.npz",
+      "path": "actual-gpu/most/device/native/cuda-float32-parity-input.npz",
+      "source_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99",
+      "stored_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99"
+    },
+    {
+      "source": "actual-gpu/most/device/native/cuda-float32-parity.json",
+      "path": "actual-gpu/most/device/native/cuda-float32-parity.json.gz",
+      "source_sha256": "9be9cc58b0529788f80bb3b561ee6fd947ec79786abf7ba404c5263477e8ad0e",
+      "stored_sha256": "c4b975db4171e4a2b3c9ae2773db8a11bcf00bc7fe57b4d2b766a594278d17a1"
+    },
+    {
+      "source": "actual-gpu/most/device/native/cuda-float32-parity.npz",
+      "path": "actual-gpu/most/device/native/cuda-float32-parity.npz",
+      "source_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee",
+      "stored_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-parity-input.json",
+      "path": "actual-gpu/most/device/native/jax-float32-parity-input.json.gz",
+      "source_sha256": "7433de87369b12de22f6a1f157903f3549c640f044c36ae2ecb9e482824357c8",
+      "stored_sha256": "0bb6cf0dd0b4711b30474ab0a6528f813094936b90c41123e3200ee820dba483"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-parity-input.npz",
+      "path": "actual-gpu/most/device/native/jax-float32-parity-input.npz",
+      "source_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99",
+      "stored_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-parity.json",
+      "path": "actual-gpu/most/device/native/jax-float32-parity.json.gz",
+      "source_sha256": "9be9cc58b0529788f80bb3b561ee6fd947ec79786abf7ba404c5263477e8ad0e",
+      "stored_sha256": "c4b975db4171e4a2b3c9ae2773db8a11bcf00bc7fe57b4d2b766a594278d17a1"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-parity.npz",
+      "path": "actual-gpu/most/device/native/jax-float32-parity.npz",
+      "source_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee",
+      "stored_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-reference-input.json",
+      "path": "actual-gpu/most/device/native/jax-float32-reference-input.json.gz",
+      "source_sha256": "7433de87369b12de22f6a1f157903f3549c640f044c36ae2ecb9e482824357c8",
+      "stored_sha256": "0bb6cf0dd0b4711b30474ab0a6528f813094936b90c41123e3200ee820dba483"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-reference-input.npz",
+      "path": "actual-gpu/most/device/native/jax-float32-reference-input.npz",
+      "source_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99",
+      "stored_sha256": "07b062fa3bf3e434adcd46464d6b1411d8880131660fd80888bb2485e3d69a99"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-reference.json",
+      "path": "actual-gpu/most/device/native/jax-float32-reference.json.gz",
+      "source_sha256": "9be9cc58b0529788f80bb3b561ee6fd947ec79786abf7ba404c5263477e8ad0e",
+      "stored_sha256": "c4b975db4171e4a2b3c9ae2773db8a11bcf00bc7fe57b4d2b766a594278d17a1"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float32-reference.npz",
+      "path": "actual-gpu/most/device/native/jax-float32-reference.npz",
+      "source_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee",
+      "stored_sha256": "f1e7986ad8b6cec7ab28120a4c8fa9fcd1a163546258156b22ca2ea1011546ee"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float64-reference-input.json",
+      "path": "actual-gpu/most/device/native/jax-float64-reference-input.json.gz",
+      "source_sha256": "6a4df304162f6eb28de9b49c03640809b560a543a28dae7666a7a432204b5815",
+      "stored_sha256": "2568339aa8dad0fd33469508b4f2dd1b37b29d43b2f5fc3fd0cbcae20a17f0fa"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float64-reference-input.npz",
+      "path": "actual-gpu/most/device/native/jax-float64-reference-input.npz",
+      "source_sha256": "f82244b6e6d2cf873430de896874320629aa9d0333535a5b66ed24daeb2eb32d",
+      "stored_sha256": "f82244b6e6d2cf873430de896874320629aa9d0333535a5b66ed24daeb2eb32d"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float64-reference.json",
+      "path": "actual-gpu/most/device/native/jax-float64-reference.json.gz",
+      "source_sha256": "a40057fdc940fab1664a4ea39cf3b360ac9ce672c939243dd1f02d1c01824780",
+      "stored_sha256": "4ddc9e295763d63c6114d32e790b97f03c295f05b0ba8b90f57acaa717924026"
+    },
+    {
+      "source": "actual-gpu/most/device/native/jax-float64-reference.npz",
+      "path": "actual-gpu/most/device/native/jax-float64-reference.npz",
+      "source_sha256": "4e9aeaa5375b3452f75189da3f63923aeee9fcb3fd82c24f0de7755b3495e61e",
+      "stored_sha256": "4e9aeaa5375b3452f75189da3f63923aeee9fcb3fd82c24f0de7755b3495e61e"
+    },
+    {
+      "source": "actual-gpu/most/device/original3.xml",
+      "path": "actual-gpu/most/device/original3.xml.gz",
+      "source_sha256": "bdbed68f58ede444da5c54d340788794bff1bb69e425a9830dc4a36eb68b1531",
+      "stored_sha256": "e6049b979d943d1dfc24f1529c233471ff7fb695fdef15cd63c00e2c3a330249"
+    },
+    {
+      "source": "actual-gpu/most/device/pytest-cache/.gitignore",
+      "path": "actual-gpu/most/device/pytest-cache/.gitignore.gz",
+      "source_sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "stored_sha256": "8cc62137482d1130629c7002a2e4c3eac5ed45eae57403cb0e96c8b8d03c9b6a"
+    },
+    {
+      "source": "actual-gpu/most/device/pytest-cache/CACHEDIR.TAG",
+      "path": "actual-gpu/most/device/pytest-cache/CACHEDIR.TAG",
+      "source_sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "stored_sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4"
+    },
+    {
+      "source": "actual-gpu/most/device/pytest-cache/README.md",
+      "path": "actual-gpu/most/device/pytest-cache/README.md.gz",
+      "source_sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "stored_sha256": "f53b5bf121ef01512baccecfb386d1136cba27f849ef071fe1241e3d3bb57c8b"
+    },
+    {
+      "source": "actual-gpu/most/device/pytest-cache/v/cache/nodeids",
+      "path": "actual-gpu/most/device/pytest-cache/v/cache/nodeids",
+      "source_sha256": "5e93a944ccd3e80968b11e6d663c37b574c3e1c7c0344fafdfc605360f4363fa",
+      "stored_sha256": "5e93a944ccd3e80968b11e6d663c37b574c3e1c7c0344fafdfc605360f4363fa"
+    },
+    {
+      "source": "actual-gpu/most/device/pytest-node-reports.json",
+      "path": "actual-gpu/most/device/pytest-node-reports.json.gz",
+      "source_sha256": "a0195cb09c3d903109ba374efbbf0690471703db42c9bd5e72a2a0cb77292e2f",
+      "stored_sha256": "5c71fb8f730b323c7f48d7eba355df37dbf746f72e20ea995ea1094bca40f694"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "43478c035306ddf9769885cab4c56012e2d36f39f420b816a13ff57397394ffa",
+      "stored_sha256": "a123c507047db8962d5a3515d99555314f1233cedfdc4096608c94ce5c723d3c"
+    },
+    {
+      "source": "executed-stage.tar.gz",
+      "path": "executed-stage.tar.gz",
+      "source_sha256": "1d814fa98e9897922db9777f2ba98674c9fd4069c1daa4cad014fb47db2d3879",
+      "stored_sha256": "1d814fa98e9897922db9777f2ba98674c9fd4069c1daa4cad014fb47db2d3879"
+    },
+    {
+      "source": "observations/closed/controller-receipt.json",
+      "path": "observations/closed/controller-receipt.json.gz",
+      "source_sha256": "bbe0e9e2e85507ffda047c9f8da36a2f0229c616f4e263893be257c7379f3d33",
+      "stored_sha256": "a2d35515b109b5566331d91146eecc57acca61fa6933499dff68b6f018f15c3a"
+    },
+    {
+      "source": "observations/closed/controller.log",
+      "path": "observations/closed/controller.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/closed/gpu-result-hash.json",
+      "path": "observations/closed/gpu-result-hash.json.gz",
+      "source_sha256": "f49e01d2841e1fe797e9c3081d592c058db1e5885c377511772e9040971ae077",
+      "stored_sha256": "0eb7b3e5b42541d8f80bbf273cbd83c760a9b75a7536d1515b66a46ee31ca0f8"
+    },
+    {
+      "source": "observations/closed/gpu-result.tar.gz",
+      "path": "observations/closed/gpu-result.tar.gz",
+      "source_sha256": "78aad10274a38f6ceddea53c0fc2b9bbd9fc7e92ddb9b6028c022baabba3410f",
+      "stored_sha256": "78aad10274a38f6ceddea53c0fc2b9bbd9fc7e92ddb9b6028c022baabba3410f"
+    },
+    {
+      "source": "observations/closed/launch.json",
+      "path": "observations/closed/launch.json.gz",
+      "source_sha256": "dd148fbf8c5afd656ca206f36b298ffbfd5a96ac7a726c7be4beb64513c12ab6",
+      "stored_sha256": "c9faed4a8930c127ed344a5d761f9fd7ab75838ad2e4468ae976450aa8551e58"
+    },
+    {
+      "source": "observations/closed/metadata-recovery.json",
+      "path": "observations/closed/metadata-recovery.json.gz",
+      "source_sha256": "2d4396d4cd0a098bfcb4eb95bd76371cfd734a61514ebc463accfd423c501e84",
+      "stored_sha256": "ea048cd58e569b89cd64ae8ee70621cfc69ea3dadeaced88d537a867a691a5e5"
+    },
+    {
+      "source": "observations/closed/metadata-recovery.stderr",
+      "path": "observations/closed/metadata-recovery.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/closed/metadata-recovery.stdout",
+      "path": "observations/closed/metadata-recovery.stdout.gz",
+      "source_sha256": "84b6b76caca483d64efd2b2d76285820f6787cecc3d9167bc364c255ec6c470c",
+      "stored_sha256": "cc439a0c9d23e3f6ee75d1fb5b68fd1b80b83edb162e4691c586927adca99a8f"
+    },
+    {
+      "source": "observations/closed/scp-exit.json",
+      "path": "observations/closed/scp-exit.json.gz",
+      "source_sha256": "95becdb134049c5592c5aa9e27f96d0c67f40b6787f75c80a2ab09d358dd7ac3",
+      "stored_sha256": "e9299b40232c3840af50b2d9192915d3bd3a145f7c8f8efb5127aeae87243c0e"
+    },
+    {
+      "source": "observations/closed/scp.stderr",
+      "path": "observations/closed/scp.stderr.gz",
+      "source_sha256": "aa07cca25cac83c614ed3589eaefddd97da0d15d4e2096d6a46aaf2199f3b44c",
+      "stored_sha256": "249c79b5cbd816bcd7c4adca2313cf46eca6b512da0539e8e4a81bfe11f21f06"
+    },
+    {
+      "source": "observations/closed/scp.stdout",
+      "path": "observations/closed/scp.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-0.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-0.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-0.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-1.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-1.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-1.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-2.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-2.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-2.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-3.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-3.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-deploy-3.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-deploy-3.stdout.gz",
+      "source_sha256": "cfd5e9aaac365c302d226c0d59f421605a1a7610cb1b410ba6043263d6c929ab",
+      "stored_sha256": "cbdb7555a84ac62ef50ea4c47b0759336dc4672380efeaf5815ad070d777e138"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-0.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-0.json.gz",
+      "source_sha256": "f08257f9a3c9bd7d167675df9f1968b13a793db54b55425f33853f5ce7b24525",
+      "stored_sha256": "fc0e865a096912c34474e00cc0b7fddaee23d8da98a6bae666eafe0f323dc8f0"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-0.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-0.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-0.stdout.gz",
+      "source_sha256": "108bc9aa618f139f3a3e0e7c9c657c7b3d30932cefc29fa64e5c02f8f657f391",
+      "stored_sha256": "357abc4dd5c01e650454e3a654ed655c952f012d6f84a3625bb4d88651888a0d"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-1.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-1.json.gz",
+      "source_sha256": "0dd1a5ff0df88423b32c32c7eebada58a736745009d680b8451edc2fc28b5646",
+      "stored_sha256": "927b3f11219475c7754b1d5f62843bcaef43c6d72620071e6798001d1ae7e1e5"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-1.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-1.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-1.stdout.gz",
+      "source_sha256": "108bc9aa618f139f3a3e0e7c9c657c7b3d30932cefc29fa64e5c02f8f657f391",
+      "stored_sha256": "357abc4dd5c01e650454e3a654ed655c952f012d6f84a3625bb4d88651888a0d"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-2.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-2.json.gz",
+      "source_sha256": "09a55e3309eb978855588627209df250182c27ade8d691f8b53f0798140589b3",
+      "stored_sha256": "0a16d035d8c02af004a5411152e068beb308214ba437f8f7a0998f4f73a36df8"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-2.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-2.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-2.stdout.gz",
+      "source_sha256": "f3032405e253b2bb9d55346d4819a821a4f4c20b8ba99c93c2cf0bbc293e6071",
+      "stored_sha256": "820a2acd7f862286ed048704fe1f6d5058c8c069f08d35ee5faf42c58abc0cd1"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-3.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-3.json.gz",
+      "source_sha256": "13bf29e235f5b07a8771cdebcf5816f8cb84db067cac3cb87fc52d7536dd1355",
+      "stored_sha256": "923e04d6ba80fd3e7a627d896a1f628745b120ecb21963bf0fbc9dace5bca2ed"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-3.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-3.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-3.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-3.stdout.gz",
+      "source_sha256": "f3032405e253b2bb9d55346d4819a821a4f4c20b8ba99c93c2cf0bbc293e6071",
+      "stored_sha256": "820a2acd7f862286ed048704fe1f6d5058c8c069f08d35ee5faf42c58abc0cd1"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-4.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-4.json.gz",
+      "source_sha256": "7a1180f5365774a1771ef61578aafa3eb87442b22321de91eff4712d728d55b5",
+      "stored_sha256": "900911a6717b7bc138883199e0228325d1a0206cc1314ec756908e536d344ca2"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-4.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-4.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-4.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-4.stdout.gz",
+      "source_sha256": "689044642a8b59d1fed223cbde6cef59318b60093199393f53583f2cff0137ae",
+      "stored_sha256": "5571d247db213718632462e3ecf636c7055533788a2799055b598a5998cbedad"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-5.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-5.json.gz",
+      "source_sha256": "8efe1731f3fab071757da83988ed82f8b0bac3a118846624293cfcc660da6fc7",
+      "stored_sha256": "7d73db696d9968d05c2323f0930fd22d2000bba6c3c53d5ab6f4c025f36acf46"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-5.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-5.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-5.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-5.stdout.gz",
+      "source_sha256": "689044642a8b59d1fed223cbde6cef59318b60093199393f53583f2cff0137ae",
+      "stored_sha256": "5571d247db213718632462e3ecf636c7055533788a2799055b598a5998cbedad"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-6.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-6.json.gz",
+      "source_sha256": "436fbc4bc531ceb7b89e5049366e5029ead6402d41b074427b8f860c655341f5",
+      "stored_sha256": "28da0c6c388ff51b40a29f041d5ae73041c97f19403c2f71df57ba485e2d4208"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-6.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-6.stderr.gz",
+      "source_sha256": "f9175a50d1786546293efec2d59e5036e59ad96819b0b15b107938d1390b7e42",
+      "stored_sha256": "16ed7274febd420f517a193c1e2a978deef8d435cbf0655ef5992950c9459349"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-6.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-6.stdout.gz",
+      "source_sha256": "7de19a08eaa446fba3375b7ba9173ea8e15a933c9f081735338dbfe7dd619504",
+      "stored_sha256": "deffacc1e4a5581be87c4ab7e3747b708c47d974d090e1a545ceaf319c8a44ee"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-7.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-7.json.gz",
+      "source_sha256": "8798cac3a2c4c266abd18abbb461fad96b4fc1029e3626b185b86dfe807d8242",
+      "stored_sha256": "a1450efb6894ee6caea6388b47a7b401a499f21e3525a34fd46143763e8cced7"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-7.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-7.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-poll-7.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-poll-7.stdout.gz",
+      "source_sha256": "7de19a08eaa446fba3375b7ba9173ea8e15a933c9f081735338dbfe7dd619504",
+      "stored_sha256": "deffacc1e4a5581be87c4ab7e3747b708c47d974d090e1a545ceaf319c8a44ee"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.json.gz",
+      "source_sha256": "a20c740a1bdf65d44e9d67e2d7d16a2c277e3b60446850c4939541eb91d42d96",
+      "stored_sha256": "6809afcc82fd39e98a704062b9a31cc3752f44209a2c8289e50fc2145bad1b77"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight-initial-overstrict-guard.stdout.gz",
+      "source_sha256": "748f61cd1cb4b82172dc500c1693ab2282a5ea181a2532a6177d3be59851a2b4",
+      "stored_sha256": "9656194ddbb467ef1b3f8c05b4a4b74330ed0608cb5cd2af6e116767817abb18"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight.json",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight.json.gz",
+      "source_sha256": "c755ab6f9a4291c296353cf4dea465d6199dd700323e99c2649e92793d65bb21",
+      "stored_sha256": "4ffd4627d20b1cd8f8cde1bf54a8a8151069fccee365f5013218cf1e683aea89"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight.stderr",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-most-cache-bridge-qn-gpu-preflight.stdout",
+      "path": "observations/nq-most-cache-bridge-qn-gpu-preflight.stdout.gz",
+      "source_sha256": "748f61cd1cb4b82172dc500c1693ab2282a5ea181a2532a6177d3be59851a2b4",
+      "stored_sha256": "9656194ddbb467ef1b3f8c05b4a4b74330ed0608cb5cd2af6e116767817abb18"
+    },
+    {
+      "source": "provenance/capture_most_qn.py",
+      "path": "provenance/capture_most_qn.py.gz",
+      "source_sha256": "741f2f3dd80c632f829767a141c8fde05ac658eedd1c0003e3bf05386e2f71f2",
+      "stored_sha256": "0fb20f4ed365215356f87905595c56987fbc7e90b2bb2ee112ca2ed57d2aa8a9"
+    },
+    {
+      "source": "provenance/check_most_qn_gpu_readonly.py",
+      "path": "provenance/check_most_qn_gpu_readonly.py.gz",
+      "source_sha256": "6e732575d0d0cb8240bb01bc34e9fc0aa6b19440142cb1c5fed397104921675f",
+      "stored_sha256": "7b51c025ab680fae75c3a0063e5989c44c45e7920bbd0c78842ffe583903c27c"
+    },
+    {
+      "source": "provenance/collect_most_cache_bridge_qn_closed.py",
+      "path": "provenance/collect_most_cache_bridge_qn_closed.py.gz",
+      "source_sha256": "581d0a4b0740d36044cc8ae4e704401bd9915bdeb3023fae899113c92b89dd8e",
+      "stored_sha256": "37e5956dfc32fefe0d5f20ab636a780c2eadf8035eb8802ed1960df72d90c1e6"
+    },
+    {
+      "source": "provenance/deploy_most_cache_bridge_qn_gpu.py",
+      "path": "provenance/deploy_most_cache_bridge_qn_gpu.py.gz",
+      "source_sha256": "446f01e039f6a9e2d02184a1a9271446336fbbe8660c5e9492fa7a0040be5dd7",
+      "stored_sha256": "8fc991433796c79e106c59f0f146d2d472858df387ff3d934539c93d3b4549a2"
+    },
+    {
+      "source": "provenance/most_contract_qn.py",
+      "path": "provenance/most_contract_qn.py.gz",
+      "source_sha256": "ccf0943a269e7153c606fe63a337d5e72c62639a1269392a277ffe3a3e99bb17",
+      "stored_sha256": "7cd21d34d6340145ca1764d35782c8ec0d5005d0e9fd705d6f118921b0eeace5"
+    },
+    {
+      "source": "provenance/most_observer_qn.py",
+      "path": "provenance/most_observer_qn.py.gz",
+      "source_sha256": "e88a19e1353bbebcdeb8c3f1bab3c1465952319f2cd1a9675954d9104e59a92e",
+      "stored_sha256": "d0a693c644e2ecfd706dd8ac9e29977091b60ccbcb3891816908eab3676a1d20"
+    },
+    {
+      "source": "provenance/nq-most-cache-bridge-qn-gpu-deployment.json",
+      "path": "provenance/nq-most-cache-bridge-qn-gpu-deployment.json.gz",
+      "source_sha256": "db4644d35c1c7ff219cb5abca0a9267be869ebb231b8d5f4642fa512fa57f344",
+      "stored_sha256": "51dc21b4728339fc5efb63acd55db9901b30bdd4b378a89db0ee35c76ae3f74b"
+    },
+    {
+      "source": "provenance/nq-most-cache-bridge-qn-stage-package.json",
+      "path": "provenance/nq-most-cache-bridge-qn-stage-package.json.gz",
+      "source_sha256": "e8bc4651cb1a3b0802bbc41f9c7cfbc775526ef35e2d42b0ee5046e2d2855e83",
+      "stored_sha256": "7db047765645136a23b4077975b38db74bd8f091c71953dfec41ee9090f0c9e5"
+    },
+    {
+      "source": "provenance/package_most_cache_bridge_qn.py",
+      "path": "provenance/package_most_cache_bridge_qn.py.gz",
+      "source_sha256": "ccea04cf7b57058f47e5d942945b1a95f7efd70be8533b066b22819138c60ab5",
+      "stored_sha256": "8660675de4e92328894d5a55bb6b1ce2d637b62bb50ac6528dbf5f27081a187c"
+    },
+    {
+      "source": "provenance/poll_most_qn_gpu.py",
+      "path": "provenance/poll_most_qn_gpu.py.gz",
+      "source_sha256": "6aecd9ea8322785d367649a717492637c36fff0aa3b58c1dbc3c964f71e87280",
+      "stored_sha256": "3d74d5cc46b4bf0061caa13791a0defb51adf547c60a35fdb2912958fae82e3f"
+    },
+    {
+      "source": "provenance/prepare_most_cache_bridge_qn.py",
+      "path": "provenance/prepare_most_cache_bridge_qn.py.gz",
+      "source_sha256": "efe88cf23017aa6c9988c41bab76d369c15ecd2fdfaf2d989d3fc8e1a2fa2dad",
+      "stored_sha256": "12acfe9ec9984fd8ddd42d5ebda3ea0fb7d61a5809a03c5601899a46ae99c2f8"
+    },
+    {
+      "source": "provenance/recover_most_qn_metadata_readonly.py",
+      "path": "provenance/recover_most_qn_metadata_readonly.py.gz",
+      "source_sha256": "d616f726a163f7428a3d0ef0799fba4225a7e0b6e632baca47668a1687dee94f",
+      "stored_sha256": "7e7ac1d5896f8e4ff641ded9207bb477416f5a8eb7058762bf31351806293b84"
+    },
+    {
+      "source": "raw-gpu-result.tar.gz",
+      "path": "raw-gpu-result.tar.gz",
+      "source_sha256": "78aad10274a38f6ceddea53c0fc2b9bbd9fc7e92ddb9b6028c022baabba3410f",
+      "stored_sha256": "78aad10274a38f6ceddea53c0fc2b9bbd9fc7e92ddb9b6028c022baabba3410f"
+    },
+    {
+      "source": "readout.json",
+      "path": "readout.json.gz",
+      "source_sha256": "dd813d22fc76a918977ac989d22f7e176585d5903749aabb10ab1a7feea29f21",
+      "stored_sha256": "52f47b567bf4257367a46665f1868830d2652b8181a4048d757dfd82f4f71b1b"
+    },
+    {
+      "source": "verification.json",
+      "path": "verification.json.gz",
+      "source_sha256": "8844df484f1a4f8f9015980600191c0ae90e560a3f4dbc6ddeaf02be06909d95",
+      "stored_sha256": "9110c249e78bd57e6a9a1921064dbff54ff0d60272e557e72ee96b2089cbfa0e"
+    }
+  ],
+  "publication_note": "Captured .gitignore is opaque deterministic gzip data; all original bytes are retained without controlling publication staging."
+}
