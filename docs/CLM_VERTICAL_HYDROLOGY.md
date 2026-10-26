@@ -464,3 +464,5 @@ QDRAI 占原全年 QRUNOFF 的 **50.64628966094203%**。它只在5月（64.70769
 水热硬守恒合同，独立验证后开新轨迹；不能把新库存接入当前16状态／23字段冻结链。
 
 本次没有追逐已满足 P0 的 OB 沉降末位差，没有新增科学通过信用。
+
+1878既有数据首差分析实际Exit0（qstat状态E且无Stageout字段，不能写Stageout0），0模型/forward/GPU/JAX。stress、option2、two_bands的CUDA首差均在diagnosis_before：输入和phase_cells_before完全相同；stress/option2各5个初诊断字段先差，随后phase差最大1176/4648 J等效并放大到诊断8.84533e-5/3.46780e-4，接受步差1；two_bands初诊断5字段差、post-perched仅4项差、final phase exact。JAX三案与PB-t逐数组bit-exact。已有数据没有pow、heads或逐步adaptive轨迹，不能归因具体算子。证据见 v1-results/clm-drainage-pce-earliest-analysis/manifest.json。
