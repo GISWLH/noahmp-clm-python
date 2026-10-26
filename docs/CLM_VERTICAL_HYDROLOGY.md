@@ -1,3 +1,24 @@
+# 2026-10-26 排水适配最新证据
+
+[PB-r 149件原始包](v1-results/clm-drainage-warm-phase-pb-r/manifest.json)：
+EHPC1704实际F0/Stageout0，24项全过，17参考记录、20金样647字段完全一致。
+唯一NumPy64暖态修正直接使用原总水量，避免非均匀层厚体积回乘产生−1 ULP冰量；
+冷态、焓、原非负guard和64eps硬界保持。私有596源未并入NM冻结年。
+
+[PB-s 73件设备/比较原件](v1-results/clm-drainage-device-pb-s/manifest.json)：
+CUDA/JAX实际parent分别1/0、无超时；CUDA只完成一次相反演，首个排水NVRTC编译
+因math.h不可用失败，0个完整案。JAX8案/600数组返回，worker133.883秒、
+parent142.328秒；EHPC1820真实F1/Stageout0，明确保留CUDA缺项及配对未完成。
+JAX8案原独立64位物理/行为/三组M/H硬界均满足；stress案最大分层质量/焓/温差
+.03275756 kg/m²、11878.90394 J/m²、.000143906 K，滞水总出流差−.03177222 kg/m²。
+其combined水/热残差−2.98023224e−8 kg/m²/−3.0986328125 J/m²，原界
+.0108337402 kg/m²/3261.5234375 J/m²。额外NumPy32同精度报告仍有4案差异及
+accepted_substeps±1，未删整数条件；主要CUDA/JAX同精度尚未得到结果。
+
+PB-t仅去掉两个host C头文件，定义精确2^-23/2^-52 epsilon；595文件及kernel
+计算body不变，重新CUDA1→JAX→EHPC比较。此项不抵充整柱、post-Richards32、
+JAX64、年度或科学验收。以下记录按历史保留。
+
 # 柱内垂向水文边界复核（OC，2026-10-25）
 
 2026-10-25 PB-n包化一致性：EHPC1673真实F0／Stageout0，在新593文件候选中
@@ -354,24 +375,3 @@ QDRAI 占原全年 QRUNOFF 的 **50.64628966094203%**。它只在5月（64.70769
 水热硬守恒合同，独立验证后开新轨迹；不能把新库存接入当前16状态／23字段冻结链。
 
 本次没有追逐已满足 P0 的 OB 沉降末位差，没有新增科学通过信用。
-# 2026-10-26 排水适配最新证据
-
-[PB-r 149件原始包](v1-results/clm-drainage-warm-phase-pb-r/manifest.json)：
-EHPC1704实际F0/Stageout0，24项全过，17参考记录、20金样647字段完全一致。
-唯一NumPy64暖态修正直接使用原总水量，避免非均匀层厚体积回乘产生−1 ULP冰量；
-冷态、焓、原非负guard和64eps硬界保持。私有596源未并入NM冻结年。
-
-[PB-s 73件设备/比较原件](v1-results/clm-drainage-device-pb-s/manifest.json)：
-CUDA/JAX实际parent分别1/0、无超时；CUDA只完成一次相反演，首个排水NVRTC编译
-因math.h不可用失败，0个完整案。JAX8案/600数组返回，worker133.883秒、
-parent142.328秒；EHPC1820真实F1/Stageout0，明确保留CUDA缺项及配对未完成。
-JAX8案原独立64位物理/行为/三组M/H硬界均满足；stress案最大分层质量/焓/温差
-.03275756 kg/m²、11878.90394 J/m²、.000143906 K，滞水总出流差−.03177222 kg/m²。
-其combined水/热残差−2.98023224e−8 kg/m²/−3.0986328125 J/m²，原界
-.0108337402 kg/m²/3261.5234375 J/m²。额外NumPy32同精度报告仍有4案差异及
-accepted_substeps±1，未删整数条件；主要CUDA/JAX同精度尚未得到结果。
-
-PB-t仅去掉两个host C头文件，定义精确2^-23/2^-52 epsilon；595文件及kernel
-计算body不变，重新CUDA1→JAX→EHPC比较。此项不抵充整柱、post-Richards32、
-JAX64、年度或科学验收。以下记录按历史保留。
-

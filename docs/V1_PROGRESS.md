@@ -1,3 +1,20 @@
+# 2026-10-26 最新实际交付
+
+[NM GPU完整终态](CLM_GPU_TERMINAL_QB.md)已收齐：399/408，9失败、零error/skip，
+584源不变；18.136小时，旧剩余估时撤销。原BF Richards参考与NM物理版本差已
+查明，完整原输入取回，当前NumPy44call只提交EHPC1827，未改fixture或门。
+
+[排水PB-r](CLM_VERTICAL_HYDROLOGY.md)1704实际F0/Stageout0、24项全过；
+PB-s JAX8案物理及原硬账满足，CUDA头文件编译失败、0完整案，1820真实F1。
+PB-t只修NVRTC头部、原计算不动，后续仍须完整配对实测，未生产集成。
+
+[冠层PY-c](CLM_CANOPY_PHASE_ENERGY.md)1822真实47/48，Qia失败保留；
+两控制站完整返回与原PT逐字节相同，原42项全过；不把局部通过计作修复。
+[EHPC容量](CLM_CPU_CAPACITY_QD.md)174容器完整备份、回收旧副本实际成功，
+manager/compute空闲均约40GiB，最新8父状态保留；年链未冒称恢复或完成。
+当前生产代码/测试/基准仍与NM569文件一致；全年度、气候/SOC、多年/留出、
+校准与v1.0.0科学验收均未完成。下方按时间保留历史。
+
 # v1.0.0 执行记录
 
 2026-10-25：从成功 NM 冷48接续全年所需的独立 NS 控制已准备并静态复核，
@@ -1416,20 +1433,3 @@ Windows本地仍受解释器异常影响，Linux为本次完整验证环境。wh
 随后[NumPy分层完整柱](CLM_LAYERED_CANOPY_COLUMN.md)首轮44项目标通过，
 完整柱最大质量/焓残差7.89716e-14 kg/m² / 2.07815e-5 J/m²；七天连续
 整柱与全量回归运行中。原生分层表面步接入开发中，完整原生柱尚未完成。
-# 2026-10-26 最新实际交付
-
-[NM GPU完整终态](CLM_GPU_TERMINAL_QB.md)已收齐：399/408，9失败、零error/skip，
-584源不变；18.136小时，旧剩余估时撤销。原BF Richards参考与NM物理版本差已
-查明，完整原输入取回，当前NumPy44call只提交EHPC1827，未改fixture或门。
-
-[排水PB-r](CLM_VERTICAL_HYDROLOGY.md)1704实际F0/Stageout0、24项全过；
-PB-s JAX8案物理及原硬账满足，CUDA头文件编译失败、0完整案，1820真实F1。
-PB-t只修NVRTC头部、原计算不动，后续仍须完整配对实测，未生产集成。
-
-[冠层PY-c](CLM_CANOPY_PHASE_ENERGY.md)1822真实47/48，Qia失败保留；
-两控制站完整返回与原PT逐字节相同，原42项全过；不把局部通过计作修复。
-[EHPC容量](CLM_CPU_CAPACITY_QD.md)174容器完整备份、回收旧副本实际成功，
-manager/compute空闲均约40GiB，最新8父状态保留；年链未冒称恢复或完成。
-当前生产代码/测试/基准仍与NM569文件一致；全年度、气候/SOC、多年/留出、
-校准与v1.0.0科学验收均未完成。下方按时间保留历史。
-
