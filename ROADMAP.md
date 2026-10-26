@@ -1,5 +1,13 @@
 # ROADMAP — CLM 单柱物理
 
+2026-10-26，最新终态（下方较早快照保留为历史）：
+
+- [ ] [NM完整GPU回归](docs/CLM_GPU_TERMINAL_QB.md)已经结束，399/408，9失败、零error/skip；原584源不变，完整通过仍待，旧剩余估时撤销。
+- [x] [新排水暖态修正](docs/CLM_VERTICAL_HYDROLOGY.md)：1704 F0/Stageout0，24项全过，647金样字段保真；仅私有候选，不是生产集成。
+- [ ] [排水设备](docs/CLM_VERTICAL_HYDROLOGY.md)：PB-s JAX8案物理/原硬账全过，CUDA编译math.h失败、0完整案，1820真实F1；PB-t仅头文件兼容修订后再做原门实测。
+- [ ] [CPU基线年与容量](docs/CLM_CPU_CAPACITY_QD.md)：Cng13488/13008、Qia6768后原容量门停；174容器已完整备份并核验，回收旧副本后两主机空闲约40GiB。旧JN的Cha/HaM各17520，Qia7275失败，独立年评价仍待。
+- [ ] 当前冠层LM候选1822实际47/48，Qia仍失败；当前NumPy原输入44次重算唯一提交1827。全年、多站多年、spinup、校准、发布均未完成。
+
 2026-10-25，新增实际交付：
 
 - [x] [当前NM观测前缀](docs/CLM_CURRENT_MONTHS_PG.md)：EHPC1617 F0，12配置／24完整月，4556项积分核对；Qia二月H −54.26%～−36.85%，Cha二月LE近零绝对差4.42～4.47 W/m²，科学失败保留。

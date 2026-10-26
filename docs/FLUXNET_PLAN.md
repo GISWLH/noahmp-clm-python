@@ -1,5 +1,13 @@
 # FLUXNET：M4 有界检验与 Phase 4 计划
 
+2026-10-26：[当前GPU终态](CLM_GPU_TERMINAL_QB.md)为399/408，站点Richards
+原3项全失败，四点H/LE最大差18.089462%/12.553396%。旧BF参考早于当前物理，
+已保存原pytest-460输入和完整状态，唯一EHPC1827当前NumPy44call重算尚待；
+不改观测、QC、配置、fixture或科学门。新冠层候选1822为47/48，Qia未恢复。
+[CPU基线](CLM_CPU_CAPACITY_QD.md)八根因容量门停在Cng13488/13008、Qia6768，
+完整备份回收旧容器后容量已恢复，尚未计新年/评分。旧JN两站各17520而Qia7275
+失败，三站独立年评价未开始；当前NM完整年、多年、SOC、留出和校准仍待。
+
 2026-10-25 13:54UTC：[当前NM十二配置年NS与三站年NZ](v1-results/failed-years-pq/manifest.json)
 均在7275/17520步以原CUDA分层相变表面异常失败，worker1，末态／累计账原件
 已封存。当前没有成功完整年；年度评分／spinup／校准仍不启动。最后27个成功步

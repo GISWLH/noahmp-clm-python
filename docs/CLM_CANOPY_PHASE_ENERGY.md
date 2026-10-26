@@ -146,3 +146,22 @@ Ball–Berry、叶—气感热、水汽、共享根水和诊断空气温湿的�
 仍未切换。后续三后端接口将蒸腾携出焓和根水携入焓分开输出，净热交换
 另列`transpiration_net_heat_wm2`，以明确完整柱能量核算中的两笔转移。
 下一步仍需原生连续验证、完整柱连接与真实参考验收。
+# 2026-10-26 私有干冠层LM候选真实失败
+
+[PY-c完整151件证据](v1-results/surface-dry-lm-py-c/manifest.json)：唯一EHPC1822
+真实F1/Stageout0，48收集/47通过/1失败/零error或skip；144条完整测试阶段与XML
+独立一致，616份源/输入/控制前后相同。42原node全过，Cha/HaM完整返回与原PT
+逐字节一致，原表面水/热残差分别2.41413e−14 kg/m²/7.52743e−9 J/m²及
+1.91930e−14 kg/m²/3.38332e−9 J/m²，均在原硬界内，且未进入rescue。
+
+唯一Qia在原Newton30轮残差13.75804 W/m²后进入LM；原80轮总预算不变。
+31次线性尝试均未异常，20接受/11拒绝、22trial、527 evaluate全部返回；总61/80
+以no_feasible_displacement退出，未返回完整phase/surface。末LM残差没有记录，
+不能拿Newton原残差充当末残差。first-phase-before原件已保存，但因调用先失败，
+候选返回后的Qia输入对PW完整相等断言没有执行，后续须独立核对。
+
+现有记录不能区分公共alpha因触界为0与浮点全量无移动；下一步只在EHPC用
+已保存末态/原输入作有界离线分析，不改物理、门或重投原测试。此候选未集成、
+没有JAX/CUDA同步或续失败年信用。两个更早wrapper setup/coverage失败原件
+[另行保留](v1-results/surface-dry-lm-py-setup-failure/manifest.json)，不是物理测试结果。
+
