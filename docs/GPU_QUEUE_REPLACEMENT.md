@@ -272,3 +272,5 @@ NS 已于 07:29:25 UTC 实际启动，首次趋势前全 23 个状态／账目�
 文档差异后重新核验成功，保留原失败。没有改变运行源或任何物理／精度门。
 
 QT1876 对 QS 实际 locals 完成 EHPC 后处理，F1/Stageout0，0 新 forward/evaluate/GPU。attempt2 host step 与实际 f32 dt 的差异经 remaining 暴露为第三次 flow dt 差 9.1552734375e-5 s；证据支持 host 步长传播，不能归因具体除法指令或自动改源，原 1J 仍失败。
+
+QT1876时间账实际包见 [EHPC分析](v1-results/nq-hidden-step-analysis-qt/manifest.json)，原1J失败保留，host step传播证据不归因具体指令。
