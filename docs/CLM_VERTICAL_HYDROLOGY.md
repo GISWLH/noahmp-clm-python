@@ -1,5 +1,23 @@
 # 2026-10-26 排水适配最新证据
 
+[PB-t 85件实际设备与比较证据](v1-results/clm-drainage-device-pb-t/manifest.json)：
+唯一新CUDA/JAX parent均0，各8/8案返回、无超时，worker25.1718/127.7275秒，
+parent40.4281/150.6389秒；只改头部成功解决NVRTC编译失败。EHPC1828真实
+F1/Stageout0，全部16后端案的独立P0/行为/原M/H硬账满足，但75字段原1e−6及
+整数精确配对仅4/8通过，不能推广或计完整设备同步。
+
+失败frozen能量残差差1.14440918e−5 J/m²、error_ratio差1.16634354e−4；
+two_bands残差差.015625 J/m²。perched_stress/option2还出现真实积分分叉，
+总出口质量差.0145597458/.00302410126 kg/m²、焓差5299/1100.5 J/m²，
+accepted_substeps差1。后两案初始phase及参数字节相同而首个diagnosis已经
+不同；不将其直接归因最终求和或阈值。继续定位同输入原语，不放宽原门。
+
+[PB-u离线43件证据](v1-results/drainage-rounding-pb-u/manifest.json)：1839真实
+F0/Stageout0，零新物理/GPU调用。29字段按实际IEEE位核对，初始ice fraction
+差1 ULP、saturation差1–2 ULP，frozen冰阻因子16 ULP、main rate10 ULP；
+stress/option2初始滞水面差1.7881393433e−7 m/6 ULP。这些差发生在adaptive
+分支前，但没有内部每步操作数，尚不能确定除法、编译舍入或具体首个算子。
+
 [PB-r 149件原始包](v1-results/clm-drainage-warm-phase-pb-r/manifest.json)：
 EHPC1704实际F0/Stageout0，24项全过，17参考记录、20金样647字段完全一致。
 唯一NumPy64暖态修正直接使用原总水量，避免非均匀层厚体积回乘产生−1 ULP冰量；

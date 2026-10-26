@@ -4,9 +4,9 @@
 
 - [ ] [NM完整GPU回归](docs/CLM_GPU_TERMINAL_QB.md)已经结束，399/408，9失败、零error/skip；原584源不变，完整通过仍待，旧剩余估时撤销。
 - [x] [新排水暖态修正](docs/CLM_VERTICAL_HYDROLOGY.md)：1704 F0/Stageout0，24项全过，647金样字段保真；仅私有候选，不是生产集成。
-- [ ] [排水设备](docs/CLM_VERTICAL_HYDROLOGY.md)：PB-s JAX8案物理/原硬账全过，CUDA编译math.h失败、0完整案，1820真实F1；PB-t仅头文件兼容修订后再做原门实测。
+- [ ] [排水设备](docs/CLM_VERTICAL_HYDROLOGY.md)：PB-s编译失败原件保留；PB-t两后端各8案实际0，16案P0/原硬账满足，但同精度仅4/8，1828真实F1，继续定位原语首差。
 - [ ] [CPU基线年与容量](docs/CLM_CPU_CAPACITY_QD.md)：Cng13488/13008、Qia6768后原容量门停；174容器已完整备份并核验，回收旧副本后两主机空闲约40GiB。旧JN的Cha/HaM各17520，Qia7275失败，独立年评价仍待。
-- [ ] 当前冠层LM候选1822实际47/48，Qia仍失败；当前NumPy原输入44次重算唯一提交1827。全年、多站多年、spinup、校准、发布均未完成。
+- [ ] 当前冠层LM候选1822实际47/48，Qia仍失败；当前NumPy原输入44次重算1827真实F0，三份站点GPU对当前参考满足原物理门，1J相变同精度失败仍在。全年、多站多年、spinup、校准、发布均未完成。
 
 2026-10-25，新增实际交付：
 

@@ -2,10 +2,11 @@
 
 2026-10-26 最新终态：[NM完整GPU](CLM_GPU_TERMINAL_QB.md)为399/408，9失败，
 不是仍运行或已通过；旧剩余估时撤销。历史Richards参考源早于NM，当前原输入
-NumPy重算尚待，不能先刷新fixture；现存aggregate126字段有9差，1e−6不放宽。
+NumPy44次重算1827真实F0，三份站点GPU对当前参考满足原物理门，但不能先刷新
+fixture；aggregate126字段的9差中8差在原门内，1J相变差仍失败，1e−6不放宽。
 冠层新LM候选1822实际47/48，Qia仍失败，未集成或续失败年。
-[新排水](CLM_VERTICAL_HYDROLOGY.md)1704 NumPy24项通过，PB-s JAX8案原物理及
-硬账通过，CUDA头文件编译失败/0完整案；设备同步和整柱范围未完成。
+[新排水](CLM_VERTICAL_HYDROLOGY.md)1704 NumPy24项通过，PB-t CUDA/JAX各8案
+实际0、16案原物理及硬账满足，但同精度4/8，1828真实F1；设备同步及整柱未完成。
 [EHPC原年度及容量](CLM_CPU_CAPACITY_QD.md)的真实成功前缀、Qia失败与旧源
 两站17520均分列；归档副本回收已实际完成，不抵充全年或科学评价。下文为历史。
 

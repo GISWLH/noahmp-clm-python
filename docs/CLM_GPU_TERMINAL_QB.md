@@ -18,11 +18,18 @@
 Ball–Berry 修订。这证明参考来源发生过物理版本变化，不能据此断言 GPU 正确，
 也不能直接刷新金样。原 pytest-460 三后端 whole4/split2+2 的 78 份输入、
 配置、状态和轨迹另已完整取回：[86 件保真包](v1-results/nq-station-retained-qb/manifest.json)。
-当前 NumPy 对原保存输入的 44 次独立重算已唯一提交 EHPC1827；结果尚待。
+当前 NumPy 对原保存输入的 44 次独立重算已在 EHPC1827 真实F0/Stageout0，
+44/44返回、113秒，584源和原输入不变，原硬账执行。
+[408件参考原件](v1-results/nq-current-reference-qc/manifest.json)的408为证据件数，
+不改变原GPU399/408终态。三份原站点GPU对当前NumPy全部满足原物理门：
+CUDA32最大H/LE绝对差 .0006629078/.0014292167 W/m²，JAX64为
+5.80434e−8/2.14829e−8 W/m²，按实际dtype重建的原初态逐字节相同。
+这支持旧参考版本差的诊断，不能代替观测验证或先行刷新fixture。
 所有旧失败保留，未改变模型、fixture、1e-6、整数或原守恒门。
 
 现有 legacy 两包各 102 字段 CUDA/JAX 逐字节相同；aggregate 包 126 字段中
-117 相同、9 不同，包含土壤状态、输送和相变残差，不能简化为单一 1 J 诊断。
+117 相同、9 不同，包含土壤状态、输送和相变残差；EHPC1827数值分析确认
+其中8差在原1e−6门内，唯一越门仍是phase reconstruction residual的1 J。
 MOST 原计数语义和相变交叉重放分别独立调查，不把两个原因混为一谈。
 
 2026-10-26 15:34 UTC，实际 nvidia-smi 显示物理 CUDA1

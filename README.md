@@ -24,7 +24,7 @@ v0.2.0 的 GPU 移植已获 Wang [验收](docs/GPU_ACCEPTANCE.md)。当前阶段
 | 最终候选冷启动 | 12 配置各 48 步；EHPC1586 独立核对 576 对柱步，H/LE 最大绝对差 0.005750100/0.003746741 W/m²；原水热碳氮与杂质条件保持；[完整范围](docs/CLM_MULTISITE_SPINUP.md) |
 | 最终完整 GPU 回归 | 已结束：399/408＝本轮367/376通过＋32项已核验专项；9失败、零error/skip，18.136小时，584源不变。MOST计数2项、Richards柱4项、站点3项仍待处理，撤销旧剩余估时；[终态与原始回执](docs/CLM_GPU_TERMINAL_QB.md) |
 | 当前两组 CUDA 年度 | NS12／NZ3 均在7275/17520步以原分层相变表面异常退出，worker 返回1；隔离Qia调用及EHPC独立NumPy均在冠层Newton失败，残差13.205／13.758 W/m²，年度估时撤销；[原件与诊断](docs/CLM_CANOPY_PHASE_ENERGY.md) |
-| 新排水适配候选 | EHPC1704 F0/Stageout0，24项全过；修正暖态−1 ULP冰量。PB-s JAX8案物理及原硬账通过，CUDA因NVRTC头文件编译失败、完整返回0案，EHPC1820保留F1；[范围与数字](docs/CLM_VERTICAL_HYDROLOGY.md) |
+| 新排水适配候选 | EHPC1704 F0/Stageout0，24项全过；PB-t CUDA/JAX各8案实际0返回，16案物理与原硬账满足，但同精度仅4/8通过，EHPC1828保留F1；[范围与数字](docs/CLM_VERTICAL_HYDROLOGY.md) |
 
 这些后端比较不能替代观测验收。当前完整年度、气候及 SOC spinup、多站多年、
 留出集和校准仍未完成；已有观测差距保留，例如当前源 Qia 一月 H 偏差

@@ -1,5 +1,17 @@
 # 2026-10-26 私有干冠层LM候选真实失败
 
+[QE 197件原始离线证据](v1-results/surface-dry-lm-bound-qe/manifest.json)：
+1840实际F0/Stageout0、0 evaluate/LM重跑。27个原参数、60项类型/dtype/形状/字节
+检查均与PW原输入完全相同，补足PY-c后置检查未执行的缺口。末12坐标全有限且
+严格在原界内部，未触界；叶offset38.34794–42.61973 K、地温312.062434 K、
+湿度14.2921977 g/kg。因此排除“已触界坐标向外导致公共alpha为0”的解释。
+原末r/J/direction未保存，仍不能确认无移动原因，下一步须透明观察原迭代。
+
+1829因PBS CRLF解释器启动失败实际F126/Stageout0、0数值；1830离线分析因原输入
+ground_evaporation_limit=+inf无法用严格JSON序列化，真实F1/Stageout0。
+先前把它初步归因ULP比值溢出的解释已撤回，纠正与原失败并存。
+1840先存原pickle再以finite/hex标识非有限原值，不将其替换为零或改变模型。
+
 [PY-c完整151件证据](v1-results/surface-dry-lm-py-c/manifest.json)：唯一EHPC1822
 真实F1/Stageout0，48收集/47通过/1失败/零error或skip；144条完整测试阶段与XML
 独立一致，616份源/输入/控制前后相同。42原node全过，Cha/HaM完整返回与原PT

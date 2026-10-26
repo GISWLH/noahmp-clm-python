@@ -1,0 +1,1188 @@
+{
+  "scope": "1840 trueF0/Stageout0 saved-output arithmetic:27 arguments/60 exact checks; final12 interior coordinates; zero evaluate/LM calls. Original1829F126 and1830F1 retained, default+inf JSON cause corrected. No physical repair, promotion, GPU, column timestep, annual or scientific acceptance.",
+  "archive_sha256": "1b7b2082251cb0b6bd25eddb615c0139ce6acbb1e5c2762d11c6a1979303194b",
+  "artifacts": [
+    {
+      "source": "SCOPE.md",
+      "path": "SCOPE.md.gz",
+      "source_sha256": "c9ac85b4dbcdb92239411f833729ed24fc1eda58fac937d77b1efdf09ebd267c",
+      "stored_sha256": "0e1b6a5710f17fe4944fc8d0c1d502ff1a45d9870f23cc851f44e4dfc7be2ab3"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "0709086682b1a5bb63acc32b4d9acf1187ab66cce3cbd12563a39b23eb93f020",
+      "stored_sha256": "af90a94f3a10e9128679176116b67ac36263fbcca45bd85492122bae106ff47d"
+    },
+    {
+      "source": "closure.json",
+      "path": "closure.json.gz",
+      "source_sha256": "f1e6e29447229d6b984c7d2f3aaf53525ec85d0f3e72599c31170477e1f2f234",
+      "stored_sha256": "cab47c6eb4271154b241dbb0470706567210e48b28ee11db1fd94c2eceba6c94"
+    },
+    {
+      "source": "correction.json",
+      "path": "correction.json.gz",
+      "source_sha256": "62e6aebb8cc7728d2894f63ada0dff19725bcf3a3c98d72223dcd8d55d42b8da",
+      "stored_sha256": "9ee43d802fd3ad45de9a74c70c7d3f1ee48c7b68e635eded3faa061e1fc1b4c6"
+    },
+    {
+      "source": "provenance/collect_surface_lm_bound_qe_b_closed.py",
+      "path": "provenance/collect_surface_lm_bound_qe_b_closed.py.gz",
+      "source_sha256": "0f6f8f6d45f6363d0d59e652f839c6943580aad351065c0bf213bf6cdaad3ce2",
+      "stored_sha256": "a75f789c01ed92614090b697556004a8e47b9307f1001d0d22e111e4cbf9d3d9"
+    },
+    {
+      "source": "provenance/collect_surface_lm_bound_qe_c_closed.py",
+      "path": "provenance/collect_surface_lm_bound_qe_c_closed.py.gz",
+      "source_sha256": "9d47a17213a1a6cfba1e5e9e086c080f495b3b1e14d2a99b99c6b46b717bf098",
+      "stored_sha256": "a68b795699ad7fb98cf22ac03b2c91daa7a930695fdec84095de3f2b1d220b5f"
+    },
+    {
+      "source": "provenance/deploy_surface_dry_lm_bound_qe.py",
+      "path": "provenance/deploy_surface_dry_lm_bound_qe.py.gz",
+      "source_sha256": "fe9463ffc1bd320e977346444a1fe761be9980e567d5f487256578758aec2666",
+      "stored_sha256": "7ebff94231bfbc0f1344fde2e165c1199c8b2ea3f256ef2ca709969a251d4e0a"
+    },
+    {
+      "source": "provenance/deploy_surface_dry_lm_bound_qe_b.py",
+      "path": "provenance/deploy_surface_dry_lm_bound_qe_b.py.gz",
+      "source_sha256": "a14c7652a152c9cbbb56b44203631b5b70adfc1ee8ec392deb98cb3999114c69",
+      "stored_sha256": "4d337c6400eea715a8a177d45688e99ea7bc6c26c476c5f1d6b64bccb52cf99a"
+    },
+    {
+      "source": "provenance/deploy_surface_dry_lm_bound_qe_c.py",
+      "path": "provenance/deploy_surface_dry_lm_bound_qe_c.py.gz",
+      "source_sha256": "7eddf897840f356b1fb88653068fcdf2ced92bc6c47d7d2c78260d11ff052973",
+      "stored_sha256": "2b50a27d921754397964c0f1ebee4a7e297ee2b707cd3c72f63fe64bc7ff5d7a"
+    },
+    {
+      "source": "provenance/package_surface_lm_bound_qe.py",
+      "path": "provenance/package_surface_lm_bound_qe.py.gz",
+      "source_sha256": "4ab540eb10db37dd414b02a9b95d2909c9e84063989dfb376ca3a8ab01e76646",
+      "stored_sha256": "dcddf02a061642e6f5e425146533dace75bb4679147a7e3ade566124d49d4dee"
+    },
+    {
+      "source": "provenance/prepare_surface_dry_lm_bound_qe.py",
+      "path": "provenance/prepare_surface_dry_lm_bound_qe.py.gz",
+      "source_sha256": "7327f58e62d37526402469ff6856d40f1218a21f9d1fc4dec8863d0fe3b95fc2",
+      "stored_sha256": "190962aea83fdbb286f88ddc0a69c55481efb267ef2ae5867d27cc22488780c9"
+    },
+    {
+      "source": "provenance/prepare_surface_dry_lm_bound_qe_b.py",
+      "path": "provenance/prepare_surface_dry_lm_bound_qe_b.py.gz",
+      "source_sha256": "a3e46e9d35e626b34b045eaa36af11b5f078efe8b2ae6b2edd28e7dcad435196",
+      "stored_sha256": "0b3702f6a3a0b8f1860492f8d4420c0e1fb04b0ad6338d1a4013df7c01d4482f"
+    },
+    {
+      "source": "provenance/prepare_surface_dry_lm_bound_qe_c.py",
+      "path": "provenance/prepare_surface_dry_lm_bound_qe_c.py.gz",
+      "source_sha256": "f8945cef644702fe03b18ad3fc385aae03b3db4dc0eeec1a371d5e7af7fd5f6d",
+      "stored_sha256": "23e541c86ff2b5ab6a1051d267b0f02c126762738c5c083e40049d420d2d4544"
+    },
+    {
+      "source": "provenance/read_surface_lm_bound_qe_1829.py",
+      "path": "provenance/read_surface_lm_bound_qe_1829.py.gz",
+      "source_sha256": "0241f1603720fdfe377767ee5a5852ae9a9d7e97d01da4c89af948c105f21043",
+      "stored_sha256": "a3b1ed329ea6388fde7d4d4f8919bdd951bf1005c922a37b6f1c88e32373c94c"
+    },
+    {
+      "source": "provenance/surface-dry-lm-bound-qe-b-failure.json",
+      "path": "provenance/surface-dry-lm-bound-qe-b-failure.json.gz",
+      "source_sha256": "5275270db952f0e53ac090b906f310cb2c1d349f54c1e1835502509a5c0274cf",
+      "stored_sha256": "c2bf0bdc9ccb27c15b3e781056b57acef239cab462bb0230a4d7f111ce10eb7b"
+    },
+    {
+      "source": "readout.json",
+      "path": "readout.json.gz",
+      "source_sha256": "2e62d12ae2404ffa24fe87fec986966dae0de14812c4ee8752e933e4e93e319b",
+      "stored_sha256": "34f29ba353d6933508f177097b2754b98e38bcaa7e2b63b3455aa9177f7cdba4"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/commands.json",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/commands.json.gz",
+      "source_sha256": "ffd310a5ecedd6227b10227a7e00484f93474f9e1c02cc6f632ac15a3d087826",
+      "stored_sha256": "41163ae6f409481ffe5622a97d28b4898828029453e26ad63f4c28252ddb3d19"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/manager-output.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/manager-output.stderr.gz",
+      "source_sha256": "b90a0eb7c07b1500df3cfb166bc24c9392d59ef7e4c25259c7e65420f6d4886c",
+      "stored_sha256": "49c7dba4afc20f125ada97c335116dea9055032648709eada5a75748b4fbe9e6"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/manager-output.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/manager-output.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/qstat.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/qstat.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/qstat.stdout.gz",
+      "source_sha256": "255ca198f305fd045140fc16541428a62727cb28072a929e3267dcf3d778a33a",
+      "stored_sha256": "03de950bf7582045b1640742187acd7b5326a9b856ef4012e55cbc78b488974f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/saved-stage-hashes.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/saved-stage-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/saved-stage-hashes.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/saved-stage-hashes.stdout.gz",
+      "source_sha256": "35a1f81dfedc5d96437693a1e83669ef09df2dbde31824f524567c34a95c6e0b",
+      "stored_sha256": "c58b7784d377a449c3f7ce507acee177d6daa8251c636b10e33430bedbb005c9"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/spool.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/spool.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/initial/spool.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/initial/spool.stdout.gz",
+      "source_sha256": "5540b47d8b4e7836b5fbfad203c0d4a37aecb39198cd45284667ac675e92a7e3",
+      "stored_sha256": "1cc70b179a38eaa23e29da5ca1d1feee8fbf0a4bc8859f85ef05dcdc5258fc15"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/commands.json",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/commands.json.gz",
+      "source_sha256": "8795cf7a2d3a35cf9f20fb14659905204e3b19c801c4f75c3ae1aa8b07741d72",
+      "stored_sha256": "63fd4c5f878d9175f4dc7c7dd24e58e538792eeb2ab4fa1e649e200df71adcb9"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/manager-output.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/manager-output.stderr.gz",
+      "source_sha256": "b90a0eb7c07b1500df3cfb166bc24c9392d59ef7e4c25259c7e65420f6d4886c",
+      "stored_sha256": "49c7dba4afc20f125ada97c335116dea9055032648709eada5a75748b4fbe9e6"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/manager-output.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/manager-output.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/qstat.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/qstat.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/qstat.stdout.gz",
+      "source_sha256": "3616ad892e22403a761f4d468bbb891ea3933ffaf576d5026f42d402d64be2fa",
+      "stored_sha256": "cb37c0a0113419172beeb9baf95913b142cb809ccbe9f73dda0660149cc6e086"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/saved-stage-hashes.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/saved-stage-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/saved-stage-hashes.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/saved-stage-hashes.stdout.gz",
+      "source_sha256": "35a1f81dfedc5d96437693a1e83669ef09df2dbde31824f524567c34a95c6e0b",
+      "stored_sha256": "c58b7784d377a449c3f7ce507acee177d6daa8251c636b10e33430bedbb005c9"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/spool.stderr",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/spool.stderr.gz",
+      "source_sha256": "e9ca24598e4c19bd90cd3dc7138528e041e33cca2737caea5b4814cdd0109b03",
+      "stored_sha256": "eb8fccffde470461ff3a280eb1ead75530969d24ec342401d7a349de254d5155"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-1829-closure/terminal/spool.stdout",
+      "path": "surface-dry-lm-bound-qe-1829-closure/terminal/spool.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/commands.json",
+      "path": "surface-dry-lm-bound-qe-b-closure/commands.json.gz",
+      "source_sha256": "90ac8ca0ca9a122c47dba32faf2fa5d9b7dfc03a66b41d8b393d76530d05a271",
+      "stored_sha256": "ddd1cf2a02e266281e7c338f4178a761ca5c0b30d8b599f860cd3cbfa645d88a"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/pbs-exit.stderr",
+      "path": "surface-dry-lm-bound-qe-b-closure/pbs-exit.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/pbs-exit.stdout",
+      "path": "surface-dry-lm-bound-qe-b-closure/pbs-exit.stdout.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/qstat.stderr",
+      "path": "surface-dry-lm-bound-qe-b-closure/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/qstat.stdout",
+      "path": "surface-dry-lm-bound-qe-b-closure/qstat.stdout.gz",
+      "source_sha256": "97521ca6af3aeda2b59707bb75719a8bce5100b48b23ce8eb4663ada11b92215",
+      "stored_sha256": "b3dfda8e619b4e0d7a37befd72ab09affb4619c7738042dff1139adefc647b79"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/result-hash.stderr",
+      "path": "surface-dry-lm-bound-qe-b-closure/result-hash.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-closure/result-hash.stdout",
+      "path": "surface-dry-lm-bound-qe-b-closure/result-hash.stdout.gz",
+      "source_sha256": "5946e4f94954d5ab7963a091be57b91aecc6d39a096f9fcf03caf123f139dd5a",
+      "stored_sha256": "6c3237afed9784391a7b7224d24fb931e42e626710b64c5fb7f3ebcd6752193c"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/dispatch.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/dispatch.json.gz",
+      "source_sha256": "a7d7e2d93ef41090982de06922779480833cf0e49afc88f2228c64bbb0e9b17c",
+      "stored_sha256": "01e5360624f6b749f3a78a5c388fe6ac7efe7ca4bd55c6eab7852b9fbf4fa81b"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/dispatch.stderr.gz",
+      "source_sha256": "be04fc9d161327ebfe692b016ff55b6d953c054e913b9e93870abeab2b4c0fbb",
+      "stored_sha256": "3f8f1faa31793d3802f7019d0ab7a13c70acaae603612895f7e840c24ad55676"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/dispatch.stdout.gz",
+      "source_sha256": "a603ce466ff486d36298f4ba466366762a10e9e6b00e6e7135bee8d1ee0c43e7",
+      "stored_sha256": "b06b1390b69c824b691cafd6258d6cd919566cb613b0037d0455f3f67c5948b1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.json.gz",
+      "source_sha256": "a6ae982282a7f4b28babdda3859e4795e22f6315fb3a6fbe14e4dae71eea0043",
+      "stored_sha256": "eee198fc7c3a7a524c73c6ae3a98dc6aa16c4b0c63e4a189c0ce6a2e28db1db8"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-root.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-root.json.gz",
+      "source_sha256": "13bb0f2048c9cb8793c1a7c25b706189dfb8b10bcd13f62bbf586ba61f3e5620",
+      "stored_sha256": "59b0729785f212893b50c3a29836fbca80c7017272e4472bc6c763009b07b0ab"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-root.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-root.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-root.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-root.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.json.gz",
+      "source_sha256": "66f6da1aa89754043f4c47268c07d065ab262f2be53e7051281feb176d79c985",
+      "stored_sha256": "142975fcface5015a4ed26dbc2bf0d7f8f441aa68ef5334060631c62f7a0b2ef"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/preflight-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.json.gz",
+      "source_sha256": "73154c85decaf628f0b900c151a948bf8e81bb111a7c583b29f3210b0df9e384",
+      "stored_sha256": "2d661e474e95bc0770d46428cda40cd9f1441dca0cf4f8e4c5049ad1b82a9eca"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-stage.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-stage.json.gz",
+      "source_sha256": "bfdfe5e4054acaef2023ec877ecf4bc21e70285d9b9a47b60b128de98163880e",
+      "stored_sha256": "68f93a64eed157d6386651fa816b6961f4366faa6e77e1af776430c87cc7b71d"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/upload-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/upload-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.json",
+      "path": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.json.gz",
+      "source_sha256": "82ecd387221dcc10f279481c7cca821fe682722b9c3ce1c58b7421bad862d7a5",
+      "stored_sha256": "bdd31d77c56fa8d1862766cfc49696226fb8af54f2d161c8bafb71f02beb2775"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.stderr",
+      "path": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.stdout",
+      "path": "surface-dry-lm-bound-qe-b-deployment/uploaded-hashes.stdout.gz",
+      "source_sha256": "24a7951e040b38fb8cba192233d46af88dc7e447bed034ae38bbe3f5508a4c77",
+      "stored_sha256": "cc3f8e3240b04cb94a1e50a0c96f25728d397d112456cf8c8c23b257fba3ee42"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-b-execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "d1b44208ebad38a7f03b17ec03ebaf41ff793bdd197608668ef0ad3d059b4f31",
+      "stored_sha256": "f007c3638c759b435ef3831e71f8e934810c4914e0143da105adbbb2af8e5b41"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/README.md",
+      "path": "surface-dry-lm-bound-qe-b-execution/README.md.gz",
+      "source_sha256": "b98743b8f9413a552b07ff718925c9c8f1f597235197cef58fe793ba36bb9ab7",
+      "stored_sha256": "a65d1f424c44c8ae93ae439ae2e6b34b5237d95d35080424d0709eb653de3ca1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/bounds_qe.pbs",
+      "path": "surface-dry-lm-bound-qe-b-execution/bounds_qe.pbs.gz",
+      "source_sha256": "5f4b4082ec3e6abf8c471ea37d678c270b7d48135f1ab4a0999005cb035d75bf",
+      "stored_sha256": "5b1a10d8ec6c6283fac1b7acc5b1453aeacf43dd9ef24b76ce5f52149108e94e"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/check_stage_py.py",
+      "path": "surface-dry-lm-bound-qe-b-execution/check_stage_py.py.gz",
+      "source_sha256": "ed47d3d08a421d71e9d2e7d26b624d2d24f6d883081f2481a0205b0db3f2a254",
+      "stored_sha256": "73081482aafccf3e0f7ba7e60dddae4677b711b7e9f938669bfc6aa91d122b46"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/dispatch_surface_py.py",
+      "path": "surface-dry-lm-bound-qe-b-execution/dispatch_surface_py.py.gz",
+      "source_sha256": "9817932518e40f2ea9812fd0ac89df2769a4b878692fbcc023a47d5f705beae0",
+      "stored_sha256": "cab44baf4f618bc2308f5f1c448b23713f59f1bf6d49b10f5567a5949b70eef1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-execution/wrapper.diff",
+      "path": "surface-dry-lm-bound-qe-b-execution/wrapper.diff.gz",
+      "source_sha256": "d58fb3ccd79c808a4638a4f32d858adedd9d00ecef804f21972e5c957d0f20ee",
+      "stored_sha256": "b9516dcb1491bafcc31f3ab72675f043812b706cc50ce3dbec6e5c5400589d60"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-preparation/BINDINGS.json",
+      "path": "surface-dry-lm-bound-qe-b-preparation/BINDINGS.json.gz",
+      "source_sha256": "e7e19b640656caac68f84a49abb474024f83349230661b654fde88ed965e968b",
+      "stored_sha256": "51e90b77809a1f5d492eba86aa6277d74ba0231202c71f4fcec314088ed7c0fc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-preparation/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-b-preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "91f7365bf0e08b6f8789caa50ea64cb85f97e0d48d1dc70bc15a3407f959780d",
+      "stored_sha256": "661b016ddb5f75b34f57c090bf7b9b9264280a704f76ff459a660991ad358d74"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-preparation/DIFF_PROOF.json",
+      "path": "surface-dry-lm-bound-qe-b-preparation/DIFF_PROOF.json.gz",
+      "source_sha256": "23f54d3e19d697896e63b14b3a78068620af89d1a1954a9b542e419ee703fb2f",
+      "stored_sha256": "856329ba817d6799c44756a55a433a33215b31e291ac76238aead887cbb9138b"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-preparation/README.md",
+      "path": "surface-dry-lm-bound-qe-b-preparation/README.md.gz",
+      "source_sha256": "708bf1b0e4acd7bcc278563a6bb579928dd57929982283d03b1154376b2486e4",
+      "stored_sha256": "489b434891d61591c88195ea760c0db2f5b19acbb6dec20753b85f3294af875f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b-preparation/analyze_saved_bounds_qe.py",
+      "path": "surface-dry-lm-bound-qe-b-preparation/analyze_saved_bounds_qe.py.gz",
+      "source_sha256": "b40fbdb3a1037caa397b5bbb1359c10d504976185a38a61c8c16ec5758d10282",
+      "stored_sha256": "278818176ad395520ee709eab00785a66e8002efa6f17c64f22a05af872718a8"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/executed-stage.tar.gz",
+      "path": "surface-dry-lm-bound-qe-b/executed-stage.tar.gz",
+      "source_sha256": "56d664647c3c113d44f77b93b9a0f8ea48a7e8cdc30aad768fcc9b60ba1bcb66",
+      "stored_sha256": "56d664647c3c113d44f77b93b9a0f8ea48a7e8cdc30aad768fcc9b60ba1bcb66"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/original-result.tar.gz",
+      "path": "surface-dry-lm-bound-qe-b/original-result.tar.gz",
+      "source_sha256": "ff72f24be5e919b7d086a14999fd1ff105f314a5de5bcb2ccfd10be5731ed1db",
+      "stored_sha256": "ff72f24be5e919b7d086a14999fd1ff105f314a5de5bcb2ccfd10be5731ed1db"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "d1b44208ebad38a7f03b17ec03ebaf41ff793bdd197608668ef0ad3d059b4f31",
+      "stored_sha256": "f007c3638c759b435ef3831e71f8e934810c4914e0143da105adbbb2af8e5b41"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/README.md",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/README.md.gz",
+      "source_sha256": "b98743b8f9413a552b07ff718925c9c8f1f597235197cef58fe793ba36bb9ab7",
+      "stored_sha256": "a65d1f424c44c8ae93ae439ae2e6b34b5237d95d35080424d0709eb653de3ca1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/bounds_qe.pbs",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/bounds_qe.pbs.gz",
+      "source_sha256": "5f4b4082ec3e6abf8c471ea37d678c270b7d48135f1ab4a0999005cb035d75bf",
+      "stored_sha256": "5b1a10d8ec6c6283fac1b7acc5b1453aeacf43dd9ef24b76ce5f52149108e94e"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/check_stage_py.py",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/check_stage_py.py.gz",
+      "source_sha256": "ed47d3d08a421d71e9d2e7d26b624d2d24f6d883081f2481a0205b0db3f2a254",
+      "stored_sha256": "73081482aafccf3e0f7ba7e60dddae4677b711b7e9f938669bfc6aa91d122b46"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/dispatch_surface_py.py",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/dispatch_surface_py.py.gz",
+      "source_sha256": "9817932518e40f2ea9812fd0ac89df2769a4b878692fbcc023a47d5f705beae0",
+      "stored_sha256": "cab44baf4f618bc2308f5f1c448b23713f59f1bf6d49b10f5567a5949b70eef1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/execution-controls/wrapper.diff",
+      "path": "surface-dry-lm-bound-qe-b/result/execution-controls/wrapper.diff.gz",
+      "source_sha256": "d58fb3ccd79c808a4638a4f32d858adedd9d00ecef804f21972e5c957d0f20ee",
+      "stored_sha256": "b9516dcb1491bafcc31f3ab72675f043812b706cc50ce3dbec6e5c5400589d60"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/pbs-command-exit.txt",
+      "path": "surface-dry-lm-bound-qe-b/result/pbs-command-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/preparation-controls/BINDINGS.json",
+      "path": "surface-dry-lm-bound-qe-b/result/preparation-controls/BINDINGS.json.gz",
+      "source_sha256": "e7e19b640656caac68f84a49abb474024f83349230661b654fde88ed965e968b",
+      "stored_sha256": "51e90b77809a1f5d492eba86aa6277d74ba0231202c71f4fcec314088ed7c0fc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/preparation-controls/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-b/result/preparation-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "91f7365bf0e08b6f8789caa50ea64cb85f97e0d48d1dc70bc15a3407f959780d",
+      "stored_sha256": "661b016ddb5f75b34f57c090bf7b9b9264280a704f76ff459a660991ad358d74"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/preparation-controls/DIFF_PROOF.json",
+      "path": "surface-dry-lm-bound-qe-b/result/preparation-controls/DIFF_PROOF.json.gz",
+      "source_sha256": "23f54d3e19d697896e63b14b3a78068620af89d1a1954a9b542e419ee703fb2f",
+      "stored_sha256": "856329ba817d6799c44756a55a433a33215b31e291ac76238aead887cbb9138b"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/preparation-controls/README.md",
+      "path": "surface-dry-lm-bound-qe-b/result/preparation-controls/README.md.gz",
+      "source_sha256": "708bf1b0e4acd7bcc278563a6bb579928dd57929982283d03b1154376b2486e4",
+      "stored_sha256": "489b434891d61591c88195ea760c0db2f5b19acbb6dec20753b85f3294af875f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/preparation-controls/analyze_saved_bounds_qe.py",
+      "path": "surface-dry-lm-bound-qe-b/result/preparation-controls/analyze_saved_bounds_qe.py.gz",
+      "source_sha256": "b40fbdb3a1037caa397b5bbb1359c10d504976185a38a61c8c16ec5758d10282",
+      "stored_sha256": "278818176ad395520ee709eab00785a66e8002efa6f17c64f22a05af872718a8"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/setup-exit.txt",
+      "path": "surface-dry-lm-bound-qe-b/result/setup-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-after-exit.txt",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-after-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-after.json",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-after.json.gz",
+      "source_sha256": "5e777d300194a0007ad3f1e672e746efbd8311cf9002a92149d067e672e14eca",
+      "stored_sha256": "570b62f238b2cba810804523cf0c9e65d0bcbf750f29430edde8e158745cfefd"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-after.log",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-after.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-before.json",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-before.json.gz",
+      "source_sha256": "5e777d300194a0007ad3f1e672e746efbd8311cf9002a92149d067e672e14eca",
+      "stored_sha256": "570b62f238b2cba810804523cf0c9e65d0bcbf750f29430edde8e158745cfefd"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-before.log",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-before.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/stage-inventory.json",
+      "path": "surface-dry-lm-bound-qe-b/result/stage-inventory.json.gz",
+      "source_sha256": "77ccd7bda38fdf7b83c78c036abdeff4fd563a9baf6b1b807db1f3dc9b2c8167",
+      "stored_sha256": "cb51426d2ab1e68216b563517ec896a909c724b73efc02c29f8307092a635c48"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/worker-exit.txt",
+      "path": "surface-dry-lm-bound-qe-b/result/worker-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/worker.stderr",
+      "path": "surface-dry-lm-bound-qe-b/result/worker.stderr.gz",
+      "source_sha256": "454d13208cecb4ca8ea0760237f3ff25b63f69f1ac41f0a1547f8810996dab9f",
+      "stored_sha256": "0d7823db30d678c420042e5b4557a6b18c5b9b6d6ba625c624c840fbc14f00f3"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/result/worker.stdout",
+      "path": "surface-dry-lm-bound-qe-b/result/worker.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-b/stage-package.json",
+      "path": "surface-dry-lm-bound-qe-b/stage-package.json.gz",
+      "source_sha256": "108c2f48c8e209d58363de9eb1c841409414e30e1e0f201fe131f5a38b32d0f2",
+      "stored_sha256": "5e6148f06aac4c519c1e96d7fe18acac318889ed2853254e9e5eae79d15f7241"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/commands.json",
+      "path": "surface-dry-lm-bound-qe-c-closure/commands.json.gz",
+      "source_sha256": "dae5ce930ea1e97756d41edaf0e2ac2036b2952182a7c9db4b0cf656b9ee1907",
+      "stored_sha256": "790e3913479e0889fabf54decc12e6e737f05c391129b7a2c92ffd0bfc645ec4"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/pbs-exit.stderr",
+      "path": "surface-dry-lm-bound-qe-c-closure/pbs-exit.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/pbs-exit.stdout",
+      "path": "surface-dry-lm-bound-qe-c-closure/pbs-exit.stdout.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/qstat.stderr",
+      "path": "surface-dry-lm-bound-qe-c-closure/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/qstat.stdout",
+      "path": "surface-dry-lm-bound-qe-c-closure/qstat.stdout.gz",
+      "source_sha256": "400cf5c14851bb9f58475a316f75b066c9822578c6298dc9e81be022808f0b9f",
+      "stored_sha256": "7c32d2a89d9b27d0daee6164880a3ffbf007d8fb728c6442f0042cdb93cf620e"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/result-hash.stderr",
+      "path": "surface-dry-lm-bound-qe-c-closure/result-hash.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-closure/result-hash.stdout",
+      "path": "surface-dry-lm-bound-qe-c-closure/result-hash.stdout.gz",
+      "source_sha256": "85309d0d5c8e113a9e663516742ab034d6e72a5ae3a7787e38dbc84d7f16e2c0",
+      "stored_sha256": "2a731582d406b28fa05f37ba6fbe16adecc65d349b8fe840f2160f651f1b093c"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/dispatch.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/dispatch.json.gz",
+      "source_sha256": "fd6b626676dcc6866f3c507d716fb539b1f49fa45c37636b12c88a3b654bfcfb",
+      "stored_sha256": "d95dc1b2fd6cf3d0e03341c61fe89140fbe48b43cae8884833d3c99f03506572"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/dispatch.stderr.gz",
+      "source_sha256": "be04fc9d161327ebfe692b016ff55b6d953c054e913b9e93870abeab2b4c0fbb",
+      "stored_sha256": "3f8f1faa31793d3802f7019d0ab7a13c70acaae603612895f7e840c24ad55676"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/dispatch.stdout.gz",
+      "source_sha256": "29164bc9da7148e7e03e2bc7c6adcf700d6129bb0ae82b4554effff3d892d35c",
+      "stored_sha256": "0e0e37f4dd2f4f7bf905d5bd1b564ed123a0d8372243bbddf7cce219458dacbe"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.json.gz",
+      "source_sha256": "ded7a31ce182533c94f7a9b193f1fa74bc32a26a4af8f648876e1b2261f31c35",
+      "stored_sha256": "8dfa3c9634b30afed8eb1ecbc9b34fba2cd4b8e2c3fcb1170e7f8ce994788e0e"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-root.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-root.json.gz",
+      "source_sha256": "910aaa73a52ff7cba48cde87af69c8d377b4224eef72c53d1f1bcb48b6a9b410",
+      "stored_sha256": "8f63e066619171168f4971ae291e12b4b32dfb710108b86ab9aaace9a6074f83"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-root.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-root.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-root.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-root.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.json.gz",
+      "source_sha256": "de77c18b964966053abdc364fcbe36e0173a1214de6718170bd589d87323c6d0",
+      "stored_sha256": "84da485472a7c907fbaed96972e6a699f5d4b61ba6689ea2d0f653ca93a36f69"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/preflight-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.json.gz",
+      "source_sha256": "78242d75d3806c7550cf759eb408f9ecaf8670b731fc1c35dcf14060b5f3191b",
+      "stored_sha256": "a5d66b2b0230a6e406bdde5ebc5ac1e8ec3d4a94c87862b315c29c023da8c3fd"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-stage.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-stage.json.gz",
+      "source_sha256": "93d29c4914880dec663b4499d310ec4ee229d1107f2094addf620dd0adda9101",
+      "stored_sha256": "3123fda88b18dafc45e16fb160801698d9eaa26abaa6c6eba0311f00b06b3145"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/upload-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/upload-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.json",
+      "path": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.json.gz",
+      "source_sha256": "3a169658c2c2d18b4daa47940f3e5ee03ff9987601bafb5355223ff43a871cba",
+      "stored_sha256": "24f1b2e1dfa05df77658f83398d1fcb956164a07962013b5116f7f1c2c9a1e14"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.stderr",
+      "path": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.stdout",
+      "path": "surface-dry-lm-bound-qe-c-deployment/uploaded-hashes.stdout.gz",
+      "source_sha256": "36477274f5dd1df462d17a3278030b40ca0685ccb7eedbf1a00461c223073b51",
+      "stored_sha256": "60b0d3266ea9421533cc9e07f4a199885b9d6cce466e8719cac822f2c27c42e9"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-c-execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "1c744952c3e954afb00de5c7e24bcb5fef54ccfa4d1423c573cf53e6da82d6fa",
+      "stored_sha256": "b69e42cf7a3093a9a70539f5ee5bfb0489ba7f0dba26b5c6cd9705638cb29cde"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/README.md",
+      "path": "surface-dry-lm-bound-qe-c-execution/README.md.gz",
+      "source_sha256": "629e80154c9b96f13adc06b6bf326bc957d7fcdc2094dff800eb042940bfbcf9",
+      "stored_sha256": "7feae93a9371af6d33f5adf7ff0a75c0e609c3f778696057f66999786758dbd3"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/bounds_qe.pbs",
+      "path": "surface-dry-lm-bound-qe-c-execution/bounds_qe.pbs.gz",
+      "source_sha256": "c90f3c95e33371ce5bcbbed2f56bcb32a676060a0ef9f05a779de761c46f57ee",
+      "stored_sha256": "21bff43f3fd23f8c8a15374b2535d255ceeedfc6374e7e5a40aad36098a0ae4f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/check_stage_py.py",
+      "path": "surface-dry-lm-bound-qe-c-execution/check_stage_py.py.gz",
+      "source_sha256": "24cc4483653324da2e054d1155379baaffda07a142abf1ea460d1d9922111ae8",
+      "stored_sha256": "48496ee9c8da6b35e42c46ce07be5ea5ed374fd115b5e37f4612e0d86b62e4ed"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/dispatch_surface_py.py",
+      "path": "surface-dry-lm-bound-qe-c-execution/dispatch_surface_py.py.gz",
+      "source_sha256": "9fe2e186aa44d09663ea76f197d0e525252cbe287208cce1e47d93586e44b933",
+      "stored_sha256": "c1eaf3fe93eeb77ab9a84a1f406e6f1b430d2c36370d2b0e30842695ae4b8dfe"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-execution/wrapper.diff",
+      "path": "surface-dry-lm-bound-qe-c-execution/wrapper.diff.gz",
+      "source_sha256": "22ad720146496c886b002d9f5048d07fa41d6407e0a154975aa55c73ecd7cc5d",
+      "stored_sha256": "a41151c03f8a7bb426c3643e7f32c6692254a1c4f847e82e296a07d836cedbf0"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-preparation/BINDINGS.json",
+      "path": "surface-dry-lm-bound-qe-c-preparation/BINDINGS.json.gz",
+      "source_sha256": "e7e19b640656caac68f84a49abb474024f83349230661b654fde88ed965e968b",
+      "stored_sha256": "51e90b77809a1f5d492eba86aa6277d74ba0231202c71f4fcec314088ed7c0fc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-preparation/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-c-preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "674c52933637968c80fad50f42b3f79d4b21c7811772a1f745a619697a04260a",
+      "stored_sha256": "98774135c4ea4d392f798b36d27815bcaa6ff731484e534c322ae3a31e060b94"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-preparation/DIFF_PROOF.json",
+      "path": "surface-dry-lm-bound-qe-c-preparation/DIFF_PROOF.json.gz",
+      "source_sha256": "e04a0a783975a0a70f8c044dcd5e25ead0dfc4a6482ebb3d7e9d7c39f4467a7c",
+      "stored_sha256": "17d3ac71a4a28bebc2311f3e4b506c2a70de3b617ac345aeb1c478780fb2ef8a"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-preparation/README.md",
+      "path": "surface-dry-lm-bound-qe-c-preparation/README.md.gz",
+      "source_sha256": "3cb416f6fe6737a6b34ef091c7fe2285ffd3130ba50ce260e917a497ba645af2",
+      "stored_sha256": "974737ed911e71060ddfaa3deba18cc55ca4c353c66776fdc2179a3ba6a71942"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c-preparation/analyze_saved_bounds_qe.py",
+      "path": "surface-dry-lm-bound-qe-c-preparation/analyze_saved_bounds_qe.py.gz",
+      "source_sha256": "6db4e8c1d8779232d9ada573fed5f8488babfa53759363ad49a2fbf1f4b217a4",
+      "stored_sha256": "46a161ad1cc3c3aae0826b5565f954a556c298aeb429b98893838e53bff99956"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/executed-stage.tar.gz",
+      "path": "surface-dry-lm-bound-qe-c/executed-stage.tar.gz",
+      "source_sha256": "64b748f040887a85f5525281203dda2b9df67618cfba4ed81f3633bb6ef0a5d7",
+      "stored_sha256": "64b748f040887a85f5525281203dda2b9df67618cfba4ed81f3633bb6ef0a5d7"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/original-result.tar.gz",
+      "path": "surface-dry-lm-bound-qe-c/original-result.tar.gz",
+      "source_sha256": "bd6649543219b15ac5300f83a9221acecf8a4d44215194175fc4fe0c84d86135",
+      "stored_sha256": "bd6649543219b15ac5300f83a9221acecf8a4d44215194175fc4fe0c84d86135"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "1c744952c3e954afb00de5c7e24bcb5fef54ccfa4d1423c573cf53e6da82d6fa",
+      "stored_sha256": "b69e42cf7a3093a9a70539f5ee5bfb0489ba7f0dba26b5c6cd9705638cb29cde"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/README.md",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/README.md.gz",
+      "source_sha256": "629e80154c9b96f13adc06b6bf326bc957d7fcdc2094dff800eb042940bfbcf9",
+      "stored_sha256": "7feae93a9371af6d33f5adf7ff0a75c0e609c3f778696057f66999786758dbd3"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/bounds_qe.pbs",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/bounds_qe.pbs.gz",
+      "source_sha256": "c90f3c95e33371ce5bcbbed2f56bcb32a676060a0ef9f05a779de761c46f57ee",
+      "stored_sha256": "21bff43f3fd23f8c8a15374b2535d255ceeedfc6374e7e5a40aad36098a0ae4f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/check_stage_py.py",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/check_stage_py.py.gz",
+      "source_sha256": "24cc4483653324da2e054d1155379baaffda07a142abf1ea460d1d9922111ae8",
+      "stored_sha256": "48496ee9c8da6b35e42c46ce07be5ea5ed374fd115b5e37f4612e0d86b62e4ed"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/dispatch_surface_py.py",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/dispatch_surface_py.py.gz",
+      "source_sha256": "9fe2e186aa44d09663ea76f197d0e525252cbe287208cce1e47d93586e44b933",
+      "stored_sha256": "c1eaf3fe93eeb77ab9a84a1f406e6f1b430d2c36370d2b0e30842695ae4b8dfe"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/execution-controls/wrapper.diff",
+      "path": "surface-dry-lm-bound-qe-c/result/execution-controls/wrapper.diff.gz",
+      "source_sha256": "22ad720146496c886b002d9f5048d07fa41d6407e0a154975aa55c73ecd7cc5d",
+      "stored_sha256": "a41151c03f8a7bb426c3643e7f32c6692254a1c4f847e82e296a07d836cedbf0"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/pbs-command-exit.txt",
+      "path": "surface-dry-lm-bound-qe-c/result/pbs-command-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/preparation-controls/BINDINGS.json",
+      "path": "surface-dry-lm-bound-qe-c/result/preparation-controls/BINDINGS.json.gz",
+      "source_sha256": "e7e19b640656caac68f84a49abb474024f83349230661b654fde88ed965e968b",
+      "stored_sha256": "51e90b77809a1f5d492eba86aa6277d74ba0231202c71f4fcec314088ed7c0fc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/preparation-controls/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-c/result/preparation-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "674c52933637968c80fad50f42b3f79d4b21c7811772a1f745a619697a04260a",
+      "stored_sha256": "98774135c4ea4d392f798b36d27815bcaa6ff731484e534c322ae3a31e060b94"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/preparation-controls/DIFF_PROOF.json",
+      "path": "surface-dry-lm-bound-qe-c/result/preparation-controls/DIFF_PROOF.json.gz",
+      "source_sha256": "e04a0a783975a0a70f8c044dcd5e25ead0dfc4a6482ebb3d7e9d7c39f4467a7c",
+      "stored_sha256": "17d3ac71a4a28bebc2311f3e4b506c2a70de3b617ac345aeb1c478780fb2ef8a"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/preparation-controls/README.md",
+      "path": "surface-dry-lm-bound-qe-c/result/preparation-controls/README.md.gz",
+      "source_sha256": "3cb416f6fe6737a6b34ef091c7fe2285ffd3130ba50ce260e917a497ba645af2",
+      "stored_sha256": "974737ed911e71060ddfaa3deba18cc55ca4c353c66776fdc2179a3ba6a71942"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/preparation-controls/analyze_saved_bounds_qe.py",
+      "path": "surface-dry-lm-bound-qe-c/result/preparation-controls/analyze_saved_bounds_qe.py.gz",
+      "source_sha256": "6db4e8c1d8779232d9ada573fed5f8488babfa53759363ad49a2fbf1f4b217a4",
+      "stored_sha256": "46a161ad1cc3c3aae0826b5565f954a556c298aeb429b98893838e53bff99956"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/probe/raw-output.pkl",
+      "path": "surface-dry-lm-bound-qe-c/result/probe/raw-output.pkl",
+      "source_sha256": "248580a6773eb0cd5b13724a9d647b3df1c5c5be13a6b7ef7eeda83247c7cacd",
+      "stored_sha256": "248580a6773eb0cd5b13724a9d647b3df1c5c5be13a6b7ef7eeda83247c7cacd"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/probe/readout.json",
+      "path": "surface-dry-lm-bound-qe-c/result/probe/readout.json.gz",
+      "source_sha256": "260985d89330a93d4f5a1a044de68347cfdf6992d76d79e3d7995609ed31d19b",
+      "stored_sha256": "aa7b2ff9d18fc242066093dcd082ad1bf5d58a41cbccf462a60493f436f7c345"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/setup-exit.txt",
+      "path": "surface-dry-lm-bound-qe-c/result/setup-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-after-exit.txt",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-after-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-after.json",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-after.json.gz",
+      "source_sha256": "bcf7401ae2e11bf7f0b306b1ec290e6914f9d42cee57ab6212ff365b4c8468a6",
+      "stored_sha256": "0db4bdc0031b71522ea38e3867a0f9ed0f2d7111273e1b0b2c4dfd7104e3e3ef"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-after.log",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-after.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-before.json",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-before.json.gz",
+      "source_sha256": "bcf7401ae2e11bf7f0b306b1ec290e6914f9d42cee57ab6212ff365b4c8468a6",
+      "stored_sha256": "0db4bdc0031b71522ea38e3867a0f9ed0f2d7111273e1b0b2c4dfd7104e3e3ef"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-before.log",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-before.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/stage-inventory.json",
+      "path": "surface-dry-lm-bound-qe-c/result/stage-inventory.json.gz",
+      "source_sha256": "10848e4927051a5df78303069aa225098e94506913d7b028e23fd09a2db1665d",
+      "stored_sha256": "9d0390e43821933baa259b9524d7fbb5c2e3d815d3ea9686391b68dd40cdd469"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/worker-exit.txt",
+      "path": "surface-dry-lm-bound-qe-c/result/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/worker.stderr",
+      "path": "surface-dry-lm-bound-qe-c/result/worker.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/result/worker.stdout",
+      "path": "surface-dry-lm-bound-qe-c/result/worker.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-c/stage-package.json",
+      "path": "surface-dry-lm-bound-qe-c/stage-package.json.gz",
+      "source_sha256": "0cbc8597ce543b809fc1ed5c589673f92e810db3da6673c5c84d6b35d4579c5a",
+      "stored_sha256": "9f1dc716ad72e2d6111529f8b8261c9ca2d9941c58c2579bc1f511c2cd13acca"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/dispatch.json",
+      "path": "surface-dry-lm-bound-qe-deployment/dispatch.json.gz",
+      "source_sha256": "217e970dde46e15dc715367d3c3016a06ea515da3f955d44986fc0e7fbe3fafd",
+      "stored_sha256": "ba558a3990add4fdb7bd78dabeb43c39ca0b8179d712978a8679876606de0b29"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/dispatch.stderr.gz",
+      "source_sha256": "be04fc9d161327ebfe692b016ff55b6d953c054e913b9e93870abeab2b4c0fbb",
+      "stored_sha256": "3f8f1faa31793d3802f7019d0ab7a13c70acaae603612895f7e840c24ad55676"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/dispatch.stdout.gz",
+      "source_sha256": "f3004e1535f065e4492fa02aa0175059c717efacb45ad3bfededd796238e9e70",
+      "stored_sha256": "418d289b7f06e9e80ba366a21f7b03818a3009cca6d7f6fb245fe83efd3ff305"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.json.gz",
+      "source_sha256": "6128e6233ce83d0c7959fbe0e7c2115988845d301f71a45c4c1f728d1e5d4db1",
+      "stored_sha256": "b91bdfd9ef5fcca4f69e6892d5e74063e431e2c0cb065f55c436d00e53222a08"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-root.json",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-root.json.gz",
+      "source_sha256": "48a82b574fc3ae438b0547a10d7807e484855fd08aaa7209ae4915f80f46533d",
+      "stored_sha256": "9859c2c1010ca0fc25c564ec5045815b769ca1c5c2fd564f389b6b31389ca123"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-root.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-root.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-root.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-root.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-stage.json",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-stage.json.gz",
+      "source_sha256": "64e5ab101ac8023914b3514620dc770d7c2737e02e17f3e4b146925dce3c2e6a",
+      "stored_sha256": "f30a9ac02249250658e8a73e683f3e3e02f6a7c5faf902a07967ab16b167fda1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/preflight-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/preflight-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-dispatch.json",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-dispatch.json.gz",
+      "source_sha256": "f92c60c70236cb9d96f8a94c0a0a4ce06e7af6079d9b124ad6d53a1a0ab4e1ff",
+      "stored_sha256": "0cc9f76d76ad4391fda17489b0814071dc96e92dc1276ce60a57e8734ff99a2d"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-dispatch.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-dispatch.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-stage.json",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-stage.json.gz",
+      "source_sha256": "d5b70643ce3a72e15716faed78cb55ba89eb67d3c09e233d25db0aacb9fef596",
+      "stored_sha256": "dff675c6477372239681a76e441f9b5e55217820f51b9ea629b6a6e50c4e615f"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-stage.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/upload-stage.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/upload-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.json",
+      "path": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.json.gz",
+      "source_sha256": "a6007e9b7d214009b2c17334548ab2eb7e028f9bd4cbddb45cd94b7ecda32dae",
+      "stored_sha256": "34165c634704ad4aecf7c8882c25ca58160723156818bb8dfe401c4544d6b904"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.stderr",
+      "path": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.stdout",
+      "path": "surface-dry-lm-bound-qe-deployment/uploaded-hashes.stdout.gz",
+      "source_sha256": "4e3f49003a5b02d99f78980b9210f2bba327e07b53f61addc8450aec40fb38e8",
+      "stored_sha256": "1ec0596ef7c17bfa16f3427ea7a0d45d41c293ee9f0219a659eed9cf36649a80"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "4ded1ba74d494f8bfd69544c7b5a77ae7d2f18323fc2124b0c9c64acd128333d",
+      "stored_sha256": "6802112f4126f780dd7ef4037f2ef35243491741cbe479c5e69f771bdf445a91"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/README.md",
+      "path": "surface-dry-lm-bound-qe-execution/README.md.gz",
+      "source_sha256": "c2ff54800be13690b49753c70258ef8228f5ff511fc008fae52002e40cc606d9",
+      "stored_sha256": "14d92d2b083f02e4a330dbbcea294202704b23b435833b51af560eac73bb61e8"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/bounds_qe.pbs",
+      "path": "surface-dry-lm-bound-qe-execution/bounds_qe.pbs.gz",
+      "source_sha256": "163b8e97df3d1f7bc6425b7d5206bc90f00d48a48de43f0a222125248553fe80",
+      "stored_sha256": "b42fb3c934bf967f9c5b6b263a68e2b8da39e372a98e6f5d4e032f154984a20c"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/check_stage_py.py",
+      "path": "surface-dry-lm-bound-qe-execution/check_stage_py.py.gz",
+      "source_sha256": "990e1616ea9847684bf850da36ddd4d180e0c37aab50d048eb27a4557e3b0543",
+      "stored_sha256": "410642b4f8a5e6e22fe8befbd13c992ff13338f2547d18d5df4e6812b5705abc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/dispatch_surface_py.py",
+      "path": "surface-dry-lm-bound-qe-execution/dispatch_surface_py.py.gz",
+      "source_sha256": "c49107a9797cfdc2bdf867f2ee7d84d8ada4d89e6bef033e1749a7a94becf459",
+      "stored_sha256": "2e66fd6534ab529879f28378e09dabebb84071f542a5954b1ae06a1dcd6d66b3"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-execution/wrapper.diff",
+      "path": "surface-dry-lm-bound-qe-execution/wrapper.diff.gz",
+      "source_sha256": "708ec9e55e287cf097b9bcc5639ad4d4e723f9e88f0900011ceefe71c15f7acc",
+      "stored_sha256": "d58906da2ea8d7e081131d2cc616e7665810a8e6197954967b0d4f02d7b681e1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-preparation/BINDINGS.json",
+      "path": "surface-dry-lm-bound-qe-preparation/BINDINGS.json.gz",
+      "source_sha256": "e7e19b640656caac68f84a49abb474024f83349230661b654fde88ed965e968b",
+      "stored_sha256": "51e90b77809a1f5d492eba86aa6277d74ba0231202c71f4fcec314088ed7c0fc"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-preparation/CONTROLS_SHA256.json",
+      "path": "surface-dry-lm-bound-qe-preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "0b6c090e90b18bdd61f7ec884f2b1e5bd4f583c7f96a35801d4f50a5a0d1b011",
+      "stored_sha256": "117b95c8d3712d63aaae849175bbf4bb1b928820244cab518c2c47d20eb22cb1"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-preparation/README.md",
+      "path": "surface-dry-lm-bound-qe-preparation/README.md.gz",
+      "source_sha256": "6293c7e1d1d180b71c900adf8977579657bb98b9e72a77bdc8a50444cddbfef7",
+      "stored_sha256": "d9e87bf325efd8e0263a4c2e1122f96c66274e37f2ab59a1c670180f7a25ad57"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe-preparation/analyze_saved_bounds_qe.py",
+      "path": "surface-dry-lm-bound-qe-preparation/analyze_saved_bounds_qe.py.gz",
+      "source_sha256": "37336eac62e14947ff7aae7cf265e33a74c38e4a74bbae818eb17962108d9d99",
+      "stored_sha256": "43608c5aeb043c21459fcc29d47cacfe1818f477cf3ced576a5f8584a99e73bb"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe/executed-stage.tar.gz",
+      "path": "surface-dry-lm-bound-qe/executed-stage.tar.gz",
+      "source_sha256": "238f034da9a3d29811fa8a0a4a8347642790b35f251c94f03d0645b3e661d226",
+      "stored_sha256": "238f034da9a3d29811fa8a0a4a8347642790b35f251c94f03d0645b3e661d226"
+    },
+    {
+      "source": "surface-dry-lm-bound-qe/stage-package.json",
+      "path": "surface-dry-lm-bound-qe/stage-package.json.gz",
+      "source_sha256": "a6941db3da62b5f5f7f871109434f8d265e07aeb8f10d61fd7b8fc8158d77404",
+      "stored_sha256": "30f2cceadcba3115116a2d5dc987257b648dfcfee36347b18f84c371884075d0"
+    }
+  ]
+}
