@@ -45,9 +45,7 @@ class PhysicsOptions:
     OptSurfaceDrag: int = 1
     # 1 Ball--Berry, 2 Jarvis. HRLDAS example uses 1.
     OptStomataResistance: int = 1
-    # 1 BATS, 2 CLASS, 3 SNICAR.  Option 3 is implemented by the extensive
-    # CLMColumnState/five-layer snow path; the released legacy ColumnState
-    # ABI intentionally retains its historical BATS/CLASS-only contract.
+    # 1 BATS, 2 CLASS, 3 SNICAR (stage 1 leaves SNICAR unimplemented).
     OptSnowAlbedo: int = 1
     # 1 modified two-stream, 2 grid-cell two-stream, 3 vegetated-fraction
     # two-stream. Kept for ConfigVarType parity; stage 1 uses the existing
@@ -95,9 +93,10 @@ class PhysicsOptions:
     # 0 off, 1 uniform wetland, 2 spatial wetland. Stage 1: off.
     OptWetlandModel: int = 0
 
-    # SNICAR selectors are part of ConfigVarType.F90's Opt* interface. The
-    # extensive CLM path uses the five-band public-table approximation in
-    # physics.snicar; these selectors keep the configuration ABI explicit.
+    # SNICAR selectors are part of ConfigVarType.F90's Opt* interface. They
+    # are retained for one-to-one configuration parity; OptSnowAlbedo=3 is
+    # deliberately outside the stage 1 implementation. The values below are
+    # harmless first-table entries and match the upstream selector conventions.
     OptSnicarSnowShape: int = 1
     OptSnicarRTSolver: int = 1
     OptSnicarBandNum: int = 1

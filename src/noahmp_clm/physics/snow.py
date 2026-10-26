@@ -3,9 +3,7 @@
 v0.1 简化：雪盖存在时地表即雪面，能量平衡按雪反照率求解 Ts，
 雪内热传导加热雪体，雪温到 0°C 后的盈余能量转为融化。
 反照率方案参考 Noah-MP ``SnowAlbedoBatsMod.F90`` 与
-``SnowAlbedoClassMod.F90``。完整 CLMColumnState 的五层雪路径由
-``physics.snicar`` 提供 option 3；此 legacy 三层状态函数保留 BATS/CLASS
-接口，避免把旧 ABI 的标量反照率误认为完整 SNICAR 光学状态。
+``SnowAlbedoClassMod.F90``；SNICAR (option 3) 留给后续阶段。
 """
 from __future__ import annotations
 
