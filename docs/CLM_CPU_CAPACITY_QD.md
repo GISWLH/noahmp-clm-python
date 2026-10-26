@@ -1,5 +1,35 @@
 # EHPC 年度终态与容量恢复（QD）
 
+## 17:17UTC后：服务恢复与八条原链实际启动
+
+[管理员恢复原件](v1-results/pbs-root-recovery-qr/manifest.json)不含凭证；原日志
+与完整资源回收包独立核验，日志快照不含最终PTY退出，另明确其工具回执转录范围。
+
+管理员入口已获授权，原datastore进程保持，没有重建数据库。16:52正常启动尝试
+直接报告spool创建ENOSPC；新pbs_server在后台等待，未重复启动。GPFS远端
+fileset扩大inode请求实际拒绝退出1，原50176上限不变。随后只清理已完整备份、
+逐文件核验的27个pytest缓存，共117文件/81目录；模型源、状态和结果删除0。
+[28件备份/guard/回收原件](v1-results/pbs-inode-repair-qm/manifest.json)。df读数
+仍为0时不宣称释放了多少inode；实际零字节spool探针创建成功、删除完成，PBS
+Active/三节点free，原1813 F0、1831 F1及Stageout0保留。
+
+新独立作业1843 F0、1844原模型F1、1845 F0均实际完成并交付Stageout0，确认
+调度和结果取回恢复。1844科学失败未归一为成功。管理员会话已退出，凭证未存储。
+
+qd-b[39件唯一启动原件](v1-results/pj-capacity-resume-qd-b/manifest.json)记录控制器
+99446从8个原成功父状态唯一接续；首快照1846—1853实际R。Cng两根
+13488→13968、两根13008→13488；Qia四根6768→7248。原36项stage依赖在
+两主机逐字节核验，原进度和8父状态不变，容量门仍12GiB/20000inode；真实
+F0/Stageout0闭合后才接下480步窗，17520即停，不开cycle2或评分。活动窗不是
+已完成年，JN/GPU的7275失败年仍不续算。17:59:44UTC只读checkpoint为Cng
+13872/13872/13344/13344、Qia四根7056，均超过原父；当前窗尚未取得新F0回执，
+不把部分checkpoint计作闭合窗、全年、收敛或评分。以下停服快照保留为历史。
+
+最新[16:32UTC服务阻塞原件](v1-results/pbs-service-outage-ql/manifest.json)：同一
+1831/1813句柄反复拒连超过30分钟，qstat255；pbs_server无进程，现账号sudo
+要求密码。qd-b及新CPU诊断均保持未启动，等实际服务恢复再核对全部原父门。
+inode0和日志切日只是观察，未证实停服原因；[阻塞与实际绕行](GPU_BLOCKERS.md)。
+
 15:46后新独立恢复预检核对八个最新父状态、原源/控制及容量实际0，原进度不改。
 新控制器提交1831—1838后八窗均F1/Stageout0、0物理步：原worker的完整stage
 检查仍要求首个48步归档，而它们随旧容器副本回收，报初始归档FileNotFoundError。

@@ -1,3 +1,31 @@
+# 2026-10-26 LM透明迭代与离线代数证据
+
+[透明跟踪QF](v1-results/surface-lm-transparent-trace-qf/manifest.json)EHPC1844实际
+F1/Stageout0，原异常保持；外部观察367事件，不增加evaluate/Jacobian调用。
+全部rescue字段和末x与1822完全相同，原584源、输入和控制前后不变。末次61轮
+公共alpha=1，12方向均非零，但最大方向2.06553070e−15、仅.0610566 ULP，实际
+位移全部为零；没有触界。第52轮最后接受后，53—60轮拒绝预计下降非正，阻尼
+最终增到4,572,473.708276179。不能把沿用的旧ratio误当第61轮新计算。
+
+[QM离线代数](v1-results/surface-lm-event-analysis-qm/manifest.json)EHPC1854实际
+F0/Stageout0，0模型/evaluate/新J。原末残差max=10.7690074770 W/m²，Jacobian
+条件数1.9912915e9、缩放梯度范数7.05902827e−8，并非精确零。旧预计下降表达式
+相减在53—60轮得到6个零及2个−2.84217e−14；代数等价稳定式与80位Decimal
+核验8次全为正，范围1.0572967e−14至2.0428160e−20。这证明预计下降计算丢失
+符号，不证明非线性根已修复。原物理11式、mask、预算和硬账不变。
+
+私有LM-merit-QN仅将预计下降改为`-2 r·Jd - Jd·Jd`，实际下降改为
+`(r-r_trial)·(r+r_trial)`；583其他文件与evaluate完全相同。仍须原48节点和原
+完整表面/水热账实测，没有增加80轮预算、调参、换PW起点或修改生产源。原
+PY-c失败与PW诊断根分别保留。下面为较早快照，后续QF/QM已补齐当时缺失记录。
+
+后续[165件原始实测证据](v1-results/surface-lm-merit-qn/manifest.json)1856实际
+F1/Stageout0，原48节点47通过/1失败、零error/skip，两个
+控制站和42原项仍过。Qia未修复：总65/80轮、23接受/12拒绝、611次evaluate
+全部返回，最终no_feasible_displacement，末残差10.76900751598 W/m²、阻尼
+1,693,508.7808430293。稳定下降式没有解决非线性求根，候选不推广或同步GPU。
+下一步先比较已保存的PW与新轨迹，不能仅凭小梯度断言局部极小或增加预算调参。
+
 # 2026-10-26 私有干冠层LM候选真实失败
 
 [QE 197件原始离线证据](v1-results/surface-dry-lm-bound-qe/manifest.json)：

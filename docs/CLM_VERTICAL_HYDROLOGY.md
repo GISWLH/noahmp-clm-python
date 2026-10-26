@@ -1,5 +1,55 @@
 # 2026-10-26 排水适配最新证据
 
+[独立Fraction核验](v1-results/drainage-geometry-pb-v-fraction/manifest.json)1845实际
+F0/Stageout0：纯有理数和IEEE binary32最近偶数舍入，含半途/次正规/有符号零/
+溢出自检，8个上下文合法；分类与PB-z硬件参考一致，0新物理或GPU调用。
+例如frozen saturation原JAX为3f71afd6，精确RN为3f71afd5。该诊断不抵充完整积分。
+
+[固定版本编译器源码](v1-results/jax-division-source-pc-a/manifest.json)及
+[实际隔离进程试验](v1-results/jax-division-probe-pc-b/manifest.json)进一步定位：
+本机安装JAX/XLA的NVPTX默认单精度除法模式1使用近似div.full，模式2使用IEEE
+精确除法。单个JIT的公开compiler_options不支持该嵌套选项映射，见
+[精确接口核查](v1-results/jax-jit-option-source-pc-c/manifest.json)；未发明局部API。
+
+两独立CUDA1进程总15.689秒、均实际0，x64均false，HLO无f64。baseline无
+XLA_FLAGS，原PB-v全部payload逐字节重现；precision2只设置已核实的进程级
+`--xla_backend_extra_options=-nvptx-prec-divf32=2`。四案实际操作数RN差从
+8/3/5/4降至0/1/3/1，变量除法差全部消失，余差均为/1000或/917的常量折叠。
+没有改生产flag、源、物理式或门限，没有完整新积分/同精度通过信用。下一步
+只评估局部算术一致性候选；新模块仍须原NumPy参考、1e−6、整数和硬账验证。
+
+[PB-v 54件设备证据](v1-results/drainage-geometry-pb-v/manifest.json)：CUDA/JAX
+各4次原诊断及4次扩展诊断，parent均0，总38.47秒；8个后端/案例的原29字段、
+扩展29字段及对应geometry原位均逐字节重现，来源/输入/控制不变。
+原及扩展HLO都将常量除法折叠为float32乘法，编译文本本身不证明数值因果。
+
+[PB-z 42件独立硬件RN诊断](v1-results/drainage-rn-primitives-pb-z/manifest.json)：
+CUDA1单kernel处理32层行/9步，worker7.002秒、parent9.04秒，实际0；0模型/
+相反演/CPU参考调用。GPU内用显式最近偶数舍入add/mul/div分别比较严格链及
+每步实际操作数，输出原/参考bits、相等标志及分组计数。
+
+| 原数据来源 | 严格链不相同次数 | 实际操作数不符合RN次数 | 非法输入行 |
+|---|---:|---:|---:|
+| CUDA，四案例各自 | 0 | 0 | 0 |
+| JAX frozen | 12 | 8 | 0 |
+| JAX perched_stress | 6 | 3 | 0 |
+| JAX option2 | 9 | 5 | 0 |
+| JAX two_bands | 6 | 4 | 0 |
+
+frozen每层的saturation/ice_quotient变量除法都出现实际操作数RN差；其他JAX案
+还出现/1000或/917差，故只阻止常量fold不足。add、dz*porosity和917*dz等
+实际操作未出现该差。RN含义按[NVIDIA CUDA12.4原语说明](https://docs.nvidia.com/cuda/archive/12.4.0/cuda-math-api/group__CUDA__MATH__INTRINSIC__SINGLE.html)。
+此独立参考直用NVRTC显式ftz=false，保存实际加载CUBIN及flags；原CuPy缓存
+helper会追加ftz=true，生产路径原样保留。设备结果定位了原语差值，后续Fraction
+参考见上；修订后的完整积分仍待，不增加原同精度/P0/年度通过信用。
+
+[PB-w失败原件](v1-results/drainage-loaded-cuda-pb-w/manifest.json)及
+[PB-x ELF结构](v1-results/drainage-elf-tail-pb-x/manifest.json)确认原缓存所有
+代码/section完整，仅最后program-header表少1字节。工具4次255/2次1均保留。
+[PB-y独立诊断副本](v1-results/drainage-elf-zero-copy-pb-y/manifest.json)只在
+额外副本补1个尾零，原前缀及代码段不变，六次工具实际0、可读SASS；副本从未
+加载/编译。没有将工具失败归因版本，也不把副本冒称原磁盘字节。
+
 [PB-t 85件实际设备与比较证据](v1-results/clm-drainage-device-pb-t/manifest.json)：
 唯一新CUDA/JAX parent均0，各8/8案返回、无超时，worker25.1718/127.7275秒，
 parent40.4281/150.6389秒；只改头部成功解决NVRTC编译失败。EHPC1828真实

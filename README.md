@@ -27,7 +27,10 @@ v0.2.0 的 GPU 移植已获 Wang [验收](docs/GPU_ACCEPTANCE.md)。当前阶段
 | 新排水适配候选 | EHPC1704 F0/Stageout0，24项全过；PB-t CUDA/JAX各8案实际0返回，16案物理与原硬账满足，但同精度仅4/8通过，EHPC1828保留F1；[范围与数字](docs/CLM_VERTICAL_HYDROLOGY.md) |
 
 这些后端比较不能替代观测验收。当前完整年度、气候及 SOC spinup、多站多年、
-留出集和校准仍未完成；已有观测差距保留，例如当前源 Qia 一月 H 偏差
+留出集和校准仍未完成。2026-10-26 [EHPC PBS服务恢复](docs/GPU_BLOCKERS.md)后，
+原成功父状态接续的八条CPU链已实际启动1846—1853；未计完整年或评分。
+xuanze物理CUDA1继续运行专项验证，所有数值参考和完整账本核验在超算执行。
+已有观测差距保留，例如当前源 Qia 一月 H 偏差
 −23.08%～−38.55%、LE 偏差 −31.51%～−11.42%。详见
 [一月诊断](docs/CLM_JANUARY_DIAGNOSTIC.md)、[FLUXNET 计划](docs/FLUXNET_PLAN.md)
 和 [已知限制](docs/KNOWN_LIMITATIONS.md)。

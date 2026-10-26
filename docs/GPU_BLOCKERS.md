@@ -1,5 +1,44 @@
 # CLM 单柱开发阻塞记录
 
+## 2026-10-26 17:17UTC后：PBS服务阻塞解除
+
+[19件管理员非敏感恢复原件](v1-results/pbs-root-recovery-qr/manifest.json)保存原
+日志、实际命令/失败/恢复快照及凭证扫描结果；日志在认证后才开始，没有密码。
+PTY工具退出0仅另行标明人工转录，未冒充日志中不存在的原始关闭记录。
+
+用户授权管理入口后，16:52正常pbs_server启动取得直接ENOSPC证据：不能在
+/opt/pbshome/spool创建datastore状态文件。原PostgreSQL进程保持，无数据库
+重建。远端GPFS fileset提高inode请求实际拒绝退出1，原上限未变；随后只清理
+[完整备份核验的27个pytest缓存](v1-results/pbs-inode-repair-qm/manifest.json)，
+117文件/81目录，0源/状态/结果删除。实际spool探针创建0并已清理；PBS Active、
+三节点free、原作业状态保留，新1843/1844/1845实际F0/F1/F0且Stageout0。
+
+八条[原成功父状态CPU链](CLM_CPU_CAPACITY_QD.md)1846—1853已实际运行，
+不绕原容量/F0/硬账门，不续已失败年。管理员会话已经退出，凭证不进日志或仓库。
+该证据确认恢复时的inode资源阻塞，不倒推16:00旧server退出的未保存直接原因。
+Qia科学求根和新排水同精度问题仍分别处理，v1.0.0未完成。以下为原停服历史。
+
+## 2026-10-26 16:32UTC：PBS 服务拒连超过30分钟
+
+最早已落盘拒连16:02:28.499581UTC，最新同1831/1813句柄样本16:32:43UTC，
+跨度1814.500419秒；两次qstat实际255。重复样本之间未观察到恢复，不推断未采样
+时段。[47件原始证据](v1-results/pbs-service-outage-ql/manifest.json)保留首/末
+样本、服务只读诊断、sudo原输出及已有候选的独立审阅。pbs_server无进程，
+现有账号sudo实际1、要求密码；已请求管理入口或管理员恢复，应用权限充足。
+
+PBS_HOME实际为/opt/pbshome，与HOME同挂载；inode可用0、字节仍有余量。
+最新可读server日志在UTC16:00关闭，新日文件缺失，datastore日志不可读。
+[只读13件调查](v1-results/pbs-cache-diagnosis-qk/manifest.json)没有发现能证明
+停服原因的直接错误，不能把inode0或历史systemd停止记录当作已证实因果。
+原1841/1842日志另有输出文件处理错误，实际F0/Stageout0、worker0与独立raw
+归档SHA证据并列保留，不重写原作业状态。后续两旧cache备份guard失败，0更改；
+未扩展删除或削弱guard。
+
+绕行实际完成CUDA1 [PB-v几何上下文](CLM_VERTICAL_HYDROLOGY.md)和独立硬件
+RN诊断：原源/输入不动，设备内逐操作比较提供新证据。LM透明跟踪、两次独立
+NumPy参考、Fraction核验、原成功父窗年链均冻结，服务恢复后按既定唯一提交和
+原F0/容量/守恒门执行。没有绕PBS直接运行模型或重启失败年度，v1目标未完成。
+
 ## 2026-10-26：PJ 容量门与 HOME inode，超过30分钟
 
 后续恢复1831—1838因旧48归档依赖遗漏在0步失败，全部原件已保留；两主机

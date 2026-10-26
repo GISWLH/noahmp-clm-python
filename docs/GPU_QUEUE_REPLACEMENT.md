@@ -1,5 +1,32 @@
 # 2026-10-26 最新终态与后续短测
 
+17:50UTC：PBS已恢复，八条CPU基线原成功父窗实际接续；独立NumPy MOST参考
+[1843实际F0](v1-results/nq-most-reference-qi/manifest.json)，两次完整参考/原输入
+已封存。当前唯一新GPU任务MOST-QN在xuanze物理CUDA1，controller886777、
+worker886779，原3个节点已收集，首项运行，3600秒上限；不是完整回归/年度ETA。
+严格匹配缓存只提供EHPC原参考，GPU主机不运行NumPy物理；完整结果须终态及
+EHPC独立账本审计后报告，原399/408不改计。
+
+[透明输送QJ](v1-results/nq-transport-trace-qj/manifest.json)两后端parent均0，
+总241.4407秒。各仅1次原aggregate，adapter1/phase4/profile3/redistribute3原调用
+透明观察，126字段各自与原NQ逐字节相同；0额外模型/相反演/参考调用。该任务
+已结束、旧PID全消失。[QO1855独立离线核验](v1-results/nq-transport-analysis-qo/manifest.json)
+实际F1/Stageout0，诊断完整、无异常，原1J唯一字段仍超差。adapter入口相同，
+phase前2次、profile全3次及redistribute前2次输入输出逐字节相同；首次不同
+物理入口为event9第三次
+redistribute的dt，CUDA436.0163269042969秒、JAX436.01641845703125秒，差
+9.1552734375e−5秒。该dt差在原相对门内，但后续最终仍1J失败；没有归因为某
+内部算子或记作修复。原水残差−6.750226e−6 kg/m²/界.00400772，热残差CUDA
+−1.004730、JAX−2.004730 J/m²/界约2106.4477，杂质max2.25514e−17/对应界
+6.86646e−15，原硬账两端满足；原1e−6/int所有126字段继续检查。
+
+下面停服与“透明调用未运行”均是较早快照；[实际PBS恢复](GPU_BLOCKERS.md)。
+
+后续CUDA1几何诊断PB-v实际38.47秒、两后端0；独立PB-z硬件RN单kernel实际
+worker7.002秒/parent9.04秒，已结束，字段/计数见[实际数值](CLM_VERTICAL_HYDROLOGY.md)。
+原完整回归仍399/408；当前新透明输送调用仅准备，不算整柱修复。PBS拒连超过
+30分钟，CPU独立参考和年度接续保持冻结，恢复依赖见[原始服务证据](GPU_BLOCKERS.md)。
+
 [原完整回归](CLM_GPU_TERMINAL_QB.md)已结束，399/408、9失败，18.136小时，
 不是仍运行。旧19.25–41.34小时剩余估时撤销；NS/NZ年7275冠层失败的估时亦
 继续撤销。15:34UTC实际CUDA1空闲22210MiB、利用率0%，后续GPU仍使用物理

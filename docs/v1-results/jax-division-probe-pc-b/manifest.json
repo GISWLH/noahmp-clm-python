@@ -1,0 +1,330 @@
+{
+  "scope": "Actual baseline/precision2 isolated CUDA1 JAX causal experiment; original computed flags/counts and byte-reproduction evidence. No production/physical acceptance change.",
+  "archive_sha256": "53a7bf79be30df833c67fbd1ec6d07a4bc367cc249495c26aa0c0417272ec7ec",
+  "artifacts": [
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "db3f2ec318da9b11171719dd89ea6b968961c01dbc8809fdf9cd3439260b8d0c",
+      "stored_sha256": "4f856e6b5b773d6136f931eaea2462af59b3b440c9d9947c52d70baf32c4a96e"
+    },
+    {
+      "source": "baseline-original-hardware-metadata.json",
+      "path": "baseline-original-hardware-metadata.json.gz",
+      "source_sha256": "6d67e85540d209835173f3e34428fdf29c591d04e2f4368178eefd8c5647599e",
+      "stored_sha256": "4f4d9003b44411d8eb5a17c9a5145df2f8e4a4859dd0a91471962e7841a0d0d4"
+    },
+    {
+      "source": "closure/controller-receipt.json",
+      "path": "closure/controller-receipt.json.gz",
+      "source_sha256": "20e8209569562f9469308a9f6424352641661788ac1e28cc16f60b9c5828d46b",
+      "stored_sha256": "522bb2a96483c3bfc09f1b16c6945e8cea68f5f76fbbf669a9e27f99825cef0c"
+    },
+    {
+      "source": "closure/gpu-result-hash.json",
+      "path": "closure/gpu-result-hash.json.gz",
+      "source_sha256": "6e936430cab7585ba6a93240852eb4654a1cccec758751d24130b34a01b7b59c",
+      "stored_sha256": "677124fdffd997649140351bbf3d62b2f5117eb0e70f9cdd10dfde350c2c86f8"
+    },
+    {
+      "source": "closure/scp-exit.json",
+      "path": "closure/scp-exit.json.gz",
+      "source_sha256": "99e2ea43e467fffa67cf44bd82f91654025ec1d8e9d0fca89ac8a07fef725d25",
+      "stored_sha256": "e9651c6a26623d69b18cbd13b5c1ba4acd4c845828ccd96acdf70967ea6faac8"
+    },
+    {
+      "source": "closure/scp.stderr",
+      "path": "closure/scp.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "closure/scp.stdout",
+      "path": "closure/scp.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-closed-exit.json",
+      "path": "deployment/jax-division-probe-pc-b-closed-exit.json.gz",
+      "source_sha256": "62d809e79e83356fbd5b40bbc90af8a7bb057f7ec9e71ee955500999ae2f153a",
+      "stored_sha256": "6579791dffc9c4df01a3c88c6b973337c9dfeea139823c6f11d60dd104b59009"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-closed.json",
+      "path": "deployment/jax-division-probe-pc-b-closed.json.gz",
+      "source_sha256": "4e9b55476755033d2d9fd97534fbc98df7ab00c0c99f9d3c4e2482098a47c354",
+      "stored_sha256": "590d7b98425e76184b2cb8835ec116acf61ccd877c125e933c8530010e060b52"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-closed.stderr",
+      "path": "deployment/jax-division-probe-pc-b-closed.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-closed.stdout",
+      "path": "deployment/jax-division-probe-pc-b-closed.stdout.gz",
+      "source_sha256": "b2cf51faa9691c2c044abb1194d362868f3a4bd75b0697b3f48b8e008ecab73f",
+      "stored_sha256": "ff4f88a4cac3957ada7a23764216d2174f3f4b3695387ce69f2caf6a29489a4b"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-0.stderr",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-0.stdout",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-0.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-1.stderr",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-1.stdout",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-1.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-2.stderr",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-2.stdout",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-2.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-3.stderr",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-3.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-gpu-deploy-3.stdout",
+      "path": "deployment/jax-division-probe-pc-b-gpu-deploy-3.stdout.gz",
+      "source_sha256": "9bf813d173906719133c990069261e37ab2cd91866734d6b5f378ebd08cbd311",
+      "stored_sha256": "819aabd0191f68ced7f4bc6370b1a5cf75916b6e6ee76bc6c661d2e565ddb102"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-prelaunch-exit.json",
+      "path": "deployment/jax-division-probe-pc-b-prelaunch-exit.json.gz",
+      "source_sha256": "ce2bc5722fab5b171bc632137214121d118a145897a2a19ef064c6ee4a637663",
+      "stored_sha256": "76f341327ea22e8460c85067212e981b42a2c293fde2e788552e6242b260c919"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-prelaunch.json",
+      "path": "deployment/jax-division-probe-pc-b-prelaunch.json.gz",
+      "source_sha256": "89da4e1af12a0de0e8fa6f6b9fde58eadf09614be354545005e08bc7cbaccdbd",
+      "stored_sha256": "a26c24353426001700dddf456f7c008be170e5adecf2613b0fb71f209551bef5"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-prelaunch.stderr",
+      "path": "deployment/jax-division-probe-pc-b-prelaunch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "deployment/jax-division-probe-pc-b-prelaunch.stdout",
+      "path": "deployment/jax-division-probe-pc-b-prelaunch.stdout.gz",
+      "source_sha256": "61cb69925c10223090bfffc0999d2a2771e9202ae74b6d9db821460fa72f37fe",
+      "stored_sha256": "3172bad8da4dead0075591cd9d339a38e494e2a3881a59c946e1ce8857ab56f1"
+    },
+    {
+      "source": "executed-stage.tar.gz",
+      "path": "executed-stage.tar.gz",
+      "source_sha256": "85424b5c6dda2706c85498518acba89bc5cae66b9b2ef36f27cd7a2bb9efedbd",
+      "stored_sha256": "85424b5c6dda2706c85498518acba89bc5cae66b9b2ef36f27cd7a2bb9efedbd"
+    },
+    {
+      "source": "execution/CONTROLS_SHA256.json",
+      "path": "execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "1143385e9620fab3d7daa83336ebd14d6b0a0e4dfdb6223491bda756e52e707f",
+      "stored_sha256": "964ad8dbcc98a6e4096b93e2230cea58472f7ef6477b0277a892bd8dad835f36"
+    },
+    {
+      "source": "execution/EXECUTION_BINDINGS.json",
+      "path": "execution/EXECUTION_BINDINGS.json.gz",
+      "source_sha256": "6617fca544a2d0c9f36865f53c4802930f6fbd9d7814dc04bdb1bf70cdb68013",
+      "stored_sha256": "04947bddcd7226f1d9ed0110242bb4ef3f19197e383929868f31cf5db995361e"
+    },
+    {
+      "source": "execution/PBV_TO_PCB.diff",
+      "path": "execution/PBV_TO_PCB.diff.gz",
+      "source_sha256": "e00c7c680a52d71ef47fb073e525fc2b92593a2da6ceb114740cb93708eb7764",
+      "stored_sha256": "50351cc86bdec346854b4a1ecbc36b7525400f3727fd5df46abd6223d9f854c5"
+    },
+    {
+      "source": "execution/README.md",
+      "path": "execution/README.md.gz",
+      "source_sha256": "0b77b0557467da5dd6904343f697d2f88b1bb793fed19f4f91186db0366474bc",
+      "stored_sha256": "2ba1d2e90411036ec4eb1c696af0dd3c1f322599a4959da1690d9e760d0ebebf"
+    },
+    {
+      "source": "execution/control_division_pcb.py",
+      "path": "execution/control_division_pcb.py.gz",
+      "source_sha256": "5bcaed9810e6ee733f905f999d371f29c4c74dc57effafb7e3259dbb9a3cc898",
+      "stored_sha256": "309adadeebaee9a10d071d0cf17e2c1786be0dd4db4fc558142c8f4dabf71b33"
+    },
+    {
+      "source": "execution/launch_division_pcb.py",
+      "path": "execution/launch_division_pcb.py.gz",
+      "source_sha256": "63b376da61a57144e2afde9217c9eb4d30f50042cc40d5ad7959a6c41771ffb6",
+      "stored_sha256": "e661e0342d7e5957a544817754b3ac1cdbfeed0b5e86a286cabadddaae4b3ea0"
+    },
+    {
+      "source": "execution/run_division_parent_pcb.py",
+      "path": "execution/run_division_parent_pcb.py.gz",
+      "source_sha256": "ef682143da8251353b649be0783865aab735f34654f78d472fa0c9eb5aac80b1",
+      "stored_sha256": "7c0a703e69b7c576f10f029486811082a017068f47585c5e3098edef81c0dea0"
+    },
+    {
+      "source": "original-gpu-result.tar.gz",
+      "path": "original-gpu-result.tar.gz",
+      "source_sha256": "20e170c8c259ec748405b12d8d7f1bfecf2df1f4b1200f2aeae1df1360072755",
+      "stored_sha256": "20e170c8c259ec748405b12d8d7f1bfecf2df1f4b1200f2aeae1df1360072755"
+    },
+    {
+      "source": "original-result-inventory.json",
+      "path": "original-result-inventory.json.gz",
+      "source_sha256": "989a69f5ddb098217de28d08c6c77bc89d56ce73d5bf81fecde329f62e651f9e",
+      "stored_sha256": "819ce398513f37d12d5d077fea13364e925b54a32f99a786b490bd00ae585407"
+    },
+    {
+      "source": "precise-original-hardware-metadata.json",
+      "path": "precise-original-hardware-metadata.json.gz",
+      "source_sha256": "4d645d0b59ca53c1caeb88e821418f2d118afd856482c6774c8fa72906f1baf5",
+      "stored_sha256": "3ccd7d1e6e16e76b9ca51a094119a5bc89708a3d2814178c7e45562b630b4e85"
+    },
+    {
+      "source": "preparation/BINDINGS.json",
+      "path": "preparation/BINDINGS.json.gz",
+      "source_sha256": "7daf9f9751c11f791010dd9d3c23701a6a45dee41dbc84562d5023cdc4b29ea2",
+      "stored_sha256": "fa671ccd4b31aa78dc895dfa8820de34901e1c2ca9da9f9686ef2d990a41ab9b"
+    },
+    {
+      "source": "preparation/CLI_PROOF.json",
+      "path": "preparation/CLI_PROOF.json.gz",
+      "source_sha256": "3eb1ef963dffa472a19945b888644b023903fa94f48998aa568ee4e72706731a",
+      "stored_sha256": "7bb66f2493f847630ab24fc977034d778d0e240032ea6c95c69b629262b5eb92"
+    },
+    {
+      "source": "preparation/CONTROLS_SHA256.json",
+      "path": "preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "ede32baa5c1aec5aa22912cfcaa7618eb87b6b4040bccb82ae12a272604f18ae",
+      "stored_sha256": "c5cd1a3ca1330b94a588ca2e9cbfacfdb004f0bcdd0d8cd1ed240d22d10ccfcb"
+    },
+    {
+      "source": "preparation/README.md",
+      "path": "preparation/README.md.gz",
+      "source_sha256": "34fb4a35695983d4ec24d3c8effe789410d5bb48fb20b841cc75ac24153a0550",
+      "stored_sha256": "1eba00b4035011987acf5d05c9c4527bf6c0a2e45ade8a77ecbdd40f646d664b"
+    },
+    {
+      "source": "preparation/capture_division_config.py",
+      "path": "preparation/capture_division_config.py.gz",
+      "source_sha256": "29b8bccb16745820c58784c05cbae27db173dc5c96bb1cd8a4cb01610f2cf6e4",
+      "stored_sha256": "aa74d9560449da714d5eaf5333725c09f8cbe9fcd079846df16e69c012f29666"
+    },
+    {
+      "source": "preparation/contract_division.py",
+      "path": "preparation/contract_division.py.gz",
+      "source_sha256": "b1fba309a8e28b1a25af1dc5bf89460b3777815d2d44964931f001331759354f",
+      "stored_sha256": "39871b07411196e8618794c310b6277bbfa67bc1987d031ae9604b6bdc13a179"
+    },
+    {
+      "source": "preparation/rn_geometry_probe.cu",
+      "path": "preparation/rn_geometry_probe.cu",
+      "source_sha256": "a2ce278f8c2ab9e208c64a1ecbb8424b7f8e1c38ab94c1c2a456090be37a19f1",
+      "stored_sha256": "a2ce278f8c2ab9e208c64a1ecbb8424b7f8e1c38ab94c1c2a456090be37a19f1"
+    },
+    {
+      "source": "provenance/collect_jax_division_pcb.py",
+      "path": "provenance/collect_jax_division_pcb.py.gz",
+      "source_sha256": "c383b1a8450c9661c5c7ffd136808262f2e5eddeb74a93ac07db9f8cd8f52884",
+      "stored_sha256": "3f92e1b3e96dea6315fdc4c8c97e7fea583d4dea4c6e3b1215bbaf4c9507e45e"
+    },
+    {
+      "source": "provenance/deploy_jax_division_pcb.py",
+      "path": "provenance/deploy_jax_division_pcb.py.gz",
+      "source_sha256": "b89a8e8cca236dc90ad3e20788cec75a44de2689c326b721710d62ec340fc922",
+      "stored_sha256": "de07dd927a6e7a0f3514a99e760953f714ef31f5669326fb8d43386b169f4384"
+    },
+    {
+      "source": "provenance/jax-division-probe-pc-b-closed.json",
+      "path": "provenance/jax-division-probe-pc-b-closed.json.gz",
+      "source_sha256": "4e9b55476755033d2d9fd97534fbc98df7ab00c0c99f9d3c4e2482098a47c354",
+      "stored_sha256": "590d7b98425e76184b2cb8835ec116acf61ccd877c125e933c8530010e060b52"
+    },
+    {
+      "source": "provenance/jax-division-probe-pc-b-gpu-deployment.json",
+      "path": "provenance/jax-division-probe-pc-b-gpu-deployment.json.gz",
+      "source_sha256": "40b21e525f88b3f7096cacacb4a741433ec88781cd3d9bf27936e2460369d98e",
+      "stored_sha256": "1fa5b398eff66fd1cee7c06fa621fc985e165a1208fb9a984c24377bc2e0794e"
+    },
+    {
+      "source": "provenance/jax-division-probe-pc-b-prelaunch.json",
+      "path": "provenance/jax-division-probe-pc-b-prelaunch.json.gz",
+      "source_sha256": "89da4e1af12a0de0e8fa6f6b9fde58eadf09614be354545005e08bc7cbaccdbd",
+      "stored_sha256": "a26c24353426001700dddf456f7c008be170e5adecf2613b0fb71f209551bef5"
+    },
+    {
+      "source": "provenance/jax-division-probe-pc-b-stage-package.json",
+      "path": "provenance/jax-division-probe-pc-b-stage-package.json.gz",
+      "source_sha256": "e592fde2f2b9be900724761f07c81f859dd5943585df280aca41a3ff6f2364a9",
+      "stored_sha256": "1fde9f19767b275b517fe5f761fb8658c19b1a318e7a025af824c9a60f919576"
+    },
+    {
+      "source": "provenance/package_jax_division_probe_pcb.py",
+      "path": "provenance/package_jax_division_probe_pcb.py.gz",
+      "source_sha256": "2765c517b5ff8799de3813af3d3f62ba47f6d5941199273f3e16ed193b28a3b6",
+      "stored_sha256": "1e2db0821cbbce352d436ea155ed05e6d0e368ba25cb2ab44c824274d108294a"
+    },
+    {
+      "source": "provenance/prepare_jax_division_probe_pcb.py",
+      "path": "provenance/prepare_jax_division_probe_pcb.py.gz",
+      "source_sha256": "30cd0b0b0e125225fc3c7ae97108b2ac3988cad991038bf120543eb7f3af7db2",
+      "stored_sha256": "78d78c6ca0abce4eb06868b0eda24f0cadca19e07dea7bb4115c8b53c4a23da3"
+    },
+    {
+      "source": "provenance/prepare_pcb_deployment_helpers.py",
+      "path": "provenance/prepare_pcb_deployment_helpers.py.gz",
+      "source_sha256": "5572f69a3e95adb1e4806583b68f92e4f3b1f07c0b4d5751f228d5cac61791f1",
+      "stored_sha256": "053dfbde85406354d91a99d50c2bea10589a082dcb8c67b85e66ddd35976d22e"
+    },
+    {
+      "source": "provenance/read_gpu_project_ownership_pcb.py",
+      "path": "provenance/read_gpu_project_ownership_pcb.py.gz",
+      "source_sha256": "6537fec7ed16b4c963e4a27cce50a65ea8d8dacc1ab5ea59e515a5897e3625dd",
+      "stored_sha256": "afe662576a29ad766c12a96827ed76d6621a5ee95478140b52a71a06360ffd99"
+    },
+    {
+      "source": "provenance/read_jax_division_pcb.py",
+      "path": "provenance/read_jax_division_pcb.py.gz",
+      "source_sha256": "ef6620fbee7c4b83fef93a6fbe1742af85fb80fe43470839372c32ab34492c9b",
+      "stored_sha256": "c72d545053f35106e43720903c982e7649b12a715c54ba75e16e1f06f8eea9b6"
+    },
+    {
+      "source": "provenance/run_pcb_reader.py",
+      "path": "provenance/run_pcb_reader.py.gz",
+      "source_sha256": "f9fe4879236aa2d67105f40cee19e8c192a0b3a3a69f6323ad301df2e881ee7d",
+      "stored_sha256": "f111990ef62f238499d9e99f8bd04d6dd0a50e10494d44966ebb34f18361a054"
+    },
+    {
+      "source": "readout.json",
+      "path": "readout.json.gz",
+      "source_sha256": "77bb9040bace3478685fe5b3618609ef264f1b4088f979ce9a38bb39073572a3",
+      "stored_sha256": "a4888c9c26cff69988cee67f934254eb7e3121fe1b49084ab2c5afe0c8e8b3bc"
+    }
+  ]
+}
