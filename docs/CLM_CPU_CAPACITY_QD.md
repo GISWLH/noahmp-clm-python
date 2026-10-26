@@ -3,9 +3,17 @@
 15:46后新独立恢复预检核对八个最新父状态、原源/控制及容量实际0，原进度不改。
 新控制器提交1831—1838后八窗均F1/Stageout0、0物理步：原worker的完整stage
 检查仍要求首个48步归档，而它们随旧容器副本回收，报初始归档FileNotFoundError。
-恢复预检漏查这项旧依赖，不能计作年度物理失败或成功接续。正逐件保存原失败，
-按原哈希恢复8个初始归档；新接续须待完整stage及零步失败证据核验后另起唯一
-控制器，原失败目录先保真保留，不能覆盖或续物理失败状态。
+恢复预检漏查这项旧依赖，不能计作年度物理失败或成功接续。
+[133件依赖修复原件](v1-results/pj-dependency-repair-qd-b/manifest.json)已保留每案
+F1/Stageout0、0启动/完成步及全部原目录；8初始归档同时对原stage及35GB备份
+直接原bytes核验，已exclusive恢复到两主机，36/36原stage文件全exact，最新
+8父状态哈希不变。16个原失败目录逐文件核验后rename到新审计路径，0删除/覆盖。
+旧独立review漏查worker全stage依赖的局限亦纠正并保留旧原件。
+
+16:01起manager PBS qstat拒连errno111；SSH和文件读写正常。独立观察有
+pbs_comm/pbs_sched而无pbs_server，系统内存约369GiB可用，根盘inode充足，
+HOME仍inode0；这些观察不能证明具体PBS退出原因。新qd-b控制器仅准备、未部署
+或启动；须服务实际恢复后再核对原8个F0父回执及容量，不能绕过原门或续失败年。
 
 2026-10-26 07:50 UTC 原链只读快照和随后容量恢复的
 [33 件原始证据](v1-results/cpu-capacity-qd/manifest.json)保留实际命令、SSH

@@ -32,6 +32,20 @@ CUDA32最大H/LE绝对差 .0006629078/.0014292167 W/m²，JAX64为
 其中8差在原1e−6门内，唯一越门仍是phase reconstruction residual的1 J。
 MOST 原计数语义和相变交叉重放分别独立调查，不把两个原因混为一谈。
 
+[QF 188件实际交叉证据](v1-results/nq-phase-cross-qf/manifest.json)：CUDA1/JAX
+各两次原inverse全返回、parent均0；EHPC1842实际F0/Stageout0。两套原末态分别
+给两个算子，全部9字段/计数逐字节相同，且原对角线结果完全重现：CUDA原末态
+在两算子均得[1,0,0,0] J，JAX原末态均得[0,0,0,0] J。这证明本案原差来自
+更早输送产生的不同输入，原1J列同精度失败仍未修，不删除诊断或改变门。
+
+[QG 101件原值证据](v1-results/nq-reference-values-qg/manifest.json)：1841实际
+F0/Stageout0、0新物理；五层GPP32第一步BF .00587197917→当前NumPy
+.00849365748，64为.00587198031→.00849365909。404个expected来自当前
+NumPy，250个原输入及站点12个input/config/meta数组均逐字节保留；拟fixture
+仅在私有结果，checkout未改。新QH私有测试语义候选尚未执行或推广，不能提前
+把原9失败改计为通过。CPU原MOST5节点依赖与NR1585已核验同源，完整GPU原
+3节点仍须真正设备执行及原门独立比较。
+
 2026-10-26 15:34 UTC，实际 nvidia-smi 显示物理 CUDA1
 `GPU-cf7322ad-e2e0-ddd3-76d7-a07e2dd73452` 利用率 0%，空闲 22210 MiB。
 完整回归旧剩余估时已退役；完整年仍受 7275 步冠层异常阻塞，没有可靠剩余时间。

@@ -1,0 +1,1134 @@
+{
+  "scope": "Original NM584 phase2x2 CUDA1 replay4 inverse calls; actual GPU parents0/0 and EHPC1842 F0/Stageout0. Common-input all-fields byte equal; original diagonal residual1J/0J reproduced exactly, isolating original input drift. No transport advance/source/test/fixture/gate change; original column1J same-precision failure remains unresolved.",
+  "archive_sha256": "44124cdfbb408c874cd43ee2f040c6dac5a5da1696fec96b492625081019a84d",
+  "artifacts": [
+    {
+      "source": "actual-comparison/execution-controls/CONTROLS_SHA256.json",
+      "path": "actual-comparison/execution-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "c14083ec22849760f50cfff2667a678752f8c6d6cc79464a933235cd988c513e",
+      "stored_sha256": "62954b27c24747fea937997bff981ab9a0be8f560bec421a2bd850c990073f2d"
+    },
+    {
+      "source": "actual-comparison/execution-controls/EXECUTION_BINDINGS.json",
+      "path": "actual-comparison/execution-controls/EXECUTION_BINDINGS.json.gz",
+      "source_sha256": "acc152375effd972e6e45dfcfb7934342e46c38eb8875093191ff8a5f329f1a6",
+      "stored_sha256": "d22746e7d63e4432ab7b1e42f65d563b175942dae320a7a5b0ec1722d434cba9"
+    },
+    {
+      "source": "actual-comparison/execution-controls/PB_T_TO_QF.diff",
+      "path": "actual-comparison/execution-controls/PB_T_TO_QF.diff.gz",
+      "source_sha256": "d428e6f47173187d59f59aafcff72a8cc79c4d3cd3480f7199c1e2669451a7d8",
+      "stored_sha256": "8cc5a41b8578af540c110b41f4653e4ca57850983c3da75de7298ae96f9a4b60"
+    },
+    {
+      "source": "actual-comparison/execution-controls/README.md",
+      "path": "actual-comparison/execution-controls/README.md.gz",
+      "source_sha256": "c3d72c4feb8bbf5eeaf75ad77418f49b0604153c20dd3c18a52ac34d05dbe6fd",
+      "stored_sha256": "d1d478771601c62795a2fb0d96d0d8b37bbd5ab35de9762a77115974d24f24c7"
+    },
+    {
+      "source": "actual-comparison/execution-controls/check_stage_pbs.py",
+      "path": "actual-comparison/execution-controls/check_stage_pbs.py.gz",
+      "source_sha256": "76e1abbb15fcb9674e1a03357cc17198dbddc4c1473bc2ba403c4d6dbecd4bfb",
+      "stored_sha256": "74af29ff5ca1e98539e7ab16a2682c3bf91c9e304dddfd7bcb1e648eac992185"
+    },
+    {
+      "source": "actual-comparison/execution-controls/compare_pbs.pbs",
+      "path": "actual-comparison/execution-controls/compare_pbs.pbs.gz",
+      "source_sha256": "4710c7cbf5f85a8994d4c44e8e9dff1806ae3c3726a897c48d421e199b950444",
+      "stored_sha256": "57f1e615f0f85b32abc55615d8cdeb038078110ce3e5f351085288600eecd184"
+    },
+    {
+      "source": "actual-comparison/execution-controls/control_device_pbs.py",
+      "path": "actual-comparison/execution-controls/control_device_pbs.py.gz",
+      "source_sha256": "ac9256f77f58b9514d17ee2e93fae022a2a16d5e5112b1712b6dd8faef0c74a1",
+      "stored_sha256": "ef189739a150c77bdbef1a47a145d413ee2b172ce8df80a6486e0cc30b06bead"
+    },
+    {
+      "source": "actual-comparison/execution-controls/dispatch_compare_pbs.py",
+      "path": "actual-comparison/execution-controls/dispatch_compare_pbs.py.gz",
+      "source_sha256": "56cc598fb57cfeca0651af5272da0d164e366494b54fc35db3e59b48f454cc6f",
+      "stored_sha256": "74e15cabd40faa6ab22ff64eddb67262abf999dc4b20fbbf3584c1e9008bca1b"
+    },
+    {
+      "source": "actual-comparison/execution-controls/launch_device_pbs.py",
+      "path": "actual-comparison/execution-controls/launch_device_pbs.py.gz",
+      "source_sha256": "cae168bb6f640f8e622482d0eb85ed07f58fb6593c9acc2e3b1acfda0515fec0",
+      "stored_sha256": "5b424ae81926c2ceb952649df76757d2bfd92e7f87880be1c0722880e25b4c60"
+    },
+    {
+      "source": "actual-comparison/execution-controls/run_compare_pbs.py",
+      "path": "actual-comparison/execution-controls/run_compare_pbs.py.gz",
+      "source_sha256": "b28e50a29049a6a2744f16e1292ff5eb7c5cec6514f5177303d3062babccc4db",
+      "stored_sha256": "129ea68028f9b9a6f334a9eb9ae8a2a3aca4c9409b5205b2304a4b870f1161ab"
+    },
+    {
+      "source": "actual-comparison/execution-controls/run_device_parent_pbs.py",
+      "path": "actual-comparison/execution-controls/run_device_parent_pbs.py.gz",
+      "source_sha256": "a28d11c01a850d2ae0cc7643f0eeb477e065893564fadd7c7a851cb7f6bcb43a",
+      "stored_sha256": "907e654be54499258ed4a3d9b6b65042aff055c3d7ba5f212e848046bece077d"
+    },
+    {
+      "source": "actual-comparison/pbs-command-exit.txt",
+      "path": "actual-comparison/pbs-command-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/BINDINGS.json",
+      "path": "actual-comparison/preparation-controls/BINDINGS.json.gz",
+      "source_sha256": "6dfeb6b81b8eee6ad1fc5c88684c2c5513099ad9ec5e4e9558e2840f5070cd91",
+      "stored_sha256": "b3f370d91cdbf27557678228e44c111eed2ee206093f53f53400bd75e70c0eaa"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/CONTROLS_SHA256.json",
+      "path": "actual-comparison/preparation-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "c2e219c652cff8b3322cd80e7c9edd217cbecd7b7ab8ac76e297d2dbbb9c7938",
+      "stored_sha256": "83fae7549e14544a818d7fc28c9d79acbc4fc59e9720ed33331e5ec8b6747b13"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/INPUT_HEADERS.json",
+      "path": "actual-comparison/preparation-controls/INPUT_HEADERS.json.gz",
+      "source_sha256": "a7ee3d26b5836a469e4661f68aee4cb5d0fbee0ebbdc559cdebccab38c6b663a",
+      "stored_sha256": "55217e313127493ce1945804765d3641097967b3f9124aa5c366af5d5ba0d367"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/README.md",
+      "path": "actual-comparison/preparation-controls/README.md.gz",
+      "source_sha256": "54a5e02ae415e45da102bf09422eafc94c4528156f5027a8471d0cbe8f9374c2",
+      "stored_sha256": "5828e152440f91ca8c62655891b11f314b412a1515a0bfdc657d2f0618cda9aa"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/capture_phase_cross_qf.py",
+      "path": "actual-comparison/preparation-controls/capture_phase_cross_qf.py.gz",
+      "source_sha256": "e31c6b735e294e00e69fac85b2f319a738c984b933e1a5493fb8c5d0a24c48a2",
+      "stored_sha256": "10dba08b4fca005426021e71be6aebc55c2cfbf61d17b13628d24c69246e8380"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/compare_phase_cross_qf.py",
+      "path": "actual-comparison/preparation-controls/compare_phase_cross_qf.py.gz",
+      "source_sha256": "7a446c068fc55f46fb06632fef4b518741624d669f9f76e12402eee5fb1c8b9e",
+      "stored_sha256": "cf80cab6d886c159d6981107107163fd18046580a52f03503d89e5afada7bf43"
+    },
+    {
+      "source": "actual-comparison/preparation-controls/phase_cross_contract_qf.py",
+      "path": "actual-comparison/preparation-controls/phase_cross_contract_qf.py.gz",
+      "source_sha256": "4aaf08397404f829e9ef667af68e96fcb594b42913517a4d44789727b4902baa",
+      "stored_sha256": "20a5a4f37bbf9a0ac7495b4363a6b2e69ef7a69ae0eb3a83ed3c98346ed7d4d2"
+    },
+    {
+      "source": "actual-comparison/run/comparison-parent-receipt.json",
+      "path": "actual-comparison/run/comparison-parent-receipt.json.gz",
+      "source_sha256": "79ca28ac49c2f30ffa909e00cc39824213ce51061af58604c62445e5f43c9a4f",
+      "stored_sha256": "656b81a0c8bf42d13a4a426ba9cbd42c181f36c20d487766cc4b416cc3ba7f93"
+    },
+    {
+      "source": "actual-comparison/run/comparison.stderr",
+      "path": "actual-comparison/run/comparison.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/comparison.stdout",
+      "path": "actual-comparison/run/comparison.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/comparison/phase-cross-readout.json",
+      "path": "actual-comparison/run/comparison/phase-cross-readout.json.gz",
+      "source_sha256": "99e0ffc846cd7929ba084563a645873ae954762199ae0bdcac0b7600945f6bd7",
+      "stored_sha256": "4eba596e073837f3b611f5f23dcea6fac6f78d6f8896983019f007810b39e335"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/controller-progress.json",
+      "path": "actual-comparison/run/gpu/controller/controller-progress.json.gz",
+      "source_sha256": "a64d8e4f1ae6608e8fcb625c56fb3be4bb0cf4c40146f48e243af7566ffb19ad",
+      "stored_sha256": "56255d18d104903fa9cd6783bbf043b3ba7e51d7cfe82e031c75368a33f34838"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/controller-receipt.json",
+      "path": "actual-comparison/run/gpu/controller/controller-receipt.json.gz",
+      "source_sha256": "b6388ee2acb38e9537a79012201d45d77b8acd60344517ca3eb102190ef0446f",
+      "stored_sha256": "6abbda8946614f279e4f34b1de655531a1149695c1e471646ef57a425bdcf192"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/cuda-parent.stderr",
+      "path": "actual-comparison/run/gpu/controller/cuda-parent.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/cuda-parent.stdout",
+      "path": "actual-comparison/run/gpu/controller/cuda-parent.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/jax-parent.stderr",
+      "path": "actual-comparison/run/gpu/controller/jax-parent.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/controller/jax-parent.stdout",
+      "path": "actual-comparison/run/gpu/controller/jax-parent.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device-launch.json",
+      "path": "actual-comparison/run/gpu/cuda/device-launch.json.gz",
+      "source_sha256": "36b9724ac92bef82be6ec61237ba08ebe0b37abd9298e3f4d1cb7fb8c9efc190",
+      "stored_sha256": "5f227722421290ec4b0c1f2f8974918d4d2ee14424b4295956b6bcad22074020"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device-parent-exit.txt",
+      "path": "actual-comparison/run/gpu/cuda/device-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device-parent-receipt.json",
+      "path": "actual-comparison/run/gpu/cuda/device-parent-receipt.json.gz",
+      "source_sha256": "b5966ba50ad29d00ebed965ef14b6949758316a446b6371ebff07b47a774b0e3",
+      "stored_sha256": "c9679dc85c53858d8813a1e879d44cf5ec8df004c1e0dcedbb15a9c274543c66"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device.stderr.txt",
+      "path": "actual-comparison/run/gpu/cuda/device.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device.stdout.txt",
+      "path": "actual-comparison/run/gpu/cuda/device.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/capture-receipt.json",
+      "path": "actual-comparison/run/gpu/cuda/device/capture-receipt.json.gz",
+      "source_sha256": "93f87d83f64decaee6eaf3846553741a4e10261e2f3405ff817de404d77c6b26",
+      "stored_sha256": "f0c83f196097c905cda3dcf8792e5dbb8dc85e3926a807a435e4545537b1c61f"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/cuda-input.json",
+      "path": "actual-comparison/run/gpu/cuda/device/cuda-input.json.gz",
+      "source_sha256": "561b58034810e83b80855fc3e146406c215eb9dd0ce67e7f1faa7d75f4955fdb",
+      "stored_sha256": "9ef6cab448dc8da00bf0fe6c49d4b823ff8304e9120420dc9194e0ad594b5682"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/cuda-input.npz",
+      "path": "actual-comparison/run/gpu/cuda/device/cuda-input.npz",
+      "source_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8",
+      "stored_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/cuda.json",
+      "path": "actual-comparison/run/gpu/cuda/device/cuda.json.gz",
+      "source_sha256": "00ffcb0e856df5bb32558125d81c61eb5c77beaa5718ce022404e104b104440f",
+      "stored_sha256": "c5016df15625f7359055ba51e2353d963db3904e47a9177efe1cfd911948293f"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/cuda.npz",
+      "path": "actual-comparison/run/gpu/cuda/device/cuda.npz",
+      "source_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49",
+      "stored_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/jax-input.json",
+      "path": "actual-comparison/run/gpu/cuda/device/jax-input.json.gz",
+      "source_sha256": "9b2ab52c012a68279d3b35758cc4878397a3e093dd46f2bb42d3adbfe459e7cf",
+      "stored_sha256": "435fcef5c0e5f7d12b4d9d84d724162d4abb5daf33dd09774517470651e91c9b"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/jax-input.npz",
+      "path": "actual-comparison/run/gpu/cuda/device/jax-input.npz",
+      "source_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46",
+      "stored_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/jax.json",
+      "path": "actual-comparison/run/gpu/cuda/device/jax.json.gz",
+      "source_sha256": "5552d890c4071d1445b4922acc393bfc37309e8b9d60827f5a467af974f52ce7",
+      "stored_sha256": "af6d7f5f79a3a3b7dc0d0392465ebf8c6f2bba6e31e7ec56891821eef857b7f5"
+    },
+    {
+      "source": "actual-comparison/run/gpu/cuda/device/jax.npz",
+      "path": "actual-comparison/run/gpu/cuda/device/jax.npz",
+      "source_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7",
+      "stored_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device-launch.json",
+      "path": "actual-comparison/run/gpu/jax/device-launch.json.gz",
+      "source_sha256": "a8a042dd36703b5dff0176a4232070e555cdea55c60506ae0f4e96bac78e6d1b",
+      "stored_sha256": "9e57f2c98617c6e7f16efff3d5285284dbba40cc4892babdd1333b803f803bdb"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device-parent-exit.txt",
+      "path": "actual-comparison/run/gpu/jax/device-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device-parent-receipt.json",
+      "path": "actual-comparison/run/gpu/jax/device-parent-receipt.json.gz",
+      "source_sha256": "be1f54c00a98c5a2632459dd6a9e2657ec2db4ae5f2f591e766b60b9d6242fe7",
+      "stored_sha256": "ace21eb70aa929097c9742fc8ce1b7c25b732a766dec49eedeef40f817e45c85"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device.stderr.txt",
+      "path": "actual-comparison/run/gpu/jax/device.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device.stdout.txt",
+      "path": "actual-comparison/run/gpu/jax/device.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/capture-receipt.json",
+      "path": "actual-comparison/run/gpu/jax/device/capture-receipt.json.gz",
+      "source_sha256": "8ec46d57e884de1284eec7f1cdf0e762202aff69c0f1019aa7ceabc73b943e62",
+      "stored_sha256": "1edacb30fdfbf919a65320ec329ebab2f9be62bfb8892eab6b259dfba2b54255"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/cuda-input.json",
+      "path": "actual-comparison/run/gpu/jax/device/cuda-input.json.gz",
+      "source_sha256": "561b58034810e83b80855fc3e146406c215eb9dd0ce67e7f1faa7d75f4955fdb",
+      "stored_sha256": "9ef6cab448dc8da00bf0fe6c49d4b823ff8304e9120420dc9194e0ad594b5682"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/cuda-input.npz",
+      "path": "actual-comparison/run/gpu/jax/device/cuda-input.npz",
+      "source_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8",
+      "stored_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/cuda.json",
+      "path": "actual-comparison/run/gpu/jax/device/cuda.json.gz",
+      "source_sha256": "00ffcb0e856df5bb32558125d81c61eb5c77beaa5718ce022404e104b104440f",
+      "stored_sha256": "c5016df15625f7359055ba51e2353d963db3904e47a9177efe1cfd911948293f"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/cuda.npz",
+      "path": "actual-comparison/run/gpu/jax/device/cuda.npz",
+      "source_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49",
+      "stored_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/jax-input.json",
+      "path": "actual-comparison/run/gpu/jax/device/jax-input.json.gz",
+      "source_sha256": "9b2ab52c012a68279d3b35758cc4878397a3e093dd46f2bb42d3adbfe459e7cf",
+      "stored_sha256": "435fcef5c0e5f7d12b4d9d84d724162d4abb5daf33dd09774517470651e91c9b"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/jax-input.npz",
+      "path": "actual-comparison/run/gpu/jax/device/jax-input.npz",
+      "source_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46",
+      "stored_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/jax.json",
+      "path": "actual-comparison/run/gpu/jax/device/jax.json.gz",
+      "source_sha256": "5552d890c4071d1445b4922acc393bfc37309e8b9d60827f5a467af974f52ce7",
+      "stored_sha256": "af6d7f5f79a3a3b7dc0d0392465ebf8c6f2bba6e31e7ec56891821eef857b7f5"
+    },
+    {
+      "source": "actual-comparison/run/gpu/jax/device/jax.npz",
+      "path": "actual-comparison/run/gpu/jax/device/jax.npz",
+      "source_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7",
+      "stored_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7"
+    },
+    {
+      "source": "actual-comparison/setup-exit.txt",
+      "path": "actual-comparison/setup-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/stage-after-exit.txt",
+      "path": "actual-comparison/stage-after-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/stage-after.json",
+      "path": "actual-comparison/stage-after.json.gz",
+      "source_sha256": "b8b2b034ae6e158b1fee3b730aaa70dd4af285a8f862f32564095c9cd674363c",
+      "stored_sha256": "f7978f48a9f0f9eb4489d0052593304f7b2cf5c81134082227cfdf4a05fe338b"
+    },
+    {
+      "source": "actual-comparison/stage-after.log",
+      "path": "actual-comparison/stage-after.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/stage-before.json",
+      "path": "actual-comparison/stage-before.json.gz",
+      "source_sha256": "b8b2b034ae6e158b1fee3b730aaa70dd4af285a8f862f32564095c9cd674363c",
+      "stored_sha256": "f7978f48a9f0f9eb4489d0052593304f7b2cf5c81134082227cfdf4a05fe338b"
+    },
+    {
+      "source": "actual-comparison/stage-before.log",
+      "path": "actual-comparison/stage-before.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/stage-inventory.json",
+      "path": "actual-comparison/stage-inventory.json.gz",
+      "source_sha256": "f781ec38b798b12905c99ce792b713c6ef56c7466585611907a9b13e757c91ee",
+      "stored_sha256": "417ab7bd0b5634f462f0a60a4f05ce3fc72141d03420da211e50a3d8c69888b0"
+    },
+    {
+      "source": "actual-comparison/worker-exit.txt",
+      "path": "actual-comparison/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-comparison/worker.stderr",
+      "path": "actual-comparison/worker.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-comparison/worker.stdout",
+      "path": "actual-comparison/worker.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/controller/controller-progress.json",
+      "path": "actual-gpu/controller/controller-progress.json.gz",
+      "source_sha256": "a64d8e4f1ae6608e8fcb625c56fb3be4bb0cf4c40146f48e243af7566ffb19ad",
+      "stored_sha256": "56255d18d104903fa9cd6783bbf043b3ba7e51d7cfe82e031c75368a33f34838"
+    },
+    {
+      "source": "actual-gpu/controller/controller-receipt.json",
+      "path": "actual-gpu/controller/controller-receipt.json.gz",
+      "source_sha256": "b6388ee2acb38e9537a79012201d45d77b8acd60344517ca3eb102190ef0446f",
+      "stored_sha256": "6abbda8946614f279e4f34b1de655531a1149695c1e471646ef57a425bdcf192"
+    },
+    {
+      "source": "actual-gpu/controller/cuda-parent.stderr",
+      "path": "actual-gpu/controller/cuda-parent.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/controller/cuda-parent.stdout",
+      "path": "actual-gpu/controller/cuda-parent.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/controller/jax-parent.stderr",
+      "path": "actual-gpu/controller/jax-parent.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/controller/jax-parent.stdout",
+      "path": "actual-gpu/controller/jax-parent.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/cuda/device-launch.json",
+      "path": "actual-gpu/cuda/device-launch.json.gz",
+      "source_sha256": "36b9724ac92bef82be6ec61237ba08ebe0b37abd9298e3f4d1cb7fb8c9efc190",
+      "stored_sha256": "5f227722421290ec4b0c1f2f8974918d4d2ee14424b4295956b6bcad22074020"
+    },
+    {
+      "source": "actual-gpu/cuda/device-parent-exit.txt",
+      "path": "actual-gpu/cuda/device-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-gpu/cuda/device-parent-receipt.json",
+      "path": "actual-gpu/cuda/device-parent-receipt.json.gz",
+      "source_sha256": "b5966ba50ad29d00ebed965ef14b6949758316a446b6371ebff07b47a774b0e3",
+      "stored_sha256": "c9679dc85c53858d8813a1e879d44cf5ec8df004c1e0dcedbb15a9c274543c66"
+    },
+    {
+      "source": "actual-gpu/cuda/device.stderr.txt",
+      "path": "actual-gpu/cuda/device.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/cuda/device.stdout.txt",
+      "path": "actual-gpu/cuda/device.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/cuda/device/capture-receipt.json",
+      "path": "actual-gpu/cuda/device/capture-receipt.json.gz",
+      "source_sha256": "93f87d83f64decaee6eaf3846553741a4e10261e2f3405ff817de404d77c6b26",
+      "stored_sha256": "f0c83f196097c905cda3dcf8792e5dbb8dc85e3926a807a435e4545537b1c61f"
+    },
+    {
+      "source": "actual-gpu/cuda/device/cuda-input.json",
+      "path": "actual-gpu/cuda/device/cuda-input.json.gz",
+      "source_sha256": "561b58034810e83b80855fc3e146406c215eb9dd0ce67e7f1faa7d75f4955fdb",
+      "stored_sha256": "9ef6cab448dc8da00bf0fe6c49d4b823ff8304e9120420dc9194e0ad594b5682"
+    },
+    {
+      "source": "actual-gpu/cuda/device/cuda-input.npz",
+      "path": "actual-gpu/cuda/device/cuda-input.npz",
+      "source_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8",
+      "stored_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8"
+    },
+    {
+      "source": "actual-gpu/cuda/device/cuda.json",
+      "path": "actual-gpu/cuda/device/cuda.json.gz",
+      "source_sha256": "00ffcb0e856df5bb32558125d81c61eb5c77beaa5718ce022404e104b104440f",
+      "stored_sha256": "c5016df15625f7359055ba51e2353d963db3904e47a9177efe1cfd911948293f"
+    },
+    {
+      "source": "actual-gpu/cuda/device/cuda.npz",
+      "path": "actual-gpu/cuda/device/cuda.npz",
+      "source_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49",
+      "stored_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49"
+    },
+    {
+      "source": "actual-gpu/cuda/device/jax-input.json",
+      "path": "actual-gpu/cuda/device/jax-input.json.gz",
+      "source_sha256": "9b2ab52c012a68279d3b35758cc4878397a3e093dd46f2bb42d3adbfe459e7cf",
+      "stored_sha256": "435fcef5c0e5f7d12b4d9d84d724162d4abb5daf33dd09774517470651e91c9b"
+    },
+    {
+      "source": "actual-gpu/cuda/device/jax-input.npz",
+      "path": "actual-gpu/cuda/device/jax-input.npz",
+      "source_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46",
+      "stored_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46"
+    },
+    {
+      "source": "actual-gpu/cuda/device/jax.json",
+      "path": "actual-gpu/cuda/device/jax.json.gz",
+      "source_sha256": "5552d890c4071d1445b4922acc393bfc37309e8b9d60827f5a467af974f52ce7",
+      "stored_sha256": "af6d7f5f79a3a3b7dc0d0392465ebf8c6f2bba6e31e7ec56891821eef857b7f5"
+    },
+    {
+      "source": "actual-gpu/cuda/device/jax.npz",
+      "path": "actual-gpu/cuda/device/jax.npz",
+      "source_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7",
+      "stored_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7"
+    },
+    {
+      "source": "actual-gpu/jax/device-launch.json",
+      "path": "actual-gpu/jax/device-launch.json.gz",
+      "source_sha256": "a8a042dd36703b5dff0176a4232070e555cdea55c60506ae0f4e96bac78e6d1b",
+      "stored_sha256": "9e57f2c98617c6e7f16efff3d5285284dbba40cc4892babdd1333b803f803bdb"
+    },
+    {
+      "source": "actual-gpu/jax/device-parent-exit.txt",
+      "path": "actual-gpu/jax/device-parent-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-gpu/jax/device-parent-receipt.json",
+      "path": "actual-gpu/jax/device-parent-receipt.json.gz",
+      "source_sha256": "be1f54c00a98c5a2632459dd6a9e2657ec2db4ae5f2f591e766b60b9d6242fe7",
+      "stored_sha256": "ace21eb70aa929097c9742fc8ce1b7c25b732a766dec49eedeef40f817e45c85"
+    },
+    {
+      "source": "actual-gpu/jax/device.stderr.txt",
+      "path": "actual-gpu/jax/device.stderr.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/jax/device.stdout.txt",
+      "path": "actual-gpu/jax/device.stdout.txt.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-gpu/jax/device/capture-receipt.json",
+      "path": "actual-gpu/jax/device/capture-receipt.json.gz",
+      "source_sha256": "8ec46d57e884de1284eec7f1cdf0e762202aff69c0f1019aa7ceabc73b943e62",
+      "stored_sha256": "1edacb30fdfbf919a65320ec329ebab2f9be62bfb8892eab6b259dfba2b54255"
+    },
+    {
+      "source": "actual-gpu/jax/device/cuda-input.json",
+      "path": "actual-gpu/jax/device/cuda-input.json.gz",
+      "source_sha256": "561b58034810e83b80855fc3e146406c215eb9dd0ce67e7f1faa7d75f4955fdb",
+      "stored_sha256": "9ef6cab448dc8da00bf0fe6c49d4b823ff8304e9120420dc9194e0ad594b5682"
+    },
+    {
+      "source": "actual-gpu/jax/device/cuda-input.npz",
+      "path": "actual-gpu/jax/device/cuda-input.npz",
+      "source_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8",
+      "stored_sha256": "b2c15ff6be8860a64c633366b4136703a1be53542dc170ad634dae256e5a1db8"
+    },
+    {
+      "source": "actual-gpu/jax/device/cuda.json",
+      "path": "actual-gpu/jax/device/cuda.json.gz",
+      "source_sha256": "00ffcb0e856df5bb32558125d81c61eb5c77beaa5718ce022404e104b104440f",
+      "stored_sha256": "c5016df15625f7359055ba51e2353d963db3904e47a9177efe1cfd911948293f"
+    },
+    {
+      "source": "actual-gpu/jax/device/cuda.npz",
+      "path": "actual-gpu/jax/device/cuda.npz",
+      "source_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49",
+      "stored_sha256": "83ff14ef071cdb40d933789000e548b6598bc18c423cb13fde44440aa0175e49"
+    },
+    {
+      "source": "actual-gpu/jax/device/jax-input.json",
+      "path": "actual-gpu/jax/device/jax-input.json.gz",
+      "source_sha256": "9b2ab52c012a68279d3b35758cc4878397a3e093dd46f2bb42d3adbfe459e7cf",
+      "stored_sha256": "435fcef5c0e5f7d12b4d9d84d724162d4abb5daf33dd09774517470651e91c9b"
+    },
+    {
+      "source": "actual-gpu/jax/device/jax-input.npz",
+      "path": "actual-gpu/jax/device/jax-input.npz",
+      "source_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46",
+      "stored_sha256": "a015ea0344639d680a0e7709acd1a054fa68d3dd84d923d214ecc14081482d46"
+    },
+    {
+      "source": "actual-gpu/jax/device/jax.json",
+      "path": "actual-gpu/jax/device/jax.json.gz",
+      "source_sha256": "5552d890c4071d1445b4922acc393bfc37309e8b9d60827f5a467af974f52ce7",
+      "stored_sha256": "af6d7f5f79a3a3b7dc0d0392465ebf8c6f2bba6e31e7ec56891821eef857b7f5"
+    },
+    {
+      "source": "actual-gpu/jax/device/jax.npz",
+      "path": "actual-gpu/jax/device/jax.npz",
+      "source_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7",
+      "stored_sha256": "ce27d6f334835468607ed7708a41cb7ee365c595396bb0dee5eaa851ac38dab7"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "495d101bb0f6a00eb683255e7311888c54835222d3ec89ad66a8ce0bc76db98d",
+      "stored_sha256": "db0d23d003679412fc688f98eda7e447ab8a15bb69227925c4abc852fc68deb9"
+    },
+    {
+      "source": "executed-comparison-stage.tar.gz",
+      "path": "executed-comparison-stage.tar.gz",
+      "source_sha256": "47b7181829f287241b7e048566ace629b97ba425ea5e043e5194306c6f53ff41",
+      "stored_sha256": "47b7181829f287241b7e048566ace629b97ba425ea5e043e5194306c6f53ff41"
+    },
+    {
+      "source": "executed-gpu-stage.tar.gz",
+      "path": "executed-gpu-stage.tar.gz",
+      "source_sha256": "15751714a92efdbce7c7d31c190814945a0398ba2dbb18b1862471e6da507e43",
+      "stored_sha256": "15751714a92efdbce7c7d31c190814945a0398ba2dbb18b1862471e6da507e43"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/compute.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/compute.json.gz",
+      "source_sha256": "52a7999610add986777f2e57e7aac4dde9bef7928863b9f9f61b2d3a1855687a",
+      "stored_sha256": "cc4ebc1cfa8976aa87dbab7ab2674c71b9b8099ed60930a2b2d1fa1b62b31eee"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/compute.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/compute.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/compute.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/compute.stdout.gz",
+      "source_sha256": "c68e18e118013278f2509108a89c9316f881223b8aca6ab476ca60ebf62e911a",
+      "stored_sha256": "7418190011f2bd32051353aefa3dcc4486394da9eac6d2e9aa02d75717da4957"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/manager.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/manager.json.gz",
+      "source_sha256": "9855408dc7649ed0f0aad58bfd2e3b4c3e166cc05ad72ed78ad6349c4cd98cbb",
+      "stored_sha256": "c544241edfb8c60d3a64c65875e58019c0bed5b47628557b89631ce9caae1699"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/manager.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/manager.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/manager.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/manager.stdout.gz",
+      "source_sha256": "9337bce2a4032ef005303b6d507a9724e51f08a9487aedd699f5e1072f6bb251",
+      "stored_sha256": "5ea1b4fd7edb86a5dd23de53c3764690deca37353da4d6715795af86721334c1"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-0.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-0.json.gz",
+      "source_sha256": "df576a9a3ae0816afa882db8b49a416b2165c76f6f24687bdb7f792998f10986",
+      "stored_sha256": "1672119627403875b08646f8a279fa50fafc91a68482a18116ad0671b862ddd9"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-0.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-0.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-0.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-1.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-1.json.gz",
+      "source_sha256": "b9f3471160b4230b54c9ac190498a4118571e89e95b4d145a38efffd8ae34a93",
+      "stored_sha256": "278302c8eacc70973fa5add619a2e9d204a7c8337fadd6b7c8b4c880f9b4cff0"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-1.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-1.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-1.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-2.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-2.json.gz",
+      "source_sha256": "b73dcb8f67182bae891878ae803f3433d112716807e4afee2ceb8033ede2f424",
+      "stored_sha256": "8150c1943e105886bded2896abb72a5d517e70e8367bd48eace47e2a42d7d963"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-2.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-2.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-2.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-3.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-3.json.gz",
+      "source_sha256": "ec6582edbf8bc526d100c9da39921a9d97ecbbc59bf0a09a818044bbe9a7870d",
+      "stored_sha256": "dceb2ce4997a5447575f1b03554df9824eb0e0258345564ef8cfd1b1a02a8fa5"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-3.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-3.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-3.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-3.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-4.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-4.json.gz",
+      "source_sha256": "bd852cc3e83e435927bc1018eeef5e6300b95170f0d8ed5d6bc4769cbd7ff492",
+      "stored_sha256": "4a53f73c815350bccbc4bdc0c2ace05cc0c20d899abe308287bc3d39d80af271"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-4.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-4.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-4.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-4.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-5.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-5.json.gz",
+      "source_sha256": "494fdee0a907cf930bc3b24efb8693b6153bb6cf8145a04a04df07b437403c98",
+      "stored_sha256": "f74183ed756a24b5ba095ac497782d3fcabd6dd9885224c8896e964f895b77ee"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-5.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-5.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-5.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-5.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-6.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-6.json.gz",
+      "source_sha256": "5a3a190ffde7e66900e5c8293581a588337d008e99882c2ddc6eed3289b564e2",
+      "stored_sha256": "57cb64c4c8608817906aaae15d7d5d8907081ca74abfce63d077042db667cfcd"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-6.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-6.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-6.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-6.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-7.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-7.json.gz",
+      "source_sha256": "e35fb9d17061bcfc4bd3677b0abf16c062c55bb42a961cceaeaadf1992e834df",
+      "stored_sha256": "47ce97c78eb45dbe771436d67bc6ba6ef0b6e2f72ff6d23328c7513668e113b4"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-7.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-7.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-7.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-7.stdout.gz",
+      "source_sha256": "c1b76145c1cdea85d28b37928f918a43b82c540e843c904f4428422e500aa2b4",
+      "stored_sha256": "13ec89d6065a274ffb8a768edfef891340752cde9aaca1340e7a57e8a642540c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-8.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-8.json.gz",
+      "source_sha256": "1db13a0d1d56aeea75b0c1b945ba9dac54ce33b81bf6e434d6e791e226277afc",
+      "stored_sha256": "93fb1a77ca3a093bbb319944fd3f2858331390a10e5bc7abd6d375e27ff931a1"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-8.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-8.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/poll-8.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/poll-8.stdout.gz",
+      "source_sha256": "37fd4d34d2c76de79deeb55af844baee0d5e85751d12893f82cb9508b531c693",
+      "stored_sha256": "87ead9c6e0b1a8bfd60dca14ba3c14a1873a1392e862b59b75be79b23cbe2402"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/result-download.json",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/result-download.json.gz",
+      "source_sha256": "979bae1b485a2406dc8033760ce789a532fd70b8c942fa0b9d1a98c0df40fdb9",
+      "stored_sha256": "0478133812263e49653833e4fe0dae449dbad5f1eca2fbf62f11818fb490743a"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/result-download.stderr",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/result-download.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-comparison-closure/result-download.stdout",
+      "path": "observations/nq-phase-cross-qf-comparison-closure/result-download.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-gpu-closed/controller-receipt.json",
+      "path": "observations/nq-phase-cross-qf-gpu-closed/controller-receipt.json.gz",
+      "source_sha256": "b6388ee2acb38e9537a79012201d45d77b8acd60344517ca3eb102190ef0446f",
+      "stored_sha256": "6abbda8946614f279e4f34b1de655531a1149695c1e471646ef57a425bdcf192"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-gpu-closed/gpu-result-hash.json",
+      "path": "observations/nq-phase-cross-qf-gpu-closed/gpu-result-hash.json.gz",
+      "source_sha256": "7170cfb7a36eba89b63e1b7f43fb5af17f6ea15b93893f3564c48c622acbfd90",
+      "stored_sha256": "e72957a9ab325f5bbfcc692cd71b52de58cd04c2ff398beae3449703b8b934ca"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-gpu-closed/scp-exit.json",
+      "path": "observations/nq-phase-cross-qf-gpu-closed/scp-exit.json.gz",
+      "source_sha256": "729256fe86e9177c376e5afae906b83cf1351ea526b10a4fe069b36f865ae988",
+      "stored_sha256": "b15e7bfbee7f8ccf4534fe9da146bcd902db22a2b125dc82055621e91254640d"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-gpu-closed/scp.stderr",
+      "path": "observations/nq-phase-cross-qf-gpu-closed/scp.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-gpu-closed/scp.stdout",
+      "path": "observations/nq-phase-cross-qf-gpu-closed/scp.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/BINDINGS.json",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/BINDINGS.json.gz",
+      "source_sha256": "6dfeb6b81b8eee6ad1fc5c88684c2c5513099ad9ec5e4e9558e2840f5070cd91",
+      "stored_sha256": "b3f370d91cdbf27557678228e44c111eed2ee206093f53f53400bd75e70c0eaa"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/CONTROLS_SHA256.json",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/CONTROLS_SHA256.json.gz",
+      "source_sha256": "32a4439c03bf66915f4b34c837459eadac05bf982c8c498115dc28318c56846c",
+      "stored_sha256": "3bb25d1a8bbf448b502282e8fecc2dd11525a6839e5d292df273d94f09d8308c"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/INPUT_HEADERS.json",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/INPUT_HEADERS.json.gz",
+      "source_sha256": "a7ee3d26b5836a469e4661f68aee4cb5d0fbee0ebbdc559cdebccab38c6b663a",
+      "stored_sha256": "55217e313127493ce1945804765d3641097967b3f9124aa5c366af5d5ba0d367"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/README.md",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/README.md.gz",
+      "source_sha256": "54a5e02ae415e45da102bf09422eafc94c4528156f5027a8471d0cbe8f9374c2",
+      "stored_sha256": "5828e152440f91ca8c62655891b11f314b412a1515a0bfdc657d2f0618cda9aa"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/capture_phase_cross_qf.py",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/capture_phase_cross_qf.py.gz",
+      "source_sha256": "e31c6b735e294e00e69fac85b2f319a738c984b933e1a5493fb8c5d0a24c48a2",
+      "stored_sha256": "10dba08b4fca005426021e71be6aebc55c2cfbf61d17b13628d24c69246e8380"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/compare_phase_cross_qf.py",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/compare_phase_cross_qf.py.gz",
+      "source_sha256": "d1bf4967df508db5a8ecf5b9e04ead440dc11517eec4e80172c43e858ded92f4",
+      "stored_sha256": "5cf328f39e74cd6bd356e4efa02f688d9380faf6263409484cfb881e6179c064"
+    },
+    {
+      "source": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/phase_cross_contract_qf.py",
+      "path": "observations/nq-phase-cross-qf-preparation-unexecuted-before-diagonal-gate/phase_cross_contract_qf.py.gz",
+      "source_sha256": "4aaf08397404f829e9ef667af68e96fcb594b42913517a4d44789727b4902baa",
+      "stored_sha256": "20a5a4f37bbf9a0ac7495b4363a6b2e69ef7a69ae0eb3a83ed3c98346ed7d4d2"
+    },
+    {
+      "source": "provenance/collect_phase_cross_qf_compare_closed.py",
+      "path": "provenance/collect_phase_cross_qf_compare_closed.py.gz",
+      "source_sha256": "5ae64bf0d42e6ec785149815cd1e73f59a0e1b7041b9ec0d06ab48df02112943",
+      "stored_sha256": "fe659e9b090e50fb1afb86dfb1de71a527d164629c08b4f4906f6ec9c0e7bf87"
+    },
+    {
+      "source": "provenance/collect_stage_phase_cross_qf.py",
+      "path": "provenance/collect_stage_phase_cross_qf.py.gz",
+      "source_sha256": "891866a476af06b1d083464e429f57fc080a873cc3ee8c1e6e8b935bf04daca7",
+      "stored_sha256": "38f0b6b3703bfa6a2c6de700961a3837149d996328f872d1a532bfd1f09ee463"
+    },
+    {
+      "source": "provenance/deploy_phase_cross_qf_compare.py",
+      "path": "provenance/deploy_phase_cross_qf_compare.py.gz",
+      "source_sha256": "be713fdae5044e19dfa3857e474f10be81116035272ba936c8ab7788b29fa08b",
+      "stored_sha256": "93d00889a95aba19db15ad0381e1d8029cd0646995ea80f34ed52aaded03e5fb"
+    },
+    {
+      "source": "provenance/deploy_phase_cross_qf_gpu.py",
+      "path": "provenance/deploy_phase_cross_qf_gpu.py.gz",
+      "source_sha256": "adc12d83bab69899ab0e5c68951738eed929e80c8611b052e3e46a7df11419f8",
+      "stored_sha256": "5358aba55e4cf7b23fac1023f3ca2c7ec083fd6bae4ef244e3fbdb56d0aa1907"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-0.stderr",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-0.stdout",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-0.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-1.stderr",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-1.stdout",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-1.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-2.stderr",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-2.stdout",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-2.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-3.stderr",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-3.stderr.gz",
+      "source_sha256": "be04fc9d161327ebfe692b016ff55b6d953c054e913b9e93870abeab2b4c0fbb",
+      "stored_sha256": "3f8f1faa31793d3802f7019d0ab7a13c70acaae603612895f7e840c24ad55676"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-compare-deploy-3.stdout",
+      "path": "provenance/nq-phase-cross-qf-compare-deploy-3.stdout.gz",
+      "source_sha256": "973169d42e36c9bb80edc7fb73102cb7fad61dbecaa86a9b6e94427ff03e1c54",
+      "stored_sha256": "bc9d0aabd6c2fbf9d163f4cd9362755f5c7713d77ac926ffb148973a97409885"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-comparison-deployment.json",
+      "path": "provenance/nq-phase-cross-qf-comparison-deployment.json.gz",
+      "source_sha256": "22af4ce6c39f769e1e3c722b767d0f00475aadecc88d66285adeb1b3888d3b8d",
+      "stored_sha256": "9f5c72bbc13a6d08801011cd7df4b494fb6cb492f318195f5aeb1816e4e94dc2"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-comparison-stage-package.json",
+      "path": "provenance/nq-phase-cross-qf-comparison-stage-package.json.gz",
+      "source_sha256": "c2a8ed33620fb81a2260e7750101aaf557bfbd2c1fddaea79db65ea896c62ca3",
+      "stored_sha256": "578c23b086cc5fc597f790d6dc05e9a32a7778dc5a4f757b0b8da11b08fb5421"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-0.stderr",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-0.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-0.stdout",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-0.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-1.stderr",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-1.stdout",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-1.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-2.stderr",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-2.stdout",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-2.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-3.stderr",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-3.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deploy-3.stdout",
+      "path": "provenance/nq-phase-cross-qf-gpu-deploy-3.stdout.gz",
+      "source_sha256": "41998bc96b5bd41b9e73fb3affa8ccb7316af949bb8e94ed4562e35148b16fd3",
+      "stored_sha256": "f607b2b5124afca458a3cb195fa45685f27dad42cc009329018e1df39ba5b994"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-deployment.json",
+      "path": "provenance/nq-phase-cross-qf-gpu-deployment.json.gz",
+      "source_sha256": "377c6b2efcd7d955e4d2c003d42efa605251f06991f0e60a0167dab26249aac5",
+      "stored_sha256": "e20835eef12cb98b314aba3eb38275792018109a9a820765ba4568566c596c2b"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-gpu-stage-package.json",
+      "path": "provenance/nq-phase-cross-qf-gpu-stage-package.json.gz",
+      "source_sha256": "a53d0d3c1740c7f321d5dac32d432b8ca123ebb951e1fd7841ab5484a98534e4",
+      "stored_sha256": "01fc591c2bb9906ae71a56fd48994d2c4ebf480905098033a591f2ea4f210685"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-progress-1-exit.json",
+      "path": "provenance/nq-phase-cross-qf-progress-1-exit.json.gz",
+      "source_sha256": "74d683259222244af8a883b4ee1ac6ac5b8439a13304ac41eecc6253c564e7bf",
+      "stored_sha256": "5a878fdbf697d1ac99601a998e4c437693e59e8874dbee77eb95481b356d1305"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-progress-1.json",
+      "path": "provenance/nq-phase-cross-qf-progress-1.json.gz",
+      "source_sha256": "00ce90534270dd8a5f66e4338ef49cba58de46bb30387dd8c8c42d3ecdb3c044",
+      "stored_sha256": "f1f4f0327ad24d7bc4da42ee4ef9f18ee754a6eb192b5d1570b7ed925e8aa7cb"
+    },
+    {
+      "source": "provenance/nq-phase-cross-qf-progress-1.stderr",
+      "path": "provenance/nq-phase-cross-qf-progress-1.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/package_phase_cross_qf.py",
+      "path": "provenance/package_phase_cross_qf.py.gz",
+      "source_sha256": "885714b4d4da95e259e41d7d4de0cfe7f93ed9cfc63e8ac794d7471de58be0b7",
+      "stored_sha256": "31adcf26c821c39fb0d967de6de8bdc2a29a4c77cd8aeed99f07dcd1e81e24cb"
+    },
+    {
+      "source": "provenance/prepare_nq_phase_reference_followups_qf_qg.py",
+      "path": "provenance/prepare_nq_phase_reference_followups_qf_qg.py.gz",
+      "source_sha256": "2fc5a2ae0be341ea4f1ce3606014a063fc4e2b120261cc66f2ca0b41c79f3907",
+      "stored_sha256": "b8e1720d268b946edb49e3194f4905227e86e749c3b4d6fccd545f39bb18a576"
+    },
+    {
+      "source": "provenance/prepare_phase_cross_qf_execution.py",
+      "path": "provenance/prepare_phase_cross_qf_execution.py.gz",
+      "source_sha256": "4addbef31dba47792881460d11dcfa51222ffd669e13fce38e9e507944329639",
+      "stored_sha256": "7fdd5dad48b03eb4a01e6eb079e217f689667d928226de1e1f346fa59b389868"
+    },
+    {
+      "source": "provenance/read_phase_cross_qf.py",
+      "path": "provenance/read_phase_cross_qf.py.gz",
+      "source_sha256": "4a4c7ca3ea2f2ff23a5cc580b84abed14ce0cf2a862eee413928f637983d6d08",
+      "stored_sha256": "a1fa15f85cbaff45664c564ce7063e0d8cbe7ca015a31389625168caca7c8d0e"
+    },
+    {
+      "source": "provenance/read_phase_cross_qf_compare_closed.py",
+      "path": "provenance/read_phase_cross_qf_compare_closed.py.gz",
+      "source_sha256": "3c79fcb90eb64d18f9a050a5099e4889509ee6e96320d766de2bcf3485271939",
+      "stored_sha256": "1e77fe06da6c509998e246c02e6fc2d6762535982455befec449dcaebe164d4c"
+    },
+    {
+      "source": "raw-comparison-result.tar.gz",
+      "path": "raw-comparison-result.tar.gz",
+      "source_sha256": "9365c34b207122c584cbe6997658e08aa946cae77d7b8ef8b8635fe8d79ed571",
+      "stored_sha256": "9365c34b207122c584cbe6997658e08aa946cae77d7b8ef8b8635fe8d79ed571"
+    },
+    {
+      "source": "raw-gpu-result.tar.gz",
+      "path": "raw-gpu-result.tar.gz",
+      "source_sha256": "c779606df850a73d2ea241fb9893f3049b07681bd253731981104eb7761c74f6",
+      "stored_sha256": "c779606df850a73d2ea241fb9893f3049b07681bd253731981104eb7761c74f6"
+    },
+    {
+      "source": "readout.json",
+      "path": "readout.json.gz",
+      "source_sha256": "99e0ffc846cd7929ba084563a645873ae954762199ae0bdcac0b7600945f6bd7",
+      "stored_sha256": "4eba596e073837f3b611f5f23dcea6fac6f78d6f8896983019f007810b39e335"
+    },
+    {
+      "source": "verification.json",
+      "path": "verification.json.gz",
+      "source_sha256": "00f1a9b0109e34e75aafbc58deb7c0f1ac39bf99e2a082b936534749da500e63",
+      "stored_sha256": "f7d65ea27ef1ec9d01e58b67eb631d76ca46bd83b0529d0cdef9a82715c4e7b2"
+    }
+  ]
+}

@@ -1,0 +1,804 @@
+{
+  "scope": "All8 original zero-stepF1/Stageout0 failures retained; only original8 seed dependencies restored on both hosts;36stage entries exact/latest parents unchanged,16 failure folders byte-exact renamed; PBS connection refused, new qd-b physical controller not yet launched. No physical retry credit or scientific acceptance.",
+  "archive_sha256": "a1e9241ed5a20ba9a55285432288b13323bf3585ca3115910d64374c6203733c",
+  "artifacts": [
+    {
+      "source": "SCOPE.md",
+      "path": "SCOPE.md.gz",
+      "source_sha256": "26b43215bad75ad1185a045b12efe582deca42e7b1dacf5ccdbaf46baa4cd92b",
+      "stored_sha256": "d1f35a7f62c09016b0a9ca43064cd4f8d39dbb62c09a348d81fdd8891c05086e"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "c8113660a8947ac6fd1a5c0b77a0a82cc1783e734626e9db358c0d4000a83be6",
+      "stored_sha256": "26c410eb88c460544a1342a6f057ba1bb2abfafdb9038bed6d3515eea11a95b2"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-0/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-0/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-0/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-0/result.tar.gz",
+      "source_sha256": "f8fc4afcff37e5e4d9736ef1fd18c31e74e45767fd137aec5cd24044768488b2",
+      "stored_sha256": "f8fc4afcff37e5e4d9736ef1fd18c31e74e45767fd137aec5cd24044768488b2"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-1/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-1/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-1/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-1/result.tar.gz",
+      "source_sha256": "b5a4e39ad4dd35ee6058454a284450bfdd29b751fe0738cf593ed14a4d46eb04",
+      "stored_sha256": "b5a4e39ad4dd35ee6058454a284450bfdd29b751fe0738cf593ed14a4d46eb04"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-2/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-2/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-2/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-2/result.tar.gz",
+      "source_sha256": "33a2360ec88a045b1ae0343b0437fd6448f92d2f4e926c5e7159c5ac4d11ec4f",
+      "stored_sha256": "33a2360ec88a045b1ae0343b0437fd6448f92d2f4e926c5e7159c5ac4d11ec4f"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-3/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-3/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-3/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-3/result.tar.gz",
+      "source_sha256": "595c09cc175d353fd341dd0d1a0d50758fc5ccf95553525e57d5cf036250afa4",
+      "stored_sha256": "595c09cc175d353fd341dd0d1a0d50758fc5ccf95553525e57d5cf036250afa4"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-4/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-4/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-4/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-4/result.tar.gz",
+      "source_sha256": "f3b807e0eeec4bcca7c40f3592ce9c0a187d1e050aec4108338e7347352b456a",
+      "stored_sha256": "f3b807e0eeec4bcca7c40f3592ce9c0a187d1e050aec4108338e7347352b456a"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-5/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-5/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-5/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-5/result.tar.gz",
+      "source_sha256": "636b9c730f95ce3687627cc8a8f21d9de814967e0e199ff513b0cb55ce1f2d43",
+      "stored_sha256": "636b9c730f95ce3687627cc8a8f21d9de814967e0e199ff513b0cb55ce1f2d43"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-6/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-6/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-6/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-6/result.tar.gz",
+      "source_sha256": "004b61c59f938813446e8522c908af7650c3cb73fc1db9839c97f623d33ac5b5",
+      "stored_sha256": "004b61c59f938813446e8522c908af7650c3cb73fc1db9839c97f623d33ac5b5"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-7/pbs-exit.txt",
+      "path": "original-failure-directories/compute002/case-7/pbs-exit.txt.gz",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "stored_sha256": "c28cc69d141393e44a931229323624ef7b8c5bde3ee047ca9b87332daef23c82"
+    },
+    {
+      "source": "original-failure-directories/compute002/case-7/result.tar.gz",
+      "path": "original-failure-directories/compute002/case-7/result.tar.gz",
+      "source_sha256": "fca7d1ca5b026f80b56e397927b2c761ef840fe286c8216c46329835b5dc08e5",
+      "stored_sha256": "fca7d1ca5b026f80b56e397927b2c761ef840fe286c8216c46329835b5dc08e5"
+    },
+    {
+      "source": "original-failure-directories/manager/case-0/qstat.stderr",
+      "path": "original-failure-directories/manager/case-0/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-0/qstat.stdout",
+      "path": "original-failure-directories/manager/case-0/qstat.stdout.gz",
+      "source_sha256": "b52d006ff36b8deb113850256b39d3381bb9349ca0f5976fdd40b7391d399ed7",
+      "stored_sha256": "2c607fc4ed79d6dce8e42ac36d5215589a7fa5142e61abf9cec6f0a08872fdfb"
+    },
+    {
+      "source": "original-failure-directories/manager/case-0/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-0/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-0/qsub.stderr",
+      "path": "original-failure-directories/manager/case-0/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-0/qsub.stdout",
+      "path": "original-failure-directories/manager/case-0/qsub.stdout.gz",
+      "source_sha256": "61bc13fbf3434c857f86a292edb7caf2916b715a6616a2718c01f606442aa75b",
+      "stored_sha256": "8af2ae66aa50f4c17a01c8c4b91d1be9fd77969800ab583da1a5c5689c943369"
+    },
+    {
+      "source": "original-failure-directories/manager/case-1/qstat.stderr",
+      "path": "original-failure-directories/manager/case-1/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-1/qstat.stdout",
+      "path": "original-failure-directories/manager/case-1/qstat.stdout.gz",
+      "source_sha256": "edddf897a0011b3e9f820342b1ee66e4a0bc4e522a0229446916345e4db77b53",
+      "stored_sha256": "ee58e163de6c92e048fedf649eece25596abfc67d50e11ccc073afda1726997e"
+    },
+    {
+      "source": "original-failure-directories/manager/case-1/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-1/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-1/qsub.stderr",
+      "path": "original-failure-directories/manager/case-1/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-1/qsub.stdout",
+      "path": "original-failure-directories/manager/case-1/qsub.stdout.gz",
+      "source_sha256": "7057a39df1e2ab3ee0ed92fedd41677b2b8c113cb74d8fddf57ca57cccd9f071",
+      "stored_sha256": "4be6045d583aa1905e36ed891df88c59727aef227688e0bcc349d62fe9b37e15"
+    },
+    {
+      "source": "original-failure-directories/manager/case-2/qstat.stderr",
+      "path": "original-failure-directories/manager/case-2/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-2/qstat.stdout",
+      "path": "original-failure-directories/manager/case-2/qstat.stdout.gz",
+      "source_sha256": "2e9ff038b8637a553d4c0d6e80745a0e227ed986f5149abedb5304c9a38fe198",
+      "stored_sha256": "9e141238e4ebbb682787854e5afcf46997744391dc7fddf687820fc05e8528a9"
+    },
+    {
+      "source": "original-failure-directories/manager/case-2/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-2/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-2/qsub.stderr",
+      "path": "original-failure-directories/manager/case-2/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-2/qsub.stdout",
+      "path": "original-failure-directories/manager/case-2/qsub.stdout.gz",
+      "source_sha256": "e84144438fee702c6992bf8c03b3fd590c4d7477f28250cf8e28bf61c1c7202e",
+      "stored_sha256": "95c2eb52a3c940359b03edfa06ae7d3b13da9ffa0ac6c0deeddd5ad05bd05486"
+    },
+    {
+      "source": "original-failure-directories/manager/case-3/qstat.stderr",
+      "path": "original-failure-directories/manager/case-3/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-3/qstat.stdout",
+      "path": "original-failure-directories/manager/case-3/qstat.stdout.gz",
+      "source_sha256": "c96872e794103a82016939ac3b47157d3501fc9efef75338a97cfb6526c6bd78",
+      "stored_sha256": "3c024bc3909e51ec86e4c55bb66257520968713c46796b36b6ede5bdd33cf3cd"
+    },
+    {
+      "source": "original-failure-directories/manager/case-3/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-3/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-3/qsub.stderr",
+      "path": "original-failure-directories/manager/case-3/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-3/qsub.stdout",
+      "path": "original-failure-directories/manager/case-3/qsub.stdout.gz",
+      "source_sha256": "ec2c4e083f349ba583eb11f1029953d47691ce587cc1bf123e3d4e6815ac2694",
+      "stored_sha256": "7c8a178de293eb7f317b1f7b9b5c998b87373ae0532f1e23737cc950aebc1952"
+    },
+    {
+      "source": "original-failure-directories/manager/case-4/qstat.stderr",
+      "path": "original-failure-directories/manager/case-4/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-4/qstat.stdout",
+      "path": "original-failure-directories/manager/case-4/qstat.stdout.gz",
+      "source_sha256": "85e34075b07c381c04eb9ee28a2860897198b92f140828c44915e42ecb872411",
+      "stored_sha256": "119eec1d744ec9933d3927cdf188ba2bdccc821d148aaf0c7cc58e4aee4c9721"
+    },
+    {
+      "source": "original-failure-directories/manager/case-4/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-4/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-4/qsub.stderr",
+      "path": "original-failure-directories/manager/case-4/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-4/qsub.stdout",
+      "path": "original-failure-directories/manager/case-4/qsub.stdout.gz",
+      "source_sha256": "3b808ba318acef40bc7f805734648ab8397dabb9ff58bece501a4013e100e3d8",
+      "stored_sha256": "9b4ad0ffb8a0dc2fa9fe7162c04efaa2833c2177b3b9ee789d3613e8719101a3"
+    },
+    {
+      "source": "original-failure-directories/manager/case-5/qstat.stderr",
+      "path": "original-failure-directories/manager/case-5/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-5/qstat.stdout",
+      "path": "original-failure-directories/manager/case-5/qstat.stdout.gz",
+      "source_sha256": "8b425fc783f478f373f677b9ffc6e1df04cf729932024c4861e19056f338a404",
+      "stored_sha256": "ec75d2b9b6cb2837b90d3475d99a87b2efc4256a58af42a0dd93c6f9d41358a6"
+    },
+    {
+      "source": "original-failure-directories/manager/case-5/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-5/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-5/qsub.stderr",
+      "path": "original-failure-directories/manager/case-5/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-5/qsub.stdout",
+      "path": "original-failure-directories/manager/case-5/qsub.stdout.gz",
+      "source_sha256": "963ef6ee35e9b32b3c5aa5b278dd3b231a4d562523dca7142397a4bb172b8f76",
+      "stored_sha256": "02e116ed98df95477543642541f9cc00c5dab416448daad255f4c186225e362c"
+    },
+    {
+      "source": "original-failure-directories/manager/case-6/qstat.stderr",
+      "path": "original-failure-directories/manager/case-6/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-6/qstat.stdout",
+      "path": "original-failure-directories/manager/case-6/qstat.stdout.gz",
+      "source_sha256": "d466df51fadd32de1f0793708942d44b375492f8a97b6e9faef5d733c8271566",
+      "stored_sha256": "0c0d0a52da68b21863539c0035b5c7e614d01f729dd7f7eaacf1700a994d412c"
+    },
+    {
+      "source": "original-failure-directories/manager/case-6/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-6/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-6/qsub.stderr",
+      "path": "original-failure-directories/manager/case-6/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-6/qsub.stdout",
+      "path": "original-failure-directories/manager/case-6/qsub.stdout.gz",
+      "source_sha256": "74ed06fe1062358377fb5cf4b6af45080f785e7e9f4d5404c58d6a00643ebc58",
+      "stored_sha256": "c85456ca7bbbda760592ea0f0d64bd330620a589bd3a9b80a8f7f66ce73eb0e1"
+    },
+    {
+      "source": "original-failure-directories/manager/case-7/qstat.stderr",
+      "path": "original-failure-directories/manager/case-7/qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-7/qstat.stdout",
+      "path": "original-failure-directories/manager/case-7/qstat.stdout.gz",
+      "source_sha256": "44a40f7196c95dc3bc8cd3a12bd2b58160637e2c489da7762aa017fc51a34230",
+      "stored_sha256": "5210173929d57e17f51c63eb13d03b190f6536cde6e01f4ca4bc6398a6b387e3"
+    },
+    {
+      "source": "original-failure-directories/manager/case-7/qsub-exit.txt",
+      "path": "original-failure-directories/manager/case-7/qsub-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "original-failure-directories/manager/case-7/qsub.stderr",
+      "path": "original-failure-directories/manager/case-7/qsub.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "original-failure-directories/manager/case-7/qsub.stdout",
+      "path": "original-failure-directories/manager/case-7/qsub.stdout.gz",
+      "source_sha256": "bfd6e15d8674a9e7ce498a94da5cae4afe2c87b719b56caf760011b5924df932",
+      "stored_sha256": "c80469dae0a85a03426357c73975bf364d0147bafb57ac50878e7f1791ec8e1d"
+    },
+    {
+      "source": "original-terminals/1831.manager/qstat.stdout",
+      "path": "original-terminals/1831.manager/qstat.stdout.gz",
+      "source_sha256": "b52d006ff36b8deb113850256b39d3381bb9349ca0f5976fdd40b7391d399ed7",
+      "stored_sha256": "2c607fc4ed79d6dce8e42ac36d5215589a7fa5142e61abf9cec6f0a08872fdfb"
+    },
+    {
+      "source": "original-terminals/1832.manager/qstat.stdout",
+      "path": "original-terminals/1832.manager/qstat.stdout.gz",
+      "source_sha256": "edddf897a0011b3e9f820342b1ee66e4a0bc4e522a0229446916345e4db77b53",
+      "stored_sha256": "ee58e163de6c92e048fedf649eece25596abfc67d50e11ccc073afda1726997e"
+    },
+    {
+      "source": "original-terminals/1833.manager/qstat.stdout",
+      "path": "original-terminals/1833.manager/qstat.stdout.gz",
+      "source_sha256": "2e9ff038b8637a553d4c0d6e80745a0e227ed986f5149abedb5304c9a38fe198",
+      "stored_sha256": "9e141238e4ebbb682787854e5afcf46997744391dc7fddf687820fc05e8528a9"
+    },
+    {
+      "source": "original-terminals/1834.manager/qstat.stdout",
+      "path": "original-terminals/1834.manager/qstat.stdout.gz",
+      "source_sha256": "c96872e794103a82016939ac3b47157d3501fc9efef75338a97cfb6526c6bd78",
+      "stored_sha256": "3c024bc3909e51ec86e4c55bb66257520968713c46796b36b6ede5bdd33cf3cd"
+    },
+    {
+      "source": "original-terminals/1835.manager/qstat.stdout",
+      "path": "original-terminals/1835.manager/qstat.stdout.gz",
+      "source_sha256": "85e34075b07c381c04eb9ee28a2860897198b92f140828c44915e42ecb872411",
+      "stored_sha256": "119eec1d744ec9933d3927cdf188ba2bdccc821d148aaf0c7cc58e4aee4c9721"
+    },
+    {
+      "source": "original-terminals/1836.manager/qstat.stdout",
+      "path": "original-terminals/1836.manager/qstat.stdout.gz",
+      "source_sha256": "8b425fc783f478f373f677b9ffc6e1df04cf729932024c4861e19056f338a404",
+      "stored_sha256": "ec75d2b9b6cb2837b90d3475d99a87b2efc4256a58af42a0dd93c6f9d41358a6"
+    },
+    {
+      "source": "original-terminals/1837.manager/qstat.stdout",
+      "path": "original-terminals/1837.manager/qstat.stdout.gz",
+      "source_sha256": "d466df51fadd32de1f0793708942d44b375492f8a97b6e9faef5d733c8271566",
+      "stored_sha256": "0c0d0a52da68b21863539c0035b5c7e614d01f729dd7f7eaacf1700a994d412c"
+    },
+    {
+      "source": "original-terminals/1838.manager/qstat.stdout",
+      "path": "original-terminals/1838.manager/qstat.stdout.gz",
+      "source_sha256": "44a40f7196c95dc3bc8cd3a12bd2b58160637e2c489da7762aa017fc51a34230",
+      "stored_sha256": "5210173929d57e17f51c63eb13d03b190f6536cde6e01f4ca4bc6398a6b387e3"
+    },
+    {
+      "source": "pj-capacity-resume-qd-b-preparation/METADATA_REPAIR_PROOF.json",
+      "path": "pj-capacity-resume-qd-b-preparation/METADATA_REPAIR_PROOF.json.gz",
+      "source_sha256": "13efcb816a8503e0f4eb88f3f4b1970da04583475ce374299605583231be5126",
+      "stored_sha256": "d7e309d1cc9e4f91abaecd86ec157807852d15ce886d68635c7935f9574f1a0f"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/after-manager-restore/exit.json",
+      "path": "pj-pbs-service-qd-b/after-manager-restore/exit.json.gz",
+      "source_sha256": "9e4e472d6bc443fa05eab5f57874f13c09bb25f5eec5de26ebc1d7b2ca0f0786",
+      "stored_sha256": "30e337466129cb1c430564185f82b135fe3597e706ac540ee1f3b658cb8ec90e"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/after-manager-restore/remote-reader.py",
+      "path": "pj-pbs-service-qd-b/after-manager-restore/remote-reader.py.gz",
+      "source_sha256": "cdc62c7a638861283257cef0cc0876fd7477e9254fbf0961e808395ba8bcf26f",
+      "stored_sha256": "0d39058ce4bcb72df21dafa76f74f4b122e7bd3638ab7225e6349e5917215d19"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/after-manager-restore/snapshot.json",
+      "path": "pj-pbs-service-qd-b/after-manager-restore/snapshot.json.gz",
+      "source_sha256": "d963426846b2649e7e3bc242ae5e85095693533d588eec163abdfe8707a1626c",
+      "stored_sha256": "f3ff1aa652877d0b74cba35b96e5cc864cdd2f109fd910b6fc697b9e1f659f17"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/after-manager-restore/stderr",
+      "path": "pj-pbs-service-qd-b/after-manager-restore/stderr",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/before-package/exit.json",
+      "path": "pj-pbs-service-qd-b/before-package/exit.json.gz",
+      "source_sha256": "1e4d1a5253f707cb3644a8bd48b527d60e002036c5ded3e1c93e67559e0b0ebf",
+      "stored_sha256": "1e5e482fb1bd7ff6503741076752e121d4832ff5e33b7b37bd630f9bfe3c1c30"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/before-package/remote-reader.py",
+      "path": "pj-pbs-service-qd-b/before-package/remote-reader.py.gz",
+      "source_sha256": "cdc62c7a638861283257cef0cc0876fd7477e9254fbf0961e808395ba8bcf26f",
+      "stored_sha256": "0d39058ce4bcb72df21dafa76f74f4b122e7bd3638ab7225e6349e5917215d19"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/before-package/snapshot.json",
+      "path": "pj-pbs-service-qd-b/before-package/snapshot.json.gz",
+      "source_sha256": "ccbfbd4250d2790e2e901719b3f7c84364334563d8e38c62727950f262c484f5",
+      "stored_sha256": "a84ea9b348aed0e684509fc09baf6cd8b85dda4db0ae5b0c4abef45ed5f93173"
+    },
+    {
+      "source": "pj-pbs-service-qd-b/before-package/stderr",
+      "path": "pj-pbs-service-qd-b/before-package/stderr",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash-exit.json.gz",
+      "source_sha256": "4c2b7f295e2ffa4a68c9f274fdc4677d3f25e9f02fd687ccfe81093c90b34c04",
+      "stored_sha256": "8a1538c42e1ff64634db39d842b7f1cf085df88b2bb48f0018cbba40e9ca09b1"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/payload-hash.stdout.gz",
+      "source_sha256": "baafc74483117bac6dbf543103bbbe044f91b6bea2d4074278c08964b5dc3259",
+      "stored_sha256": "c89d6a265a287677c5253d3c983a4cc9ead9665ad7c887c5f67949c591e3b61c"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight-exit.json.gz",
+      "source_sha256": "cb4fdcb1549c8c1d0948a1a7033a1f032297d541d5d7bdeec4c3fb19eb5d5502",
+      "stored_sha256": "134bd97b7caf2d6a58faf75ccf58b7ec3ce8b7361104957b772f217e2a88c008"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/preflight.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve-exit.json.gz",
+      "source_sha256": "4a2e8858f717262e4ca45948428641adfa62de55d95f0ef82f3623d560e4e25d",
+      "stored_sha256": "0663e96f0f969ba920c3160bac9720dc5d0847afb98cb94fb7a587e36bf7cfba"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/restore-and-preserve.stdout.gz",
+      "source_sha256": "2d961fb239922071c69f490a052377668453de2d8321323a2a0d0a80f9c05702",
+      "stored_sha256": "20e0e1d0dc7840c46d842426b8146c3cc24ae937424c7b672112a9498971e3e3"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload-exit.json.gz",
+      "source_sha256": "3bdfc82c322fa2d234d3cafd54f075758053f217fa3b9c30ed06f01eda258840",
+      "stored_sha256": "a35729cc9ea8fb5168e13dfa8a7a3b766743d4fb9df1562395d0c0ed2f2fecd4"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc-c2/upload.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash-exit.json.gz",
+      "source_sha256": "a4dcbd93eebb2ac67d7c41ae91b491aba687584e6def56051ca1cab42ec22995",
+      "stored_sha256": "70528d953b691032439571081bfdc553ea3da7142c21522e8d1b97986476b506"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/payload-hash.stdout.gz",
+      "source_sha256": "baafc74483117bac6dbf543103bbbe044f91b6bea2d4074278c08964b5dc3259",
+      "stored_sha256": "c89d6a265a287677c5253d3c983a4cc9ead9665ad7c887c5f67949c591e3b61c"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/preflight-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/preflight-exit.json.gz",
+      "source_sha256": "d46755e5a00283b59ddea9e03e20a4eb42443a813b2409b81b73db8d3b931bda",
+      "stored_sha256": "ed11524fc09600ebb711132ab0d50b91a203295533db069d0d4b0f75a0f58d47"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/preflight.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/preflight.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/preflight.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/preflight.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve-exit.json.gz",
+      "source_sha256": "19bfedeacf288c9c5fbc855930941e88aac2edf6173e4ab06f9c7e169c4eddc7",
+      "stored_sha256": "fd761bcd2e95babe09705efbf1f39db0e4646dc3fdc487ae4e14c9625497d02d"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve.stderr.gz",
+      "source_sha256": "fcb20aa3619086074a7b41eea4a1b4459b7727ac8ca9baf8987a72c301a67d30",
+      "stored_sha256": "fcdc3ff5892503f0b940c2182979c8330ee92be7a3c481ef31c2a02cf664ceaf"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/restore-and-preserve.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/upload-exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/upload-exit.json.gz",
+      "source_sha256": "d812914a35a32495a5fa21fac01b081ae757874faff34306f7ac0a57d9a2687e",
+      "stored_sha256": "f8e54844a25759fe9dd3c5d7dfd9620dbe763c2c823ba7e645e6b27f79e8b006"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/upload.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/upload.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/ehpc/upload.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/ehpc/upload.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/exit.json.gz",
+      "source_sha256": "ebddf663ef66cff5d714513987046615c8dc34fc747105020674c7abd15e3793",
+      "stored_sha256": "4f37632bb4f97e6a8a947d78929d3f4d2d08029b8958183a2b7e2e9a97a45383"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/restore.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/restore.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/restore.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-only-preserved-terminals/restore.stdout.gz",
+      "source_sha256": "099e2ee7c7f0b3b7a5bd7d1ed011ff11e3a3671687c6bef96a0011965b158797",
+      "stored_sha256": "1d8a787cb7de8f76b8025b0b8a90ac7166cf8165c145c0a81e2594828036f641"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/exit.json",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/exit.json.gz",
+      "source_sha256": "174f1a7147ef9250f40ef54e1db434a29e72ca4226b54319ffd120c97aa0cc07",
+      "stored_sha256": "814dc1f5dffd94f48d3bf72c2c0d733686f2f88fe5b7609468b425d483619823"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/qstat.stderr",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/qstat.stderr.gz",
+      "source_sha256": "e30c93084689dc15f28ead8ef55647264dbb0994751d6de4b7b6f0058c115b07",
+      "stored_sha256": "64af23c0713e03de7a64a049f55652d5cb920ef0e6a0766f77a4df3f1803e5f3"
+    },
+    {
+      "source": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/qstat.stdout",
+      "path": "pj-seed48-restore-qd-b-deployment/manager-pbs-recheck/qstat.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc-c2-exit.json",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc-c2-exit.json.gz",
+      "source_sha256": "bb68d8903c119f71f9060748e6a9f48e4acb39aa801cda864b6a6b62e4410093",
+      "stored_sha256": "1b40fbdfad19c3187c5b2b8b9e07e1366c165927567b40e65c4e7c81c1efde56"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc-c2.json",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc-c2.json.gz",
+      "source_sha256": "5abdc3c75f234c24bd6e225614e330b064502776fc59776c3267d0f64e0093b8",
+      "stored_sha256": "dbf86b3ef35cdfd1f30a28244bac4fc846ca07bee39d69c5c51df4b2fec86fec"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc-c2.stderr",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc-c2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc-exit.json",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc-exit.json.gz",
+      "source_sha256": "cfcd9411ded4089f323ab2bc286a88505afec6b904cbe84d3110a6a8d0d04240",
+      "stored_sha256": "4bd28c542918f9683acba9f45b65e94678587ed8154cabca5882faa5d4210c6f"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc.json",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc.json.gz",
+      "source_sha256": "9f0f015f6b39d914810ba6e863a2f3c24aa562962eb977931e409bb99a6e5339",
+      "stored_sha256": "b7c75490b706879f214805444e4cc00488a355d4aa34cac6d5a2c4d1e3241294"
+    },
+    {
+      "source": "pj-zero-step-failures-qd-b-audit/ehpc.stderr",
+      "path": "pj-zero-step-failures-qd-b-audit/ehpc.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "provenance/audit_pj_zero_step_failures_qd_b.py",
+      "path": "provenance/audit_pj_zero_step_failures_qd_b.py.gz",
+      "source_sha256": "1ef385512d0beeffa219edb77e4d35c9e2fc95756533fa10ac3bb82b602a7d3a",
+      "stored_sha256": "86c0d4ffca387b1d3c45aa3eed066d060348fcccb5382baefef18d995a5ff1af"
+    },
+    {
+      "source": "provenance/deploy_pj_seed48_restore_qd_b.py",
+      "path": "provenance/deploy_pj_seed48_restore_qd_b.py.gz",
+      "source_sha256": "f89118ca0643920e7ea07f0eff30df73a0533039c9896b8346eb12717463e379",
+      "stored_sha256": "d4317a50674a6bbef640606afb7d03b19f9681caad249a3c3d1c9f99a4c17d29"
+    },
+    {
+      "source": "provenance/numpy-baseline-resume-pj-stage-b.tar.gz",
+      "path": "provenance/numpy-baseline-resume-pj-stage-b.tar.gz",
+      "source_sha256": "9b5af7ba849d9101c1f7455e27342db945066ed022a4f58e1e2cb2329d7441bb",
+      "stored_sha256": "9b5af7ba849d9101c1f7455e27342db945066ed022a4f58e1e2cb2329d7441bb"
+    },
+    {
+      "source": "provenance/package_pj_dependency_repair_qd_b.py",
+      "path": "provenance/package_pj_dependency_repair_qd_b.py.gz",
+      "source_sha256": "6e9b936bb2b5d032778d999801115edcc959be88dd1c10973ff9a130c910db95",
+      "stored_sha256": "a4a188a81f23616490eac2eed9ac04a877083c3772ed741a8a19d9fd0fa4891c"
+    },
+    {
+      "source": "provenance/pj-capacity-resume-qd-status-second.json",
+      "path": "provenance/pj-capacity-resume-qd-status-second.json.gz",
+      "source_sha256": "1d988a87b8a2f288667ae0c53ee717bb7a2c9c9721e1bb5a7621ad23ea14685b",
+      "stored_sha256": "8999b92fb48f0edb812e17ce58170db121e0e65fa30c2196b9a996f08ebcd77e"
+    },
+    {
+      "source": "provenance/pj-seed48-restore-qd-b-package.json",
+      "path": "provenance/pj-seed48-restore-qd-b-package.json.gz",
+      "source_sha256": "d3fcc0cc52ecfd96fa960b7a1752b4201e6c1d89fdb34715273d44e263962b91",
+      "stored_sha256": "3c02270d5165631e8843eed5ae16b8ba39b28eb90187024f2fd5d7c104cf69a0"
+    },
+    {
+      "source": "provenance/pj-seed48-restore-qd-b.tar.gz",
+      "path": "provenance/pj-seed48-restore-qd-b.tar.gz",
+      "source_sha256": "ad952e1f5b5071e50595b2adc53b97281dc99a777a2a7bfc1d749ae6ae25faae",
+      "stored_sha256": "ad952e1f5b5071e50595b2adc53b97281dc99a777a2a7bfc1d749ae6ae25faae"
+    },
+    {
+      "source": "provenance/poll_pj_pbs_service_qd_b.py",
+      "path": "provenance/poll_pj_pbs_service_qd_b.py.gz",
+      "source_sha256": "fffa90d6273bf7095659fb3c98286c02bad8dba3612fe770083178def9f5b917",
+      "stored_sha256": "2b92409fae60a34ea5717a6ec6688d1875c62f20de288f961bf4e276de13b367"
+    },
+    {
+      "source": "provenance/prepare_pj_manager_seed48_qd_b.py",
+      "path": "provenance/prepare_pj_manager_seed48_qd_b.py.gz",
+      "source_sha256": "f6d35c32c93e83dc895e5e59f678f9cd6c165f3ade3db5ecac885a8b95a02285",
+      "stored_sha256": "d590ed4d862fec5240107f75559069813cba0c083f41f0569d9a203e585e8b81"
+    },
+    {
+      "source": "provenance/prepare_pj_seed48_restore_qd_b.py",
+      "path": "provenance/prepare_pj_seed48_restore_qd_b.py.gz",
+      "source_sha256": "0bf6f47b4474cbb99b9d8f3995072e86f66c2762aa2f93d620d4648320a58fe4",
+      "stored_sha256": "b85d29548667a997568a48c4d455979bfe744c1dd7d7653894a73d739f1d8508"
+    },
+    {
+      "source": "provenance/read_pj_zero_step_audits_qd_b.py",
+      "path": "provenance/read_pj_zero_step_audits_qd_b.py.gz",
+      "source_sha256": "bcd02056b6db54948b8afe5d4c1a5ce229a1ee1ca3776638cd7631be8589bd24",
+      "stored_sha256": "70f3052fd71168692b0afef731bb0eeac4394642769623bf552120fbc3090c20"
+    },
+    {
+      "source": "provenance/restore_pj_manager_seed48_qd_b-static.json",
+      "path": "provenance/restore_pj_manager_seed48_qd_b-static.json.gz",
+      "source_sha256": "479554391d0bdd8d17c645f7e3f0366036cad11c08ffb4c8f5d0a686fde0a6fa",
+      "stored_sha256": "c1fd45cc9a005715c416273d22609b77715976a5c50604a9080c26d36f8c7030"
+    },
+    {
+      "source": "provenance/restore_pj_manager_seed48_qd_b.diff",
+      "path": "provenance/restore_pj_manager_seed48_qd_b.diff.gz",
+      "source_sha256": "e8e22a739921aa748b429a0bee57eccd2601023a7d2d4ed4759102b2e65d3061",
+      "stored_sha256": "0cbfed2d614e853bf522a018e320d92c8e4c03f95b1caee2f2754a48566f8639"
+    },
+    {
+      "source": "provenance/restore_pj_manager_seed48_qd_b.py",
+      "path": "provenance/restore_pj_manager_seed48_qd_b.py.gz",
+      "source_sha256": "1654b4c5a94ba9a1659003c7e76e113778a7ffa1fc6545e399bb7af3d1f5c933",
+      "stored_sha256": "5c2887351e4c6ae2fcd71a3822661d7a1ddb095c2ba70bf8f1f17dec87362a06"
+    },
+    {
+      "source": "provenance/restore_pj_seed48_and_archive_zero_step_qd_b.py",
+      "path": "provenance/restore_pj_seed48_and_archive_zero_step_qd_b.py.gz",
+      "source_sha256": "05f8bac659f86d89900b42f12082463708c260af7914b768c8aee55e62224038",
+      "stored_sha256": "0f5ea1ce105248ac9469629164397ff2b7031f455f11160193a1af963206872a"
+    },
+    {
+      "source": "provenance/resume_capacity_pj_qd.py",
+      "path": "provenance/resume_capacity_pj_qd.py.gz",
+      "source_sha256": "49c1e564f7d0a62c514fec8036dad5d3366a58d6b55a26f30d44e46f3f6f3873",
+      "stored_sha256": "1768b860c7891b64e25dcc21931f2d774e2c81555bc0ec18d781038de190209a"
+    },
+    {
+      "source": "provenance/resume_capacity_pj_qd_b-static.json",
+      "path": "provenance/resume_capacity_pj_qd_b-static.json.gz",
+      "source_sha256": "2d82e9e73d4b5cf7c903a9e0ba85e99a020416f2f4ad4f2fb2f614f6c56ccb55",
+      "stored_sha256": "9fdbff566f56d182e604263a69096c7ef88c4344bc478548458d65af77163d5e"
+    },
+    {
+      "source": "provenance/resume_capacity_pj_qd_b.diff",
+      "path": "provenance/resume_capacity_pj_qd_b.diff.gz",
+      "source_sha256": "cbd34f882b1392947ec257907dc35a73da71c069e2daa5cfc5b781e20e1dd761",
+      "stored_sha256": "f94521ab51e68073ad26191e36d4376406046009463f51fa5b120b974ef3f1c5"
+    },
+    {
+      "source": "provenance/resume_capacity_pj_qd_b.py",
+      "path": "provenance/resume_capacity_pj_qd_b.py.gz",
+      "source_sha256": "62694b3eae242b33f1ac097b4e6705e57974579c8a2dcca749fd6f6b707e0d53",
+      "stored_sha256": "3d892d2b781548038010fe6d85a46a1f8f62e48d095d505671907a908ef5f334"
+    },
+    {
+      "source": "provenance/review_resume_capacity_pj_qd_surface_agent.json",
+      "path": "provenance/review_resume_capacity_pj_qd_surface_agent.json.gz",
+      "source_sha256": "57e5e753707fb85b45aa9dc1f67f96a22e700d5584d11debae4ec89904f19222",
+      "stored_sha256": "7ab43357047e7e9f626c61b4631acac410381e3548ce2c6ee2f6f00d2c8cec04"
+    },
+    {
+      "source": "provenance/review_resume_capacity_pj_qd_surface_agent_correction.json",
+      "path": "provenance/review_resume_capacity_pj_qd_surface_agent_correction.json.gz",
+      "source_sha256": "f17a6a629b88d7fad60b0d16afda0ad5699db629b06e539be464cbe299b8293a",
+      "stored_sha256": "a8b4677ff245c1a9c70bf784dc53260e59cb371d49050d0678fff63d68596616"
+    },
+    {
+      "source": "readout.json",
+      "path": "readout.json.gz",
+      "source_sha256": "940b2fad59aa99d28d02d342a7874d491a3ddbc5545f4fe2a89aae9ea428eb95",
+      "stored_sha256": "1f8f98e7c0decfe5fa1a4fac644e109415e8247bc2f704907df0efb7abf960f6"
+    }
+  ]
+}
