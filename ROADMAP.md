@@ -4,6 +4,7 @@
 
 - [x] [PBS服务恢复](docs/GPU_BLOCKERS.md)：原datastore保持，已备份pytest缓存回收117文件/81目录后spool创建成功，真实新作业完成；原停服与失败记录保留。
 - [ ] [八条CPU基线](docs/CLM_CPU_CAPACITY_QD.md)1846—1853已实际恢复，完整年/评价未完成；CUDA1专项与EHPC独立参考继续。新排水Fraction1845实际F0，但完整同精度修订仍待。
+- [x] P1源码收尾审计：融雪余热守恒、AHC局部平滑和厚雪均温不变式已有代码与实际测试证据；完整域K3残余保留为已知限制，详见 [P1审计](docs/P1_SOURCE_AUDIT.md)。
 
 - [ ] [NM完整GPU回归](docs/CLM_GPU_TERMINAL_QB.md)已经结束，399/408，9失败、零error/skip；原584源不变，完整通过仍待，旧剩余估时撤销。
 - [x] [新排水暖态修正](docs/CLM_VERTICAL_HYDROLOGY.md)：1704 F0/Stageout0，24项全过，647金样字段保真；仅私有候选，不是生产集成。

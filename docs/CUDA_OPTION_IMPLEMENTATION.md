@@ -92,7 +92,7 @@ python -m pytest tests/test_gpu_float32_parity.py tests/test_gpu_cuda_inputs.py 
 | 3 | `OptGroundResistanceEvap=4` | 1 Sakaguchi–Zeng；2 Sellers；3 adjusted Sellers；4 无雪同 1 | `ground_evap.ground_resistance` → `_ground_resistance` | `ground_resistance` 分发，供裸土 LE 使用；依赖表层含水、固定 dz、土壤参数；当前雪面无升华，4 的雪阻抗 1 s/m 没有整柱调用路径 |
 | 4 | `OptSurfaceDrag=1` | 1 MOST；2 bulk/Chen | `surface_drag.exchange_velocity` → `_exchange_velocity` | `exchange` 分发；初始 PM 和每次能量残差均调用；MOST 保留 20 次上限及收敛冻结，bulk 不执行 MOST |
 | 5 | `OptStomataResistance=1` | 1 Ball–Berry；2 Jarvis | `canopy.stomatal_resistance` → `_stomatal_resistance` | `stomata` 分发；两者共享水分胁迫、饱和水汽压、温度/光照响应；Ball–Berry 使用仓库经验光合，并非完整 Farquhar |
-| 6 | `OptSnowAlbedo=1` | 1 BATS；2 CLASS | `snow.update_snow_albedo` → `_snow_albedo` | 步末反照率分发；依赖最终 SWE、雪温、雪龄、新雪量、dt；本步能量仍用旧雪反照率 |
+| 6 | `OptSnowAlbedo` | legacy ABI：1 BATS、2 CLASS；extensive `CLMColumnState`：3 SNICAR 五波段 | legacy `snow.update_snow_albedo` / extensive `canopy_snow_radiation` | 旧标量 ABI 保留1/2；完整五层 CLM 路径使用 `physics.snicar` 及 CUDA/JAX SNICAR kernels，步末标量反照率仍不等同于五波段光学状态 |
 | 9 | `OptSnowThermConduct=1` | 1 Stieglitz；2 Anderson；3 常数；4 Verseghy；5 Douville | `snow.snow_thermal_conductivity` → `_snow_conductivity` | `snow_k(density, temperature, option)`；同时用于 `snow_flux` 与 `snow_heat`，不能只改其中之一；4 使用每层温度 |
 | 11 | `OptSoilSupercoolWater=1` | 1 Niu–Yang；2 仓库 Koren 三次平均迭代入口 | `frozen_soil.unfrozen_water_content` → `_unfrozen_water` | `liquid` 分发；`capacity` 的 T±0.02 K 两次调用和所有相态刷新均透传选项 |
 | 12 | `OptRunoffSurface=3` | 1 TOPMODEL；2 平衡水位 TOPMODEL；3 free drainage；4 BATS | `runoff.route_runoff` → `_route_runoff` / `_runoff_scheme` | 在土壤水更新完成后对合计候选径流分发；依赖更新后的 smc、terrain_index、groundwater_depth、土壤参数 |
@@ -122,12 +122,12 @@ python -m pytest tests/test_gpu_float32_parity.py tests/test_gpu_cuda_inputs.py 
 | 22 | `OptGlacierTreatment` | 1,2 | 无冰川物理 |
 | 24 | `OptSnowCoverGround` | 1,2 | 固定雪阈值和 `min(1,SWE/0.02)` 蒸腾抑制 |
 | 25 | `OptWetlandModel` | 0,1,2 | 无湿地模型 |
-| 26 | `OptSnicarSnowShape` | 1,2,3,4 | SNICAR 未实现 |
-| 27 | `OptSnicarRTSolver` | 1,2 | SNICAR 未实现 |
-| 28 | `OptSnicarBandNum` | 1,2 | SNICAR 未实现 |
-| 29 | `OptSnicarSolarSpec` | 1,2,3,4,5,6 | SNICAR 未实现 |
-| 30 | `OptSnicarSnwOptic` | 1,2,3 | SNICAR 未实现 |
-| 31 | `OptSnicarDustOptic` | 1,2,3 | SNICAR 未实现 |
+| 26 | `OptSnicarSnowShape` | 1,2,3,4 | extensive SNICAR 使用五波段公共表的固定形状近似；selector 保留但不改变当前表映射 |
+| 27 | `OptSnicarRTSolver` | 1,2 | extensive SNICAR 使用稳定薄层 adding/doubling 求解器；selector 保留 |
+| 28 | `OptSnicarBandNum` | 1,2 | extensive SNICAR 固定五波段；selector 保留 |
+| 29 | `OptSnicarSolarSpec` | 1,2,3,4,5,6 | extensive SNICAR 直/散射边界显式输入；selector 保留 |
+| 30 | `OptSnicarSnwOptic` | 1,2,3 | extensive SNICAR 使用公共冰雪光学表；selector 保留 |
+| 31 | `OptSnicarDustOptic` | 1,2,3 | extensive SNICAR 使用四类气候态尘埃及一类 BC；selector 保留 |
 
 另两个 singleton：偏移 0 `OptDynamicVeg=4` 仅使用输入 LAI；偏移 21
 `OptPedotransfer=1` 仅使用传入土壤参数。它们无法提供“每字段至少两个取值”的证据。
