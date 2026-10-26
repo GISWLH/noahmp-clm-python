@@ -1,5 +1,19 @@
 # 2026-10-26 最新终态与后续短测
 
+后续SSH已恢复：[QU只读分层诊断](v1-results/xuanze-ssh-client-diagnosis-qu/manifest.json)
+系统OpenSSH9.5p2及一个已有Git10.3p1入口均实际0，完整握手/认证；原255和
+备用NAS banner超时原件保留，不据此认定故障原因，服务器配置未改。
+PC-d小probe随后已结束、3PID全退出，原4组几何逐位重现JAX及6边界通过；
+[独立Fraction及范围](CLM_VERTICAL_HYDROLOGY.md)。GPU1后来有已核明的其他
+项目训练，共享运行仅保留原8GiB GPU/32GiB host门和本任务不并发，不动其他
+进程，耗时不作性能结论。
+
+[QS315件隐藏host步长透明追踪](v1-results/nq-hidden-step-trace-qs/manifest.json)
+也已结束，两worker/parent均0、controller无timeout，
+每端原11调用/22行schedule和完整126字段逐字节透明；_one正常1/1、34控制
+事件、observer错误0，五PID全退出。只取原locals，首差/age与硬账尚须EHPC
+独立分析；没有据此修复原1J或重写NM399/408。下面为较早快照。
+
 18:19UTC更新：MOST-QN唯一原3节点全部通过，1213.27秒，原进程全部退出；
 EHPC1859实际F0/Stageout0独立核对313字段同精度最大差0和8次原硬账全部返回，
 [私有专项证据](CLM_CANOPY_MOST.md)。它不是新完整408或年度通过。
@@ -256,3 +270,5 @@ NS 已于 07:29:25 UTC 实际启动，首次趋势前全 23 个状态／账目�
 确认全部569模型／测试／基准文件仍匹配NM，41件新增证据原始字节也已核验。
 旧静态检查因未允许 `CLM_RICHARDS.md` 的说明更新而退出1；此次明确记录三份
 文档差异后重新核验成功，保留原失败。没有改变运行源或任何物理／精度门。
+
+QT1876 对 QS 实际 locals 完成 EHPC 后处理，F1/Stageout0，0 新 forward/evaluate/GPU。attempt2 host step 与实际 f32 dt 的差异经 remaining 暴露为第三次 flow dt 差 9.1552734375e-5 s；证据支持 host 步长传播，不能归因具体除法指令或自动改源，原 1J 仍失败。

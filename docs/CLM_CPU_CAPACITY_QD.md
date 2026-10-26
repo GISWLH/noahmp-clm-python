@@ -1,5 +1,23 @@
 # EHPC 年度终态与容量恢复（QD）
 
+## 恢复后首8窗已闭合，两后继Qia失败
+
+[22件实际闭合与失败小件](v1-results/pj-capacity-resume-qd-b-first-closures-qp/manifest.json)
+确认1846—1853全部F0/Stageout0、worker0、各480/480步；共新增3840步，Cng
+闭合13968/13968/13488/13488，Qia四根7248。每根原raw与新closed的SHA匹配，
+原状态接续与源/硬账条件保持，不计全年或收敛。只读时6个后继仍running。
+
+1864/1865两条CN-Qia field-capacity后继实际F1/Stageout0：7248后started28/
+completed27，在绝对步7275抛原Newton iteration30、原消息残差13.757259 W/m²。
+closed仍7248，失败partial不计closed，不自动重试。两份约282MB原archive仍在
+远端，完整路径/SHA与成员清单已封存，本机未下载或数值解码大包。
+
+失败外层receipt的source_unchanged=False原样保留；它只在整窗成功后更新，
+不能据此认定改源。原内层run/receipt的前后验证为True，实际控制代码在模型
+失败后仍hash全584源；当前36stage与NM archive/manifest亦实际exact。两作业
+临时source目录已被PBS清理，未冒称事后重查那两份目录。原单位混合问题见
+[保存路径分析](CLM_CANOPY_PHASE_ENERGY.md)，不改写这两份原消息。
+
 ## 17:17UTC后：服务恢复与八条原链实际启动
 
 [管理员恢复原件](v1-results/pbs-root-recovery-qr/manifest.json)不含凭证；原日志

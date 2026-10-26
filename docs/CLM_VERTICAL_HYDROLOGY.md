@@ -1,5 +1,26 @@
 # 2026-10-26 排水适配最新证据
 
+[PC-d实际小probe85件](v1-results/drainage-default-geometry-pc-d/manifest.json)：
+唯一worker/parent0、controller完成无timeout、3实际PID退出，原源未应用patch。
+float32现有PTX div.full及原HLO常量/分组的局部候选，在GPU内逐位重现4组×9
+default-JAX几何输出；6个明确primitive合法边界均finite/domain有效，两倒数
+常量RN guard失败0。没有新JAX或完整物理积分。原4组的严格/own RN差仍为
+12/8、6/3、9/5、6/4；RN只是独立描述，未作为新的同精度/科学门。
+
+[EHPC1867 Fraction独核](v1-results/drainage-default-geometry-pc-d-fraction/manifest.json)
+实际F0/Stageout0/run1，4原输入/context、10域、两常量及全部eligible硬RN bits/
+flags与精确有理数RNE吻合；原半途/次正规/溢出/有符号零自检真实assert通过。
+0模型/GPU/replay。该试验编译ftz=false，不能替代原CuPy wrapper的完整模块
+验证。实际共享CUDA1，17.82秒仅交付耗时，不作性能结论；其他训练未改动。
+596源的完整候选仅准备，595其他文件不变，仍须原8案/参考/1e−6/整数/P0/硬账。
+
+[PC-e完整设备候选](v1-results/clm-drainage-device-pc-e/manifest.json)实际CUDA/JAX
+各8案均返回0，原wrapper `-ftz=true` 的真实加载/cubin/cache证明通过；EHPC1873
+F1/Stageout0。P0、行为和原64位硬守恒16/16满足，但75字段的同精度/整数仅5/8。
+perched_stress出流差0.0114059448 kg/m²、焓差4151.25 J/m²且接受步数差1；
+option2出流差0.0154600143 kg/m²、焓差5625.75 J/m²；two_bands两能量残差
+差0.015625 J/m²。原生产wrapper和门不改，候选不推广。
+
 [独立Fraction核验](v1-results/drainage-geometry-pb-v-fraction/manifest.json)1845实际
 F0/Stageout0：纯有理数和IEEE binary32最近偶数舍入，含半途/次正规/有符号零/
 溢出自检，8个上下文合法；分类与PB-z硬件参考一致，0新物理或GPU调用。

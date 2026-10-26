@@ -1,0 +1,792 @@
+{
+  "scope": "1875 F0/Stageout0 same-original-lambda savedQR/PW11x11 subproblem analysis only; zero new model/eval/J/lambda/trial. OriginalQR F1 preserved; no repair/minimum/physical-degeneracy claim.",
+  "archive_sha256": "1232493e35e1a6992d31f1b9aaec32e410a3f70280520f4d5bcec171ac3c44c9",
+  "artifacts": [
+    {
+      "source": "HEAVY-INPUT-REFERENCES.json",
+      "path": "HEAVY-INPUT-REFERENCES.json.gz",
+      "source_sha256": "e3c316c605472b46fc11e6012c108cc4fa7f63c7038c6e06615c7c088057a626",
+      "stored_sha256": "d51d1fc38331b8797b5b2344aab45ac0b6095e6060b2b179390d0d2e186296e3"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md.gz",
+      "source_sha256": "da9cb036996abc148f2f18059e90b4250979307083a007496c37c3de32ba762e",
+      "stored_sha256": "dbb35e112a55538b38af6678a7afa5ca4205c7a4daeb669c0b900f7f9ac59a08"
+    },
+    {
+      "source": "actual-result/execution-controls/CONTROLS_SHA256.json",
+      "path": "actual-result/execution-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "f55ccec285d0beb42420407eda5f17f68be7cf1aacb4f2da070758e1d435eb73",
+      "stored_sha256": "1a2103b19000976921ec7bb372a468679ad396a8b98117ea60335a0f7af0fc96"
+    },
+    {
+      "source": "actual-result/execution-controls/analysis_qt.pbs",
+      "path": "actual-result/execution-controls/analysis_qt.pbs.gz",
+      "source_sha256": "4f2de1ff3817b4964f7a3e69dd6f1e73957340d0a20a8a31851196b4fa2d6798",
+      "stored_sha256": "e1423447af742a713c1e92349ca10acc97c5a35684e8e37786b3d4a89cb71201"
+    },
+    {
+      "source": "actual-result/execution-controls/check_stage_qt.py",
+      "path": "actual-result/execution-controls/check_stage_qt.py.gz",
+      "source_sha256": "5ef5dd91429e90b5d670c1cbf4e8138c8ec3ab7eff1253586ab45beb95145eff",
+      "stored_sha256": "256880de76f6b4ada93ef9c23104969e766372ae5fb195e3660e9262c7bbfa4a"
+    },
+    {
+      "source": "actual-result/execution-controls/dispatch_analysis_qt.py",
+      "path": "actual-result/execution-controls/dispatch_analysis_qt.py.gz",
+      "source_sha256": "f9c61aec0a03c158de3f8134473e1a902880e8ca9a724cc4c93fe60131a225e4",
+      "stored_sha256": "45d7370a3bdb9871df0e75b1e9da7de0cdf00c7ffaee93a6d71d9005e073a26e"
+    },
+    {
+      "source": "actual-result/execution-controls/wrapper.diff",
+      "path": "actual-result/execution-controls/wrapper.diff.gz",
+      "source_sha256": "7f169e917756882c57274d7e112a62034930cf7e4e51c76b351aa46feb1c497a",
+      "stored_sha256": "c18fe1adddc468e02cb09e42394ccd397c8678ff4254911bf0ac7658ec25491e"
+    },
+    {
+      "source": "actual-result/pbs-command-exit.txt",
+      "path": "actual-result/pbs-command-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-result/preparation-controls/BINDINGS.json",
+      "path": "actual-result/preparation-controls/BINDINGS.json.gz",
+      "source_sha256": "28875030cd095e0eaab57b455f808d1af87754a364ba0198fd74e4db5bd0248f",
+      "stored_sha256": "9acbb6833fa953d8afffd21cf4524fd14e203b8985b98c7d35b8a10e927b94e9"
+    },
+    {
+      "source": "actual-result/preparation-controls/CONTROLS_SHA256.json",
+      "path": "actual-result/preparation-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "0099f2fdb24058f94cad404ea5110d72e008d6208ab04fbb0e95b38185e8a625",
+      "stored_sha256": "17e2fffa10fba90c547d56556fb23cfaea099cf28fd905172af9de5a966b17b6"
+    },
+    {
+      "source": "actual-result/preparation-controls/PLAN.md",
+      "path": "actual-result/preparation-controls/PLAN.md.gz",
+      "source_sha256": "a3c0aed356e692ef29694b58361d9aaf06cb4290ac361ed361b9eabb91f52ad9",
+      "stored_sha256": "06ec63ae67d0f7bf7e533127905105e32bdb7273782ac123c7c7e4e92e10196f"
+    },
+    {
+      "source": "actual-result/preparation-controls/README.md",
+      "path": "actual-result/preparation-controls/README.md.gz",
+      "source_sha256": "9cfa6ed43be33d0dda60b6917fcb12b79f9b9deaef83cf75132ee365f790a7ad",
+      "stored_sha256": "230a2bbaf87e20e76024caa19f7271476050b9c1c1cb6a153e5a99ffa27d7685"
+    },
+    {
+      "source": "actual-result/preparation-controls/STATIC_CHECKS.json",
+      "path": "actual-result/preparation-controls/STATIC_CHECKS.json.gz",
+      "source_sha256": "547df4a836d6a76a6e25d1d7036617e7061c24a82eb7abc2b6c8e7fdecbc2833",
+      "stored_sha256": "8683ae7e4956bf3897851790fed2f829e8a58398d2dfb9749d51644bf3d1ee91"
+    },
+    {
+      "source": "actual-result/preparation-controls/analyze_saved_hard_ground_qt.py",
+      "path": "actual-result/preparation-controls/analyze_saved_hard_ground_qt.py.gz",
+      "source_sha256": "a95a0f1ce9cdb28b97ff923439b850349ec47105c8394cd4e0e643b4f7c3f0c3",
+      "stored_sha256": "c1ffcf63df60aa71566747af3e04a5589dfc6ecc120857f1a677d48cab62d0fc"
+    },
+    {
+      "source": "actual-result/preparation-controls/original-record-inventory.json",
+      "path": "actual-result/preparation-controls/original-record-inventory.json.gz",
+      "source_sha256": "06924401a6e7c75638d0f4bf0947fab84171cd01ea9c82a68fda9287c0a0c9fa",
+      "stored_sha256": "b2c320396e6150a3a9bf36cb136a3439ec71e52be016005c504cc8bf5f519b98"
+    },
+    {
+      "source": "actual-result/preparation-controls/saved_qp_decoder.py",
+      "path": "actual-result/preparation-controls/saved_qp_decoder.py.gz",
+      "source_sha256": "5c4e82fe3c27f9febdc2aa3ea28293009d447923b71f0e0d7baf2f27f3ddd96f",
+      "stored_sha256": "6b2100272be7292a53c4ed4746319d8a5335dcadf5f839ef26723a28ee730ff6"
+    },
+    {
+      "source": "actual-result/preparation-controls/serialization_pt.py",
+      "path": "actual-result/preparation-controls/serialization_pt.py.gz",
+      "source_sha256": "af84e01320b0018f451dc34e237cd046dfafc94d6cc4c61bf5010bf416307edf",
+      "stored_sha256": "8b8bb71e3b03044e99de960617225a1ca532bda1f7099cf43d780363dfbb9ded"
+    },
+    {
+      "source": "actual-result/probe/analysis.json",
+      "path": "actual-result/probe/analysis.json.gz",
+      "source_sha256": "52f7f8f2af69149214f2202985757ea3b7f6814830e1fdc40f04a17c34d309be",
+      "stored_sha256": "a7402aec46e466791489c343f1b89fbb88ac74b72feeb21e953f67672e48ba1b"
+    },
+    {
+      "source": "actual-result/probe/analysis.npz",
+      "path": "actual-result/probe/analysis.npz",
+      "source_sha256": "7cad2ed3175fa1c96aadbb9009c9d6cf2e9569a7011ed89309c54e22380f9267",
+      "stored_sha256": "7cad2ed3175fa1c96aadbb9009c9d6cf2e9569a7011ed89309c54e22380f9267"
+    },
+    {
+      "source": "actual-result/probe/analysis.pkl",
+      "path": "actual-result/probe/analysis.pkl",
+      "source_sha256": "52346610b5cb893b4e356136cb62411296566862cf8e0c4d0ae1197bf73b6961",
+      "stored_sha256": "52346610b5cb893b4e356136cb62411296566862cf8e0c4d0ae1197bf73b6961"
+    },
+    {
+      "source": "actual-result/setup-exit.txt",
+      "path": "actual-result/setup-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-result/stage-after-exit.txt",
+      "path": "actual-result/stage-after-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-result/stage-after.json",
+      "path": "actual-result/stage-after.json.gz",
+      "source_sha256": "03444e85bffa2e7d0453cba3b4306ddc606fb9527642f95d38f3965f2f6e719b",
+      "stored_sha256": "31c397649aba970cbe10c0e7f97c1e64fe345321622271292d10f9d969f96fb7"
+    },
+    {
+      "source": "actual-result/stage-after.log",
+      "path": "actual-result/stage-after.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-result/stage-before.json",
+      "path": "actual-result/stage-before.json.gz",
+      "source_sha256": "03444e85bffa2e7d0453cba3b4306ddc606fb9527642f95d38f3965f2f6e719b",
+      "stored_sha256": "31c397649aba970cbe10c0e7f97c1e64fe345321622271292d10f9d969f96fb7"
+    },
+    {
+      "source": "actual-result/stage-before.log",
+      "path": "actual-result/stage-before.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-result/stage-inventory.json",
+      "path": "actual-result/stage-inventory.json.gz",
+      "source_sha256": "5f434e306c446cf5109800b773f041d47bfe567ce52a048260f108d027d2adf3",
+      "stored_sha256": "a38f1430a7a958b5a4a733301712e9258723d17768bf9abbdd991e5ad704c9bb"
+    },
+    {
+      "source": "actual-result/worker-exit.txt",
+      "path": "actual-result/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "actual-result/worker.stderr",
+      "path": "actual-result/worker.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "actual-result/worker.stdout",
+      "path": "actual-result/worker.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "artifact-inventory.json",
+      "path": "artifact-inventory.json.gz",
+      "source_sha256": "fd851df6016197b6e564a47a1481b9c77002315eac1bb578ec458e9dae5654fe",
+      "stored_sha256": "761f91c1e3c716b661340d539ae22d72c4443e7505342acd4139527c32eaad3f"
+    },
+    {
+      "source": "executed-controls/execution/CONTROLS_SHA256.json",
+      "path": "executed-controls/execution/CONTROLS_SHA256.json.gz",
+      "source_sha256": "f55ccec285d0beb42420407eda5f17f68be7cf1aacb4f2da070758e1d435eb73",
+      "stored_sha256": "1a2103b19000976921ec7bb372a468679ad396a8b98117ea60335a0f7af0fc96"
+    },
+    {
+      "source": "executed-controls/execution/analysis_qt.pbs",
+      "path": "executed-controls/execution/analysis_qt.pbs.gz",
+      "source_sha256": "4f2de1ff3817b4964f7a3e69dd6f1e73957340d0a20a8a31851196b4fa2d6798",
+      "stored_sha256": "e1423447af742a713c1e92349ca10acc97c5a35684e8e37786b3d4a89cb71201"
+    },
+    {
+      "source": "executed-controls/execution/check_stage_qt.py",
+      "path": "executed-controls/execution/check_stage_qt.py.gz",
+      "source_sha256": "5ef5dd91429e90b5d670c1cbf4e8138c8ec3ab7eff1253586ab45beb95145eff",
+      "stored_sha256": "256880de76f6b4ada93ef9c23104969e766372ae5fb195e3660e9262c7bbfa4a"
+    },
+    {
+      "source": "executed-controls/execution/dispatch_analysis_qt.py",
+      "path": "executed-controls/execution/dispatch_analysis_qt.py.gz",
+      "source_sha256": "f9c61aec0a03c158de3f8134473e1a902880e8ca9a724cc4c93fe60131a225e4",
+      "stored_sha256": "45d7370a3bdb9871df0e75b1e9da7de0cdf00c7ffaee93a6d71d9005e073a26e"
+    },
+    {
+      "source": "executed-controls/execution/wrapper.diff",
+      "path": "executed-controls/execution/wrapper.diff.gz",
+      "source_sha256": "7f169e917756882c57274d7e112a62034930cf7e4e51c76b351aa46feb1c497a",
+      "stored_sha256": "c18fe1adddc468e02cb09e42394ccd397c8678ff4254911bf0ac7658ec25491e"
+    },
+    {
+      "source": "executed-controls/preparation/BINDINGS.json",
+      "path": "executed-controls/preparation/BINDINGS.json.gz",
+      "source_sha256": "28875030cd095e0eaab57b455f808d1af87754a364ba0198fd74e4db5bd0248f",
+      "stored_sha256": "9acbb6833fa953d8afffd21cf4524fd14e203b8985b98c7d35b8a10e927b94e9"
+    },
+    {
+      "source": "executed-controls/preparation/CONTROLS_SHA256.json",
+      "path": "executed-controls/preparation/CONTROLS_SHA256.json.gz",
+      "source_sha256": "0099f2fdb24058f94cad404ea5110d72e008d6208ab04fbb0e95b38185e8a625",
+      "stored_sha256": "17e2fffa10fba90c547d56556fb23cfaea099cf28fd905172af9de5a966b17b6"
+    },
+    {
+      "source": "executed-controls/preparation/PLAN.md",
+      "path": "executed-controls/preparation/PLAN.md.gz",
+      "source_sha256": "a3c0aed356e692ef29694b58361d9aaf06cb4290ac361ed361b9eabb91f52ad9",
+      "stored_sha256": "06ec63ae67d0f7bf7e533127905105e32bdb7273782ac123c7c7e4e92e10196f"
+    },
+    {
+      "source": "executed-controls/preparation/README.md",
+      "path": "executed-controls/preparation/README.md.gz",
+      "source_sha256": "9cfa6ed43be33d0dda60b6917fcb12b79f9b9deaef83cf75132ee365f790a7ad",
+      "stored_sha256": "230a2bbaf87e20e76024caa19f7271476050b9c1c1cb6a153e5a99ffa27d7685"
+    },
+    {
+      "source": "executed-controls/preparation/STATIC_CHECKS.json",
+      "path": "executed-controls/preparation/STATIC_CHECKS.json.gz",
+      "source_sha256": "547df4a836d6a76a6e25d1d7036617e7061c24a82eb7abc2b6c8e7fdecbc2833",
+      "stored_sha256": "8683ae7e4956bf3897851790fed2f829e8a58398d2dfb9749d51644bf3d1ee91"
+    },
+    {
+      "source": "executed-controls/preparation/analyze_saved_hard_ground_qt.py",
+      "path": "executed-controls/preparation/analyze_saved_hard_ground_qt.py.gz",
+      "source_sha256": "a95a0f1ce9cdb28b97ff923439b850349ec47105c8394cd4e0e643b4f7c3f0c3",
+      "stored_sha256": "c1ffcf63df60aa71566747af3e04a5589dfc6ecc120857f1a677d48cab62d0fc"
+    },
+    {
+      "source": "executed-controls/preparation/original-record-inventory.json",
+      "path": "executed-controls/preparation/original-record-inventory.json.gz",
+      "source_sha256": "06924401a6e7c75638d0f4bf0947fab84171cd01ea9c82a68fda9287c0a0c9fa",
+      "stored_sha256": "b2c320396e6150a3a9bf36cb136a3439ec71e52be016005c504cc8bf5f519b98"
+    },
+    {
+      "source": "executed-controls/preparation/saved_qp_decoder.py",
+      "path": "executed-controls/preparation/saved_qp_decoder.py.gz",
+      "source_sha256": "5c4e82fe3c27f9febdc2aa3ea28293009d447923b71f0e0d7baf2f27f3ddd96f",
+      "stored_sha256": "6b2100272be7292a53c4ed4746319d8a5335dcadf5f839ef26723a28ee730ff6"
+    },
+    {
+      "source": "executed-controls/preparation/serialization_pt.py",
+      "path": "executed-controls/preparation/serialization_pt.py.gz",
+      "source_sha256": "af84e01320b0018f451dc34e237cd046dfafc94d6cc4c61bf5010bf416307edf",
+      "stored_sha256": "8b8bb71e3b03044e99de960617225a1ca532bda1f7099cf43d780363dfbb9ded"
+    },
+    {
+      "source": "local-evidence/collect_surface_lm_hard_ground_analysis_qt.py",
+      "path": "local-evidence/collect_surface_lm_hard_ground_analysis_qt.py.gz",
+      "source_sha256": "ea282474cafbc71024df830d98e11b3baadcb8332ab7a3d9ef5fb75dac9e5f19",
+      "stored_sha256": "59145822303147aa762b55f386988f709e4b209d4279d1feda19d70f23376b3c"
+    },
+    {
+      "source": "local-evidence/deploy_surface_lm_hard_ground_analysis_qt.py",
+      "path": "local-evidence/deploy_surface_lm_hard_ground_analysis_qt.py.gz",
+      "source_sha256": "88a906330fc65064c259f128075ea57d25cffc31c1bff151e73b8687ab4e2406",
+      "stored_sha256": "d471bbf5f35579e29e7fb1769b409d0e4a633537c3ed62765ef7b2c62db36f41"
+    },
+    {
+      "source": "local-evidence/package_surface_lm_hard_ground_analysis_qt.py",
+      "path": "local-evidence/package_surface_lm_hard_ground_analysis_qt.py.gz",
+      "source_sha256": "05afbe2881c10d86875c6f38e2392bea56635f8ee6937c7c88e7718f80fa6da6",
+      "stored_sha256": "f615b158ca99588dac9c653e22a24350e7a1ca05685e79d118544260bd40470f"
+    },
+    {
+      "source": "local-evidence/prepare_surface_lm_hard_ground_analysis_qt.py",
+      "path": "local-evidence/prepare_surface_lm_hard_ground_analysis_qt.py.gz",
+      "source_sha256": "39c5f4e3377f88ba3c15dc0ffd284dbedb4fa4daa43c0398c0804b43472a98a8",
+      "stored_sha256": "334dbc6578479afbc9d8c856d58ae29461df767891bb14d99f7295c21f039243"
+    },
+    {
+      "source": "local-evidence/review_surface_hard_ground_qr_qc.py",
+      "path": "local-evidence/review_surface_hard_ground_qr_qc.py.gz",
+      "source_sha256": "a6479525bc129ee3ee78e82d6e85b6ae346c7b401ccdb5d68c37e3765dd1e26b",
+      "stored_sha256": "542eab5494dbe15b795b4448a71beca2315559158ca35a86538ae05a0f598d5d"
+    },
+    {
+      "source": "local-evidence/surface-lm-hard-ground-analysis-qt-closure.json",
+      "path": "local-evidence/surface-lm-hard-ground-analysis-qt-closure.json.gz",
+      "source_sha256": "77840e80ce47ecee41afe4be94160fffdacefb509f18018ec3dd8dc49c682be7",
+      "stored_sha256": "54dcfff3be962639010a5d4c42c111ae12d5310b705b4ea1bad5e9bf1efe6daf"
+    },
+    {
+      "source": "local-evidence/surface-lm-hard-ground-analysis-qt-readout.json",
+      "path": "local-evidence/surface-lm-hard-ground-analysis-qt-readout.json.gz",
+      "source_sha256": "d1ff09fdfacb43bdbd439811388070a121854036dfa8d82a0317fdc86f1f3316",
+      "stored_sha256": "f00667bca47f6de33b88f0401b2cf259a694f7fc2a608e91e6e2c14429916239"
+    },
+    {
+      "source": "local-evidence/surface-lm-hard-ground-analysis-qt-stage-package.json",
+      "path": "local-evidence/surface-lm-hard-ground-analysis-qt-stage-package.json.gz",
+      "source_sha256": "8cb2b13be665eff08ffa4e223f86f97bf274b4adb516dbae1918c5da1cbf2c96",
+      "stored_sha256": "b517ce0ec63bcec8f9f858d3ee647e5a6105b32187fed8d2fefb3feac190843f"
+    },
+    {
+      "source": "local-evidence/surface-lm-hard-ground-qr-independent-review-qc.json",
+      "path": "local-evidence/surface-lm-hard-ground-qr-independent-review-qc.json.gz",
+      "source_sha256": "366661ed5fc68a0e6f248e2b3b3171acb660b25d7b1a3401ea2471dfb465d899",
+      "stored_sha256": "46bb06d515b8095dc4c06c15cf293c805ccddeafdc6e03b1ff8ab547a53d6232"
+    },
+    {
+      "source": "original-result.tar.gz",
+      "path": "original-result.tar.gz",
+      "source_sha256": "631759a5acd21ddbbd0145e12853ba643cbbc49c617fdaf5ce8d1ee53620de64",
+      "stored_sha256": "631759a5acd21ddbbd0145e12853ba643cbbc49c617fdaf5ce8d1ee53620de64"
+    },
+    {
+      "source": "stage-inventory.json",
+      "path": "stage-inventory.json.gz",
+      "source_sha256": "5f434e306c446cf5109800b773f041d47bfe567ce52a048260f108d027d2adf3",
+      "stored_sha256": "a38f1430a7a958b5a4a733301712e9258723d17768bf9abbdd991e5ad704c9bb"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/download-result-exit.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/download-result-exit.json.gz",
+      "source_sha256": "47c7397626d2a0137638db1c639f18441123c7c21ad03c5dca4d603a87e55ca3",
+      "stored_sha256": "d0409c6c33c68ba57e45afeb918cdcf0b9e897edfb45b0b44d3e7a1ccf2ba767"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/download-result.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/download-result.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/download-result.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/download-result.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit-exit.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit-exit.json.gz",
+      "source_sha256": "bdc876c7ba64250b9486ca9cda67f04f9f4878f0af1e06d19bdeeb2b60c77a30",
+      "stored_sha256": "e1b50c9e98db57ba094f5b8b9a9b57ec9c2396a757ce9140bf4e621678f99d34"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/external-pbs-exit.stdout.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat-exit.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat-exit.json.gz",
+      "source_sha256": "1d4886ec05f30e6834e50651172df1dc2369bf7035862fa4f21af82248f7165d",
+      "stored_sha256": "78e959bc6ca287e317e33d279b663a505dbcd3bf9ffefdc408b664b84dc216d9"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/initial-qstat.stdout.gz",
+      "source_sha256": "672607a933c8f34111ec6ae353b3423f21f374ea30e6b5f00ba2f756ea01a7b9",
+      "stored_sha256": "88a5d6113d596c1d6f9c5de2122586212cd74ec3532f5c6195df6d5b58484a39"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/initial-result-receipt.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/initial-result-receipt.json.gz",
+      "source_sha256": "3a2b7cee664d1cd6672275cbda154ccb5abed7b17183494b3ba0c7e7b7cec57a",
+      "stored_sha256": "3d013425558d6ae887c4faf9e00f9cc70125e7e7a4fa02f7eb667972dfef60fd"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/execution-controls/CONTROLS_SHA256.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/execution-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "f55ccec285d0beb42420407eda5f17f68be7cf1aacb4f2da070758e1d435eb73",
+      "stored_sha256": "1a2103b19000976921ec7bb372a468679ad396a8b98117ea60335a0f7af0fc96"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/pbs-command-exit.txt",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/pbs-command-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/BINDINGS.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/BINDINGS.json.gz",
+      "source_sha256": "28875030cd095e0eaab57b455f808d1af87754a364ba0198fd74e4db5bd0248f",
+      "stored_sha256": "9acbb6833fa953d8afffd21cf4524fd14e203b8985b98c7d35b8a10e927b94e9"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/CONTROLS_SHA256.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/CONTROLS_SHA256.json.gz",
+      "source_sha256": "0099f2fdb24058f94cad404ea5110d72e008d6208ab04fbb0e95b38185e8a625",
+      "stored_sha256": "17e2fffa10fba90c547d56556fb23cfaea099cf28fd905172af9de5a966b17b6"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/STATIC_CHECKS.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/STATIC_CHECKS.json.gz",
+      "source_sha256": "547df4a836d6a76a6e25d1d7036617e7061c24a82eb7abc2b6c8e7fdecbc2833",
+      "stored_sha256": "8683ae7e4956bf3897851790fed2f829e8a58398d2dfb9749d51644bf3d1ee91"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/original-record-inventory.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/preparation-controls/original-record-inventory.json.gz",
+      "source_sha256": "06924401a6e7c75638d0f4bf0947fab84171cd01ea9c82a68fda9287c0a0c9fa",
+      "stored_sha256": "b2c320396e6150a3a9bf36cb136a3439ec71e52be016005c504cc8bf5f519b98"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/probe/analysis.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/probe/analysis.json.gz",
+      "source_sha256": "52f7f8f2af69149214f2202985757ea3b7f6814830e1fdc40f04a17c34d309be",
+      "stored_sha256": "a7402aec46e466791489c343f1b89fbb88ac74b72feeb21e953f67672e48ba1b"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/setup-exit.txt",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/setup-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after-exit.txt",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after.json.gz",
+      "source_sha256": "03444e85bffa2e7d0453cba3b4306ddc606fb9527642f95d38f3965f2f6e719b",
+      "stored_sha256": "31c397649aba970cbe10c0e7f97c1e64fe345321622271292d10f9d969f96fb7"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after.log",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-after.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-before.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-before.json.gz",
+      "source_sha256": "03444e85bffa2e7d0453cba3b4306ddc606fb9527642f95d38f3965f2f6e719b",
+      "stored_sha256": "31c397649aba970cbe10c0e7f97c1e64fe345321622271292d10f9d969f96fb7"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-before.log",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-before.log.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-inventory.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/stage-inventory.json.gz",
+      "source_sha256": "5f434e306c446cf5109800b773f041d47bfe567ce52a048260f108d027d2adf3",
+      "stored_sha256": "a38f1430a7a958b5a4a733301712e9258723d17768bf9abbdd991e5ad704c9bb"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/worker-exit.txt",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/worker-exit.txt.gz",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stored_sha256": "89ed3b723e0e40d8957a2df55fcb04d57b6d95fa665c5fe67b098df7f29694ae"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/worker.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/worker.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/readable/worker.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/readable/worker.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/result-hash-exit.json",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/result-hash-exit.json.gz",
+      "source_sha256": "4ffdc7d3732a4dcbcba9ae9c96bdf5751c077d905c90dbc8eb61faeaf3965977",
+      "stored_sha256": "b53658cfa19cb51dffb45e3f5fabc9408d3b91cf6a2c910a2f290bbe745c67d0"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/result-hash.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/result-hash.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-closure/result-hash.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-closure/result-hash.stdout.gz",
+      "source_sha256": "88db5476639106d6508c83373c9bf4fbeb9d29a850c513be3ef24ca5f044ad11",
+      "stored_sha256": "0f388dbfa4ba2a976ea000cd79e54caa9f5d6a97491f1c79d8592802e4231c11"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.json.gz",
+      "source_sha256": "077151977dda5d0f332f09f6a0d86e94f8538820bf1ce7d633f06955c28408e8",
+      "stored_sha256": "d9ffdd653eeda60e366984e1ca1e231cbd12d95c329c27f22c8f5b9948455e01"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-health.stdout.gz",
+      "source_sha256": "ab0974b5e2a31245c398198f2bf6330e4aa7c7919b83e1de4055cc2aad16e013",
+      "stored_sha256": "0d0caa73348cf6612f0aaf54a5107641be8fdeaa81946e853df1074ad6fc96b1"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.json.gz",
+      "source_sha256": "0681b44257a1b03cb2f8a300800fb2d995d4d1ed0dd350e2d1db0d2f7a145bd6",
+      "stored_sha256": "a36e8e8e458a30a92c372be0e59fac2ddbcd3df3550afeccd7a2449166d21503"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-live.stdout.gz",
+      "source_sha256": "b52d006ff36b8deb113850256b39d3381bb9349ca0f5976fdd40b7391d399ed7",
+      "stored_sha256": "2c607fc4ed79d6dce8e42ac36d5215589a7fa5142e61abf9cec6f0a08872fdfb"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.json.gz",
+      "source_sha256": "8874b2499a36c41879dea555a5bca5b3c86a15f3f16862e721f0c85c049f5f5f",
+      "stored_sha256": "4ba1df5b738aa6a3b3023ba9ae9b81daffb90b5d282feadd79d982b7d7094f7b"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/PBS-parent-live.stdout.gz",
+      "source_sha256": "b7371f2676f0032d95bd45872d85682c248c5c043ab1027b36af1f9af2a3c353",
+      "stored_sha256": "ab80c61cbbae3ff4b4aa0f28e02867ba35cce05b8b77a5e3f2f62f0414d34338"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.json.gz",
+      "source_sha256": "6ae29c33a9e7d39b498cf0fbffbcedcc9c0f7572a0a4161b76e4826f16b9d66c",
+      "stored_sha256": "0d39eaa6b5a274148754b49ad15e943f43711e1e55c20ed42661812747aa0046"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc-c2.stdout.gz",
+      "source_sha256": "5eeee379b9cd45087336761eb628cde293c435fd8a31db727172adec831568fe",
+      "stored_sha256": "5d0dc3a135c90b562e98f92730b6ccd09b1ec09cdf3d13d5593e36a4632bdd99"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.json.gz",
+      "source_sha256": "910de900b9ff13c7f6fdf7ace9135fd1abb1cbcc9b1ee502a3826b668e0869d1",
+      "stored_sha256": "4bd61704ba6b36d4ad2007cd971eaf3edc7bf7ae6deeb5564355573274753509"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/capacity-ehpc.stdout.gz",
+      "source_sha256": "0556e1b9697470d19cbb4203f2015df850e7100ab0d8fd44cdd7b04ff9edbc68",
+      "stored_sha256": "d166cf4bf09c664068d79b4b4ff41a64c71a5a71979b07b62253c7ef86b490e5"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.json.gz",
+      "source_sha256": "2729de6c56e89194c4a22cea71676aea5ea3b93847c445508b78e76a7afccb3f",
+      "stored_sha256": "2b0332923388904974cce86c6d837aa01638df49cccf006f93a04c883fb24e94"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.stderr.gz",
+      "source_sha256": "be04fc9d161327ebfe692b016ff55b6d953c054e913b9e93870abeab2b4c0fbb",
+      "stored_sha256": "3f8f1faa31793d3802f7019d0ab7a13c70acaae603612895f7e840c24ad55676"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/dispatch.stdout.gz",
+      "source_sha256": "8bcdb4d81ab210c4e2c86cc70f81e4568df777c23815689bf4fbb7ca4df6533a",
+      "stored_sha256": "7a1b6edf1c4b019aa14dc91658aa191ffb75e6ca63b4f6398149abf84f8bc378"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.json.gz",
+      "source_sha256": "1cc57469a36359c8baaaf558a229f68c5ebc6e11136fc470709c851cd502bc77",
+      "stored_sha256": "343fe07275de907bf0744fead4dd89ed0c4c9145c0e7a8cc29bdf2906f858e7b"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1844.manager.stdout.gz",
+      "source_sha256": "29ee656ab1627bd6fada18a4dcc823180a48de6834aaaacb05716a770f578f61",
+      "stored_sha256": "069f7938c9f5d6c356177b60587cb4d06279d46e9376f07aca795731d19292d7"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.json.gz",
+      "source_sha256": "e062c62849c7cf6fe42647cebd699c42870523f51e44ed8a2108ea810c139494",
+      "stored_sha256": "71ef8cc8b63ce92189da506208441798a99dabcaff12d051c1a699e23d9f109f"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1854.manager.stdout.gz",
+      "source_sha256": "0926a6aba1c85f9f121867d518d9bb7ffe4897ded9d905863495877908776132",
+      "stored_sha256": "403d8e07a32d344bb58f1c12ec2ced16bffc3df372d4a3b2d4125314ba21d680"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.json.gz",
+      "source_sha256": "3780819a0e536bdb230536c76f93ee9f179632a9340f07d8e84a3e89f1552b44",
+      "stored_sha256": "d08f0ddaad85020b08597b8a09d866569678b87d2f12ed67c1129bdaa08f4149"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/input-terminal-1856.manager.stdout.gz",
+      "source_sha256": "c8e6501b6c5f3b3d99c22a0b94ee3cc9f048fbe4c6842597e0eaff6018eeb33d",
+      "stored_sha256": "68b5315afc33bcbea5e45bb4c34e41231e4588ff6e6da7445b9b5b100539d11f"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.json.gz",
+      "source_sha256": "fe32e103740be49b75d0c340e5f5c88082b6161d315764e434c5d5640cbf9121",
+      "stored_sha256": "bed8aeeac2908a23149d9b66cca85fcbf8c28adc950c8694c27eaedc4628072a"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.json.gz",
+      "source_sha256": "ae52a23f1c2a42c93eb5546c5838a08a7b14edb1f654ae918a359ac4d42c3897",
+      "stored_sha256": "7b0ecc3b6713ee8ac4198d97fb9fe31724f0119cea753661b9e446c6d266f66c"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-root.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.json.gz",
+      "source_sha256": "27ce256b68f3debf76b0dd4e1cbca4da4e5ecdfed35f4f8f670e9377ad64ada5",
+      "stored_sha256": "cf829d28ef4a84bf57d7ad0f06db927c54e8c779383052d0e651ae211b768fa0"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/preflight-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.json.gz",
+      "source_sha256": "6c5d7397d53018a4bfc8fe0c5f90cf2fdf00f1cd5442922d51e4d3ad1342e5ca",
+      "stored_sha256": "333894bd7461c1a58c895a70747c17c3c733f1586f141d53e4142258511261ef"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-dispatch.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.json.gz",
+      "source_sha256": "789eb826dd6bbc6974cefa443abd73494eb1932ddf87f936d84ce68f4afba364",
+      "stored_sha256": "b20ed7e6f71ddba9c7c622f3a4a1bc7b3397d5d2323216e6601e678e7022b9b8"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/upload-stage.stdout.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.json",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.json.gz",
+      "source_sha256": "0cc6b08bb6e7f4d2b1419b34e62f55f8e0ac66bbe8ee5dbe45482a8a0ee38dc2",
+      "stored_sha256": "d28a1e884dd312ebc9c506a6b461eb0aa07532d9af8271fcc1be41da2cd15a12"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.stderr",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.stderr.gz",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.stdout",
+      "path": "surface-lm-hard-ground-analysis-qt-deployment/uploaded-hashes.stdout.gz",
+      "source_sha256": "37740fa05640820010c145b7962c697895019fe8fee1cd99e51eff02c6aca306",
+      "stored_sha256": "b78262c702e69e6daebbc282acaffaf306c204b7023e7234c86dbd55ec215545"
+    }
+  ]
+}

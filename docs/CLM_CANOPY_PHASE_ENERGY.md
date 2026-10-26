@@ -1,5 +1,31 @@
 # 2026-10-26 LM透明迭代与离线代数证据
 
+[QP1866独立保存路径分析](v1-results/surface-lm-path-comparison-qp/manifest.json)
+实际F0/Stageout0，0模型/evaluate/新Jacobian。更正此前单位：本案12式包含10个
+叶能量W/m²、1个固定地温约束K和1个空气水汽乘LV的W/m²，不能统一写W/m²。
+QN/QF/PW停滞点的最大数值约10.769都来自第10行固定地温约束，单位K；原源
+报错及已有原件保留，下面解释文字已纠正。原给定地温301.29342687811385 K。
+
+QN末原J条件数1.518130959e9、最小奇异值2.450006868e−8；JS条件数9.740429677e8。
+残差在最弱左模式的投影平方比1.0，正交余量3.5576967e−8；主导行是固定地温
+约束，系数.91285275、残差−10.76900751598 K。原记录的交换速度均.01816251315
+m/s、tr_limit .23401955336，不能把弱模式直接解释为交换速度为零或局部极小。
+PW ambient的原方程可行根仍为9.61564e−13，未用作模型起点。
+
+[QR1870硬地温候选](v1-results/surface-lm-hard-ground-qr/manifest.json)随后实际
+F1/Stageout0，48项中47通过/1个Qia失败、零error/skip。542/542原evaluate和
+全部trial的ground都与原Tf字节相同，11×11自由行列、非地温ambient起点、
+原80预算/parcel/物理门及617份源/输入/控制保持；没有新增evaluate/J。
+仍在66/80以no_feasible_displacement失败，22接受/14拒绝，阻尼50805263.4252909。
+消元没有解决Qia，候选不推广，不调参重投；末分单位残差与弱模式须从保存值
+单独在EHPC读取，不猜数值。中间求解点是未被模型接受的试算，不当作物理状态。
+
+[QR1868分单位补表](v1-results/surface-residual-units-qr/manifest.json)实际F0，
+0模型/evaluate/新J。前一QN的试算地温312.0624343940975 K，约束−10.76900751598 K，
+其他11式和physical11最大均1.74462541265 W/m²（leaf5）；QF对应两W最大
+1.74462545861、PW stalled为1.74462547429。PW ambient解地温恰为原Tf、约束0 K，
+两W最大9.61564161628e−13（leaf3）。原完整逐行值、原错误字符串均保留。
+
 [透明跟踪QF](v1-results/surface-lm-transparent-trace-qf/manifest.json)EHPC1844实际
 F1/Stageout0，原异常保持；外部观察367事件，不增加evaluate/Jacobian调用。
 全部rescue字段和末x与1822完全相同，原584源、输入和控制前后不变。末次61轮
@@ -8,7 +34,7 @@ F1/Stageout0，原异常保持；外部观察367事件，不增加evaluate/Jacob
 最终增到4,572,473.708276179。不能把沿用的旧ratio误当第61轮新计算。
 
 [QM离线代数](v1-results/surface-lm-event-analysis-qm/manifest.json)EHPC1854实际
-F0/Stageout0，0模型/evaluate/新J。原末残差max=10.7690074770 W/m²，Jacobian
+F0/Stageout0，0模型/evaluate/新J。原末12式最大值是固定地温偏差10.7690074770 K，Jacobian
 条件数1.9912915e9、缩放梯度范数7.05902827e−8，并非精确零。旧预计下降表达式
 相减在53—60轮得到6个零及2个−2.84217e−14；代数等价稳定式与80位Decimal
 核验8次全为正，范围1.0572967e−14至2.0428160e−20。这证明预计下降计算丢失
@@ -22,7 +48,7 @@ PY-c失败与PW诊断根分别保留。下面为较早快照，后续QF/QM已补
 后续[165件原始实测证据](v1-results/surface-lm-merit-qn/manifest.json)1856实际
 F1/Stageout0，原48节点47通过/1失败、零error/skip，两个
 控制站和42原项仍过。Qia未修复：总65/80轮、23接受/12拒绝、611次evaluate
-全部返回，最终no_feasible_displacement，末残差10.76900751598 W/m²、阻尼
+全部返回，最终no_feasible_displacement，末固定地温约束偏差10.76900751598 K、阻尼
 1,693,508.7808430293。稳定下降式没有解决非线性求根，候选不推广或同步GPU。
 下一步先比较已保存的PW与新轨迹，不能仅凭小梯度断言局部极小或增加预算调参。
 
@@ -93,7 +119,7 @@ LE差8.695779e−7／4.630656e−5 W/m²，表面温度差5.449295e−6／1.6357
 随后[PW有限活闭包诊断](v1-results/surface-7275-feasible-root-pw/manifest.json)在
 EHPC1700真实F1／Stageout0结束：原模型同一异常及worker1保留，独立诊断status0。
 两预声明起点合计589次额外原残差求值全部返回，未增加柱步。从停滞点出发288次，
-最终12式最大残差10.7690074653 W/m²、physical11最大1.7446254743 W/m²，
+最终12式数值最大10.7690074653（固定地温约束，K）、physical11最大1.7446254743 W/m²，
 虽优化器success仍不是根；从原stored_ambient出发301次，两者最大均
 9.6156416163e−13 W/m²，满足原1e−7及1.01e−7门和原边界。各耗时.421／.409秒，
 完整wrapper5.094秒。584源、15有效输入、605原模型文件及活闭包数据保持。
